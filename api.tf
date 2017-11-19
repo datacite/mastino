@@ -10,6 +10,12 @@ resource "kubernetes_pod" "api" {
     container {
       image = "datacite/spinone:latest"
       name  = "api"
+      env   = [
+        {
+          name = "SOLR_URL"
+          value = "${var.solr-url}"
+        }
+      ]
     }
   }
 }
@@ -49,6 +55,12 @@ resource "kubernetes_replication_controller" "api" {
       container {
         name  = "api"
         image = "datacite/spinone:latest"
+        env   = [
+          {
+            name = "SOLR_URL"
+            value = "${var.solr-url}"
+          }
+        ]
 
         resources{
           limits{
