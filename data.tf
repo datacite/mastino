@@ -36,14 +36,14 @@ resource "kubernetes_replication_controller" "data" {
   metadata {
     name = "data"
     labels {
-      test = "data"
+      app = "data"
     }
   }
 
   spec {
     replicas = "1"
     selector {
-      test = "data"
+      app = "data"
     }
     template {
       container {

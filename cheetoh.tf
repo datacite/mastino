@@ -36,14 +36,14 @@ resource "kubernetes_replication_controller" "cheetoh" {
   metadata {
     name = "cheetoh"
     labels {
-      test = "cheetoh"
+      app = "cheetoh"
     }
   }
 
   spec {
     replicas = "1"
     selector {
-      test = "cheetoh"
+      app = "cheetoh"
     }
     template {
       container {
