@@ -22,13 +22,13 @@ resource "kubernetes_service" "data" {
     selector {
       app = "${kubernetes_pod.data.metadata.0.labels.app}"
     }
-    session_affinity = "ClientIP"
+
     port {
       port = "${var.service-ports["data"]}"
       target_port = 80
     }
 
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }
 
@@ -47,8 +47,8 @@ resource "kubernetes_replication_controller" "data" {
     }
     template {
       container {
-        image = "crosscite/content-negotiation:latest"
         name  = "data"
+        image = "crosscite/content-negotiation:latest"
 
         resources{
           limits{

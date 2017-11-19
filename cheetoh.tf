@@ -22,13 +22,13 @@ resource "kubernetes_service" "cheetoh" {
     selector {
       app = "${kubernetes_pod.cheetoh.metadata.0.labels.app}"
     }
-    session_affinity = "ClientIP"
+
     port {
       port = "${var.service-ports["cheetoh"]}"
       target_port = 80
     }
 
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }
 
