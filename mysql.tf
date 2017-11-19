@@ -1,4 +1,4 @@
-resource "kubernetes_pod" "mysql" {
+/*resource "kubernetes_pod" "mysql" {
   metadata {
     name = "mysql"
   }
@@ -24,4 +24,4 @@ resource "kubernetes_persistent_volume_claim" "mysql" {
     }
     volume_name = "${kubernetes_persistent_volume.default.metadata.0.name}"
   }
-}
+}*/
