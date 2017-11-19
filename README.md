@@ -36,3 +36,11 @@ Use Terraform to configure your Kubernetes cluster, using the terraform configur
 terraform plan
 terraform apply
 ```
+
+## Use
+
+Access the services by service name, e.g.
+
+```
+minikube service data
+```

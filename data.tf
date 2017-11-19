@@ -28,7 +28,7 @@ resource "kubernetes_service" "data" {
       target_port = 80
     }
 
-    type = "NodePort"
+    type = "LoadBalancer"
   }
 }
 
