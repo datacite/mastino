@@ -10,3 +10,18 @@ resource "kubernetes_pod" "mysql" {
     }
   }
 }
+
+resource "kubernetes_persistent_volume_claim" "mysql" {
+  metadata {
+    name = "mysql"
+  }
+  spec {
+    access_modes = ["ReadWriteMany"]
+    resources {
+      requests {
+        storage = "5Gi"
+      }
+    }
+    volume_name = "${kubernetes_persistent_volume.default.metadata.0.name}"
+  }
+}
