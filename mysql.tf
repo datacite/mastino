@@ -13,7 +13,7 @@ resource "kubernetes_pod" "mysql" {
       env   = [
         {
           name = "MYSQL_DATABASE"
-          value = "${var.mysql-database}"
+          value = "mysql"
         },
         {
           name = "MYSQL_USER"
@@ -91,7 +91,7 @@ resource "kubernetes_replication_controller" "mysql" {
         env   = [
           {
             name = "MYSQL_DATABASE"
-            value = "${var.mysql-database}"
+            value = "mysql"
           },
           {
             name = "MYSQL_USER"
