@@ -1,27 +1,118 @@
-/*resource "kubernetes_pod" "mysql" {
+resource "kubernetes_pod" "mysql" {
   metadata {
     name = "mysql"
+    labels {
+      app = "mysql"
+    }
   }
 
   spec {
     container {
       image = "mysql:5.7"
       name  = "mysql"
+      env   = [
+        {
+          name = "MYSQL_DATABASE"
+          value = "${var.mysql-database}"
+        },
+        {
+          name = "MYSQL_USER"
+          value = "${var.mysql-user}"
+        },
+        {
+          name = "MYSQL_ALLOW_EMPTY_PASSWORD"
+          value = "${var.mysql-allow-empty-password}"
+        }
+      ]
+      volume_mount = {
+        name = "mysql-persistent-storage"
+        mount_path = "/var/lib/mysql"
+      }
     }
+    volume {
+      name = "mysql-persistent-storage"
+      persistent_volume_claim {
+        claim_name = "mysql-pv-claim"
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "mysql" {
+  metadata {
+    name = "mysql"
+  }
+  spec {
+    selector {
+      app = "${kubernetes_pod.mysql.metadata.0.labels.app}"
+    }
+
+    port {
+      port = "${var.service-ports["mysql"]}"
+      target_port = 3306
+    }
+
+    type = "NodePort"
   }
 }
 
 resource "kubernetes_persistent_volume_claim" "mysql" {
   metadata {
-    name = "mysql"
+    name = "mysql-pv-claim"
   }
   spec {
-    access_modes = ["ReadWriteMany"]
+    access_modes = ["ReadWriteOnce"]
     resources {
       requests {
-        storage = "5Gi"
+        storage = "10Gi"
       }
     }
-    volume_name = "${kubernetes_persistent_volume.default.metadata.0.name}"
+    /*volume_name = "${kubernetes_persistent_volume.default.metadata.0.name}"*/
   }
-}*/
+}
+
+resource "kubernetes_replication_controller" "mysql" {
+  metadata {
+    name = "mysql"
+    labels {
+      app = "mysql"
+    }
+  }
+
+  spec {
+    replicas = "1"
+    selector {
+      app = "mysql"
+    }
+    template {
+      container {
+        name  = "data"
+        image = "mysql:5.7"
+        env   = [
+          {
+            name = "MYSQL_DATABASE"
+            value = "${var.mysql-database}"
+          },
+          {
+            name = "MYSQL_USER"
+            value = "${var.mysql-user}"
+          },
+          {
+            name = "MYSQL_ALLOW_EMPTY_PASSWORD"
+            value = "${var.mysql-allow-empty-password}"
+          }
+        ]
+        volume_mount = {
+          name = "mysql-persistent-storage"
+          mount_path = "/var/lib/mysql"
+        }
+      }
+      volume {
+        name = "mysql-persistent-storage"
+        persistent_volume_claim {
+          claim_name = "mysql-pv-claim"
+        }
+      }
+    }
+  }
+}

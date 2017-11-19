@@ -10,7 +10,7 @@ resource "kubernetes_persistent_volume" "default" {
         capacity {
             storage = "20Gi"
         }
-        access_modes = ["ReadWriteMany"]
+        access_modes = ["ReadWriteOnce"]
         persistent_volume_source {
             vsphere_volume {
                 volume_path = "/absolute/path"
