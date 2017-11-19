@@ -34,3 +34,7 @@ variable "mysql-password" {
 variable "mysql-allow-empty-password" {
   default = "yes"
 }
+
+variable "solr-url" {
+  default = "solr/api"
+}
