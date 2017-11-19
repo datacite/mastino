@@ -24,7 +24,7 @@ resource "kubernetes_service" "data" {
     }
     session_affinity = "ClientIP"
     port {
-      port = 8021
+      port = "${var.service-ports["data"]}"
       target_port = 80
     }
 
