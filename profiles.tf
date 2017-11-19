@@ -12,6 +12,10 @@ resource "kubernetes_pod" "profiles" {
       name  = "profiles"
       env   = [
         {
+          name = "DB_HOST"
+          value = "${var.mysql-host}"
+        },
+        {
           name = "DB_NAME"
           value = "${var.mysql-databases["profiles"]}"
         },

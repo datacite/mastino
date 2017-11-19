@@ -6,6 +6,7 @@ variable "service-ports" {
     "data" = "8021"
     "mysql" = "3306"
     "profiles" = "8080"
+    "solr" = "8012"
   }
 }
 
@@ -14,7 +15,12 @@ variable "mysql-databases" {
   default = {
     "lupo" = "datacite"
     "profiles" = "profiles"
+    "solr" = "datacite"
   }
+}
+
+variable "mysql-host" {
+  default = "mysql"
 }
 
 variable "mysql-user" {
