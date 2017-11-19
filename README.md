@@ -1,6 +1,9 @@
-# mastino
+# Mastino
 
 Configuration for local DataCite development. Uses [Minikube](https://github.com/kubernetes/minikube) to run a local [Kubernetes](https://kubernetes.io/) cluster to manage containerized applications, and [Terraform](https://www.terraform.io/) for configuration.
+
+![Mastino](bordeaux-869036_640.jpg)
+From: https://pixabay.com/en/bordeaux-mastiff-dog-animal-white-869036/
 
 ## Installation
 
