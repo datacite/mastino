@@ -1,3 +1,7 @@
+resource "mysql_database" "profiles" {
+  name = "${var.mysql-databases["profiles"]}"
+}
+
 resource "kubernetes_pod" "profiles" {
   metadata {
     name = "profiles"
@@ -12,24 +16,32 @@ resource "kubernetes_pod" "profiles" {
       name  = "profiles"
       env   = [
         {
-          name = "DB_HOST"
-          value = "${var.mysql-host}"
+          name = "MYSQL_HOST"
+          value = "${var.mysql_host}"
         },
         {
-          name = "DB_NAME"
+          name = "MYSQL_DATABASE"
           value = "${var.mysql-databases["profiles"]}"
         },
         {
-          name = "DB_USERNAME"
-          value = "${var.mysql-user}"
+          name = "MYSQL_USER"
+          value = "${var.mysql_user}"
         },
         {
-          name = "DB_PASSWORD"
-          value = "${var.mysql-password}"
+          name = "MYSQL_PASSWORD"
+          value = "${var.mysql_password}"
         },
         {
           name = "MODE"
           value = "datacite"
+        },
+        {
+          name = "JWT_PRIVATE_KEY"
+          value = "${var.jwt_private_key}"
+        },
+        {
+          name = "JWT_PUBLIC_KEY"
+          value = "${var.jwt_public_key}"
         }
       ]
     }

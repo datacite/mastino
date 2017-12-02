@@ -1,3 +1,7 @@
+resource "mysql_database" "solr" {
+  name = "${var.mysql-databases["solr"]}"
+}
+
 resource "kubernetes_pod" "solr" {
   metadata {
     name = "solr"
@@ -17,19 +21,19 @@ resource "kubernetes_pod" "solr" {
         },
         {
           name = "DB_USERNAME"
-          value = "${var.mysql-user}"
+          value = "${var.mysql_user}"
         },
         {
           name = "DB_USER"
-          value = "${var.mysql-user}"
+          value = "${var.mysql_user}"
         },
         {
           name = "DB_PASSWORD"
-          value = "${var.mysql-password}"
+          value = "${var.mysql_password}"
         },
         {
           name = "MYSQL_ALLOW_EMPTY_PASSWORD"
-          value = "${var.mysql-allow-empty-password}"
+          value = "${var.mysql_allow_empty_password}"
         }
       ]
       volume_mount = {
@@ -91,7 +95,7 @@ resource "kubernetes_replication_controller" "solr" {
         env   = [
           {
             name = "DB_HOST"
-            value = "${var.mysql-host}"
+            value = "${var.mysql_host}"
           },
           {
             name = "DB_NAME"
@@ -99,19 +103,19 @@ resource "kubernetes_replication_controller" "solr" {
           },
           {
             name = "DB_USERNAME"
-            value = "${var.mysql-user}"
+            value = "${var.mysql_user}"
           },
           {
             name = "DB_USER"
-            value = "${var.mysql-user}"
+            value = "${var.mysql_user}"
           },
           {
             name = "DB_PASSWORD"
-            value = "${var.mysql-password}"
+            value = "${var.mysql_password}"
           },
           {
             name = "MYSQL_ALLOW_EMPTY_PASSWORD"
-            value = "${var.mysql-allow-empty-password}"
+            value = "${var.mysql_allow_empty_password}"
           }
         ]
         volume_mount = {

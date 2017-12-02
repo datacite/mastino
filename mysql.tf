@@ -1,3 +1,10 @@
+provider "mysql" {
+  version  = "~> 1.0"
+  endpoint = "${var.mysql_host}:${var.mysql_port}"
+  username = "${var.mysql_user}"
+  password = "${var.mysql_password}"
+}
+
 resource "kubernetes_pod" "mysql" {
   metadata {
     name = "mysql"
@@ -17,11 +24,11 @@ resource "kubernetes_pod" "mysql" {
         },
         {
           name = "MYSQL_USER"
-          value = "${var.mysql-user}"
+          value = "${var.mysql_user}"
         },
         {
           name = "MYSQL_ALLOW_EMPTY_PASSWORD"
-          value = "${var.mysql-allow-empty-password}"
+          value = "${var.mysql_allow_empty_password}"
         }
       ]
       volume_mount = {
@@ -95,11 +102,11 @@ resource "kubernetes_replication_controller" "mysql" {
           },
           {
             name = "MYSQL_USER"
-            value = "${var.mysql-user}"
+            value = "${var.mysql_user}"
           },
           {
             name = "MYSQL_ALLOW_EMPTY_PASSWORD"
-            value = "${var.mysql-allow-empty-password}"
+            value = "${var.mysql_allow_empty_password}"
           }
         ]
         volume_mount = {

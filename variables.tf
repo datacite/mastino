@@ -13,28 +13,39 @@ variable "service-ports" {
 variable "mysql-databases" {
   type    = "map"
   default = {
-    "lupo" = "datacite"
     "profiles" = "profiles"
     "solr" = "datacite"
   }
 }
 
-variable "mysql-host" {
+variable "mysql_host" {
   default = "mysql"
 }
 
-variable "mysql-user" {
+variable "mysql_port" {
+  default = "3306"
+}
+
+variable "mysql_user" {
   default = "root"
 }
 
-variable "mysql-password" {
+variable "mysql_password" {
   default = ""
 }
 
-variable "mysql-allow-empty-password" {
+variable "mysql_allow_empty_password" {
   default = "yes"
 }
 
 variable "solr-url" {
   default = "solr/api"
+}
+
+variable "jwt_private_key" {
+  default = "foo"
+}
+
+variable "jwt_public_key" {
+  default = "bar"
 }
