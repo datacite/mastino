@@ -6,15 +6,22 @@ Configuration for local DataCite development. Uses [Minikube](https://github.com
 
 ## Installation
 
-Install Minikube and Terraform. Use Homebrew on a Mac, and install the [xhyve](https://github.com/mist64/xhyve) hypervisor:
+Install Minikube and Terraform.
+
+### Mac
+
+Use Homebrew.
 
 ```
 brew install docker-machine-driver-xhyve
 brew cask install minikube
 brew install terraform
+eval $(minikube docker-env)
 ```
 
-Start Kubernetes cluster, check the IP address, and go to the dashboard (at http://IP_ADDRESS:30000)
+### All platforms
+
+Start Kubernetes cluster, check the IP address, and go to the dashboard (at http://IP_ADDRESS:30000):
 
 ```
 minikube start

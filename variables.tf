@@ -1,20 +1,20 @@
 variable "service-ports" {
   type    = "map"
   default = {
-    "api" = "8017"
+    "spinone" = "8017"
     "cheetoh" = "8070"
-    "data" = "8021"
+    "content-negotiation" = "8021"
     "mysql" = "3306"
-    "profiles" = "8080"
-    "solr" = "8012"
+    "volpino" = "8080"
+    "search" = "8012"
   }
 }
 
 variable "mysql-databases" {
   type    = "map"
   default = {
-    "profiles" = "profiles"
-    "solr" = "datacite"
+    "volpino" = "profiles"
+    "search" = "datacite"
   }
 }
 

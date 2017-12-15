@@ -1,9 +1,9 @@
-provider "mysql" {
+/*provider "mysql" {
   version  = "~> 1.0"
   endpoint = "${var.mysql_host}:${var.mysql_port}"
   username = "${var.mysql_user}"
   password = "${var.mysql_password}"
-}
+}*/
 
 resource "kubernetes_pod" "mysql" {
   metadata {

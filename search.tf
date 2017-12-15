@@ -1,23 +1,23 @@
-resource "mysql_database" "solr" {
-  name = "${var.mysql-databases["solr"]}"
-}
+/*resource "mysql_database" "search" {
+  name = "${var.mysql-databases["search"]}"
+}*/
 
-resource "kubernetes_pod" "solr" {
+resource "kubernetes_pod" "search" {
   metadata {
-    name = "solr"
+    name = "search"
     labels {
-      app = "solr"
+      app = "search"
     }
   }
 
   spec {
     container {
-      image = "datacite/search:stable"
-      name  = "solr"
+      image = "datacite/search:test_rolled_back"
+      name  = "search"
       env   = [
         {
           name = "DB_NAME"
-          value = "${var.mysql-databases["solr"]}"
+          value = "${var.mysql-databases["search"]}"
         },
         {
           name = "DB_USERNAME"
@@ -37,30 +37,30 @@ resource "kubernetes_pod" "solr" {
         }
       ]
       volume_mount = {
-        name = "solr-persistent-storage"
+        name = "search-persistent-storage"
         mount_path = "/root/.m2"
       }
     }
     volume {
-      name = "solr-persistent-storage"
+      name = "search-persistent-storage"
       persistent_volume_claim {
-        claim_name = "solr-pv-claim"
+        claim_name = "search-pv-claim"
       }
     }
   }
 }
 
-resource "kubernetes_service" "solr" {
+resource "kubernetes_service" "search" {
   metadata {
-    name = "solr"
+    name = "search"
   }
   spec {
     selector {
-      app = "${kubernetes_pod.solr.metadata.0.labels.app}"
+      app = "${kubernetes_pod.search.metadata.0.labels.app}"
     }
 
     port {
-      port = "${var.service-ports["solr"]}"
+      port = "${var.service-ports["search"]}"
       target_port = 8080
     }
 
@@ -68,23 +68,23 @@ resource "kubernetes_service" "solr" {
   }
 }
 
-resource "kubernetes_replication_controller" "solr" {
+resource "kubernetes_replication_controller" "search" {
   metadata {
-    name = "solr"
+    name = "search"
     labels {
-      app = "solr"
+      app = "search"
     }
   }
 
   spec {
     replicas = "1"
     selector {
-      app = "solr"
+      app = "search"
     }
     template {
       container {
-        name  = "solr"
-        image = "datacite/search:stable"
+        name  = "search"
+        image = "datacite/search:test_rolled_back"
 
         resources{
           limits{
@@ -99,7 +99,7 @@ resource "kubernetes_replication_controller" "solr" {
           },
           {
             name = "DB_NAME"
-            value = "${var.mysql-databases["solr"]}"
+            value = "${var.mysql-databases["search"]}"
           },
           {
             name = "DB_USERNAME"
@@ -119,23 +119,23 @@ resource "kubernetes_replication_controller" "solr" {
           }
         ]
         volume_mount = {
-          name = "solr-persistent-storage"
+          name = "search-persistent-storage"
           mount_path = "/root/.m2"
         }
       }
       volume {
-        name = "solr-persistent-storage"
+        name = "search-persistent-storage"
         persistent_volume_claim {
-          claim_name = "solr-pv-claim"
+          claim_name = "search-pv-claim"
         }
       }
     }
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "solr" {
+resource "kubernetes_persistent_volume_claim" "search" {
   metadata {
-    name = "solr-pv-claim"
+    name = "search-pv-claim"
   }
   spec {
     access_modes = ["ReadWriteOnce"]

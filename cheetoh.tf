@@ -8,7 +8,7 @@ resource "kubernetes_pod" "cheetoh" {
 
   spec {
     container {
-      image = "datacite/cheetoh:test"
+      image = "datacite/cheetoh"
       name  = "cheetoh"
     }
   }
@@ -47,7 +47,7 @@ resource "kubernetes_replication_controller" "cheetoh" {
     }
     template {
       container {
-        image = "datacite/cheetoh:test"
+        image = "datacite/cheetoh"
         name  = "cheetoh"
 
         resources{

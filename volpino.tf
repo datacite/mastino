@@ -1,19 +1,19 @@
-resource "mysql_database" "profiles" {
-  name = "${var.mysql-databases["profiles"]}"
-}
+/*resource "mysql_database" "volpino" {
+  name = "${var.mysql-databases["volpino"]}"
+}*/
 
-resource "kubernetes_pod" "profiles" {
+resource "kubernetes_pod" "volpino" {
   metadata {
-    name = "profiles"
+    name = "volpino"
     labels {
-      app = "profiles"
+      app = "volpino"
     }
   }
 
   spec {
     container {
-      image = "datacite/volpino:latest"
-      name  = "profiles"
+      image = "datacite/volpino"
+      name  = "volpino"
       env   = [
         {
           name = "MYSQL_HOST"
@@ -21,7 +21,7 @@ resource "kubernetes_pod" "profiles" {
         },
         {
           name = "MYSQL_DATABASE"
-          value = "${var.mysql-databases["profiles"]}"
+          value = "${var.mysql-databases["volpino"]}"
         },
         {
           name = "MYSQL_USER"
@@ -48,17 +48,17 @@ resource "kubernetes_pod" "profiles" {
   }
 }
 
-resource "kubernetes_service" "profiles" {
+resource "kubernetes_service" "volpino" {
   metadata {
-    name = "profiles"
+    name = "volpino"
   }
   spec {
     selector {
-      app = "${kubernetes_pod.profiles.metadata.0.labels.app}"
+      app = "${kubernetes_pod.volpino.metadata.0.labels.app}"
     }
 
     port {
-      port = "${var.service-ports["profiles"]}"
+      port = "${var.service-ports["volpino"]}"
       target_port = 80
     }
 
@@ -66,23 +66,23 @@ resource "kubernetes_service" "profiles" {
   }
 }
 
-resource "kubernetes_replication_controller" "profiles" {
+resource "kubernetes_replication_controller" "volpino" {
   metadata {
-    name = "profiles"
+    name = "volpino"
     labels {
-      app = "profiles"
+      app = "volpino"
     }
   }
 
   spec {
     replicas = "1"
     selector {
-      app = "profiles"
+      app = "volpino"
     }
     template {
       container {
-        name  = "profiles"
-        image = "datacite/volpino:latest"
+        name  = "volpino"
+        image = "datacite/volpino"
 
         resources{
           limits{

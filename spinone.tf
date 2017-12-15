@@ -1,15 +1,15 @@
-resource "kubernetes_pod" "api" {
+resource "kubernetes_pod" "spinone" {
   metadata {
-    name = "api"
+    name = "spinone"
     labels {
-      app = "api"
+      app = "spinone"
     }
   }
 
   spec {
     container {
-      image = "datacite/spinone:latest"
-      name  = "api"
+      image = "datacite/spinone"
+      name  = "spinone"
       env   = [
         {
           name = "SOLR_URL"
@@ -20,17 +20,17 @@ resource "kubernetes_pod" "api" {
   }
 }
 
-resource "kubernetes_service" "api" {
+resource "kubernetes_service" "spinone" {
   metadata {
-    name = "api"
+    name = "spinone"
   }
   spec {
     selector {
-      app = "${kubernetes_pod.api.metadata.0.labels.app}"
+      app = "${kubernetes_pod.spinone.metadata.0.labels.app}"
     }
 
     port {
-      port = "${var.service-ports["api"]}"
+      port = "${var.service-ports["spinone"]}"
       target_port = 80
     }
 
@@ -38,23 +38,23 @@ resource "kubernetes_service" "api" {
   }
 }
 
-resource "kubernetes_replication_controller" "api" {
+resource "kubernetes_replication_controller" "spinone" {
   metadata {
-    name = "api"
+    name = "spinone"
     labels {
-      app = "api"
+      app = "spinone"
     }
   }
 
   spec {
     replicas = "1"
     selector {
-      app = "api"
+      app = "spinone"
     }
     template {
       container {
-        name  = "api"
-        image = "datacite/spinone:latest"
+        name  = "spinone"
+        image = "datacite/spinone"
         env   = [
           {
             name = "SOLR_URL"
