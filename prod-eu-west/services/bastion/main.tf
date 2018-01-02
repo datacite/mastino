@@ -39,7 +39,7 @@ resource "aws_route53_record" "split-bastion" {
 resource "aws_security_group" "bastion" {
     name = "bastion"
     description = "Managed by Terraform"
-    vpc_id = "${data.aws_vpc.datacite.id}"
+    vpc_id = "${var.vpc_id}"
 
     ingress {
         from_port = 22
