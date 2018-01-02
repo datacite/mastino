@@ -7,7 +7,7 @@ provider "aws" {
 
 resource "aws_db_instance" "db-stage" {
   identifier = "db-stage"
-  snapshot_identifier = "db-stage-final-snapshot"
+  snapshot_identifier = "db-stage-initial-snapshot"
   storage_type = "gp2"
   allocated_storage = 300
   engine = "mysql"
