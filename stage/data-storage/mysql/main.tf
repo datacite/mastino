@@ -21,12 +21,12 @@ resource "aws_db_instance" "db-stage" {
   availability_zone = "eu-west-1a"
   db_subnet_group_name = "datacite"
   vpc_security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
-  parameter_group_name = "${aws_db_parameter_group.datacite-test.id}"
+  parameter_group_name = "${aws_db_parameter_group.datacite-stage.id}"
   auto_minor_version_upgrade = "true"
   allow_major_version_upgrade = "true"
   final_snapshot_identifier = "db-stage-final-snapshot"
   tags {
-    Name = "test"
+    Name = "stage"
   }
   lifecycle {
       prevent_destroy = "true"
@@ -94,5 +94,5 @@ resource "aws_route53_record" "internal-db-stage" {
   name = "db.stage.datacite.org"
   type = "CNAME"
   ttl = "30"
-  records = ["${aws_db_instance.db-test.address}"]
+  records = ["${aws_db_instance.db-stage.address}"]
 }
