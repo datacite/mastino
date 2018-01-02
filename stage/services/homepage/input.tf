@@ -26,7 +26,7 @@ data "aws_acm_certificate" "cloudfront-stage" {
   statuses = ["ISSUED"]
 }
 
-data "aws_route53_zone" "datacite" {
+data "aws_route53_zone" "production" {
   name         = "datacite.org"
 }
 
