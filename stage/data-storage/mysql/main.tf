@@ -1,10 +1,3 @@
-provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
-  version    = "~> 1.6"
-}
-
 resource "aws_db_instance" "db-stage" {
   identifier = "db-stage"
   snapshot_identifier = "db-stage-initial-snapshot"
@@ -78,15 +71,6 @@ resource "aws_db_parameter_group" "datacite-stage" {
       name = "log_throttle_queries_not_using_indexes"
       value = "0"
     }
-}
-
-data "aws_security_group" "datacite-private" {
-  id = "${var.security_group_id}"
-}
-
-data "aws_route53_zone" "internal" {
-  name         = "datacite.org"
-  private_zone = true
 }
 
 resource "aws_route53_record" "internal-db-stage" {

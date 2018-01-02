@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 data "aws_route53_zone" "production" {
-  name         = "datacite.org"
+  name = "datacite.org"
 }
 
 resource "aws_route53_record" "calendar" {
