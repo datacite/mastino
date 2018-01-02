@@ -13,7 +13,3 @@ data "aws_route53_zone" "internal" {
   name         = "datacite.org"
   private_zone = true
 }
-
-data "aws_elasticache_cluster" "memcached-stage" {
-  cluster_id = "memcached-stage"
-}
