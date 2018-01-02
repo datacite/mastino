@@ -5,9 +5,9 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
-resource "aws_db_instance" "db-test" {
-  identifier = "db-test"
-  snapshot_identifier = "db-labs-final-snapshot"
+resource "aws_db_instance" "db-stage" {
+  identifier = "db-stage"
+  snapshot_identifier = "db-stage-final-snapshot"
   storage_type = "gp2"
   allocated_storage = 300
   engine = "mysql"
@@ -24,7 +24,7 @@ resource "aws_db_instance" "db-test" {
   parameter_group_name = "${aws_db_parameter_group.datacite-test.id}"
   auto_minor_version_upgrade = "true"
   allow_major_version_upgrade = "true"
-  final_snapshot_identifier = "db-test-final-snapshot"
+  final_snapshot_identifier = "db-stage-final-snapshot"
   tags {
     Name = "test"
   }
@@ -34,10 +34,10 @@ resource "aws_db_instance" "db-test" {
   apply_immediately = "true"
 }
 
-resource "aws_db_parameter_group" "datacite-test" {
-    name = "datacite-test"
+resource "aws_db_parameter_group" "datacite-stage" {
+    name = "datacite-stage"
     family = "mysql5.7"
-    description = "RDS datacite-test parameter group"
+    description = "RDS datacite-stage parameter group"
 
     parameter {
       name = "character_set_server"
@@ -89,26 +89,10 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
-resource "aws_route53_record" "internal-db-test-ec2" {
+resource "aws_route53_record" "internal-db-stage" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "db.test.ec2.datacite.org"
-  type = "CNAME"
-  ttl = "3600"
-  records = ["${aws_db_instance.db-test.address}"]
-}
-
-resource "aws_route53_record" "internal-db-test" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "db.test.datacite.org"
+  name = "db.stage.datacite.org"
   type = "CNAME"
   ttl = "30"
-  records = ["${aws_db_instance.db-test.address}"]
-}
-
-resource "aws_route53_record" "rds-test" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "test.rds.datacite.org"
-  type = "CNAME"
-  ttl = "3600"
   records = ["${aws_db_instance.db-test.address}"]
 }
