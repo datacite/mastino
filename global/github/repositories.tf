@@ -1,4 +1,4 @@
-resource "github_repository" "blog" {
+/* resource "github_repository" "blog" {
   name         = "blog"
   description  = "The DataCite blog"
   homepage_url = "https://blog.datacite.org"
@@ -80,4 +80,4 @@ resource "github_repository" "volpino" {
   homepage_url = "https://profiles.datacite.org"
   has_wiki     = false
   has_issues   = true
-}
+} */
