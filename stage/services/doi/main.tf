@@ -13,14 +13,6 @@ resource "aws_s3_bucket" "doi-stage" {
     }
 }
 
-data "template_file" "doi-stage" {
-    template = "${file("s3_cloudfront.json")}"
-
-    vars {
-        bucket_name = "doi.stage.datacite.org"
-    }
-}
-
 resource "aws_cloudfront_origin_access_identity" "doi_stage_datacite_org" {}
 
 resource "aws_cloudfront_distribution" "doi-stage" {
@@ -39,7 +31,7 @@ resource "aws_cloudfront_distribution" "doi-stage" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${aws_s3_bucket.logs-stage.bucket_domain_name}"
+    bucket          = "${data.aws_s3_bucket.logs-stage.bucket_domain_name}"
     prefix          = "doi/"
   }
 
