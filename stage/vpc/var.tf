@@ -21,5 +21,5 @@ variable "ttl" {
   default = "300"
 }
 
-variable "lb_tg_arn" {}
-variable "lb_tg_name" {}
+/* variable "lb_tg_arn" {}
+variable "lb_tg_name" {} */
