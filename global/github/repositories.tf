@@ -1,9 +1,13 @@
-/* resource "github_repository" "blog" {
+resource "github_repository" "blog" {
   name         = "blog"
   description  = "The DataCite blog"
   homepage_url = "https://blog.datacite.org"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "bolognese" {
@@ -11,6 +15,23 @@ resource "github_repository" "bolognese" {
   description  = "Ruby gem and command-line utility for conversion of DOI metadata"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "bracco" {
+  name         = "bracco"
+  description  = "Frontend for the DataCite DOI Fabrica service"
+  homepage_url = "https://doi.datacite.org"
+  has_wiki     = false
+  has_issues   = true
+  has_downloads = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "cheetoh" {
@@ -18,6 +39,10 @@ resource "github_repository" "cheetoh" {
   description  = "The DataCite EZID compatibility API"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "datacite" {
@@ -26,6 +51,10 @@ resource "github_repository" "datacite" {
   homepage_url = "https://www.datacite.org"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "freya" {
@@ -33,6 +62,10 @@ resource "github_repository" "freya" {
   description  = "Issues and milestones for the FREYA project"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "homepage" {
@@ -41,6 +74,55 @@ resource "github_repository" "homepage" {
   homepage_url = "https://www.datacite.org"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "http-redirect" {
+  name         = "http-redirect"
+  description  = "Nginx reverse-proxy that redirects all http requests to https"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "lupo" {
+  name         = "lupo"
+  description  = "DataCite Client API"
+  homepage_url = "https://api.datacite.org"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "levriero" {
+  name         = "levriero"
+  description  = "DataCite Elasticsearch API"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "maremma" {
+  name         = "maremma"
+  description  = "Ruby utility library for network calls"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "mds" {
@@ -49,6 +131,45 @@ resource "github_repository" "mds" {
   homepage_url = "https://mds.datacite.org"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "oaip" {
+  name         = "oaip"
+  description  = "The DataCite OAI-PMH Data Provider"
+  homepage_url = "https://oai.datacite.org"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "omniauth-orcid" {
+  name         = "omniauth-orcid"
+  description  = "ORCID Strategy for OmniAuth"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "schema" {
+  name         = "schema"
+  description  = "DataCite Metadata Schema Repository"
+  homepage_url = "https://schema.datacite.org"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "search" {
@@ -56,6 +177,10 @@ resource "github_repository" "search" {
   description  = "The DataCite search backend"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "segugio" {
@@ -64,6 +189,10 @@ resource "github_repository" "segugio" {
   homepage_url = "https://assets.datacite.org"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "spinone" {
@@ -72,6 +201,22 @@ resource "github_repository" "spinone" {
   homepage_url = "https://api.datacite.org"
   has_wiki     = false
   has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "stats-portal" {
+  name         = "stats-portal"
+  description  = "Static website for DataCite summary statistics"
+  homepage_url = "https://stats.datacite.org"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository" "volpino" {
@@ -80,4 +225,8 @@ resource "github_repository" "volpino" {
   homepage_url = "https://profiles.datacite.org"
   has_wiki     = false
   has_issues   = true
-} */
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}

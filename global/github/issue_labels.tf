@@ -1,4 +1,4 @@
-/* # standard labels for GitHub issues across all repositories
+# standard labels for GitHub issues across all repositories
 # based on https://robinpowered.com/blog/best-practice-system-for-organizing-and-tagging-github-issues/
 # categories
 resource "github_issue_label" "create" {
@@ -319,4 +319,4 @@ resource "github_issue_label" "fabrica" {
   repository = "${var.github_repositories[count.index]}"
   name       = "fabrica"
   color      = "006b75"
-} */
+}
