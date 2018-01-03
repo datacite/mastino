@@ -35,7 +35,7 @@ resource "aws_cloudfront_distribution" "doi-stage" {
     prefix          = "doi/"
   }
 
-  aliases = ["doi.stage.datacite.org"]
+  aliases = ["doi.test.datacite.org"]
 
   custom_error_response {
     error_code            = "404"
@@ -77,22 +77,22 @@ resource "aws_cloudfront_distribution" "doi-stage" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-stage.arn}"
+    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-test.arn}"
     ssl_support_method  = "sni-only"
   }
 }
 
-resource "aws_route53_record" "doi-stage" {
+resource "aws_route53_record" "doi-test" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "doi.stage.datacite.org"
+  name = "doi.test.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
   records = ["${aws_cloudfront_distribution.doi-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-doi-stage" {
+resource "aws_route53_record" "split-doi-test" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "doi.stage.datacite.org"
+  name = "doi.test.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
   records = ["${aws_cloudfront_distribution.doi-stage.domain_name}"]
