@@ -69,22 +69,22 @@ resource "aws_cloudfront_distribution" "stats-stage" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-stage.arn}"
+    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-test.arn}"
     ssl_support_method  = "sni-only"
   }
 }
 
-resource "aws_route53_record" "stats-stage" {
+resource "aws_route53_record" "stats-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "stats.stage.datacite.org"
+   name = "stats.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.stats-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-stats-stage" {
+resource "aws_route53_record" "split-stats-test" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "stats.stage.datacite.org"
+   name = "stats.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.stats-stage.domain_name}"]
