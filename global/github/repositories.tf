@@ -125,6 +125,17 @@ resource "github_repository" "maremma" {
   }
 }
 
+resource "github_repository" "mastino" {
+  name         = "mastino"
+  description  = "Configuration of DataCite infrastructure"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "github_repository" "mds" {
   name         = "mds"
   description  = "The DataCite Metadata Store (MDS)"
