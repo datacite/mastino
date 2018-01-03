@@ -1,7 +1,7 @@
-resource "aws_s3_bucket" "blog" {
+resource "aws_s3_bucket" "test" {
     bucket = "test.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.blog.rendered}"
+    policy = "${data.template_file.test.rendered}"
     website {
         index_document = "index.html"
         error_document = "404.html"
