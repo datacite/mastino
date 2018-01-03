@@ -1,0 +1,309 @@
+[
+  {
+    "Condition": {
+      "KeyPrefixEquals": "faq"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "mission.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "whatisdatacite"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "mission.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "about-datacite/what-do-we-do"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "mission.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "about-datacite/board"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "board.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "/"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "index.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "about-datacite/working-groups"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "steering.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "about-datacite/staff"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "staff.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "about-datacite/job-opportunities"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "jobopportunities.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "whycitedata",
+      "HttpErrorCodeReturnedEquals": "404"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "cite-your-data.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/cite-your-data.html",
+      "HttpErrorCodeReturnedEquals": "404"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "cite-your-data.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/metadata-store.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "dois.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/find-dataset.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "search.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/find-repository.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "re3data.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/format-your-citation.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "citation.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/get-your-doi-statistics.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "stats.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/content-negotiation.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "content.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/oai-provider.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "oaipmh.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services/test-environment.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "test.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "services"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "services.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "events/past"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "events.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "about-datacite/members"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "members.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "about-datacite/partners"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "partners.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "join-datacite"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "become.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "participate/researchers"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "become.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "participate/research-organisations"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "become.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "participate/libraries"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "become.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "participate/journal-editors"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "become.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "participate/data-centres"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "become.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "news"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "index.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "not-found"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "404.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "invaliddoi"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "invalid.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "invaliddoi?"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "invalid.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "invalidDOI"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "invalid.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "InvalidDOI"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "invalid.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "rss/"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "rss.xml"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "members",
+      "HttpErrorCodeReturnedEquals": "404"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "members.html"
+    }
+  },
+  {
+    "Condition": {
+      "HttpErrorCodeReturnedEquals": "404"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "404.html"
+    }
+  },
+  {
+    "Condition": {
+      "HttpErrorCodeReturnedEquals": "400"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "400.html"
+    }
+  }
+]
