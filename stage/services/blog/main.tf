@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "blog-stage" {
     prefix          = "blog/"
   }
 
-  aliases = ["blog.stage.datacite.org"]
+  aliases = ["blog.test.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -69,22 +69,22 @@ resource "aws_cloudfront_distribution" "blog-stage" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-stage.arn}"
+    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-test.arn}"
     ssl_support_method  = "sni-only"
   }
 }
 
-resource "aws_route53_record" "blog-stage" {
+resource "aws_route53_record" "blog-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "blog.stage.datacite.org"
+   name = "blog.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.blog-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-blog-stage" {
+resource "aws_route53_record" "split-blog-test" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "blog.stage.datacite.org"
+   name = "blog.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.blog-stage.domain_name}"]
