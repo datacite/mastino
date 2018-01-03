@@ -55,6 +55,8 @@ resource "aws_cloudfront_distribution" "assets" {
         forward = "whitelist"
         whitelisted_names = ["_datacite_jwt"]
       }
+
+      headers = ["Host", "Origin", "Access-Control-Request-Headers", "Access-Control-Request-Method"]
     }
 
     viewer_protocol_policy = "redirect-to-https"
