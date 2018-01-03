@@ -41,7 +41,7 @@ resource "aws_cloudfront_distribution" "assets-stage" {
     prefix          = "assets/"
   }
 
-  aliases = ["assets.stage.datacite.org"]
+  aliases = ["assets.test.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -78,22 +78,22 @@ resource "aws_cloudfront_distribution" "assets-stage" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-stage.arn}"
+    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-test.arn}"
     ssl_support_method  = "sni-only"
   }
 }
 
-resource "aws_route53_record" "assets-stage" {
+resource "aws_route53_record" "assets-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "assets.stage.datacite.org"
+   name = "assets.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-assets-stage" {
+resource "aws_route53_record" "split-assets-test" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "assets.stage.datacite.org"
+   name = "assets.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
