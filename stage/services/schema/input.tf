@@ -12,11 +12,11 @@ provider "aws" {
   alias = "use1"
 }
 
-data "template_file" "stats-stage" {
+data "template_file" "schema-stage" {
   template = "${file("s3_cloudfront.json")}"
 
   vars {
-    bucket_name = "stats.stage.datacite.org"
+    bucket_name = "schema.stage.datacite.org"
   }
 }
 
