@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "schema-stage" {
     prefix          = "schema/"
   }
 
-  aliases = ["schema.stage.datacite.org"]
+  aliases = ["schema.test.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]

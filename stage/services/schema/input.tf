@@ -20,12 +20,6 @@ data "template_file" "schema-stage" {
   }
 }
 
-data "aws_acm_certificate" "cloudfront-stage" {
-  provider = "aws.use1"
-  domain = "*.stage.datacite.org"
-  statuses = ["ISSUED"]
-}
-
 data "aws_acm_certificate" "cloudfront-test" {
   provider = "aws.use1"
   domain = "*.test.datacite.org"
