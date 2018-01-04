@@ -4,10 +4,19 @@ resource "docker_image" "mysql" {
 }
 
 resource "docker_container" "mysql" {
-  name  = "mysql"
+  name  = "mastino_mysql"
   hostname = "mysql"
   image = "${docker_image.mysql.latest}"
   restart= "always"
   must_run="true"
-  env = ["MYSQL_DATABASE=mysql", "MYSQL_USER=${var.mysql_user}", "MYSQL_ALLOW_EMPTY_PASSWORD=${var.mysql_allow_empty_password}"]
+  ports = {
+    internal = 3306
+    external = 3306
+  }
+
+  env = [
+    "MYSQL_DATABASE=mysql",
+    "MYSQL_USER=${var.mysql_user}",
+    "MYSQL_ALLOW_EMPTY_PASSWORD=${var.mysql_allow_empty_password}"
+  ]
 }
