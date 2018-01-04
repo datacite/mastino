@@ -1,4 +1,4 @@
-/* resource "aws_route53_zone" "pidapalooza" {
+resource "aws_route53_zone" "pidapalooza" {
   name = "pidapalooza.org"
 
   tags {
@@ -31,4 +31,4 @@ resource "aws_route53_record" "mx-pidapalooza" {
     "10 aspmx2.googlemail.com",
     "10 aspmx3.googlemail.com"
   ]
-} */
+}
