@@ -49,7 +49,7 @@ resource "aws_cloudfront_distribution" "pidapalooza" {
       }
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "allow-all"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -79,6 +79,12 @@ resource "aws_route53_record" "www" {
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.pidapalooza.domain_name}"]
+
+   alias {
+     name = "${aws_cloudfront_distribution.pidapalooza.domain_name}"
+     zone_id = "${var.cloudfront_alias_zone_id}"
+     evaluate_target_health = true
+   }
 }
 
 resource "aws_route53_record" "apex" {
