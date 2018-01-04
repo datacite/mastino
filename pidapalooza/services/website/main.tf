@@ -49,7 +49,7 @@ resource "aws_cloudfront_distribution" "pidapalooza" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -73,12 +73,10 @@ resource "aws_cloudfront_distribution" "pidapalooza" {
   }
 }
 
-resource "aws_route53_record" "www" {
+/* resource "aws_route53_record" "www" {
    zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
    name = "www.pidapalooza.org"
-   type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.pidapalooza.domain_name}"]
+   type = "A"
 
    alias {
      name = "${aws_cloudfront_distribution.pidapalooza.domain_name}"
@@ -97,4 +95,4 @@ resource "aws_route53_record" "apex" {
     zone_id = "${var.cloudfront_alias_zone_id}"
     evaluate_target_health = true
   }
-}
+} */
