@@ -27,11 +27,3 @@ resource "aws_route53_record" "memcached-test" {
     ttl = "${var.ttl}"
     records = ["${aws_elasticache_cluster.memcached-stage.cache_nodes.0.address}"]
 }
-
-resource "aws_route53_record" "memcached-stage" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "memcached.stage.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${aws_elasticache_cluster.memcached-stage.cache_nodes.0.address}"]
-}
