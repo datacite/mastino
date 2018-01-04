@@ -73,7 +73,7 @@ resource "aws_cloudfront_distribution" "pidapalooza" {
   }
 }
 
-/* resource "aws_route53_record" "www" {
+resource "aws_route53_record" "www" {
    zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
    name = "www.pidapalooza.org"
    type = "A"
@@ -95,4 +95,4 @@ resource "aws_route53_record" "apex" {
     zone_id = "${var.cloudfront_alias_zone_id}"
     evaluate_target_health = true
   }
-} */
+}
