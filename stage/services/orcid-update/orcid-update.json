@@ -5,8 +5,10 @@
     "cpu": 256,
     "memory": 1000,
     "essential": true,
-    "command": ["toccatore", "orcid_update",
-      "--push_url", "${var.push_url}",
-      "--access_token", "${var.access_token}"]
+    "command": [
+      "toccatore", "orcid_update",
+      "--access_token", "${access_token}",
+      "--push_url", "${push_url}"
+    ]
   }
 ]

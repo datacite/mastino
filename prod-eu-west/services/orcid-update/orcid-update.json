@@ -7,9 +7,9 @@
     "essential": true,
     "command": [
       "toccatore", "orcid_update",
-      "--push_url", "${var.push_url}",
-      "--access_token", "${var.access_token}",
-      "--slack_webhook_url", "${var.webhook_url}"
+      "--access_token", "${access_token}",
+      "--push_url", "${push_url}",
+      "--slack_webhook_url", "${webhook_url}"
     ]
   }
 ]

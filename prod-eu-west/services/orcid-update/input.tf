@@ -6,6 +6,12 @@ provider "aws" {
 
 data "template_file" "orcid_update_task" {
   template = "${file("orcid-update.json")}"
+
+  vars {
+    access_token = "${var.access_token}"
+    push_url     = "${var.push_url}"
+    webhook_url  = "${var.webhook_url}"
+  }
 }
 
 data "aws_iam_role" "lambda" {
