@@ -8,5 +8,5 @@ variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
-variable "solr-user" {}
-variable "solr-password" {}
+variable "solr_user" {}
+variable "solr_password" {}
