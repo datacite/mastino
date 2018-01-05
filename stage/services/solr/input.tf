@@ -19,12 +19,12 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
-/* data "aws_instance" "ecs-stage" {
+data "aws_instance" "ecs-test" {
   filter {
     name   = "tag:Name"
     values = ["ECS-Test"]
   }
-} */
+}
 
 data "aws_iam_role" "lambda" {
   name = "lambda"
