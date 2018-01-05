@@ -6,6 +6,12 @@ provider "aws" {
 
 data "template_file" "datacite_related_test_task" {
   template = "${file("datacite-related.json")}"
+
+  vars {
+    access_token = "${var.access_token}"
+    source_token = "${var.source_token}"
+    push_url     = "${var.push_url}"
+  }
 }
 data "aws_iam_role" "lambda" {
   name = "lambda"
