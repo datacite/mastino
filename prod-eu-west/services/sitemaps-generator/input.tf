@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 data "template_file" "sitemaps_generator_test_task" {
-  template = "${file("sitemaps-generator-test.json")}"
+  template = "${file("sitemaps-generator.json")}"
 
   vars {
     access_key  = "${var.access_key}"
