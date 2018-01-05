@@ -1,0 +1,16 @@
+[
+  {
+    "name": "datacite-related",
+    "image": "datacite/toccatore",
+    "cpu": 384,
+    "memory": 1500,
+    "essential": true,
+    "command": [
+      "toccatore", "datacite_related",
+      "--access_token", "${access_token}",
+      "--source_token", "${source_token}",
+      "--push_url", "${push_url}",
+      "--webhook_url", "${webhook_url}"
+    ]
+  }
+]
