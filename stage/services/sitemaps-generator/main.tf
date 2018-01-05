@@ -1,6 +1,6 @@
 resource "aws_ecs_task_definition" "sitemaps-generator-test" {
   family = "sitemaps-generator-test"
-  container_definitions =  "${data.template_file.sitemaps_generator_task.rendered}"
+  container_definitions =  "${data.template_file.sitemaps_generator_test_task.rendered}"
 }
 
 resource "aws_cloudwatch_event_rule" "sitemaps-generator-test" {
