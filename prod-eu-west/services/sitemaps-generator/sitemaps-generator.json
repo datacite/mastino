@@ -1,0 +1,35 @@
+[
+  {
+    "name": "sitemaps-generator",
+    "image": "datacite/maltese",
+    "cpu": 256,
+    "memory": 2000,
+    "essential": true,
+    "environment" : [
+      {
+        "name" : "SITEMAP_BUCKET",
+        "value" : "search.datacite.org"
+      },
+      {
+        "name" : "FROM_DATE",
+        "value" : "2000-01-01"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+      {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "REVISION",
+        "value" : "5"
+      }
+    ]
+  }
+]
