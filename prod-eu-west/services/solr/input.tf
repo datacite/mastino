@@ -11,7 +11,7 @@ data "aws_iam_role" "lambda" {
 data "aws_instance" "ecs-solr" {
   filter {
     name   = "tag:Name"
-    values = ["ECS1", "ECS2"]
+    values = ["ECS1"]
   }
 }
 
