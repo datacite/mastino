@@ -6,13 +6,7 @@
     "memory": 1000,
     "essential": true,
     "command": ["toccatore", "orcid_update",
-      "--push_url", "https://profiles.test.datacite.org/api",
-      "--access_token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOiIwMDAwLTAwMDEtNjUyOC0yMDI3IiwibmFtZSI6Ik1hcnRpbiBGZW5uZXIiLCJyb2xlIjoic3RhZmZfYWRtaW4iLCJpYXQiOjE0OTkxNTYxNjAsImV4cCI6MTUwMDM2NTc2MH0.ShFABoojlLbAyMWQpFELHoKpqnqOZvQZpEU0vlNa4ajKxd7y8pNd1sTNmcFGekbTScConYkZnhx2Vbn5XMJA1AyayVQcwXmXsYcVGgEwmEkj-XZP4T30OX4MDpwUWKFiCwPq6OxCWmiX-spZvRTsxCGbJ4--JLvQYlNNQny901nemg2NPUUWwrPAS9uONUz9CqonrLcf4H0QLJ63V5jlIvYPlxPNnlo9ltQV0XmzyKg7FHZiEcfvPU8yonJUchVOGKIRDpy0o44CoQxDxlihZj7EF3k5yA61N2OgApkZm8sDtj4K4H95QdtyDno6nmyl5VS8F-rdY_AsUEF4M90INA"],
-    "environment" : [
-      {
-        "name" : "REVISION",
-        "value" : "6"
-      }
-    ]
+      "--push_url", "${var.push_url}",
+      "--access_token", "${var.access_token}"]
   }
 ]
