@@ -48,7 +48,7 @@ resource "aws_lambda_function" "solr-index" {
 resource "aws_lambda_permission" "solr-index-0" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.solr-index-0.function_name}"
+  function_name = "${aws_lambda_function.solr-index.0.function_name}"
   principal = "events.amazonaws.com"
   source_arn = "${aws_cloudwatch_event_rule.solr-index-0.arn}"
 }
@@ -56,7 +56,7 @@ resource "aws_lambda_permission" "solr-index-0" {
 resource "aws_lambda_permission" "solr-index-1" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.solr-index-1.function_name}"
+  function_name = "${aws_lambda_function.solr-index.1.function_name}"
   principal = "events.amazonaws.com"
   source_arn = "${aws_cloudwatch_event_rule.solr-index-1.arn}"
 }
