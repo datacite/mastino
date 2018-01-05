@@ -41,7 +41,7 @@ resource "aws_cloudfront_distribution" "assets-stage" {
     prefix          = "assets/"
   }
 
-  aliases = ["assets.stage.datacite.org"]
+  aliases = ["assets.test.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
