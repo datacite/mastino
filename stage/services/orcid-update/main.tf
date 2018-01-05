@@ -16,7 +16,7 @@ resource "aws_cloudwatch_event_target" "orcid-update-test" {
 }
 
 resource "aws_lambda_function" "orcid-update-test" {
-  filename = "files/ecs_task_runner.js.zip"
+  filename = "ecs_task_runner.js.zip"
   function_name = "orcid-update-test"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "ecs_task_runner.handler"

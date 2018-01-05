@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 data "template_file" "orcid_update_test_task" {
-  template = "${file("task-definitions/orcid-update.json")}"
+  template = "${file("orcid-update.json")}"
 }
 
 data "aws_iam_role" "lambda" {
