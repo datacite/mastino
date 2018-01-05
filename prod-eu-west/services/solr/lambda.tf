@@ -13,13 +13,13 @@ resource "aws_cloudwatch_event_rule" "solr-index-1" {
 resource "aws_cloudwatch_event_target" "solr-index-0" {
   target_id = "solr-index-0"
   rule = "${aws_cloudwatch_event_rule.solr-index-0.name}"
-  arn = "${aws_lambda_function.solr-index-0.arn}"
+  arn = "${aws_lambda_function.solr-index.0.arn}"
 }
 
 resource "aws_cloudwatch_event_target" "solr-index-1" {
   target_id = "solr-index-1"
   rule = "${aws_cloudwatch_event_rule.solr-index-1.name}"
-  arn = "${aws_lambda_function.solr-index-1.arn}"
+  arn = "${aws_lambda_function.solr-index.1.arn}"
 }
 
 resource "aws_lambda_function" "solr-index" {
