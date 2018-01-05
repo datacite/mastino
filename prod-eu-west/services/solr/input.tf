@@ -4,16 +4,15 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "template_file" "orcid_update_task" {
-  template = "${file("orcid-update.json")}"
-}
-
 data "aws_iam_role" "lambda" {
   name = "lambda"
 }
 
 data "aws_instance" "ecs-solr" {
-  name = "ecs-solr"
+  filter {
+    name   = "tag:Name"
+    values = ["ECS1", "ECS2"]
+  }
 }
 
 data "aws_security_group" "datacite-private" {
