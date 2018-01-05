@@ -10,11 +10,16 @@ resource "aws_cloudwatch_event_rule" "solr-index-1" {
   schedule_expression = "cron(10 5,13,21 * * ? *)"
 }
 
-resource "aws_cloudwatch_event_target" "solr-index" {
-  count = 2
-  target_id = "solr-index-${count.index}"
-  rule = "${aws_cloudwatch_event_rule.solr-index-${count.index}.name}"
-  arn = "${aws_lambda_function.solr-index-${count.index}.arn}"
+resource "aws_cloudwatch_event_target" "solr-index-0" {
+  target_id = "solr-index-0"
+  rule = "${aws_cloudwatch_event_rule.solr-index-0.name}"
+  arn = "${aws_lambda_function.solr-index-0.arn}"
+}
+
+resource "aws_cloudwatch_event_target" "solr-index-1" {
+  target_id = "solr-index-1"
+  rule = "${aws_cloudwatch_event_rule.solr-index-1.name}"
+  arn = "${aws_lambda_function.solr-index-1.arn}"
 }
 
 resource "aws_lambda_function" "solr-index" {
