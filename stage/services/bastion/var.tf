@@ -23,3 +23,5 @@ variable "ttl" {
 }
 
 variable "subnet_datacite-public_id" {}
+
+variable "security_group_id" {}

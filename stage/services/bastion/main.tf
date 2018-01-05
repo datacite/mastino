@@ -1,7 +1,7 @@
 resource "aws_instance" "bastion-stage" {
     ami = "${var.ami["eu-west-1"]}"
     instance_type = "t2.micro"
-    vpc_security_group_ids = ["${aws_security_group.bastion-stage.id}"]
+    vpc_security_group_ids = ["${aws_security_group.bastion.id}"]
     subnet_id = "${data.aws_subnet.datacite-public.id}"
     key_name = "${var.key_name}"
     associate_public_ip_address = "true"
@@ -34,35 +34,4 @@ resource "aws_route53_record" "split-bastion-stage" {
     type = "A"
     ttl = "${var.ttl}"
     records = ["${aws_instance.bastion.private_ip}"]
-}
-
-resource "aws_security_group" "bastion-stage" {
-    name = "bastion-stage"
-    description = "Managed by Terraform"
-    vpc_id = "${var.vpc_id}"
-
-    ingress {
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    ingress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["10.0.0.0/16", "10.1.0.0/16"]
-    }
-
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    tags {
-        Name = "bastion-stage"
-    }
 }

@@ -25,3 +25,7 @@ data "template_file" "bastion-stage-user-data-cfg" {
     fqdn         = "${var.hostname}.test.datacite.org"
   }
 }
+
+data "aws_security_group" "bastion" {
+  id = "${var.security_group_id}"
+}
