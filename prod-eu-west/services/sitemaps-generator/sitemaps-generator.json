@@ -25,10 +25,6 @@
       {
         "name" : "AWS_REGION",
         "value" : "${region}"
-      },
-      {
-        "name" : "REVISION",
-        "value" : "5"
       }
     ]
   }

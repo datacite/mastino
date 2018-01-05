@@ -4,7 +4,7 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "template_file" "sitemaps_generator_test_task" {
+data "template_file" "sitemaps_generator_task" {
   template = "${file("sitemaps-generator.json")}"
 
   vars {
