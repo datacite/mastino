@@ -7,3 +7,7 @@ variable "region" {
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
+
+variable "access_token" {}
+variable "push_url" {}
+variable "webhook_url" {}
