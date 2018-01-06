@@ -28,16 +28,16 @@ resource "kubernetes_pod" "volpino" {
           value = "${var.mysql_password}"
         },
         {
-          name = "MODE"
-          value = "datacite"
-        },
-        {
           name = "JWT_PRIVATE_KEY"
           value = "${var.jwt_private_key}"
         },
         {
           name = "JWT_PUBLIC_KEY"
           value = "${var.jwt_public_key}"
+        },
+        {
+          name = "SECRET_KEY_BASE"
+          value = "${var.secret_key_base}"
         }
       ]
     }
@@ -59,34 +59,5 @@ resource "kubernetes_service" "volpino" {
     }
 
     type = "NodePort"
-  }
-}
-
-resource "kubernetes_replication_controller" "volpino" {
-  metadata {
-    name = "volpino"
-    labels {
-      app = "volpino"
-    }
-  }
-
-  spec {
-    replicas = "1"
-    selector {
-      app = "volpino"
-    }
-    template {
-      container {
-        name  = "volpino"
-        image = "datacite/volpino"
-
-        resources{
-          limits{
-            cpu    = "0.5"
-            memory = "512Mi"
-          }
-        }
-      }
-    }
   }
 }

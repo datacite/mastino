@@ -14,6 +14,6 @@ variable "mysql_password" {
   default = ""
 }
 
-variable "service-port" {
+variable "service_port" {
   default = "9000"
 }

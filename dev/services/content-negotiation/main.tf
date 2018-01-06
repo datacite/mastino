@@ -24,39 +24,10 @@ resource "kubernetes_service" "content-negotiation" {
     }
 
     port {
-      port = "${var.service-port}"
+      port = "${var.service_port}"
       target_port = 80
     }
 
     type = "NodePort"
-  }
-}
-
-resource "kubernetes_replication_controller" "content-negotiation" {
-  metadata {
-    name = "content-negotiation"
-    labels {
-      app = "content-negotiation"
-    }
-  }
-
-  spec {
-    replicas = "1"
-    selector {
-      app = "content-negotiation"
-    }
-    template {
-      container {
-        name  = "content-negotiation"
-        image = "crosscite/content-negotiation"
-
-        resources{
-          limits{
-            cpu    = "0.5"
-            memory = "512Mi"
-          }
-        }
-      }
-    }
   }
 }

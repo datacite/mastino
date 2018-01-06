@@ -61,32 +61,3 @@ resource "kubernetes_service" "lupo" {
     type = "NodePort"
   }
 }
-
-resource "kubernetes_replication_controller" "lupo" {
-  metadata {
-    name = "lupo"
-    labels {
-      app = "lupo"
-    }
-  }
-
-  spec {
-    replicas = "1"
-    selector {
-      app = "lupo"
-    }
-    template {
-      container {
-        name  = "lupo"
-        image = "datacite/lupo"
-
-        resources{
-          limits{
-            cpu    = "0.5"
-            memory = "512Mi"
-          }
-        }
-      }
-    }
-  }
-}

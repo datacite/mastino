@@ -24,39 +24,10 @@ resource "kubernetes_service" "cheetoh" {
     }
 
     port {
-      port = "${var.service-port}"
+      port = "${var.service_port}"
       target_port = 80
     }
 
     type = "NodePort"
-  }
-}
-
-resource "kubernetes_replication_controller" "cheetoh" {
-  metadata {
-    name = "cheetoh"
-    labels {
-      app = "cheetoh"
-    }
-  }
-
-  spec {
-    replicas = "1"
-    selector {
-      app = "cheetoh"
-    }
-    template {
-      container {
-        image = "datacite/cheetoh"
-        name  = "cheetoh"
-
-        resources{
-          limits{
-            cpu    = "0.5"
-            memory = "512Mi"
-          }
-        }
-      }
-    }
   }
 }

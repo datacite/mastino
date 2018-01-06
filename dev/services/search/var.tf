@@ -22,6 +22,14 @@ variable "mysql_allow_empty_password" {
   default = "yes"
 }
 
-variable "service-port" {
+variable "service_port" {
   default = "8020"
+}
+
+variable "solr_user" {
+  default = "admin"
+}
+
+variable "solr_password" {
+  default = "secret"
 }

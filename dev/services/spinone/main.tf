@@ -13,7 +13,7 @@ resource "kubernetes_pod" "spinone" {
       env   = [
         {
           name = "SOLR_URL"
-          value = "${var.solr-url}"
+          value = "${var.solr_url}"
         }
       ]
     }
@@ -35,40 +35,5 @@ resource "kubernetes_service" "spinone" {
     }
 
     type = "NodePort"
-  }
-}
-
-resource "kubernetes_replication_controller" "spinone" {
-  metadata {
-    name = "spinone"
-    labels {
-      app = "spinone"
-    }
-  }
-
-  spec {
-    replicas = "1"
-    selector {
-      app = "spinone"
-    }
-    template {
-      container {
-        name  = "spinone"
-        image = "datacite/spinone"
-        env   = [
-          {
-            name = "SOLR_URL"
-            value = "${var.solr_url}"
-          }
-        ]
-
-        resources{
-          limits{
-            cpu    = "0.5"
-            memory = "512Mi"
-          }
-        }
-      }
-    }
   }
 }
