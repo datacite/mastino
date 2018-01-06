@@ -5,5 +5,5 @@ variable "region" {
 }
 
 variable "orcid_client_id" {}
-variable "orcid_secret" {}
+variable "orcid_secret_id" {}
 variable "orcid_member" {}
