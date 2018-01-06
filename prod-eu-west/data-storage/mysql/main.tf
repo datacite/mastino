@@ -60,7 +60,7 @@ resource "aws_route53_record" "internal-db2" {
   name = "db.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.aws_db_instance.db.address}"]
+  records = ["${data.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "internal-db2-ec2" {
@@ -68,7 +68,7 @@ resource "aws_route53_record" "internal-db2-ec2" {
   name = "db.ec2.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.aws_db_instance.db.address}"]
+  records = ["${data.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "internal-db7" {
@@ -76,7 +76,7 @@ resource "aws_route53_record" "internal-db7" {
   name = "dbread.ec2.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.aws_db_instance.db.address}"]
+  records = ["${data.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "db1" {
@@ -84,7 +84,7 @@ resource "aws_route53_record" "db1" {
   name = "db1.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.aws_db_instance.db.address}"]
+  records = ["${data.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "split-db1" {
@@ -92,7 +92,7 @@ resource "aws_route53_record" "split-db1" {
   name = "db1.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.aws_db_instance.db.address}"]
+  records = ["${data.aws_db_instance.db.address}"]
 }
 
 resource "data.aws_route53_record" "internal-db1-ec2" {
@@ -100,7 +100,7 @@ resource "data.aws_route53_record" "internal-db1-ec2" {
   name = "db1.ec2.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.aws_db_instance.db.address}"]
+  records = ["${data.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "rds-production" {
@@ -108,5 +108,5 @@ resource "aws_route53_record" "rds-production" {
   name = "production.rds.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.aws_db_instance.db.address}"]
+  records = ["${data.aws_db_instance.db.address}"]
 }
