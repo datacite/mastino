@@ -4,7 +4,7 @@ resource "docker_image" "spinone" {
 }
 
 resource "docker_container" "spinone" {
-  name  = "mastino_spinone"
+  name  = "spinone"
   hostname = "spinone"
   image = "${docker_image.spinone.latest}"
   restart= "always"

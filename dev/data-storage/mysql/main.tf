@@ -4,7 +4,7 @@ resource "docker_image" "mysql" {
 }
 
 resource "docker_container" "mysql" {
-  name  = "mastino_mysql"
+  name  = "mysql"
   hostname = "mysql"
   image = "${docker_image.mysql.latest}"
   restart= "on-failure"
