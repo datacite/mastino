@@ -7,7 +7,7 @@ resource "docker_container" "mysql" {
   name  = "mastino_mysql"
   hostname = "mysql"
   image = "${docker_image.mysql.latest}"
-  restart= "always"
+  restart= "on-failure"
   must_run="true"
   ports = {
     internal = 3306
