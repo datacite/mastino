@@ -88,7 +88,7 @@ resource "aws_route53_record" "split-db1" {
 }
 
 resource "data.aws_route53_record" "internal-db1-ec2" {
-  zone_id = "${aws_route53_zone.internal.zone_id}"
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "db1.ec2.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
