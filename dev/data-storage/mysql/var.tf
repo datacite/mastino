@@ -7,7 +7,7 @@ variable "mysql_port" {
 }
 
 variable "mysql_user" {
-  default = "root"
+  default = "datacite"
 }
 
 variable "mysql_password" {
