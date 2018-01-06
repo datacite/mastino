@@ -55,58 +55,58 @@ resource "aws_db_subnet_group" "datacite-prod" {
     ]
 }
 
-/* resource "aws_route53_record" "internal-db2" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "db.datacite.org"
-    type = "CNAME"
-    ttl = "30"
-    records = ["db2.c8tnwdwayykh.eu-west-1.rds.amazonaws.com"]
+resource "aws_route53_record" "internal-db2" {
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  name = "db.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${var.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "internal-db2-ec2" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "db.ec2.datacite.org"
-    type = "CNAME"
-    ttl = "30"
-    records = ["db2.c8tnwdwayykh.eu-west-1.rds.amazonaws.com"]
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  name = "db.ec2.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${var.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "internal-db7" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "dbread.ec2.datacite.org"
-    type = "CNAME"
-    ttl = "30"
-    records = ["db2.c8tnwdwayykh.eu-west-1.rds.amazonaws.com"]
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  name = "dbread.ec2.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${var.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "db1" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
   name = "db1.datacite.org"
   type = "CNAME"
-  ttl = "3600"
-  records = ["db2.c8tnwdwayykh.eu-west-1.rds.amazonaws.com"]
+  ttl = "${var.ttl}"
+  records = ["${var.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "split-db1" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "db1.datacite.org"
   type = "CNAME"
-  ttl = "3600"
-  records = ["db2.c8tnwdwayykh.eu-west-1.rds.amazonaws.com"]
+  ttl = "${var.ttl}"
+  records = ["${var.aws_db_instance.db.address}"]
 }
 
 resource "data.aws_route53_record" "internal-db1-ec2" {
-    zone_id = "${aws_route53_zone.internal.zone_id}"
-    name = "db1.ec2.datacite.org"
-    type = "CNAME"
-    ttl = "30"
-    records = ["db2.c8tnwdwayykh.eu-west-1.rds.amazonaws.com"]
+  zone_id = "${aws_route53_zone.internal.zone_id}"
+  name = "db1.ec2.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${var.aws_db_instance.db.address}"]
 }
 
 resource "aws_route53_record" "rds-production" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "production.rds.datacite.org"
   type = "CNAME"
-  ttl = "300"
-  records = ["db2.c8tnwdwayykh.eu-west-1.rds.amazonaws.com"]
-} */
+  ttl = "${var.ttl}"
+  records = ["${var.aws_db_instance.db.address}"]
+}

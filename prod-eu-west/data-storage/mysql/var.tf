@@ -4,6 +4,10 @@ variable "region" {
     default = "eu-west-1"
 }
 
+variable "ttl" {
+  default = "300"
+}
+
 variable "librato_email" {}
 variable "librato_token" {}
 

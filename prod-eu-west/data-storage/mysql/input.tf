@@ -10,7 +10,7 @@ provider "librato" {
   token = "${var.librato_token}"
 }
 
-data "aws_db_instance" "db2" {
+data "aws_db_instance" "db" {
   db_instance_identifier = "db2"
 }
 
