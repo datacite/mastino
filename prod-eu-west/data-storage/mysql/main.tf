@@ -1,4 +1,4 @@
-resource "aws_db_parameter_group" "datacite5.7" {
+resource "aws_db_parameter_group" "datacite57" {
     name = "datacite5.7"
     family = "mysql5.7"
     description = "RDS datacite parameter group"
