@@ -1,8 +1,8 @@
 
-variable "service-port" {
+variable "service_port" {
   default = "8040"
 }
 
-variable "solr-url" {
-  default = "solr/api"
+variable "solr_url" {
+  default = "https://solr.test.datacite.org/api"
 }

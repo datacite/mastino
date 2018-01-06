@@ -13,11 +13,15 @@ resource "kubernetes_pod" "mysql" {
       env   = [
         {
           name = "MYSQL_DATABASE"
-          value = "mysql"
+          value = "${var.mysql_database}"
         },
         {
           name = "MYSQL_USER"
           value = "${var.mysql_user}"
+        },
+        {
+          name = "MYSQL_PASSWORD"
+          value = "${var.mysql_password}"
         },
         {
           name = "MYSQL_ALLOW_EMPTY_PASSWORD"
@@ -48,7 +52,7 @@ resource "kubernetes_service" "mysql" {
     }
 
     port {
-      port = "${var.service-port}"
+      port = "${var.service_port}"
       target_port = 3306
     }
 
@@ -91,11 +95,15 @@ resource "kubernetes_replication_controller" "mysql" {
         env   = [
           {
             name = "MYSQL_DATABASE"
-            value = "mysql"
+            value = "${var.mysql_database}"
           },
           {
             name = "MYSQL_USER"
             value = "${var.mysql_user}"
+          },
+          {
+            name = "MYSQL_PASSWORD"
+            value = "${var.mysql_password}"
           },
           {
             name = "MYSQL_ALLOW_EMPTY_PASSWORD"

@@ -30,7 +30,7 @@ resource "kubernetes_service" "spinone" {
     }
 
     port {
-      port = "${var.service-port}"
+      port = "${var.service_port}"
       target_port = 80
     }
 
@@ -58,7 +58,7 @@ resource "kubernetes_replication_controller" "spinone" {
         env   = [
           {
             name = "SOLR_URL"
-            value = "${var.solr-url}"
+            value = "${var.solr_url}"
           }
         ]
 

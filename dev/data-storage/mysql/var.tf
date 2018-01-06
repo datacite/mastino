@@ -6,6 +6,10 @@ variable "mysql_port" {
   default = "3306"
 }
 
+variable "mysql_database" {
+  default = "lupo"
+}
+
 variable "mysql_user" {
   default = "datacite"
 }
@@ -18,6 +22,6 @@ variable "mysql_allow_empty_password" {
   default = "yes"
 }
 
-variable "service-port" {
+variable "service_port" {
   default = "3306"
 }
