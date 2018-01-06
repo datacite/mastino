@@ -1,5 +1,5 @@
 resource "aws_db_parameter_group" "datacite57" {
-    name = "datacite5.7"
+    name = "datacite57"
     family = "mysql5.7"
     description = "RDS datacite parameter group"
 
