@@ -1,30 +1,74 @@
-resource "docker_image" "spinone" {
-  name          = "${data.docker_registry_image.spinone.name}"
-  pull_triggers = ["${data.docker_registry_image.spinone.sha256_digest}"]
+resource "kubernetes_pod" "spinone" {
+  metadata {
+    name = "spinone"
+    labels {
+      app = "spinone"
+    }
+  }
+
+  spec {
+    container {
+      image = "datacite/spinone"
+      name  = "spinone"
+      env   = [
+        {
+          name = "SOLR_URL"
+          value = "${var.solr-url}"
+        }
+      ]
+    }
+  }
 }
 
-resource "docker_container" "spinone" {
-  name  = "spinone"
-  hostname = "spinone"
-  image = "${docker_image.spinone.latest}"
-  restart= "always"
-  must_run="true"
-  ports = {
-    internal = 80
-    external = 8040
+resource "kubernetes_service" "spinone" {
+  metadata {
+    name = "spinone"
   }
-  volumes = [
-    {
-      host_path = "${data.external.repo.result.path}/spinone/app"
-      container_path = "/home/app/webapp/app"
-    },
-    {
-      host_path = "${data.external.repo.result.path}/spinone/config"
-      container_path = "/home/app/webapp/config"
-    },
-    {
-      host_path = "${data.external.repo.result.path}/spinone/spec"
-      container_path = "/home/app/webapp/spec"
+  spec {
+    selector {
+      app = "${kubernetes_pod.spinone.metadata.0.labels.app}"
     }
-  ]
+
+    port {
+      port = "${var.service-port}"
+      target_port = 80
+    }
+
+    type = "NodePort"
+  }
+}
+
+resource "kubernetes_replication_controller" "spinone" {
+  metadata {
+    name = "spinone"
+    labels {
+      app = "spinone"
+    }
+  }
+
+  spec {
+    replicas = "1"
+    selector {
+      app = "spinone"
+    }
+    template {
+      container {
+        name  = "spinone"
+        image = "datacite/spinone"
+        env   = [
+          {
+            name = "SOLR_URL"
+            value = "${var.solr-url}"
+          }
+        ]
+
+        resources{
+          limits{
+            cpu    = "0.5"
+            memory = "512Mi"
+          }
+        }
+      }
+    }
+  }
 }

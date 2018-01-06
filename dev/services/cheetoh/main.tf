@@ -24,7 +24,7 @@ resource "kubernetes_service" "cheetoh" {
     }
 
     port {
-      port = "${var.service-ports["cheetoh"]}"
+      port = "${var.service-port}"
       target_port = 80
     }
 

@@ -17,7 +17,7 @@ resource "kubernetes_pod" "search" {
       env   = [
         {
           name = "DB_NAME"
-          value = "${var.mysql-databases["search"]}"
+          value = "${var.mysql_database}"
         },
         {
           name = "DB_USERNAME"
@@ -60,8 +60,8 @@ resource "kubernetes_service" "search" {
     }
 
     port {
-      port = "${var.service-ports["search"]}"
-      target_port = 8080
+      port = "${var.service-port}"
+      target_port = 80
     }
 
     type = "NodePort"
@@ -84,7 +84,7 @@ resource "kubernetes_replication_controller" "search" {
     template {
       container {
         name  = "search"
-        image = "datacite/search:test_rolled_back"
+        image = "datacite/search"
 
         resources{
           limits{
@@ -99,7 +99,7 @@ resource "kubernetes_replication_controller" "search" {
           },
           {
             name = "DB_NAME"
-            value = "${var.mysql-databases["search"]}"
+            value = "${var.mysql_database}"
           },
           {
             name = "DB_USERNAME"

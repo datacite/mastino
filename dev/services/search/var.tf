@@ -7,11 +7,11 @@ variable "mysql_port" {
 }
 
 variable "mysql_database" {
-  default = "volpino"
+  default = "lupo"
 }
 
 variable "mysql_user" {
-  default = "root"
+  default = "datacite"
 }
 
 variable "mysql_password" {
@@ -22,18 +22,6 @@ variable "mysql_allow_empty_password" {
   default = "yes"
 }
 
-variable "solr-url" {
-  default = "solr/api"
-}
-
-variable "jwt_private_key" {
-  default = "foo"
-}
-
-variable "jwt_public_key" {
-  default = "bar"
-}
-
-variable "service_port" {
-  default = "8080"
+variable "service-port" {
+  default = "8020"
 }

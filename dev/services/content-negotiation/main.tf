@@ -24,7 +24,7 @@ resource "kubernetes_service" "content-negotiation" {
     }
 
     port {
-      port = "${var.service-ports["content-negotiation"]}"
+      port = "${var.service-port}"
       target_port = 80
     }
 

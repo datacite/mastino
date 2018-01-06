@@ -1,22 +1,118 @@
-resource "docker_image" "mysql" {
-  name          = "${data.docker_registry_image.mysql.name}"
-  pull_triggers = ["${data.docker_registry_image.mysql.sha256_digest}"]
-}
-
-resource "docker_container" "mysql" {
-  name  = "mysql"
-  hostname = "mysql"
-  image = "${docker_image.mysql.latest}"
-  restart= "on-failure"
-  must_run="true"
-  ports = {
-    internal = 3306
-    external = 3306
+resource "kubernetes_pod" "mysql" {
+  metadata {
+    name = "mysql"
+    labels {
+      app = "mysql"
+    }
   }
 
-  env = [
-    "MYSQL_DATABASE=mysql",
-    "MYSQL_USER=${var.mysql_user}",
-    "MYSQL_ALLOW_EMPTY_PASSWORD=${var.mysql_allow_empty_password}"
-  ]
+  spec {
+    container {
+      image = "mysql:5.7"
+      name  = "mysql"
+      env   = [
+        {
+          name = "MYSQL_DATABASE"
+          value = "mysql"
+        },
+        {
+          name = "MYSQL_USER"
+          value = "${var.mysql_user}"
+        },
+        {
+          name = "MYSQL_ALLOW_EMPTY_PASSWORD"
+          value = "${var.mysql_allow_empty_password}"
+        }
+      ]
+      volume_mount = {
+        name = "mysql-persistent-storage"
+        mount_path = "/var/lib/mysql"
+      }
+    }
+    volume {
+      name = "mysql-persistent-storage"
+      persistent_volume_claim {
+        claim_name = "mysql-pv-claim"
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "mysql" {
+  metadata {
+    name = "mysql"
+  }
+  spec {
+    selector {
+      app = "${kubernetes_pod.mysql.metadata.0.labels.app}"
+    }
+
+    port {
+      port = "${var.service-port}"
+      target_port = 3306
+    }
+
+    type = "NodePort"
+  }
+}
+
+resource "kubernetes_persistent_volume_claim" "mysql" {
+  metadata {
+    name = "mysql-pv-claim"
+  }
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests {
+        storage = "10Gi"
+      }
+    }
+    /*volume_name = "${kubernetes_persistent_volume.default.metadata.0.name}"*/
+  }
+}
+
+resource "kubernetes_replication_controller" "mysql" {
+  metadata {
+    name = "mysql"
+    labels {
+      app = "mysql"
+    }
+  }
+
+  spec {
+    replicas = "1"
+    selector {
+      app = "mysql"
+    }
+    template {
+      container {
+        name  = "data"
+        image = "mysql:5.7"
+        env   = [
+          {
+            name = "MYSQL_DATABASE"
+            value = "mysql"
+          },
+          {
+            name = "MYSQL_USER"
+            value = "${var.mysql_user}"
+          },
+          {
+            name = "MYSQL_ALLOW_EMPTY_PASSWORD"
+            value = "${var.mysql_allow_empty_password}"
+          }
+        ]
+        volume_mount = {
+          name = "mysql-persistent-storage"
+          mount_path = "/var/lib/mysql"
+        }
+      }
+      volume {
+        name = "mysql-persistent-storage"
+        persistent_volume_claim {
+          claim_name = "mysql-pv-claim"
+        }
+      }
+    }
+  }
 }

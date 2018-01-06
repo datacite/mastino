@@ -1,35 +1,92 @@
-resource "docker_image" "lupo" {
-  name          = "${data.docker_registry_image.lupo.name}"
-  pull_triggers = ["${data.docker_registry_image.lupo.sha256_digest}"]
+resource "kubernetes_pod" "lupo" {
+  metadata {
+    name = "lupo"
+    labels {
+      app = "lupo"
+    }
+  }
+
+  spec {
+    container {
+      image = "datacite/lupo"
+      name  = "lupo"
+      env   = [
+        {
+          name = "MYSQL_HOST"
+          value = "${var.mysql_host}"
+        },
+        {
+          name = "MYSQL_DATABASE"
+          value = "${var.mysql_database}"
+        },
+        {
+          name = "MYSQL_USER"
+          value = "${var.mysql_user}"
+        },
+        {
+          name = "MYSQL_PASSWORD"
+          value = "${var.mysql_password}"
+        },
+        {
+          name = "MODE"
+          value = "datacite"
+        },
+        {
+          name = "JWT_PRIVATE_KEY"
+          value = "${var.jwt_private_key}"
+        },
+        {
+          name = "JWT_PUBLIC_KEY"
+          value = "${var.jwt_public_key}"
+        }
+      ]
+    }
+  }
 }
 
-resource "docker_container" "lupo" {
-  name  = "lupo"
-  hostname = "lupo"
-  image = "${docker_image.lupo.latest}"
-  restart= "always"
-  must_run="true"
-  ports = {
-    internal = 80
-    external = 8060
+resource "kubernetes_service" "lupo" {
+  metadata {
+    name = "lupo"
   }
-  volumes = [
-    {
-      host_path = "${data.external.repo.result.path}/lupo/app"
-      container_path = "/home/app/webapp/app"
-    },
-    {
-      host_path = "${data.external.repo.result.path}/lupo/config"
-      container_path = "/home/app/webapp/config"
-    },
-    {
-      host_path = "${data.external.repo.result.path}/lupo/spec"
-      container_path = "/home/app/webapp/spec"
+  spec {
+    selector {
+      app = "${kubernetes_pod.lupo.metadata.0.labels.app}"
     }
-  ],
-  env = [
-    "MYSQL_DATABASE=lupo",
-    "MYSQL_USER=${var.mysql_user}",
-    "MYSQL_PASSWORD=${var.mysql_password}"
-  ]
+
+    port {
+      port = "${var.service_port}"
+      target_port = 80
+    }
+
+    type = "NodePort"
+  }
+}
+
+resource "kubernetes_replication_controller" "lupo" {
+  metadata {
+    name = "lupo"
+    labels {
+      app = "lupo"
+    }
+  }
+
+  spec {
+    replicas = "1"
+    selector {
+      app = "lupo"
+    }
+    template {
+      container {
+        name  = "lupo"
+        image = "datacite/lupo"
+
+        resources{
+          limits{
+            cpu    = "0.5"
+            memory = "512Mi"
+          }
+        }
+      }
+    }
+  }
 }
