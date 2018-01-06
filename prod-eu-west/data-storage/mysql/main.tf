@@ -44,13 +44,16 @@ resource "aws_db_parameter_group" "datacite57" {
     }
 }
 
-/* resource "aws_db_subnet_group" "datacite" {
-    name = "datacite"
+resource "aws_db_subnet_group" "datacite-prod" {
+    name = "datacite-prod"
     description = "RDS production subnet group"
-    subnet_ids = ["${aws_subnet.datacite-public.id}",
-                  "${aws_subnet.datacite-private.id}",
-                  "${aws_subnet.datacite-alt.id}"]
-} */
+    subnet_ids = [
+      "${data.aws_subnet.datacite-public.id}",
+      "${data.aws_subnet.datacite-public-alt.id}",
+      "${data.aws_subnet.datacite-private.id}",
+      "${data.aws_subnet.datacite-alt.id}"
+    ]
+}
 
 /* resource "aws_route53_record" "internal-db2" {
     zone_id = "${data.aws_route53_zone.internal.zone_id}"

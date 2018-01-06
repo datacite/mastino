@@ -14,8 +14,20 @@ data "aws_db_instance" "db2" {
   db_instance_identifier = "db2"
 }
 
-data "aws_security_group" "datacite-private" {
-  id = "${var.security_group_id}"
+data "aws_subnet" "datacite-public" {
+  id = "${var.subnet_datacite-public_id}"
+}
+
+data "aws_subnet" "datacite-public-alt" {
+  id = "${var.subnet_datacite-public-alt_id}"
+}
+
+data "aws_subnet" "datacite-private" {
+  id = "${var.subnet_datacite-private_id}"
+}
+
+data "aws_subnet" "datacite-alt" {
+  id = "${var.subnet_datacite-alt_id}"
 }
 
 data "aws_route53_zone" "internal" {
