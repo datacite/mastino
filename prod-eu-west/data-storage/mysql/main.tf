@@ -79,14 +79,6 @@ resource "aws_route53_record" "internal-db7" {
   records = ["${data.aws_db_instance.db.address}"]
 }
 
-resource "aws_route53_record" "db1" {
-  zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "db1.datacite.org"
-  type = "CNAME"
-  ttl = "${var.ttl}"
-  records = ["${data.aws_db_instance.db.address}"]
-}
-
 resource "aws_route53_record" "split-db1" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "db1.datacite.org"
