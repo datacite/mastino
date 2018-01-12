@@ -1,0 +1,30 @@
+data "template_file" "api_test_task" {
+	template = "${file("task-definitions/api-test.json")}"
+  
+	vars {
+	  solr_url           = "${var.solr_url}"
+	  lagotto_url        = "${var.lagotto_url}"
+	  lagotto_token      = "${var.lagotto_token}"
+	  volpino_url        = "${var.volpino_url}"
+	  volpino_token      = "${var.volpino_token}"
+	  blog_url           = "${var.blog_url}"
+	  jwt_public_key     = "${var.jwt_public_key}"
+	  orcid_update_uuid  = "${var.orcid_update_uuid}"
+	  orcid_update_url   = "${var.orcid_update_url}"
+	  orcid_update_token = "${var.orcid_update_token}"
+	  api_url            = "${var.api_url}"
+	  mode               = "${var.mode}"
+	  db_username        = "${var.db_username_test}"
+	  db_password        = "${var.db_password_test}"
+	  db_host            = "${var.db_host_test}"
+	  github_personal_access_token = "${var.github_personal_access_token}"
+	  github_milestones_url = "${var.github_milestones_url}"
+	  github_issues_repo_url = "${var.github_issues_repo_url}"
+	  cdn_host           = "${var.cdn_host}"
+	  memcache_servers   = "${var.memcache_servers_test}"
+	  librato_email      = "${var.librato_email}"
+	  librato_token      = "${var.librato_token}"
+	  librato_suites     = "${var.librato_suites}"
+	  version            = "${var.spinone_tags["sha"]}"
+	}
+  }
