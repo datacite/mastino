@@ -5,7 +5,7 @@ resource "aws_instance" "bastion-stage" {
     subnet_id = "${data.aws_subnet.datacite-public.id}"
     key_name = "${var.key_name}"
     associate_public_ip_address = "true"
-    user_data = "${data.template_file.bastion-user-data-cfg.rendered}"
+    user_data = "${data.template_file.bastion-stage-user-data-cfg.rendered}"
     tags {
         Name = "Bastion-Stage"
     }
