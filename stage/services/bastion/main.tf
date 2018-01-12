@@ -16,7 +16,7 @@ resource "aws_eip" "bastion-stage" {
 }
 
 resource "aws_eip_association" "bastion-stage" {
-  instance_id = "${aws_instance.bastion.id}"
+  instance_id = "${aws_instance.bastion-stage.id}"
   allocation_id = "${aws_eip.bastion.id}"
 }
 
@@ -25,7 +25,7 @@ resource "aws_route53_record" "bastion-stage" {
     name = "${var.hostname}.datacite.org"
     type = "A"
     ttl = "${var.ttl}"
-    records = ["${aws_instance.bastion.public_ip}"]
+    records = ["${aws_instance.bastion-stage.public_ip}"]
 }
 
 resource "aws_route53_record" "split-bastion-stage" {
@@ -33,5 +33,5 @@ resource "aws_route53_record" "split-bastion-stage" {
     name = "${var.hostname}.datacite.org"
     type = "A"
     ttl = "${var.ttl}"
-    records = ["${aws_instance.bastion.private_ip}"]
+    records = ["${aws_instance.bastion-stage.private_ip}"]
 }
