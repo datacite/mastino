@@ -1,7 +1,7 @@
 resource "aws_instance" "bastion-stage" {
     ami = "${var.ami["eu-west-1"]}"
     instance_type = "t2.micro"
-    vpc_security_group_ids = ["${aws_security_group.bastion.id}"]
+    vpc_security_group_ids = ["${var.security_group_id}"]
     subnet_id = "${data.aws_subnet.datacite-public.id}"
     key_name = "${var.key_name}"
     associate_public_ip_address = "true"
@@ -17,7 +17,7 @@ resource "aws_eip" "bastion-stage" {
 
 resource "aws_eip_association" "bastion-stage" {
   instance_id = "${aws_instance.bastion-stage.id}"
-  allocation_id = "${aws_eip.bastion.id}"
+  allocation_id = "${aws_eip.bastion-stage.id}"
 }
 
 resource "aws_route53_record" "bastion-stage" {
