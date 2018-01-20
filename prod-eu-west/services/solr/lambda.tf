@@ -36,7 +36,7 @@ resource "aws_lambda_function" "solr-index-0" {
     variables = {
       ecs_task_def = "solr-index"
       cluster = "default"
-      host = "${data.aws_instance.ecs-solr-0.private_ip}"
+      host = "${data.aws_instance.ecs-solr-1.private_ip}"
       clean = "true"
       solr_user = "${var.solr_user}"
       solr_password = "${var.solr_password}"
@@ -58,7 +58,7 @@ resource "aws_lambda_function" "solr-index-1" {
     variables = {
       ecs_task_def = "solr-index"
       cluster = "default"
-      host = "${data.aws_instance.ecs-solr-1.private_ip}"
+      host = "${data.aws_instance.ecs-solr-2.private_ip}"
       clean = "true"
       solr_user = "${var.solr_user}"
       solr_password = "${var.solr_password}"
