@@ -1,11 +1,11 @@
 resource "aws_instance" "bastion-stage" {
     ami = "${var.ami["eu-west-1"]}"
     instance_type = "t2.micro"
-    vpc_security_group_ids = ["${aws_security_group.bastion.id}"]
+    vpc_security_group_ids = ["${var.security_group_id}"]
     subnet_id = "${data.aws_subnet.datacite-public.id}"
     key_name = "${var.key_name}"
     associate_public_ip_address = "true"
-    user_data = "${data.template_file.bastion-user-data-cfg.rendered}"
+    user_data = "${data.template_file.bastion-stage-user-data-cfg.rendered}"
     tags {
         Name = "Bastion-Stage"
     }
@@ -16,8 +16,8 @@ resource "aws_eip" "bastion-stage" {
 }
 
 resource "aws_eip_association" "bastion-stage" {
-  instance_id = "${aws_instance.bastion.id}"
-  allocation_id = "${aws_eip.bastion.id}"
+  instance_id = "${aws_instance.bastion-stage.id}"
+  allocation_id = "${aws_eip.bastion-stage.id}"
 }
 
 resource "aws_route53_record" "bastion-stage" {
@@ -25,7 +25,7 @@ resource "aws_route53_record" "bastion-stage" {
     name = "${var.hostname}.datacite.org"
     type = "A"
     ttl = "${var.ttl}"
-    records = ["${aws_instance.bastion.public_ip}"]
+    records = ["${aws_instance.bastion-stage.public_ip}"]
 }
 
 resource "aws_route53_record" "split-bastion-stage" {
@@ -33,5 +33,5 @@ resource "aws_route53_record" "split-bastion-stage" {
     name = "${var.hostname}.datacite.org"
     type = "A"
     ttl = "${var.ttl}"
-    records = ["${aws_instance.bastion.private_ip}"]
+    records = ["${aws_instance.bastion-stage.private_ip}"]
 }
