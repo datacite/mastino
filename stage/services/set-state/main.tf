@@ -25,6 +25,7 @@ resource "aws_lambda_function" "set-state-test" {
       host     = "${var.host}"
       username = "${var.username}"
       password = "${var.password}"
+      version = 1
     }
   }
 }
