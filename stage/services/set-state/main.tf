@@ -16,7 +16,7 @@ resource "aws_lambda_function" "set-state-test" {
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "set_state_runner.handler"
   runtime = "nodejs4.3"
-  source_code_hash = "${base64sha256(file("set_state_runner.js.zip"))"
+  source_code_hash = "${base64sha256(file("set_state_runner.js.zip"))}"
 
   vpc_config {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
