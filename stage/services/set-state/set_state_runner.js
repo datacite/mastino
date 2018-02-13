@@ -12,12 +12,13 @@ exports.handler = (events, context) => {
   var options = {
     host: host,
     path: 'dois/set-state',
+    method: 'POST',
     headers: {
       'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
     }
   };
 
-  http.post(options, function(res) {
+  http.request(options, function(res) {
     console.log("[" + res.statusCode + "] Got response: " + res.message);
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
