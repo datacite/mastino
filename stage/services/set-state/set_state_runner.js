@@ -18,7 +18,7 @@ exports.handler = (events, context) => {
   };
 
   http.post(options, function(res) {
-    console.log("Got response: " + res.statusCode);
+    console.log("[" + res.statusCode + "] Got response: " + res.message);
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
   });
