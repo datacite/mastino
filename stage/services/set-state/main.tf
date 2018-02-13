@@ -11,10 +11,10 @@ resource "aws_cloudwatch_event_target" "set-state-test" {
 }
 
 resource "aws_lambda_function" "set-state-test" {
-  filename = "ecs_task_runner.js.zip"
+  filename = "set_state_runner.js.zip"
   function_name = "set-state-test"
   role = "${data.aws_iam_role.lambda.arn}"
-  handler = "ecs_task_runner.handler"
+  handler = "set_state_runner.handler"
   runtime = "nodejs4.3"
   vpc_config {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
