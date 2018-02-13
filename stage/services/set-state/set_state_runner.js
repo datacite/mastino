@@ -11,7 +11,7 @@ exports.handler = (events, context) => {
   var https = require('https');
   var options = {
     host: host,
-    path: 'dois/set-state',
+    path: '/dois/set-state',
     method: 'POST',
     headers: {
       'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
