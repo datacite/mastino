@@ -11,7 +11,7 @@ resource "aws_cloudwatch_event_target" "delete-test-dois-test" {
 }
 
 resource "aws_lambda_function" "delete-test-dois-test" {
-  filename = "delete-test-dois-test.js.zip"
+  filename = "delete-test-dois_runner.js.zip"
   function_name = "delete-test-dois-test"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "delete-test-dois_runner.handler"
