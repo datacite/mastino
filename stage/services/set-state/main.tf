@@ -15,7 +15,7 @@ resource "aws_lambda_function" "set-state-test" {
   function_name = "set-state-test"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "set_state_runner.handler"
-  runtime = "nodejs4.3"
+  runtime = "nodejs6.10"
   source_code_hash = "${base64sha256(file("set_state_runner.js.zip"))}"
   timeout = "270"
 

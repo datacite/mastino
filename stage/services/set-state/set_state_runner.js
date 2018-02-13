@@ -18,9 +18,17 @@ exports.handler = (events, context) => {
     }
   };
 
-  https.request(options, function(res) {
-    console.log("[" + res.statusCode + "] Got response: " + res.message);
-  }).on('error', function(e) {
-    console.log("Got error: " + e.message);
+  const req = https.request(options, (res) => {
+    console.log('statusCode:', res.statusCode);
+    console.log('headers:', res.headers);
+
+    res.on('data', (d) => {
+      process.stdout.write(d);
+    });
   });
+
+  req.on('error', (e) => {
+    console.error(e);
+  });
+  req.end();
 }
