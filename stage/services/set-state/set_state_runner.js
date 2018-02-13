@@ -19,8 +19,9 @@ exports.handler = (events, context) => {
   };
 
   const req = https.request(options, (res) => {
-    console.log('statusCode:', res.statusCode);
+    console.log('status:', res.statusCode);
 
+    res.setEncoding('utf8');
     res.on('data', (d) => {
       console.log(JSON.stringify(d));
     });
