@@ -8,7 +8,7 @@ exports.handler = (events, context) => {
   var password      = process.env.password;
   var host          = process.env.host;
 
-  var http = require('http');
+  var https = require('https');
   var options = {
     host: host,
     path: 'dois/set-state',
@@ -18,7 +18,7 @@ exports.handler = (events, context) => {
     }
   };
 
-  http.request(options, function(res) {
+  https.request(options, function(res) {
     console.log("[" + res.statusCode + "] Got response: " + res.message);
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
