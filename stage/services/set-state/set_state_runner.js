@@ -23,7 +23,8 @@ exports.handler = (events, context) => {
 
     res.setEncoding('utf8');
     res.on('data', (d) => {
-      console.log(JSON.stringify(d));
+      var json = JSON.parse(d);
+      console.log('message:', json.message);
     });
   });
 
