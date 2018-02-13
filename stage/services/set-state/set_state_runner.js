@@ -7,7 +7,7 @@ exports.handler = (events, context) => {
   var username      = process.env.username;
   var password      = process.env.password;
   var host          = process.env.host;
-  
+
   var http = require('http');
   var options = {
     host: host,
@@ -17,7 +17,7 @@ exports.handler = (events, context) => {
     }
   };
 
-  http.get(options, function(res) {
+  http.post(options, function(res) {
     console.log("Got response: " + res.statusCode);
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
