@@ -33,7 +33,7 @@ resource "aws_lambda_function" "set-minted-test" {
 }
 
 resource "aws_lambda_permission" "set-minted-test" {
-  mintedment_id = "AllowExecutionFromCloudWatch"
+  statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.set-minted-test.function_name}"
   principal = "events.amazonaws.com"
