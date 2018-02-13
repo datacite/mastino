@@ -35,7 +35,7 @@ resource "aws_lambda_function" "delete-test-dois-test" {
 resource "aws_lambda_permission" "delete-test-dois-test" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.set-state-test.function_name}"
+  function_name = "${aws_lambda_function.delete-test-dois-test.function_name}"
   principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.set-state-test.arn}"
+  source_arn = "${aws_cloudwatch_event_rule.delete-test-dois-test.arn}"
 }
