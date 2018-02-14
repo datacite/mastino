@@ -16,7 +16,7 @@ resource "aws_lambda_function" "set-url-test" {
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "set_url_runner.handler"
   runtime = "nodejs6.10"
-  source_code_hash = "${base64sha256(file("set_state_runner.js.zip"))}"
+  source_code_hash = "${base64sha256(file("set_url_runner.js.zip"))}"
   timeout = "270"
 
   vpc_config {
