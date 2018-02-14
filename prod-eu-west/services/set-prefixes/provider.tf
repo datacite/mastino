@@ -6,8 +6,8 @@ resource "aws_cloudwatch_event_rule" "set-provider-prefix" {
 
 resource "aws_cloudwatch_event_target" "set-provider-prefix" {
   target_id = "set-provider-prefix"
-  rule = "${aws_cloudwatch_event_rule.set-provider-prefix-.name}"
-  arn = "${aws_lambda_function.set-provider-prefix-.arn}"
+  rule = "${aws_cloudwatch_event_rule.set-provider-prefix.name}"
+  arn = "${aws_lambda_function.set-provider-prefix.arn}"
 }
 
 resource "aws_lambda_function" "set-provider-prefix" {
@@ -36,7 +36,7 @@ resource "aws_lambda_function" "set-provider-prefix" {
 resource "aws_lambda_permission" "set-provider-prefix" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.set-provider-prefix-.function_name}"
+  function_name = "${aws_lambda_function.set-provider-prefix.function_name}"
   principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.set-provider-prefix-.arn}"
+  source_arn = "${aws_cloudwatch_event_rule.set-provider-prefix.arn}"
 }
