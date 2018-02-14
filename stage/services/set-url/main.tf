@@ -11,10 +11,10 @@ resource "aws_cloudwatch_event_target" "set-url-test" {
 }
 
 resource "aws_lambda_function" "set-url-test" {
-  filename = "set_state_runner.js.zip"
+  filename = "set_url_runner.js.zip"
   function_name = "set-url-test"
   role = "${data.aws_iam_role.lambda.arn}"
-  handler = "set_state_runner.handler"
+  handler = "set_url_runner.handler"
   runtime = "nodejs6.10"
   source_code_hash = "${base64sha256(file("set_state_runner.js.zip"))}"
   timeout = "270"
