@@ -8,6 +8,6 @@ data "template_file" "openingscience" {
   template = "${file("s3_public_read.json")}"
 
   vars {
-    bucket_name = "book.pidapalooza.org"
+    bucket_name = "book.openingscience.org"
   }
 }
