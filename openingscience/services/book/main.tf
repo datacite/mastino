@@ -6,7 +6,10 @@ resource "aws_s3_bucket" "openingscience" {
         index_document = "index.html"
         error_document = "404.html"
     }
+    versioning {
+      enabled = true
+    }
     tags {
-        Name = "Opening Science"
+        Name = "OpeningScience"
     }
 }
