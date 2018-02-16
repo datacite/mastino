@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "set-minted" {
   name = "set-minted"
   description = "Run set-minted API call via cron"
-  schedule_expression = "cron(55 0,12 * * ? *)"
+  schedule_expression = "cron(55 0,4,8,12,16,20 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "set-minted" {
