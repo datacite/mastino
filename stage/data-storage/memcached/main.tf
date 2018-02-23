@@ -1,16 +1,16 @@
 resource "aws_elasticache_cluster" "memcached-stage" {
     cluster_id = "memcached-stage"
     engine = "memcached"
-    engine_version = "1.4.24"
+    engine_version = "1.4.34"
     node_type = "cache.m3.medium"
     port = 11211
     num_cache_nodes = 1
     security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
     subnet_group_name = "${aws_elasticache_subnet_group.memcached-stage.name}"
     apply_immediately = true
-    lifecycle {
+    /* lifecycle {
       prevent_destroy = "true"
-    }
+    } */
 }
 
 resource "aws_elasticache_subnet_group" "memcached-stage" {
