@@ -1,5 +1,5 @@
 resource "aws_sqs_queue" "elastic-test" {
-  name                      = "elastic-test"
+  name                      = "stage-elastic"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
   tags {
@@ -8,7 +8,16 @@ resource "aws_sqs_queue" "elastic-test" {
 }
 
 resource "aws_sqs_queue" "lupo-test" {
-  name                      = "lupo-test"
+  name                      = "stage-lupo"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "test"
+  }
+}
+
+resource "aws_sqs_queue" "levriero-test" {
+  name                      = "stage-levriero"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
   tags {
@@ -17,7 +26,7 @@ resource "aws_sqs_queue" "lupo-test" {
 }
 
 resource "aws_sqs_queue" "dead-letter-test" {
-  name                      = "dead-letter-test"
+  name                      = "stage-dead-letter"
 
   tags {
     Environment = "test"
