@@ -16,6 +16,15 @@ resource "aws_sqs_queue" "lupo-dev" {
   }
 }
 
+resource "aws_sqs_queue" "lupo-testing" {
+  name                      = "test_lupo"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
 resource "aws_sqs_queue" "levriero-dev" {
   name                      = "development_levriero"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
