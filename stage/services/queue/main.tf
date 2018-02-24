@@ -23,3 +23,8 @@ resource "aws_sqs_queue" "dead-letter-test" {
     Environment = "test"
   }
 }
+
+resource "aws_iam_policy" "sqs-test" {
+  name = "sqs-test"
+  policy = "${data.template_file.queue-test.rendered}"
+}
