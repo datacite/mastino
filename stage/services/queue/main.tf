@@ -7,6 +7,15 @@ resource "aws_sqs_queue" "elastic-test" {
   }
 }
 
+resource "aws_sqs_queue" "url-test" {
+  name                      = "url-test"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "test"
+  }
+}
+
 resource "aws_sqs_queue" "dead-letter-test" {
   name                      = "dead-letter-test"
 
