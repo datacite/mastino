@@ -8,9 +8,9 @@ resource "aws_elasticache_cluster" "memcached-stage" {
     security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
     subnet_group_name = "${aws_elasticache_subnet_group.memcached-stage.name}"
     apply_immediately = true
-    /* lifecycle {
+    lifecycle {
       prevent_destroy = "true"
-    } */
+    }
 }
 
 resource "aws_elasticache_subnet_group" "memcached-stage" {
