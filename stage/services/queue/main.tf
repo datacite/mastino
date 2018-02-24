@@ -7,8 +7,8 @@ resource "aws_sqs_queue" "elastic-test" {
   }
 }
 
-resource "aws_sqs_queue" "url-test" {
-  name                      = "url-test"
+resource "aws_sqs_queue" "lupo-test" {
+  name                      = "lupo-test"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
   tags {
