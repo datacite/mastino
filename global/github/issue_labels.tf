@@ -296,27 +296,27 @@ resource "github_issue_label" "legal" {
 resource "github_issue_label" "thor" {
   count = "${length(var.github_repositories)}"
   repository = "${var.github_repositories[count.index]}"
-  name       = "thor"
+  name       = "THOR"
   color      = "006b75"
 }
 
 resource "github_issue_label" "mdc" {
   count = "${length(var.github_repositories)}"
   repository = "${var.github_repositories[count.index]}"
-  name       = "mdc"
+  name       = "Make Data Count"
   color      = "006b75"
 }
 
 resource "github_issue_label" "freya" {
   count = "${length(var.github_repositories)}"
   repository = "${var.github_repositories[count.index]}"
-  name       = "freya"
+  name       = "FREYA"
   color      = "006b75"
 }
 
 resource "github_issue_label" "fabrica" {
   count = "${length(var.github_repositories)}"
   repository = "${var.github_repositories[count.index]}"
-  name       = "fabrica"
+  name       = "DOI Fabrica"
   color      = "006b75"
 }
