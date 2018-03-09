@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "set-url-test" {
   name = "set-url-test"
   description = "Run set-url API call via cron"
-  schedule_expression = "cron(00 1,5,9,13,17,21 * * ? *)"
+  schedule_expression = "cron(03 * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "set-url-test" {
