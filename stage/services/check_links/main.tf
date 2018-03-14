@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "check-links" {
   name                = "check-links"
   description         = "Run check-links API call via cron"
-  schedule_expression = "cron(0 1 * * ? *)"
+  schedule_expression = "cron(42 1 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "check-links" {
