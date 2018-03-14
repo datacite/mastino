@@ -26,8 +26,8 @@ resource "aws_lambda_function" "check-links" {
 
   environment {
     variables = {
-      redis_host     = "${var.redis_host}"
-      start_urls_key = "${var.start_urls_key}"
+      REDIS_HOST     = "${var.redis_host}"
+      START_URLS_KEY = "${var.start_urls_key}"
     }
   }
 }
