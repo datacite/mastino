@@ -12,7 +12,7 @@ resource "aws_cloudwatch_event_target" "check-links" {
 
 resource "aws_lambda_function" "check-links" {
   filename         = "check_links.py.zip"
-  function_name    = "check-links"
+  function_name    = "check-links-stage"
   role             = "${data.aws_iam_role.lambda.arn}"
   handler          = "check_links_runner.lambda_handler"
   runtime          = "python3.6"
