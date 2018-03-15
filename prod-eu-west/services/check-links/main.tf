@@ -1,18 +1,18 @@
-resource "aws_cloudwatch_event_rule" "check-links-test" {
-  name                = "check-links-test"
+resource "aws_cloudwatch_event_rule" "check-links" {
+  name                = "check-links"
   description         = "Run check-links API call via cron"
   schedule_expression = "cron(42 1 * * ? *)"
 }
 
-resource "aws_cloudwatch_event_target" "check-links-test" {
-  target_id = "check-links-test"
-  rule      = "${aws_cloudwatch_event_rule.check-links-test.name}"
-  arn       = "${aws_lambda_function.check-links-test.arn}"
+resource "aws_cloudwatch_event_target" "check-links" {
+  target_id = "check-links"
+  rule      = "${aws_cloudwatch_event_rule.check-links.name}"
+  arn       = "${aws_lambda_function.check-links.arn}"
 }
 
-resource "aws_lambda_function" "check-links-test" {
+resource "aws_lambda_function" "check-links" {
   filename         = "check_links.py.zip"
-  function_name    = "check-links-test"
+  function_name    = "check-links"
   role             = "${data.aws_iam_role.lambda.arn}"
   handler          = "check_links_runner.lambda_handler"
   runtime          = "python3.6"
@@ -33,10 +33,10 @@ resource "aws_lambda_function" "check-links-test" {
   }
 }
 
-resource "aws_lambda_permission" "check-links-test" {
+resource "aws_lambda_permission" "check-links" {
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.check-links-test.function_name}"
+  function_name = "${aws_lambda_function.check-links.function_name}"
   principal     = "events.amazonaws.com"
-  source_arn    = "${aws_cloudwatch_event_rule.check-links-test.arn}"
+  source_arn    = "${aws_cloudwatch_event_rule.check-links.arn}"
 }
