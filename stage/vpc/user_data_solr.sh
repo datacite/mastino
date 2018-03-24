@@ -31,12 +31,13 @@ docker run -d -p "${solr_port}":80 --name solr \
   --env SOLR_URL="${solr_url}" \
   --env SOLR_USER="${solr_user}" \
   --env SOLR_PASSWORD="${solr_password}" \
+  --env SOLR_VERSION="${solr_version}" \
   --env LOG_LEVEL=INFO \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --volume /opt/solr:/data/solr/collection1 \
   --volume /opt/.m2:/root/.m2 \
   --restart always \
-  datacite/search
+  datacite/search:"${solr_tag}"
 
 # start solr indexing
 curl -u "${solr_user}":"${solr_password}" http://127.0.0.1:"${solr_port}"/admin/dataimport?command=full-import&commit=true&clean=true&optimize=false&wt=json

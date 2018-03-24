@@ -18,15 +18,15 @@ data "aws_subnet" "datacite-alt" {
 }
 
 data "aws_route53_zone" "production" {
-  name         = "datacite.org"
+  name = "datacite.org"
 }
 
 data "aws_route53_zone" "internal" {
-  name         = "datacite.org"
+  name = "datacite.org"
   private_zone = true
 }
 
-/* data "aws_acm_certificate" "test" {
+data "aws_acm_certificate" "test" {
   domain = "*.test.datacite.org"
   statuses = ["ISSUED"]
 }
@@ -47,15 +47,15 @@ data "template_cloudinit_config" "ecs-stage-user-data" {
 }
 
 data "template_file" "ecs-stage-user-data-cfg" {
-  template = "${file("templates/user_data.cfg")}"
+  template = "${file("user_data.cfg")}"
 
   vars {
-    hostname     = "ecs-stage"
-    fqdn         = "ecs.stage.datacite.org"
+    hostname     = "ecs-test"
+    fqdn         = "ecs.test.datacite.org"
   }
 }
 
-data "template_file" "ecs-stage-user-data-boothook" {
+data "template_file" "ecs-test-user-data-boothook" {
   template = "${file("${path.module}/templates/user_data_solr.sh")}"
 
   vars {
@@ -73,7 +73,8 @@ data "template_file" "ecs-stage-user-data-boothook" {
     solr_password      = "${var.solr_password_test}"
     syslog_host        = "${var.syslog_host}"
     syslog_port        = "${var.syslog_port}"
-    version            = "${var.search_tags["sha"]}"
+    solr_version       = "${var.search_tags["sha"]}"
+    solr_tag           = "latest"
   }
 }
 
@@ -84,7 +85,7 @@ data "aws_iam_instance_profile" "ecs_instance" {
 data "aws_lb_target_group" "api-stage" {
   arn  = "${var.lb_tg_arn}"
   name = "${var.lb_tg_name}"
-} */
+}
 
 data "template_file" "logs-stage" {
   template = "${file("s3_lb_write_access.json")}"

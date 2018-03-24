@@ -1,8 +1,8 @@
-/* resource "aws_lb" "stage" {
+resource "aws_lb" "stage" {
   name = "lb-stage"
   internal = false
-  subnets = ["${aws_subnet.datacite-public.id}", "${aws_subnet.datacite-public-alt.id}"]
-  security_groups = ["${aws_security_group.datacite-public.id}"]
+  subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
+  security_groups = ["${data.aws_security_group.datacite-public.id}"]
 
   enable_deletion_protection = true
 
@@ -16,7 +16,7 @@
     Environment = "stage"
     Name = "lb-stage"
   }
-} */
+}
 
 resource "aws_s3_bucket" "logs-stage" {
   bucket = "logs.stage.datacite.org"
@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "logs-stage" {
   }
 }
 
-/* resource "aws_lb_listener" "stage" {
+resource "aws_lb_listener" "stage" {
   load_balancer_arn = "${aws_lb.stage.id}"
   port              = "443"
   protocol          = "HTTPS"
@@ -522,4 +522,4 @@ resource "aws_lb_listener_rule" "citation-test" {
     field  = "host-header"
     values = ["${aws_route53_record.citation-test.name}"]
   }
-} */
+}
