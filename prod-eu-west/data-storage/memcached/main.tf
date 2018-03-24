@@ -28,9 +28,13 @@ resource "aws_route53_record" "memcached1" {
     records = ["${aws_elasticache_cluster.memcached.cache_nodes.0.address}"]
 }
 
-/* resource "librato_space_chart" "memcached-network" {
+resource "librato_space" "memcached" {
+    name = "Memcached"
+}
+
+resource "librato_space_chart" "memcached-network" {
   name = "Memcached Network Traffic"
-  space_id = "${librato_space.cache.id}"
+  space_id = "${librato_space.memcached.id}"
   type = "line"
 
   stream {
@@ -45,7 +49,7 @@ resource "aws_route53_record" "memcached1" {
 
 resource "librato_space_chart" "memcached-hits" {
   name = "Memcached Hits and Misses"
-  space_id = "${librato_space.cache.id}"
+  space_id = "${librato_space.memcached.id}"
   type = "line"
 
   stream {
@@ -56,4 +60,4 @@ resource "librato_space_chart" "memcached-hits" {
     metric = "AWS.ElastiCache.GetMisses"
     source = "eu-west-1.memcached.0001"
   }
-} */
+}
