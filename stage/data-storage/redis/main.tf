@@ -6,7 +6,7 @@ resource "aws_elasticache_cluster" "redis-stage" {
   port                     = 6379
   num_cache_nodes          = 1
   parameter_group_name     = "${aws_elasticache_parameter_group.redis-stage.name}"
-  security_group_ids       = ["${aws_security_group.datacite-private.id}"]
+  security_group_ids       = ["${data.aws_security_group.datacite-private.id}"]
   subnet_group_name        = "${aws_elasticache_subnet_group.redis-stage.name}"
   apply_immediately        = true
   snapshot_retention_limit = 8
