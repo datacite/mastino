@@ -12,3 +12,6 @@ variable "ttl" {
 
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
+
+variable "librato_email" {}
+variable "librato_token" {}
