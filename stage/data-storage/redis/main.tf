@@ -18,8 +18,8 @@ resource "aws_elasticache_subnet_group" "redis-stage" {
   description = "Elasticache redis-stage subnet group"
 
   subnet_ids = [
-    "${aws_subnet.datacite-private.id}",
-    "${aws_subnet.datacite-alt.id}"
+    "${data.aws_subnet.datacite-private.id}",
+    "${data.aws_subnet.datacite-alt.id}"
   ]
 }
 
@@ -40,7 +40,7 @@ resource "aws_elasticache_parameter_group" "redis-stage" {
 }
 
 resource "aws_route53_record" "redis-test" {
-  zone_id = "${aws_route53_zone.internal.zone_id}"
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name    = "redis1.test.datacite.org"
   type    = "CNAME"
   ttl     = "${var.ttl}"

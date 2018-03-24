@@ -18,8 +18,8 @@ resource "aws_elasticache_subnet_group" "redis" {
   description = "Elasticache redis subnet group"
 
   subnet_ids = [
-    "${aws_subnet.datacite-private.id}",
-    "${aws_subnet.datacite-alt.id}"
+    "${data.aws_subnet.datacite-private.id}",
+    "${data.aws_subnet.datacite-alt.id}"
   ]
 }
 
@@ -44,11 +44,11 @@ resource "librato_space" "redis" {
 }
 
 resource "aws_route53_record" "redis" {
-  zone_id = "${aws_route53_zone.internal.zone_id}"
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name    = "redis1.datacite.org"
   type    = "CNAME"
   ttl     = "${var.ttl}"
-  records = ["${aws_elasticache_cluster.redis-stage.cache_nodes.0.address}"]
+  records = ["${aws_elasticache_cluster.redis.cache_nodes.0.address}"]
 }
 
 resource "librato_space_chart" "redis-network" {
