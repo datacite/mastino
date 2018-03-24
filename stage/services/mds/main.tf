@@ -15,7 +15,7 @@ resource "aws_route53_record" "mds-test" {
    name = "mds.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${aws_lb.test.dns_name}"]
+   records = ["${data.aws_lb.test.dns_name}"]
 }
 
 resource "aws_route53_record" "split-mds-test" {

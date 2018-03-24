@@ -16,3 +16,5 @@ variable "ttl" {
 variable "lb_name" {
   default = "lb-test"
 }
+
+variable "compose_id" {}

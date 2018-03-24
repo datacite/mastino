@@ -4,14 +4,14 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "aws_security_group" "datacite-private" {
-  id = "${var.security_group_id}"
+data "aws_route53_zone" "production" {
+  name         = "datacite.org"
 }
 
-data "aws_subnet" "datacite-private" {
-  id = "${var.subnet_datacite-private_id}"
+data "aws_lb" "test" {
+  name = "${var.lb_name}"
 }
 
-data "aws_subnet" "datacite-alt" {
-  id = "${var.subnet_datacite-alt_id}"
+data "aws_instance" "compose-test" {
+  instance_id = "${var.compose_id}"
 }
