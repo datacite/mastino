@@ -5,10 +5,6 @@ variable "region" {
 }
 variable "vpc_id" {}
 
-variable "security_group_id" {}
-variable "subnet_datacite-private_id" {}
-variable "subnet_datacite-alt_id" {}
-
 variable "ttl" {
   default = "300"
 }
