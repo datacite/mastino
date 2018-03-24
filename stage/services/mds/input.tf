@@ -8,6 +8,11 @@ data "aws_route53_zone" "production" {
   name         = "datacite.org"
 }
 
+data "aws_route53_zone" "internal" {
+  name         = "datacite.org"
+  private_zone = true
+}
+
 data "aws_lb" "test" {
   name = "${var.lb_name}"
 }
