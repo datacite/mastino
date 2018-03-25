@@ -22,6 +22,10 @@ resource "aws_lb_target_group" "http-redirect-stage" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
+
+  health_check {
+    path = "/heartbeat"
+  }
 }
 
 resource "aws_ecs_task_definition" "http-redirect-stage" {
