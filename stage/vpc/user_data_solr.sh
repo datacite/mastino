@@ -39,5 +39,6 @@ docker run -d -p "${solr_port}":80 --name solr \
   --restart always \
   datacite/search:"${solr_tag}"
 
+
 # start solr indexing
 curl -u "${solr_user}":"${solr_password}" http://127.0.0.1:"${solr_port}"/admin/dataimport?command=full-import&commit=true&clean=true&optimize=false&wt=json
