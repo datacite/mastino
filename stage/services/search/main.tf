@@ -127,7 +127,7 @@ resource "aws_lb_listener_rule" "search-stage" {
 
   action {
     type             = "forward"
-    target_group_arn = "${data.aws_lb_target_group.search-stage.arn}"
+    target_group_arn = "${aws_lb_target_group.search-stage.arn}"
   }
 
   condition {
