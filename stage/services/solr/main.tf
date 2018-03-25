@@ -1,4 +1,4 @@
-/* resource "aws_lb_target_group" "solr-stage" {
+resource "aws_lb_target_group" "solr-stage" {
   name     = "solr-stage"
   port     = 40195
   protocol = "HTTP"
@@ -19,7 +19,7 @@ resource "aws_route53_record" "solr-stage" {
    name = "solr.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${data.aws_lb.test.dns_name}"]
+   records = ["${data.aws_lb.stage.dns_name}"]
 }
 
 resource "aws_route53_record" "split-solr-stage" {
@@ -30,7 +30,7 @@ resource "aws_route53_record" "split-solr-stage" {
    records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-resource "aws_lb_listener_rule" "solr-test-api" {
+/* resource "aws_lb_listener_rule" "solr-stage-api" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 80
 
@@ -41,7 +41,7 @@ resource "aws_lb_listener_rule" "solr-test-api" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.search-test.name}"]
+    values = ["${aws_route53_record.search-stage.name}"]
   }
   condition {
     field  = "path-pattern"
@@ -60,7 +60,7 @@ resource "aws_lb_listener_rule" "solr-stage-list" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.search-test.name}"]
+    values = ["${aws_route53_record.search-stage.name}"]
   }
   condition {
     field  = "path-pattern"
@@ -79,7 +79,7 @@ resource "aws_lb_listener_rule" "solr-stage-ui" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.search-test.name}"]
+    values = ["${aws_route53_record.search-stage.name}"]
   }
   condition {
     field  = "path-pattern"
@@ -98,13 +98,13 @@ resource "aws_lb_listener_rule" "solr-stage-resources" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.search-test.name}"]
+    values = ["${aws_route53_record.search-stage.name}"]
   }
   condition {
     field  = "path-pattern"
     values = ["/resources*"]
   }
-}
+} */
 
 resource "aws_lb_listener_rule" "solr-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
@@ -117,6 +117,6 @@ resource "aws_lb_listener_rule" "solr-stage" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.solr-test.name}"]
+    values = ["${aws_route53_record.solr-stage.name}"]
   }
-} */
+}

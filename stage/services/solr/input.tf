@@ -5,11 +5,6 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
-/* data "aws_lb" "stage" {
-  arn  = "${var.lb_arn}"
-  name = "stage"
-} */
-
 data "aws_route53_zone" "production" {
   name = "datacite.org"
 }
@@ -42,6 +37,11 @@ data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
 }
 
-/* data "aws_lb_listener" "stage" {
-  arn = "${var.listener_arn}"
-} */
+data "aws_lb" "stage" {
+  name = "${var.lb_name}"
+}
+
+data "aws_lb_listener" "stage" {
+  load_balancer_arn = "${data.aws_lb.stage.arn}"
+  port = 443
+}
