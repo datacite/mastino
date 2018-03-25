@@ -9,3 +9,7 @@ variable "vpc_id" {}
 variable "http-redirect_tags" {
   type = "map"
 }
+
+variable "lb_name" {
+  default = "lb-stage"
+}

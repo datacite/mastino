@@ -17,8 +17,7 @@ resource "aws_ecs_service" "http-redirect-test" {
   }
 
   depends_on = [
-    "aws_iam_role_policy.ecs_service",
-    "aws_lb_listener.test",
+    "data.aws_lb_listener.test"
   ]
 }
 
