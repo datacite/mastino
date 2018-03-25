@@ -30,9 +30,9 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-data "aws_lb_target_group" "profiles-stage" {
+/* data "aws_lb_target_group" "profiles-stage" {
   name = "profiles-stage"
-}
+} */
 
 data "template_file" "api_task" {
   template = "${file("api.json")}"
