@@ -79,7 +79,6 @@ data "template_file" "ecs-user-data-boothook" {
 
 data "aws_iam_instance_profile" "ecs_instance" {
   name  = "ecs_instance_profile"
-  role = "${data.aws_iam_role.ecs_instance_role.name}"
 }
 
 data "aws_iam_role" "ecs_instance_role" {
