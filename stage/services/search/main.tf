@@ -27,11 +27,6 @@ resource "aws_ecs_service" "search-stage" {
     container_name   = "search-stage"
     container_port   = "80"
   }
-
-  depends_on = [
-    "aws_iam_role_policy.ecs_service",
-    "aws_lb_listener.test",
-  ]
 }
 
 resource "aws_lb_target_group" "search-stage" {
