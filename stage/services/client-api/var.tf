@@ -48,6 +48,6 @@ variable "librato_suites" {
 variable "mysql_user" {}
 variable "mysql_password" {}
 variable "mysql_database" {
-  default = "profiles"
+  default = "datacite"
 }
 variable "mysql_host" {}
