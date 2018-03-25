@@ -24,7 +24,7 @@ resource "aws_lambda_function" "solr-index-stage" {
     variables = {
       ecs_task_def = "solr-index-stage"
       cluster = "stage"
-      host = "${data.aws_instance.ecs-test.private_ip}"
+      host = "${data.aws_instance.ecs-stage.private_ip}"
       clean = "true"
       solr_user = "${var.solr_user}"
       solr_password = "${var.solr_password}"
