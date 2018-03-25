@@ -19,7 +19,7 @@ variable "ttl" {
 }
 
 variable "cdn_url" {
-  default = "https://assets.test.datacite.org/api"
+  default = "https://assets.test.datacite.org"
 }
 variable "orcid_url" {
   default = "https://sandbox.orcid.org"
