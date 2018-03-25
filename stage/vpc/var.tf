@@ -45,3 +45,5 @@ variable "syslog_host" {}
 variable "syslog_port" {}
 
 variable "cluster" {}
+
+variable "key_name" {}

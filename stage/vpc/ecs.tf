@@ -3,9 +3,9 @@ resource "aws_instance" "ecs-stage" {
     instance_type = "m4.2xlarge"
     vpc_security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
     subnet_id = "${data.aws_subnet.datacite-private.id}"
-    key_name = "mds"
-    user_data = "${data.template_cloudinit_config.ecs-test-user-data.rendered}"
-    iam_instance_profile = "${aws_iam_instance_profile.ecs_instance.id}"
+    key_name = "${var.key_name}"
+    user_data = "${data.template_cloudinit_config.ecs-user-data.rendered}"
+    iam_instance_profile = "${data.aws_iam_instance_profile.ecs_instance.id}"
     root_block_device {
         volume_size = 100
         volume_type = "gp2"
