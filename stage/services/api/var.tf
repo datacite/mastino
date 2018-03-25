@@ -6,7 +6,7 @@ variable "region" {
 
 variable "vpc_id" {}
 
-variable "api_tags" {
+variable "spinone_tags" {
   type = "map"
 }
 
@@ -30,7 +30,9 @@ variable "blog_url" {
   default = "https://blog.test.datacite.org"
 }
 
-variable "memcache_servers" {}
+variable "memcache_servers" {
+  default = "memcached.test.datacite.org:11211"
+}
 
 variable "volpino_token" {}
 variable "jwt_public_key" {}
