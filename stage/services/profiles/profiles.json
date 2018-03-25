@@ -61,10 +61,6 @@
         "value" : "${solr_url}"
       },
       {
-        "name" : "ORCID_UPDATE_TOKEN",
-        "value" : "${orcid_update_token}"
-      },
-      {
         "name" : "ORCID_URL",
         "value" : "${orcid_url}"
       },
