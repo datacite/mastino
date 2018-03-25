@@ -4,8 +4,8 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "aws_ecs_cluster" "test" {
-  cluster_name = "test"
+data "aws_ecs_cluster" "stage" {
+  cluster_name = "stage"
 }
 
 data "aws_iam_role" "ecs_service" {

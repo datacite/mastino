@@ -11,7 +11,7 @@ resource "aws_instance" "ecs-stage" {
         volume_type = "gp2"
     }
     tags {
-        Name = "ECS-Test"
+        Name = "ECS-Stage"
     }
     lifecycle {
         create_before_destroy = "true"
@@ -24,7 +24,7 @@ resource "aws_ecs_cluster" "stage" {
 
 resource "aws_route53_record" "internal-ecs-stage" {
     zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "ecs.test.datacite.org"
+    name = "ecs.stage.datacite.org"
     type = "A"
     ttl = "${var.ttl}"
     records = ["${aws_instance.ecs-stage.private_ip}"]

@@ -5,7 +5,7 @@
     "cpu": 512,
     "memory": 1000,
     "essential": true,
-    "hostname": "http-redirect-test",
+    "hostname": "http-redirect-stage",
     "portMappings": [
       {
         "containerPort": 80

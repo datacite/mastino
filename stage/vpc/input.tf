@@ -62,8 +62,8 @@ data "template_file" "ecs-user-data-cfg" {
   template = "${file("user_data.cfg")}"
 
   vars {
-    hostname     = "ecs-test"
-    fqdn         = "ecs.test.datacite.org"
+    hostname     = "ecs-stage"
+    fqdn         = "ecs.stage.datacite.org"
   }
 }
 
