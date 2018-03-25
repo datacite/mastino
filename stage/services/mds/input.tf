@@ -17,6 +17,11 @@ data "aws_lb" "test" {
   name = "${var.lb_name}"
 }
 
+data "aws_lb_listener" "test" {
+  load_balancer_arn = "${data.aws_lb.test.arn}"
+  port = 443
+}
+
 data "aws_instance" "compose-test" {
   instance_id = "${var.compose_id}"
 }
