@@ -52,3 +52,11 @@ variable "cluster" {
 }
 
 variable "key_name" {}
+
+variable "lb_tg_api-test" {
+  default = "api-test"
+}
+
+variable "lb_tg_http-redirect-test" {
+  default = "http-redirect-test"
+}

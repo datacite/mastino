@@ -97,9 +97,13 @@ data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
 
-/* data "aws_lb_target_group" "api-stage" {
-  name = "${var.lb_tg_name}"
-} */
+data "aws_lb_target_group" "api-test" {
+  name = "${var.lb_tg_api-test}"
+}
+
+data "aws_lb_target_group" "http-redirect-test" {
+  name = "${var.lb_tg_http-redirect-test}"
+}
 
 data "template_file" "logs-stage" {
   template = "${file("s3_lb_write_access.json")}"

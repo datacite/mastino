@@ -35,10 +35,10 @@ resource "aws_s3_bucket" "logs-stage" {
   certificate_arn   = "${data.aws_acm_certificate.test.arn}"
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.api-stage.id}"
+    target_group_arn = "${data.aws_lb_target_group.api-test.id}"
     type             = "forward"
   }
-}
+} */
 
 resource "aws_lb_listener" "test-http" {
   load_balancer_arn = "${aws_lb.test.id}"
@@ -46,12 +46,12 @@ resource "aws_lb_listener" "test-http" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${aws_lb_target_group.http-redirect-test.id}"
+    target_group_arn = "${data.aws_lb_target_group.http-redirect-test.id}"
     type             = "forward"
   }
 }
 
-resource "aws_lb_listener_rule" "cheetoh-test" {
+/*resource "aws_lb_listener_rule" "cheetoh-test" {
   listener_arn = "${aws_lb_listener.test.arn}"
   priority     = 1
 
@@ -67,21 +67,6 @@ resource "aws_lb_listener_rule" "cheetoh-test" {
   condition {
     field  = "path-pattern"
     values = ["/id*"]
-  }
-}
-
-resource "aws_lb_listener_rule" "mds-test" {
-  listener_arn = "${aws_lb_listener.test.arn}"
-  priority     = 2
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-test.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.mds-test.name}"]
   }
 }
 
