@@ -33,7 +33,7 @@ resource "aws_lb_target_group" "api-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-stage-people" {
+/* resource "aws_lb_listener_rule" "api-stage-people" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 40
 
@@ -50,7 +50,7 @@ resource "aws_lb_listener_rule" "api-stage-people" {
     field  = "path-pattern"
     values = ["/people"]
   }
-}
+} */
 
 resource "aws_lb_listener_rule" "api-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
