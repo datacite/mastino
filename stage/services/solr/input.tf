@@ -14,10 +14,10 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
-data "aws_instance" "ecs-test" {
+data "aws_instance" "ecs-stage" {
   filter {
     name   = "tag:Name"
-    values = ["ECS-Test"]
+    values = ["ECS-Stage"]
   }
 }
 
