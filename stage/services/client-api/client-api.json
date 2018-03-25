@@ -1,0 +1,121 @@
+[
+  {
+    "name": "client-api-stage",
+    "image": "datacite/lupo",
+    "cpu": 512,
+    "memory": 1000,
+    "essential": true,
+    "hostname": "client-api-stage",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite REST API"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "JWT_PRIVATE_KEY",
+        "value" : "${jwt_private_key}"
+      },
+      {
+        "name" : "SECRET_KEY_BASE",
+        "value" : "${secret_key_base}"
+      },
+      {
+        "name" : "RE3DATA_URL",
+        "value" : "${re3data_url}"
+      },
+      {
+        "name" : "SESSION_ENCRYPTED_COOKIE_SALT",
+        "value" : "${session_encrypted_cookie_salt}"
+      },
+      {
+        "name" : "MYSQL_USER",
+        "value" : "${mysql_user}"
+      },
+      {
+        "name" : "MYSQL_PASSWORD",
+        "value" : "${mysql_password}"
+      },
+      {
+        "name" : "MYSQL_HOST",
+        "value" : "${mysql_host}"
+      },
+      {
+        "name" : "MYSQL_DATABASE",
+        "value" : "${mysql_database}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "SERVERNAME",
+        "value" : "client-api.stage.datacite.org"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "LIBRATO_USER",
+        "value" : "${librato_email}"
+      },
+      {
+        "name" : "LIBRATO_TOKEN",
+        "value" : "${librato_token}"
+      },
+      {
+        "name" : "LIBRATO_SUITES",
+        "value" : "${librato_suites}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+            {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "MAILGUN_API_KEY",
+        "value" : "${mailgun_api_key}"
+      },
+      {
+        "name" : "BRACCO_URL",
+        "value" : "${bracco_url}"
+      },
+      {
+        "name" : "LEVRIERO_URL",
+        "value" : "${levriero_url}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
