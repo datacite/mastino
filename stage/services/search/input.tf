@@ -5,17 +5,44 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
-data "template_file" "search-stage" {
-    template = "${file("policies/s3_public_read.json")}"
+data "aws_route53_zone" "production" {
+  name = "datacite.org"
+}
 
-    vars {
-        vpce_id = "${aws_vpc_endpoint.datacite.id}"
-        bucket_name = "${aws_route53_record.search-stage.name}"
-    }
+data "aws_route53_zone" "internal" {
+  name = "datacite.org"
+  private_zone = true
 }
 
 data "aws_ecs_cluster" "stage" {
   cluster_name = "stage"
+}
+
+data "aws_iam_role" "ecs_service" {
+  name = "ecs_service"
+}
+
+data "aws_lb" "stage" {
+  name = "${var.lb_name}"
+}
+
+data "aws_lb_listener" "stage" {
+  load_balancer_arn = "${data.aws_lb.stage.arn}"
+  port = 443
+}
+
+data "aws_vpc_endpoint" "datacite" {
+  vpc_id       = "${var.vpc_id}"
+  service_name = "com.amazonaws.eu-west-1.s3"
+}
+
+data "template_file" "search-stage" {
+    template = "${file("s3_public_read.json")}"
+
+    vars {
+        vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
+        bucket_name = "${aws_route53_record.search-stage.name}"
+    }
 }
 
 data "template_file" "search_stage_task" {
