@@ -41,7 +41,9 @@ variable "cdn_url" {
 }
 
 variable "redis_url" {}
-variable "memcache_servers" {}
+variable "memcache_servers" {
+  default = "memcached.test.datacite.org:11211"
+}
 
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
