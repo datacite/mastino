@@ -15,7 +15,7 @@ resource "aws_lb_target_group_attachment" "handle-stage" {
 }
 
 resource "aws_route53_record" "handle-stage" {
-   zone_id = "${aws_route53_zone.production.zone_id}"
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "handle.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
@@ -23,7 +23,7 @@ resource "aws_route53_record" "handle-stage" {
 }
 
 resource "aws_route53_record" "split-handle-stage" {
-   zone_id = "${aws_route53_zone.internal.zone_id}"
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "handle.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
