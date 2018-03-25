@@ -1,4 +1,4 @@
-resource "aws_lb" "stage" {
+/* resource "aws_lb" "stage" {
   name = "lb-stage"
   internal = false
   subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
@@ -522,4 +522,4 @@ resource "aws_lb_listener_rule" "citation-test" {
     field  = "host-header"
     values = ["${aws_route53_record.citation-test.name}"]
   }
-}
+} */

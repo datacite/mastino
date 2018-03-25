@@ -31,22 +31,22 @@ data "aws_acm_certificate" "test" {
   statuses = ["ISSUED"]
 }
 
-data "template_cloudinit_config" "ecs-stage-user-data" {
+data "template_cloudinit_config" "ecs-user-data" {
   gzip = false
   base64_encode = false
 
   part {
     content_type = "text/cloud-boothook"
-    content      = "${data.template_file.ecs-stage-user-data-boothook.rendered}"
+    content      = "${data.template_file.ecs-user-data-boothook.rendered}"
   }
 
   part {
     content_type = "text/cloud-config"
-    content      = "${data.template_file.ecs-stage-user-data-cfg.rendered}"
+    content      = "${data.template_file.ecs-user-data-cfg.rendered}"
   }
 }
 
-data "template_file" "ecs-stage-user-data-cfg" {
+data "template_file" "ecs-user-data-cfg" {
   template = "${file("user_data.cfg")}"
 
   vars {
@@ -55,22 +55,21 @@ data "template_file" "ecs-stage-user-data-cfg" {
   }
 }
 
-data "template_file" "ecs-test-user-data-boothook" {
-  template = "${file("${path.module}/templates/user_data_solr.sh")}"
+data "template_file" "ecs-user-data-boothook" {
+  template = "${file("user_data_solr.sh")}"
 
   vars {
-    cluster_name       = "${var.cluster_test}"
+    cluster_name       = "${var.cluster}"
     hostname           = "solr.test.datacite.org"
     solr_port          = 40195
-    mysql_host         = "${var.mysql_test_host}"
-    mysql_database     = "${var.mysql_test_database}"
-    mysql_user         = "${var.mysql_test_user}"
-    mysql_password     = "${var.mysql_test_password}"
-    sorl_host          = "solr.test.datacite.org"
+    mysql_host         = "${var.mysql_host}"
+    mysql_database     = "${var.mysql_database}"
+    mysql_user         = "${var.mysql_user}"
+    mysql_password     = "${var.mysql_password}"
     solr_home          = "${var.solr_home}"
-    solr_url           = "${var.solr_url_test}"
-    solr_user          = "${var.solr_user_test}"
-    solr_password      = "${var.solr_password_test}"
+    solr_url           = "${var.solr_url}"
+    solr_user          = "${var.solr_user}"
+    solr_password      = "${var.solr_password}"
     syslog_host        = "${var.syslog_host}"
     syslog_port        = "${var.syslog_port}"
     solr_version       = "${var.search_tags["sha"]}"
@@ -82,10 +81,10 @@ data "aws_iam_instance_profile" "ecs_instance" {
   name = "ecs_instance"
 }
 
-data "aws_lb_target_group" "api-stage" {
+/* data "aws_lb_target_group" "api-stage" {
   arn  = "${var.lb_tg_arn}"
   name = "${var.lb_tg_name}"
-}
+} */
 
 data "template_file" "logs-stage" {
   template = "${file("s3_lb_write_access.json")}"

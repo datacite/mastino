@@ -21,5 +21,27 @@ variable "ttl" {
   default = "300"
 }
 
-/* variable "lb_tg_arn" {}
-variable "lb_tg_name" {} */
+variable "solr_url" {
+  default = "https://solr.test.datacite.org"
+}
+variable "solr_user" {}
+variable "solr_password" {}
+variable "solr_home" {
+  default = "/data/solr"
+}
+
+variable "mysql_host" {}
+variable "mysql_database" {
+  default = "datacite"
+}
+variable "mysql_user" {}
+variable "mysql_password" {}
+
+variable "search_tags" {
+  type = "map"
+}
+
+variable "syslog_host" {}
+variable "syslog_port" {}
+
+variable "cluster" {}
