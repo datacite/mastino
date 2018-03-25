@@ -3,6 +3,10 @@ resource "aws_lb_target_group" "mds-stage" {
   vpc_id   = "${var.vpc_id}"
   port     = 8080
   protocol = "HTTP"
+
+  health_check {
+    path = "/"
+  }
 }
 
 resource "aws_lb_listener_rule" "mds-stage" {
