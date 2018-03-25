@@ -4,8 +4,8 @@ variable "region" {
     default = "eu-west-1"
 }
 
-variable "ttl" {
-  default = "300"
-}
-
 variable "vpc_id" {}
+
+variable "http-redirect_tags" {
+  type = "map"
+}
