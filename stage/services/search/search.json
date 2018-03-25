@@ -23,7 +23,7 @@
       },
       {
         "name" : "SITE_TITLE",
-        "value" : "DataCite Search Stage"
+        "value" : "DataCite Search Test"
       },
       {
         "name" : "JWT_PUBLIC_KEY",
