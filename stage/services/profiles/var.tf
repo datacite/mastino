@@ -14,6 +14,10 @@ variable "lb_name" {
   default = "lb-stage"
 }
 
+variable "ttl" {
+  default = "300"
+}
+
 variable "solr_url" {
   default = "https://solr.test.datacite.org/api"
 }

@@ -34,8 +34,8 @@ data "aws_lb_target_group" "profiles-stage" {
   name = "profiles-stage"
 }
 
-data "template_file" "api_task" {
-  template = "${file("api.json")}"
+data "template_file" "profiles_task" {
+  template = "${file("profiles.json")}"
 
   vars {
     redis_url          = "${var.redis_url}"
