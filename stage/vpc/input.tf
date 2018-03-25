@@ -97,12 +97,12 @@ data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
 
-data "aws_lb_target_group" "api-test" {
+/* data "aws_lb_target_group" "api-test" {
   name = "${var.lb_tg_api-test}"
-}
+} */
 
-data "aws_lb_target_group" "http-redirect-test" {
-  name = "${var.lb_tg_http-redirect-test}"
+data "aws_lb_target_group" "http-redirect-stage" {
+  name = "${var.lb_tg_http-redirect-stage}"
 }
 
 data "template_file" "logs-stage" {

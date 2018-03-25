@@ -40,13 +40,13 @@ resource "aws_s3_bucket" "logs-stage" {
   }
 } */
 
-resource "aws_lb_listener" "test-http" {
+resource "aws_lb_listener" "http-stage" {
   load_balancer_arn = "${aws_lb.stage.id}"
   port              = "80"
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.http-redirect-test.id}"
+    target_group_arn = "${data.aws_lb_target_group.http-redirect-stage.id}"
     type             = "forward"
   }
 }
