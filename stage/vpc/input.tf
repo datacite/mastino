@@ -78,7 +78,7 @@ data "template_file" "ecs-user-data-boothook" {
 }
 
 data "aws_iam_instance_profile" "ecs_instance" {
-  name = "ecs_instance"
+  name  = "ecs_instance_profile"
 }
 
 /* data "aws_lb_target_group" "api-stage" {
