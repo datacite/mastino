@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "logs-stage" {
   }
 }
 
-/* resource "aws_lb_listener" "stage" {
+resource "aws_lb_listener" "stage" {
   load_balancer_arn = "${aws_lb.stage.id}"
   port              = "443"
   protocol          = "HTTPS"
@@ -35,10 +35,10 @@ resource "aws_s3_bucket" "logs-stage" {
   certificate_arn   = "${data.aws_acm_certificate.test.arn}"
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.api-test.id}"
+    target_group_arn = "${data.aws_lb_target_group.mds-stage.id}"
     type             = "forward"
   }
-} */
+}
 
 resource "aws_lb_listener" "http-stage" {
   load_balancer_arn = "${aws_lb.stage.id}"

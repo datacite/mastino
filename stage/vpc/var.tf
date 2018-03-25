@@ -48,15 +48,7 @@ variable "syslog_host" {}
 variable "syslog_port" {}
 
 variable "cluster" {
-  default = "test"
+  default = "stage"
 }
 
 variable "key_name" {}
-
-variable "lb_tg_api-stage" {
-  default = "api-stage"
-}
-
-variable "lb_tg_http-redirect-stage" {
-  default = "http-redirect-stage"
-}

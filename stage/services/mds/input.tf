@@ -13,15 +13,15 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
-data "aws_lb" "test" {
+data "aws_lb" "stage" {
   name = "${var.lb_name}"
 }
 
-data "aws_lb_listener" "test" {
-  load_balancer_arn = "${data.aws_lb.test.arn}"
+data "aws_lb_listener" "stage" {
+  load_balancer_arn = "${data.aws_lb.stage.arn}"
   port = 443
 }
 
-data "aws_instance" "compose-test" {
+data "aws_instance" "compose-stage" {
   instance_id = "${var.compose_id}"
 }
