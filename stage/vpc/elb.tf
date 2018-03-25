@@ -1,4 +1,4 @@
-/* resource "aws_lb" "stage" {
+resource "aws_lb" "stage" {
   name = "lb-stage"
   internal = false
   subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "logs-stage" {
   }
 }
 
-resource "aws_lb_listener" "stage" {
+/* resource "aws_lb_listener" "stage" {
   load_balancer_arn = "${aws_lb.stage.id}"
   port              = "443"
   protocol          = "HTTPS"
