@@ -1,0 +1,21 @@
+[
+  {
+    "name": "http-redirect",
+    "image": "datacite/http-redirect",
+    "cpu": 512,
+    "memory": 1000,
+    "essential": true,
+    "hostname": "http-redirect-test",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
