@@ -33,6 +33,9 @@ variable "api_url" {
 variable "data_url" {
   default = "https://data.test.datacite.org"
 }
+variable "gabba_url" {
+  default = "search.test.datacite.org"
+}
 
 variable "memcache_servers" {
   default = "memcached.test.datacite.org:11211"
