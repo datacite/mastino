@@ -58,6 +58,7 @@ data "template_file" "search_stage_task" {
     data_url           = "${var.data_url}"
     cdn_url            = "${var.cdn_url}"
     secret_key_base    = "${var.secret_key_base}"
+    memcache_servers   = "${var.memcache_servers}"
     bugsnag_key        = "${var.bugsnag_key}"
     bugsnag_js_key     = "${var.bugsnag_js_key}"
     gabba_cookie       = "${var.gabba_cookie}"
