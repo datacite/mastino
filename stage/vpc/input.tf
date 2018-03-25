@@ -5,12 +5,24 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
+data "aws_security_group" "datacite-public" {
+  id = "${var.security_group_public_id}"
+}
+
 data "aws_security_group" "datacite-private" {
-  id = "${var.security_group_id}"
+  id = "${var.security_group_private_id}"
+}
+
+data "aws_subnet" "datacite-public" {
+  id = "${var.subnet_datacite-public_id}"
 }
 
 data "aws_subnet" "datacite-private" {
   id = "${var.subnet_datacite-private_id}"
+}
+
+data "aws_subnet" "datacite-public-alt" {
+  id = "${var.subnet_datacite-public-alt_id}"
 }
 
 data "aws_subnet" "datacite-alt" {
@@ -86,7 +98,6 @@ data "aws_iam_role" "ecs_instance_role" {
 }
 
 /* data "aws_lb_target_group" "api-stage" {
-  arn  = "${var.lb_tg_arn}"
   name = "${var.lb_tg_name}"
 } */
 
