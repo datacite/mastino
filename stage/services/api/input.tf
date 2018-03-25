@@ -50,6 +50,8 @@ data "template_file" "api_task" {
     github_personal_access_token = "${var.github_personal_access_token}"
     github_milestones_url = "${var.github_milestones_url}"
     github_issues_repo_url = "${var.github_issues_repo_url}"
+    bugsnag_key        = "${var.bugsnag_key}"
+    mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
     librato_email      = "${var.librato_email}"
     librato_token      = "${var.librato_token}"
