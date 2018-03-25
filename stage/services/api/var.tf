@@ -14,6 +14,10 @@ variable "lb_name" {
   default = "lb-stage"
 }
 
+variable "ttl" {
+  default = "300"
+}
+
 variable "solr_url" {
   default = "https://solr.test.datacite.org/api"
 }
@@ -51,8 +55,4 @@ variable "github_milestones_url" {
 }
 variable "github_issues_repo_url" {
   default = "https://github.com/datacite/datacite"
-}
-
-variable "spinone_tags" {
-  type = "map"
 }
