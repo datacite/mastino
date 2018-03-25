@@ -31,6 +31,10 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
+data "aws_lb_target_group" "solr-stage" {
+  name = "solr-stage"
+}
+
 data "aws_vpc_endpoint" "datacite" {
   vpc_id       = "${var.vpc_id}"
   service_name = "com.amazonaws.eu-west-1.s3"
