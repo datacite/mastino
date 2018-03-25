@@ -34,7 +34,7 @@ resource "aws_lb_target_group" "data-stage" {
 }
 
 resource "aws_lb_listener_rule" "data-stage" {
-  listener_arn = "${aws_lb_listener.stage.arn}"
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 60
 
   action {
