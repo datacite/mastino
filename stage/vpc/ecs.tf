@@ -5,7 +5,7 @@ resource "aws_instance" "ecs-stage" {
     subnet_id = "${data.aws_subnet.datacite-private.id}"
     key_name = "${var.key_name}"
     user_data = "${data.template_cloudinit_config.ecs-user-data.rendered}"
-    iam_instance_profile = "${data.aws_iam_instance_profile.ecs_instance.id}"
+    iam_instance_profile = "${data.aws_iam_instance_profile.ecs_instance.name}"
     root_block_device {
         volume_size = 100
         volume_type = "gp2"
