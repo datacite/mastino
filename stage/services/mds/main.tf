@@ -25,7 +25,7 @@ resource "aws_lb_target_group_attachment" "mds-stage" {
   target_id        = "${data.aws_instance.compose-stage.id}"
 }
 
-resource "aws_route53_record" "mds-test" {
+resource "aws_route53_record" "mds-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "mds.test.datacite.org"
    type = "CNAME"
@@ -33,7 +33,7 @@ resource "aws_route53_record" "mds-test" {
    records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-resource "aws_route53_record" "split-mds-test" {
+resource "aws_route53_record" "split-mds-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "mds.test.datacite.org"
    type = "CNAME"
