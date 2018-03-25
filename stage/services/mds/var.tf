@@ -10,7 +10,7 @@ variable "ttl" {
 }
 
 variable "lb_name" {
-  default = "lb-test"
+  default = "lb-stage"
 }
 
 variable "compose_id" {}
