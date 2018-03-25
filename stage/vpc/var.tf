@@ -44,6 +44,8 @@ variable "search_tags" {
 variable "syslog_host" {}
 variable "syslog_port" {}
 
-variable "cluster" {}
+variable "cluster" {
+  default = "test"
+}
 
 variable "key_name" {}
