@@ -13,8 +13,11 @@ variable "ecs_ami" {
     us-east-1 = "ami-fad25980"
   }
 }
-variable "security_group_id" {}
+variable "security_group_public_id" {}
+variable "security_group_private_id" {}
+variable "subnet_datacite-public_id" {}
 variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-public-alt_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "ttl" {
