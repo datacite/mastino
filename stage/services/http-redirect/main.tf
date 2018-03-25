@@ -17,7 +17,7 @@ resource "aws_ecs_service" "http-redirect-test" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.test"
+    "data.aws_lb_listener.stage"
   ]
 }
 

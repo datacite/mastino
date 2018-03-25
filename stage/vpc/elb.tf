@@ -41,7 +41,7 @@ resource "aws_s3_bucket" "logs-stage" {
 } */
 
 resource "aws_lb_listener" "test-http" {
-  load_balancer_arn = "${aws_lb.test.id}"
+  load_balancer_arn = "${aws_lb.stage.id}"
   port              = "80"
   protocol          = "HTTP"
 
