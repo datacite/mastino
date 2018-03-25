@@ -15,10 +15,6 @@ resource "aws_ecs_service" "http-redirect-stage" {
     container_name   = "http-redirect-stage"
     container_port   = "80"
   }
-
-  /* depends_on = [
-    "data.aws_lb_listener.stage"
-  ] */
 }
 
 resource "aws_lb_target_group" "http-redirect-stage" {

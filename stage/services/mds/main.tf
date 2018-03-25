@@ -5,7 +5,7 @@ resource "aws_lb_target_group" "mds-stage" {
   protocol = "HTTP"
 }
 
-resource "aws_lb_listener_rule" "mds-stage" {
+/* resource "aws_lb_listener_rule" "mds-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 2
 
@@ -18,7 +18,7 @@ resource "aws_lb_listener_rule" "mds-stage" {
     field  = "host-header"
     values = ["${aws_route53_record.mds-stage.name}"]
   }
-}
+} */
 
 resource "aws_lb_target_group_attachment" "mds-stage" {
   target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
