@@ -37,10 +37,6 @@
         "value" : "${jwt_private_key}"
       },
       {
-        "name" : "SECRET_KEY_BASE",
-        "value" : "${secret_key_base}"
-      },
-      {
         "name" : "VOLPINO_URL",
         "value" : "https://profiles.test.datacite.org/api"
       },
