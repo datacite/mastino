@@ -44,16 +44,8 @@ resource "aws_ecs_task_definition" "metrics-api-stage" {
   container_definitions =  "${data.template_file.metrics-api_task.rendered}"
 }
 
-resource "aws_route53_record" "stage-metrics-api" {
+resource "aws_route53_record" "metrics-api-stage" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "metrics.test.datacite.org"
-  type = "CNAME"
-  ttl = "${var.ttl}"
-  records = ["${data.aws_lb.stage.dns_name}"]
-}
-
-resource "aws_route53_record" "split-stage-metrics-api" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "metrics.test.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
