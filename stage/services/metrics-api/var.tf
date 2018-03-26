@@ -24,7 +24,6 @@ variable "memcache_servers" {
 
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
-variable "secret_key_base" {}
 variable "librato_email" {}
 variable "librato_token" {}
 

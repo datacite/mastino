@@ -36,7 +36,6 @@ data "template_file" "metrics-api_task" {
   vars {
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
-    secret_key_base    = "${var.secret_key_base}"
     memcache_servers   = "${var.memcache_servers}"
     librato_email      = "${var.librato_email}"
     librato_token      = "${var.librato_token}"
