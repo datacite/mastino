@@ -1,0 +1,40 @@
+variable "access_key" {}
+variable "secret_key" {}
+variable "region" {
+    default = "eu-west-1"
+}
+
+variable "vpc_id" {}
+
+variable "sashimi_tags" {
+  type = "map"
+}
+
+variable "lb_name" {
+  default = "lb-stage"
+}
+
+variable "ttl" {
+  default = "300"
+}
+
+variable "memcache_servers" {
+  default = "memcached.test.datacite.org:11211"
+}
+
+variable "jwt_public_key" {}
+variable "jwt_private_key" {}
+variable "secret_key_base" {}
+variable "librato_email" {}
+variable "librato_token" {}
+
+variable "librato_suites" {
+  default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
+}
+
+variable "mysql_user" {}
+variable "mysql_password" {}
+variable "mysql_database" {
+  default = "datacite"
+}
+variable "mysql_host" {}
