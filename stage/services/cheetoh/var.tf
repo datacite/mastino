@@ -4,6 +4,8 @@ variable "region" {
     default = "eu-west-1"
 }
 
+variable "vpc_id" {}
+
 variable "cheetoh_tags" {
   type = "map"
 }
