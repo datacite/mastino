@@ -1,0 +1,65 @@
+[
+  {
+    "name": "cheetoh-stage",
+    "image": "datacite/cheetoh",
+    "cpu": 512,
+    "memory": 1000,
+    "essential": true,
+    "hostname": "cheetoh-stage",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite EZ API Test"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "SECRET_KEY_BASE",
+        "value" : "${secret_key_base}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "SERVERNAME",
+        "value" : "cheetoh.test.datacite.org"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "LIBRATO_USER",
+        "value" : "${librato_email}"
+      },
+      {
+        "name" : "LIBRATO_TOKEN",
+        "value" : "${librato_token}"
+      },
+      {
+        "name" : "LIBRATO_SUITES",
+        "value" : "${librato_suites}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]

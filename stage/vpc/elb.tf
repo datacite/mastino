@@ -51,24 +51,7 @@ resource "aws_lb_listener" "http-stage" {
   }
 }
 
-/*resource "aws_lb_listener_rule" "cheetoh-test" {
-  listener_arn = "${aws_lb_listener.test.arn}"
-  priority     = 1
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.cheetoh-test.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.mds-test.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/id*"]
-  }
-}
+/*
 
 resource "aws_lb_listener_rule" "handle-test" {
   listener_arn = "${aws_lb_listener.test.arn}"
