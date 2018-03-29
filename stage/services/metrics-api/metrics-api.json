@@ -1,0 +1,97 @@
+[
+  {
+    "name": "metrics-api-stage",
+    "image": "datacite/sashimi",
+    "cpu": 512,
+    "memory": 1000,
+    "essential": true,
+    "hostname": "metrics-api-stage",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DLM API"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "JWT_PRIVATE_KEY",
+        "value" : "${jwt_private_key}"
+      },
+      {
+        "name" : "VOLPINO_URL",
+        "value" : "https://profiles.test.datacite.org/api"
+      },
+      {
+        "name" : "REDIS_URL",
+        "value" : "redis://redis1.datacite.org:6379/3"
+      },
+      {
+        "name" : "MYSQL_USER",
+        "value" : "${mysql_user}"
+      },
+      {
+        "name" : "MYSQL_PASSWORD",
+        "value" : "${mysql_password}"
+      },
+      {
+        "name" : "MYSQL_HOST",
+        "value" : "${mysql_host}"
+      },
+      {
+        "name" : "MYSQL_DATABASE",
+        "value" : "metrics"
+      },
+      {
+        "name" : "CONCURRENCY",
+        "value" : "25"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "0d74cdc0eadc3e5f08c189928f19c9c9"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "LIBRATO_USER",
+        "value" : "${librato_email}"
+      },
+      {
+        "name" : "LIBRATO_TOKEN",
+        "value" : "${librato_token}"
+      },
+      {
+        "name" : "LIBRATO_SUITES",
+        "value" : "${librato_suites}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${aws_region}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]

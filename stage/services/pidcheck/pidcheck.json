@@ -1,0 +1,20 @@
+[
+  {
+    "name": "pidcheck-crawler-test",
+    "image": "datacite/pidcheck-crawler",
+    "cpu": 256,
+    "memory": 512,
+    "essential": true,
+    "hostname": "pidcheck-crawler-test",
+    "environment" : [
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "INFO"
+      },
+      {
+        "name" : "REDIS_HOST",
+        "value" : "${redis_host}"
+      }
+    ]
+  }
+]
