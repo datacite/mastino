@@ -294,55 +294,6 @@ resource "aws_lb_listener_rule" "client-api-test-heartbeat" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-test-people" {
-  listener_arn = "${aws_lb_listener.test.arn}"
-  priority     = 40
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.profiles-test.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.test-api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/people"]
-  }
-}
-
-resource "aws_lb_listener_rule" "api-test" {
-  listener_arn = "${aws_lb_listener.test.arn}"
-  priority     = 31
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api-test.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.test-api.name}"]
-  }
-}
-
-resource "aws_lb_listener_rule" "profiles-test" {
-  listener_arn = "${aws_lb_listener.test.arn}"
-  priority     = 50
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.profiles-test.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.test-profiles.name}"]
-  }
-}
-
 resource "aws_lb_listener_rule" "data-test" {
   listener_arn = "${aws_lb_listener.test.arn}"
   priority     = 60
