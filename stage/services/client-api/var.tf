@@ -40,6 +40,7 @@ variable "librato_email" {}
 variable "librato_token" {}
 variable "bugsnag_key" {}
 variable "mailgun_api_key" {}
+variable "slack_webhook_url" {}
 
 variable "librato_suites" {
   default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"

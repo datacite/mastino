@@ -54,6 +54,7 @@ data "template_file" "client-api_task" {
     librato_email      = "${var.librato_email}"
     librato_token      = "${var.librato_token}"
     librato_suites     = "${var.librato_suites}"
+    slack_webhook_url  = "${var.slack_webhook_url}"
     version            = "${var.lupo_tags["sha"]}"
   }
 }
