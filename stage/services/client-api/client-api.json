@@ -101,6 +101,10 @@
         "value" : "${region}"
       },
       {
+        "name" : "AWS_S3_BUCKET",
+        "value" : "${s3_bucket}"
+      },
+      {
         "name" : "MAILGUN_API_KEY",
         "value" : "${mailgun_api_key}"
       },

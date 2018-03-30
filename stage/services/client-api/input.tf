@@ -48,6 +48,7 @@ data "template_file" "client-api_task" {
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"
+    s3_bucket          = "${var.s3_bucket}"
     bugsnag_key        = "${var.bugsnag_key}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
