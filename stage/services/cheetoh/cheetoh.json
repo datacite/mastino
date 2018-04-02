@@ -58,7 +58,7 @@
       },
       {
         "name" : "SANDBOX",
-        "value" : 1
+        "value" : "1"
       },
       {
         "name" : "GITHUB_VERSION",
