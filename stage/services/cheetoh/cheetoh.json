@@ -57,6 +57,10 @@
         "value" : "${librato_suites}"
       },
       {
+        "name" : "SANDBOX",
+        "value" : 1
+      },
+      {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
       }
