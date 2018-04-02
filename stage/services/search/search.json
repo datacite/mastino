@@ -8,8 +8,7 @@
     "hostname": "search-test",
     "portMappings": [
       {
-        "containerPort": 80,
-        "hostPort": 40193
+        "containerPort": 80
       }
     ],
     "environment" : [
