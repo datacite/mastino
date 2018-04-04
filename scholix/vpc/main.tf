@@ -34,7 +34,7 @@ resource "aws_route53_record" "mx-scholix" {
 }
 
 resource "aws_route53_record" "www" {
-   zone_id = "${data.aws_route53_zone.scholix.zone_id}"
+   zone_id = "${aws_route53_zone.scholix.zone_id}"
    name = "www.scholix.org"
    type = "CNAME"
    ttl = "300"
@@ -42,7 +42,7 @@ resource "aws_route53_record" "www" {
 }
 
 resource "aws_route53_record" "sites" {
-   zone_id = "${data.aws_route53_zone.scholix.zone_id}"
+   zone_id = "${aws_route53_zone.scholix.zone_id}"
    name = "sites.scholix.org"
    type = "CNAME"
    ttl = "300"
