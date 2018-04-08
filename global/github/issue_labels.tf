@@ -158,6 +158,13 @@ resource "github_issue_label" "development" {
   color      = "ffc000"
 }
 
+resource "github_issue_label" "documentation" {
+  count = "${length(var.github_repositories)}"
+  repository = "${var.github_repositories[count.index]}"
+  name       = "documentation"
+  color      = "ffc000"
+}
+
 resource "github_issue_label" "launch" {
   count = "${length(var.github_repositories)}"
   repository = "${var.github_repositories[count.index]}"
@@ -293,10 +300,10 @@ resource "github_issue_label" "legal" {
 }
 
 # projects
-resource "github_issue_label" "thor" {
+resource "github_issue_label" "membership" {
   count = "${length(var.github_repositories)}"
   repository = "${var.github_repositories[count.index]}"
-  name       = "THOR"
+  name       = "Membership"
   color      = "006b75"
 }
 
