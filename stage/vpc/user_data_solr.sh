@@ -32,6 +32,7 @@ docker run -d -p "${solr_port}":80 --name solr \
   --env SOLR_USER="${solr_user}" \
   --env SOLR_PASSWORD="${solr_password}" \
   --env SOLR_VERSION="${solr_version}" \
+  --env TEST_PREFIX="${test_prefix}" \
   --env LOG_LEVEL=INFO \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --volume /opt/solr:/data/solr/collection1 \

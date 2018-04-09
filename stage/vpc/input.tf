@@ -78,6 +78,7 @@ data "template_file" "ecs-user-data-boothook" {
     mysql_database     = "${var.mysql_database}"
     mysql_user         = "${var.mysql_user}"
     mysql_password     = "${var.mysql_password}"
+    test_prefix        = "${var.test_prefix}"
     solr_home          = "${var.solr_home}"
     solr_url           = "${var.solr_url}"
     solr_user          = "${var.solr_user}"
