@@ -26,6 +26,7 @@ variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "librato_email" {}
 variable "librato_token" {}
+variable "bugsnag_key" {}
 
 variable "librato_suites" {
   default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
@@ -34,6 +35,6 @@ variable "librato_suites" {
 variable "mysql_user" {}
 variable "mysql_password" {}
 variable "mysql_database" {
-  default = "datacite"
+  default = "metrics"
 }
 variable "mysql_host" {}
