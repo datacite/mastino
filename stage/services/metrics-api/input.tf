@@ -41,9 +41,11 @@ data "template_file" "metrics-api_task" {
     librato_token      = "${var.librato_token}"
     librato_suites     = "${var.librato_suites}"
     aws_region         = "${var.region}"
+    mysql_database     = "${var.mysql_database}"
     mysql_user         = "${var.mysql_user}"
     mysql_password     = "${var.mysql_password}"
     mysql_host         = "${var.mysql_host}"
+    bugsnag_key        = "${var.bugsnag_key}"
     version            = "${var.sashimi_tags["sha"]}"
   }
 }
