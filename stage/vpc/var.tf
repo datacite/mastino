@@ -32,6 +32,7 @@ variable "solr_password" {}
 variable "solr_home" {
   default = "/data/solr"
 }
+variable "test_prefix" {}
 
 variable "mysql_host" {}
 variable "mysql_database" {
