@@ -327,3 +327,10 @@ resource "github_issue_label" "fabrica" {
   name       = "DOI Fabrica"
   color      = "006b75"
 }
+
+resource "github_issue_label" "re3data" {
+  count = "${length(var.github_repositories)}"
+  repository = "${var.github_repositories[count.index]}"
+  name       = "re3data"
+  color      = "006b75"
+}
