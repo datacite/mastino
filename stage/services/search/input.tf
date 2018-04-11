@@ -58,6 +58,7 @@ data "template_file" "search_stage_task" {
     orcid_update_url   = "${var.orcid_update_url}"
     orcid_update_token = "${var.orcid_update_token}"
     orcid_url          = "${var.orcid_url}"
+    volpino_url        = "${var.volpino_url}"
     api_url            = "${var.api_url}"
     data_url           = "${var.data_url}"
     cdn_url            = "${var.cdn_url}"

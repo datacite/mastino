@@ -41,6 +41,10 @@
         "value" : "${api_url}"
       },
       {
+        "name" : "VOLPINO_URL",
+        "value" : "${volpino_url}"
+      },
+      {
         "name" : "ORCID_URL",
         "value" : "${orcid_url}"
       },
