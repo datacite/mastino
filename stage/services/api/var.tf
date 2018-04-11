@@ -27,8 +27,8 @@ variable "volpino_url" {
 variable "orcid_update_url" {
   default = "https://profiles.test.datacite.org"
 }
-variable "api_url" {
-  default = "https://api.test.datacite.org"
+variable "app_url" {
+  default = "https://app.test.datacite.org"
 }
 variable "blog_url" {
   default = "https://blog.test.datacite.org"

@@ -37,8 +37,8 @@
         "value" : "${solr_url}"
       },
       {
-        "name" : "API_URL",
-        "value" : "${api_url}"
+        "name" : "APP_URL",
+        "value" : "${app_url}"
       },
       {
         "name" : "BLOG_URL",
