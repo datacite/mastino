@@ -33,25 +33,6 @@ resource "aws_lb_target_group" "api-stage" {
   }
 }
 
-/* resource "aws_lb_listener_rule" "api-stage-people" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 40
-
-  action {
-    type             = "forward"
-    target_group_arn = "${data.aws_lb_target_group.profiles-stage.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api-stage.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/people"]
-  }
-} */
-
 resource "aws_lb_listener_rule" "api-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 31

@@ -41,6 +41,10 @@
         "value" : "${api_url}"
       },
       {
+        "name" : "JWT_HOST",
+        "value" : "${volpino_url}"
+      },
+      {
         "name" : "VOLPINO_URL",
         "value" : "${volpino_url}"
       },
