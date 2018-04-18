@@ -24,6 +24,8 @@ variable "github_repositories" {
     "segugio",
     "spinone",
     "stats-portal",
-    "volpino"
+    "volpino",
+    "dackel",
+    "schnauzer"
   ]
 }
