@@ -241,3 +241,23 @@ resource "github_repository" "volpino" {
     prevent_destroy = true
   }
 }
+
+resource "github_repository" "dackel" {
+  name         = "dackel"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "github_repository" "schnauzer" {
+  name         = "schnauzer"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
