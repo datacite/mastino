@@ -27,6 +27,7 @@ variable "github_repositories" {
     "volpino",
     "dackel",
     "schnauzer",
-    "poodle"
+    "poodle",
+    "lagottino"
   ]
 }

@@ -271,3 +271,13 @@ resource "github_repository" "poodle" {
     prevent_destroy = true
   }
 }
+
+resource "github_repository" "lagottino" {
+  name         = "lagottino"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
