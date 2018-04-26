@@ -26,6 +26,7 @@ variable "github_repositories" {
     "stats-portal",
     "volpino",
     "dackel",
-    "schnauzer"
+    "schnauzer",
+    "poodle"
   ]
 }

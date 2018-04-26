@@ -261,3 +261,13 @@ resource "github_repository" "schnauzer" {
     prevent_destroy = true
   }
 }
+
+resource "github_repository" "poodle" {
+  name         = "poodle"
+  has_wiki     = false
+  has_issues   = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
