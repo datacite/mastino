@@ -50,7 +50,7 @@ data "template_file" "eventdata_task" {
     librato_email      = "${var.librato_email}"
     librato_token      = "${var.librato_token}"
     librato_suites     = "${var.librato_suites}"
-    // slack_webhook_url  = "${var.slack_webhook_url}"
-    // version            = "${var.lagottino_tags["sha"]}"
+    slack_webhook_url  = "${var.slack_webhook_url}"
+    version            = "${var.lagottino_tags["sha"]}"
   }
 }
