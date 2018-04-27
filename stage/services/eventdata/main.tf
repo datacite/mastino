@@ -29,7 +29,7 @@ resource "aws_lb_target_group" "eventdata-stage" {
   vpc_id   = "${var.vpc_id}"
 
   health_check {
-    path = "/"
+    path = "/heartbeat"
   }
 }
 
