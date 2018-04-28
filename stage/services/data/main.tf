@@ -1,6 +1,7 @@
 resource "aws_ecs_service" "data-stage" {
   name = "data-stage"
   cluster = "${data.aws_ecs_cluster.stage.id}"
+  launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.data-stage.arn}"
   desired_count = 1
   iam_role        = "${data.aws_iam_role.ecs_service.arn}"

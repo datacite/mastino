@@ -11,6 +11,10 @@
         "containerPort": 80
       }
     ],
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [ 
+      "FARGATE" 
+    ],
     "environment" : [
       {
         "name" : "SEARCH_URL",
