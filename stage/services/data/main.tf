@@ -12,8 +12,11 @@ resource "aws_ecs_service" "data-stage" {
   }
 
   network_configuration {
-    security_groups = ["${aws_security_group.ecs_tasks.id}"]
-    subnets         = ["${aws_subnet.private.*.id}"]
+    security_groups = ["${data.aws_security_group.datacite-private.id}"]
+    subnets         = [
+      "${data.aws_subnet.datacite-private.id}",
+      "${data.aws_subnet.datacite-alt.id}"
+    ]
   }
 
   load_balancer {
