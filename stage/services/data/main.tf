@@ -11,6 +11,11 @@ resource "aws_ecs_service" "data-stage" {
     field = "cpu"
   }
 
+  network_configuration {
+    security_groups = ["${aws_security_group.ecs_tasks.id}"]
+    subnets         = ["${aws_subnet.private.*.id}"]
+  }
+
   load_balancer {
     target_group_arn = "${aws_lb_target_group.data-stage.id}"
     container_name   = "data-stage"
@@ -20,6 +25,8 @@ resource "aws_ecs_service" "data-stage" {
 
 resource "aws_ecs_task_definition" "data-stage" {
   family = "data-stage"
+  network_mode = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
   container_definitions =  "${data.template_file.data_task.rendered}"
 }
 
@@ -28,6 +35,7 @@ resource "aws_lb_target_group" "data-stage" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
+  target_type = "ip"
 
   health_check {
     path = "/heartbeat"
