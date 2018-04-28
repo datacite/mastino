@@ -5,7 +5,6 @@
     "cpu": 512,
     "memory": 3000,
     "essential": true,
-    "hostname": "data-test",
     "portMappings": [
       {
         "containerPort": 80,
