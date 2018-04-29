@@ -1,0 +1,57 @@
+[
+  {
+    "name": "re3data-stage",
+    "image": "datacite/schnauzer",
+    "cpu": 512,
+    "memory": 1000,
+    "essential": true,
+    "hostname": "re3data-stage",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite re3data internal API Test"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ELASTIC_USER",
+        "value" : "${elastic_user}"
+      },
+      {
+        "name" : "ELASTIC_PASSWORD",
+        "value" : "${elastic_password}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
