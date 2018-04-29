@@ -2,8 +2,6 @@
   {
     "name": "data-stage",
     "image": "crosscite/content-negotiation",
-    "cpu": 512,
-    "memory": 2000,
     "essential": true,
     "portMappings": [
       {
@@ -11,6 +9,14 @@
         "hostPort": 80
       }
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/fargate-task-definition",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "networkMode": "awsvpc",
     "environment" : [
       {
