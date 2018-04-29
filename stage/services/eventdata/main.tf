@@ -29,7 +29,7 @@ resource "aws_lb_target_group" "eventdata-stage" {
   vpc_id   = "${var.vpc_id}"
 
   health_check {
-    path = "/heartbeat"
+    path = "/"
   }
 }
 
@@ -44,7 +44,12 @@ resource "aws_lb_listener_rule" "eventdata-stage" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.eventdata-stage.name}"]
+    values = ["api.test.datacite.org"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/events*"]
   }
 }
 
