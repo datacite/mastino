@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "data-stage" {
   cpu = "512"
   memory = "2000"
   execution_role_arn = "${data.aws_iam_role.ecsTaskExecutionRole.arn}"
-  ask_role_arn = "${data.aws_iam_role.ecsTaskExecutionRole.arn}"
+  task_role_arn = "${data.aws_iam_role.ecsTaskExecutionRole.arn}"
   container_definitions =  "${data.template_file.data_task.rendered}"
 }
 
