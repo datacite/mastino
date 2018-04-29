@@ -29,8 +29,8 @@ data "aws_ecs_cluster" "stage" {
   cluster_name = "stage"
 }
 
-data "aws_iam_role" "ecs_service" {
-  name = "ecs_service"
+data "aws_iam_role" "ecsTaskExecutionRole" {
+  name = "ecsTaskExecutionRole"
 }
 
 data "aws_lb" "stage" {
