@@ -17,7 +17,6 @@
          "awslogs-stream-prefix": "ecs"
       }
     },
-    "networkMode": "awsvpc",
     "environment" : [
       {
         "name" : "SEARCH_URL",
