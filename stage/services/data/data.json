@@ -2,6 +2,8 @@
   {
     "name": "data-stage",
     "image": "crosscite/content-negotiation",
+    "cpu": 512,
+    "memory": 2000,
     "essential": true,
     "portMappings": [
       {
