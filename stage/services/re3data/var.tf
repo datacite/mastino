@@ -6,7 +6,7 @@ variable "region" {
 
 variable "vpc_id" {}
 
-variable "schnauzer" {
+variable "schnauzer_tags" {
   type = "map"
 }
 
