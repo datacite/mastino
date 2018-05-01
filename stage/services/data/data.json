@@ -26,6 +26,10 @@
         "value" : "${bugsnag_key}"
       },
       {
+        "name" : "SSH_PUBLIC_KEY",
+        "value" : "${ssh_public_key}"
+      },
+      {
         "name" : "SITE_TITLE",
         "value" : "DataCite Content Negotiation Test"
       },
