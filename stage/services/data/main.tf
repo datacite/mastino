@@ -26,7 +26,7 @@ resource "aws_ecs_service" "data-stage" {
   }
 
   depends_on = [
-    "data.aws_alb_listener.stage",
+    "data.aws_lb_listener.stage",
   ]
 }
 
