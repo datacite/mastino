@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "data-stage" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
-  memory = "2000"
+  memory = "2GB"
 
   container_definitions =  "${data.template_file.data_task.rendered}"
 }
