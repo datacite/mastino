@@ -6,11 +6,6 @@ resource "aws_ecs_service" "data-stage" {
   desired_count = 1
   # iam_role        = "${data.aws_iam_role.ecs_service.arn}"
 
-  placement_strategy {
-    type  = "binpack"
-    field = "cpu"
-  }
-
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
     subnets         = [
