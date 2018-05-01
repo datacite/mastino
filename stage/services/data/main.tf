@@ -24,6 +24,10 @@ resource "aws_ecs_service" "data-stage" {
     container_name   = "data-stage"
     container_port   = "80"
   }
+
+  depends_on = [
+    "data.aws_alb_listener.stage",
+  ]
 }
 
 resource "aws_ecs_task_definition" "data-stage" {
@@ -32,8 +36,7 @@ resource "aws_ecs_task_definition" "data-stage" {
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
   memory = "2000"
-  execution_role_arn = "${data.aws_iam_role.ecsTaskExecutionRole.arn}"
-  task_role_arn = "${data.aws_iam_role.ecsTaskExecutionRole.arn}"
+
   container_definitions =  "${data.template_file.data_task.rendered}"
 }
 
