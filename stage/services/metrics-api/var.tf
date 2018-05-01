@@ -1,9 +1,11 @@
 variable "access_key" {}
 variable "secret_key" {}
 variable "region" {
-    default = "eu-west-1"
+  default = "eu-west-1"
 }
-
+variable "s3_bucket" {
+  default = "assets.test.datacite.org"
+}
 variable "vpc_id" {}
 
 variable "sashimi_tags" {
@@ -27,6 +29,7 @@ variable "jwt_private_key" {}
 variable "librato_email" {}
 variable "librato_token" {}
 variable "bugsnag_key" {}
+variable "secret_key_base" {}
 
 variable "librato_suites" {
   default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
