@@ -10,6 +10,12 @@
       "--push_url", "${push_url}",
       "--access_token", "${access_token}",
       "--source_token", "${source_token}"
+    ],
+    "environment" : [
+      {
+        "name" : "ENVIROMENT",
+        "value" : "stage"
+      }
     ]
   }
 ]
