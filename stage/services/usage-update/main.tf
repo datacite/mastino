@@ -1,6 +1,6 @@
 resource "aws_ecs_task_definition" "usage-update-stage" {
   family = "usage-update-stage"
-  container_definitions =  "${data.template_file.usage_update_test_task.rendered}"
+  container_definitions =  "${data.template_file.usage_update_stage_task.rendered}"
 }
 
 resource "aws_cloudwatch_event_rule" "usage-update-stage" {
@@ -28,7 +28,7 @@ resource "aws_lambda_function" "usage-update-stage" {
   environment {
     variables = {
       ecs_task_def = "usage-update-stage"
-      cluster = "test"
+      cluster = "stage"
       count = 1
     }
   }
