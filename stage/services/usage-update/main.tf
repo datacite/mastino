@@ -1,23 +1,23 @@
-resource "aws_ecs_task_definition" "usage-update-test" {
-  family = "usage-update-test"
+resource "aws_ecs_task_definition" "usage-update-stage" {
+  family = "usage-update-stage"
   container_definitions =  "${data.template_file.usage_update_test_task.rendered}"
 }
 
-resource "aws_cloudwatch_event_rule" "usage-update-test" {
-  name = "usage-update-test"
+resource "aws_cloudwatch_event_rule" "usage-update-stage" {
+  name = "usage-update-stage"
   description = "Run usage-update container via cron"
   schedule_expression = "cron(2	*	*	*	*	)"
 }
 
-resource "aws_cloudwatch_event_target" "usage-update-test" {
-  target_id = "usage-update-test"
-  rule = "${aws_cloudwatch_event_rule.usage-update-test.name}"
-  arn = "${aws_lambda_function.usage-update-test.arn}"
+resource "aws_cloudwatch_event_target" "usage-update-stage" {
+  target_id = "usage-update-stage"
+  rule = "${aws_cloudwatch_event_rule.usage-update-stage.name}"
+  arn = "${aws_lambda_function.usage-update-stage.arn}"
 }
 
-resource "aws_lambda_function" "usage-update-test" {
+resource "aws_lambda_function" "usage-update-stage" {
   filename = "ecs_task_runner.js.zip"
-  function_name = "usage-update-test"
+  function_name = "usage-update-stage"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "ecs_task_runner.handler"
   runtime = "nodejs4.3"
@@ -27,17 +27,17 @@ resource "aws_lambda_function" "usage-update-test" {
   }
   environment {
     variables = {
-      ecs_task_def = "usage-update-test"
+      ecs_task_def = "usage-update-stage"
       cluster = "test"
       count = 1
     }
   }
 }
 
-resource "aws_lambda_permission" "usage-update-test" {
+resource "aws_lambda_permission" "usage-update-stage" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.usage-update-test.function_name}"
+  function_name = "${aws_lambda_function.usage-update-stage.function_name}"
   principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.usage-update-test.arn}"
+  source_arn = "${aws_cloudwatch_event_rule.usage-update-stage.arn}"
 }

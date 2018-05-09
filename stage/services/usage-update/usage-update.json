@@ -1,6 +1,6 @@
 [
   {
-    "name": "usage-update-test",
+    "name": "usage-update-stage",
     "image": "datacite/toccatore",
     "cpu": 256,
     "memory": 1000,
