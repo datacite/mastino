@@ -16,7 +16,7 @@ data "template_file" "fastr-stage" {
   template = "${file("s3_cloudfront.json")}"
 
   vars {
-    bucket_name = "repositoryfinder.stage.datacite.org"
+    bucket_name = "fastr.stage.datacite.org"
   }
 }
 
