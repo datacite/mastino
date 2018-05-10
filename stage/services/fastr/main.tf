@@ -35,7 +35,7 @@ resource "aws_cloudfront_distribution" "fastr-stage" {
     prefix          = "fastr/"
   }
 
-  aliases = ["fastr.test.datacite.org"]
+  aliases = ["repositoryfinder.test.datacite.org"]
 
   custom_error_response {
     error_code            = "404"
