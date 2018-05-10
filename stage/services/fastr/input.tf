@@ -12,7 +12,7 @@ provider "aws" {
   alias = "use1"
 }
 
-data "template_file" "repositoryfinder-stage" {
+data "template_file" "fastr-stage" {
   template = "${file("s3_cloudfront.json")}"
 
   vars {
