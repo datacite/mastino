@@ -1,6 +1,6 @@
 [
   {
-    "name": "usage-update-test",
+    "name": "usage-update-stage",
     "image": "datacite/toccatore",
     "cpu": 256,
     "memory": 1000,
@@ -10,6 +10,12 @@
       "--push_url", "${push_url}",
       "--access_token", "${access_token}",
       "--source_token", "${source_token}"
+    ],
+    "environment" : [
+      {
+        "name" : "ENVIROMENT",
+        "value" : "stage"
+      }
     ]
   }
 ]

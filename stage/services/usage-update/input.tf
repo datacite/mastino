@@ -4,7 +4,7 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "template_file" "usage_update_test_task" {
+data "template_file" "usage_update_stage_task" {
   template = "${file("usage-update.json")}"
 
   vars {
