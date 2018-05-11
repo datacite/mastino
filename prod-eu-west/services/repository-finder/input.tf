@@ -16,7 +16,7 @@ data "template_file" "repository-finder" {
   template = "${file("s3_cloudfront.json")}"
 
   vars {
-    bucket_name = "repository-finder.datacite.org"
+    bucket_name = "repositoryfinder.datacite.org"
   }
 }
 
