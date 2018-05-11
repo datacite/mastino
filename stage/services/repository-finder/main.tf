@@ -1,27 +1,27 @@
-resource "aws_s3_bucket" "fastr-stage" {
-    bucket = "fastr.stage.datacite.org"
+resource "aws_s3_bucket" "repository-finder-stage" {
+    bucket = "repositoryfinder.stage.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.fastr-stage.rendered}"
+    policy = "${data.template_file.repository-finder-stage.rendered}"
     website {
         index_document = "index.html"
     }
     tags {
-        Name = "fastr-stage"
+        Name = "repository-finder-stage"
     }
     versioning {
         enabled = true
     }
 }
 
-resource "aws_cloudfront_origin_access_identity" "fastr_stage_datacite_org" {}
+resource "aws_cloudfront_origin_access_identity" "repository-finder_stage_datacite_org" {}
 
-resource "aws_cloudfront_distribution" "fastr-stage" {
+resource "aws_cloudfront_distribution" "repository-finder-stage" {
   origin {
-    domain_name = "${aws_s3_bucket.fastr-stage.bucket_domain_name}"
-    origin_id   = "fastr.stage.datacite.org"
+    domain_name = "${aws_s3_bucket.repository-finder-stage.bucket_domain_name}"
+    origin_id   = "repositoryfinder.stage.datacite.org"
 
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.fastr_stage_datacite_org.cloudfront_access_identity_path}"
+      origin_access_identity = "${aws_cloudfront_origin_access_identity.repository-finder_stage_datacite_org.cloudfront_access_identity_path}"
     }
   }
 
@@ -32,7 +32,7 @@ resource "aws_cloudfront_distribution" "fastr-stage" {
   logging_config {
     include_cookies = false
     bucket          = "${data.aws_s3_bucket.logs-stage.bucket_domain_name}"
-    prefix          = "fastr/"
+    prefix          = "repository-finder/"
   }
 
   aliases = ["repositoryfinder.test.datacite.org"]
@@ -47,7 +47,7 @@ resource "aws_cloudfront_distribution" "fastr-stage" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "fastr.stage.datacite.org"
+    target_origin_id = "repositoryfinder.stage.datacite.org"
 
     forwarded_values {
       query_string = false
@@ -82,18 +82,18 @@ resource "aws_cloudfront_distribution" "fastr-stage" {
   }
 }
 
-resource "aws_route53_record" "fastr-test" {
+resource "aws_route53_record" "repository-finder-test" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
   name = "repositoryfinder.test.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${aws_cloudfront_distribution.fastr-stage.domain_name}"]
+  records = ["${aws_cloudfront_distribution.repository-finder-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-fastr-test" {
+resource "aws_route53_record" "split-repository-finder-test" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "repositoryfinder.test.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${aws_cloudfront_distribution.fastr-stage.domain_name}"]
+  records = ["${aws_cloudfront_distribution.repository-finder-stage.domain_name}"]
 }

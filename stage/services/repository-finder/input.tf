@@ -12,11 +12,11 @@ provider "aws" {
   alias = "use1"
 }
 
-data "template_file" "fastr-stage" {
+data "template_file" "repository-finder-stage" {
   template = "${file("s3_cloudfront.json")}"
 
   vars {
-    bucket_name = "fastr.stage.datacite.org"
+    bucket_name = "repository-finder.stage.datacite.org"
   }
 }
 
