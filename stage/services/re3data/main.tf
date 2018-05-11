@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "re3data-stage" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
-  memory = "1024"
+  memory = "2048"
 
   container_definitions =  "${data.template_file.re3data_task.rendered}"
 }
