@@ -1,7 +1,7 @@
 [
   {
-    "name": "re3data:${version}",
-    "image": "datacite/schnauzer",
+    "name": "re3data",
+    "image": "datacite/schnauzer:${version}",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
