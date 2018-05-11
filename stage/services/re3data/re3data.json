@@ -3,12 +3,13 @@
     "name": "re3data-stage",
     "image": "datacite/schnauzer",
     "cpu": 512,
-    "memory": 1000,
+    "memory": 2048,
+    "networkMode": "awsvpc",
     "essential": true,
-    "hostname": "re3data-stage",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "environment" : [
