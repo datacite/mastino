@@ -1,0 +1,58 @@
+[
+  {
+    "name": "re3data:${version}",
+    "image": "datacite/schnauzer",
+    "cpu": 512,
+    "memory": 2048,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite re3data internal API"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ELASTIC_USER",
+        "value" : "${elastic_user}"
+      },
+      {
+        "name" : "ELASTIC_PASSWORD",
+        "value" : "${elastic_password}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
