@@ -44,7 +44,7 @@ resource "aws_lb_target_group" "re3data" {
 
 resource "aws_lb_listener_rule" "re3data" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 32
+  priority     = 34
 
   action {
     type             = "forward"
