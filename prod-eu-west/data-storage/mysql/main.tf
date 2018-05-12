@@ -44,8 +44,8 @@ resource "aws_db_parameter_group" "datacite57" {
     }
 }
 
-resource "aws_db_subnet_group" "datacite" {
-    name = "datacite"
+resource "aws_db_subnet_group" "datacite-prod" {
+    name = "datacite-prod"
     description = "RDS production subnet group"
     subnet_ids = [
       "${data.aws_subnet.datacite-public.id}",
