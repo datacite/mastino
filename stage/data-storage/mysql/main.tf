@@ -12,7 +12,7 @@ resource "aws_db_instance" "db-stage" {
   backup_window = "01:00-01:30"
   backup_retention_period = 8
   availability_zone = "eu-west-1a"
-  db_subnet_group_name = "datacite-prod"
+  db_subnet_group_name = "datacite"
   vpc_security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
   parameter_group_name = "${aws_db_parameter_group.datacite-stage.id}"
   auto_minor_version_upgrade = "true"
