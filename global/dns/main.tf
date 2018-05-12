@@ -7,7 +7,7 @@ resource "aws_route53_zone" "production" {
 }
 
 resource "aws_route53_record" "production-ns" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
     name = "datacite.org"
     type = "NS"
     ttl = "300"
@@ -48,7 +48,7 @@ resource "aws_route53_record" "internal-ns" {
 }
 
 resource "aws_route53_record" "status" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
     name = "status.datacite.org"
     type = "CNAME"
     ttl = "3600"
@@ -56,7 +56,7 @@ resource "aws_route53_record" "status" {
 }
 
 resource "aws_route53_record" "changelog" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
     name = "changelog.datacite.org"
     type = "CNAME"
     ttl = "3600"
@@ -64,7 +64,7 @@ resource "aws_route53_record" "changelog" {
 }
 
 resource "aws_route53_record" "support" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
     name = "support.datacite.org"
     type = "CNAME"
     ttl = "300"
@@ -72,8 +72,8 @@ resource "aws_route53_record" "support" {
 }
 
 resource "aws_route53_record" "mx-datacite" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "${data.aws_route53_zone.production.name}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "${aws_route53_zone.production.name}"
     type = "MX"
     ttl = "300"
     records = [
@@ -86,8 +86,8 @@ resource "aws_route53_record" "mx-datacite" {
 }
 
 resource "aws_route53_record" "txt-datacite" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "${data.aws_route53_zone.production.name}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "${aws_route53_zone.production.name}"
     type = "TXT"
     ttl = "300"
     records = [
@@ -99,16 +99,16 @@ resource "aws_route53_record" "txt-datacite" {
 }
 
 resource "aws_route53_record" "dkim-datacite" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "google._domainkey.${data.aws_route53_zone.production.name}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "google._domainkey.${aws_route53_zone.production.name}"
     type = "TXT"
     ttl = "300"
     records = ["${var.dkim_record}"]
 }
 
 resource "aws_route53_record" "dmarc-datacite" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "_dmarc.${data.aws_route53_zone.production.name}"
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "_dmarc.${aws_route53_zone.production.name}"
     type = "TXT"
     ttl = "300"
     records = ["${var.dmarc_record}"]
