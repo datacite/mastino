@@ -30,7 +30,7 @@ resource "aws_route53_zone" "internal" {
 
 resource "aws_route53_zone_association" "us-east-1" {
   zone_id = "${aws_route53_zone.internal.zone_id}"
-  vpc_id  = "${data.aws_vpc.us-east-1.id}"
+  vpc_id  = "${data.aws_vpc.us.id}"
   vpc_region = "us-east-1"
 }
 

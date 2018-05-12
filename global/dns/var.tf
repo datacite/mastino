@@ -4,6 +4,9 @@ variable "region" {
     default = "eu-west-1"
 }
 
+variable "vpc_id" {}
+variable "vpc_id_us" {}
+
 variable "changelog_dns_name" {}
 variable "support_dns_name" {}
 variable "status_dns_name" {}
