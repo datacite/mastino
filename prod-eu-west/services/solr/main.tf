@@ -30,6 +30,97 @@ resource "aws_route53_record" "split-solr" {
    records = ["${data.aws_lb.default.dns_name}"]
 }
 
+resource "aws_lb_listener_rule" "solr-api" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 80
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.solr.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/api*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "solr-list" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 81
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.solr.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/list*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "solr-ui" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 82
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.solr.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/ui*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "solr-resources" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 83
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.solr.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/resources*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "search" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 89
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.search.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+}
+
 resource "aws_lb_listener_rule" "solr" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 90

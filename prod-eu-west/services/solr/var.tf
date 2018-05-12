@@ -10,3 +10,7 @@ variable "subnet_datacite-alt_id" {}
 
 variable "solr_user" {}
 variable "solr_password" {}
+
+variable "aws_route53_record_search_name" {
+    default = "search.datacite.org"
+}
