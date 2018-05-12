@@ -13,6 +13,7 @@ resource "aws_instance" "ecs-solr" {
     }
     tags {
         Name = "ECS${count.index + 1}"
+        Group = "ECS-Solr"
     }
     lifecycle {
         create_before_destroy = "true"
