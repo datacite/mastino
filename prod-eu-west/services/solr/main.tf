@@ -11,7 +11,7 @@ resource "aws_lb_target_group" "solr" {
 
 resource "aws_lb_target_group_attachment" "solr" {
   target_group_arn = "${aws_lb_target_group.solr.arn}"
-  target_id        = "${element(data.terraform_remote_state.vpc.aws_instance.ecs-solr.*.id, var.search_tags["id"])}"
+  target_id        = "${data.terraform_remote_state.vpc.ecs_solr_id}"
 }
 
 resource "aws_route53_record" "solr" {
