@@ -5,7 +5,7 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
-rovider "aws" {
+provider "aws" {
   # us-east-1 instance
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
