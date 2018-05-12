@@ -84,33 +84,33 @@ resource "librato_space_chart" "ecs-memory-utilization" {
   }
 }
 
-resource "librato_alert" "ecs-cpu-reservation" {
-  name = "ecs.cpu-reservation"
-  description = "Reserved CPU more than 90%"
-  rearm_seconds = "86400"
-  services = ["${librato_service.slack.id}"]
-  condition {
-    type = "above"
-    threshold = 90
-    duration = 300
-    metric_name = "AWS.ECS.CPUReservation"
-    source = "${var.region}.default"
-  }
-}
+// resource "librato_alert" "ecs-cpu-reservation" {
+//   name = "ecs.cpu-reservation"
+//   description = "Reserved CPU more than 90%"
+//   rearm_seconds = "86400"
+//   services = ["${librato_service.slack.id}"]
+//   condition {
+//     type = "above"
+//     threshold = 90
+//     duration = 300
+//     metric_name = "AWS.ECS.CPUReservation"
+//     source = "${var.region}.default"
+//   }
+// }
 
-resource "librato_alert" "ecs-cpu-utilization" {
-  name = "ecs.cpu-utilization"
-  description = "Utilized CPU more than 90%"
-  rearm_seconds = "3600"
-  services = ["${librato_service.slack.id}"]
-  condition {
-    type = "above"
-    threshold = 90
-    duration = 300
-    metric_name = "AWS.ECS.CPUUtilization"
-    source = "${var.region}.default.*"
-  }
-}
+// resource "librato_alert" "ecs-cpu-utilization" {
+//   name = "ecs.cpu-utilization"
+//   description = "Utilized CPU more than 90%"
+//   rearm_seconds = "3600"
+//   services = ["${librato_service.slack.id}"]
+//   condition {
+//     type = "above"
+//     threshold = 90
+//     duration = 300
+//     metric_name = "AWS.ECS.CPUUtilization"
+//     source = "${var.region}.default.*"
+//   }
+// }
 
 /* resource "librato_alert" "ecs-memory-reservation" {
   name = "ecs.memory-reservation"
