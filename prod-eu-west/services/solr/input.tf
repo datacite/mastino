@@ -15,6 +15,20 @@ data "aws_instance" "ecs-solr" {
   }
 }
 
+data "aws_instance" "ecs-solr-1" {
+  filter {
+    name   = "tag:Name"
+    values = ["ECS1"]
+  }
+}
+
+data "aws_instance" "ecs-solr-2" {
+  filter {
+    name   = "tag:Name"
+    values = ["ECS2"]
+  }
+}
+
 data "aws_security_group" "datacite-private" {
   id = "${var.security_group_id}"
 }
@@ -25,4 +39,13 @@ data "aws_subnet" "datacite-private" {
 
 data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
+}
+
+data "aws_lb" "default" {
+  name = "${var.lb_name}"
+}
+
+data "aws_lb_listener" "default" {
+  load_balancer_arn = "${data.aws_lb.default.arn}"
+  port = 443
 }
