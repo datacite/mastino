@@ -100,7 +100,7 @@ resource "aws_route53_record" "txt-datacite" {
 
 resource "aws_route53_record" "dkim-datacite" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "google._domainkey.${data.saws_route53_zone.production.name}"
+    name = "google._domainkey.${data.aws_route53_zone.production.name}"
     type = "TXT"
     ttl = "300"
     records = ["${var.dkim_record}"]
