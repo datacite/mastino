@@ -8,6 +8,13 @@ data "aws_iam_role" "lambda" {
   name = "lambda"
 }
 
+data "terraform_remote_state" "vpc" {
+  backend = "atlas"
+  config {
+    name = "datacite-ng/prod-eu-west-vpc"
+  }
+}
+
 data "aws_instance" "ecs-solr-1" {
   filter {
     name   = "tag:Name"
