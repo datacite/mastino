@@ -14,3 +14,4 @@ variable "lb_name" {
 }
 
 variable "main_id" {}
+variable "main_private_id" {}

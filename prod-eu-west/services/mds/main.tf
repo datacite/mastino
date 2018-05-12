@@ -41,6 +41,22 @@ resource "aws_route53_record" "internal-mds-split" {
    records = ["${data.aws_lb.default.dns_name}"]
 }
 
+resource "aws_route53_record" "internal-main" {
+   zone_id = "${aws_route53_zone.internal.zone_id}"
+   name = "main.datacite.org"
+   type = "A"
+   ttl = "300"
+   records = ["${var.main_private_ip}"]
+}
+
+resource "aws_route53_record" "internal-main-ec2" {
+   zone_id = "${aws_route53_zone.internal.zone_id}"
+   name = "main.ec2.datacite.org"
+   type = "A"
+   ttl = "300"
+   records = ["${var.main_private_ip}"]
+}
+
 // locals {
 //   target_group_mds_id = "${element(split("/", aws_lb_target_group.mds.arn_suffix), 2)}"
 //   source_mds = "app-lb-${local.lb_listener_default_id}.targetgroup-mds-${local.target_group_mds_id}"
@@ -85,3 +101,67 @@ resource "aws_route53_record" "internal-mds-split" {
 //     color = "#e63c2f"
 //   }
 // }
+//
+// resource "librato_space_chart" "main-cpu" {
+//   name = "MAIN CPU"
+//   space_id = "${librato_space.ec2.id}"
+//   type = "line"
+
+//   stream {
+//     metric = "AWS.EC2.CPUUtilization"
+//     source = "MAIN"
+//   }
+// }
+
+// resource "librato_space_chart" "main-memory" {
+//   name = "MAIN Memory Free"
+//   space_id = "${librato_space.ec2.id}"
+//   type = "line"
+
+//   stream {
+//     metric = "librato.memory.memory.free"
+//     source = "ip-10-0-0-184.eu-west-1.compute.internal"
+//   }
+// }
+
+// resource "librato_space_chart" "main-disk" {
+//   name = "MAIN Disk Free"
+//   label = "Percent"
+//   max = "100"
+//   space_id = "${librato_space.ec2.id}"
+//   type = "line"
+
+//   stream {
+//     metric = "librato.df.root.percent_bytes.free"
+//     source = "ip-10-0-0-184.eu-west-1.compute.internal"
+//   }
+// }
+
+// resource "librato_space_chart" "main-network" {
+//   name = "MAIN Network"
+//   space_id = "${librato_space.ec2.id}"
+//   type = "line"
+
+//   stream {
+//     metric = "AWS.EC2.NetworkIn"
+//     source = "MAIN"
+//   }
+//   stream {
+//     metric = "AWS.EC2.NetworkOut"
+//     source = "MAIN"
+//   }
+// }
+
+// resource "librato_alert" "main-disk" {
+//   name = "main.disk"
+//   description = "MAIN free disk space"
+//   rearm_seconds = "3600"
+//   services = ["${librato_service.slack.id}"]
+//   condition {
+//     type = "below"
+//     threshold = 5
+//     duration = 300
+//     metric_name = "librato.df.root.percent_bytes.free"
+//   }
+// }
+
