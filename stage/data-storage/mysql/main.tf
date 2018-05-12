@@ -27,6 +27,7 @@ resource "aws_db_instance" "db-stage" {
   apply_immediately = "true"
 }
 
+
 resource "aws_db_parameter_group" "datacite-stage" {
     name = "datacite-stage"
     family = "mysql5.7"
