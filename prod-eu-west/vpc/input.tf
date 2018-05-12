@@ -79,7 +79,7 @@ data "template_cloudinit_config" "ecs-solr-user-data" {
 
 data "template_file" "ecs-solr-user-data-cfg" {
   count = 2
-  template = "${file("templates/user_data.cfg")}"
+  template = "${file("user_data.cfg")}"
 
   vars {
     hostname     = "ecs${count.index}"
@@ -89,7 +89,7 @@ data "template_file" "ecs-solr-user-data-cfg" {
 
 data "template_file" "ecs-solr-user-data-boothook" {
   count = 2
-  template = "${file("${path.module}/templates/user_data_solr.sh")}"
+  template = "${file("user_data_solr.sh")}"
 
   vars {
     cluster_name       = "default"
