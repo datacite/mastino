@@ -42,7 +42,7 @@ resource "aws_route53_record" "internal-mds-split" {
 }
 
 resource "aws_route53_record" "internal-main" {
-   zone_id = "${aws_route53_zone.internal.zone_id}"
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "main.datacite.org"
    type = "A"
    ttl = "300"
@@ -50,7 +50,7 @@ resource "aws_route53_record" "internal-main" {
 }
 
 resource "aws_route53_record" "internal-main-ec2" {
-   zone_id = "${aws_route53_zone.internal.zone_id}"
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "main.ec2.datacite.org"
    type = "A"
    ttl = "300"
