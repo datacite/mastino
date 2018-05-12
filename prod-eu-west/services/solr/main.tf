@@ -112,7 +112,7 @@ resource "aws_lb_listener_rule" "search" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.search.arn}"
+    target_group_arn = "${data.aws_lb_target_group.search.arn}"
   }
 
   condition {

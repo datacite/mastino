@@ -49,3 +49,16 @@ data "aws_lb_listener" "default" {
   load_balancer_arn = "${data.aws_lb.default.arn}"
   port = 443
 }
+
+data "aws_lb_target_group" "search" {
+  name = "search"
+}
+
+data "aws_route53_zone" "production" {
+  name = "datacite.org"
+}
+
+data "aws_route53_zone" "internal" {
+  name = "datacite.org"
+  private_zone = true
+}
