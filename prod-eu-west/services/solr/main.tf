@@ -11,7 +11,7 @@ resource "aws_lb_target_group" "solr" {
 
 resource "aws_lb_target_group_attachment" "solr" {
   target_group_arn = "${aws_lb_target_group.solr.arn}"
-  target_id        = "${element(data.aws_instance.ecs-solr.*.id, var.search_tags["id"])}"
+  target_id        = "${data.aws_instance.ecs-solr-${var.search_tags["id"]}}"
 }
 
 resource "aws_route53_record" "solr" {

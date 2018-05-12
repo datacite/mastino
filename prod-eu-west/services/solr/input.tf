@@ -8,13 +8,6 @@ data "aws_iam_role" "lambda" {
   name = "lambda"
 }
 
-data "aws_instance" "ecs-solr" {
-  filter {
-    name   = "tag:Group"
-    values = ["ECS-Solr"]
-  }
-}
-
 data "aws_instance" "ecs-solr-1" {
   filter {
     name   = "tag:Name"
