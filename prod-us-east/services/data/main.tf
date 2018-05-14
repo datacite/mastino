@@ -61,18 +61,19 @@ resource "aws_lb_listener_rule" "data" {
   }
 }
 
-resource "aws_route53_record" "data" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "data.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.default.dns_name}"]
+resource "aws_route53_record" "data-us" {
+  zone_id = "${data.aws_route53_zone.production.zone_id}"
+  name = "data-us.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${data.aws_lb.default-us.dns_name}"]
 }
 
-resource "aws_route53_record" "split-data" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "data.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.default.dns_name}"]
+resource "aws_route53_record" "split-data-us" {
+  provider = "aws.use1"
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  name = "data-us.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${data.aws_lb.default.dns_name}"]
 }
