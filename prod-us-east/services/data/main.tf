@@ -70,7 +70,6 @@ resource "aws_route53_record" "data-us" {
 }
 
 resource "aws_route53_record" "split-data-us" {
-  provider = "aws.use1"
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "data-us.datacite.org"
   type = "CNAME"
