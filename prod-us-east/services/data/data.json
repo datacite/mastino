@@ -1,6 +1,6 @@
 [
   {
-    "name": "data-stage",
+    "name": "data-us",
     "image": "crosscite/content-negotiation",
     "cpu": 512,
     "memory": 2048,
