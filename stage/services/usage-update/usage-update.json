@@ -15,6 +15,10 @@
       {
         "name" : "ENVIROMENT",
         "value" : "stage"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "region"
       }
     ]
   }
