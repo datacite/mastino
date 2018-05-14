@@ -66,7 +66,7 @@ resource "aws_route53_record" "data-us" {
   name = "data-us.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${data.aws_lb.default-us.dns_name}"]
+  records = ["${data.aws_lb.default.dns_name}"]
 }
 
 resource "aws_route53_record" "split-data-us" {
