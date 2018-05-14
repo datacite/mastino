@@ -57,7 +57,7 @@ resource "aws_lb_listener_rule" "data" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.data.name}"]
+    values = ["data.datacite.org"]
   }
 }
 
