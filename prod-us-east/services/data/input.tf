@@ -26,7 +26,7 @@ data "aws_subnet" "datacite-alt" {
 }
 
 data "aws_ecs_cluster" "default" {
-  cluster_name = "default"
+  cluster_name = "default-us"
 }
 
 data "aws_iam_role" "ecs_service" {
