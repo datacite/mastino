@@ -25,8 +25,8 @@ data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
 }
 
-data "aws_ecs_cluster" "stage" {
-  cluster_name = "stage"
+data "aws_ecs_cluster" "default" {
+  cluster_name = "default-us"
 }
 
 data "aws_iam_role" "ecs_service" {
@@ -37,26 +37,27 @@ data "aws_iam_role" "ecsTaskExecutionRole" {
   name = "ecsTaskExecutionRole"
 }
 
-data "aws_lb" "stage" {
+data "aws_lb" "default" {
   name = "${var.lb_name}"
 }
 
-data "aws_lb_listener" "stage" {
-  load_balancer_arn = "${data.aws_lb.stage.arn}"
+data "aws_lb_listener" "default" {
+  load_balancer_arn = "${data.aws_lb.default.arn}"
   port = 443
 }
 
-data "template_file" "re3data_task" {
-  template = "${file("re3data.json")}"
+data "template_file" "data_task" {
+  template = "${file("data.json")}"
 
   vars {
-    es_host            = "${var.es_host}"
-    elastic_user       = "${var.elastic_user}"
-    elastic_password   = "${var.elastic_password}"
-    access_key         = "${var.access_key}"
-    secret_key         = "${var.secret_key}"
+    search_url         = "${var.search_url}"
+    citeproc_url       = "${var.citeproc_url}"
     bugsnag_key        = "${var.bugsnag_key}"
+    ssh_public_key     = "${var.ssh_public_key}"
     memcache_servers   = "${var.memcache_servers}"
-    version            = "${var.schnauzer_tags["sha"]}"
+    librato_email      = "${var.librato_email}"
+    librato_token      = "${var.librato_token}"
+    librato_suites     = "${var.librato_suites}"
+    version            = "${var.content-negotiation_tags["sha"]}"
   }
 }

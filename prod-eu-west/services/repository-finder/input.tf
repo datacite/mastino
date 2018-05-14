@@ -12,17 +12,17 @@ provider "aws" {
   alias = "use1"
 }
 
-data "template_file" "fastr-stage" {
+data "template_file" "repository-finder" {
   template = "${file("s3_cloudfront.json")}"
 
   vars {
-    bucket_name = "fastr.stage.datacite.org"
+    bucket_name = "repositoryfinder.datacite.org"
   }
 }
 
-data "aws_acm_certificate" "cloudfront-test" {
+data "aws_acm_certificate" "cloudfront" {
   provider = "aws.use1"
-  domain = "*.test.datacite.org"
+  domain = "*.datacite.org"
   statuses = ["ISSUED"]
 }
 
@@ -35,6 +35,6 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
-data "aws_s3_bucket" "logs-stage" {
-  bucket = "logs.stage.datacite.org"
+data "aws_s3_bucket" "logs" {
+  bucket = "logs.datacite.org"
 }

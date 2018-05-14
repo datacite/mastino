@@ -8,6 +8,13 @@ data "aws_iam_role" "lambda" {
   name = "lambda"
 }
 
+data "terraform_remote_state" "vpc" {
+  backend = "atlas"
+  config {
+    name = "datacite-ng/prod-eu-west-vpc"
+  }
+}
+
 data "aws_instance" "ecs-solr-1" {
   filter {
     name   = "tag:Name"
@@ -32,4 +39,26 @@ data "aws_subnet" "datacite-private" {
 
 data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
+}
+
+data "aws_lb" "default" {
+  name = "${var.lb_name}"
+}
+
+data "aws_lb_listener" "default" {
+  load_balancer_arn = "${data.aws_lb.default.arn}"
+  port = 443
+}
+
+data "aws_lb_target_group" "search" {
+  name = "search"
+}
+
+data "aws_route53_zone" "production" {
+  name = "datacite.org"
+}
+
+data "aws_route53_zone" "internal" {
+  name = "datacite.org"
+  private_zone = true
 }

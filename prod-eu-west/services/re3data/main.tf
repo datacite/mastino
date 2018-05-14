@@ -1,8 +1,8 @@
-resource "aws_ecs_service" "re3data-stage" {
-  name = "re3data-stage"
-  cluster = "${data.aws_ecs_cluster.stage.id}"
+resource "aws_ecs_service" "re3data" {
+  name = "re3data"
+  cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.re3data-stage.arn}"
+  task_definition = "${aws_ecs_task_definition.re3data.arn}"
   desired_count = 1
 
   network_configuration {
@@ -14,14 +14,14 @@ resource "aws_ecs_service" "re3data-stage" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.re3data-stage.id}"
-    container_name   = "re3data-stage"
+    target_group_arn = "${aws_lb_target_group.re3data.id}"
+    container_name   = "re3data"
     container_port   = "80"
   }
 }
 
-resource "aws_ecs_task_definition" "re3data-stage" {
-  family = "re3data-stage"
+resource "aws_ecs_task_definition" "re3data" {
+  family = "re3data"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
@@ -30,8 +30,8 @@ resource "aws_ecs_task_definition" "re3data-stage" {
   container_definitions =  "${data.template_file.re3data_task.rendered}"
 }
 
-resource "aws_lb_target_group" "re3data-stage" {
-  name     = "re3data-stage"
+resource "aws_lb_target_group" "re3data" {
+  name     = "re3data"
   port     = 80
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
@@ -42,18 +42,18 @@ resource "aws_lb_target_group" "re3data-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "re3data-stage" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 32
+resource "aws_lb_listener_rule" "re3data" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 34
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.re3data-stage.arn}"
+    target_group_arn = "${aws_lb_target_group.re3data.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.datacite.org"]
   }
 
   condition {
