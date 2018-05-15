@@ -34,8 +34,8 @@ resource "aws_ecs_task_definition" "data" {
   container_definitions =  "${data.template_file.data_task.rendered}"
 }
 
-resource "aws_lb_target_group" "data" {
-  name     = "data"
+resource "aws_lb_target_group" "data-us" {
+  name     = "data-us"
   port     = 80
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
