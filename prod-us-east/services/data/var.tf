@@ -11,7 +11,7 @@ variable "content-negotiation_tags" {
 }
 
 variable "lb_name" {
-  default = "us"
+  default = "lb-us"
 }
 
 variable "security_group_id" {}
