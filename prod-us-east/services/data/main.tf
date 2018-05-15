@@ -14,7 +14,7 @@ resource "aws_ecs_service" "data" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.data.id}"
+    target_group_arn = "${aws_lb_target_group.data-us.id}"
     container_name   = "data"
     container_port   = "80"
   }
@@ -52,7 +52,7 @@ resource "aws_lb_listener_rule" "data" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.data.arn}"
+    target_group_arn = "${aws_lb_target_group.data-us.arn}"
   }
 
   condition {

@@ -35,7 +35,7 @@ resource "aws_lb_listener" "us" {
   certificate_arn   = "${data.aws_acm_certificate.default.arn}"
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.data.id}"
+    target_group_arn = "${data.aws_lb_target_group.data-us.id}"
     type             = "forward"
   }
 }
