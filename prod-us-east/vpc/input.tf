@@ -51,8 +51,8 @@ data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
 
-data "aws_lb_target_group" "data-us" {
-  name = "data-us"
+data "aws_lb_target_group" "data" {
+  name = "data"
 }
 
 data "template_file" "logs-us" {
