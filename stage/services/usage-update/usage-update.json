@@ -14,11 +14,11 @@
     "environment" : [
       {
         "name" : "ENVIROMENT",
-        "value" : "stage"
+        "value" : "${stage}"
       },
       {
         "name" : "AWS_REGION",
-        "value" : "region"
+        "value" : "${region}"
       }
     ]
   }
