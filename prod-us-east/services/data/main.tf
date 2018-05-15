@@ -1,8 +1,8 @@
-resource "aws_ecs_service" "data" {
-  name = "data"
-  cluster = "${data.aws_ecs_cluster.default.id}"
+resource "aws_ecs_service" "data-us" {
+  name = "data-us"
+  cluster = "${data.aws_ecs_cluster.default-us.id}"
   launch_type = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.data.arn}"
+  task_definition = "${aws_ecs_task_definition.data-us.arn}"
   desired_count = 1
 
   network_configuration {
@@ -24,8 +24,8 @@ resource "aws_ecs_service" "data" {
   ]
 }
 
-resource "aws_ecs_task_definition" "data" {
-  family = "data"
+resource "aws_ecs_task_definition" "data-us" {
+  family = "data-us"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
@@ -46,7 +46,7 @@ resource "aws_lb_target_group" "data-us" {
   }
 }
 
-resource "aws_lb_listener_rule" "data" {
+resource "aws_lb_listener_rule" "data-us" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 60
 

@@ -1,3 +1,3 @@
-resource "aws_ecs_cluster" "us" {
-  name = "us"
+resource "aws_ecs_cluster" "default-us" {
+  name = "default-us"
 }
