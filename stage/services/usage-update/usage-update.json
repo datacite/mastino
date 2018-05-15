@@ -13,8 +13,8 @@
     ],
     "environment" : [
       {
-        "name" : "ENVIROMENT",
-        "value" : "${ENVIROMENT}"
+        "name" : "ENVIRONMENT",
+        "value" : "${ENVIRONMENT}"
       },
       {
         "name" : "AWS_REGION",
