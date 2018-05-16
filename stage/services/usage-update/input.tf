@@ -11,6 +11,8 @@ data "template_file" "usage_update_stage_task" {
     access_token = "${var.access_token}"
     source_token = "${var.source_token}"
     push_url     = "${var.push_url}"
+    environment  = "${var.environment}"
+    region       = "${var.region}"
   }
 }
 data "aws_iam_role" "lambda" {
