@@ -59,6 +59,6 @@ data "template_file" "logs-us" {
   template = "${file("s3_lb_write_access.json")}"
 
   vars {
-    bucket_name = "logs.us.datacite.org"
+    bucket_name = "logs-us.datacite.org"
   }
 }

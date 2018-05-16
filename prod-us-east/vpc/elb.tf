@@ -19,7 +19,7 @@ resource "aws_lb" "us" {
 }
 
 resource "aws_s3_bucket" "logs-us" {
-  bucket = "logs.us.datacite.org"
+  bucket = "logs-us.datacite.org"
   acl    = "private"
   policy = "${data.template_file.logs-us.rendered}"
   tags {
