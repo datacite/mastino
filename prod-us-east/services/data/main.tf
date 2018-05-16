@@ -47,7 +47,7 @@ resource "aws_lb_target_group" "data-us" {
 }
 
 resource "aws_lb_listener_rule" "data-us" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.us.arn}"
   priority     = 60
 
   action {
