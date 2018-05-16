@@ -1,0 +1,101 @@
+[
+  {
+    "name": "metrics-api",
+    "image": "datacite/sashimi:${version}",
+    "cpu": 512,
+    "memory": 1000,
+    "essential": true,
+    "hostname": "metrics-api",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "development"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "development"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DLM API"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "debug"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "JWT_PRIVATE_KEY",
+        "value" : "${jwt_private_key}"
+      },
+      {
+        "name" : "MYSQL_USER",
+        "value" : "${mysql_user}"
+      },
+      {
+        "name" : "MYSQL_PASSWORD",
+        "value" : "${mysql_password}"
+      },
+      {
+        "name" : "MYSQL_HOST",
+        "value" : "${mysql_host}"
+      },
+      {
+        "name" : "MYSQL_DATABASE",
+        "value" : "${mysql_database}"
+      },
+      {
+        "name" : "CONCURRENCY",
+        "value" : "25"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "LIBRATO_USER",
+        "value" : "${librato_email}"
+      },
+      {
+        "name" : "LIBRATO_TOKEN",
+        "value" : "${librato_token}"
+      },
+      {
+        "name" : "LIBRATO_SUITES",
+        "value" : "${librato_suites}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+            {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_S3_BUCKET",
+        "value" : "${s3_bucket}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
