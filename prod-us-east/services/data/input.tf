@@ -25,7 +25,7 @@ data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
 }
 
-data "aws_ecs_cluster" "default" {
+data "aws_ecs_cluster" "default-us" {
   cluster_name = "default-us"
 }
 
@@ -41,8 +41,8 @@ data "aws_lb" "us" {
   name = "${var.lb_name}"
 }
 
-data "aws_lb_listener" "default" {
-  load_balancer_arn = "${data.aws_lb.default.arn}"
+data "aws_lb_listener" "us" {
+  load_balancer_arn = "${data.aws_lb.us.arn}"
   port = 443
 }
 
