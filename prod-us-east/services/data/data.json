@@ -1,7 +1,7 @@
 [
   {
     "name": "data-us",
-    "image": "crosscite/content-negotiation",
+    "image": "crosscite/content-negotiation:${version}",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
@@ -47,11 +47,11 @@
       },
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "stage"
+        "value" : "production"
       },
       {
         "name" : "RAILS_ENV",
-        "value" : "stage"
+        "value" : "production"
       },
       {
         "name" : "LIBRATO_USER",
