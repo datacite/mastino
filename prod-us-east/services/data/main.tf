@@ -20,7 +20,7 @@ resource "aws_ecs_service" "data-us" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default",
+    "data.aws_lb_listener.us",
   ]
 }
 
@@ -61,12 +61,24 @@ resource "aws_lb_listener_rule" "data-us" {
   }
 }
 
+// resource "aws_route53_record" "data-us-rr" {
+//   zone_id = "${data.aws_route53_zone.production.zone_id}"
+//   name = "data.datacite.org"
+//   type = "CNAME"
+//   ttl = "${var.ttl}"
+//   set_identifier = "data-us-east-1"
+//   geolocation_routing_policy {
+//     continent = "NA"
+//   }
+//   records = ["${aws_lb.us.dns_name}"]
+// }
+
 resource "aws_route53_record" "data-us" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
   name = "data-us.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${data.aws_lb.default.dns_name}"]
+  records = ["${data.aws_lb.us.dns_name}"]
 }
 
 resource "aws_route53_record" "split-data-us" {
@@ -74,5 +86,5 @@ resource "aws_route53_record" "split-data-us" {
   name = "data-us.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${data.aws_lb.default.dns_name}"]
+  records = ["${data.aws_lb.us.dns_name}"]
 }
