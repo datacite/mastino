@@ -57,6 +57,6 @@ data "template_file" "re3data_task" {
     secret_key         = "${var.secret_key}"
     bugsnag_key        = "${var.bugsnag_key}"
     memcache_servers   = "${var.memcache_servers}"
-    version            = "${var.schnauzer_tags["sha"]}"
+    version            = "${var.schnauzer_tags["version"]}"
   }
 }

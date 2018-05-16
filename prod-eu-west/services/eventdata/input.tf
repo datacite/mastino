@@ -51,6 +51,6 @@ data "template_file" "eventdata_task" {
     librato_token      = "${var.librato_token}"
     librato_suites     = "${var.librato_suites}"
     slack_webhook_url  = "${var.slack_webhook_url}"
-    version            = "${var.lagottino_tags["sha"]}"
+    version            = "${var.lagottino_tags["version"]}"
   }
 }
