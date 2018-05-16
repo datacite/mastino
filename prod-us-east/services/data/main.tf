@@ -15,7 +15,7 @@ resource "aws_ecs_service" "data-us" {
 
   load_balancer {
     target_group_arn = "${aws_lb_target_group.data-us.id}"
-    container_name   = "data"
+    container_name   = "data-us"
     container_port   = "80"
   }
 
