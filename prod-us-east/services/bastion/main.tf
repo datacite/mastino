@@ -1,5 +1,5 @@
 resource "aws_instance" "bastion-us" {
-  ami                         = "${var.ami["eu-east-1"]}"
+  ami                         = "${var.ami["us-east-1"]}"
   instance_type               = "t2.micro"
   vpc_security_group_ids      = ["${aws_security_group.bastion-us.id}"]
   subnet_id                   = "${data.aws_subnet.datacite-public.id}"
