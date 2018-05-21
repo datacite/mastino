@@ -6,7 +6,7 @@ resource "aws_ecs_task_definition" "usage-update" {
 resource "aws_cloudwatch_event_rule" "usage-update" {
   name = "usage-update"
   description = "Run usage-update container via cron"
-  schedule_expression = "cron(20	*	*	*	? *)"
+  schedule_expression = "cron(30	*	*	*	? *)"
 }
 
 resource "aws_cloudwatch_event_target" "usage-update" {

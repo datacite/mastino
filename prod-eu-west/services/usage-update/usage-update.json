@@ -13,12 +13,20 @@
     ],
     "environment" : [
       {
-        "name" : "ENVIROMENT",
-        "value" : "production"
+        "name" : "ENVIRONMENT",
+        "value" : "${environment}"
       },
       {
         "name" : "AWS_REGION",
-        "value" : "region"
+        "value" : "${region}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+            {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
       }
     ]
   }
