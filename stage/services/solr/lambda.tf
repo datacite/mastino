@@ -15,7 +15,7 @@ resource "aws_lambda_function" "solr-index-stage" {
   function_name = "solr-index-stage"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "solr_index_runner.handler"
-  runtime = "nodejs4.3"
+  runtime = "nodejs6.10"
   vpc_config {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
     security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
