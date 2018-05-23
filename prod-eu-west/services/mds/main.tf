@@ -66,6 +66,7 @@ resource "librato_space" "mds" {
 }
 
 locals {
+  lb_listener_default_id = "${element(split("/", data.aws_lb_listener.default.arn), 3)}"
   target_group_mds_id = "${element(split("/", aws_lb_target_group.mds.arn_suffix), 2)}"
   source_mds = "app-lb-${local.lb_listener_default_id}.targetgroup-mds-${local.target_group_mds_id}"
 }
