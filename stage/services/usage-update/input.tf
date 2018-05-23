@@ -15,6 +15,7 @@ data "template_file" "usage_update_stage_task" {
     push_url     = "${var.push_url}"
     environment  = "${var.environment}"
     region       = "${var.region}"
+    region       = "${var.slack_webhook_url}"
   }
 }
 data "aws_iam_role" "lambda" {
