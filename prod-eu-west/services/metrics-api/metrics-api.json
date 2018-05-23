@@ -14,11 +14,11 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "development"
+        "value" : "production"
       },
       {
         "name" : "RAILS_ENV",
-        "value" : "development"
+        "value" : "production"
       },
       {
         "name" : "SITE_TITLE",

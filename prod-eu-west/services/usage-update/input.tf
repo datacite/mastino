@@ -8,9 +8,13 @@ data "template_file" "usage_update_task" {
   template = "${file("usage-update.json")}"
 
   vars {
+    access_key = "${var.access_key}"
+    secret_key = "${var.secret_key}"
     access_token = "${var.access_token}"
     source_token = "${var.source_token}"
     push_url     = "${var.push_url}"
+    environment  = "${var.environment}"
+    region       = "${var.region}"
   }
 }
 data "aws_iam_role" "lambda" {

@@ -19,7 +19,20 @@
       {
         "name" : "AWS_REGION",
         "value" : "${region}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+      {
+        "name" : "SLACK_WEBHOOK_URL",
+        "value" : "${slack_webhook_url}"
+      },
+      {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
       }
     ]
   }
 ]
+
