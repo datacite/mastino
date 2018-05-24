@@ -1,14 +1,14 @@
-resource "aws_cloudwatch_event_rule" "set-minted" {
-  name = "set-minted"
-  description = "Run set-minted API call via cron"
-  schedule_expression = "cron(55 0,4,8,12,16,20 * * ? *)"
-}
+// resource "aws_cloudwatch_event_rule" "set-minted" {
+//   name = "set-minted"
+//   description = "Run set-minted API call via cron"
+//   schedule_expression = "cron(55 0,4,8,12,16,20 * * ? *)"
+// }
 
-resource "aws_cloudwatch_event_target" "set-minted" {
-  target_id = "set-minted"
-  rule = "${aws_cloudwatch_event_rule.set-minted.name}"
-  arn = "${aws_lambda_function.set-minted.arn}"
-}
+// resource "aws_cloudwatch_event_target" "set-minted" {
+//   target_id = "set-minted"
+//   rule = "${aws_cloudwatch_event_rule.set-minted.name}"
+//   arn = "${aws_lambda_function.set-minted.arn}"
+// }
 
 resource "aws_lambda_function" "set-minted" {
   filename = "set_minted_runner.js.zip"
