@@ -32,10 +32,10 @@ resource "aws_lambda_function" "set-minted" {
   }
 }
 
-resource "aws_lambda_permission" "set-minted" {
-  statement_id = "AllowExecutionFromCloudWatch"
-  action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.set-minted.function_name}"
-  principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.set-minted.arn}"
-}
+// resource "aws_lambda_permission" "set-minted" {
+//   statement_id = "AllowExecutionFromCloudWatch"
+//   action = "lambda:InvokeFunction"
+//   function_name = "${aws_lambda_function.set-minted.function_name}"
+//   principal = "events.amazonaws.com"
+//   source_arn = "${aws_cloudwatch_event_rule.set-minted.arn}"
+// }
