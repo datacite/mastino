@@ -11,5 +11,4 @@ variable "subnet_datacite-alt_id" {}
 variable "access_token" {}
 variable "source_token" {}
 variable "push_url" {}
-variable "region" {}
 variable "environment" {}
