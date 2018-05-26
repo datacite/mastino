@@ -26,6 +26,7 @@ resource "aws_ecs_service" "netlify-auth-stage" {
 
 resource "aws_ecs_task_definition" "netlify-auth-stage" {
   family = "netlify-auth-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}",
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "256"
