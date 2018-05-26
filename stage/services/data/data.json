@@ -18,6 +18,7 @@
          "awslogs-group" : "/ecs/data-stage",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
+      }
     },
     "environment" : [
       {
