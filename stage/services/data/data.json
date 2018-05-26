@@ -12,6 +12,13 @@
         "hostPort": 80
       }
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/data-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+    },
     "environment" : [
       {
         "name" : "SEARCH_URL",
