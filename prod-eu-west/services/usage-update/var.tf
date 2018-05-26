@@ -12,3 +12,4 @@ variable "access_token" {}
 variable "source_token" {}
 variable "push_url" {}
 variable "environment" {}
+variable "usage_url" {}

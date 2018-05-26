@@ -29,6 +29,10 @@
         "value" : "${slack_webhook_url}"
       },
       {
+        "name" : "SASHIMI_URL",
+        "value" : "${usage_url}"
+      },
+      {
         "name" : "AWS_SECRET_ACCESS_KEY",
         "value" : "${secret_key}"
       }

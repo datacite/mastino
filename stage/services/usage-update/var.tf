@@ -13,3 +13,4 @@ variable "source_token" {}
 variable "push_url" {}
 variable "environment" {}
 variable "slack_webhook_url" {}
+variable "usage_url" {}

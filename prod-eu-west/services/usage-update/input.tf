@@ -15,6 +15,7 @@ data "template_file" "usage_update_task" {
     push_url     = "${var.push_url}"
     environment  = "${var.environment}"
     region       = "${var.region}"
+    usage_url    = "${var.usage_url}"
   }
 }
 data "aws_iam_role" "lambda" {
