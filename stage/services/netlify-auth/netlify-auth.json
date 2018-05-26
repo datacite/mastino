@@ -1,0 +1,38 @@
+[
+  {
+    "name": "netlify-auth-stage",
+    "image": "datacite/rottweiler",
+    "cpu": 256,
+    "memory": 1024,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "environment" : [
+      {
+        "name" : "HOST",
+        "value" : "${host}"
+      },
+      {
+        "name" : "SESSION_SECRET",
+        "value" : "${session_secret}"
+      },
+      {
+        "name" : "GITHUB_KEY",
+        "value" : "${github_key}"
+      },
+      {
+        "name" : "GITHUB_SECRET",
+        "value" : "${github_secret}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
