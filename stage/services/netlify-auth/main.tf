@@ -24,6 +24,10 @@ resource "aws_ecs_service" "netlify-auth-stage" {
   ]
 }
 
+resource "aws_cloudwatch_log_group" "netlify-auth-stage" {
+  name = "/ecs/netlify-auth-stage"
+}
+
 resource "aws_ecs_task_definition" "netlify-auth-stage" {
   family = "netlify-auth-stage"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}",
