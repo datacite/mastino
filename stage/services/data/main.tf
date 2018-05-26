@@ -24,10 +24,6 @@ resource "aws_ecs_service" "data-stage" {
   ]
 }
 
-resource "aws_cloudwatch_log_group" "netlify-auth-stage" {
-  name = "/ecs/netlify-auth-stage"
-}
-
 resource "aws_ecs_task_definition" "data-stage" {
   family = "data-stage"
   network_mode = "awsvpc"
