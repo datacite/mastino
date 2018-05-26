@@ -24,6 +24,10 @@ resource "aws_ecs_service" "data-us" {
   ]
 }
 
+resource "aws_cloudwatch_log_group" "data-us" {
+  name = "/ecs/data"
+}
+
 resource "aws_ecs_task_definition" "data-us" {
   family = "data-us"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}",
