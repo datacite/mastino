@@ -39,8 +39,13 @@ resource "aws_lb_listener_rule" "metrics-api" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "metrics-api" {
+  name = "/ecs/metrics-api"
+}
+
 resource "aws_ecs_task_definition" "metrics-api" {
   family = "metrics-api"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.metrics-api_task.rendered}"
 }
 

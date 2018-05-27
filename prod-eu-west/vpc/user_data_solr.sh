@@ -14,11 +14,11 @@ service docker start
 start ecs
 
 # start logspout service container
-docker run -d --name="logspout" \
-  --volume=/var/run/docker.sock:/var/run/docker.sock \
-  --restart always \
-  gliderlabs/logspout \
-  syslog://"${syslog_host}":"${syslog_port}"
+# docker run -d --name="logspout" \
+#   --volume=/var/run/docker.sock:/var/run/docker.sock \
+#   --restart always \
+#   gliderlabs/logspout \
+#   syslog://"${syslog_host}":"${syslog_port}"
 
 # start solr docker container
 docker run -d -p "${solr_port}":80 --name solr \
