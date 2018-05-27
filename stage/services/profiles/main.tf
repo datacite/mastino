@@ -17,8 +17,13 @@ resource "aws_ecs_service" "profiles-stage" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "profiles-stage" {
+  name = "/ecs/profiles-stage"
+}
+
 resource "aws_ecs_task_definition" "profiles-stage" {
   family = "profiles-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.profiles_task.rendered}"
 }
 

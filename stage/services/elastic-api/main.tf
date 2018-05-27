@@ -22,8 +22,13 @@ resource "aws_ecs_service" "elastic-api-stage" {
   ]
 }
 
+resource "aws_cloudwatch_log_group" "elastic-api-stage" {
+  name = "/ecs/elastic-api-stage"
+}
+
 resource "aws_ecs_task_definition" "elastic-api-stage" {
   family = "elastic-api-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.elastic-api-stage_task.rendered}"
 }
 

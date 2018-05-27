@@ -17,8 +17,13 @@ resource "aws_ecs_service" "api-stage" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "api-stage" {
+  name = "/ecs/api-stage"
+}
+
 resource "aws_ecs_task_definition" "api-stage" {
   family = "api-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.api_task.rendered}"
 }
 
