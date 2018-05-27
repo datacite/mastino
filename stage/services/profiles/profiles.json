@@ -61,6 +61,10 @@
         "value" : "${solr_url}"
       },
       {
+        "name" : "BLOG_URL",
+        "value" : "${blog_url}"
+      },
+      {
         "name" : "ORCID_URL",
         "value" : "${orcid_url}"
       },

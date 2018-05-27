@@ -39,6 +39,9 @@ variable "app_url" {
 variable "cdn_url" {
   default = "https://assets.test.datacite.org"
 }
+variable "blog_url" {
+  default = "https://blog.test.datacite.org"
+}
 
 variable "redis_url" {}
 variable "memcache_servers" {
