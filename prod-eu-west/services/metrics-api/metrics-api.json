@@ -93,6 +93,10 @@
         "value" : "${s3_bucket}"
       },
       {
+        "name" : "USAGE_URL",
+        "value" : "${usage_url}"
+      },
+      {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
       }
