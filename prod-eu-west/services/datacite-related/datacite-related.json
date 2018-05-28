@@ -11,6 +11,14 @@
       "--source_token", "${source_token}",
       "--push_url", "${push_url}",
       "--webhook_url", "${webhook_url}"
-    ]
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/datacite-related",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    }
   }
 ]

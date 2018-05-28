@@ -10,6 +10,14 @@
       "--access_token", "${access_token}",
       "--push_url", "${push_url}",
       "--slack_webhook_url", "${webhook_url}"
-    ]
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/orcid-update",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    }
   }
 ]

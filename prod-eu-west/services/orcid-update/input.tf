@@ -18,6 +18,10 @@ data "aws_iam_role" "lambda" {
   name = "lambda"
 }
 
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
 data "aws_security_group" "datacite-private" {
   id = "${var.security_group_id}"
 }
