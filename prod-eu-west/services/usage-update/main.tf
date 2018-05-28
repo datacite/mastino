@@ -29,7 +29,7 @@ resource "aws_lambda_function" "usage-update" {
   environment {
     variables = {
       ecs_task_def = "usage-update"
-      cluster = "deafult"
+      cluster = "default"
       count = 1
     }
   }
