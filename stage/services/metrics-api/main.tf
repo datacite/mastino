@@ -52,7 +52,7 @@ resource "aws_route53_record" "metrics-api-stage" {
   records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-resource "aws_route53_record" "metrics-api-stage" {
+resource "aws_route53_record" "split-metrics-api-stage" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "metrics.test.datacite.org"
   type = "CNAME"
