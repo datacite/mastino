@@ -58,6 +58,6 @@ data "template_file" "data_task" {
     librato_email      = "${var.librato_email}"
     librato_token      = "${var.librato_token}"
     librato_suites     = "${var.librato_suites}"
-    version            = "${var.content-negotiation_tags["sha"]}"
+    version            = "${var.content-negotiation_tags["version"]}"
   }
 }
