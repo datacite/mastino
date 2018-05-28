@@ -31,7 +31,7 @@ variable "citeproc_url" {
 }
 
 variable "memcache_servers" {
-  default = "memcached.datacite.org:11211"
+  default = "memcached2.datacite.org:11211"
 }
 
 variable "librato_email" {}
