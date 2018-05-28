@@ -5,7 +5,7 @@
     },
     "Redirect": {
       "HostName": "handle.test.datacite.org",
-      "HttpRedirectCode": 301,
+      "HttpRedirectCode": "301",
       "Protocol": "https",
       "ReplaceKeyPrefixWith": "/"
     }
