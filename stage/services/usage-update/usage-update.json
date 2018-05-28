@@ -9,7 +9,8 @@
       "toccatore", "usage-update",
       "--push_url", "${push_url}",
       "--access_token", "${access_token}",
-      "--source_token", "${source_token}"
+      "--source_token", "${source_token}",
+      "--slack_webhook_url", "${slack_webhook_url}"
     ],
     "logConfiguration": { 
       "logDriver": "awslogs",
