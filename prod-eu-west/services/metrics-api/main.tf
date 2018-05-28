@@ -56,3 +56,11 @@ resource "aws_route53_record" "metrics-api" {
   ttl = "${var.ttl}"
   records = ["${data.aws_lb.default.dns_name}"]
 }
+
+resource "aws_route53_record" "split-metrics-api" {
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  name = "metrics.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${data.aws_lb.default.dns_name}"]
+}

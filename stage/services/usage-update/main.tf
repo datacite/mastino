@@ -1,5 +1,6 @@
 resource "aws_ecs_task_definition" "usage-update-stage" {
   family = "usage-update-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.usage_update_stage_task.rendered}"
 }
 
@@ -32,6 +33,9 @@ resource "aws_lambda_function" "usage-update-stage" {
       count = 1
     }
   }
+}
+resource "aws_cloudwatch_log_group" "usage-update-stage" {
+  name = "/ecs/usage-update-stage"
 }
 
 resource "aws_lambda_permission" "usage-update-stage" {
