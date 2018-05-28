@@ -5,6 +5,7 @@ resource "aws_s3_bucket" "test" {
     website {
         index_document = "index.html"
         error_document = "404.html"
+        routing_rules = "${file("routing-rules.json")}"
     }
     tags {
         Name = "Test"
