@@ -34,3 +34,7 @@ data "aws_subnet" "datacite-private" {
 data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
 }
+
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
