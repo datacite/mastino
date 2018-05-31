@@ -18,7 +18,8 @@ docker run -d --name "dd-agent" \
   --volume /var/run/docker.sock:/var/run/docker.sock:ro \
   --volume /proc/:/host/proc/:ro 
   --volume /cgroup/:/host/sys/fs/cgroup:ro 
-  -env DD_API_KEY="${dd_api_key}" \
+  --env DD_API_KEY="${dd_api_key}" \
+  --restart always \
   datadog/agent:latest
 
 # start solr docker container
