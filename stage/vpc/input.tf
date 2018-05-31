@@ -83,8 +83,6 @@ data "template_file" "ecs-user-data-boothook" {
     solr_url           = "${var.solr_url}"
     solr_user          = "${var.solr_user}"
     solr_password      = "${var.solr_password}"
-    syslog_host        = "${var.syslog_host}"
-    syslog_port        = "${var.syslog_port}"
     dd_api_key         = "${var.dd_api_key}"
     solr_version       = "${var.search_tags["sha"]}"
     solr_tag           = "latest"
