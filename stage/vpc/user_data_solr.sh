@@ -13,13 +13,6 @@ service docker start
 
 start ecs
 
-# start logspout service container
-# docker run -d --name="logspout" \
-#   --volume=/var/run/docker.sock:/var/run/docker.sock \
-#   --restart always \
-#   gliderlabs/logspout \
-#   syslog://"${syslog_host}":"${syslog_port}"
-
 # start datadog container
 docker run -d --name "dd-agent" \
   --volume /var/run/docker.sock:/var/run/docker.sock:ro \
