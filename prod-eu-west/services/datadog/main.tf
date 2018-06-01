@@ -4,7 +4,7 @@ resource "aws_lambda_function" "logs" {
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "lambda_function.lambda_handler"
   runtime = "python2.7"
-  source_code_hash = "${base64sha256(file("logs.py.zip"))}"
+  source_code_hash = "${base64sha256(file("lambda_function.py.zip"))}"
   timeout = "120"
   memory_size = "1024"
 
