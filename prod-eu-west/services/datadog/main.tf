@@ -1,8 +1,8 @@
 resource "aws_lambda_function" "logs" {
-  filename = "logs.py.zip"
+  filename = "lambda_function.py.zip"
   function_name = "logs"
   role = "${data.aws_iam_role.lambda.arn}"
-  handler = "logs.lambda_handler"
+  handler = "lambda_function.lambda_handler"
   runtime = "python2.7"
   source_code_hash = "${base64sha256(file("logs.py.zip"))}"
   timeout = "120"
