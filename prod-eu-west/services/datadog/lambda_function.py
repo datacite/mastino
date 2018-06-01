@@ -19,6 +19,7 @@ import gzip
 
 # Parameters
 # ddApiKey: Datadog API Key
+ddApiKey = "<your_api_key>"
 try:
     ddApiKey = os.environ['DD_API_KEY']
 except Exception:
