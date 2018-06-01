@@ -3,7 +3,7 @@
     "name": "profiles-stage",
     "image": "datacite/volpino",
     "cpu": 384,
-    "memory": 500,
+    "memory": 1024,
     "essential": true,
     "hostname": "profiles-stage",
     "portMappings": [
