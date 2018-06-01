@@ -14,7 +14,7 @@ resource "aws_lambda_function" "logs" {
   }
   environment {
     variables = {
-      dd_api_key = "${var.dd_api_key}"
+      DD_API_KEY = "${var.dd_api_key}"
     }
   }
 }
