@@ -105,8 +105,7 @@ data "template_file" "ecs-solr-user-data-boothook" {
     solr_url           = "${var.solr_url}"
     solr_user          = "${var.solr_user}"
     solr_password      = "${var.solr_password}"
-    syslog_host        = "${var.syslog_host}"
-    syslog_port        = "${var.syslog_port}"
+    dd_api_key         = "${var.dd_api_key}"
     solr_version       = "${lookup(var.search_tags, count.index)}"
     solr_tag           = "${lookup(var.search_tags, count.index)}"
   }

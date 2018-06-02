@@ -45,8 +45,7 @@ variable "search_tags" {
   type = "map"
 }
 
-variable "syslog_host" {}
-variable "syslog_port" {}
+variable "dd_api_key" {}
 
 variable "cluster" {
   default = "default"
