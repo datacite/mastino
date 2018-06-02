@@ -19,7 +19,7 @@ if [ "${hostname}" == "solr1.datacite.org" ]; then
     --env DD_API_KEY="${dd_api_key}" \
     --restart always \
     datadog/agent:latest
-elif
+fi
 
 # start solr docker container
 docker run -d -p "${solr_port}":80 --name solr \
