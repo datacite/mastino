@@ -15,7 +15,7 @@ resource "aws_ecs_service" "datadog-us" {
 }
 
 resource "aws_cloudwatch_log_group" "datadog-us" {
-  name = "/ecs/datadog-us"
+  name = "/ecs/datadog"
 }
 
 resource "aws_ecs_task_definition" "datadog-us" {
