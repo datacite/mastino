@@ -53,9 +53,6 @@ variable "cluster" {
 
 variable "key_name" {}
 
-variable "librato_email" {}
-variable "librato_token" {}
-
 variable "lb_name" {
   default = "lb"
 }

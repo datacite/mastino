@@ -20,6 +20,10 @@ resource "aws_instance" "ecs-solr" {
     }
 }
 
+resource "aws_cloudwatch_log_group" "solr" {
+  name = "/ecs/solr"
+}
+
 resource "aws_route53_record" "internal-ecs" {
     count = 2
     zone_id = "${data.aws_route53_zone.internal.zone_id}"
@@ -28,131 +32,3 @@ resource "aws_route53_record" "internal-ecs" {
     ttl = "${var.ttl}"
     records = ["${element(aws_instance.ecs-solr.*.private_ip, count.index)}"]
 }
-
-resource "librato_space" "ecs" {
-    name = "ECS"
-}
-
-resource "librato_space_chart" "ecs-cpu-reservation" {
-  name = "ECS CPUReservation"
-  label = "Percent"
-  max = "100"
-  space_id = "${librato_space.ecs.id}"
-  type = "line"
-
-  stream {
-    metric = "AWS.ECS.CPUReservation"
-    source = "${var.region}.default"
-  }
-}
-
-resource "librato_space_chart" "ecs-cpu-utilization" {
-  name = "ECS CPUUtilization"
-  label = "Percent"
-  max = "100"
-  space_id = "${librato_space.ecs.id}"
-  type = "line"
-
-  stream {
-    metric = "AWS.ECS.CPUUtilization"
-    source = "${var.region}.default.*"
-  }
-}
-
-resource "librato_space_chart" "ecs-memory-reservation" {
-  name = "ECS MemoryReservation"
-  label = "Percent"
-  max = "100"
-  space_id = "${librato_space.ecs.id}"
-  type = "line"
-
-  stream {
-    metric = "AWS.ECS.MemoryReservation"
-    source = "${var.region}.default"
-  }
-}
-
-resource "librato_space_chart" "ecs-memory-utilization" {
-  name = "ECS MemoryUtilization"
-  label = "Percent"
-  max = "100"
-  space_id = "${librato_space.ecs.id}"
-  type = "line"
-
-  stream {
-    metric = "AWS.ECS.MemoryUtilization"
-    source = "${var.region}.default.*"
-  }
-}
-
-// resource "librato_alert" "ecs-cpu-reservation" {
-//   name = "ecs.cpu-reservation"
-//   description = "Reserved CPU more than 90%"
-//   rearm_seconds = "86400"
-//   services = ["${librato_service.slack.id}"]
-//   condition {
-//     type = "above"
-//     threshold = 90
-//     duration = 300
-//     metric_name = "AWS.ECS.CPUReservation"
-//     source = "${var.region}.default"
-//   }
-// }
-
-// resource "librato_alert" "ecs-cpu-utilization" {
-//   name = "ecs.cpu-utilization"
-//   description = "Utilized CPU more than 90%"
-//   rearm_seconds = "3600"
-//   services = ["${librato_service.slack.id}"]
-//   condition {
-//     type = "above"
-//     threshold = 90
-//     duration = 300
-//     metric_name = "AWS.ECS.CPUUtilization"
-//     source = "${var.region}.default.*"
-//   }
-// }
-
-/* resource "librato_alert" "ecs-memory-reservation" {
-  name = "ecs.memory-reservation"
-  description = "Reserved memory more than 90%"
-  rearm_seconds = "86400"
-  services = ["${librato_service.slack.id}"]
-  condition {
-    type = "above"
-    threshold = 90
-    duration = 300
-    metric_name = "AWS.ECS.MemoryReservation"
-    source = "${var.region}.default"
-  }
-} */
-
-/* resource "librato_alert" "ecs-memory-utilization" {
-  name = "ecs.memory-utilization"
-  description = "Utilized memory more than 90%"
-  rearm_seconds = "3600"
-  services = ["${librato_service.slack.id}"]
-  condition {
-    type = "above"
-    threshold = 90
-    duration = 900
-    metric_name = "AWS.ECS.MemoryUtilization"
-    source = "${var.region}.default.*"
-  }
-} */
-
-/* resource "librato_alert" "ecs3-disk" {
-  name = "ecs3.disk"
-  description = "Disk space below 10%"
-  rearm_seconds = "3600"
-  services = ["${librato_service.slack.id}"]
-  condition {
-    type = "below"
-    threshold = 10
-    duration = 300
-    metric_name = "librato.df.root.percent_bytes.free"
-    summary_function = "min"
-    source = "ecs3.datacite.org"
-  }
-} */
-
