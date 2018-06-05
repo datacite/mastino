@@ -29,8 +29,3 @@ data "aws_route53_zone" "internal" {
   name         = "datacite.org"
   private_zone = true
 }
-
-provider "librato" {
-  email = "${var.librato_email}"
-  token = "${var.librato_token}"
-}
