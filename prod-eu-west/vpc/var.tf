@@ -56,6 +56,3 @@ variable "key_name" {}
 variable "lb_name" {
   default = "lb"
 }
-
-variable "librato_email" {}
-variable "librato_token" {}

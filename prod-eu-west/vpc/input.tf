@@ -130,8 +130,3 @@ data "template_file" "logs" {
     bucket_name = "logs.datacite.org"
   }
 }
-
-provider "librato" {
-  email = "${var.librato_email}"
-  token = "${var.librato_token}"
-}
