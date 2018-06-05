@@ -25,3 +25,8 @@ data "aws_lb_listener" "default" {
 data "aws_instance" "main" {
   instance_id = "${var.main_id}"
 }
+
+provider "librato" {
+  email = "${var.librato_email}"
+  token = "${var.librato_token}"
+}
