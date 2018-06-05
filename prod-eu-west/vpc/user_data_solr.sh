@@ -39,9 +39,9 @@ docker run -d -p "${solr_port}":80 --name solr \
   --volume /opt/solr:/data/solr/collection1 \
   --volume /opt/.m2:/root/.m2 \
   --restart always \
-  --log-driver=awslogs \
-  --log-opt awslogs-region="${region}" \
-  --log-opt awslogs-group=/ecs/solr \ 
+  # --log-driver=awslogs \
+  # --log-opt awslogs-region="${region}" \
+  # --log-opt awslogs-group=/ecs/solr \ 
   datacite/search:"${solr_tag}"
 
 
