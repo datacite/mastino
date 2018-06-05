@@ -23,8 +23,6 @@ variable "memcache_servers" {
 }
 
 variable "secret_key_base" {}
-variable "librato_email" {}
-variable "librato_token" {}
 variable "bugsnag_key" {}
 
 variable "librato_suites" {

@@ -43,8 +43,6 @@ variable "jwt_public_key" {}
 variable "orcid_update_uuid" {}
 variable "orcid_update_token" {}
 variable "github_personal_access_token" {}
-variable "librato_email" {}
-variable "librato_token" {}
 variable "bugsnag_key" {}
 variable "mailgun_api_key" {}
 

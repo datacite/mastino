@@ -5,11 +5,6 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
-provider "librato" {
-  email = "${var.librato_email}"
-  token = "${var.librato_token}"
-}
-
 data "aws_security_group" "datacite-private" {
   id = "${var.security_group_id}"
 }

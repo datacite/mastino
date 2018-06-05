@@ -39,8 +39,6 @@ variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "secret_key_base" {}
 variable "session_encrypted_cookie_salt" {}
-variable "librato_email" {}
-variable "librato_token" {}
 variable "bugsnag_key" {}
 variable "mailgun_api_key" {}
 variable "slack_webhook_url" {}

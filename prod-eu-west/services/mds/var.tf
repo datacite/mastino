@@ -15,6 +15,3 @@ variable "lb_name" {
 
 variable "main_id" {}
 variable "main_private_ip" {}
-
-variable "librato_email" {}
-variable "librato_token" {}

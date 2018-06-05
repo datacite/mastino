@@ -57,9 +57,6 @@ data "template_file" "api_task" {
     bugsnag_key        = "${var.bugsnag_key}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_email      = "${var.librato_email}"
-    librato_token      = "${var.librato_token}"
-    librato_suites     = "${var.librato_suites}"
     version            = "${var.spinone_tags["sha"]}"
   }
 }

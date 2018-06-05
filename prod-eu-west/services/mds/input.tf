@@ -4,11 +4,6 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-provider "librato" {
-  email = "${var.librato_email}"
-  token = "${var.librato_token}"
-}
-
 data "aws_route53_zone" "production" {
   name         = "datacite.org"
 }

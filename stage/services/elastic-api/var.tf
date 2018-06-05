@@ -42,8 +42,6 @@ variable "es_host" {
 
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
-variable "librato_email" {}
-variable "librato_token" {}
 variable "bugsnag_key" {}
 
 variable "librato_suites" {

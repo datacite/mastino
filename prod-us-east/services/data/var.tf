@@ -34,8 +34,6 @@ variable "memcache_servers" {
   default = "memcached2.datacite.org:11211"
 }
 
-variable "librato_email" {}
-variable "librato_token" {}
 variable "bugsnag_key" {}
 variable "ssh_public_key" {}
 

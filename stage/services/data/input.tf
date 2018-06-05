@@ -55,9 +55,6 @@ data "template_file" "data_task" {
     bugsnag_key        = "${var.bugsnag_key}"
     ssh_public_key     = "${var.ssh_public_key}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_email      = "${var.librato_email}"
-    librato_token      = "${var.librato_token}"
-    librato_suites     = "${var.librato_suites}"
     version            = "${var.content-negotiation_tags["sha"]}"
   }
 }

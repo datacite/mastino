@@ -62,18 +62,6 @@
         "value" : "stage"
       },
       {
-        "name" : "LIBRATO_USER",
-        "value" : "${librato_email}"
-      },
-      {
-        "name" : "LIBRATO_TOKEN",
-        "value" : "${librato_token}"
-      },
-      {
-        "name" : "LIBRATO_SUITES",
-        "value" : "${librato_suites}"
-      },
-      {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
       }
