@@ -57,7 +57,5 @@ variable "lb_name" {
   default = "lb"
 }
 
-provider "librato" {
-  email = "1"
-  token = "2"
-}
+variable "librato_email" {}
+variable "librato_token" {}
