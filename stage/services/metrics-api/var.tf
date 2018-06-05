@@ -29,10 +29,6 @@ variable "jwt_private_key" {}
 variable "bugsnag_key" {}
 variable "usage_url" {}
 
-variable "librato_suites" {
-  default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
-}
-
 variable "mysql_user" {}
 variable "mysql_password" {}
 variable "mysql_database" {

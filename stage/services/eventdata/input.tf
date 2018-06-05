@@ -51,7 +51,6 @@ data "template_file" "eventdata_task" {
     bugsnag_key        = "${var.bugsnag_key}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_suites     = "${var.librato_suites}"
     slack_webhook_url  = "${var.slack_webhook_url}"
     version            = "${var.lagottino_tags["sha"]}"
   }

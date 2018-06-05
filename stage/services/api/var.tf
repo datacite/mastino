@@ -46,10 +46,6 @@ variable "github_personal_access_token" {}
 variable "bugsnag_key" {}
 variable "mailgun_api_key" {}
 
-variable "librato_suites" {
-  default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
-}
-
 variable "github_milestones_url" {
   default = "https://api.github.com/repos/datacite/datacite"
 }

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# install librato collectd
-curl -s https://metrics-api.librato.com/agent_installer/0abf57a25e2294c3 | sudo bash
-
 service docker start
 
 # set ECS agent options

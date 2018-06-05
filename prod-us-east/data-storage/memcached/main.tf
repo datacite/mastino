@@ -27,37 +27,3 @@ resource "aws_route53_record" "memcached2" {
     ttl = "30"
     records = ["${aws_elasticache_cluster.memcached-us.cache_nodes.0.address}"]
 }
-
-// resource "librato_space" "memcached" {
-//     name = "Memcached"
-// }
-
-// resource "librato_space_chart" "memcached-network" {
-//   name = "Memcached Network Traffic"
-//   space_id = "${librato_space.memcached.id}"
-//   type = "line"
-
-//   stream {
-//     metric = "AWS.ElastiCache.NetworkBytesIn"
-//     source = "eu-west-1.memcached.0001"
-//   }
-//   stream {
-//     metric = "AWS.ElastiCache.NetworkBytesOut"
-//     source = "eu-west-1.memcached.0001"
-//   }
-// }
-
-// resource "librato_space_chart" "memcached-hits" {
-//   name = "Memcached Hits and Misses"
-//   space_id = "${librato_space.memcached.id}"
-//   type = "line"
-
-//   stream {
-//     metric = "AWS.ElastiCache.GetHits"
-//     source = "eu-west-1.memcached.0001"
-//   }
-//   stream {
-//     metric = "AWS.ElastiCache.GetMisses"
-//     source = "eu-west-1.memcached.0001"
-//   }
-// }

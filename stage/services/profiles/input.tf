@@ -67,7 +67,6 @@ data "template_file" "profiles_task" {
     google_client_secret = "${var.google_client_secret}"
     notification_access_token = "${var.notification_access_token}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_suites     = "${var.librato_suites}"
     version            = "${var.volpino_tags["sha"]}"
   }
 }

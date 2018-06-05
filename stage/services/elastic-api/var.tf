@@ -43,7 +43,3 @@ variable "es_host" {
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "bugsnag_key" {}
-
-variable "librato_suites" {
-  default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
-}
