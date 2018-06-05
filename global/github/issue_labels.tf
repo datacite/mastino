@@ -334,3 +334,10 @@ resource "github_issue_label" "re3data" {
   name       = "re3data"
   color      = "006b75"
 }
+
+resource "github_issue_label" "data science" {
+  count = "${length(var.github_repositories)}"
+  repository = "${var.github_repositories[count.index]}"
+  name       = "data science"
+  color      = "ffc000"
+}
