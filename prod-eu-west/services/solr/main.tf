@@ -5,7 +5,7 @@ resource "aws_lb_target_group" "solr" {
   vpc_id   = "${var.vpc_id}"
 
   health_check {
-    path = "/status"
+    path = "/hostname"
   }
 }
 
