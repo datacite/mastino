@@ -15,8 +15,8 @@ resource "aws_ecs_service" "bagit-stage" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "neo-stage" {
-  name = "/ecs/neo-stage"
+resource "aws_cloudwatch_log_group" "bagit-stage" {
+  name = "/ecs/bagit-stage"
 }
 
 # BagIt Task Definition

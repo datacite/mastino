@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "wsgi-stage" {
    cpu = "512"
    memory = "2048"
 
-   container_definitions = "${data.template_file.wsgi.rendered}"
+   container_definitions = "${data.template_file.wsgi_task.rendered}"
 }
 
 resource "aws_lb_target_group" "wsgi-stage" {

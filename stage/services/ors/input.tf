@@ -47,7 +47,7 @@ data "aws_lb_listener" "stage" {
 }
 
 # Template Task Definitions with a Password 
-data "template_file" "neo" {
+data "template_file" "neo_task" {
    template = "${file("task-definitions/neo.json")}"
 
    vars { 
@@ -56,7 +56,7 @@ data "template_file" "neo" {
    }
 }
 
-data "template_file" "wsgi" {
+data "template_file" "wsgi_task" {
    template = "${file("task-definitions/wsgi.json")}"
 
    vars {
@@ -67,7 +67,7 @@ data "template_file" "wsgi" {
    }
 }
 
-data "template_file" "bagit" {
+data "template_file" "bagit_task" {
    template = "${file("task-definitions/bagit.json")}"
 
    vars {
