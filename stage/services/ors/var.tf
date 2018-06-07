@@ -18,16 +18,11 @@ variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
-variable "neo_password" {
-   default = "nihdc_ors"
-}
+variable "neo_user" {}
+variable "neo_password" {}
 
 variable "neo_url" {
    default = "neo.ors.local"
-}
-
-variable "neo_user" {
-   default = "neo4j"
 }
 
 variable "proxy_url" {
