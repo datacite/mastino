@@ -5,9 +5,8 @@
       "essential": true,
       "portMappings" : [
          {
-            "containerPort": 7687 ,
-            "hostPort": 7687 ,
-            "protocol": "tcp"
+            "containerPort": 7687,
+            "hostPort": 7687
          }
       ],
       "environment": [ 
