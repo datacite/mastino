@@ -1,6 +1,6 @@
 [
    {
-      "name": "bagit",
+      "name": "bagit-stage",
       "image": "jackofsum/ors-bagit",
       "essential": true,
       "portMappings" : [

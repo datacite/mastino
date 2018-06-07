@@ -1,6 +1,6 @@
 [
    {
-      "name": "neo",
+      "name": "neo-stage",
       "image": "neo4j:latest",
       "essential": true,
       "portMappings" : [
