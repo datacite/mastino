@@ -29,7 +29,15 @@
             "containerPort": 80,
             "hostPort": 80
          }
-      ]
+      ],
+      "logConfiguration": { 
+        "logDriver": "awslogs",
+        "options": { 
+            "awslogs-group" : "/ecs/nginx-stage",
+            "awslogs-region": "eu-west-1",
+            "awslogs-stream-prefix": "ecs"
+        }
+      }
    }
 
 ]
