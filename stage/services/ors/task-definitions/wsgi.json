@@ -11,16 +11,15 @@
          {"name": "NEO_URL", "value":"${neo_url}"}
       ],
       "entrypoint": ["uwsgi", "--ini", "new.ini"],
-      "logConfiguration" : {
-         "logDriver": "awslogs",
-         "options": {
-            "awslogs-group": "ORS",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "wsgi"
-            } 
-         }
+      "logConfiguration": { 
+        "logDriver": "awslogs",
+        "options": { 
+          "awslogs-group" : "/ecs/wgsi-stage",
+          "awslogs-region": "eu-west-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
    },
-
    {
       "name": "nginx",
       "image": "jackofsum/ors-nginx",

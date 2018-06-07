@@ -15,15 +15,13 @@
          {"name": "dbms_connectors_default__advertised__address", "value": "neo.ors.local"},
          {"name": "dbms_connectors_default__listen__address", "value": "0.0.0.0"}
       ],
-      "logConfiguration" : {
-         "logDriver": "awslogs",
-         "options": {
-            "awslogs-group": "ORS",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "neo"
-            } 
-         }
+      "logConfiguration": { 
+        "logDriver": "awslogs",
+        "options": { 
+            "awslogs-group" : "/ecs/neo-stage",
+            "awslogs-region": "eu-west-1",
+            "awslogs-stream-prefix": "ecs"
+        }
+      }
    }
-
-
 ]

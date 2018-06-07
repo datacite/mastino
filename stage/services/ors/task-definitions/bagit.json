@@ -15,13 +15,13 @@
             {"name": "NEO_URL", "value": "${neo_url}"}
          ],
       "entrypoint" : ["./func"],
-      "logConfiguration" : {
-         "logDriver": "awslogs",
-         "options": {
-            "awslogs-group": "ORS",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "bagit"
-            } 
-         }
+      "logConfiguration": { 
+        "logDriver": "awslogs",
+        "options": { 
+        "awslogs-group" : "/ecs/bagit-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+}
    }
 ]
