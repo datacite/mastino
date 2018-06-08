@@ -1,34 +1,7 @@
 [
    {
-      "name": "wsgi-stage",
+      "name": "wsgi",
       "image": "jackofsum/ors-wsgi:latest",
-      "essential": true,
-      "portMappings" : [],
-      "environment": [ 
-         {"name": "PROXY_URL", "value": "${proxy_url}" },
-         {"name": "NEO_PASSWORD", "value":"${neo_password}"},
-         {"name": "NEO_USER", "value":"${neo_user}"},
-         {"name": "NEO_URL", "value":"${neo_url}"}
-      ],
-      "entrypoint": ["uwsgi", "--ini", "new.ini"],
-      "portMappings" : [
-        {
-          "containerPort": 80,
-          "hostPort": 80
-        }
-      ],
-      "logConfiguration": { 
-        "logDriver": "awslogs",
-        "options": { 
-          "awslogs-group" : "/ecs/wgsi-stage",
-          "awslogs-region": "eu-west-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
-   },
-   {
-      "name": "nginx",
-      "image": "jackofsum/ors-nginx",
       "essential": true,
       "portMappings" : [
          {
@@ -36,14 +9,20 @@
             "hostPort": 80
          }
       ],
-      "logConfiguration": { 
-        "logDriver": "awslogs",
-        "options": { 
-            "awslogs-group" : "/ecs/nginx-stage",
-            "awslogs-region": "eu-west-1",
-            "awslogs-stream-prefix": "ecs"
-        }
-      }
+      "environment": [ 
+         {"name": "PROXY_URL", "value": "${proxy_url}" },
+         {"name": "NEO_PASSWORD", "value":"${neo_password}"},
+         {"name": "NEO_USER", "value":"${neo_user}"},
+         {"name": "NEO_URL", "value":"${neo_url}"}
+      ],
+      "entrypoint": ["uwsgi", "--ini", "http.ini"],
+      "logConfiguration" : {
+         "logDriver": "awslogs",
+         "options": {
+            "awslogs-group": "ORS",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "wsgi"
+            } 
+         }
    }
-
 ]
