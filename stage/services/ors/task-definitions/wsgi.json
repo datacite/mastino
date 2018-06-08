@@ -16,13 +16,14 @@
          {"name": "NEO_URL", "value":"${neo_url}"}
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
-      "logConfiguration" : {
+      "logConfiguration": { 
          "logDriver": "awslogs",
-         "options": {
-            "awslogs-group": "ORS",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "wsgi"
-            } 
-         }
-   }
+         "options": { 
+            "awslogs-group" : "/ecs/data-stage",
+            "awslogs-region": "eu-west-1",
+            "awslogs-stream-prefix": "ecs"
+            }
+      }
+  }
+
 ]
