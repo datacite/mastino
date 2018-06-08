@@ -16,7 +16,7 @@ resource "aws_ecs_service" "wsgi-stage" {
 
   load_balancer {
     target_group_arn = "${aws_lb_target_group.wsgi-stage.id}"
-    container_name   = "nginx"
+    container_name   = "wsgi-stage"
     container_port   = "80"
   }
 }
