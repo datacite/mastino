@@ -51,3 +51,4 @@ variable "cluster" {
 
 variable "key_name" {}
 variable "dd_api_key" {}
+variable "variable_stage" {}
