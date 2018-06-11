@@ -49,12 +49,7 @@ resource "aws_lb_listener_rule" "api-stage" {
 
   condition {
     field  = "host-header"
-    values = ["${data.aws_route53_record.api-stage.name}"]
-  }
-
-  condition {
-    field  = "path-pattern"
-    values = ["/reports*"]
+    values = ["${aws_route53_record.api-stage.name}"]
   }
 }
 
