@@ -35,7 +35,12 @@ resource "aws_lb_listener_rule" "metrics-api" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.metrics-api.name}"]
+    values = ["api.datacite.org"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/reports*"]
   }
 }
 

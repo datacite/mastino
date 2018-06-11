@@ -35,7 +35,12 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.metrics-api-stage.name}"]
+    values = ["api.test.datacite.org"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/reports*"]
   }
 }
 

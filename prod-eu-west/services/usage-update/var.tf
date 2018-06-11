@@ -14,4 +14,3 @@ variable "push_url" {}
 variable "environment" {}
 variable "usage_url" {}
 variable "slack_webhook_url" {}
-
