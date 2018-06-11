@@ -1,6 +1,11 @@
 resource "aws_ecs_task_definition" "datacite-related" {
   family = "datacite-related"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.datacite_related_task.rendered}"
+}
+
+resource "aws_cloudwatch_log_group" "datacite-related" {
+  name = "/ecs/datacite-related"
 }
 
 resource "aws_cloudwatch_event_rule" "datacite-related" {

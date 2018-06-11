@@ -11,6 +11,14 @@
       "--access_token", "${access_token}",
       "--source_token", "${source_token}"
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/usage-update-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment" : [
       {
         "name" : "ENVIRONMENT",

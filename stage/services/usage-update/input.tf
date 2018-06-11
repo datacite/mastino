@@ -16,6 +16,7 @@ data "template_file" "usage_update_stage_task" {
     environment  = "${var.environment}"
     region       = "${var.region}"
     slack_webhook_url       = "${var.slack_webhook_url}"
+    usage_url       = "${var.usage_url}"
   }
 }
 data "aws_iam_role" "lambda" {
@@ -32,4 +33,8 @@ data "aws_subnet" "datacite-private" {
 
 data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
+}
+
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
 }

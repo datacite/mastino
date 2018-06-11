@@ -37,9 +37,6 @@ data "template_file" "metrics-api_task" {
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_email      = "${var.librato_email}"
-    librato_token      = "${var.librato_token}"
-    librato_suites     = "${var.librato_suites}"
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"
@@ -49,6 +46,7 @@ data "template_file" "metrics-api_task" {
     mysql_password     = "${var.mysql_password}"
     mysql_host         = "${var.mysql_host}"
     bugsnag_key        = "${var.bugsnag_key}"
+    usage_url          = "${var.usage_url}"
     version            = "${var.sashimi_tags["sha"]}"
   }
 }

@@ -3,7 +3,7 @@ resource "aws_ecs_service" "data-us" {
   cluster = "${data.aws_ecs_cluster.default-us.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.data-us.arn}"
-  desired_count = 1
+  desired_count = 2
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -24,8 +24,13 @@ resource "aws_ecs_service" "data-us" {
   ]
 }
 
+resource "aws_cloudwatch_log_group" "data-us" {
+  name = "/ecs/data"
+}
+
 resource "aws_ecs_task_definition" "data-us" {
   family = "data-us"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"

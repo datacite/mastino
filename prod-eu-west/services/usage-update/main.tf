@@ -1,5 +1,6 @@
 resource "aws_ecs_task_definition" "usage-update" {
   family = "usage-update"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.usage_update_task.rendered}"
 }
 
@@ -28,10 +29,13 @@ resource "aws_lambda_function" "usage-update" {
   environment {
     variables = {
       ecs_task_def = "usage-update"
-      cluster = "deafult"
+      cluster = "default"
       count = 1
     }
   }
+}
+resource "aws_cloudwatch_log_group" "usage-update" {
+  name = "/ecs/usage-update"
 }
 
 resource "aws_lambda_permission" "usage-update" {

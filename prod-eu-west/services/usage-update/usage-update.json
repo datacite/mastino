@@ -11,6 +11,14 @@
       "--access_token", "${access_token}",
       "--source_token", "${source_token}"
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/usage-update",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment" : [
       {
         "name" : "ENVIRONMENT",
@@ -25,10 +33,10 @@
         "value" : "${access_key}"
       },
       {
-        "name" : "SASHIMI_URL",
-        "value" : "${usage_url}"
+        "name" : "SLACK_WEBHOOK_URL",
+        "value" : "${slack_webhook_url}"
       },
-            {
+      {
         "name" : "AWS_SECRET_ACCESS_KEY",
         "value" : "${secret_key}"
       }

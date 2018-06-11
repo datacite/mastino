@@ -23,10 +23,4 @@ variable "memcache_servers" {
 }
 
 variable "secret_key_base" {}
-variable "librato_email" {}
-variable "librato_token" {}
 variable "bugsnag_key" {}
-
-variable "librato_suites" {
-  default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
-}

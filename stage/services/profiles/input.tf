@@ -21,6 +21,10 @@ data "aws_iam_role" "ecs_service" {
   name = "ecs_service"
 }
 
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
 data "aws_lb" "stage" {
   name = "${var.lb_name}"
 }
@@ -47,6 +51,7 @@ data "template_file" "profiles_task" {
     orcid_token        = "${var.orcid_token}"
     search_url         = "${var.search_url}"
     solr_url           = "${var.solr_url}"
+    blog_url           = "${var.blog_url}"
     mysql_user         = "${var.mysql_user}"
     mysql_password     = "${var.mysql_password}"
     mysql_database     = "${var.mysql_database}"
@@ -62,9 +67,6 @@ data "template_file" "profiles_task" {
     google_client_secret = "${var.google_client_secret}"
     notification_access_token = "${var.notification_access_token}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_email      = "${var.librato_email}"
-    librato_token      = "${var.librato_token}"
-    librato_suites     = "${var.librato_suites}"
     version            = "${var.volpino_tags["sha"]}"
   }
 }

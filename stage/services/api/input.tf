@@ -21,6 +21,10 @@ data "aws_iam_role" "ecs_service" {
   name = "ecs_service"
 }
 
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
 data "aws_lb" "stage" {
   name = "${var.lb_name}"
 }
@@ -53,9 +57,6 @@ data "template_file" "api_task" {
     bugsnag_key        = "${var.bugsnag_key}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_email      = "${var.librato_email}"
-    librato_token      = "${var.librato_token}"
-    librato_suites     = "${var.librato_suites}"
     version            = "${var.spinone_tags["sha"]}"
   }
 }

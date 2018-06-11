@@ -11,6 +11,14 @@
         "containerPort": 80
       }
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/cheetoh-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
@@ -43,18 +51,6 @@
       {
         "name" : "MEMCACHE_SERVERS",
         "value" : "${memcache_servers}"
-      },
-      {
-        "name" : "LIBRATO_USER",
-        "value" : "${librato_email}"
-      },
-      {
-        "name" : "LIBRATO_TOKEN",
-        "value" : "${librato_token}"
-      },
-      {
-        "name" : "LIBRATO_SUITES",
-        "value" : "${librato_suites}"
       },
       {
         "name" : "SANDBOX",

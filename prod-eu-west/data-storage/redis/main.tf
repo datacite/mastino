@@ -39,29 +39,10 @@ resource "aws_elasticache_parameter_group" "redis" {
     }
 }
 
-resource "librato_space" "redis" {
-    name = "Redis"
-}
-
 resource "aws_route53_record" "redis" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name    = "redis1.datacite.org"
   type    = "CNAME"
   ttl     = "${var.ttl}"
   records = ["${aws_elasticache_cluster.redis.cache_nodes.0.address}"]
-}
-
-resource "librato_space_chart" "redis-network" {
-  name = "Redis Network Traffic"
-  space_id = "${librato_space.redis.id}"
-  type = "line"
-
-  stream {
-    metric = "AWS.ElastiCache.NetworkBytesIn"
-    source = "eu-west-1.redis.0001"
-  }
-  stream {
-    metric = "AWS.ElastiCache.NetworkBytesOut"
-    source = "eu-west-1.redis.0001"
-  }
 }

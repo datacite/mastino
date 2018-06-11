@@ -17,8 +17,13 @@ resource "aws_ecs_service" "eventdata-stage" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "eventdata-stage" {
+  name = "/ecs/eventdata-stage"
+}
+
 resource "aws_ecs_task_definition" "eventdata-stage" {
   family = "eventdata-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.eventdata_task.rendered}"
 }
 
@@ -29,7 +34,7 @@ resource "aws_lb_target_group" "eventdata-stage" {
   vpc_id   = "${var.vpc_id}"
 
   health_check {
-    path = "/"
+    path = "/heartbeat"
   }
 }
 

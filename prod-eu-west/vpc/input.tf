@@ -5,11 +5,6 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
-provider "librato" {
-  email = "${var.librato_email}"
-  token = "${var.librato_token}"
-}
-
 data "aws_security_group" "datacite-public" {
   id = "${var.security_group_public_id}"
 }
@@ -105,8 +100,8 @@ data "template_file" "ecs-solr-user-data-boothook" {
     solr_url           = "${var.solr_url}"
     solr_user          = "${var.solr_user}"
     solr_password      = "${var.solr_password}"
-    syslog_host        = "${var.syslog_host}"
-    syslog_port        = "${var.syslog_port}"
+    region             = "${var.region}"
+    dd_api_key         = "${var.dd_api_key}"
     solr_version       = "${lookup(var.search_tags, count.index)}"
     solr_tag           = "${lookup(var.search_tags, count.index)}"
   }

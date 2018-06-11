@@ -44,13 +44,26 @@ resource "aws_lb_listener_rule" "metrics-api" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "metrics-api" {
+  name = "/ecs/metrics-api"
+}
+
 resource "aws_ecs_task_definition" "metrics-api" {
   family = "metrics-api"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.metrics-api_task.rendered}"
 }
 
 resource "aws_route53_record" "metrics-api" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
+  name = "metrics.datacite.org"
+  type = "CNAME"
+  ttl = "${var.ttl}"
+  records = ["${data.aws_lb.default.dns_name}"]
+}
+
+resource "aws_route53_record" "split-metrics-api" {
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "metrics.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"

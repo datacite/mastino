@@ -6,6 +6,14 @@
     "memory": 512,
     "essential": true,
     "hostname": "pidcheck-crawler-test",
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/pidcheck-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment" : [
       {
         "name" : "LOG_LEVEL",

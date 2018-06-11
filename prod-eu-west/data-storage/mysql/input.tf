@@ -5,11 +5,6 @@ provider "aws" {
   version    = "~> 1.6"
 }
 
-provider "librato" {
-  email = "${var.librato_email}"
-  token = "${var.librato_token}"
-}
-
 data "aws_db_instance" "db" {
   db_instance_identifier = "db2"
 }

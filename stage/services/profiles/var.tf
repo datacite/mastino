@@ -39,6 +39,9 @@ variable "app_url" {
 variable "cdn_url" {
   default = "https://assets.test.datacite.org"
 }
+variable "blog_url" {
+  default = "https://blog.test.datacite.org"
+}
 
 variable "redis_url" {}
 variable "memcache_servers" {
@@ -54,12 +57,6 @@ variable "orcid_token" {}
 variable "notification_access_token" {}
 variable "secret_key_base" {}
 variable "github_personal_access_token" {}
-variable "librato_email" {}
-variable "librato_token" {}
-
-variable "librato_suites" {
-  default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
-}
 
 variable "mysql_user" {}
 variable "mysql_password" {}

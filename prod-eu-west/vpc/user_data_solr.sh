@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# install librato collectd
-curl -s https://metrics-api.librato.com/agent_installer/0abf57a25e2294c3 | sudo bash
-
 service docker start
 
 # set ECS agent options
@@ -13,12 +10,16 @@ service docker start
 
 start ecs
 
-# start logspout service container
-docker run -d --name="logspout" \
-  --volume=/var/run/docker.sock:/var/run/docker.sock \
-  --restart always \
-  gliderlabs/logspout \
-  syslog://"${syslog_host}":"${syslog_port}"
+# start datadog container
+if [ "${hostname}" == "solr1.datacite.org" ]; then
+  docker run -d --name "dd-agent" \
+    --volume /var/run/docker.sock:/var/run/docker.sock:ro \
+    --volume /proc/:/host/proc/:ro \
+    --volume /cgroup/:/host/sys/fs/cgroup:ro \
+    --env DD_API_KEY="${dd_api_key}" \
+    --restart always \
+    datadog/agent:latest
+fi
 
 # start solr docker container
 docker run -d -p "${solr_port}":80 --name solr \
@@ -39,7 +40,6 @@ docker run -d -p "${solr_port}":80 --name solr \
   --volume /opt/.m2:/root/.m2 \
   --restart always \
   datacite/search:"${solr_tag}"
-
 
 # start solr indexing
 curl -u "${solr_user}":"${solr_password}" http://127.0.0.1:"${solr_port}"/admin/dataimport?command=full-import&commit=true&clean=true&optimize=false&wt=json

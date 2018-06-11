@@ -24,8 +24,13 @@ resource "aws_ecs_service" "data-stage" {
   ]
 }
 
+resource "aws_cloudwatch_log_group" "data-stage" {
+  name = "/ecs/data-stage"
+}
+
 resource "aws_ecs_task_definition" "data-stage" {
   family = "data-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"

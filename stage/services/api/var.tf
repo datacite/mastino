@@ -43,14 +43,8 @@ variable "jwt_public_key" {}
 variable "orcid_update_uuid" {}
 variable "orcid_update_token" {}
 variable "github_personal_access_token" {}
-variable "librato_email" {}
-variable "librato_token" {}
 variable "bugsnag_key" {}
 variable "mailgun_api_key" {}
-
-variable "librato_suites" {
-  default = "rails_controller,rails_status,rails_cache,rails_job,rails_sql,rack"
-}
 
 variable "github_milestones_url" {
   default = "https://api.github.com/repos/datacite/datacite"

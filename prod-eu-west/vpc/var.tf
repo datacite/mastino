@@ -9,8 +9,8 @@ variable "ecs_ami" {
   description = "Amazon Linux ECS-optimized AMI"
 
   default = {
-    eu-west-1 = "ami-bfb5fec6"
-    us-east-1 = "ami-cb17d8b6"
+    eu-west-1 = "ami-c91624b0"
+    us-east-1 = "ami-5253c32d"
   }
 }
 variable "security_group_public_id" {}
@@ -45,17 +45,13 @@ variable "search_tags" {
   type = "map"
 }
 
-variable "syslog_host" {}
-variable "syslog_port" {}
+variable "dd_api_key" {}
 
 variable "cluster" {
   default = "default"
 }
 
 variable "key_name" {}
-
-variable "librato_email" {}
-variable "librato_token" {}
 
 variable "lb_name" {
   default = "lb"

@@ -1,6 +1,11 @@
 resource "aws_ecs_task_definition" "orcid-update" {
   family = "orcid-update"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.orcid_update_task.rendered}"
+}
+
+resource "aws_cloudwatch_log_group" "orcid-update" {
+  name = "/ecs/orcid-update"
 }
 
 resource "aws_cloudwatch_event_rule" "orcid-update" {

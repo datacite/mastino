@@ -28,7 +28,12 @@ resource "aws_lb_target_group" "http-redirect-stage" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "http-redirect-stage" {
+  name = "/ecs/http-redirect-stage"
+}
+
 resource "aws_ecs_task_definition" "http-redirect-stage" {
   family = "http-redirect-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.http-redirect_task.rendered}"
 }

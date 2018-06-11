@@ -12,6 +12,14 @@
         "hostPort": 80
       }
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/data-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment" : [
       {
         "name" : "SEARCH_URL",
@@ -52,18 +60,6 @@
       {
         "name" : "RAILS_ENV",
         "value" : "stage"
-      },
-      {
-        "name" : "LIBRATO_USER",
-        "value" : "${librato_email}"
-      },
-      {
-        "name" : "LIBRATO_TOKEN",
-        "value" : "${librato_token}"
-      },
-      {
-        "name" : "LIBRATO_SUITES",
-        "value" : "${librato_suites}"
       },
       {
         "name" : "GITHUB_VERSION",

@@ -21,6 +21,10 @@ data "aws_iam_role" "ecs_service" {
   name = "ecs_service"
 }
 
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
 data "aws_lb" "stage" {
   name = "${var.lb_name}"
 }
@@ -37,9 +41,6 @@ data "template_file" "cheetoh_task" {
     secret_key_base    = "${var.secret_key_base}"
     bugsnag_key        = "${var.bugsnag_key}"
     memcache_servers   = "${var.memcache_servers}"
-    librato_email      = "${var.librato_email}"
-    librato_token      = "${var.librato_token}"
-    librato_suites     = "${var.librato_suites}"
     version            = "${var.cheetoh_tags["sha"]}"
   }
 }

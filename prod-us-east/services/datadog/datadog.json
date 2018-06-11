@@ -1,0 +1,29 @@
+[
+  {
+    "name": "datadog-agent",
+    "image": "datadog/agent:latest",
+    "cpu": 256,
+    "memory": 512,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/datadog",
+         "awslogs-region": "us-east-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name": "DD_API_KEY",
+        "value": "${dd_api_key}"
+      },
+      {
+        "name": "ECS_FARGATE",
+        "value": "true"
+      }
+      
+    ]
+  }
+]
