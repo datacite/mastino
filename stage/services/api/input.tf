@@ -13,6 +13,10 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
+data "aws_route53_zone" "api-stage" {
+  name = "api.test.datacite.org"
+}
+
 data "aws_ecs_cluster" "stage" {
   cluster_name = "stage"
 }

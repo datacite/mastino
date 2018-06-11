@@ -8,6 +8,10 @@ data "aws_route53_zone" "production" {
   name = "datacite.org"
 }
 
+data "aws_route53_zone" "api" {
+  name = "api.datacite.org"
+}
+
 data "aws_route53_zone" "internal" {
   name = "datacite.org"
   private_zone = true
