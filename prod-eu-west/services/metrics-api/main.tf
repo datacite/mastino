@@ -26,7 +26,7 @@ resource "aws_lb_target_group" "metrics-api" {
 
 resource "aws_lb_listener_rule" "metrics-api" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 115
+  priority     = 114
 
   action {
     type             = "forward"
