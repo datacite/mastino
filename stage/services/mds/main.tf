@@ -60,7 +60,7 @@ resource "aws_route53_record" "split-mds-stage" {
    records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-resource "aws_route53_record" "mds-stage" {
+resource "aws_route53_record" "mds-legacy-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "mds-legacy.test.datacite.org"
    type = "CNAME"
@@ -68,7 +68,7 @@ resource "aws_route53_record" "mds-stage" {
    records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-resource "aws_route53_record" "split-mds-stage" {
+resource "aws_route53_record" "split-mds-legacy-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "mds-legacy.test.datacite.org"
    type = "CNAME"
