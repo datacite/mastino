@@ -11,7 +11,7 @@ resource "aws_lb_target_group" "mds-legacy-stage" {
 
 resource "aws_lb_listener_rule" "mds-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 2
+  priority     = 1
 
   action {
     type             = "forward"
@@ -26,7 +26,7 @@ resource "aws_lb_listener_rule" "mds-stage" {
 
 resource "aws_lb_listener_rule" "mds-legacy-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 3
+  priority     = 2
 
   action {
     type             = "forward"
