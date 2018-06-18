@@ -28,6 +28,10 @@ resource "aws_lb_target_group" "metrics-api-stage" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "metrics-api-stage" {
+  name = "/ecs/metrics-api-stage"
+}
+
 resource "aws_lb_listener_rule" "metrics-api-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 24
@@ -50,6 +54,7 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
 
 resource "aws_ecs_task_definition" "metrics-api-stage" {
   family = "metrics-api-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions =  "${data.template_file.metrics-api_task.rendered}"
 }
 
