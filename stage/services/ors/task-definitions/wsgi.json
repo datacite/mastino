@@ -24,6 +24,23 @@
             "awslogs-stream-prefix": "ecs"
             }
       }
+  },
+
+  {
+     "name": "redis",
+     "image": "redis:latest"
+  },
+
+  {
+     "name": "celery_worker",
+     "image": "jackofsum/ors-wsgi:latest",
+     "essential": true,
+     "entrypoint": ["celery", "-A", "cel", "worker", "--loglevel", "info"],
+      "environment": [ 
+         {"name": "NEO_PASSWORD", "value":"${neo_password}"},
+         {"name": "NEO_USER", "value":"${neo_user}"},
+         {"name": "NEO_URL", "value":"${neo_url}"}
+      ]
   }
 
 ]

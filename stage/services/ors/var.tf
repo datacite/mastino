@@ -26,5 +26,5 @@ variable "neo_url" {
 }
 
 variable "proxy_url" {
-   default = "https://ezid.cdlib.org/id/"
+   default = "https://ors.test.datacite.org"
 }
