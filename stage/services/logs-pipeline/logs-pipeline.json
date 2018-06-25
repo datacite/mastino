@@ -1,0 +1,61 @@
+[
+  {
+    "name": "logs-pipeline-stage",
+    "image": "datacite/shiba-inu",
+    "cpu": 512,
+    "memory": 1000,
+    "essential": true,
+    "hostname": "logs-pipeline-stage",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/logs-pipeline-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "debug"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "JWT_PRIVATE_KEY",
+        "value" : "${jwt_private_key}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+            {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_S3_BUCKET",
+        "value" : "${s3_bucket}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
