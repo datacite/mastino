@@ -58,6 +58,7 @@ resource "aws_service_discovery_service" "neo" {
 }
 
 
+# Service Discovery Namepace
 resource "aws_service_discovery_private_dns_namespace" "ors_namespace" {
    name = "ors.local"
    description = "Private DNS namespace for connecting containers between services"
