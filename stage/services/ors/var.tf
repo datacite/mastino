@@ -23,11 +23,11 @@ variable "neo_password" {}
 
 
 variable "redis_url" {
-   default = "redis.ors.local"
+   default = "redis1.test.datacite.org"
 }
 
 variable "neo_url" {
-   default = "neo.ors.local"
+   default = "redis1.test.datacite.org"
 }
 
 variable "proxy_url" {
