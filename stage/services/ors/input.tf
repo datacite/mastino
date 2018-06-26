@@ -56,6 +56,7 @@ data "template_file" "neo_task" {
    }
 }
 
+
 data "template_file" "wsgi_task" {
    template = "${file("task-definitions/wsgi.json")}"
 
@@ -64,7 +65,7 @@ data "template_file" "wsgi_task" {
       neo_url        = "${var.neo_url}"
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
-      redis_url = "${var.redis_url}"
+      redis_url      = "${var.redis_url}"
    }
 }
 
@@ -85,18 +86,6 @@ data "template_file" "celery_task" {
       neo_url        = "${var.neo_url}"
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
-      redis_url = "${var.redis_url}"
+      redis_url      = "${var.redis_url}"
    }
-}
-
-
-data "template_file" "redis_task" {
-   template = "${file("task-definitions/redis.json")}"
-}
-
-
-resource "aws_service_discovery_private_dns_namespace" "ors_namespace" {
-   name = "ors.local"
-   description = "Private DNS namespace for connecting containers between services"
-   vpc = "${data.aws_subnet.datacite-private.vpc_id}"
 }

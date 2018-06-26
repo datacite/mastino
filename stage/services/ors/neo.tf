@@ -20,9 +20,11 @@ resource "aws_ecs_service" "neo-stage" {
 
 }
 
+
 resource "aws_cloudwatch_log_group" "neo-stage" {
   name = "/ecs/neo-stage"
 }
+
 
 # Neo Task Definition
 resource "aws_ecs_task_definition" "neo-stage" {
@@ -35,6 +37,7 @@ resource "aws_ecs_task_definition" "neo-stage" {
 
    container_definitions = "${data.template_file.neo_task.rendered}"
 }
+
 
 # Neo Service Discovery
 resource "aws_service_discovery_service" "neo" {
@@ -52,5 +55,12 @@ resource "aws_service_discovery_service" "neo" {
       }
    }
 
+}
+
+
+resource "aws_service_discovery_private_dns_namespace" "ors_namespace" {
+   name = "ors.local"
+   description = "Private DNS namespace for connecting containers between services"
+   vpc = "${data.aws_subnet.datacite-private.vpc_id}"
 }
 
