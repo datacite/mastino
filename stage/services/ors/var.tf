@@ -22,7 +22,7 @@ variable "neo_user" {}
 variable "neo_password" {}
 
 variable "redis_url" {
-   default = "redis1.test.datacite.org"
+   default = "redis://redis1.test.datacite.org:6379/6"
 }
 
 variable "neo_url" {
