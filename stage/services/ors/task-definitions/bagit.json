@@ -21,7 +21,7 @@
         "awslogs-group" : "/ecs/bagit-stage",
         "awslogs-region": "eu-west-1",
         "awslogs-stream-prefix": "ecs"
-      }
-}
+               }
+         }
    }
 ]

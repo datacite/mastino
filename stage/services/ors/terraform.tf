@@ -1,7 +1,7 @@
 terraform {
    required_version = ">= 0.11"
    
-  backend "atlas" {
-    name         = "datacite-ng/stage-services-ors"
-  }
+// backend "atlas" {
+//   name         = "datacite-ng/stage-services-ors"
+//  }
 }

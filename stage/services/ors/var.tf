@@ -21,10 +21,16 @@ variable "subnet_datacite-alt_id" {}
 variable "neo_user" {}
 variable "neo_password" {}
 
+
+variable "redis_url" {
+   default = "redis1.test.datacite.org"
+}
+
 variable "neo_url" {
    default = "neo.ors.local"
 }
 
 variable "proxy_url" {
-   default = "https://ors.test.datacite.org"
+   default = "ors.test.datacite.org"
 }
+
