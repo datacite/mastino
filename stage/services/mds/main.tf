@@ -51,32 +51,94 @@ resource "aws_route53_record" "split-mds-stage" {
    records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-// resource "aws_lb_listener_rule" "mds-stage" {
-//   listener_arn = "${data.aws_lb_listener.stage.arn}"
-//   priority     = 2
+resource "aws_lb_target_group" "mds-stage" {
+  name     = "mds-stage"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = "${var.vpc_id}"
+  target_type = "ip"
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.mds-legacy-stage.arn}"
-//   }
+  health_check {
+    path = "/heartbeat"
+  }
+}
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${aws_route53_record.mds-stage.name}"]
-//   }
-// }
+resource "aws_lb_listener_rule" "mds-stage-doi" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 2
 
-// resource "aws_lb_listener_rule" "mds-legacy-stage" {
-//   listener_arn = "${data.aws_lb_listener.stage.arn}"
-//   priority     = 5
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds-legacy-stage.arn}"
+  }
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.mds-legacy-stage.arn}"
-//   }
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.mds-stage.name}"]
+  }
+  
+  condition {
+    field  = "path-pattern"
+    values = ["/doi*"]
+  }
+}
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${aws_route53_record.mds-stage.name}"]
-//   }
-// }
+resource "aws_lb_listener_rule" "mds-stage-metadata" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 5
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.mds-stage.name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/metadata*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "mds-stage-media" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 6
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.mds-stage.name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/media*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "mds-stage-heartbeat" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 7
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.mds-stage.name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/heartbeat"]
+  }
+}
