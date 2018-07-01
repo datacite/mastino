@@ -1,0 +1,54 @@
+[
+  {
+    "name": "mds-stage",
+    "image": "datacite/poodle",
+    "cpu": 512,
+    "memory": 2048,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/mds-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite MDS API Test"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
