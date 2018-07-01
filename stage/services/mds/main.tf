@@ -69,7 +69,7 @@ resource "aws_lb_listener_rule" "mds-stage-doi" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy-stage.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
   }
 
   condition {
