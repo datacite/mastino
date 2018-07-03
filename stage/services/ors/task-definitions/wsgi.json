@@ -1,14 +1,21 @@
 [
    {
-      "name": "wsgi",
-      "image": "jackofsum/ors-wsgi:latest",
+      "name": "nginx",
+      "image": "jackofsum/ors-nginx:latest",
       "essential": true,
       "portMappings" : [
          {
-            "containerPort": 8080,
-            "hostPort": 8080
-         }
-      ],
+            "containerPort": 80,
+            "hostPort": 80
+            }
+         ]
+   },
+
+
+   {
+      "name": "wsgi",
+      "image": "jackofsum/ors-wsgi:latest",
+      "essential": true,
       "environment": [ 
          {"name": "PROXY_URL", "value": "${proxy_url}" },
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},
