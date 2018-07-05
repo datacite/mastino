@@ -5,8 +5,8 @@
       "essential": true,
       "portMappings" : [
          {
-            "containerPort": 80,
-            "hostPort": 80
+            "containerPort": 8080,
+            "hostPort": 8080
             }
          ]
    },
@@ -21,7 +21,8 @@
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},
          {"name": "NEO_USER", "value":"${neo_user}"},
          {"name": "NEO_URL", "value":"${neo_url}"},
-         {"name": "REDIS_URL", "value": "${redis_url}"}
+         {"name": "REDIS_URL", "value": "${redis_url}"},
+         {"name": "DATACITE_URL", "value": "${datacite_url}"}
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
       "logConfiguration": { 

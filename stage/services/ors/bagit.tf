@@ -13,6 +13,7 @@ resource "aws_ecs_service" "bagit-stage" {
       "${data.aws_subnet.datacite-alt.id}"
     ]
   }
+
 }
 
 resource "aws_cloudwatch_log_group" "bagit-stage" {
