@@ -1,18 +1,5 @@
 [
    {
-      "name": "nginx",
-      "image": "jackofsum/ors-nginx:latest",
-      "essential": true,
-      "portMappings" : [
-         {
-            "containerPort": 8080,
-            "hostPort": 8080
-            }
-         ]
-   },
-
-
-   {
       "name": "wsgi",
       "image": "jackofsum/ors-wsgi:latest",
       "essential": true,

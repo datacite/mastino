@@ -1,16 +1,16 @@
 # Neo service
 resource "aws_ecs_service" "neo-stage" {
-  name = "neo-stage"
-  cluster = "${data.aws_ecs_cluster.stage.id}"
-  launch_type = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.neo-stage.arn}"
-  desired_count = 1
+   name = "neo-stage"
+   cluster = "${data.aws_ecs_cluster.stage.id}"
+   launch_type = "FARGATE"
+   task_definition = "${aws_ecs_task_definition.neo-stage.arn}"
+   desired_count = 1
 
-  network_configuration {
-    security_groups = ["${data.aws_security_group.datacite-private.id}"]
-    subnets         = [
-      "${data.aws_subnet.datacite-private.id}",
-      "${data.aws_subnet.datacite-alt.id}"
+   network_configuration {
+      security_groups = ["${data.aws_security_group.datacite-private.id}"]
+      subnets         = [
+         "${data.aws_subnet.datacite-private.id}",
+         "${data.aws_subnet.datacite-alt.id}"
     ]
   }
 
