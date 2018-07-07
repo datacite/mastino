@@ -101,6 +101,14 @@
         "value" : "${s3_bucket}"
       },
       {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ES_NAME",
+        "value" : "${es_name}"
+      },
+      {
         "name" : "MAILGUN_API_KEY",
         "value" : "${mailgun_api_key}"
       },
