@@ -75,4 +75,3 @@ resource "aws_route53_record" "split-ors-stage" {
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.stage.dns_name}"]
 }
-

@@ -36,8 +36,6 @@ resource "aws_ecs_task_definition" "wsgi-stage" {
    container_definitions = "${data.template_file.wsgi_task.rendered}"
 }
 
-
-
 # WSGI Service Discovery
 resource "aws_service_discovery_service" "wsgi" {
    name = "wsgi"
