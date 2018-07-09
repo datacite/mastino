@@ -2,8 +2,8 @@
   {
     "name": "client-api-stage",
     "image": "datacite/lupo",
-    "cpu": 512,
-    "memory": 1000,
+    "cpu": 1024,
+    "memory": 2000,
     "essential": true,
     "hostname": "client-api-stage",
     "portMappings": [
@@ -99,6 +99,14 @@
       {
         "name" : "AWS_S3_BUCKET",
         "value" : "${s3_bucket}"
+      },
+      {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ES_NAME",
+        "value" : "${es_name}"
       },
       {
         "name" : "MAILGUN_API_KEY",

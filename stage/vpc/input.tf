@@ -101,8 +101,8 @@ data "aws_lb_target_group" "http-redirect-stage" {
   name = "http-redirect-stage"
 }
 
-data "aws_lb_target_group" "mds-stage" {
-  name = "mds-stage"
+data "aws_lb_target_group" "mds-legacy-stage" {
+  name = "mds-legacy-stage"
 }
 
 data "template_file" "logs-stage" {

@@ -285,10 +285,10 @@ resource "github_issue_label" "copy" {
 }
 
 # mindless
-resource "github_issue_label" "chore" {
+resource "github_issue_label" "housekeeping" {
   count = "${length(var.github_repositories)}"
   repository = "${var.github_repositories[count.index]}"
-  name       = "chore"
+  name       = "housekeeping"
   color      = "fef1b0"
 }
 

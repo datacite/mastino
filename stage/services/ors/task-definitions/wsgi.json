@@ -1,8 +1,29 @@
 [
    {
+<<<<<<< HEAD
+      "name": "wsgi-stage",
+      "image": "jackofsum/ors-wsgi:latest",
+=======
+      "name": "nginx",
+      "image": "jackofsum/ors-nginx:latest",
+>>>>>>> Added nginx with self signed certificate
+      "essential": true,
+<<<<<<< HEAD
+=======
+      "portMappings" : [
+         {
+            "containerPort": 80,
+            "hostPort": 80
+            }
+         ]
+   },
+
+
+   {
       "name": "wsgi",
       "image": "jackofsum/ors-wsgi:latest",
       "essential": true,
+>>>>>>> changes
       "environment": [ 
          {"name": "PROXY_URL", "value": "${proxy_url}" },
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},

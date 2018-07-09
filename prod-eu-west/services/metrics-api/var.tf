@@ -21,7 +21,7 @@ variable "ttl" {
 }
 
 variable "memcache_servers" {
-  default = "memcached.datacite.org:11211"
+  default = "memcached1.datacite.org:11211"
 }
 
 variable "jwt_public_key" {}

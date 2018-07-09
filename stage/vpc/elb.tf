@@ -35,7 +35,7 @@ resource "aws_lb_listener" "stage" {
   certificate_arn   = "${data.aws_acm_certificate.test.arn}"
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.mds-stage.id}"
+    target_group_arn = "${data.aws_lb_target_group.mds-legacy-stage.id}"
     type             = "forward"
   }
 }

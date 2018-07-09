@@ -49,3 +49,9 @@ variable "mysql_database" {
   default = "datacite"
 }
 variable "mysql_host" {}
+variable "es_host" {
+  default = "elasticsearch.test.datacite.org"
+}
+variable "es_name" {
+  default = "es"
+}

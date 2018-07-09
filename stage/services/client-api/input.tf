@@ -49,6 +49,8 @@ data "template_file" "client-api_task" {
     mysql_password     = "${var.mysql_password}"
     mysql_database     = "${var.mysql_database}"
     mysql_host         = "${var.mysql_host}"
+    es_name            = "${var.es_name}"
+    es_host            = "${var.es_host}"
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"
