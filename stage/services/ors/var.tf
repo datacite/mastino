@@ -21,9 +21,8 @@ variable "subnet_datacite-alt_id" {}
 variable "neo_user" {}
 variable "neo_password" {}
 
-
 variable "redis_url" {
-   default = "redis1.test.datacite.org"
+   default = "redis://redis1.test.datacite.org:6379/6"
 }
 
 variable "neo_url" {
@@ -31,6 +30,10 @@ variable "neo_url" {
 }
 
 variable "proxy_url" {
-   default = "ors.test.datacite.org"
+   default = "ors.datacite.org"
 }
 
+
+variable "datacite_url" {
+   default = "https://mds.test.datacite.org"
+}
