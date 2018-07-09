@@ -7,7 +7,15 @@
          {
             "containerPort": 80,
             "hostPort": 80
+         }
+      ],
+      "logConfiguration": { 
+            "logDriver": "awslogs",
+            "options": { 
+                  "awslogs-group" : "/ecs/neo",
+                  "awslogs-region": "us-east-1",
+                  "awslogs-stream-prefix": "ecs"
             }
-         ]
+      }
    }
 ]
