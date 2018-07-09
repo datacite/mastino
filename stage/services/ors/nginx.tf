@@ -49,7 +49,7 @@ resource "aws_lb_target_group" "nginx-stage" {
 }
 
 
-resource "aws_lb_listener_rule" "wsgi-stage" {
+resource "aws_lb_listener_rule" "nginx-stage" {
    listener_arn = "${data.aws_lb_listener.stage.arn}"
    priority     = 122
 

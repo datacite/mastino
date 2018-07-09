@@ -46,8 +46,8 @@ resource "aws_ecs_task_definition" "wsgi-stage" {
    container_definitions = "${data.template_file.wsgi_task.rendered}"
 }
 
-resource "aws_lb_target_group" "bagit-stage" {
-   name     = "bagit-stage"
+resource "aws_lb_target_group" "wsgi-stage" {
+   name     = "wsgi-stage"
    port     = 80
    protocol = "HTTP"
    vpc_id   = "${var.vpc_id}"
