@@ -25,8 +25,8 @@ data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
 }
 
-data "aws_ecs_cluster" "default-us" {
-  cluster_name = "default-us"
+data "aws_ecs_cluster" "stage" {
+  cluster_name = "stage"
 }
 
 data "aws_iam_role" "ecs_service" {
@@ -37,12 +37,12 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
-data "aws_lb" "default" {
+data "aws_lb" "stage" {
   name = "${var.lb_name}"
 }
 
-data "aws_lb_listener" "default" {
-  load_balancer_arn = "${data.aws_lb.default.arn}"
+data "aws_lb_listener" "stage" {
+  load_balancer_arn = "${data.aws_lb.stage.arn}"
   port = 443
 }
 
@@ -66,7 +66,7 @@ data "template_file" "wsgi_task" {
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
-      version        = "${var.wsgi_tags["version"]}"
+      datacite_url   = "${var.datacite.url}"
    }
 }
 
@@ -77,7 +77,6 @@ data "template_file" "bagit_task" {
       neo_url        = "${var.neo_url}"
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
-      version        = "${var.bagit_tags["version"]}"
    }
 }
 
@@ -89,6 +88,10 @@ data "template_file" "celery_task" {
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
-      version        = "${var.wsgi_tags["version"]}"
+      datacite_url   = "${var.datacite.url}"
    }
+}
+
+data "template_file" "nginx_task" {
+   template = "${file("task-definitions/nginx.json")}"
 }

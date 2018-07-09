@@ -30,6 +30,10 @@ variable "neo_url" {
 }
 
 variable "proxy_url" {
-   default = "ors.test.datacite.org"
+   default = "ors.datacite.org"
 }
 
+
+variable "datacite_url" {
+   default = "https://mds.test.datacite.org"
+}

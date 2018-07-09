@@ -13,6 +13,12 @@ resource "aws_ecs_service" "bagit-stage" {
       "${data.aws_subnet.datacite-alt.id}"
     ]
   }
+
+
+   service_registries {
+      registry_arn = "${aws_service_discovery_service.bagit.arn}"
+   }
+
 }
 
 resource "aws_cloudwatch_log_group" "bagit-stage" {
@@ -29,4 +35,22 @@ resource "aws_ecs_task_definition" "bagit-stage" {
   memory = "2048"
 
   container_definitions =  "${data.template_file.bagit_task.rendered}"
+}
+
+# Service Discovery for Bagit
+resource "aws_service_discovery_service" "bagit" {
+   name = "bagit"
+
+   health_check_custom_config {
+      failure_threshold = 1
+   }
+
+   dns_config {
+      namespace_id = "${aws_service_discovery_private_dns_namespace.ors_namespace.id}"
+      dns_records {
+         ttl = 6000
+         type = "A"
+      }
+   }
+
 }
