@@ -14,10 +14,18 @@ resource "aws_ecs_service" "neo" {
     ]
   }
 
-   service_registries {
-      registry_arn = "${aws_service_discovery_service.neo.arn}"
-   }
+  load_balancer {
+    target_group_arn = "${aws_lb_target_group.neo.id}"
+    container_name   = "neo"
+    container_port   = "7687"
+  }
 
+  //  service_registries {
+  //     registry_arn = "${aws_service_discovery_service.neo.arn}"
+  //  }
+  depends_on = [
+    "data.aws_lb_listener.default-us",
+  ]
 }
 
 resource "aws_cloudwatch_log_group" "neo" {

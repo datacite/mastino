@@ -20,6 +20,10 @@ resource "aws_ecs_service" "wsgi" {
     container_port   = "80"
   }
 
+  depends_on = [
+    "data.aws_lb_listener.default-us",
+  ]
+
   //  service_registries {
   //     registry_arn = "${aws_service_discovery_service.wsgi.arn}"
   //  }

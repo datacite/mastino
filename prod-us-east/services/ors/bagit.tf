@@ -21,7 +21,7 @@ resource "aws_ecs_service" "bagit" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.us",
+    "data.aws_lb_listener.default-us",
   ]
 
   //  service_registries {
