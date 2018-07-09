@@ -34,3 +34,11 @@ variable "proxy_url" {
    default = "ors.datacite.org"
 }
 
+variable "bagit_tags" {
+  type = "map"
+}
+
+variable "wsgi_tags" {
+  type = "map"
+}
+

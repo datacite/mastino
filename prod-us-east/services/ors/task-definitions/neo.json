@@ -17,8 +17,8 @@
       "logConfiguration": { 
         "logDriver": "awslogs",
         "options": { 
-            "awslogs-group" : "/ecs/neo-stage",
-            "awslogs-region": "eu-west-1",
+            "awslogs-group" : "/ecs/neo",
+            "awslogs-region": "us-east-1",
             "awslogs-stream-prefix": "ecs"
         }
       }

@@ -1,9 +1,9 @@
 # Neo service
-resource "aws_ecs_service" "neo-stage" {
-  name = "neo-stage"
-  cluster = "${data.aws_ecs_cluster.stage.id}"
+resource "aws_ecs_service" "neo" {
+  name = "neo"
+  cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.neo-stage.arn}"
+  task_definition = "${aws_ecs_task_definition.neo.arn}"
   desired_count = 1
 
   network_configuration {
@@ -21,14 +21,14 @@ resource "aws_ecs_service" "neo-stage" {
 }
 
 
-resource "aws_cloudwatch_log_group" "neo-stage" {
-  name = "/ecs/neo-stage"
+resource "aws_cloudwatch_log_group" "neo" {
+  name = "/ecs/neo"
 }
 
 
 # Neo Task Definition
-resource "aws_ecs_task_definition" "neo-stage" {
-   family = "neo-stage"
+resource "aws_ecs_task_definition" "neo" {
+   family = "neo"
    execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
    requires_compatibilities = ["FARGATE"]
    network_mode = "awsvpc"

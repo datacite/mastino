@@ -2,7 +2,7 @@
 
    {
      "name": "celery_worker",
-     "image": "jackofsum/ors-wsgi:latest",
+     "image": "jackofsum/ors-wsgi:${version}",
      "essential": true,
      "entrypoint": ["celery", "-A", "cel", "worker", "--loglevel", "info"],
       "environment": [ 

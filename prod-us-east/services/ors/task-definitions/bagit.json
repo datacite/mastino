@@ -1,7 +1,7 @@
 [
    {
-      "name": "bagit-stage",
-      "image": "jackofsum/ors-bagit",
+      "name": "bagit",
+      "image": "jackofsum/ors-bagit:${version}",
       "essential": true,
       "portMappings" : [
          {
@@ -18,10 +18,10 @@
       "logConfiguration": { 
         "logDriver": "awslogs",
         "options": { 
-        "awslogs-group" : "/ecs/bagit-stage",
-        "awslogs-region": "eu-west-1",
-        "awslogs-stream-prefix": "ecs"
-               }
-         }
+          "awslogs-group" : "/ecs/bagit",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
    }
 ]

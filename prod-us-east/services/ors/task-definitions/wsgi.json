@@ -1,7 +1,7 @@
 [
    {
       "name": "wsgi-stage",
-      "image": "jackofsum/ors-wsgi:latest",
+      "image": "jackofsum/ors-wsgi:${version}",
       "essential": true,
       "portMappings" : [
          {
@@ -20,8 +20,8 @@
       "logConfiguration": { 
          "logDriver": "awslogs",
          "options": { 
-            "awslogs-group" : "/ecs/wsgi-stage",
-            "awslogs-region": "eu-west-1",
+            "awslogs-group" : "/ecs/wsgi",
+            "awslogs-region": "us-east-1",
             "awslogs-stream-prefix": "ecs"
             }
       }
