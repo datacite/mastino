@@ -46,7 +46,7 @@ resource "aws_lb_target_group" "nginx" {
 
 
 resource "aws_lb_listener_rule" "wsgi" {
-   listener_arn = "${data.aws_lb_listener.stage.arn}"
+   listener_arn = "${data.aws_lb_listener.default-us.arn}"
    priority     = 122
 
    action {

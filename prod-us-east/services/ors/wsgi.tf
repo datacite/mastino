@@ -1,9 +1,9 @@
 # WSGI Service
-resource "aws_ecs_service" "wsgi-stage" {
-   name = "wsgi-stage"
-   cluster = "${data.aws_ecs_cluster.stage.id}"
+resource "aws_ecs_service" "wsgi" {
+   name = "wsgi"
+   cluster = "${data.aws_ecs_cluster.default-us.id}"
    launch_type = "FARGATE"
-   task_definition = "${aws_ecs_task_definition.wsgi-stage.arn}"
+   task_definition = "${aws_ecs_task_definition.wsgi.arn}"
    desired_count = 1
 
    network_configuration {
@@ -20,13 +20,13 @@ resource "aws_ecs_service" "wsgi-stage" {
 
 }
 
-resource "aws_cloudwatch_log_group" "wsgi-stage" {
-  name = "/ecs/wsgi-stage"
+resource "aws_cloudwatch_log_group" "wsgi" {
+  name = "/ecs/wsgi"
 }
 
 # WSGI Task Definition
-resource "aws_ecs_task_definition" "wsgi-stage" {
-   family = "wsgi-stage"
+resource "aws_ecs_task_definition" "wsgi" {
+   family = "wsgi"
    execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
    requires_compatibilities = ["FARGATE"]
    network_mode = "awsvpc"

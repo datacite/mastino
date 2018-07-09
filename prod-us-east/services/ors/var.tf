@@ -7,7 +7,7 @@ variable "region" {
 variable "vpc_id" {}
 
 variable "lb_name" {
-  default = "lb-stage"
+  default = "lb-us"
 }
 
 variable "ttl" {
@@ -33,7 +33,14 @@ variable "proxy_url" {
    default = "ors.datacite.org"
 }
 
-
 variable "datacite_url" {
    default = "https://mds.test.datacite.org"
+}
+
+variable "wsgi_tags" {
+  type = "map"
+}
+
+variable "bagit_tags" {
+  type = "map"
 }

@@ -25,8 +25,8 @@ data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
 }
 
-data "aws_ecs_cluster" "stage" {
-  cluster_name = "stage"
+data "aws_ecs_cluster" "default-us" {
+  cluster_name = "default-us"
 }
 
 data "aws_iam_role" "ecs_service" {
