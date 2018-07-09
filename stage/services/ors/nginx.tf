@@ -18,6 +18,10 @@ resource "aws_ecs_service" "nginx-stage" {
       container_name   = "nginx"
       container_port   = "80"
    }
+
+  depends_on = [
+    "data.aws_lb_listener.stage",
+  ]
 }
 
 resource "aws_ecs_task_definition" "nginx-stage" {

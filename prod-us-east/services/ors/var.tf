@@ -26,7 +26,7 @@ variable "redis_url" {
 }
 
 variable "neo_url" {
-   default = "neo.ors.local"
+   default = "neo.datacite.org"
 }
 
 variable "proxy_url" {
