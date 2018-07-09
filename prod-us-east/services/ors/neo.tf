@@ -62,7 +62,7 @@ resource "aws_lb_listener_rule" "neo" {
 
    action {
       type             = "forward"
-      target_group_arn = "${aws_lb_target_group.wsgi.arn}"
+      target_group_arn = "${aws_lb_target_group.neo.arn}"
    }
 
    condition {
