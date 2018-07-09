@@ -26,8 +26,8 @@ resource "aws_cloudwatch_log_group" "bagit" {
 }
 
 # BagIt Task Definition
-resource "aws_ecs_task_definition" "bagit-stage" {
-  family = "bagit-stage"
+resource "aws_ecs_task_definition" "bagit" {
+  family = "bagit"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]

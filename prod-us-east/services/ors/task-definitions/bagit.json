@@ -1,7 +1,7 @@
 [
       {
          "name": "bagit",
-         "image": "jackofsum/ors-bagit",
+         "image": "jackofsum/ors-bagit:${version}",
          "essential": true,
          "portMappings" : [
             {
