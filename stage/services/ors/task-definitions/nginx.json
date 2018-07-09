@@ -9,6 +9,12 @@
             "hostPort": 80
          }
       ],
+      "environment": [ 
+        {"name": "WSGI_DNS", "value":"${wsgi_dns}"},
+        {"name": "WSGI_PORT", "value": "${wsgi_port}"},
+        {"name": "BAGIT_DNS", "value": "${bagit_dns}"},
+        {"name": "BAGIT_PORT", "value": "${bagit_port}"}
+      ],
       "logConfiguration": { 
             "logDriver": "awslogs",
             "options": { 

@@ -37,6 +37,19 @@ variable "datacite_url" {
    default = "https://mds.datacite.org"
 }
 
+variable "wsgi_dns" {
+   default = "wsgi.datacite.org"
+}
+variable "wsgi_port" {
+   default = "3031"
+}
+variable "bagit_dns" {
+   default = "bagit.datacite.org"
+}
+variable "bagit_port" {
+   default = "80"
+}
+
 variable "wsgi_tags" {
   type = "map"
 }
