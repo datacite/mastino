@@ -21,7 +21,7 @@ resource "aws_ecs_service" "neo-stage" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.stage",
+    "data.aws_lb_listener.stage"
   ]
 
   //  service_registries {
@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "neo-stage" {
 resource "aws_lb_target_group" "neo-stage" {
    name     = "neo-stage"
    port     = 7687
-   protocol = "HTTP"
+   protocol = "TCP"
    vpc_id   = "${var.vpc_id}"
    target_type = "ip"
 
