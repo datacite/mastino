@@ -89,5 +89,6 @@ data "template_file" "celery_task" {
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
+      version        = "${var.wsgi_tags["version"]}"
    }
 }
