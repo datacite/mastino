@@ -66,7 +66,11 @@ data "template_file" "wsgi_task" {
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
+<<<<<<< HEAD
+      datacite_url   = "${var.datacite_url}"
+=======
       datacite_url   = "${var.datacite.url}"
+>>>>>>> changes
    }
 }
 
@@ -88,7 +92,11 @@ data "template_file" "celery_task" {
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
+<<<<<<< HEAD
+      datacite_url   = "${var.datacite_url}"
+=======
       datacite_url   = "${var.datacite.url}"
+>>>>>>> changes
    }
 }
 

@@ -1,8 +1,8 @@
-resource "aws_ecs_service" "nginx-stage" {
-   name = "nginx-stage"
-   cluster = "${data.aws_ecs_cluster.stage.id}"
+resource "aws_ecs_service" "nginx" {
+   name = "nginx"
+   cluster = "${data.aws_ecs_cluster.default-us.id}"
    launch_type = "FARGATE"
-   task_definition = "${aws_ecs_task_definition.nginx-stage.arn}"
+   task_definition = "${aws_ecs_task_definition.nginx.arn}"
    desired_count = 1
 
    network_configuration {
@@ -14,14 +14,14 @@ resource "aws_ecs_service" "nginx-stage" {
    }
 
    load_balancer {
-      target_group_arn = "${aws_lb_target_group.nginx-stage.id}"
+      target_group_arn = "${aws_lb_target_group.nginx.id}"
       container_name   = "nginx"
       container_port   = "80"
    }
 }
 
-resource "aws_ecs_task_definition" "nginx-stage" {
-   family = "nginx-stage"
+resource "aws_ecs_task_definition" "nginx" {
+   family = "nginx"
    execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
    requires_compatibilities = ["FARGATE"]
    network_mode = "awsvpc"
@@ -32,8 +32,8 @@ resource "aws_ecs_task_definition" "nginx-stage" {
 }
 
 
-resource "aws_lb_target_group" "nginx-stage" {
-   name     = "nginx-stage"
+resource "aws_lb_target_group" "nginx" {
+   name     = "nginx"
    port     = 80
    protocol = "HTTP"
    vpc_id   = "${var.vpc_id}"
@@ -45,34 +45,34 @@ resource "aws_lb_target_group" "nginx-stage" {
 }
 
 
-resource "aws_lb_listener_rule" "wsgi-stage" {
-   listener_arn = "${data.aws_lb_listener.stage.arn}"
+resource "aws_lb_listener_rule" "nginx" {
+   listener_arn = "${data.aws_lb_listener.default.arn}"
    priority     = 122
 
    action {
       type             = "forward"
-      target_group_arn = "${aws_lb_target_group.nginx-stage.arn}"
+      target_group_arn = "${aws_lb_target_group.nginx.arn}"
    }
 
    condition {
       field  = "host-header"
-      values = ["ors.test.datacite.org"]
+      values = ["ors.datacite.org"]
    }
 }
 
-resource "aws_route53_record" "ors-stage" {
+resource "aws_route53_record" "ors" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "ors.test.datacite.org"
+   name = "ors.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${data.aws_lb.stage.dns_name}"]
+   records = ["${data.aws_lb.default.dns_name}"]
 }
 
-resource "aws_route53_record" "split-ors-stage" {
+resource "aws_route53_record" "split-ors" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "ors.test.datacite.org"
+   name = "ors.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${data.aws_lb.stage.dns_name}"]
+   records = ["${data.aws_lb.default.dns_name}"]
 }
 

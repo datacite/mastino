@@ -8,6 +8,8 @@
       "image": "jackofsum/ors-nginx:latest",
 >>>>>>> Added nginx with self signed certificate
       "essential": true,
+<<<<<<< HEAD
+=======
       "portMappings" : [
          {
             "containerPort": 80,
@@ -21,12 +23,14 @@
       "name": "wsgi",
       "image": "jackofsum/ors-wsgi:latest",
       "essential": true,
+>>>>>>> changes
       "environment": [ 
          {"name": "PROXY_URL", "value": "${proxy_url}" },
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},
          {"name": "NEO_USER", "value":"${neo_user}"},
          {"name": "NEO_URL", "value":"${neo_url}"},
-         {"name": "REDIS_URL", "value": "${redis_url}"}
+         {"name": "REDIS_URL", "value": "${redis_url}"},
+         {"name": "DATACITE_URL", "value": "${datacite_url}"}
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
       "logConfiguration": { 

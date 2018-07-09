@@ -36,6 +36,7 @@ resource "aws_ecs_task_definition" "wsgi-stage" {
    container_definitions = "${data.template_file.wsgi_task.rendered}"
 }
 
+<<<<<<< HEAD
 
 
 # WSGI Service Discovery
@@ -55,4 +56,26 @@ resource "aws_service_discovery_service" "wsgi" {
    }
 
 }
+
+=======
+
+
+# WSGI Service Discovery
+resource "aws_service_discovery_service" "wsgi" {
+   name = "wsgi"
+
+   health_check_custom_config {
+      failure_threshold = 1
+   }
+
+   dns_config {
+      namespace_id = "${aws_service_discovery_private_dns_namespace.ors_namespace.id}"
+      dns_records {
+         ttl = 6000
+         type = "A"
+      }
+   }
+
+}
+>>>>>>> changes
 

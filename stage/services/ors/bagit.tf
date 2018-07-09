@@ -54,3 +54,7 @@ resource "aws_service_discovery_service" "bagit" {
    }
 
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> changes
