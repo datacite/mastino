@@ -1,0 +1,30 @@
+[
+   {
+      "name": "wsgi-stage",
+      "image": "jackofsum/ors-wsgi:latest",
+      "essential": true,
+      "portMappings" : [
+         {
+            "containerPort": 8080,
+            "hostPort": 8080
+         }
+      ],
+      "environment": [ 
+         {"name": "PROXY_URL", "value": "${proxy_url}" },
+         {"name": "NEO_PASSWORD", "value":"${neo_password}"},
+         {"name": "NEO_USER", "value":"${neo_user}"},
+         {"name": "NEO_URL", "value":"${neo_url}"},
+         {"name": "REDIS_URL", "value": "${redis_url}"}
+      ],
+      "entrypoint": ["uwsgi", "--ini", "http.ini"],
+      "logConfiguration": { 
+         "logDriver": "awslogs",
+         "options": { 
+            "awslogs-group" : "/ecs/wsgi-stage",
+            "awslogs-region": "eu-west-1",
+            "awslogs-stream-prefix": "ecs"
+            }
+      }
+  }
+
+]
