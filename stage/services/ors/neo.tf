@@ -50,13 +50,14 @@ resource "aws_ecs_task_definition" "neo-stage" {
 
 resource "aws_lb_target_group" "neo-stage" {
    name     = "neo-stage"
-   port     = 7687
-   protocol = "TCP"
+   port     = 7474
+   protocol = "HTTP"
    vpc_id   = "${var.vpc_id}"
    target_type = "ip"
 
    health_check {
       path = "/"
+      port = 7474
    }
 }
 

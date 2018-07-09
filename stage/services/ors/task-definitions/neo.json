@@ -4,6 +4,10 @@
       "image": "neo4j:latest",
       "essential": true,
       "portMappings" : [
+        {
+          "containerPort": 7474,
+          "hostPort": 7474
+         },
          {
             "containerPort": 7687,
             "hostPort": 7687
