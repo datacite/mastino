@@ -1,25 +1,7 @@
 [
    {
-<<<<<<< HEAD
-      "name": "wsgi-stage",
-      "image": "jackofsum/ors-wsgi:latest",
-=======
-      "name": "nginx",
-      "image": "jackofsum/ors-nginx:latest",
->>>>>>> Added nginx with self signed certificate
-      "essential": true,
-      "portMappings" : [
-         {
-            "containerPort": 80,
-            "hostPort": 80
-            }
-         ]
-   },
-
-
-   {
       "name": "wsgi",
-      "image": "jackofsum/ors-wsgi:latest",
+      "image": "jackofsum/ors-wsgi:${version}",
       "essential": true,
       "environment": [ 
          {"name": "PROXY_URL", "value": "${proxy_url}" },
@@ -32,8 +14,8 @@
       "logConfiguration": { 
          "logDriver": "awslogs",
          "options": { 
-            "awslogs-group" : "/ecs/wsgi-stage",
-            "awslogs-region": "eu-west-1",
+            "awslogs-group" : "/ecs/wsgi",
+            "awslogs-region": "us-east-1",
             "awslogs-stream-prefix": "ecs"
             }
       }

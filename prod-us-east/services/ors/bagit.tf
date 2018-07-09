@@ -1,9 +1,9 @@
 # BagIt Service
-resource "aws_ecs_service" "bagit-stage" {
-  name = "bagit-stage"
-  cluster = "${data.aws_ecs_cluster.stage.id}"
+resource "aws_ecs_service" "bagit" {
+  name = "bagit"
+  cluster = "${data.aws_ecs_cluster.default-us.id}"
   launch_type = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.bagit-stage.arn}"
+  task_definition = "${aws_ecs_task_definition.bagit.arn}"
   desired_count = 1
 
   network_configuration {
@@ -21,8 +21,8 @@ resource "aws_ecs_service" "bagit-stage" {
 
 }
 
-resource "aws_cloudwatch_log_group" "bagit-stage" {
-  name = "/ecs/bagit-stage"
+resource "aws_cloudwatch_log_group" "bagit" {
+  name = "/ecs/bagit"
 }
 
 # BagIt Task Definition

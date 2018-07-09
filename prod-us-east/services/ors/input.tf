@@ -37,12 +37,12 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
-data "aws_lb" "stage" {
+data "aws_lb" "default-us" {
   name = "${var.lb_name}"
 }
 
-data "aws_lb_listener" "stage" {
-  load_balancer_arn = "${data.aws_lb.stage.arn}"
+data "aws_lb_listener" "default-us" {
+  load_balancer_arn = "${data.aws_lb.default-us.arn}"
   port = 443
 }
 
@@ -67,6 +67,7 @@ data "template_file" "wsgi_task" {
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
       datacite_url   = "${var.datacite.url}"
+      version        = "${var.wsgi_tags["version"]}"
    }
 }
 
@@ -77,6 +78,7 @@ data "template_file" "bagit_task" {
       neo_url        = "${var.neo_url}"
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
+      version        = "${var.bagit_tags["version"]}"
    }
 }
 
@@ -89,9 +91,14 @@ data "template_file" "celery_task" {
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
       datacite_url   = "${var.datacite.url}"
+      version        = "${var.wsgi_tags["version"]}"
    }
 }
 
 data "template_file" "nginx_task" {
    template = "${file("task-definitions/nginx.json")}"
+
+   vars {
+      version        = "${var.wsgi_tags["version"]}"
+   }
 }
