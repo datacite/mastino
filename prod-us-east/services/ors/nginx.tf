@@ -31,7 +31,6 @@ resource "aws_ecs_task_definition" "nginx" {
    container_definitions = "${data.template_file.nginx_task.rendered}"
 }
 
-
 resource "aws_lb_target_group" "nginx" {
    name     = "nginx"
    port     = 80
@@ -44,8 +43,7 @@ resource "aws_lb_target_group" "nginx" {
    }
 }
 
-
-resource "aws_lb_listener_rule" "wsgi" {
+resource "aws_lb_listener_rule" "nginx" {
    listener_arn = "${data.aws_lb_listener.default-us.arn}"
    priority     = 122
 

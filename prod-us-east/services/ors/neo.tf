@@ -20,7 +20,6 @@ resource "aws_ecs_service" "neo" {
 
 }
 
-
 resource "aws_cloudwatch_log_group" "neo" {
   name = "/ecs/neo"
 }
@@ -37,28 +36,63 @@ resource "aws_ecs_task_definition" "neo" {
    container_definitions = "${data.template_file.neo_task.rendered}"
 }
 
+resource "aws_lb_target_group" "neo" {
+   name     = "neo"
+   port     = 7687
+   protocol = "HTTP"
+   vpc_id   = "${var.vpc_id}"
+   target_type = "ip"
+
+   health_check {
+      path = "/"
+   }
+}
+
+resource "aws_lb_listener_rule" "neo" {
+   listener_arn = "${data.aws_lb_listener.default-us.arn}"
+   priority     = 131
+
+   action {
+      type             = "forward"
+      target_group_arn = "${aws_lb_target_group.wsgi.arn}"
+   }
+
+   condition {
+      field  = "host-header"
+      values = ["neo.datacite.org"]
+   }
+}
+
 # Neo Service Discovery
-resource "aws_service_discovery_service" "neo" {
-   name = "neo"
+// resource "aws_service_discovery_service" "neo" {
+//    name = "neo"
 
-   health_check_custom_config {
-      failure_threshold = 1
-   }
+//    health_check_custom_config {
+//       failure_threshold = 1
+//    }
 
-   dns_config {
-      namespace_id = "${aws_service_discovery_private_dns_namespace.ors_namespace.id}"
-      dns_records {
-         ttl = 6000
-         type = "A"
-      }
-   }
+//    dns_config {
+//       namespace_id = "${aws_service_discovery_private_dns_namespace.ors_namespace.id}"
+//       dns_records {
+//          ttl = 6000
+//          type = "A"
+//       }
+//    }
 
+// }
+
+resource "aws_route53_record" "split-neo" {
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   name = "neo.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${data.aws_lb.default-us.dns_name}"]
 }
 
 # Service Discovery Namepace
-resource "aws_service_discovery_private_dns_namespace" "ors_namespace" {
-   name = "ors.local"
-   description = "Private DNS namespace for connecting containers between services"
-   vpc = "${data.aws_subnet.datacite-private.vpc_id}"
-}
+// resource "aws_service_discovery_private_dns_namespace" "ors_namespace" {
+//    name = "ors.local"
+//    description = "Private DNS namespace for connecting containers between services"
+//    vpc = "${data.aws_subnet.datacite-private.vpc_id}"
+// }
 
