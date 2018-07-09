@@ -22,7 +22,7 @@ variable "neo_user" {}
 variable "neo_password" {}
 
 variable "redis_url" {
-   default = "redis://redis1.test.datacite.org:6379/6"
+   default = "redis://redis1.us.datacite.org:6379/6"
 }
 
 variable "neo_url" {
@@ -34,7 +34,7 @@ variable "proxy_url" {
 }
 
 variable "datacite_url" {
-   default = "https://mds.test.datacite.org"
+   default = "https://mds.datacite.org"
 }
 
 variable "wsgi_tags" {
