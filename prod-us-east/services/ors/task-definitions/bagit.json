@@ -18,10 +18,10 @@
       "logConfiguration": { 
         "logDriver": "awslogs",
         "options": { 
-        "awslogs-group" : "/ecs/bagit-stage",
-        "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "ecs"
-               }
-         }
+            "awslogs-group" : "/ecs/bagit",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "ecs"
+        }
+      }
    }
 ]
