@@ -17,11 +17,11 @@ resource "aws_ecs_service" "wsgi-stage" {
   load_balancer {
     target_group_arn = "${aws_lb_target_group.wsgi-stage.id}"
     container_name   = "wsgi-stage"
-    container_port   = "80"
+    container_port   = "3031"
   }
 
   depends_on = [
-    "data.aws_lb_listener.stage",
+    "data.aws_lb_listener.stage"
   ]
 
   //  service_registries {
@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "wsgi-stage" {
 
 resource "aws_lb_target_group" "wsgi-stage" {
    name     = "wsgi-stage"
-   port     = 80
+   port     = 3031
    protocol = "HTTP"
    vpc_id   = "${var.vpc_id}"
    target_type = "ip"
@@ -98,4 +98,3 @@ resource "aws_route53_record" "split-wsgi-stage" {
 //    }
 
 // }
-

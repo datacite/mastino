@@ -3,6 +3,12 @@
       "name": "wsgi",
       "image": "jackofsum/ors-wsgi:latest",
       "essential": true,
+      "portMappings" : [
+        {
+            "containerPort": 3031,
+            "hostPort": 3031
+        }
+      ],
       "environment": [ 
          {"name": "PROXY_URL", "value": "${proxy_url}" },
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},

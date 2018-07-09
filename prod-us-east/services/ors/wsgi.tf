@@ -17,7 +17,7 @@ resource "aws_ecs_service" "wsgi" {
   load_balancer {
     target_group_arn = "${aws_lb_target_group.wsgi.id}"
     container_name   = "wsgi"
-    container_port   = "80"
+    container_port   = "3031"
   }
 
   depends_on = [
@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "wsgi" {
 
 resource "aws_lb_target_group" "wsgi" {
    name     = "wsgi"
-   port     = 80
+   port     = 3031
    protocol = "HTTP"
    vpc_id   = "${var.vpc_id}"
    target_type = "ip"
@@ -98,4 +98,3 @@ resource "aws_route53_record" "split-wsgi" {
 //    }
 
 // }
-

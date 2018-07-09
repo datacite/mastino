@@ -10,6 +10,12 @@
          {"name": "NEO_URL", "value":"${neo_url}"},
          {"name": "REDIS_URL", "value": "${redis_url}"}
       ],
+      "portMappings" : [
+        {
+            "containerPort": 3031,
+            "hostPort": 3031
+        }
+      ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
       "logConfiguration": { 
          "logDriver": "awslogs",
