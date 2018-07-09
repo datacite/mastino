@@ -56,7 +56,7 @@ resource "aws_lb_listener_rule" "wsgi" {
 
    condition {
       field  = "host-header"
-      values = ["ors.test.datacite.org"]
+      values = ["ors.datacite.org"]
    }
 }
 
