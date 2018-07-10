@@ -14,20 +14,9 @@ resource "aws_ecs_service" "bagit" {
     ]
   }
 
-  load_balancer {
-    target_group_arn = "${aws_lb_target_group.bagit.id}"
-    container_name   = "bagit"
-    container_port   = "80"
+  service_registries {
+    registry_arn = "${aws_service_discovery_service.bagit.arn}"
   }
-
-  depends_on = [
-    "data.aws_lb_listener.default-us",
-  ]
-
-  //  service_registries {
-  //     registry_arn = "${aws_service_discovery_service.bagit.arn}"
-  //  }
-
 }
 
 resource "aws_cloudwatch_log_group" "bagit" {
@@ -46,54 +35,30 @@ resource "aws_ecs_task_definition" "bagit" {
   container_definitions =  "${data.template_file.bagit_task.rendered}"
 }
 
-resource "aws_lb_target_group" "bagit" {
-   name     = "bagit"
-   port     = 80
-   protocol = "HTTP"
-   vpc_id   = "${var.vpc_id}"
-   target_type = "ip"
+resource "aws_service_discovery_service" "bagit" {
+  name = "bagit"
 
-   health_check {
-      path = "/"
-   }
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+
+  dns_config {
+    namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
+  }
 }
 
-resource "aws_lb_listener_rule" "bagit" {
-   listener_arn = "${data.aws_lb_listener.default-us.arn}"
-   priority     = 132
-
-   action {
-      type             = "forward"
-      target_group_arn = "${aws_lb_target_group.bagit.arn}"
-   }
-
-   condition {
-      field  = "host-header"
-      values = ["bagit.datacite.org"]
-   }
-}
-
-# Service Discovery for Bagit
-// resource "aws_service_discovery_service" "bagit" {
-//    name = "bagit"
-
-//    health_check_custom_config {
-//       failure_threshold = 1
-//    }
-
-//    dns_config {
-//       namespace_id = "${aws_service_discovery_private_dns_namespace.ors_namespace.id}"
-//       dns_records {
-//          ttl = 6000
-//          type = "A"
-//       }
-//    }
-// }
-
-resource "aws_route53_record" "split-bagit" {
+resource "aws_route53_record" "bagit" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "bagit.datacite.org"
-   type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${data.aws_lb.default-us.dns_name}"]
+   type = "A"
+
+   alias {
+     name = "${aws_service_discovery_service.bagit.name}.${aws_service_discovery_private_dns_namespace.internal.name}"
+     zone_id = "${aws_service_discovery_private_dns_namespace.internal.hosted_zone}"
+     evaluate_target_health = true
+   }
 }
