@@ -15,3 +15,6 @@ variable "lb_name" {
 
 variable "main_id" {}
 variable "main_private_ip" {}
+
+variable "mds_ami" {}
+variable "key_name" {}

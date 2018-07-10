@@ -1,3 +1,17 @@
+resource "aws_instance" "mds" {
+  ami = "${var.mds_ami}"
+  instance_type = "m5.large"
+  vpc_security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
+  subnet_id = "${data.aws_subnet.datacite-private.id}"
+  key_name = "${var.key_name}"
+  tags {
+      Name = "MDS"
+  }
+  lifecycle {
+      create_before_destroy = "true"
+  }
+}
+
 resource "aws_lb_target_group" "mds" {
   name     = "mds"
   vpc_id   = "${var.vpc_id}"
