@@ -24,6 +24,10 @@ resource "aws_ecs_service" "nginx-stage" {
   ]
 }
 
+resource "aws_cloudwatch_log_group" "nginx-stage" {
+  name = "/ecs/nginx-stage"
+}
+
 resource "aws_ecs_task_definition" "nginx-stage" {
    family = "nginx-stage"
    execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
