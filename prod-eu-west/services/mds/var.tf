@@ -21,3 +21,14 @@ variable "key_name" {}
 
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
+variable "poodle_tags" {
+  type = "map"
+}
+
+variable "memcache_servers" {
+  default = "memcached1.datacite.org:11211"
+}
+
+variable "bugsnag_key" {}
