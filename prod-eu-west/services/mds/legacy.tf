@@ -44,17 +44,17 @@ resource "aws_lb_listener_rule" "mds-legacy" {
   }
 }
 
-resource "aws_route53_record" "mds" {
+resource "aws_route53_record" "mds-legacy" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "mds.datacite.org"
+   name = "mds-legacy.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.default.dns_name}"]
 }
 
-resource "aws_route53_record" "internal-mds-split" {
+resource "aws_route53_record" "internal-mds--legacy-split" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "mds.datacite.org"
+   name = "mds-legacy.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.default.dns_name}"]
