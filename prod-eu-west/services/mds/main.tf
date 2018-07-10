@@ -145,7 +145,7 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
 
 resource "aws_lb_listener_rule" "mds-ng" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 10
+  priority     = 11
 
   action {
     type             = "forward"
