@@ -18,3 +18,6 @@ variable "main_private_ip" {}
 
 variable "mds_ami" {}
 variable "key_name" {}
+
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
