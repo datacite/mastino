@@ -23,7 +23,6 @@ resource "aws_cloudwatch_log_group" "wsgi-stage" {
   name = "/ecs/wsgi-stage"
 }
 
-# WSGI Task Definition
 resource "aws_ecs_task_definition" "wsgi-stage" {
    family = "wsgi-stage"
    execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
@@ -35,15 +34,15 @@ resource "aws_ecs_task_definition" "wsgi-stage" {
    container_definitions = "${data.template_file.wsgi_task.rendered}"
 }
 
-resource "aws_service_discovery_service" "wsgi" {
-  name = "wsgi"
+resource "aws_service_discovery_service" "wsgi-stage" {
+  name = "wsgi.test"
 
   health_check_custom_config {
     failure_threshold = 1
   }
 
   dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.internal-stage.id}"
+    namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
     dns_records {
       ttl = 300
       type = "A"

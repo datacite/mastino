@@ -34,15 +34,15 @@ resource "aws_ecs_task_definition" "bagit-stage" {
   container_definitions =  "${data.template_file.bagit_task.rendered}"
 }
 
-resource "aws_service_discovery_service" "bagit" {
-  name = "bagit"
+resource "aws_service_discovery_service" "bagit-stage" {
+  name = "bagit.test"
 
   health_check_custom_config {
     failure_threshold = 1
   }
 
   dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.internal-stage.id}"
+    namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
     dns_records {
       ttl = 300
       type = "A"
