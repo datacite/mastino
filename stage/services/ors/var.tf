@@ -26,7 +26,7 @@ variable "redis_url" {
 }
 
 variable "neo_url" {
-   default = "neo.test.local"
+   default = "neo.test.datacite.org"
 }
 
 variable "proxy_url" {
@@ -34,13 +34,13 @@ variable "proxy_url" {
 }
 
 variable "wsgi_dns" {
-   default = "wsgi.test.local"
+   default = "wsgi.test.datacite.org"
 }
 variable "wsgi_port" {
    default = "3031"
 }
 variable "bagit_dns" {
-   default = "bagit.test.local"
+   default = "bagit.test.datacite.org"
 }
 variable "bagit_port" {
    default = "80"
