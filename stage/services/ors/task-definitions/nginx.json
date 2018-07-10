@@ -1,7 +1,7 @@
 [
    {
       "name": "nginx",
-      "image": "jackofsum/ors-nginx:latest",
+      "image": "jackofsum/ors-nginx:v1.2",
       "essential": true,
       "portMappings" : [
          {

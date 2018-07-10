@@ -50,6 +50,18 @@ resource "aws_service_discovery_service" "neo-stage" {
   }
 }
 
+resource "aws_route53_record" "neo-stage" {
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   name = "neo.test.datacite.org"
+   type = "A"
+
+   alias {
+     name = "${aws_service_discovery_service.neo-stage.name}.${aws_service_discovery_private_dns_namespace.internal-stage.name}"
+     zone_id = "${aws_service_discovery_private_dns_namespace.internal-stage.hosted_zone}"
+     evaluate_target_health = true
+   }
+}
+
 # Service Discovery Namepace
 resource "aws_service_discovery_private_dns_namespace" "internal-stage" {
   name = "test.local"
