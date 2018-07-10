@@ -1,4 +1,3 @@
-# Celery Service
 resource "aws_ecs_service" "celery-stage" {
   name = "celery-stage"
   cluster = "${data.aws_ecs_cluster.stage.id}"
@@ -19,7 +18,6 @@ resource "aws_cloudwatch_log_group" "celery-stage" {
   name = "/ecs/celery-stage"
 }
 
-# Celery Task Definition
 resource "aws_ecs_task_definition" "celery-stage" {
   family = "celery-stage"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"

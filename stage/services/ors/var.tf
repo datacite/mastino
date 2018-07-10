@@ -30,7 +30,7 @@ variable "neo_url" {
 }
 
 variable "proxy_url" {
-   default = "ors.datacite.org"
+   default = "ors.test.datacite.org"
 }
 
 variable "wsgi_dns" {

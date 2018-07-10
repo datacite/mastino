@@ -4,10 +4,6 @@
       "image": "neo4j:latest",
       "essential": true,
       "portMappings" : [
-        {
-          "containerPort": 7474,
-          "hostPort": 7474
-         },
          {
             "containerPort": 7687,
             "hostPort": 7687
@@ -15,7 +11,7 @@
       ],
       "environment": [ 
          {"name": "NEO4J_AUTH", "value":"neo4j/${neo_password}"},
-         {"name": "dbms_connectors_default__advertised__address", "value": "neo.ors.local"},
+         {"name": "dbms_connectors_default__advertised__address", "value": "${neo_url}"},
          {"name": "dbms_connectors_default__listen__address", "value": "0.0.0.0"}
       ],
       "logConfiguration": { 
