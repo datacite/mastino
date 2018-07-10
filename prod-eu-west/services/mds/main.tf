@@ -1,6 +1,6 @@
 resource "aws_instance" "mds" {
   ami = "${var.mds_ami}"
-  instance_type = "m1.medium"
+  instance_type = "m1.large"
   vpc_security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
   subnet_id = "${data.aws_subnet.datacite-private.id}"
   key_name = "${var.key_name}"
@@ -65,7 +65,7 @@ resource "aws_route53_record" "internal-main" {
    name = "main.datacite.org"
    type = "A"
    ttl = "300"
-   records = ["${var.main_private_ip}"]
+   records = ["${aws_instance.mds.private_ip}"]
 }
 
 resource "aws_route53_record" "internal-main-ec2" {
@@ -73,5 +73,5 @@ resource "aws_route53_record" "internal-main-ec2" {
    name = "main.ec2.datacite.org"
    type = "A"
    ttl = "300"
-   records = ["${var.main_private_ip}"]
+   records = ["${aws_instance.mds.private_ip}"]
 }
