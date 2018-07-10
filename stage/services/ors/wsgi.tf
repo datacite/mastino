@@ -15,7 +15,7 @@ resource "aws_ecs_service" "wsgi-stage" {
   }
 
   service_registries {
-    registry_arn = "${aws_service_discovery_service.wsgi.arn}"
+    registry_arn = "${aws_service_discovery_service.wsgi-stage.arn}"
   }
 }
 

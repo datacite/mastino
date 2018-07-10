@@ -15,7 +15,7 @@ resource "aws_ecs_service" "neo-stage" {
   }
 
   service_registries {
-    registry_arn = "${aws_service_discovery_service.neo.arn}"
+    registry_arn = "${aws_service_discovery_service.neo-stage.arn}"
   }
 }
 

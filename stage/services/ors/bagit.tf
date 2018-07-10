@@ -15,7 +15,7 @@ resource "aws_ecs_service" "bagit-stage" {
   }
 
   service_registries {
-    registry_arn = "${aws_service_discovery_service.bagit.arn}"
+    registry_arn = "${aws_service_discovery_service.bagit-stage.arn}"
   }
 }
 
