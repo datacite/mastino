@@ -65,7 +65,7 @@ resource "aws_lb_target_group" "mds" {
 
 resource "aws_lb_listener_rule" "mds-doi" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 2
+  priority     = 6
 
   action {
     type             = "forward"
@@ -85,7 +85,7 @@ resource "aws_lb_listener_rule" "mds-doi" {
 
 resource "aws_lb_listener_rule" "mds-metadata" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 5
+  priority     = 7
 
   action {
     type             = "forward"
@@ -105,7 +105,7 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 
 resource "aws_lb_listener_rule" "mds-media" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 6
+  priority     = 8
 
   action {
     type             = "forward"
@@ -125,7 +125,7 @@ resource "aws_lb_listener_rule" "mds-media" {
 
 resource "aws_lb_listener_rule" "mds-heartbeat" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 7
+  priority     = 9
 
   action {
     type             = "forward"
