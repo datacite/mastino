@@ -142,3 +142,34 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
     values = ["/heartbeat"]
   }
 }
+
+resource "aws_lb_listener_rule" "mds-ng" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 9
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.mds-ng.name}"]
+  }
+}
+
+resource "aws_route53_record" "mds-ng" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "mds-ng.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${data.aws_lb.default.dns_name}"]
+}
+
+resource "aws_route53_record" "split-mds-ng" {
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   name = "mds-ng.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${data.aws_lb.default.dns_name}"]
+}
