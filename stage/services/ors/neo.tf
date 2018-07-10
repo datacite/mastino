@@ -35,14 +35,14 @@ resource "aws_ecs_task_definition" "neo-stage" {
 }
 
 resource "aws_service_discovery_service" "neo-stage" {
-  name = "neo.test"
+  name = "neo"
 
   health_check_custom_config {
     failure_threshold = 1
   }
 
   dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
+    namespace_id = "${aws_service_discovery_private_dns_namespace.internal-stage.id}"
     dns_records {
       ttl = 300
       type = "A"
@@ -51,7 +51,7 @@ resource "aws_service_discovery_service" "neo-stage" {
 }
 
 # Service Discovery Namepace
-resource "aws_service_discovery_private_dns_namespace" "internal" {
-  name = "datacite.org"
+resource "aws_service_discovery_private_dns_namespace" "internal-stage" {
+  name = "test.local"
   vpc = "${data.aws_subnet.datacite-private.vpc_id}"
 }

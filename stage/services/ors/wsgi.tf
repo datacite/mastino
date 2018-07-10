@@ -35,14 +35,14 @@ resource "aws_ecs_task_definition" "wsgi-stage" {
 }
 
 resource "aws_service_discovery_service" "wsgi-stage" {
-  name = "wsgi.test"
+  name = "wsgi"
 
   health_check_custom_config {
     failure_threshold = 1
   }
 
   dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
+    namespace_id = "${aws_service_discovery_private_dns_namespace.internal-stage.id}"
     dns_records {
       ttl = 300
       type = "A"
