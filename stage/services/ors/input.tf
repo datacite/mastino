@@ -56,7 +56,6 @@ data "template_file" "neo_task" {
    }
 }
 
-
 data "template_file" "wsgi_task" {
    template = "${file("task-definitions/wsgi.json")}"
 

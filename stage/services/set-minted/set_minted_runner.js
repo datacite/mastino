@@ -17,6 +17,14 @@ exports.handler = (events, context) => {
       'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
     }
   };
+  var slack_options = {
+    host: host,
+    path: '/dois/set-minted',
+    method: 'POST',
+    headers: {
+      'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
+    }
+  };
 
   const req = https.request(options, (res) => {
     console.log('status:', res.statusCode);

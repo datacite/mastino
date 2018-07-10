@@ -42,7 +42,7 @@ resource "aws_service_discovery_service" "bagit" {
   }
 
   dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
+    namespace_id = "${aws_service_discovery_private_dns_namespace.internals-stage.id}"
     dns_records {
       ttl = 300
       type = "A"
