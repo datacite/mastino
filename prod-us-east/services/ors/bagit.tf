@@ -1,4 +1,3 @@
-# BagIt Service
 resource "aws_ecs_service" "bagit" {
   name = "bagit"
   cluster = "${data.aws_ecs_cluster.default-us.id}"
@@ -21,12 +20,8 @@ resource "aws_ecs_service" "bagit" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.stage",
+    "data.aws_lb_listener.default-us",
   ]
-
-  // service_registries {
-  //   registry_arn = "${aws_service_discovery_service.bagit.arn}"
-  // }
 }
 
 resource "aws_cloudwatch_log_group" "bagit" {
