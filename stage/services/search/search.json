@@ -2,15 +2,24 @@
   {
     "name": "search-stage",
     "image": "crosscite/doi-metadata-search",
-    "cpu": 384,
-    "memory": 500,
+    "cpu": 512,
+    "memory": 1024,
+    "networkMode": "awsvpc",
     "essential": true,
-    "hostname": "search-test",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/search-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment" : [
       {
         "name" : "RACK_ENV",

@@ -14,12 +14,28 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
+data "aws_security_group" "datacite-private" {
+  id = "${var.security_group_id}"
+}
+
+data "aws_subnet" "datacite-private" {
+  id = "${var.subnet_datacite-private_id}"
+}
+
+data "aws_subnet" "datacite-alt" {
+  id = "${var.subnet_datacite-alt_id}"
+}
+
 data "aws_ecs_cluster" "stage" {
   cluster_name = "stage"
 }
 
 data "aws_iam_role" "ecs_service" {
   name = "ecs_service"
+}
+
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
 }
 
 data "aws_lb" "stage" {
