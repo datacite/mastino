@@ -14,9 +14,14 @@ variable "lb_name" {
   default = "lb-stage"
 }
 
+variable "security_group_id" {}
+
 variable "ttl" {
   default = "300"
 }
+
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
 
 variable "solr_url" {
   default = "https://solr.test.datacite.org/api"

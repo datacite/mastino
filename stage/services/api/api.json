@@ -3,12 +3,13 @@
     "name": "api-stage",
     "image": "datacite/spinone",
     "cpu": 512,
-    "memory": 1000,
+    "memory": 1024,
+    "networkMode": "awsvpc",
     "essential": true,
-    "hostname": "api-test",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "logConfiguration": { 
