@@ -33,19 +33,6 @@ variable "proxy_url" {
    default = "ors.test.datacite.org"
 }
 
-variable "wsgi_dns" {
-   default = "wsgi.test.datacite.org"
-}
-variable "wsgi_port" {
-   default = "3031"
-}
-variable "bagit_dns" {
-   default = "bagit.test.datacite.org"
-}
-variable "bagit_port" {
-   default = "80"
-}
-
 variable "datacite_url" {
    default = "https://mds.test.datacite.org"
 }

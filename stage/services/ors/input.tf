@@ -90,14 +90,3 @@ data "template_file" "celery_task" {
       datacite_url   = "${var.datacite_url}"
    }
 }
-
-data "template_file" "nginx_task" {
-   template = "${file("task-definitions/nginx.json")}"
-
-   vars {
-      wsgi_dns       = "${var.wsgi_dns}"
-      wsgi_port      = "${var.wsgi_port}"
-      bagit_dns      = "${var.bagit_dns}"
-      bagit_port     = "${var.bagit_port}"
-   }
-}
