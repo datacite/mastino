@@ -3,12 +3,13 @@
     "name": "cheetoh-stage",
     "image": "datacite/cheetoh",
     "cpu": 512,
-    "memory": 1000,
+    "memory": 1024,
     "essential": true,
-    "hostname": "cheetoh-stage",
+    "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "logConfiguration": { 
