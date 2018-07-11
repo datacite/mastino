@@ -13,9 +13,15 @@ resource "aws_ecs_service" "wsgi" {
       ]
   }
 
-  service_registries {
-    registry_arn = "${aws_service_discovery_service.wsgi.arn}"
+  load_balancer {
+    target_group_arn = "${aws_lb_target_group.wsgi.id}"
+    container_name   = "wsgi-stage"
+    container_port   = "3031"
   }
+
+  depends_on = [
+    "data.aws_lb_listener.default-us",
+  ]
 }
 
 resource "aws_cloudwatch_log_group" "wsgi" {
@@ -33,30 +39,73 @@ resource "aws_ecs_task_definition" "wsgi" {
    container_definitions = "${data.template_file.wsgi_task.rendered}"
 }
 
-resource "aws_service_discovery_service" "wsgi" {
-  name = "wsgi"
+resource "aws_lb_target_group" "wsgi" {
+   name     = "wsgi"
+   port     = 3031
+   protocol = "HTTP"
+   vpc_id   = "${var.vpc_id}"
+   target_type = "ip"
 
-  health_check_custom_config {
-    failure_threshold = 1
-  }
-
-  dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
-    dns_records {
-      ttl = 300
-      type = "A"
-    }
-  }
-}
-
-resource "aws_route53_record" "wsgi" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "wsgi.datacite.org"
-   type = "A"
-
-   alias {
-     name = "${aws_service_discovery_service.wsgi.name}.${aws_service_discovery_private_dns_namespace.internal.name}"
-     zone_id = "${aws_service_discovery_private_dns_namespace.internal.hosted_zone}"
-     evaluate_target_health = true
+   health_check {
+      path = "/"
    }
 }
+
+resource "aws_lb_listener_rule" "wsgi" {
+   listener_arn = "${data.aws_lb_listener.default-us.arn}"
+   priority     = 124
+
+   action {
+      type             = "forward"
+      target_group_arn = "${aws_lb_target_group.wsgi.arn}"
+   }
+
+   condition {
+      field  = "host-header"
+      values = ["ors.datacite.org"]
+   }
+}
+
+resource "aws_route53_record" "ors" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "ors.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${data.aws_lb.default-us.dns_name}"]
+}
+
+resource "aws_route53_record" "split-ors" {
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   name = "ors.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${data.aws_lb.default-us.dns_name}"]
+}
+
+// resource "aws_service_discovery_service" "wsgi" {
+//   name = "wsgi"
+
+//   health_check_custom_config {
+//     failure_threshold = 1
+//   }
+
+//   dns_config {
+//     namespace_id = "${aws_service_discovery_private_dns_namespace.internal.id}"
+//     dns_records {
+//       ttl = 300
+//       type = "A"
+//     }
+//   }
+// }
+
+// resource "aws_route53_record" "wsgi" {
+//    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+//    name = "wsgi.datacite.org"
+//    type = "A"
+
+//    alias {
+//      name = "${aws_service_discovery_service.wsgi.name}.${aws_service_discovery_private_dns_namespace.internal.name}"
+//      zone_id = "${aws_service_discovery_private_dns_namespace.internal.hosted_zone}"
+//      evaluate_target_health = true
+//    }
+// }
