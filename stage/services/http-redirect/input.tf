@@ -4,6 +4,18 @@ provider "aws" {
   region     = "${var.region}"
 }
 
+data "aws_security_group" "datacite-private" {
+  id = "${var.security_group_id}"
+}
+
+data "aws_subnet" "datacite-private" {
+  id = "${var.subnet_datacite-private_id}"
+}
+
+data "aws_subnet" "datacite-alt" {
+  id = "${var.subnet_datacite-alt_id}"
+}
+
 data "aws_ecs_cluster" "stage" {
   cluster_name = "stage"
 }

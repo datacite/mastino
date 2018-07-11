@@ -3,12 +3,13 @@
     "name": "http-redirect-stage",
     "image": "datacite/http-redirect",
     "cpu": 512,
-    "memory": 1000,
+    "memory": 1024,
+    "networkMode": "awsvpc",
     "essential": true,
-    "hostname": "http-redirect-stage",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "logConfiguration": { 

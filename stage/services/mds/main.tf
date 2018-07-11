@@ -18,6 +18,10 @@ resource "aws_ecs_service" "mds-stage" {
     container_name   = "mds-stage"
     container_port   = "80"
   }
+
+  depends_on = [
+    "data.aws_lb_listener.stage",
+  ]
 }
 
 resource "aws_cloudwatch_log_group" "mds-stage" {
