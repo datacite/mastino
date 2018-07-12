@@ -1,4 +1,4 @@
 cheetoh_tags = {
-  sha = "e12ad39"
+  sha = "cac22b0"
   version = "0.9.17"
 }
