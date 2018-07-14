@@ -1,11 +1,11 @@
 [
   {
-    "name": "client-api-stage",
-    "image": "datacite/lupo",
+    "name": "client-api",
+    "image": "datacite/lupo:${version}",
     "cpu": 1024,
     "memory": 2000,
     "essential": true,
-    "hostname": "client-api-stage",
+    "hostname": "client-api",
     "portMappings": [
       {
         "containerPort": 80
@@ -14,7 +14,7 @@
     "logConfiguration": { 
       "logDriver": "awslogs",
       "options": { 
-         "awslogs-group" : "/ecs/client-api-stage",
+         "awslogs-group" : "/ecs/client-api",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
       }
@@ -22,11 +22,11 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "stage"
+        "value" : "production"
       },
       {
         "name" : "RAILS_ENV",
-        "value" : "stage"
+        "value" : "production"
       },
       {
         "name" : "SITE_TITLE",
@@ -74,7 +74,7 @@
       },
       {
         "name" : "SERVERNAME",
-        "value" : "client-api.stage.datacite.org"
+        "value" : "client-api.datacite.org"
       },
       {
         "name" : "MEMCACHE_SERVERS",
@@ -115,11 +115,7 @@
       {
         "name" : "SLACK_WEBHOOK_URL",
         "value" : "${slack_webhook_url}"
-      },
-      {
-        "name" : "GITHUB_VERSION",
-        "value" : "${version}"
-      }
+      }s
     ]
   }
 ]

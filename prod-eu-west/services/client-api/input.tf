@@ -13,8 +13,8 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
-data "aws_ecs_cluster" "stage" {
-  cluster_name = "stage"
+data "aws_ecs_cluster" "default" {
+  cluster_name = "default"
 }
 
 data "aws_iam_role" "ecs_service" {
@@ -25,12 +25,12 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
-data "aws_lb" "stage" {
+data "aws_lb" "default" {
   name = "${var.lb_name}"
 }
 
-data "aws_lb_listener" "stage" {
-  load_balancer_arn = "${data.aws_lb.stage.arn}"
+data "aws_lb_listener" "default" {
+  load_balancer_arn = "${data.aws_lb.default.arn}"
   port = 443
 }
 

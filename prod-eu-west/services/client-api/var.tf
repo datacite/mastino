@@ -4,7 +4,7 @@ variable "region" {
   default = "eu-west-1"
 }
 variable "s3_bucket" {
-  default = "assets.test.datacite.org"
+  default = "assets.datacite.org"
 }
 
 variable "vpc_id" {}
@@ -25,11 +25,11 @@ variable "re3data_url" {
   default = "http://www.re3data.org/api/beta"
 }
 variable "bracco_url" {
-  default = "https://doi.test.datacite.org"
+  default = "https://doi.datacite.org"
 }
 
 variable "memcache_servers" {
-  default = "memcached.test.datacite.org:11211"
+  default = "memcached1.datacite.org:11211"
 }
 
 variable "jwt_public_key" {}
@@ -46,8 +46,11 @@ variable "mysql_database" {
 }
 variable "mysql_host" {}
 variable "es_host" {
-  default = "elasticsearch.test.datacite.org"
+  default = "elasticsearch.datacite.org"
 }
 variable "es_name" {
   default = "es"
+}
+variable "api_dns_name" {
+  default = "api.datacite.org"
 }
