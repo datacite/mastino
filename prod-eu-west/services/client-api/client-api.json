@@ -115,7 +115,7 @@
       {
         "name" : "SLACK_WEBHOOK_URL",
         "value" : "${slack_webhook_url}"
-      }s
+      }
     ]
   }
 ]
