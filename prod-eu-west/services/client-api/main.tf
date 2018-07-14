@@ -39,7 +39,7 @@ resource "aws_lb_target_group" "client-api" {
 }
 
 resource "aws_lb_listener_rule" "client-api-dois" {
-  listener_arn = "${aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 20
 
   action {
@@ -58,7 +58,7 @@ resource "aws_lb_listener_rule" "client-api-dois" {
 }
 
 resource "aws_lb_listener_rule" "client-api-clients" {
-  listener_arn = "${aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 21
 
   action {
@@ -77,7 +77,7 @@ resource "aws_lb_listener_rule" "client-api-clients" {
 }
 
 resource "aws_lb_listener_rule" "client-api-token" {
-  listener_arn = "${aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 31
 
   action {
@@ -96,7 +96,7 @@ resource "aws_lb_listener_rule" "client-api-token" {
 }
 
 resource "aws_lb_listener_rule" "client-api-random" {
-  listener_arn = "${aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 32
 
   action {
@@ -106,7 +106,7 @@ resource "aws_lb_listener_rule" "client-api-random" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
+    values = ["${var.api_dns_name}"]
   }
   condition {
     field  = "path-pattern"
@@ -115,7 +115,7 @@ resource "aws_lb_listener_rule" "client-api-random" {
 }
 
 resource "aws_lb_listener_rule" "client-api-reset" {
-  listener_arn = "${aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 33
 
   action {
@@ -125,7 +125,7 @@ resource "aws_lb_listener_rule" "client-api-reset" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
+    values = ["${var.api_dns_name}"]
   }
   condition {
     field  = "path-pattern"
