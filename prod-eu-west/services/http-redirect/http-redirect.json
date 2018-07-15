@@ -4,7 +4,6 @@
     "image": "datacite/http-redirect",
     "cpu": 512,
     "memory": 1024,
-    "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [
       {
