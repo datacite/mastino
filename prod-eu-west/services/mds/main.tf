@@ -97,7 +97,7 @@ resource "aws_lb_listener_rule" "mds-media" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
   }
 
   condition {
@@ -117,7 +117,7 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
   }
 
   condition {
