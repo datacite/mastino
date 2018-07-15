@@ -72,8 +72,28 @@ resource "aws_lb_listener_rule" "mds-doi" {
 }
 
 resource "aws_lb_listener_rule" "mds-metadata" {
-  listener_arn = "${data.aws_lb_listener.alternate.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 7
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["mds.datacite.org"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/metadatas"]
+  }
+}
+
+resource "aws_lb_listener_rule" "mds-metadata" {
+  listener_arn = "${data.aws_lb_listener.alternate.arn}"
+  priority     = 8
 
   action {
     type             = "forward"
@@ -93,7 +113,7 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 
 resource "aws_lb_listener_rule" "mds-media" {
   listener_arn = "${data.aws_lb_listener.alternate.arn}"
-  priority     = 8
+  priority     = 9
 
   action {
     type             = "forward"
@@ -113,7 +133,7 @@ resource "aws_lb_listener_rule" "mds-media" {
 
 resource "aws_lb_listener_rule" "mds-heartbeat" {
   listener_arn = "${data.aws_lb_listener.alternate.arn}"
-  priority     = 9
+  priority     = 11
 
   action {
     type             = "forward"
@@ -133,7 +153,7 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
 
 resource "aws_lb_listener_rule" "mds-ng" {
   listener_arn = "${data.aws_lb_listener.alternate.arn}"
-  priority     = 11
+  priority     = 12
 
   action {
     type             = "forward"
@@ -148,7 +168,7 @@ resource "aws_lb_listener_rule" "mds-ng" {
 
 resource "aws_lb_listener_rule" "mds-legacy" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 12
+  priority     = 14
 
   action {
     type             = "forward"
