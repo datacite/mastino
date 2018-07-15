@@ -14,7 +14,7 @@ resource "aws_ecs_service" "mds" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.mds.id}"
+    target_group_arn = "${aws_lb_target_group.mds-alternate.id}"
     container_name   = "mds"
     container_port   = "80"
   }
