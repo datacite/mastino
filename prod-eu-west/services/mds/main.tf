@@ -14,7 +14,7 @@ resource "aws_ecs_service" "mds" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.mds-alternate.id}"
+    target_group_arn = "${aws_lb_target_group.mds.id}"
     container_name   = "mds"
     container_port   = "80"
   }
@@ -51,30 +51,18 @@ resource "aws_lb_target_group" "mds" {
   }
 }
 
-resource "aws_lb_target_group" "mds-alternate" {
-  name     = "mds-alternate"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = "${var.vpc_id}"
-  target_type = "ip"
-
-  health_check {
-    path = "/heartbeat"
-  }
-}
-
 resource "aws_lb_listener_rule" "mds-doi" {
   listener_arn = "${data.aws_lb_listener.alternate.arn}"
   priority     = 6
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng-rr.name}"]
+    values = ["mds.datacite.org"]
   }
   
   condition {
@@ -89,12 +77,12 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng-rr.name}"]
+    values = ["mds.datacite.org"]
   }
 
   condition {
@@ -114,7 +102,7 @@ resource "aws_lb_listener_rule" "mds-media" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng-rr.name}"]
+    values = ["mds.datacite.org"]
   }
 
   condition {
@@ -134,27 +122,7 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng-rr.name}"]
-  }
-
-  condition {
-    field  = "path-pattern"
-    values = ["/heartbeat"]
-  }
-}
-
-resource "aws_lb_listener_rule" "mds-legacy-heartbeat" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 11
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.mds-legacy.name}"]
+    values = ["mds.datacite.org"]
   }
 
   condition {
@@ -174,7 +142,7 @@ resource "aws_lb_listener_rule" "mds-ng" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng-rr.name}"]
+    values = ["mds.datacite.org"]
   }
 }
 
