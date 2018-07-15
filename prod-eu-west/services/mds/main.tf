@@ -87,7 +87,7 @@ resource "aws_lb_listener_rule" "mds-metadatas" {
 
   condition {
     field  = "path-pattern"
-    values = ["/metadatas"]
+    values = ["/metadatas*"]
   }
 }
 
@@ -168,7 +168,7 @@ resource "aws_lb_listener_rule" "mds-ng" {
 
 resource "aws_lb_listener_rule" "mds-legacy" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 14
+  priority     = 2
 
   action {
     type             = "forward"
