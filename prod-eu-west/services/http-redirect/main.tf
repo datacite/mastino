@@ -10,13 +10,13 @@ resource "aws_ecs_service" "http-redirect" {
     field = "cpu"
   }
 
-  network_configuration {
-    security_groups = ["${data.aws_security_group.datacite-private.id}"]
-    subnets         = [
-      "${data.aws_subnet.datacite-private.id}",
-      "${data.aws_subnet.datacite-alt.id}"
-    ]
-  }
+  // network_configuration {
+  //   security_groups = ["${data.aws_security_group.datacite-private.id}"]
+  //   subnets         = [
+  //     "${data.aws_subnet.datacite-private.id}",
+  //     "${data.aws_subnet.datacite-alt.id}"
+  //   ]
+  // }
 
   load_balancer {
     target_group_arn = "${aws_lb_target_group.http-redirect.id}"
