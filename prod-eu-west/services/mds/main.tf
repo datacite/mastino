@@ -71,7 +71,7 @@ resource "aws_lb_listener_rule" "mds-doi" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-metadata" {
+resource "aws_lb_listener_rule" "mds-metadatas" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 7
 
