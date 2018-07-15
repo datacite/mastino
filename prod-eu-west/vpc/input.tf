@@ -56,6 +56,10 @@ data "aws_acm_certificate" "default" {
   statuses = ["ISSUED"]
 }
 
+data "aws_s3_bucket" "logs" {
+  bucket = "logs.datacite.org"
+}
+
 data "template_cloudinit_config" "ecs-solr-user-data" {
   count = 2
   gzip = false
