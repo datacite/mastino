@@ -184,7 +184,7 @@ resource "aws_route53_record" "mds-legacy-rr" {
   ttl     = "${var.ttl}"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 70
   }
 
   set_identifier = "legacy"
@@ -198,7 +198,7 @@ resource "aws_route53_record" "mds-ng-rr" {
   ttl     = "${var.ttl}"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 30
   }
 
   set_identifier = "ng"
@@ -212,7 +212,7 @@ resource "aws_route53_record" "split-mds-legacy-rr" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 70
   }
 
   set_identifier = "split-legacy"
@@ -226,7 +226,7 @@ resource "aws_route53_record" "split-mds-ng-rr" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 30
   }
 
   set_identifier = "split-ng"
