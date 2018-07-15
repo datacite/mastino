@@ -39,7 +39,7 @@ resource "aws_lb_listener_rule" "mds-legacy" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-legacy-rr.name}"]
   }
 }
 
