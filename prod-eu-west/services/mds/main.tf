@@ -3,7 +3,7 @@ resource "aws_ecs_service" "mds" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.mds.arn}"
-  desired_count = 1
+  desired_count = 2
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -18,6 +18,10 @@ resource "aws_ecs_service" "mds" {
     container_name   = "mds"
     container_port   = "80"
   }
+
+  depends_on = [
+    "data.aws_lb_listener.default",
+  ]
 }
 
 resource "aws_cloudwatch_log_group" "mds" {
