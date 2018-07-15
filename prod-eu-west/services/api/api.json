@@ -1,0 +1,106 @@
+[
+  {
+    "name": "api",
+    "image": "datacite/spinone:${version}",
+    "cpu": 512,
+    "memory": 1024,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/api",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite REST API"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "SOLR_URL",
+        "value" : "${solr_url}"
+      },
+      {
+        "name" : "APP_URL",
+        "value" : "${app_url}"
+      },
+      {
+        "name" : "BLOG_URL",
+        "value" : "${blog_url}"
+      },
+      {
+        "name" : "VOLPINO_URL",
+        "value" : "${volpino_url}"
+      },
+      {
+        "name" : "VOLPINO_TOKEN",
+        "value" : "${volpino_token}"
+      },
+      {
+        "name" : "ORCID_UPDATE_UUID",
+        "value" : "${orcid_update_uuid}"
+      },
+      {
+        "name" : "ORCID_UPDATE_URL",
+        "value" : "${orcid_update_url}"
+      },
+      {
+        "name" : "ORCID_UPDATE_TOKEN",
+        "value" : "${orcid_update_token}"
+      },
+      {
+        "name" : "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "value" : "${github_personal_access_token}"
+      },
+      {
+        "name" : "GITHUB_MILESTONES_URL",
+        "value" : "${github_milestones_url}"
+      },
+      {
+        "name" : "GITHUB_ISSUES_REPO_URL",
+        "value" : "${github_issues_repo_url}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "SERVERNAME",
+        "value" : "api.datacite.org"
+      },
+      {
+        "name" : "MAILGUN_API_KEY",
+        "value" : "${mailgun_api_key}"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      }
+    ]
+  }
+]
