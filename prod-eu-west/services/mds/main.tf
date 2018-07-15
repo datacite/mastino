@@ -74,7 +74,7 @@ resource "aws_lb_listener_rule" "mds-doi" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng-rr.name}"]
   }
   
   condition {
@@ -94,7 +94,7 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng-rr.name}"]
   }
 
   condition {
@@ -114,7 +114,7 @@ resource "aws_lb_listener_rule" "mds-media" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng-rr.name}"]
   }
 
   condition {
@@ -134,7 +134,7 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng-rr.name}"]
   }
 
   condition {
@@ -174,7 +174,7 @@ resource "aws_lb_listener_rule" "mds-ng" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng.name}"]
+    values = ["${aws_route53_record.mds-ng-rr.name}"]
   }
 }
 
