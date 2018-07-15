@@ -43,6 +43,21 @@ resource "aws_lb_listener_rule" "mds-legacy" {
   }
 }
 
+resource "aws_lb_listener_rule" "mds-legacy" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 13
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.mds-legacy.name}"]
+  }
+}
+
 resource "aws_route53_record" "mds-legacy" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "mds-legacy.datacite.org"
@@ -51,7 +66,7 @@ resource "aws_route53_record" "mds-legacy" {
    records = ["${data.aws_lb.default.dns_name}"]
 }
 
-resource "aws_route53_record" "internal-mds--legacy-split" {
+resource "aws_route53_record" "split-mds-legacy" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "mds-legacy.datacite.org"
    type = "CNAME"

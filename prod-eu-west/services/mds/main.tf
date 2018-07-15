@@ -39,22 +39,6 @@ resource "aws_ecs_task_definition" "mds" {
   container_definitions =  "${data.template_file.mds_task.rendered}"
 }
 
-resource "aws_route53_record" "mds" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "mds.datacite.org"
-   type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${data.aws_lb.default.dns_name}"]
-}
-
-resource "aws_route53_record" "split-mds" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "mds.datacite.org"
-   type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${data.aws_lb.default.dns_name}"]
-}
-
 resource "aws_lb_target_group" "mds" {
   name     = "mds"
   port     = 80
@@ -73,12 +57,12 @@ resource "aws_lb_listener_rule" "mds-doi" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng.name}"]
   }
   
   condition {
@@ -93,12 +77,12 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng.name}"]
   }
 
   condition {
@@ -113,12 +97,12 @@ resource "aws_lb_listener_rule" "mds-media" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng.name}"]
   }
 
   condition {
@@ -138,7 +122,7 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds.name}"]
+    values = ["${aws_route53_record.mds-ng.name}"]
   }
 
   condition {
@@ -153,7 +137,7 @@ resource "aws_lb_listener_rule" "mds-ng" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
   }
 
   condition {
@@ -176,4 +160,60 @@ resource "aws_route53_record" "split-mds-ng" {
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.default.dns_name}"]
+}
+
+resource "aws_route53_record" "mds-legacy-rr" {
+  zone_id = "${data.aws_route53_zone.production.zone_id}"
+  name    = "mds.datacite.org"
+  type    = "CNAME"
+  ttl     = "${var.ttl}"
+
+  weighted_routing_policy {
+    weight = 99
+  }
+
+  set_identifier = "legacy"
+  records        = ["mds-legacy.datacite.org"]
+}
+
+resource "aws_route53_record" "mds-ng-rr" {
+  zone_id = "${data.aws_route53_zone.production.zone_id}"
+  name    = "mds.datacite.org"
+  type    = "CNAME"
+  ttl     = "${var.ttl}"
+
+  weighted_routing_policy {
+    weight = 1
+  }
+
+  set_identifier = "ng"
+  records        = ["mds-ng.datacite.org"]
+}
+
+resource "aws_route53_record" "split-mds-legacy-rr" {
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  name    = "mds.datacite.org"
+  type    = "CNAME"
+  ttl     = "5"
+
+  weighted_routing_policy {
+    weight = 99
+  }
+
+  set_identifier = "legacy"
+  records        = ["mds-legacy.datacite.org"]
+}
+
+resource "aws_route53_record" "split-mds-ng-rr" {
+  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  name    = "mds.datacite.org"
+  type    = "CNAME"
+  ttl     = "5"
+
+  weighted_routing_policy {
+    weight = 1
+  }
+
+  set_identifier = "ng"
+  records        = ["mds-ng.datacite.org"]
 }
