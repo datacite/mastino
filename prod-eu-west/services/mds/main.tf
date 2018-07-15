@@ -200,7 +200,7 @@ resource "aws_route53_record" "split-mds-legacy-rr" {
     weight = 99
   }
 
-  set_identifier = "legacy"
+  set_identifier = "spit-legacy"
   records        = ["mds-legacy.datacite.org"]
 }
 
@@ -214,6 +214,6 @@ resource "aws_route53_record" "split-mds-ng-rr" {
     weight = 1
   }
 
-  set_identifier = "ng"
+  set_identifier = "spit-ng"
   records        = ["mds-ng.datacite.org"]
 }
