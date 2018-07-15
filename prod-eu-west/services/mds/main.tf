@@ -51,18 +51,30 @@ resource "aws_lb_target_group" "mds" {
   }
 }
 
+resource "aws_lb_target_group" "mds-alternate" {
+  name     = "mds-alternate"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = "${var.vpc_id}"
+  target_type = "ip"
+
+  health_check {
+    path = "/heartbeat"
+  }
+}
+
 resource "aws_lb_listener_rule" "mds-doi" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.alternate.arn}"
   priority     = 6
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng.name}"]
+    values = ["${aws_route53_record.mds.name}"]
   }
   
   condition {
@@ -72,17 +84,17 @@ resource "aws_lb_listener_rule" "mds-doi" {
 }
 
 resource "aws_lb_listener_rule" "mds-metadata" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.alternate.arn}"
   priority     = 7
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng.name}"]
+    values = ["${aws_route53_record.mds.name}"]
   }
 
   condition {
@@ -92,17 +104,17 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 }
 
 resource "aws_lb_listener_rule" "mds-media" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.alternate.arn}"
   priority     = 8
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng.name}"]
+    values = ["${aws_route53_record.mds.name}"]
   }
 
   condition {
@@ -112,17 +124,17 @@ resource "aws_lb_listener_rule" "mds-media" {
 }
 
 resource "aws_lb_listener_rule" "mds-heartbeat" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.alternate.arn}"
   priority     = 9
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-alternate.arn}"
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.mds-ng.name}"]
+    values = ["${aws_route53_record.mds.name}"]
   }
 
   condition {
@@ -193,7 +205,7 @@ resource "aws_route53_record" "mds-legacy-rr" {
   }
 
   set_identifier = "legacy"
-  records        = ["mds-legacy.datacite.org"]
+  records        = ["${data.aws_lb.default.dns_name}"]
 }
 
 resource "aws_route53_record" "mds-ng-rr" {
@@ -207,7 +219,7 @@ resource "aws_route53_record" "mds-ng-rr" {
   }
 
   set_identifier = "ng"
-  records        = ["mds-ng.datacite.org"]
+  records        = ["${data.aws_lb.alternate.dns_name}"]
 }
 
 resource "aws_route53_record" "split-mds-legacy-rr" {
@@ -220,8 +232,8 @@ resource "aws_route53_record" "split-mds-legacy-rr" {
     weight = 95
   }
 
-  set_identifier = "spit-legacy"
-  records        = ["mds-legacy.datacite.org"]
+  set_identifier = "split-legacy"
+  records        = ["${data.aws_lb.default.dns_name}"]
 }
 
 resource "aws_route53_record" "split-mds-ng-rr" {
@@ -234,6 +246,6 @@ resource "aws_route53_record" "split-mds-ng-rr" {
     weight = 5
   }
 
-  set_identifier = "spit-ng"
-  records        = ["mds-ng.datacite.org"]
+  set_identifier = "split-ng"
+  records        = ["${data.aws_lb.alternate.dns_name}"]
 }

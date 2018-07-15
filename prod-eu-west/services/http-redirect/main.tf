@@ -37,6 +37,18 @@ resource "aws_lb_target_group" "http-redirect" {
   }
 }
 
+resource "aws_lb_target_group" "http-redirect-alternate" {
+  name     = "http-redirect-alternate"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = "${var.vpc_id}"
+  # target_type = "ip"
+
+  health_check {
+    path = "/heartbeat"
+  }
+}
+
 resource "aws_cloudwatch_log_group" "http-redirect" {
   name = "/ecs/http-redirect"
 }

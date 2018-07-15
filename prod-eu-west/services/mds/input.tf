@@ -29,8 +29,17 @@ data "aws_lb" "default" {
   name = "${var.lb_name}"
 }
 
+data "aws_lb" "alternate" {
+  name = "lb-alternate"
+}
+
 data "aws_lb_listener" "default" {
   load_balancer_arn = "${data.aws_lb.default.arn}"
+  port = 443
+}
+
+data "aws_lb_listener" "alternate" {
+  load_balancer_arn = "${data.aws_lb.alternate.arn}"
   port = 443
 }
 
