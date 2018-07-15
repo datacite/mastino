@@ -43,7 +43,7 @@ resource "aws_lb_listener_rule" "mds-legacy" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-legacy" {
+resource "aws_lb_listener_rule" "mds-legacy-legacy" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 13
 
