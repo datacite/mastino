@@ -26,7 +26,7 @@ resource "aws_lb_listener" "alternate" {
   certificate_arn   = "${data.aws_acm_certificate.default.arn}"
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.http-redirect-alternate.id}"
+    target_group_arn = "${data.aws_lb_target_group.mds.id}"
     type             = "forward"
   }
 }

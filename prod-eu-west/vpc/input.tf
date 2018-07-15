@@ -123,9 +123,9 @@ data "aws_lb_target_group" "http-redirect-alternate" {
   name = "http-redirect-alternate"
 }
 
-// data "aws_lb_target_group" "mds-alternate" {
-//   name = "mds-alternate"
-// }
+data "aws_lb_target_group" "mds" {
+  name = "mds"
+}
 
 data "template_file" "logs" {
   template = "${file("s3_lb_write_access.json")}"
