@@ -131,9 +131,29 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-ng" {
+resource "aws_lb_listener_rule" "mds-legacy-heartbeat" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 11
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.mds.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.mds-legacy.name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/heartbeat"]
+  }
+}
+
+resource "aws_lb_listener_rule" "mds-ng" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 12
 
   action {
     type             = "forward"
