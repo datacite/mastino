@@ -73,7 +73,7 @@ resource "aws_lb_listener_rule" "mds-doi" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
   }
 
   condition {
@@ -93,7 +93,7 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
   }
 
   condition {
@@ -113,7 +113,7 @@ resource "aws_lb_listener_rule" "mds-media" {
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
   }
 
   condition {
