@@ -72,12 +72,12 @@ resource "aws_lb_listener_rule" "mds-doi" {
 }
 
 resource "aws_lb_listener_rule" "mds-metadatas" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.alternate.arn}"
   priority     = 7
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-legacy-alternate.arn}"
   }
 
   condition {
@@ -204,7 +204,7 @@ resource "aws_route53_record" "mds-legacy-rr" {
   ttl     = "${var.ttl}"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 0
   }
 
   set_identifier = "legacy"
@@ -218,7 +218,7 @@ resource "aws_route53_record" "mds-ng-rr" {
   ttl     = "${var.ttl}"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 100
   }
 
   set_identifier = "ng"
@@ -232,7 +232,7 @@ resource "aws_route53_record" "split-mds-legacy-rr" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 0
   }
 
   set_identifier = "split-legacy"
@@ -246,7 +246,7 @@ resource "aws_route53_record" "split-mds-ng-rr" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 50
+    weight = 100
   }
 
   set_identifier = "split-ng"
