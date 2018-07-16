@@ -9,7 +9,6 @@ variable "github_repositories" {
     "bracco",
     "cheetoh",
     "datacite",
-    "freya",
     "homepage",
     "http-redirect",
     "lupo",
