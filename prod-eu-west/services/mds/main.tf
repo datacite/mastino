@@ -87,7 +87,7 @@ resource "aws_lb_listener_rule" "mds-metadatas" {
 
   condition {
     field  = "path-pattern"
-    values = ["/metadatas*"]
+    values = ["/metadatas"]
   }
 }
 
@@ -168,7 +168,7 @@ resource "aws_lb_listener_rule" "mds-ng" {
 
 resource "aws_lb_listener_rule" "mds-legacy" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 2
+  priority     = 14
 
   action {
     type             = "forward"
@@ -204,7 +204,7 @@ resource "aws_route53_record" "mds-legacy-rr" {
   ttl     = "${var.ttl}"
 
   weighted_routing_policy {
-    weight = 100
+    weight = 75
   }
 
   set_identifier = "legacy"
@@ -218,7 +218,7 @@ resource "aws_route53_record" "mds-ng-rr" {
   ttl     = "${var.ttl}"
 
   weighted_routing_policy {
-    weight = 0
+    weight = 25
   }
 
   set_identifier = "ng"
@@ -232,7 +232,7 @@ resource "aws_route53_record" "split-mds-legacy-rr" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 100
+    weight = 75
   }
 
   set_identifier = "split-legacy"
@@ -246,7 +246,7 @@ resource "aws_route53_record" "split-mds-ng-rr" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 0
+    weight = 25
   }
 
   set_identifier = "split-ng"
