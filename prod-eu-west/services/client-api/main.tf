@@ -2,7 +2,7 @@ resource "aws_ecs_service" "client-api" {
   name = "client-api"
   cluster = "${data.aws_ecs_cluster.default.id}"
   task_definition = "${aws_ecs_task_definition.client-api.arn}"
-  desired_count = 4
+  desired_count = 2
   iam_role        = "${data.aws_iam_role.ecs_service.arn}"
 
   placement_strategy {
