@@ -1,4 +1,4 @@
 wsgi_tags = {
   sha = "d85ce28"
-  version = "v1.9"
+  version = "v1.10"
 }
