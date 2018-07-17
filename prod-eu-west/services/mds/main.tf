@@ -20,7 +20,7 @@ resource "aws_ecs_service" "mds" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.alternate",
+    "data.aws_lb_listener.default",
   ]
 }
 
@@ -52,7 +52,7 @@ resource "aws_lb_target_group" "mds" {
 }
 
 resource "aws_lb_listener_rule" "mds-doi" {
-  listener_arn = "${data.aws_lb_listener.alternate.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 6
 
   action {
@@ -72,12 +72,12 @@ resource "aws_lb_listener_rule" "mds-doi" {
 }
 
 resource "aws_lb_listener_rule" "mds-metadatas" {
-  listener_arn = "${data.aws_lb_listener.alternate.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 7
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy-alternate.arn}"
+    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
   }
 
   condition {
@@ -92,7 +92,7 @@ resource "aws_lb_listener_rule" "mds-metadatas" {
 }
 
 resource "aws_lb_listener_rule" "mds-metadata" {
-  listener_arn = "${data.aws_lb_listener.alternate.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 8
 
   action {
@@ -112,7 +112,7 @@ resource "aws_lb_listener_rule" "mds-metadata" {
 }
 
 resource "aws_lb_listener_rule" "mds-media" {
-  listener_arn = "${data.aws_lb_listener.alternate.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 9
 
   action {
@@ -132,7 +132,7 @@ resource "aws_lb_listener_rule" "mds-media" {
 }
 
 resource "aws_lb_listener_rule" "mds-heartbeat" {
-  listener_arn = "${data.aws_lb_listener.alternate.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 11
 
   action {
@@ -151,104 +151,18 @@ resource "aws_lb_listener_rule" "mds-heartbeat" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-ng" {
-  listener_arn = "${data.aws_lb_listener.alternate.arn}"
-  priority     = 12
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy-alternate.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
-}
-
-resource "aws_lb_listener_rule" "mds-legacy" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 14
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
-}
-
-resource "aws_route53_record" "mds-ng" {
+resource "aws_route53_record" "mds" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "mds-ng.datacite.org"
+   name = "mds.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.default.dns_name}"]
 }
 
-resource "aws_route53_record" "split-mds-ng" {
+resource "aws_route53_record" "split-mds" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "mds-ng.datacite.org"
+   name = "mds.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.default.dns_name}"]
-}
-
-resource "aws_route53_record" "mds-legacy-rr" {
-  zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name    = "mds.datacite.org"
-  type    = "CNAME"
-  ttl     = "${var.ttl}"
-
-  weighted_routing_policy {
-    weight = 0
-  }
-
-  set_identifier = "legacy"
-  records        = ["${data.aws_lb.default.dns_name}"]
-}
-
-resource "aws_route53_record" "mds-ng-rr" {
-  zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name    = "mds.datacite.org"
-  type    = "CNAME"
-  ttl     = "${var.ttl}"
-
-  weighted_routing_policy {
-    weight = 100
-  }
-
-  set_identifier = "ng"
-  records        = ["${data.aws_lb.alternate.dns_name}"]
-}
-
-resource "aws_route53_record" "split-mds-legacy-rr" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name    = "mds.datacite.org"
-  type    = "CNAME"
-  ttl     = "5"
-
-  weighted_routing_policy {
-    weight = 0
-  }
-
-  set_identifier = "split-legacy"
-  records        = ["${data.aws_lb.default.dns_name}"]
-}
-
-resource "aws_route53_record" "split-mds-ng-rr" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name    = "mds.datacite.org"
-  type    = "CNAME"
-  ttl     = "5"
-
-  weighted_routing_policy {
-    weight = 100
-  }
-
-  set_identifier = "split-ng"
-  records        = ["${data.aws_lb.alternate.dns_name}"]
 }
