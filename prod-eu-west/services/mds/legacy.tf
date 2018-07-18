@@ -19,6 +19,7 @@ resource "aws_autoscaling_group" "mds" {
   desired_capacity     = 1
   health_check_type    = "ELB"
   health_check_grace_period = 300
+  enabled_metrics      = ["GroupInServiceInstances", "GroupTerminatingInstances"]
   target_group_arns    = ["${aws_lb_target_group.mds-legacy.arn}"]
 
   lifecycle {
