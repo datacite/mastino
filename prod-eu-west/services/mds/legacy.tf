@@ -70,11 +70,6 @@ resource "aws_lb_listener_rule" "mds-legacy" {
   }
 }
 
-// resource "aws_lb_target_group_attachment" "mds-legacy" {
-//   target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
-//   target_id        = "${aws_instance.mds.id}"
-// }
-
 resource "aws_route53_record" "mds-legacy" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "mds-legacy.datacite.org"
