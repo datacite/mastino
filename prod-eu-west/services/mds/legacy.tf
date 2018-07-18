@@ -1,7 +1,7 @@
 resource "aws_launch_configuration" "mds" {
   name_prefix          = "MDS-"
   image_id             = "${var.mds_ami}"
-  security_groups      = ["${aws_security_group.datacite-private.id}"]
+  security_groups      = ["${data.aws_security_group.datacite-private.id}"]
   instance_type        = "m1.large"
   key_name             = "${var.key_name}"
 
@@ -12,7 +12,7 @@ resource "aws_launch_configuration" "mds" {
 
 resource "aws_autoscaling_group" "mds" {
   name                 = "mds"
-  vpc_zone_identifier  = ["${aws_subnet.datacite-private.id}"]
+  vpc_zone_identifier  = ["${data.aws_subnet.datacite-private.id}"]
   launch_configuration = "${aws_launch_configuration.mds.name}"
   min_size             = 1
   max_size             = 2
@@ -88,18 +88,18 @@ resource "aws_route53_record" "split-mds-legacy" {
    records = ["${data.aws_lb.default.dns_name}"]
 }
 
-resource "aws_route53_record" "internal-main" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "main.datacite.org"
-   type = "A"
-   ttl = "300"
-   records = ["${aws_instance.mds.private_ip}"]
-}
+// resource "aws_route53_record" "internal-main" {
+//    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+//    name = "main.datacite.org"
+//    type = "A"
+//    ttl = "300"
+//    records = ["${aws_instance.mds.private_ip}"]
+// }
 
-resource "aws_route53_record" "internal-main-ec2" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "main.ec2.datacite.org"
-   type = "A"
-   ttl = "300"
-   records = ["${aws_instance.mds.private_ip}"]
-}
+// resource "aws_route53_record" "internal-main-ec2" {
+//    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+//    name = "main.ec2.datacite.org"
+//    type = "A"
+//    ttl = "300"
+//    records = ["${aws_instance.mds.private_ip}"]
+// }
