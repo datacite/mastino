@@ -51,3 +51,7 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+
+variable "api_dns_name" {
+  default = "api.test.datacite.org"
+}

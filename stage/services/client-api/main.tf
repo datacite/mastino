@@ -64,7 +64,7 @@ resource "aws_lb_listener_rule" "api-stage" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.api-stage.name}"]
+    values = ["${var.api_dns_name}"]
   }
 }
 
