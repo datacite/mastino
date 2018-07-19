@@ -38,100 +38,176 @@ resource "aws_lb_target_group" "client-api" {
   }
 }
 
-// resource "aws_lb_listener_rule" "client-api-dois" {
-//   listener_arn = "${data.aws_lb_listener.default.arn}"
-//   priority     = 20
+resource "aws_lb_listener_rule" "client-api-dois" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 20
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.client-api.arn}"
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${var.api_dns_name}"]
-//   }
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/dois*"]
-//   }
-// }
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/dois*"]
+  }
+}
 
-// resource "aws_lb_listener_rule" "client-api-clients" {
-//   listener_arn = "${data.aws_lb_listener.default.arn}"
-//   priority     = 21
+resource "aws_lb_listener_rule" "client-api-clients" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 21
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.client-api.arn}"
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${var.api_dns_name}"]
-//   }
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/clients*"]
-//   }
-// }
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/clients*"]
+  }
+}
 
-// resource "aws_lb_listener_rule" "client-api-token" {
-//   listener_arn = "${data.aws_lb_listener.default.arn}"
-//   priority     = 31
+resource "aws_lb_listener_rule" "client-api-providers" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 22
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.client-api.arn}"
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${aws_route53_record.client-api.name}"]
-//   }
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/token"]
-//   }
-// }
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/providers*"]
+  }
+}
 
-// resource "aws_lb_listener_rule" "client-api-random" {
-//   listener_arn = "${data.aws_lb_listener.default.arn}"
-//   priority     = 32
+resource "aws_lb_listener_rule" "client-api-prefixes" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 23
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.client-api.arn}"
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${var.api_dns_name}"]
-//   }
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/random"]
-//   }
-// }
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/prefixes*"]
+  }
+}
 
-// resource "aws_lb_listener_rule" "client-api-reset" {
-//   listener_arn = "${data.aws_lb_listener.default.arn}"
-//   priority     = 33
+resource "aws_lb_listener_rule" "client-api-provider-prefixes" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 24
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.client-api.arn}"
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${var.api_dns_name}"]
-//   }
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/reset"]
-//   }
-// }
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/provider-prefixes*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "client-api-client-prefixes" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 25
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/client-prefixes*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "client-api-token" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 31
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.client-api.name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/token"]
+  }
+}
+
+resource "aws_lb_listener_rule" "client-api-random" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 32
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/random"]
+  }
+}
+
+resource "aws_lb_listener_rule" "client-api-reset" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 33
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/reset"]
+  }
+}
 
 resource "aws_lb_listener_rule" "client-api" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
