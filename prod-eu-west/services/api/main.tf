@@ -138,7 +138,7 @@ resource "aws_lb_listener_rule" "api-datasets" {
 
   condition {
     field  = "host-header"
-    values = ["${var.api_dns_name}"]
+    values = ["${aws_route53_record.api.name}"]
   }
   condition {
     field  = "path-pattern"
