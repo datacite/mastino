@@ -34,7 +34,7 @@ resource "aws_lb_target_group" "mds-legacy" {
   protocol = "HTTP"
 
   health_check {
-    path = "/login2"
+    path = "/login"
   }
 }
 
