@@ -32,3 +32,7 @@ variable "bugsnag_key" {}
 
 variable "admin_username" {}
 variable "admin_password" {}
+
+variable "api_url" {
+  default = "https://api.datacite.orgs"
+}
