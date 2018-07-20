@@ -46,6 +46,10 @@
         "value" : "${bugsnag_key}"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "ADMIN_USERNAME",
         "value" : "${admin_username}"
       },
