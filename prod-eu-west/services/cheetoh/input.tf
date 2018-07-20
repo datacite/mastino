@@ -56,6 +56,6 @@ data "template_file" "cheetoh_task" {
     memcache_servers   = "${var.memcache_servers}"
     admin_username     = "${var.admin_username}"
     admin_password     = "${var.admin_password}"
-    version            = "${var.cheetoh_tags["sha"]}"
+    version            = "${var.cheetoh_tags["version"]}"
   }
 }
