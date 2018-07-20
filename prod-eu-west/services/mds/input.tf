@@ -34,6 +34,11 @@ data "aws_lb_listener" "default" {
   port = 443
 }
 
+data "aws_lb_listener" "default-http" {
+  load_balancer_arn = "${data.aws_lb.default.arn}"
+  port = 80
+}
+
 data "aws_ecs_cluster" "default" {
   cluster_name = "default"
 }
@@ -54,9 +59,4 @@ data "template_file" "mds_task" {
     memcache_servers   = "${var.memcache_servers}"
     version            = "${var.poodle_tags["version"]}"
   }
-}
-
-
-data "aws_instance" "main" {
-  instance_id = "${var.main_id}"
 }

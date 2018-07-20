@@ -83,11 +83,3 @@ resource "aws_route53_record" "split-mds-legacy" {
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.default.dns_name}"]
 }
-
-resource "aws_route53_record" "internal-main" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "main.datacite.org"
-   type = "A"
-   ttl = "300"
-   records = ["10.0.11.197"]
-}
