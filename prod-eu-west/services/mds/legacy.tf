@@ -35,8 +35,6 @@ resource "aws_lb_target_group" "mds-legacy" {
 
   health_check {
     path = "/login"
-    timeout = "5"
-    interval = "30"
   }
 }
 
