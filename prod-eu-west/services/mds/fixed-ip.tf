@@ -13,10 +13,18 @@ resource "aws_lb_listener_rule" "mds-fixed" {
   }
 }
 
+// resource "aws_route53_record" "split-main" {
+//    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+//    name = "main.datacite.org"
+//    type = "CNAME"
+//    ttl = "${var.ttl}"
+//    records = ["${data.aws_lb.default.dns_name}"]
+// }
+
 resource "aws_route53_record" "split-main" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "main.datacite.org"
-   type = "CNAME"
+   type = "A"
    ttl = "${var.ttl}"
-   records = ["${data.aws_lb.default.dns_name}"]
+   records = ["10.0.11.197"]
 }
