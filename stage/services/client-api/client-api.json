@@ -53,6 +53,14 @@
         "value" : "${session_encrypted_cookie_salt}"
       },
       {
+        "name" : "ADMIN_USERNAME",
+        "value" : "${admin_username}"
+      },
+      {
+        "name" : "ADMIN_PASSWORD",
+        "value" : "${admin_password}"
+      },
+      {
         "name" : "MYSQL_USER",
         "value" : "${mysql_user}"
       },
