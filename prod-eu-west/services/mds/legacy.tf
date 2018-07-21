@@ -16,7 +16,7 @@ resource "aws_autoscaling_group" "mds" {
   launch_configuration = "${aws_launch_configuration.mds.name}"
   min_size             = 1
   max_size             = 2
-  desired_capacity     = 1
+  desired_capacity     = 2
   health_check_type    = "ELB"
   health_check_grace_period = 300
   enabled_metrics      = ["GroupInServiceInstances", "GroupTerminatingInstances"]
