@@ -12,7 +12,7 @@ resource "aws_launch_configuration" "mds" {
 
 resource "aws_autoscaling_group" "mds" {
   name                 = "mds"
-  vpc_zone_identifier  = ["${data.aws_subnet.datacite-private.id}"]
+  vpc_zone_identifier  = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
   launch_configuration = "${aws_launch_configuration.mds.name}"
   min_size             = 1
   max_size             = 2
