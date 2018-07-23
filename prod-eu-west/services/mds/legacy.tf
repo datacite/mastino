@@ -15,8 +15,8 @@ resource "aws_autoscaling_group" "mds" {
   vpc_zone_identifier  = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
   launch_configuration = "${aws_launch_configuration.mds.name}"
   min_size             = 1
-  max_size             = 2
-  desired_capacity     = 2
+  max_size             = 3
+  desired_capacity     = 3
   health_check_type    = "ELB"
   health_check_grace_period = 300
   enabled_metrics      = ["GroupInServiceInstances", "GroupTerminatingInstances"]
