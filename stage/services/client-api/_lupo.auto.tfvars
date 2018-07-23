@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "fda8932"
-  version = "1.2.22"
+  sha = "4881fee"
+  version = "1.2.23"
 }
