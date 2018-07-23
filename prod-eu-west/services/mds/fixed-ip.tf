@@ -26,5 +26,5 @@ resource "aws_route53_record" "split-main" {
    name = "main.datacite.org"
    type = "A"
    ttl = "${var.ttl}"
-   records = ["10.0.20.195"]
+   records = ["10.0.20.195", "10.0.11.155"]
 }
