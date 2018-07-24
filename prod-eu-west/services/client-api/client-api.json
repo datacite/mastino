@@ -53,6 +53,10 @@
         "value" : "${session_encrypted_cookie_salt}"
       },
       {
+        "name" : "HANDLE_URL",
+        "value" : "${handle_url}"
+      },
+      {
         "name" : "ADMIN_USERNAME",
         "value" : "${admin_username}"
       },

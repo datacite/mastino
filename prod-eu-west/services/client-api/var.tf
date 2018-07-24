@@ -55,5 +55,6 @@ variable "api_dns_name" {
   default = "api.datacite.org"
 }
 
+variable "handle_url" {}
 variable "admin_username" {}
 variable "admin_password" {}
