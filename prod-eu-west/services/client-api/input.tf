@@ -44,6 +44,8 @@ data "template_file" "client-api_task" {
     jwt_private_key    = "${var.jwt_private_key}"
     session_encrypted_cookie_salt = "${var.session_encrypted_cookie_salt}"
     handle_url         = "${var.handle_url}"
+    handle_username    = "${var.handle_username}"
+    handle_password    = "${var.handle_password}"
     mysql_user         = "${var.mysql_user}"
     mysql_password     = "${var.mysql_password}"
     mysql_database     = "${var.mysql_database}"

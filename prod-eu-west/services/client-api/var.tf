@@ -56,5 +56,7 @@ variable "api_dns_name" {
 }
 
 variable "handle_url" {}
+variable "handle_username" {}
+variable "handle_password" {}
 variable "admin_username" {}
 variable "admin_password" {}

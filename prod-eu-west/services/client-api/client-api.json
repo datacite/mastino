@@ -57,6 +57,14 @@
         "value" : "${handle_url}"
       },
       {
+        "name" : "HANDLE_USERNAME",
+        "value" : "${handle_username}"
+      },
+      {
+        "name" : "HANDLE_PASSWORD",
+        "value" : "${handle_password}"
+      },
+      {
         "name" : "ADMIN_USERNAME",
         "value" : "${admin_username}"
       },
