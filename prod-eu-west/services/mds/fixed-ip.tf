@@ -1,6 +1,6 @@
 resource "aws_lb_listener_rule" "mds-fixed" {
   listener_arn = "${data.aws_lb_listener.default-http.arn}"
-  priority     = 12
+  priority     = 15
 
   action {
     type             = "forward"
