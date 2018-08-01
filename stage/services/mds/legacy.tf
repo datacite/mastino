@@ -9,20 +9,20 @@ resource "aws_lb_target_group" "mds-legacy-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-stage" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 8
+// resource "aws_lb_listener_rule" "mds-stage" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 8
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-legacy-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.mds-stage.name}"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.mds-stage.name}"]
+//   }
+// }
 
 resource "aws_lb_listener_rule" "mds-legacy-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
