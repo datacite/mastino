@@ -21,6 +21,9 @@ data "aws_lb_listener" "stage" {
   load_balancer_arn = "${data.aws_lb.stage.arn}"
   port = 443
 }
+data "aws_ecs_cluster" "stage" {
+  cluster_name = "stage"
+}
 
 data "aws_security_group" "datacite-private" {
   id = "${var.security_group_id}"
