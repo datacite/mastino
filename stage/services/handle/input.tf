@@ -22,6 +22,14 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-data "aws_instance" "compose-stage" {
-  instance_id = "${var.compose_id}"
+data "template_file" "handle_task" {
+  template = "${file("handle.json")}"
+
+  vars {
+    mysql_host = "${var.mysql_host}"
+    mysql_user = "${var.mysql_user}"
+    mysql_password = "${var.mysql_password}"
+    handle_svr_private_key = "${var.handle_svr_private_key}"
+    handle_svr_public_key = "${var.handle_svr_public_key}"
+  }
 }
