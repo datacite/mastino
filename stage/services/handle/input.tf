@@ -22,6 +22,21 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
+data "aws_security_group" "datacite-private" {
+  id = "${var.security_group_id}"
+}
+
+data "aws_subnet" "datacite-private" {
+  id = "${var.subnet_datacite-private_id}"
+}
+
+data "aws_subnet" "datacite-alt" {
+  id = "${var.subnet_datacite-alt_id}"
+}
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
 data "template_file" "handle_task" {
   template = "${file("handle.json")}"
 
