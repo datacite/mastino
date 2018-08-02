@@ -14,8 +14,8 @@ resource "aws_ecs_service" "handle-stage" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.mds-stage.id}"
-    container_name   = "mds-stage"
+    target_group_arn = "${aws_lb_target_group.handle-stage.id}"
+    container_name   = "handle-stage"
     container_port   = "80"
   }
 
