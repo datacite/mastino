@@ -16,6 +16,11 @@ variable "lb_name" {
 variable "compose_id" {}
 
 
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
+
 variable "mysql_user" {}
 variable "mysql_password" {}
 variable "mysql_host" {}
