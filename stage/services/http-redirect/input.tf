@@ -36,6 +36,6 @@ data "template_file" "http-redirect_task" {
   template = "${file("http-redirect.json")}"
 
   vars {
-    version            = "${var.http-redirect_tags["sha"]}"
+    version            = "${var.http-redirect_tags["version"]}"
   }
 }
