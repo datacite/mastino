@@ -119,10 +119,6 @@ data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
 
-data "aws_lb_target_group" "http-redirect-alternate" {
-  name = "http-redirect-alternate"
-}
-
 data "aws_lb_target_group" "mds" {
   name = "mds"
 }
