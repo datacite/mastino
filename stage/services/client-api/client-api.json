@@ -11,9 +11,9 @@
         "containerPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/client-api-stage",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
@@ -51,6 +51,18 @@
       {
         "name" : "SESSION_ENCRYPTED_COOKIE_SALT",
         "value" : "${session_encrypted_cookie_salt}"
+      },
+      {
+        "name" : "HANDLE_URL",
+        "value" : "${handle_url}"
+      },
+      {
+        "name" : "HANDLE_USERNAME",
+        "value" : "${handle_username}"
+      },
+      {
+        "name" : "HANDLE_PASSWORD",
+        "value" : "${handle_password}"
       },
       {
         "name" : "ADMIN_USERNAME",
