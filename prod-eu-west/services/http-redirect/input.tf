@@ -32,6 +32,11 @@ data "aws_lb" "default" {
   name = "${var.lb_name}"
 }
 
+data "aws_lb_listener" "default-http" {
+  load_balancer_arn = "${data.aws_lb.default.arn}"
+  port = 80
+}
+
 data "template_file" "http-redirect_task" {
   template = "${file("http-redirect.json")}"
 
