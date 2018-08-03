@@ -6,7 +6,6 @@
       "memory": 512,
       "networkMode": "awsvpc",
       "essential": true,
-      "hostname": "handle-stage",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
