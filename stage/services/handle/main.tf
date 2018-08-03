@@ -16,7 +16,7 @@ resource "aws_ecs_service" "handle-stage" {
   load_balancer {
     target_group_arn = "${aws_lb_target_group.handle-stage.id}"
     container_name   = "handle-stage"
-    container_port   = "80"
+    container_port   = "8000"
   }
 
   depends_on = [
@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "handle-stage" {
 resource "aws_lb_target_group" "handle-stage" {
   name     = "handle-stage"
   vpc_id   = "${var.vpc_id}"
-  port     = 80
+  port     = 8000
   protocol = "HTTP"
 
   health_check {
