@@ -29,7 +29,7 @@ resource "aws_cloudwatch_log_group" "handle-stage" {
 }
 
 resource "aws_ecs_task_definition" "handle-stage" {
-  family                = "pidcheck-stage"
+  family                = "handle-stage"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   container_definitions = "${data.template_file.handle_task.rendered}"
   network_mode = "awsvpc"
