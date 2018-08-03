@@ -1,7 +1,7 @@
 [
   {
-    "name": "http-redirect-stage:${version}",
-    "image": "datacite/http-redirect",
+    "name": "http-redirect-stage",
+    "image": "datacite/http-redirect:${version}",
     "cpu": 512,
     "memory": 1024,
     "networkMode": "awsvpc",

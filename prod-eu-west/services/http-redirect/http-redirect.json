@@ -1,7 +1,7 @@
 [
   {
-    "name": "http-redirect:${version}",
-    "image": "datacite/http-redirect",
+    "name": "http-redirect",
+    "image": "datacite/http-redirect:${version}",
     "cpu": 512,
     "memory": 1024,
     "essential": true,
