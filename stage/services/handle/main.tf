@@ -43,6 +43,7 @@ resource "aws_lb_target_group" "handle-stage" {
   vpc_id   = "${var.vpc_id}"
   port     = 8000
   protocol = "HTTP"
+  target_type = "ip"
 
   health_check {
     path = "/"
