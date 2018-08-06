@@ -63,7 +63,7 @@
         },
         {
           "name" : "SQL_URL",
-          "value" : "jdbc:mysql://${mysql_host}/handle"
+          "value" : "jdbc:mysql://${mysql_host}/handle?autoReconnect=true&useSSL=false"
         }
       ]
     }
