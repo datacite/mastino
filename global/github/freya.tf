@@ -379,7 +379,7 @@ resource "github_issue_label" "freya_legal" {
 }
 
 # work packages
-rresource "github_issue_label" "wp1" {
+resource "github_issue_label" "wp1" {
   repository = "${github_repository.freya.name}"
   name       = "WP1"
   color      = "006b75"
