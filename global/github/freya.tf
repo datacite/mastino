@@ -207,21 +207,9 @@ resource "github_issue_label" "freya_funder" {
 }
 
 # waffle board column (backlog and done not needed)
-resource "github_issue_label" "freya_discussion" {
+resource "github_issue_label" "freya_next" {
   repository = "${github_repository.freya.name}"
-  name       = "discussion"
-  color      = "ededed"
-}
-
-resource "github_issue_label" "freya_planning" {
-  repository = "${github_repository.freya.name}"
-  name       = "planning"
-  color      = "ededed"
-}
-
-resource "github_issue_label" "freya_ready" {
-  repository = "${github_repository.freya.name}"
-  name       = "ready"
+  name       = "next"
   color      = "ededed"
 }
 
@@ -231,9 +219,9 @@ resource "github_issue_label" "freya_in_progress" {
   color      = "ededed"
 }
 
-resource "github_issue_label" "freya_needs_review" {
+resource "github_issue_label" "freya_review" {
   repository = "${github_repository.freya.name}"
-  name       = "needs review"
+  name       = "review"
   color      = "ededed"
 }
 
