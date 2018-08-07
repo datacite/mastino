@@ -139,6 +139,12 @@ resource "github_issue_label" "DataCite" {
   color      = "b1c9f0"
 }
 
+resource "github_issue_label" "ARDC" {
+  repository = "${github_repository.freya.name}"
+  name       = "ARDC"
+  color      = "b1c9f0"
+}
+
 resource "github_issue_label" "ORCID" {
   repository = "${github_repository.freya.name}"
   name       = "ORCID"
