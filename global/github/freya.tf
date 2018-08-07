@@ -176,6 +176,12 @@ resource "github_issue_label" "freya_researcher" {
   color      = "f9cfb9"
 }
 
+resource "github_issue_label" "freya_bibliometrician" {
+  repository = "${github_repository.freya.name}"
+  name       = "bibliometrician"
+  color      = "f9cfb9"
+}
+
 resource "github_issue_label" "freya_library" {
   repository = "${github_repository.freya.name}"
   name       = "library"
@@ -412,5 +418,23 @@ resource "github_issue_label" "wp5" {
 resource "github_issue_label" "wp6" {
   repository = "${github_repository.freya.name}"
   name       = "WP6"
+  color      = "006b75"
+}
+
+resource "github_issue_label" "freya_pid_graph" {
+  repository = "${github_repository.freya.name}"
+  name       = "PID Graph"
+  color      = "006b75"
+}
+
+resource "github_issue_label" "freya_pid_forum" {
+  repository = "${github_repository.freya.name}"
+  name       = "PID Forum"
+  color      = "006b75"
+}
+
+resource "github_issue_label" "freya_pid_commons" {
+  repository = "${github_repository.freya.name}"
+  name       = "PID Commons"
   color      = "006b75"
 }
