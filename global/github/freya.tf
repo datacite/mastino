@@ -157,7 +157,7 @@ resource "github_issue_label" "Crossref" {
   color      = "b1c9f0"
 }
 
-resource "github_issue_label" "British Library" {
+resource "github_issue_label" "British_Library" {
   repository = "${github_repository.freya.name}"
   name       = "British Library"
   color      = "b1c9f0"
