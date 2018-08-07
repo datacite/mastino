@@ -129,7 +129,7 @@ resource "github_issue_label" "DANS" {
 
 resource "github_issue_label" "Pangaea" {
   repository = "${github_repository.freya.name}"
-  name       = "Pangaea"
+  name       = "PANGAEA"
   color      = "b1c9f0"
 }
 
