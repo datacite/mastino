@@ -164,215 +164,215 @@ resource "github_issue_label" "British Library" {
 }
 
 # stakeholders
-resource "github_issue_label" "data_center" {
+resource "github_issue_label" "freya_data_center" {
   repository = "${github_repository.freya.name}"
   name       = "data center"
   color      = "f9cfb9"
 }
 
-resource "github_issue_label" "researcher" {
+resource "github_issue_label" "freya_researcher" {
   repository = "${github_repository.freya.name}"
   name       = "researcher"
   color      = "f9cfb9"
 }
 
-resource "github_issue_label" "library" {
+resource "github_issue_label" "freya_library" {
   repository = "${github_repository.freya.name}"
   name       = "library"
   color      = "f9cfb9"
 }
 
-resource "github_issue_label" "national_library" {
+resource "github_issue_label" "freya_national_library" {
   repository = "${github_repository.freya.name}"
   name       = "national library"
   color      = "f9cfb9"
 }
 
-resource "github_issue_label" "publisher" {
+resource "github_issue_label" "freya_publisher" {
   repository = "${github_repository.freya.name}"
   name       = "publisher"
   color      = "f9cfb9"
 }
 
-resource "github_issue_label" "funder" {
+resource "github_issue_label" "freya_funder" {
   repository = "${github_repository.freya.name}"
   name       = "funder"
   color      = "f9cfb9"
 }
 
 # waffle board column (backlog and done not needed)
-resource "github_issue_label" "discussion" {
+resource "github_issue_label" "freya_discussion" {
   repository = "${github_repository.freya.name}"
   name       = "discussion"
   color      = "ededed"
 }
 
-resource "github_issue_label" "planning" {
+resource "github_issue_label" "freya_planning" {
   repository = "${github_repository.freya.name}"
   name       = "planning"
   color      = "ededed"
 }
 
-resource "github_issue_label" "ready" {
+resource "github_issue_label" "freya_ready" {
   repository = "${github_repository.freya.name}"
   name       = "ready"
   color      = "ededed"
 }
 
-resource "github_issue_label" "in_progress" {
+resource "github_issue_label" "freya_in_progress" {
   repository = "${github_repository.freya.name}"
   name       = "in progress"
   color      = "ededed"
 }
 
-resource "github_issue_label" "needs_review" {
+resource "github_issue_label" "freya_needs_review" {
   repository = "${github_repository.freya.name}"
   name       = "needs review"
   color      = "ededed"
 }
 
 # product development
-resource "github_issue_label" "feature_definition" {
+resource "github_issue_label" "freya_feature_definition" {
   repository = "${github_repository.freya.name}"
   name       = "feature definition"
   color      = "ffc000"
 }
 
-resource "github_issue_label" "design_requirements" {
+resource "github_issue_label" "freya_design_requirements" {
   repository = "${github_repository.freya.name}"
   name       = "design requirements"
   color      = "ffc000"
 }
 
-resource "github_issue_label" "development" {
+resource "github_issue_label" "freya_development" {
   repository = "${github_repository.freya.name}"
   name       = "development"
   color      = "ffc000"
 }
 
-resource "github_issue_label" "documentation" {
+resource "github_issue_label" "freya_documentation" {
   repository = "${github_repository.freya.name}"
   name       = "documentation"
   color      = "ffc000"
 }
 
-resource "github_issue_label" "launch" {
+resource "github_issue_label" "freya_launch" {
   repository = "${github_repository.freya.name}"
   name       = "launch"
   color      = "ffc000"
 }
 
-resource "github_issue_label" "data_science" {
+resource "github_issue_label" "freya_data_science" {
   repository = "${github_repository.freya.name}"
   name       = "data science"
   color      = "ffc000"
 }
 
 # problems
-resource "github_issue_label" "bug" {
+resource "github_issue_label" "freya_bug" {
   repository = "${github_repository.freya.name}"
   name       = "bug"
   color      = "ee0701"
 }
 
-resource "github_issue_label" "refactor" {
+resource "github_issue_label" "freya_refactor" {
   repository = "${github_repository.freya.name}"
   name       = "refactor"
   color      = "ee0701"
 }
 
-resource "github_issue_label" "redesign" {
+resource "github_issue_label" "freya_redesign" {
   repository = "${github_repository.freya.name}"
   name       = "redesign"
   color      = "ee0701"
 }
 
-resource "github_issue_label" "security" {
+resource "github_issue_label" "freya_security" {
   repository = "${github_repository.freya.name}"
   name       = "security"
   color      = "ee0701"
 }
 
 # improvements
-resource "github_issue_label" "enhancement" {
+resource "github_issue_label" "freya_enhancement" {
   repository = "${github_repository.freya.name}"
   name       = "enhancement"
   color      = "4aadff"
 }
 
-resource "github_issue_label" "optimization" {
+resource "github_issue_label" "freya_optimization" {
   repository = "${github_repository.freya.name}"
   name       = "optimization"
   color      = "4aadff"
 }
 
 # additions
-resource "github_issue_label" "feature" {
+resource "github_issue_label" "freya_feature" {
   repository = "${github_repository.freya.name}"
   name       = "feature"
   color      = "7fc53c"
 }
 
 # inactive
-resource "github_issue_label" "wontfix" {
+resource "github_issue_label" "freya_wontfix" {
   repository = "${github_repository.freya.name}"
   name       = "wontfix"
   color      = "c8d1da"
 }
 
-resource "github_issue_label" "duplicate" {
+resource "github_issue_label" "freya_duplicate" {
   repository = "${github_repository.freya.name}"
   name       = "duplicate"
   color      = "c8d1da"
 }
 
-resource "github_issue_label" "invalid" {
+resource "github_issue_label" "freya_invalid" {
   repository = "${github_repository.freya.name}"
   name       = "invalid"
   color      = "c8d1da"
 }
 
 # user story
-resource "github_issue_label" "user_story" {
+resource "github_issue_label" "freya_user_story" {
   repository = "${github_repository.freya.name}"
   name       = "user story"
   color      = "d4c5f9"
 }
 
 # feedback
-resource "github_issue_label" "question" {
+resource "github_issue_label" "freya_question" {
   repository = "${github_repository.freya.name}"
   name       = "question"
   color      = "c11169"
 }
 
 # experience
-resource "github_issue_label" "ux" {
+resource "github_issue_label" "freya_ux" {
   repository = "${github_repository.freya.name}"
   name       = "ux"
   color      = "ffb353"
 }
 
-resource "github_issue_label" "design" {
+resource "github_issue_label" "freya_design" {
   repository = "${github_repository.freya.name}"
   name       = "design"
   color      = "ffb353"
 }
 
-resource "github_issue_label" "copy" {
+resource "github_issue_label" "freya_copy" {
   repository = "${github_repository.freya.name}"
   name       = "copy"
   color      = "ffb353"
 }
 
 # mindless
-resource "github_issue_label" "housekeeping" {
+resource "github_issue_label" "freya_housekeeping" {
   repository = "${github_repository.freya.name}"
   name       = "housekeeping"
   color      = "fef1b0"
 }
 
-resource "github_issue_label" "legal" {
+resource "github_issue_label" "freya_legal" {
   repository = "${github_repository.freya.name}"
   name       = "legal"
   color      = "fef1b0"
