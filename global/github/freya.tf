@@ -94,6 +94,12 @@ resource "github_team_membership" "freya_membership_wilkos-dans" {
   role     = "member"
 }
 
+resource "github_team_membership" "freya_membership_Ruecue" {
+  team_id  = "${github_team.freya.id}"
+  username = "Ruecue"
+  role     = "member"
+}
+
 # standard labels for GitHub issues across all repositories
 # based on https://robinpowered.com/blog/best-practice-system-for-organizing-and-tagging-github-issues/
 # FREYA partners
