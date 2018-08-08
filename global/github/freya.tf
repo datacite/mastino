@@ -4,119 +4,119 @@ resource "github_team" "freya" {
   privacy     = "secret"
 }
 
-resource "github_team_membership" "freya_membership_mfenner" {
-  team_id  = "${github_team.freya.id}"
-  username = "mfenner"
-  role     = "maintainer"
-}
+// resource "github_team_membership" "freya_membership_mfenner" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "mfenner"
+//   role     = "maintainer"
+// }
 
-resource "github_team_membership" "freya_membership_kjgarza" {
-  team_id  = "${github_team.freya.id}"
-  username = "kjgarza"
-  role     = "maintainer"
-}
+// resource "github_team_membership" "freya_membership_kjgarza" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "kjgarza"
+//   role     = "maintainer"
+// }
 
-resource "github_team_membership" "freya_membership_pcruse" {
-  team_id  = "${github_team.freya.id}"
-  username = "pcruse"
-  role     = "maintainer"
-}
+// resource "github_team_membership" "freya_membership_pcruse" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "pcruse"
+//   role     = "maintainer"
+// }
 
-resource "github_team_membership" "freya_membership_brittadreyer" {
-  team_id  = "${github_team.freya.id}"
-  username = "brittadreyer"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_brittadreyer" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "brittadreyer"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_richardhallett" {
-  team_id  = "${github_team.freya.id}"
-  username = "richardhallett"
-  role     = "maintainer"
-}
+// resource "github_team_membership" "freya_membership_richardhallett" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "richardhallett"
+//   role     = "maintainer"
+// }
 
-resource "github_team_membership" "freya_membership_hcousijn" {
-  team_id  = "${github_team.freya.id}"
-  username = "hcousijn"
-  role     = "maintainer"
-}
+// resource "github_team_membership" "freya_membership_hcousijn" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "hcousijn"
+//   role     = "maintainer"
+// }
 
-resource "github_team_membership" "freya_membership_daslerr" {
-  team_id  = "${github_team.freya.id}"
-  username = "daslerr"
-  role     = "maintainer"
-}
+// resource "github_team_membership" "freya_membership_daslerr" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "daslerr"
+//   role     = "maintainer"
+// }
 
-resource "github_team_membership" "freya_membership_ChrisVFerg" {
-  team_id  = "${github_team.freya.id}"
-  username = "ChrisVFerg"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_ChrisVFerg" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "ChrisVFerg"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_ioannistsanaktsidis" {
-  team_id  = "${github_team.freya.id}"
-  username = "ioannistsanaktsidis"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_ioannistsanaktsidis" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "ioannistsanaktsidis"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_markusstocker" {
-  team_id  = "${github_team.freya.id}"
-  username = "markusstocker"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_markusstocker" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "markusstocker"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_mbdebian" {
-  team_id  = "${github_team.freya.id}"
-  username = "mbdebian"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_mbdebian" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "mbdebian"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_RachaelKotarski" {
-  team_id  = "${github_team.freya.id}"
-  username = "RachaelKotarski"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_RachaelKotarski" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "RachaelKotarski"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_sarala" {
-  team_id  = "${github_team.freya.id}"
-  username = "sarala"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_sarala" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "sarala"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_vasilyb" {
-  team_id  = "${github_team.freya.id}"
-  username = "vasilyb"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_vasilyb" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "vasilyb"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_wilkos-dans" {
-  team_id  = "${github_team.freya.id}"
-  username = "wilkos-dans"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_wilkos-dans" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "wilkos-dans"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_Ruecue" {
-  team_id  = "${github_team.freya.id}"
-  username = "Ruecue"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_Ruecue" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "Ruecue"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_ArtemisLav" {
-  team_id  = "${github_team.freya.id}"
-  username = "ArtemisLav"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_ArtemisLav" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "ArtemisLav"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_Uschindler" {
-  team_id  = "${github_team.freya.id}"
-  username = "Uschindler"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_Uschindler" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "Uschindler"
+//   role     = "member"
+// }
 
-resource "github_team_membership" "freya_membership_Suenjedt" {
-  team_id  = "${github_team.freya.id}"
-  username = "Suenjedt"
-  role     = "member"
-}
+// resource "github_team_membership" "freya_membership_Suenjedt" {
+//   team_id  = "${github_team.freya.id}"
+//   username = "Suenjedt"
+//   role     = "member"
+// }
 
 # standard labels for GitHub issues across all repositories
 # based on https://robinpowered.com/blog/best-practice-system-for-organizing-and-tagging-github-issues/
