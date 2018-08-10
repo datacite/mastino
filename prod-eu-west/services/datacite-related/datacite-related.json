@@ -1,7 +1,7 @@
 [
   {
     "name": "datacite-related",
-    "image": "datacite/toccatore",
+    "image": "datacite/toccatore:${version}",
     "cpu": 384,
     "memory": 1500,
     "essential": true,
