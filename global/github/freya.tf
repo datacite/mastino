@@ -230,6 +230,12 @@ resource "github_issue_label" "freya_publisher" {
   color      = "f9cfb9"
 }
 
+resource "github_issue_label" "freya_service_provider" {
+  repository = "${github_repository.freya.name}"
+  name       = "service_provider"
+  color      = "f9cfb9"
+}
+
 resource "github_issue_label" "freya_funder" {
   repository = "${github_repository.freya.name}"
   name       = "funder"
