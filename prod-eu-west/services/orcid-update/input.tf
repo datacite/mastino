@@ -11,6 +11,7 @@ data "template_file" "orcid_update_task" {
     access_token = "${var.access_token}"
     push_url     = "${var.push_url}"
     webhook_url  = "${var.webhook_url}"
+    version      = "${var.toccatore_tags["version"]}"
   }
 }
 
