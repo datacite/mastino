@@ -242,6 +242,24 @@ resource "github_issue_label" "freya_facility" {
   color      = "f9cfb9"
 }
 
+resource "github_issue_label" "freya_institution" {
+  repository = "${github_repository.freya.name}"
+  name       = "institution"
+  color      = "f9cfb9"
+}
+
+resource "github_issue_label" "freya_curator" {
+  repository = "${github_repository.freya.name}"
+  name       = "curator"
+  color      = "f9cfb9"
+}
+
+resource "github_issue_label" "freya_software_author" {
+  repository = "${github_repository.freya.name}"
+  name       = "software author"
+  color      = "f9cfb9"
+}
+
 resource "github_issue_label" "freya_funder" {
   repository = "${github_repository.freya.name}"
   name       = "funder"
@@ -329,16 +347,52 @@ resource "github_issue_label" "freya_security" {
   color      = "ee0701"
 }
 
-# improvements
-resource "github_issue_label" "freya_enhancement" {
+# PID types
+resource "github_issue_label" "freya_data" {
   repository = "${github_repository.freya.name}"
-  name       = "enhancement"
+  name       = "data"
   color      = "4aadff"
 }
 
-resource "github_issue_label" "freya_optimization" {
+resource "github_issue_label" "freya_software" {
   repository = "${github_repository.freya.name}"
-  name       = "optimization"
+  name       = "software"
+  color      = "4aadff"
+}
+
+resource "github_issue_label" "freya_organization" {
+  repository = "${github_repository.freya.name}"
+  name       = "organization"
+  color      = "4aadff"
+}
+
+resource "github_issue_label" "freya_person" {
+  repository = "${github_repository.freya.name}"
+  name       = "person"
+  color      = "4aadff"
+}
+
+resource "github_issue_label" "freya_repository" {
+  repository = "${github_repository.freya.name}"
+  name       = "repository"
+  color      = "4aadff"
+}
+
+resource "github_issue_label" "freya_sample" {
+  repository = "${github_repository.freya.name}"
+  name       = "sample"
+  color      = "4aadff"
+}
+
+resource "github_issue_label" "freya_instrument" {
+  repository = "${github_repository.freya.name}"
+  name       = "instrument"
+  color      = "4aadff"
+}
+
+resource "github_issue_label" "freya_article" {
+  repository = "${github_repository.freya.name}"
+  name       = "article"
   color      = "4aadff"
 }
 
