@@ -7,6 +7,15 @@ resource "aws_sqs_queue" "elastic-dev" {
   }
 }
 
+resource "aws_sqs_queue" "event-dev" {
+  name                      = "development_event"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
 resource "aws_sqs_queue" "lupo-dev" {
   name                      = "development_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
