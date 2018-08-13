@@ -11,7 +11,7 @@ variable "levriero_tags" {
 }
 
 variable "lb_name" {
-  default = "lb-stage"
+  default = "lb"
 }
 
 variable "ttl" {
