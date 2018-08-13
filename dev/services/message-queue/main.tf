@@ -25,8 +25,8 @@ resource "aws_sqs_queue" "lupo-dev" {
   }
 }
 
-resource "aws_sqs_queue" "elastic-testing" {
-  name                      = "test_elastic"
+resource "aws_sqs_queue" "event-testing" {
+  name                      = "test_event"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
 
   tags {
