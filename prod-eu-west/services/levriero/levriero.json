@@ -1,0 +1,108 @@
+[
+  {
+    "name": "levriero",
+    "image": "datacite/levriero:${version}",
+    "cpu": 1024,
+    "memory": 2000,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+         "awslogs-group" : "/ecs/levriero-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite Event Data Agents"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "JWT_PRIVATE_KEY",
+        "value" : "${jwt_private_key}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+      {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "VOLPINO_URL",
+        "value" : "${volpino_url}"
+      },
+      {
+        "name" : "VOLPINO_TOKEN",
+        "value" : "${volpino_token}"
+      },
+      {
+        "name" : "EVENTDATA_URL",
+        "value" : "${eventdata_url}"
+      },
+      {
+        "name" : "EVENTDATA_TOKEN",
+        "value" : "${eventdata_token}"
+      },
+      {
+        "name" : "LAGOTTINO_URL",
+        "value" : "${lagottino_url}"
+      },
+      {
+        "name" : "LAGOTTINO_TOKEN",
+        "value" : "${lagottino_token}"
+      },
+      {
+        "name" : "DATACITE_CROSSREF_SOURCE_TOKEN",
+        "value" : "${datacite_crossref_source_token}"
+      },
+      {
+        "name" : "DATACITE_RELATED_SOURCE_TOKEN",
+        "value" : "${datacite_related_source_token}"
+      },
+      {
+        "name" : "DATACITE_OTHER_SOURCE_TOKEN",
+        "value" : "${datacite_other_source_token}"
+      },
+      {
+        "name" : "SLACK_WEBHOOK_URL",
+        "value" : "${slack_webhook_url}"
+      }
+    ]
+  }
+]
