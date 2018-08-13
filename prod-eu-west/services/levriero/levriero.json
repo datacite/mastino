@@ -21,15 +21,15 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "stage"
+        "value" : "production"
       },
       {
         "name" : "RAILS_ENV",
-        "value" : "stage"
+        "value" : "production"
       },
       {
         "name" : "SITE_TITLE",
-        "value" : "DataCite Event Data Agents"
+        "value" : "DataCite Event Data Sources"
       },
       {
         "name" : "LOG_LEVEL",
