@@ -40,7 +40,7 @@ resource "aws_lb_target_group" "levriero" {
 
 resource "aws_lb_listener_rule" "levriero" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 18
+  priority     = 17
 
   action {
     type             = "forward"
