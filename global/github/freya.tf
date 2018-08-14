@@ -384,6 +384,12 @@ resource "github_issue_label" "freya_sample" {
   color      = "4aadff"
 }
 
+resource "github_issue_label" "freya_conference" {
+  repository = "${github_repository.freya.name}"
+  name       = "conference"
+  color      = "4aadff"
+}
+
 resource "github_issue_label" "freya_instrument" {
   repository = "${github_repository.freya.name}"
   name       = "instrument"
