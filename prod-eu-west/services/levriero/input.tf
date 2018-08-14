@@ -47,6 +47,7 @@ data "template_file" "levriero_task" {
     bugsnag_key        = "${var.bugsnag_key}"
     memcache_servers   = "${var.memcache_servers}"
     slack_webhook_url  = "${var.slack_webhook_url}"
+    solr_url           = "${var.solr_url}"
     volpino_url        = "${var.volpino_url}"
     volpino_token      = "${var.volpino_token}"
     eventdata_url      = "${var.eventdata_url}"

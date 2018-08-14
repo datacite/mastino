@@ -30,6 +30,9 @@ variable "jwt_private_key" {}
 variable "bugsnag_key" {}
 variable "slack_webhook_url" {}
 
+variable "solr_url" {
+  default = "https://solr.datacite.org"
+}
 variable "volpino_url" {
   default = "https://profiles.datacite.org/api"
 }

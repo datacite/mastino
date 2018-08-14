@@ -64,6 +64,10 @@
         "value" : "${region}"
       },
       {
+        "name" : "SOLR_URL",
+        "value" : "${solr_url}"
+      },
+      {
         "name" : "VOLPINO_URL",
         "value" : "${volpino_url}"
       },
