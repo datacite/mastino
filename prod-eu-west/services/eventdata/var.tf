@@ -37,3 +37,10 @@ variable "mysql_database" {
   default = "lagotto"
 }
 variable "mysql_host" {}
+
+variable "es_host" {
+  default = "elasticsearch.datacite.org"
+}
+variable "es_name" {
+  default = "es"
+}

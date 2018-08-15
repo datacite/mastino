@@ -1,0 +1,70 @@
+[
+    {
+      "name": "handle-stage",
+      "image": "datacite/docker-handle",
+      "cpu": 512,
+      "memory": 512,
+      "networkMode": "awsvpc",
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+           "awslogs-group" : "/ecs/handle-stage",
+           "awslogs-region": "eu-west-1",
+           "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "hostPort": 8000
+        }
+      ],
+      "environment" : [
+        {
+          "name" : "SERVER_ADMINS",
+          "value" : "300:TEST/ADMIN"
+        },
+        {
+            "name" : "ALLOW_NA_ADMINS",
+            "value" : "no"
+        },
+        {
+            "name" : "SERVER_ADMIN_FULL_ACCESS",
+            "value" : "yes"
+        },
+        {
+            "name" : "TRACE_RESOLUTION",
+            "value" : "yes"
+        },
+        {
+            "name" : "TEMPLATE_NS_OVERRIDE",
+            "value" : "yes"
+        },
+        {
+            "name" : "SERVER_PRIVATE_KEY_PEM",
+            "value" : "${handle_svr_private_key}"
+        },
+        {
+            "name" : "SERVER_PUBLIC_KEY_PEM",
+            "value" : "${handle_svr_public_key}"
+        },
+        {
+            "name" : "STORAGE_TYPE",
+            "value" : "sql"
+        },
+        {
+            "name" : "SQL_LOGIN",
+            "value" : "${mysql_user}"
+        },
+        {
+            "name" : "SQL_PASSWD",
+            "value" : "${mysql_password}"
+        },
+        {
+          "name" : "SQL_URL",
+          "value" : "jdbc:mysql://${mysql_host}/handle?autoReconnect=true&useSSL=false"
+        }
+      ]
+    }
+  ]

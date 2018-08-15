@@ -61,6 +61,14 @@
         "value" : "${mysql_database}"
       },
       {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ES_NAME",
+        "value" : "${es_name}"
+      },
+      {
         "name" : "BUGSNAG_KEY",
         "value" : "${bugsnag_key}"
       },

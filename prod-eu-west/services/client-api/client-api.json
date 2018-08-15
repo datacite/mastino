@@ -1,0 +1,141 @@
+[
+  {
+    "name": "client-api",
+    "image": "datacite/lupo:${version}",
+    "cpu": 1024,
+    "memory": 2000,
+    "essential": true,
+    "hostname": "client-api",
+    "portMappings": [
+      {
+        "containerPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/client-api",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite REST API"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "JWT_PRIVATE_KEY",
+        "value" : "${jwt_private_key}"
+      },
+      {
+        "name" : "RE3DATA_URL",
+        "value" : "${re3data_url}"
+      },
+      {
+        "name" : "SESSION_ENCRYPTED_COOKIE_SALT",
+        "value" : "${session_encrypted_cookie_salt}"
+      },
+      {
+        "name" : "HANDLE_URL",
+        "value" : "${handle_url}"
+      },
+      {
+        "name" : "HANDLE_USERNAME",
+        "value" : "${handle_username}"
+      },
+      {
+        "name" : "HANDLE_PASSWORD",
+        "value" : "${handle_password}"
+      },
+      {
+        "name" : "ADMIN_USERNAME",
+        "value" : "${admin_username}"
+      },
+      {
+        "name" : "ADMIN_PASSWORD",
+        "value" : "${admin_password}"
+      },
+      {
+        "name" : "MYSQL_USER",
+        "value" : "${mysql_user}"
+      },
+      {
+        "name" : "MYSQL_PASSWORD",
+        "value" : "${mysql_password}"
+      },
+      {
+        "name" : "MYSQL_HOST",
+        "value" : "${mysql_host}"
+      },
+      {
+        "name" : "MYSQL_DATABASE",
+        "value" : "${mysql_database}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "SERVERNAME",
+        "value" : "client-api.datacite.org"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+            {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "AWS_S3_BUCKET",
+        "value" : "${s3_bucket}"
+      },
+      {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ES_NAME",
+        "value" : "${es_name}"
+      },
+      {
+        "name" : "MAILGUN_API_KEY",
+        "value" : "${mailgun_api_key}"
+      },
+      {
+        "name" : "BRACCO_URL",
+        "value" : "${bracco_url}"
+      },
+      {
+        "name" : "SLACK_WEBHOOK_URL",
+        "value" : "${slack_webhook_url}"
+      }
+    ]
+  }
+]

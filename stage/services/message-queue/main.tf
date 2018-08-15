@@ -7,6 +7,15 @@ resource "aws_sqs_queue" "elastic-test" {
   }
 }
 
+resource "aws_sqs_queue" "event-test" {
+  name                      = "stage_event"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "test"
+  }
+}
+
 resource "aws_sqs_queue" "lupo-test" {
   name                      = "stage_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"

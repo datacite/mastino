@@ -29,3 +29,6 @@ variable "memcache_servers" {
 
 variable "secret_key_base" {}
 variable "bugsnag_key" {}
+
+variable "admin_username" {}
+variable "admin_password" {}

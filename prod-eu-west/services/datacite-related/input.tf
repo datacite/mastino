@@ -12,6 +12,7 @@ data "template_file" "datacite_related_task" {
     source_token = "${var.source_token}"
     push_url     = "${var.push_url}"
     webhook_url  = "${var.webhook_url}"
+    version      = "${var.toccatore_tags["version"]}"
   }
 }
 data "aws_iam_role" "lambda" {

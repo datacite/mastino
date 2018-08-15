@@ -1,0 +1,11 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "es:*",
+            "Principal": "*",
+            "Effect": "Allow",
+            "Resource": "arn:aws:es:eu-west-1:datacite:domain/*"
+        }
+    ]
+}

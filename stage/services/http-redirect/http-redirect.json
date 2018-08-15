@@ -1,7 +1,7 @@
 [
   {
     "name": "http-redirect-stage",
-    "image": "datacite/http-redirect",
+    "image": "datacite/http-redirect:${version}",
     "cpu": 512,
     "memory": 1024,
     "networkMode": "awsvpc",
@@ -19,12 +19,6 @@
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
       }
-    },
-    "environment" : [
-      {
-        "name" : "GITHUB_VERSION",
-        "value" : "${version}"
-      }
-    ]
+    }
   }
 ]

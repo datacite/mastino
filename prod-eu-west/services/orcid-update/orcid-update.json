@@ -1,7 +1,7 @@
 [
   {
     "name": "orcid-update",
-    "image": "datacite/toccatore",
+    "image": "datacite/toccatore:${version}",
     "cpu": 256,
     "memory": 1000,
     "essential": true,

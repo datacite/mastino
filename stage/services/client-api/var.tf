@@ -27,9 +27,6 @@ variable "re3data_url" {
 variable "bracco_url" {
   default = "https://doi.test.datacite.org"
 }
-variable "levriero_url" {
-  default = "https://api.test.datacite.org"
-}
 
 variable "memcache_servers" {
   default = "memcached.test.datacite.org:11211"
@@ -37,7 +34,6 @@ variable "memcache_servers" {
 
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
-variable "secret_key_base" {}
 variable "session_encrypted_cookie_salt" {}
 variable "bugsnag_key" {}
 variable "mailgun_api_key" {}
@@ -55,3 +51,12 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+
+variable "api_dns_name" {
+  default = "api.test.datacite.org"
+}
+variable "handle_url" {}
+variable "handle_username" {}
+variable "handle_password" {}
+variable "admin_username" {}
+variable "admin_password" {}

@@ -11,9 +11,9 @@
         "containerPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/client-api-stage",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
@@ -45,16 +45,32 @@
         "value" : "${jwt_private_key}"
       },
       {
-        "name" : "SECRET_KEY_BASE",
-        "value" : "${secret_key_base}"
-      },
-      {
         "name" : "RE3DATA_URL",
         "value" : "${re3data_url}"
       },
       {
         "name" : "SESSION_ENCRYPTED_COOKIE_SALT",
         "value" : "${session_encrypted_cookie_salt}"
+      },
+      {
+        "name" : "HANDLE_URL",
+        "value" : "${handle_url}"
+      },
+      {
+        "name" : "HANDLE_USERNAME",
+        "value" : "${handle_username}"
+      },
+      {
+        "name" : "HANDLE_PASSWORD",
+        "value" : "${handle_password}"
+      },
+      {
+        "name" : "ADMIN_USERNAME",
+        "value" : "${admin_username}"
+      },
+      {
+        "name" : "ADMIN_PASSWORD",
+        "value" : "${admin_password}"
       },
       {
         "name" : "MYSQL_USER",
@@ -115,10 +131,6 @@
       {
         "name" : "BRACCO_URL",
         "value" : "${bracco_url}"
-      },
-      {
-        "name" : "LEVRIERO_URL",
-        "value" : "${levriero_url}"
       },
       {
         "name" : "SLACK_WEBHOOK_URL",

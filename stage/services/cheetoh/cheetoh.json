@@ -46,6 +46,14 @@
         "value" : "${bugsnag_key}"
       },
       {
+        "name" : "ADMIN_USERNAME",
+        "value" : "${admin_username}"
+      },
+      {
+        "name" : "ADMIN_PASSWORD",
+        "value" : "${admin_password}"
+      },
+      {
         "name" : "SERVERNAME",
         "value" : "cheetoh.test.datacite.org"
       },

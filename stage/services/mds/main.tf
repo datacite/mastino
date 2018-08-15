@@ -67,7 +67,7 @@ resource "aws_lb_target_group" "mds-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-stage-doi" {
+resource "aws_lb_listener_rule" "mds-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 2
 
@@ -80,69 +80,84 @@ resource "aws_lb_listener_rule" "mds-stage-doi" {
     field  = "host-header"
     values = ["${aws_route53_record.mds-stage.name}"]
   }
+}
+
+// resource "aws_lb_listener_rule" "mds-stage-doi" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 2
+
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
+//   }
+
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.mds-stage.name}"]
+//   }
   
-  condition {
-    field  = "path-pattern"
-    values = ["/doi*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/doi*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-stage-metadata" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 5
+// resource "aws_lb_listener_rule" "mds-stage-metadata" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 5
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.mds-stage.name}"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.mds-stage.name}"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/metadata*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/metadata*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-stage-media" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 6
+// resource "aws_lb_listener_rule" "mds-stage-media" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 6
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.mds-stage.name}"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.mds-stage.name}"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/media*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/media*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-stage-heartbeat" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 7
+// resource "aws_lb_listener_rule" "mds-stage-heartbeat" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 7
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.mds-stage.name}"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.mds-stage.name}"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/heartbeat"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/heartbeat"]
+//   }
+// }

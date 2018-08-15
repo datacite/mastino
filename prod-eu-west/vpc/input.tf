@@ -56,6 +56,10 @@ data "aws_acm_certificate" "default" {
   statuses = ["ISSUED"]
 }
 
+data "aws_s3_bucket" "logs" {
+  bucket = "logs.datacite.org"
+}
+
 data "template_cloudinit_config" "ecs-solr-user-data" {
   count = 2
   gzip = false
@@ -113,10 +117,6 @@ data "aws_iam_instance_profile" "ecs_instance" {
 
 data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
-}
-
-data "aws_lb_target_group" "http-redirect" {
-  name = "http-redirect"
 }
 
 data "aws_lb_target_group" "mds" {

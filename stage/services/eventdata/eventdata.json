@@ -22,11 +22,11 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "development"
+        "value" : "stage"
       },
       {
         "name" : "RAILS_ENV",
-        "value" : "development"
+        "value" : "stage"
       },
       {
         "name" : "SITE_TITLE",
@@ -43,6 +43,26 @@
       {
         "name" : "JWT_PRIVATE_KEY",
         "value" : "${jwt_private_key}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+            {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ES_NAME",
+        "value" : "${es_name}"
       },
       {
         "name" : "MYSQL_USER",

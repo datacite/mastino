@@ -1,0 +1,23 @@
+[
+  {
+    "name": "http-redirect",
+    "image": "datacite/http-redirect:${version}",
+    "cpu": 512,
+    "memory": 1024,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/http-redirect",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]

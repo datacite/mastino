@@ -12,3 +12,7 @@ variable "access_token" {}
 variable "source_token" {}
 variable "push_url" {}
 variable "webhook_url" {}
+
+variable "toccatore_tags" {
+  type = "map"
+}
