@@ -22,7 +22,10 @@
          {"name": "EZID_PASSWORD", "value": "${ezid_password}"},
          {"name": "DATACITE_URL", "value": "${datacite_url}"},
          {"name": "DATACITE_USER", "value": "${datacite_user}"},
-         {"name": "DATACITE_PASSWORD", "value": "${datacite_password}"}
+         {"name": "DATACITE_PASSWORD", "value": "${datacite_password}"},
+         {"name": "GLOBUS_CLIENT", "value": "${globus_client}"},
+         {"name": "GLOBUS_USERNAME", "value": "${globus_username}"},
+         {"name": "GLOBUS_SECRET", "value": "${globus_secret}"}
 
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],

@@ -54,3 +54,7 @@ variable "datacite_password" {}
 
 variable "admin_username" {}
 variable "admin_password" {}
+
+variable "globus_client" {}
+variable "globus_username" {}
+variable "globus_secret" {}
