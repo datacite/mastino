@@ -1,4 +1,4 @@
 wsgi_tags = {
-   sha="${GIT_SHA}"
-   version="${GIT_TAG}"
+   sha="a585548"
+   version="latest"
 }
