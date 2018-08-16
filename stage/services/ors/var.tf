@@ -55,6 +55,11 @@ variable "datacite_password" {}
 variable "admin_username" {}
 variable "admin_password" {}
 
+
 variable "globus_client" {}
 variable "globus_username" {}
 variable "globus_secret" {}
+
+variable "bugsnag_key" {
+   default = "2c30fce5bccd2542eba01246b6983049"
+}
