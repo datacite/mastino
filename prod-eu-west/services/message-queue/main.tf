@@ -25,6 +25,15 @@ resource "aws_sqs_queue" "lupo" {
   }
 }
 
+resource "aws_sqs_queue" "lagottino" {
+  name                      = "production_lagottino"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "production"
+  }
+}
+
 resource "aws_sqs_queue" "levriero" {
   name                      = "production_levriero"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
