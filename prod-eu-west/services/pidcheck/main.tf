@@ -1,9 +1,8 @@
-
-resource "aws_ecs_service" "pidcheck-stage" {
-  name            = "pidcheck-stage"
-  cluster         = "${data.aws_ecs_cluster.stage.id}"
+resource "aws_ecs_service" "pidcheck" {
+  name            = "pidcheck"
+  cluster         = "${data.aws_ecs_cluster.default.id}"
   launch_type     = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.pidcheck-stage.arn}"
+  task_definition = "${aws_ecs_task_definition.pidcheck.arn}"
   desired_count   = 1
 
   network_configuration {
@@ -15,12 +14,12 @@ resource "aws_ecs_service" "pidcheck-stage" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "pidcheck-stage" {
-  name = "/ecs/pidcheck-stage"
+resource "aws_cloudwatch_log_group" "pidcheck" {
+  name = "/ecs/pidcheck"
 }
 
-resource "aws_ecs_task_definition" "pidcheck-stage" {
-  family                = "pidcheck-stage"
+resource "aws_ecs_task_definition" "pidcheck" {
+  family                = "pidcheck"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
@@ -29,4 +28,3 @@ resource "aws_ecs_task_definition" "pidcheck-stage" {
 
   container_definitions = "${data.template_file.pidcheck_task.rendered}"
 }
-

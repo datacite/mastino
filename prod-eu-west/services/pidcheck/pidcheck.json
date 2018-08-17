@@ -1,15 +1,15 @@
 [
   {
-    "name": "pidcheck-crawler-test",
+    "name": "pidcheck-crawler",
     "image": "datacite/pidcheck-crawler",
     "cpu": 256,
     "memory": 512,
-    "networkMode": "awsvpc",
     "essential": true,
+    "networkMode": "awsvpc",
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-         "awslogs-group" : "/ecs/pidcheck-stage",
+         "awslogs-group" : "/ecs/pidcheck",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
       }
