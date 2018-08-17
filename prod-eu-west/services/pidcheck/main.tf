@@ -14,10 +14,6 @@ resource "aws_ecs_service" "pidcheck" {
   }
 }
 
-data "template_file" "pidcheck_task" {
-  template = "${file("task-definitions/pidcheck.json")}"
-}
-
 resource "aws_cloudwatch_log_group" "pidcheck" {
   name = "/ecs/pidcheck"
 }
