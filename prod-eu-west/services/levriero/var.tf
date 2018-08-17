@@ -36,6 +36,9 @@ variable "solr_url" {
 variable "volpino_url" {
   default = "https://profiles.datacite.org/api"
 }
+variable "crossref_query_url" {
+  default = "https://api.eventdata.crossref.org"
+}
 variable "lagottino_url" {
   default = "https://api.datacite.org"
 }

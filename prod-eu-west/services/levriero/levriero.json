@@ -72,6 +72,10 @@
         "value" : "${volpino_url}"
       },
       {
+        "name" : "CROSSREF_QUERY_URL",
+        "value" : "${crossref_query_url}"
+      },
+      {
         "name" : "VOLPINO_TOKEN",
         "value" : "${volpino_token}"
       },
