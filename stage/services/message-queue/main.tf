@@ -7,8 +7,8 @@ resource "aws_sqs_queue" "elastic-test" {
   }
 }
 
-resource "aws_sqs_queue" "event-test" {
-  name                      = "stage_event"
+resource "aws_sqs_queue" "doi-test" {
+  name                      = "stage_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
   tags {

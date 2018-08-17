@@ -7,8 +7,8 @@ resource "aws_sqs_queue" "elastic" {
   }
 }
 
-resource "aws_sqs_queue" "event" {
-  name                      = "production_event"
+resource "aws_sqs_queue" "doi" {
+  name                      = "production_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
   tags {
