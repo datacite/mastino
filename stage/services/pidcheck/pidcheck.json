@@ -6,7 +6,6 @@
     "memory": 512,
     "networkMode": "awsvpc",
     "essential": true,
-    "hostname": "pidcheck-crawler-test",
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
