@@ -1,0 +1,28 @@
+[
+  {
+    "name": "pidcheck-crawler",
+    "image": "datacite/pidcheck-crawler",
+    "cpu": 256,
+    "memory": 512,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+         "awslogs-group" : "/ecs/pidcheck",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "INFO"
+      },
+      {
+        "name" : "REDIS_HOST",
+        "value" : "${redis_host}"
+      }
+    ]
+  }
+]
