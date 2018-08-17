@@ -4,11 +4,12 @@
     "image": "datacite/pidcheck-crawler",
     "cpu": 256,
     "memory": 512,
+    "networkMode": "awsvpc",
     "essential": true,
     "hostname": "pidcheck-crawler-test",
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/pidcheck-stage",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
