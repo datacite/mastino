@@ -34,6 +34,15 @@ resource "aws_sqs_queue" "levriero-test" {
   }
 }
 
+resource "aws_sqs_queue" "lagottino-test" {
+  name                      = "stage_lagottino"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "test"
+  }
+}
+
 resource "aws_sqs_queue" "usage-test" {
   name                      = "stage_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
