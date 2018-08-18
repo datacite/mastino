@@ -58,6 +58,7 @@ data "template_file" "levriero_task" {
     datacite_crossref_source_token = "${var.datacite_crossref_source_token}"
     datacite_related_source_token  = "${var.datacite_related_source_token}"
     datacite_other_source_token    = "${var.datacite_other_source_token}"
+    datacite_funder_source_token    = "${var.datacite_funder_source_token}"
     version            = "${var.levriero_tags["version"]}"
   }
 }
