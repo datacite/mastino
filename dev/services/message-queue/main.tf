@@ -1,5 +1,5 @@
-resource "aws_sqs_queue" "elastic-dev" {
-  name                      = "development_elastic"
+resource "aws_sqs_queue" "event-dev" {
+  name                      = "development_event"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
 
   tags {
@@ -18,6 +18,15 @@ resource "aws_sqs_queue" "doi-dev" {
 
 resource "aws_sqs_queue" "lupo-dev" {
   name                      = "development_lupo"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
+resource "aws_sqs_queue" "lagottino-dev" {
+  name                      = "development_lagottino"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
 
   tags {
