@@ -1,5 +1,5 @@
-resource "aws_sqs_queue" "elastic-test" {
-  name                      = "stage_elastic"
+resource "aws_sqs_queue" "doi-test" {
+  name                      = "stage_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
   tags {
@@ -7,8 +7,8 @@ resource "aws_sqs_queue" "elastic-test" {
   }
 }
 
-resource "aws_sqs_queue" "doi-test" {
-  name                      = "stage_doi"
+resource "aws_sqs_queue" "event-test" {
+  name                      = "stage_event"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
   tags {

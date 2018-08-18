@@ -1,5 +1,5 @@
-resource "aws_sqs_queue" "elastic" {
-  name                      = "production_elastic"
+resource "aws_sqs_queue" "doi" {
+  name                      = "production_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
   tags {
@@ -7,8 +7,8 @@ resource "aws_sqs_queue" "elastic" {
   }
 }
 
-resource "aws_sqs_queue" "doi" {
-  name                      = "production_doi"
+resource "aws_sqs_queue" "event" {
+  name                      = "production_event"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
   tags {
