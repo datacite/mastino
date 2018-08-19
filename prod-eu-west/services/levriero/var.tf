@@ -52,4 +52,5 @@ variable "lagottino_token" {}
 variable "datacite_crossref_source_token" {}
 variable "datacite_related_source_token" {}
 variable "datacite_other_source_token" {}
+variable "datacite_url_source_token" {}
 variable "datacite_funder_source_token" {}
