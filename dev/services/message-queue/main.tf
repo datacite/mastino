@@ -25,6 +25,15 @@ resource "aws_sqs_queue" "lupo-dev" {
   }
 }
 
+resource "aws_sqs_queue" "lupo-background-dev" {
+  name                      = "development_lupo_background"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
 resource "aws_sqs_queue" "lagottino-dev" {
   name                      = "development_lagottino"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
