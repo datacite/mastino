@@ -44,16 +44,20 @@ variable "login_url" {
    default = "https://ors.test.datacite.org/login"
 }
 
-
-
 variable "ezid_user" {}
 variable "ezid_password" {}
 
 variable "datacite_user" {}
 variable "datacite_password" {}
 
-variable "admin_username" {}
-variable "admin_password" {}
+variable "admin_username" {
+   default="admin"
+
+}
+variable "admin_password" {
+   default="orstest"
+}
+
 
 
 variable "globus_client" {}
