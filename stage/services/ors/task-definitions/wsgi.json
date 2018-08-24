@@ -14,7 +14,20 @@
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},
          {"name": "NEO_USER", "value":"${neo_user}"},
          {"name": "NEO_URL", "value":"${neo_url}"},
-         {"name": "REDIS_URL", "value": "${redis_url}"}
+         {"name": "REDIS_URL", "value": "${redis_url}"},
+         {"name": "LOGIN", "value": "${login_url}"},
+         {"name": "ADMIN_USERNAME", "value":"${admin_username}" },
+         {"name": "ADMIN_PASSWORD", "value": "${admin_password}" },
+         {"name": "EZID_USER", "value":"${ezid_password}"},
+         {"name": "EZID_PASSWORD", "value": "${ezid_password}"},
+         {"name": "DATACITE_URL", "value": "${datacite_url}"},
+         {"name": "DATACITE_USER", "value": "${datacite_user}"},
+         {"name": "DATACITE_PASSWORD", "value": "${datacite_password}"},
+         {"name": "GLOBUS_CLIENT", "value": "${globus_client}"},
+         {"name": "GLOBUS_USERNAME", "value": "${globus_username}"},
+         {"name": "GLOBUS_SECRET", "value": "${globus_secret}"},
+         {"name": "bugsnag_key", "value": "${bugsnag_key}"}
+
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
       "logConfiguration": { 

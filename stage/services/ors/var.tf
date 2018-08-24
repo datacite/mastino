@@ -18,6 +18,17 @@ variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
+
+variable "wsgi_tags" {
+  type = "map"
+}
+
+variable "bagit_tags" {
+  type = "map"
+}
+
+// uwsgi container variables
+
 variable "neo_user" {}
 variable "neo_password" {}
 
@@ -35,4 +46,26 @@ variable "proxy_url" {
 
 variable "datacite_url" {
    default = "https://mds.test.datacite.org"
+}
+
+variable "login_url" {
+   default = "https://ors.test.datacite.org/login"
+}
+
+variable "ezid_user" {}
+variable "ezid_password" {}
+
+variable "datacite_user" {}
+variable "datacite_password" {}
+
+variable "admin_username" {}
+variable "admin_password" {}
+
+variable "globus_client" {}
+
+variable "globus_username" {}
+variable "globus_secret" {}
+
+variable "bugsnag_key" {
+   default = "2c30fce5bccd2542eba01246b6983049"
 }
