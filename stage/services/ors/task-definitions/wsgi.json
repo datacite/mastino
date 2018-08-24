@@ -25,7 +25,8 @@
          {"name": "DATACITE_PASSWORD", "value": "${datacite_password}"},
          {"name": "GLOBUS_CLIENT", "value": "${globus_client}"},
          {"name": "GLOBUS_USERNAME", "value": "${globus_username}"},
-         {"name": "GLOBUS_SECRET", "value": "${globus_secret}"}
+         {"name": "GLOBUS_SECRET", "value": "${globus_secret}"},
+         {"name": "bugsnag_key", "value": "${bugsnag_key}"}
 
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],

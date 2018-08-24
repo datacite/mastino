@@ -50,17 +50,11 @@ variable "ezid_password" {}
 variable "datacite_user" {}
 variable "datacite_password" {}
 
-variable "admin_username" {
-   default="admin"
-
-}
-variable "admin_password" {
-   default="orstest"
-}
-
-
+variable "admin_username" {}
+variable "admin_password" {}
 
 variable "globus_client" {}
+
 variable "globus_username" {}
 variable "globus_secret" {}
 
