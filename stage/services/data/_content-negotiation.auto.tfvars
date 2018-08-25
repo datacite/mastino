@@ -1,4 +1,4 @@
 content-negotiation_tags = {
-  sha = "2adc09c"
-  version = "1.1.23"
+  sha = "f7b3a9a"
+  version = "v.1.1.24"
 }
