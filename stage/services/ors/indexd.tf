@@ -1,12 +1,3 @@
-// Task Definition
-
-
-// vars to add
-   // indexd_url
-   // indexd_username
-   // indexd_password
-
-# Indexd Service
 resource "aws_ecs_service" "indexd-stage" {
    name = "indexd-stage"
    cluster = "${data.aws_ecs_cluster.stage.id}"
