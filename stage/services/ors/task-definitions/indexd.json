@@ -1,0 +1,26 @@
+[
+   {
+      "name": "indexd-stage",
+      "image": "jackofsum/ors-indexd",
+      "essential": true,
+      "portMappings" : [
+        {
+            "containerPort": 80,
+            "hostPort": 80
+        }
+      ],
+      "environment": [ 
+         {"name": "ADMIN_USERNAME", "value":"${indexd_username}" },
+         {"name": "ADMIN_PASSWORD", "value": "${indexd_password}" }
+      ],
+      "logConfiguration": { 
+         "logDriver": "awslogs",
+         "options": { 
+            "awslogs-group" : "/ecs/indexd-stage",
+            "awslogs-region": "eu-west-1",
+            "awslogs-stream-prefix": "ecs"
+            }
+      }
+  }
+
+]

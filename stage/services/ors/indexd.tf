@@ -1,6 +1,11 @@
 // Task Definition
 
 
+// vars to add
+   // indexd_url
+   // indexd_username
+   // indexd_password
+
 # Indexd Service
 resource "aws_ecs_service" "indexd-stage" {
    name = "indexd-stage"
@@ -24,8 +29,12 @@ resource "aws_ecs_service" "indexd-stage" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.stage",
+   "data.aws_lb_listener.stage",
   ]
+
+  service_registries {
+    registry_arn = "${aws_service_discovery_service.indexd-stage.arn}"
+  }
 
 }
 
@@ -70,3 +79,32 @@ resource "aws_lb_listener_rule" "indexd-stage" {
       values = ["/indexd/*"]
    }
 }
+
+resource "aws_service_discovery_service" "indexd-stage" {
+  name = "indexd"
+
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+
+  dns_config {
+    namespace_id = "${aws_service_discovery_private_dns_namespace.internal-stage.id}"
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
+  }
+}
+
+resource "aws_route53_record" "neo-stage" {
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   name = "indexd.test.datacite.org"
+   type = "A"
+
+   alias {
+     name = "${aws_service_discovery_service.indexd-stage.name}.${aws_service_discovery_private_dns_namespace.internal-stage.name}"
+     zone_id = "${aws_service_discovery_private_dns_namespace.internal-stage.hosted_zone}"
+     evaluate_target_health = true
+   }
+}
+

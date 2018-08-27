@@ -69,3 +69,7 @@ variable "globus_secret" {}
 variable "bugsnag_key" {
    default = "2c30fce5bccd2542eba01246b6983049"
 }
+
+variable "indexd_url" {}
+variable "indexd_username" {}
+variable "indexd_password" {}

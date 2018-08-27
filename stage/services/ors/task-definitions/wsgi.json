@@ -26,8 +26,10 @@
          {"name": "GLOBUS_CLIENT", "value": "${globus_client}"},
          {"name": "GLOBUS_USERNAME", "value": "${globus_username}"},
          {"name": "GLOBUS_SECRET", "value": "${globus_secret}"},
-         {"name": "bugsnag_key", "value": "${bugsnag_key}"}
-
+         {"name": "bugsnag_key", "value": "${bugsnag_key}"},
+         {"name": "INDEXD_USER", "value": "${indexd_username}"},
+         {"name": "INDEXD_PASSWORD", "value": "${indexd_password}"},
+         {"name": "INDEXD_URL", "value": "${indexd_url}"}
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
       "logConfiguration": { 
