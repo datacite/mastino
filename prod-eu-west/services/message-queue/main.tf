@@ -19,6 +19,7 @@ resource "aws_sqs_queue" "event" {
 resource "aws_sqs_queue" "lupo" {
   name                      = "production_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
+  visibility_timeout_seconds = 120
 
   tags {
     Environment = "production"
@@ -39,7 +40,7 @@ resource "aws_sqs_queue" "lagottino" {
   name                      = "production_lagottino"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
-  
+
   tags {
     Environment = "production"
   }

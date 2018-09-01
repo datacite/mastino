@@ -19,7 +19,8 @@ resource "aws_sqs_queue" "event-test" {
 resource "aws_sqs_queue" "lupo-test" {
   name                      = "stage_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
-
+  visibility_timeout_seconds = 120
+  
   tags {
     Environment = "test"
   }
@@ -48,7 +49,7 @@ resource "aws_sqs_queue" "lagottino-test" {
   name                      = "stage_lagottino"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
-  
+
   tags {
     Environment = "test"
   }
