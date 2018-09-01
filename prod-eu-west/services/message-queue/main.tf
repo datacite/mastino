@@ -28,6 +28,7 @@ resource "aws_sqs_queue" "lupo" {
 resource "aws_sqs_queue" "lupo-background" {
   name                      = "production_lupo_background"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
+  visibility_timeout_seconds = 3600
 
   tags {
     Environment = "production"
@@ -37,7 +38,8 @@ resource "aws_sqs_queue" "lupo-background" {
 resource "aws_sqs_queue" "lagottino" {
   name                      = "production_lagottino"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-
+  visibility_timeout_seconds = 3600
+  
   tags {
     Environment = "production"
   }
