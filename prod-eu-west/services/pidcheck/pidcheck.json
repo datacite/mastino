@@ -22,6 +22,10 @@
       {
         "name" : "REDIS_HOST",
         "value" : "${redis_host}"
+      },
+      {
+        "name": "USER_AGENT",
+        "value": "pidcheck (+http://www.datacite.org)"
       }
     ]
   }
