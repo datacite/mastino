@@ -35,6 +35,9 @@ resource "aws_lb_target_group" "eventdata" {
 
   health_check {
     path = "/heartbeat"
+    timeout = 60
+    interval = 300
+    unhealthy_threshold = 10
   }
 }
 
