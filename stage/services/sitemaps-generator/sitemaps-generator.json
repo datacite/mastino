@@ -11,6 +11,10 @@
         "value" : "sitemaps-search-datacite-test"
       },
       {
+        "name" : "RACK_ENV",
+        "value" : "stage"
+      },
+      {
         "name" : "FROM_DATE",
         "value" : "2017-01-01"
       },

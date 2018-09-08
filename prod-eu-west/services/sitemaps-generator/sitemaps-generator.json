@@ -11,6 +11,10 @@
         "value" : "sitemaps-search-datacite"
       },
       {
+        "name" : "RACK_ENV",
+        "value" : "production"
+      },
+      {
         "name" : "FROM_DATE",
         "value" : "2000-01-01"
       },
