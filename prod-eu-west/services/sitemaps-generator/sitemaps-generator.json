@@ -8,7 +8,7 @@
     "environment" : [
       {
         "name" : "SITEMAP_BUCKET",
-        "value" : "search.datacite.org"
+        "value" : "sitemaps-search-datacite"
       },
       {
         "name" : "FROM_DATE",
