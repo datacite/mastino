@@ -1,3 +1,24 @@
+resource "aws_s3_bucket" "sitemaps-search" {
+    bucket = "sitemaps-search-datacite"
+    acl = "public-read"
+    policy = "${data.template_file.sitemaps-search.rendered}"
+    website {
+        index_document = "index.html"
+    }
+    tags {
+        Name = "´Sitemaps Search"
+    }
+}
+
+data "template_file" "sitemaps-search" {
+    template = "${file("s3_public_read.json")}"
+
+    vars {
+        vpce_id = "${aws_vpc_endpoint.datacite.id}"
+        bucket_name = "sitemaps-search-datacite"
+    }
+}
+
 resource "aws_ecs_task_definition" "sitemaps-generator" {
   family = "sitemaps-generator"
   container_definitions =  "${data.template_file.sitemaps_generator_task.rendered}"
