@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "sitemaps-search" {
         index_document = "index.html"
     }
     tags {
-        Name = "´SitemapsSearch"
+        Name = "SitemapsSearch"
     }
 }
 
