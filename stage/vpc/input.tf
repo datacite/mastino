@@ -97,6 +97,10 @@ data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
 
+data "aws_lb_target_group" "api-stage" {
+  name = "api-stage"
+}
+
 data "aws_lb_target_group" "http-redirect-stage" {
   name = "http-redirect-stage"
 }
