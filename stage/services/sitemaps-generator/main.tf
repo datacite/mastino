@@ -49,7 +49,7 @@ resource "aws_lambda_function" "sitemaps-generator-test" {
   environment {
     variables = {
       ecs_task_def = "sitemaps-generator-test"
-      cluster = "test"
+      cluster = "stage"
       count = 1
     }
   }
