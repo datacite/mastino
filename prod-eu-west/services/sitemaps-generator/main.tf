@@ -14,7 +14,7 @@ data "template_file" "sitemaps-search" {
     template = "${file("s3_public_read.json")}"
 
     vars {
-        vpce_id = "${aws_vpc_endpoint.datacite.id}"
+        vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
         bucket_name = "sitemaps-search-datacite"
     }
 }
