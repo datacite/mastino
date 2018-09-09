@@ -38,6 +38,12 @@ variable "volpino_url" {
 variable "api_url" {
   default = "https://api.test.datacite.org"
 }
+variable "app_url" {
+  default = "https://search.test.datacite.org"
+}
+variable "sitemaps_bucket_url" {
+  default = "http://search.test.datacite.org.s3-website-eu-west-1.amazonaws.com"
+}
 variable "data_url" {
   default = "https://data.test.datacite.org"
 }
