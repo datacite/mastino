@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "sitemaps-search" {
     acl = "public-read"
     policy = "${data.template_file.sitemaps-search.rendered}"
     website {
-        index_document = "index.html"
+        index_document = "sitemap.xml.gz"
     }
     tags {
         Name = "SitemapsSearch"
