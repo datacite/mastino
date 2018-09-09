@@ -3,10 +3,15 @@
   "Statement": [
     {
       "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
+      "Effect": "Deny",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${bucket_name}/*"
+      "Resource": "arn:aws:s3:::${bucket_name}/*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:sourceVpce": "${vpce_id}"
+        }
+      }
     },
     {
       "Sid": "WriteObject",

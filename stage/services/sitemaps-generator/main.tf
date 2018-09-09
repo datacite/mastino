@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "sitemaps-search-test" {
-    bucket = "sitemaps-search-datacite-test"
+    bucket = "search.test.datacite.org"
     acl = "public-read"
     policy = "${data.template_file.sitemaps-search-test.rendered}"
     website {
@@ -15,7 +15,7 @@ data "template_file" "sitemaps-search-test" {
 
     vars {
         vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
-        bucket_name = "sitemaps-search-datacite-test"
+        bucket_name = "search.test.datacite.org"
     }
 }
 
