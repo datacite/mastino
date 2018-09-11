@@ -5,12 +5,6 @@ resource "aws_ecs_service" "indexd-stage" {
    task_definition = "${aws_ecs_task_definition.indexd-stage.arn}"
    desired_count = 1
 
-  load_balancer {
-    target_group_arn = "${aws_lb_target_group.indexd-stage.id}"
-    container_name   = "wsgi-stage"
-    container_port   = "3031"
-  }
-
    network_configuration {
       security_groups = ["${data.aws_security_group.datacite-private.id}"]
       subnets         = [
@@ -19,14 +13,9 @@ resource "aws_ecs_service" "indexd-stage" {
       ]
   }
 
-  depends_on = [
-   "data.aws_lb_listener.stage",
-  ]
-
   service_registries {
     registry_arn = "${aws_service_discovery_service.indexd-stage.arn}"
   }
-
 }
 
 resource "aws_cloudwatch_log_group" "indexd-stage" {
@@ -44,33 +33,8 @@ resource "aws_ecs_task_definition" "indexd-stage" {
    container_definitions = "${data.template_file.indexd_task.rendered}"
 }
 
-resource "aws_lb_target_group" "indexd-stage" {
-   name     = "wsgi-stage"
-   port     = 80
-   protocol = "HTTP"
-   vpc_id   = "${var.vpc_id}"
-   target_type = "ip"
 
-   health_check {
-      path = "/index"
-   }
-}
-
-resource "aws_lb_listener_rule" "indexd-stage" {
-   listener_arn = "${data.aws_lb_listener.stage.arn}"
-   priority     = 124
-
-   action {
-      type             = "forward"
-      target_group_arn = "${aws_lb_target_group.indexd-stage.arn}"
-   }
-
-   condition {
-      field  = "path-pattern"
-      values = ["/indexd/*"]
-   }
-}
-
+// Service Discovery
 resource "aws_service_discovery_service" "indexd-stage" {
   name = "indexd"
 
@@ -87,7 +51,7 @@ resource "aws_service_discovery_service" "indexd-stage" {
   }
 }
 
-resource "aws_route53_record" "neo-stage" {
+resource "aws_route53_record" "indexd-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "indexd.test.datacite.org"
    type = "A"
@@ -98,4 +62,3 @@ resource "aws_route53_record" "neo-stage" {
      evaluate_target_health = true
    }
 }
-
