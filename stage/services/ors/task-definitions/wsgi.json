@@ -9,13 +9,13 @@
             "hostPort": 3031
         }
       ],
-      "environment": [ 
+      "environment": [
          {"name": "PROXY_URL", "value": "${proxy_url}" },
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},
          {"name": "NEO_USER", "value":"${neo_user}"},
          {"name": "NEO_URL", "value":"${neo_url}"},
          {"name": "REDIS_URL", "value": "${redis_url}"},
-         {"name": "LOGIN", "value": "${login_url}"},
+         {"name": "ROOT_URL", "value": "${root_url}"},
          {"name": "ADMIN_USERNAME", "value":"${admin_username}" },
          {"name": "ADMIN_PASSWORD", "value": "${admin_password}" },
          {"name": "EZID_USER", "value":"${ezid_password}"},
@@ -32,9 +32,9 @@
          {"name": "INDEXD_URL", "value": "${indexd_url}"}
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
-      "logConfiguration": { 
+      "logConfiguration": {
          "logDriver": "awslogs",
-         "options": { 
+         "options": {
             "awslogs-group" : "/ecs/wsgi-stage",
             "awslogs-region": "eu-west-1",
             "awslogs-stream-prefix": "ecs"

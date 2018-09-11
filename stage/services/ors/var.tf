@@ -48,8 +48,8 @@ variable "datacite_url" {
    default = "https://mds.test.datacite.org"
 }
 
-variable "login_url" {
-   default = "https://ors.test.datacite.org/login"
+variable "root_url" {
+   default = "https://ors.test.datacite.org"
 }
 
 variable "ezid_user" {}
@@ -71,7 +71,7 @@ variable "bugsnag_key" {
 }
 
 variable "indexd_url" {
-   default = "https://indexd.ors.test.datacite.org"
+   default = "indexd.test.datacite.org"
 }
 variable "indexd_username" {}
 variable "indexd_password" {}
