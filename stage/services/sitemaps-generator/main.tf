@@ -1,3 +1,24 @@
+resource "aws_s3_bucket" "sitemaps-search-test" {
+    bucket = "search.test.datacite.org"
+    acl = "public-read"
+    policy = "${data.template_file.sitemaps-search-test.rendered}"
+    website {
+        index_document = "index.html"
+    }
+    tags {
+        Name = "SitemapsSearchTest"
+    }
+}
+
+data "template_file" "sitemaps-search-test" {
+    template = "${file("s3_public_read.json")}"
+
+    vars {
+        vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
+        bucket_name = "search.test.datacite.org"
+    }
+}
+
 resource "aws_ecs_task_definition" "sitemaps-generator-test" {
   family = "sitemaps-generator-test"
   container_definitions =  "${data.template_file.sitemaps_generator_test_task.rendered}"
@@ -28,7 +49,7 @@ resource "aws_lambda_function" "sitemaps-generator-test" {
   environment {
     variables = {
       ecs_task_def = "sitemaps-generator-test"
-      cluster = "test"
+      cluster = "stage"
       count = 1
     }
   }
