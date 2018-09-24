@@ -57,7 +57,6 @@ data "template_file" "levriero_task" {
     datacite_other_source_token    = "${var.datacite_other_source_token}"
     datacite_url_source_token      = "${var.datacite_url_source_token}"
     datacite_funder_source_token   = "${var.datacite_funder_source_token}"
-    datacite_usage_source_token   = "${var.datacite_usage_source_token}"
     version            = "${var.levriero_tags["sha"]}"
   }
 }
