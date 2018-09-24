@@ -108,6 +108,10 @@
         "value" : "${datacite_funder_source_token}"
       },
       {
+        "name" : "DATACITE_USAGE_SOURCE_TOKEN",
+        "value" : "${datacite_usage_source_token}"
+      },
+      {
         "name" : "SLACK_WEBHOOK_URL",
         "value" : "${slack_webhook_url}"
       },
