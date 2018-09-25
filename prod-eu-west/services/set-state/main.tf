@@ -1,18 +1,18 @@
-resource "aws_cloudwatch_event_rule" "set-state-test" {
-  name = "set-state-test"
+resource "aws_cloudwatch_event_rule" "set-state" {
+  name = "set-state"
   description = "Run set-state API call via cron"
   schedule_expression = "cron(05 1,5,9,13,17,21 * * ? *)"
 }
 
-resource "aws_cloudwatch_event_target" "set-state-test" {
-  target_id = "set-state-test"
-  rule = "${aws_cloudwatch_event_rule.set-state-test.name}"
-  arn = "${aws_lambda_function.set-state-test.arn}"
+resource "aws_cloudwatch_event_target" "set-state" {
+  target_id = "set-state"
+  rule = "${aws_cloudwatch_event_rule.set-state.name}"
+  arn = "${aws_lambda_function.set-state.arn}"
 }
 
-resource "aws_lambda_function" "set-state-test" {
+resource "aws_lambda_function" "set-state" {
   filename = "set_state_runner.js.zip"
-  function_name = "set-state-test"
+  function_name = "set-state"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "ecs_task_runner.handler"
   runtime = "nodejs6.10"
@@ -29,10 +29,10 @@ resource "aws_lambda_function" "set-state-test" {
   }
 }
 
-resource "aws_lambda_permission" "set-state-test" {
+resource "aws_lambda_permission" "set-state" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.set-state-test.function_name}"
+  function_name = "${aws_lambda_function.set-state.function_name}"
   principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.set-state-test.arn}"
+  source_arn = "${aws_cloudwatch_event_rule.set-state.arn}"
 }
