@@ -8,18 +8,28 @@ exports.handler = (events, context) => {
   var password      = process.env.password;
   var host          = process.env.host;
   
-  var http = require('http');
+  var https = require('https');
   var options = {
     host: host,
     path: 'dois/set-state',
+    method: 'POST',
     headers: {
       'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
     }
   };
 
-  http.get(options, function(res) {
-    console.log("Got response: " + res.statusCode);
-  }).on('error', function(e) {
-    console.log("Got error: " + e.message);
+  const req = https.request(options, (res) => {
+    console.log('status:', res.statusCode);
+
+    res.setEncoding('utf8');
+    res.on('data', (d) => {
+      var json = JSON.parse(d);
+      console.log('message:', json.message);
+    });
   });
+
+  req.on('error', (e) => {
+    console.error(e);
+  });
+  req.end();
 }
