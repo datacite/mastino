@@ -57,7 +57,7 @@ data "template_file" "api_task" {
     solr_url           = "${var.solr_url}"
     volpino_url        = "${var.volpino_url}"
     volpino_token      = "${var.volpino_token}"
-    app_url            = "${var.app_url}"
+    api_url            = "${var.api_url}"
     blog_url           = "${var.blog_url}"
     jwt_public_key     = "${var.jwt_public_key}"
     orcid_update_uuid  = "${var.orcid_update_uuid}"

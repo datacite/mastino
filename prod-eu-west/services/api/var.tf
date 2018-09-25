@@ -32,7 +32,7 @@ variable "volpino_url" {
 variable "orcid_update_url" {
   default = "https://profiles.datacite.org"
 }
-variable "app_url" {
+variable "api_url" {
   default = "https://app.datacite.org"
 }
 variable "blog_url" {
