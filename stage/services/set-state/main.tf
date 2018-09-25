@@ -11,7 +11,7 @@ resource "aws_cloudwatch_event_target" "set-state-test" {
 }
 
 resource "aws_lambda_function" "set-state-test" {
-  filename = "set-state-runner.js.zip"
+  filename = "set_state_runner.js.zip"
   function_name = "set-state-test"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "ecs_task_runner.handler"
