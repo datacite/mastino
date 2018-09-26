@@ -46,11 +46,12 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-# Template Task Definitions with a Password 
+// Template Task Definitions with a Password
+
 data "template_file" "neo_task" {
    template = "${file("task-definitions/neo.json")}"
 
-   vars { 
+   vars {
       neo_password   = "${var.neo_password}"
       neo_url        = "${var.neo_url}"
    }
@@ -61,10 +62,30 @@ data "template_file" "wsgi_task" {
 
    vars {
       proxy_url      = "${var.proxy_url}"
+      bugsnag_key    = "${var.bugsnag_key}"
+
       neo_url        = "${var.neo_url}"
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
+
       redis_url      = "${var.redis_url}"
+      root_url       = "${var.root_url}"
+
+
+      admin_username = "${var.admin_username}"
+      admin_password = "${var.ezid_user}"
+
+      ezid_user      = "${var.ezid_user}"
+      ezid_password  = "${var.ezid_password}"
+
+      globus_client = "${var.globus_client}"
+      globus_secret = "${var.globus_secret}"
+
+
+      indexd_user     = "${var.indexd_url}"
+      indexd_password = "${var.indexd_password}"
+
+
       datacite_url   = "${var.datacite_url}"
    }
 }
@@ -89,4 +110,12 @@ data "template_file" "celery_task" {
       redis_url      = "${var.redis_url}"
       datacite_url   = "${var.datacite_url}"
    }
+}
+
+data "template_file" "indexd_task" {
+
+  vars {
+    indexd_username = "${var.indexd_username}"
+    indexd_password = "${var.indexd_password}"
+  }
 }
