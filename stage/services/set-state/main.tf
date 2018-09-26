@@ -15,7 +15,7 @@ resource "aws_lambda_function" "set-state-test" {
   function_name = "set-state-test"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "set_state_runner.handler"
-  runtime = "nodejs6.10"
+  runtime = "nodejs8.10"
   vpc_config {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
     security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
