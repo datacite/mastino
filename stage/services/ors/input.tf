@@ -46,11 +46,12 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-# Template Task Definitions with a Password 
+// Template Task Definitions with a Password
+
 data "template_file" "neo_task" {
    template = "${file("task-definitions/neo.json")}"
 
-   vars { 
+   vars {
       neo_password   = "${var.neo_password}"
       neo_url        = "${var.neo_url}"
    }
@@ -89,4 +90,12 @@ data "template_file" "celery_task" {
       redis_url      = "${var.redis_url}"
       datacite_url   = "${var.datacite_url}"
    }
+}
+
+data "template_file" "indexd_task" {
+
+  vars {
+    indexd_username = "${var.indexd_username}"
+    indexd_password = "${var.indexd_password}"
+  }
 }
