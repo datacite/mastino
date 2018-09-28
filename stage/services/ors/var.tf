@@ -27,6 +27,10 @@ variable "bagit_tags" {
   type = "map"
 }
 
+variable "worker_tags" {
+  type = "map"
+}
+
 // uwsgi container variables
 
 variable "neo_user" {}
