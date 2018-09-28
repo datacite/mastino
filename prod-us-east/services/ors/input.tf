@@ -62,12 +62,32 @@ data "template_file" "wsgi_task" {
 
    vars {
       proxy_url      = "${var.proxy_url}"
+      bugsnag_key    = "${var.bugsnag_key}"
+
       neo_url        = "${var.neo_url}"
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
+
       redis_url      = "${var.redis_url}"
+      root_url       = "${var.root_url}"
+
+      admin_username = "${var.admin_username}"
+      admin_password = "${var.ezid_user}"
+
+      ezid_user      = "${var.ezid_user}"
+      ezid_password  = "${var.ezid_password}"
+
+      datacite_user      = "${var.datacite_user}"
+      datacite_password  = "${var.datacite_password}"
+
+      globus_client = "${var.globus_client}"
+      globus_secret = "${var.globus_secret}"
+
+      indexd_url      = "${var.indexd_url}"
+      indexd_username = "${var.indexd_username}"
+      indexd_password = "${var.indexd_password}"
+
       datacite_url   = "${var.datacite_url}"
-      version        = "${var.wsgi_tags["version"]}"
    }
 }
 

@@ -14,6 +14,11 @@ data "template_file" "sitemaps_generator_test_task" {
   }
 }
 
+data "aws_vpc_endpoint" "datacite" {
+  vpc_id       = "${var.vpc_id}"
+  service_name = "com.amazonaws.eu-west-1.s3"
+}
+
 data "aws_iam_role" "lambda" {
   name = "lambda"
 }

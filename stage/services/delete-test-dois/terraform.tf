@@ -2,6 +2,6 @@ terraform {
   required_version = ">= 0.11"
 
   backend "atlas" {
-    name         = "datacite-ng/stage-services-set-state"
+    name         = "datacite-ng/stage-services-delete-test-dois"
   }
 }

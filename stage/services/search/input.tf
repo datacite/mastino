@@ -78,6 +78,8 @@ data "template_file" "search_stage_task" {
     api_url            = "${var.api_url}"
     data_url           = "${var.data_url}"
     cdn_url            = "${var.cdn_url}"
+    app_url            = "${var.app_url}"
+    sitemaps_bucket_url = "${var.sitemaps_bucket_url}"
     secret_key_base    = "${var.secret_key_base}"
     memcache_servers   = "${var.memcache_servers}"
     bugsnag_key        = "${var.bugsnag_key}"
