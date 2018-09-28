@@ -88,6 +88,10 @@ data "template_file" "wsgi_task" {
       indexd_password = "${var.indexd_password}"
 
       datacite_url   = "${var.datacite_url}"
+
+      admin_password = "${var.admin_password}"
+      admin_username = "${var.admin_username}"
+
    }
 }
 
@@ -95,11 +99,36 @@ data "template_file" "bagit_task" {
    template = "${file("task-definitions/bagit.json")}"
 
    vars {
-      neo_url        = "${var.neo_url}"
-      neo_user       = "${var.neo_user}"
-      neo_password   = "${var.neo_password}"
-   }
-}
+         proxy_url      = "${var.proxy_url}"
+         bugsnag_key    = "${var.bugsnag_key}"
+
+         neo_url        = "${var.neo_url}"
+         neo_user       = "${var.neo_user}"
+         neo_password   = "${var.neo_password}"
+
+         redis_url      = "${var.redis_url}"
+         root_url       = "${var.root_url}"
+
+         admin_username = "${var.admin_username}"
+         admin_password = "${var.ezid_user}"
+
+         ezid_user      = "${var.ezid_user}"
+         ezid_password  = "${var.ezid_password}"
+
+         datacite_user      = "${var.datacite_user}"
+         datacite_password  = "${var.datacite_password}"
+
+         globus_username = "${var.globus_username}"
+
+         globus_client = "${var.globus_client}"
+         globus_secret = "${var.globus_secret}"
+
+         indexd_url      = "${var.indexd_url}"
+         indexd_username = "${var.indexd_username}"
+         indexd_password = "${var.indexd_password}"
+
+         datacite_url = "${var.datacite_url}"
+         }
 
 data "template_file" "celery_task" {
    template = "${file("task-definitions/celery.json")}"
