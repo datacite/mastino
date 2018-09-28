@@ -50,6 +50,10 @@
         "value" : "${api_url}"
       },
       {
+        "name" : "APP_URL",
+        "value" : "${app_url}"
+      },
+      {
         "name" : "JWT_HOST",
         "value" : "${volpino_url}"
       },
@@ -60,6 +64,10 @@
       {
         "name" : "ORCID_URL",
         "value" : "${orcid_url}"
+      },
+      {
+        "name" : "SITEMAPS_BUCKET_URL",
+        "value" : "${sitemaps_bucket_url}"
       },
       {
         "name" : "ORCID_UPDATE_UUID",
