@@ -46,8 +46,6 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-// Template Task Definitions with a Password
-
 data "template_file" "neo_task" {
    template = "${file("task-definitions/neo.json")}"
 
