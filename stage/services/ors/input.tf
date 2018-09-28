@@ -71,20 +71,20 @@ data "template_file" "wsgi_task" {
       redis_url      = "${var.redis_url}"
       root_url       = "${var.root_url}"
 
-
       admin_username = "${var.admin_username}"
       admin_password = "${var.ezid_user}"
 
       ezid_user      = "${var.ezid_user}"
       ezid_password  = "${var.ezid_password}"
 
+      datacite_user      = "${var.datacite_user}"
+      datacite_password  = "${var.datacite_password}"
+
       globus_client = "${var.globus_client}"
       globus_secret = "${var.globus_secret}"
 
-
       indexd_user     = "${var.indexd_url}"
       indexd_password = "${var.indexd_password}"
-
 
       datacite_url   = "${var.datacite_url}"
    }
