@@ -1,4 +1,4 @@
 bagit_tags = {
-  sha = ""
+  sha = "afbd4c3"
   version = "v1.2"
 }
