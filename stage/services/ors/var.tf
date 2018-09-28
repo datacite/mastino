@@ -49,7 +49,7 @@ variable "proxy_url" {
 }
 
 variable "datacite_url" {
-   default = "https://mds.test.datacite.org"
+   default = "https://mds.datacite.org"
 }
 
 variable "root_url" {
