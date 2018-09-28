@@ -1,7 +1,7 @@
 [
    {
       "name": "wsgi-stage",
-      "image": "jackofsum/ors-wsgi:v1.15",
+      "image": "jackofsum/ors-wsgi:v1.16",
       "essential": true,
       "portMappings" : [
         {
