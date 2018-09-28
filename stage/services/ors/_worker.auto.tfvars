@@ -1,4 +1,4 @@
 worker_tags = {
   sha = ""
-  version = "latest"
+  version = "v1.15"
 }
