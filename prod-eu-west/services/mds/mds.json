@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/mds",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
@@ -44,6 +44,10 @@
       {
         "name" : "MEMCACHE_SERVERS",
         "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "REALM",
+        "value" : "mds.datacite.org"
       }
     ]
   }

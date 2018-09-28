@@ -72,6 +72,10 @@
         "value" : "${volpino_url}"
       },
       {
+        "name" : "CROSSREF_QUERY_URL",
+        "value" : "${crossref_query_url}"
+      },
+      {
         "name" : "VOLPINO_TOKEN",
         "value" : "${volpino_token}"
       },
@@ -102,6 +106,14 @@
       {
         "name" : "DATACITE_OTHER_SOURCE_TOKEN",
         "value" : "${datacite_other_source_token}"
+      },
+      {
+        "name" : "DATACITE_URL_SOURCE_TOKEN",
+        "value" : "${datacite_url_source_token}"
+      },
+      {
+        "name" : "DATACITE_FUNDER_SOURCE_TOKEN",
+        "value" : "${datacite_funder_source_token}"
       },
       {
         "name" : "SLACK_WEBHOOK_URL",

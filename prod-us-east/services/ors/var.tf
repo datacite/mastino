@@ -33,10 +33,6 @@ variable "proxy_url" {
    default = "ors.datacite.org"
 }
 
-variable "datacite_url" {
-   default = "https://mds.datacite.org"
-}
-
 variable "wsgi_tags" {
   type = "map"
 }
@@ -44,3 +40,40 @@ variable "wsgi_tags" {
 variable "bagit_tags" {
   type = "map"
 }
+
+variable "login_url" {
+   default = "https://ors.datacite.org/login"
+}
+
+variable "datacite_url" {
+   default = "https://mds.datacite.org"
+}
+
+variable "root_url" {
+   default = "https://ors.datacite.org"
+}
+
+variable "ezid_user" {}
+variable "ezid_password" {}
+
+variable "datacite_user" {}
+variable "datacite_password" {}
+
+variable "admin_username" {}
+variable "admin_password" {}
+
+variable "globus_client" {}
+
+variable "globus_username" {}
+variable "globus_secret" {}
+
+variable "indexd_url" {
+   default = "indexd.datacite.org"
+}
+variable "indexd_username" {}
+variable "indexd_password" {}
+
+variable "bugsnag_key" {
+   default = "2c30fce5bccd2542eba01246b6983049"
+}
+
