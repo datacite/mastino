@@ -80,6 +80,8 @@ data "template_file" "wsgi_task" {
       datacite_user      = "${var.datacite_user}"
       datacite_password  = "${var.datacite_password}"
 
+      globus_username = "${var.globus_username}"
+
       globus_client = "${var.globus_client}"
       globus_secret = "${var.globus_secret}"
 
