@@ -33,10 +33,6 @@ variable "proxy_url" {
    default = "ors.datacite.org"
 }
 
-variable "datacite_url" {
-   default = "https://mds.datacite.org"
-}
-
 variable "wsgi_tags" {
   type = "map"
 }
@@ -50,11 +46,11 @@ variable "login_url" {
 }
 
 variable "datacite_url" {
-   default = "https://mds.test.datacite.org"
+   default = "https://mds.datacite.org"
 }
 
 variable "root_url" {
-   default = "https://ors.test.datacite.org"
+   default = "https://ors.datacite.org"
 }
 
 variable "ezid_user" {}
@@ -72,7 +68,7 @@ variable "globus_username" {}
 variable "globus_secret" {}
 
 variable "indexd_url" {
-   default = "indexd.test.datacite.org"
+   default = "indexd.datacite.org"
 }
 variable "indexd_username" {}
 variable "indexd_password" {}
