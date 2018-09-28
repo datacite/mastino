@@ -107,6 +107,7 @@ data "template_file" "bagit_task" {
 
          datacite_url = "${var.datacite_url}"
          }
+  }
 
 data "template_file" "celery_task" {
    template = "${file("task-definitions/celery.json")}"
