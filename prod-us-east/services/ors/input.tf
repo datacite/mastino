@@ -62,6 +62,7 @@ data "template_file" "wsgi_task" {
 
    vars {
       proxy_url      = "${var.proxy_url}"
+      login_url      = "${var.login_url}"
       neo_url        = "${var.neo_url}"
       neo_user       = "${var.neo_user}"
       neo_password   = "${var.neo_password}"
