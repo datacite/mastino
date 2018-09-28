@@ -2,10 +2,10 @@
 
    {
      "name": "celery_worker",
-     "image": "jackofsum/ors-wsgi:v1.4",
+     "image": "jackofsum/ors-wsgi:v1.15",
      "essential": true,
      "entrypoint": ["celery", "-A", "cel", "worker", "--loglevel", "info"],
-      "environment": [ 
+      "environment": [
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},
          {"name": "NEO_USER", "value":"${neo_user}"},
          {"name": "NEO_URL", "value":"${neo_url}"},

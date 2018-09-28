@@ -1,7 +1,7 @@
 [
    {
       "name": "wsgi-stage",
-      "image": "jackofsum/ors-wsgi",
+      "image": "jackofsum/ors-wsgi:v1.15",
       "essential": true,
       "portMappings" : [
         {
@@ -9,7 +9,7 @@
             "hostPort": 3031
         }
       ],
-      "environment": [ 
+      "environment": [
          {"name": "PROXY_URL", "value": "${proxy_url}" },
          {"name": "NEO_PASSWORD", "value":"${neo_password}"},
          {"name": "NEO_USER", "value":"${neo_user}"},
@@ -17,9 +17,9 @@
          {"name": "REDIS_URL", "value": "${redis_url}"}
       ],
       "entrypoint": ["uwsgi", "--ini", "http.ini"],
-      "logConfiguration": { 
+      "logConfiguration": {
          "logDriver": "awslogs",
-         "options": { 
+         "options": {
             "awslogs-group" : "/ecs/wsgi-stage",
             "awslogs-region": "eu-west-1",
             "awslogs-stream-prefix": "ecs"
