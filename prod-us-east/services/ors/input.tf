@@ -83,10 +83,6 @@ data "template_file" "wsgi_task" {
       globus_client = "${var.globus_client}"
       globus_secret = "${var.globus_secret}"
 
-      indexd_url      = "${var.indexd_url}"
-      indexd_username = "${var.indexd_username}"
-      indexd_password = "${var.indexd_password}"
-
       datacite_url   = "${var.datacite_url}"
    }
 }
