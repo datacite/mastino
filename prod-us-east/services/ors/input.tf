@@ -73,7 +73,7 @@ data "template_file" "wsgi_task" {
       login_url      = "${var.login_url}"
 
       admin_username = "${var.admin_username}"
-      admin_password = "${var.ezid_user}"
+      admin_password = "${var.admin_password}"
 
       ezid_user      = "${var.ezid_user}"
       ezid_password  = "${var.ezid_password}"
