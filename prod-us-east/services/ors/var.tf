@@ -63,8 +63,6 @@ variable "globus_secret" {}
 variable "indexd_url" {
    default = "indexd.datacite.org"
 }
-variable "indexd_username" {}
-variable "indexd_password" {}
 
 variable "bugsnag_key" {
    default = "2c30fce5bccd2542eba01246b6983049"
