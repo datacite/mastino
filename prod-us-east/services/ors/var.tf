@@ -33,13 +33,6 @@ variable "proxy_url" {
    default = "ors.datacite.org"
 }
 
-variable "wsgi_tags" {
-  type = "map"
-}
-
-variable "bagit_tags" {
-  type = "map"
-}
 
 variable "login_url" {
    default = "https://ors.datacite.org/login"
@@ -76,4 +69,3 @@ variable "indexd_password" {}
 variable "bugsnag_key" {
    default = "2c30fce5bccd2542eba01246b6983049"
 }
-
