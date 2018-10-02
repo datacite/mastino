@@ -142,11 +142,3 @@ data "template_file" "celery_task" {
       datacite_url   = "${var.datacite_url}"
    }
 }
-
-data "template_file" "indexd_task" {
-
-  vars {
-    indexd_username = "${var.indexd_username}"
-    indexd_password = "${var.indexd_password}"
-  }
-}
