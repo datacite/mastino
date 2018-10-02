@@ -100,6 +100,5 @@ data "template_file" "celery_task" {
       neo_password   = "${var.neo_password}"
       redis_url      = "${var.redis_url}"
       datacite_url   = "${var.datacite_url}"
-      version        = "${var.wsgi_tags["version"]}"
    }
 }
