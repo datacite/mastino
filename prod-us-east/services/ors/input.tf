@@ -70,6 +70,7 @@ data "template_file" "wsgi_task" {
 
       redis_url      = "${var.redis_url}"
       root_url       = "${var.root_url}"
+      login_url      = "${var.login_url}"
 
       admin_username = "${var.admin_username}"
       admin_password = "${var.ezid_user}"
