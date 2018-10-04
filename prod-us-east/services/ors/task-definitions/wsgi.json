@@ -20,6 +20,7 @@
         {"name": "GLOBUS_CLIENT", "value": "${globus_client}"},
         {"name": "GLOBUS_SECRET", "value": "${globus_secret}"},
         {"name": "bugsnag_key", "value": "${bugsnag_key}"}
+        {"name": "ROOT_URL", "value": "${root_url}"}
       ],
       "portMappings" : [
         {
