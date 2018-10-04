@@ -1,7 +1,7 @@
 [
    {
       "name": "wsgi",
-      "image": "jackofsum/ors-wsgi:v1.25",
+      "image": "jackofsum/ors-wsgi:v1.26",
       "essential": true,
       "environment": [
         {"name": "PROXY_URL", "value": "${proxy_url}" },
