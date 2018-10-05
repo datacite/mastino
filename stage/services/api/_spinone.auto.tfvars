@@ -1,4 +1,4 @@
 spinone_tags = {
-  sha = "ee9c75b"
+  sha = "4e821fe"
   version = "2.0.35"
 }
