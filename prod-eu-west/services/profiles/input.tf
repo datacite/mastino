@@ -56,7 +56,7 @@ data "template_file" "profiles_task" {
     mysql_password     = "${var.mysql_password}"
     mysql_database     = "${var.mysql_database}"
     mysql_host         = "${var.mysql_host}"
-    app_url            = "${var.app_url}"
+    api_url            = "${var.api_url}"
     cdn_url            = "${var.cdn_url}"
     secret_key_base    = "${var.secret_key_base}"
     orcid_client_id    = "${var.orcid_client_id}"

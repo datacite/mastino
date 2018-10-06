@@ -33,8 +33,8 @@ variable "orcid_api_url" {
 variable "bracco_url" {
   default = "https://doi.datacite.org"
 }
-variable "app_url" {
-  default = "https://app.datacite.org"
+variable "api_url" {
+  default = "https://api.datacite.org"
 }
 variable "cdn_url" {
   default = "https://assets.datacite.org"
