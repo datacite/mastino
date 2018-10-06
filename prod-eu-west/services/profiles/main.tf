@@ -24,7 +24,7 @@ resource "aws_cloudwatch_log_group" "profiles" {
 resource "aws_ecs_task_definition" "profiles" {
   family = "profiles"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
-  container_definitions =  "${data.template_file.profiles_task.rendered}"
+  container_definitions = "${data.template_file.profiles_task.rendered}"
 }
 
 resource "aws_lb_target_group" "profiles" {
