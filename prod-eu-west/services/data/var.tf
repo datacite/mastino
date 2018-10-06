@@ -35,4 +35,3 @@ variable "memcache_servers" {
 }
 
 variable "bugsnag_key" {}
-variable "ssh_public_key" {}
