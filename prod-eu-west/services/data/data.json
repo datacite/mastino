@@ -2,7 +2,7 @@
   {
     "name": "data",
     "image": "crosscite/content-negotiation:${version}",
-    "cpu": 1024,
+    "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
     "essential": true,
