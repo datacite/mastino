@@ -1,4 +1,4 @@
 schnauzer_tags = {
-  sha = "f95d4d3"
-  version = "0.9.6"
+  sha = "dcdf601"
+  version = "1.0.1"
 }
