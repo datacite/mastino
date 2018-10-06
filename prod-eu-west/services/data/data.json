@@ -1,0 +1,66 @@
+[
+  {
+    "name": "data",
+    "image": "crosscite/content-negotiation:${version}",
+    "cpu": 1024,
+    "memory": 2048,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/data",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "SEARCH_URL",
+        "value" : "${search_url}"
+      },
+      {
+        "name" : "CITEPROC_URL",
+        "value" : "${citeproc_url}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "SSH_PUBLIC_KEY",
+        "value" : "${ssh_public_key}"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite Content Negotiation"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "info"
+      },
+      {
+        "name" : "PASSENGER_MAX_POOL_SIZE",
+        "value" : "15"
+      },
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "production"
+      }
+    ]
+  }
+]
