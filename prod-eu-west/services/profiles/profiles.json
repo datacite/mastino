@@ -3,7 +3,7 @@
     "name": "profiles",
     "image": "datacite/volpino:${version}",
     "cpu": 1024,
-    "memory": 200,
+    "memory": 2000,
     "essential": true,
     "hostname": "profiles",
     "portMappings": [
