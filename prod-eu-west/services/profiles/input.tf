@@ -63,9 +63,9 @@ data "template_file" "profiles_task" {
     orcid_client_secret = "${var.orcid_client_secret}"
     github_client_id   = "${var.github_client_id}"
     github_client_secret = "${var.github_client_secret}"
-    // google_client_id   = "${var.google_client_id}"
-    // google_client_secret = "${var.google_client_secret}"
-    // notification_access_token = "${var.notification_access_token}"
+    google_client_id   = "${var.google_client_id}"
+    google_client_secret = "${var.google_client_secret}"
+    notification_access_token = "${var.notification_access_token}"
     memcache_servers   = "${var.memcache_servers}"
     version            = "${var.volpino_tags["version"]}"
   }
