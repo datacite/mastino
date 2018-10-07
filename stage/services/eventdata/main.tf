@@ -57,19 +57,3 @@ resource "aws_lb_listener_rule" "eventdata-stage" {
     values = ["/events*"]
   }
 }
-
-resource "aws_route53_record" "eventdata-stage" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "eventdata.test.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.stage.dns_name}"]
-}
-
-resource "aws_route53_record" "split-eventdata-stage" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "eventdata.test.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.stage.dns_name}"]
-}
