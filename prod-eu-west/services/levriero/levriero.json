@@ -96,6 +96,10 @@
         "value" : "${lagottino_token}"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "DATACITE_CROSSREF_SOURCE_TOKEN",
         "value" : "${datacite_crossref_source_token}"
       },
