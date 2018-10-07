@@ -1,18 +1,18 @@
-resource "aws_cloudwatch_event_rule" "crossref-agent-test" {
-  name = "crossref-agent-test"
+resource "aws_cloudwatch_event_rule" "crossref-agent" {
+  name = "crossref-agent"
   description = "Trigger crossref agent via cron"
   schedule_expression = "cron(55 8 * * ? *)"
 }
 
-resource "aws_cloudwatch_event_target" "crossref-agent-test" {
-  target_id = "crossref-agent-test"
-  rule = "${aws_cloudwatch_event_rule.crossref-agent-test.name}"
-  arn = "${aws_lambda_function.crossref-agent-test.arn}"
+resource "aws_cloudwatch_event_target" "crossref-agent" {
+  target_id = "crossref-agent"
+  rule = "${aws_cloudwatch_event_rule.crossref-agent.name}"
+  arn = "${aws_lambda_function.crossref-agent.arn}"
 }
 
-resource "aws_lambda_function" "crossref-agent-test" {
+resource "aws_lambda_function" "crossref-agent" {
   filename = "crossref-agent_runner.js.zip"
-  function_name = "crossref-agent-test"
+  function_name = "crossref-agent"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "crossref-agent_runner.handler"
   runtime = "nodejs6.10"
@@ -31,10 +31,10 @@ resource "aws_lambda_function" "crossref-agent-test" {
   }
 }
 
-resource "aws_lambda_permission" "crossref-agent-test" {
+resource "aws_lambda_permission" "crossref-agent" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.crossref-agent-test.function_name}"
+  function_name = "${aws_lambda_function.crossref-agent.function_name}"
   principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.crossref-agent-test.arn}"
+  source_arn = "${aws_cloudwatch_event_rule.crossref-agent.arn}"
 }
