@@ -53,6 +53,7 @@ data "template_file" "levriero_task" {
     volpino_token      = "${var.volpino_token}"
     eventdata_url      = "${var.eventdata_url}"
     eventdata_token    = "${var.eventdata_token}"
+    api_url            = "${var.api_url}"
     lagottino_url      = "${var.lagottino_url}"
     lagottino_token    = "${var.lagottino_token}"
     datacite_crossref_source_token = "${var.datacite_crossref_source_token}"

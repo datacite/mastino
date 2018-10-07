@@ -39,6 +39,9 @@ variable "volpino_url" {
 variable "crossref_query_url" {
   default = "https://api.eventdata.crossref.org"
 }
+variable "api_url" {
+  default = "https://api.datacite.org"
+}
 variable "lagottino_url" {
   default = "https://api.datacite.org"
 }
