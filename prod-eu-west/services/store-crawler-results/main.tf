@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "store-crawler-results" {
   name                = "store-crawler-results"
   description         = "Run store-crawler-results API call via cron"
-  schedule_expression = "cron(42 1 * * ? *)"
+  schedule_expression = "cron(0/30 * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "store-crawler-results" {
