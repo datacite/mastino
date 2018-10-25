@@ -108,6 +108,14 @@
         "value" : "${datacite_funder_source_token}"
       },
       {
+        "name" : "DATACITE_USAGE_SOURCE_TOKEN",
+        "value" : "${datacite_usage_source_token}"
+      },
+      {
+        "name" : "DATACITE_RESOLUTION_SOURCE_TOKEN",
+        "value" : "${datacite_resolution_source_token}"
+      },
+      {
         "name" : "DATACITE_ORCID_AUTO_UPDATE_SOURCE_TOKEN",
         "value" : "${datacite_orcid_auto_update_source_token}"
       },
