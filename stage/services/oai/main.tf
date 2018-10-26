@@ -45,6 +45,7 @@ resource "aws_lb_target_group" "oai-stage" {
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
   target_type = "ip"
+  slow_start = 90
 
   health_check {
     path = "/heartbeat"
