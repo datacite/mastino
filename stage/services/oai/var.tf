@@ -24,8 +24,8 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "solr_url" {
-  default = "https://search.test.datacite.org/"
+  default = "https://search.test.datacite.org"
 }
 variable "cdn_url" {
-  default = "https://assets.test.datacite.org/"
+  default = "https://assets.test.datacite.org"
 }
