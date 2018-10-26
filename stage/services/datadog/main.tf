@@ -1,6 +1,6 @@
 resource "aws_ecs_service" "datadog-stage" {
   name = "datadog-stage"
-  cluster = "${data.aws_ecs_cluster.default.id}"
+  cluster = "${data.aws_ecs_cluster.stage.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.datadog-stage.arn}"
   desired_count = 1
