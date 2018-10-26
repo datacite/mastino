@@ -2,7 +2,7 @@
   {
     "name": "search",
     "image": "crosscite/doi-metadata-search:${version}",
-    "cpu": 512,
+    "cpu": 1024,
     "memory": 2048,
     "networkMode": "awsvpc",
     "essential": true,
