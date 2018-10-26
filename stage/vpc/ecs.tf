@@ -1,6 +1,6 @@
 resource "aws_instance" "ecs-stage" {
     ami = "${var.ecs_ami["eu-west-1"]}"
-    instance_type = "m4.large"
+    instance_type = "m4.xlarge"
     vpc_security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
     subnet_id = "${data.aws_subnet.datacite-private.id}"
     key_name = "${var.key_name}"
