@@ -53,7 +53,7 @@ resource "aws_lb_target_group" "oai-stage" {
 
 resource "aws_lb_listener_rule" "oai-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 60
+  priority     = 61
 
   action {
     type             = "forward"

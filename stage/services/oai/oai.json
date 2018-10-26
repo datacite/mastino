@@ -20,13 +20,6 @@
          "awslogs-stream-prefix": "ecs"
       }
     },
-    "mountPoints": [
-      {
-        "sourceVolume": "ebs-m2",
-        "containerPath": "/root/.m2",
-        "readOnly": false
-      }
-    ],
     "environment" : [
       {
         "name" : "SOLR_URL",
