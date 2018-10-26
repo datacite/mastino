@@ -47,7 +47,7 @@ resource "aws_lb_target_group" "oai-stage" {
   target_type = "ip"
 
   health_check {
-    path = "/"
+    path = "/heartbeat"
   }
 }
 
