@@ -1,0 +1,110 @@
+[
+  {
+    "name": "search",
+    "image": "crosscite/doi-metadata-search:${version}",
+    "cpu": 512,
+    "memory": 2048,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/search",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "RACK_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "production"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite Search"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "SECRET_KEY_BASE",
+        "value" : "${secret_key_base}"
+      },
+      {
+        "name" : "DATA_URL",
+        "value" : "${data_url}"
+      },
+      {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
+        "name" : "APP_URL",
+        "value" : "${app_url}"
+      },
+      {
+        "name" : "JWT_HOST",
+        "value" : "${volpino_url}"
+      },
+      {
+        "name" : "VOLPINO_URL",
+        "value" : "${volpino_url}"
+      },
+      {
+        "name" : "ORCID_URL",
+        "value" : "${orcid_url}"
+      },
+      {
+        "name" : "SITEMAPS_BUCKET_URL",
+        "value" : "${sitemaps_bucket_url}"
+      },
+      {
+        "name" : "ORCID_UPDATE_UUID",
+        "value" : "${orcid_update_uuid}"
+      },
+      {
+        "name" : "ORCID_UPDATE_URL",
+        "value" : "${orcid_update_url}"
+      },
+      {
+        "name" : "ORCID_UPDATE_TOKEN",
+        "value" : "${orcid_update_token}"
+      },
+      {
+        "name" : "BUGSNAG_KEY",
+        "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "BUGSNAG_JS_KEY",
+        "value" : "${bugsnag_js_key}"
+      },
+      {
+        "name" : "CDN_URL",
+        "value" : "${cdn_url}"
+      },
+      {
+        "name" : "GABBA_COOKIE",
+        "value" : "${gabba_cookie}"
+      },
+      {
+        "name" : "GABBA_URL",
+        "value" : "${gabba_url}"
+      },
+      {
+        "name" : "MEMCACHE_SERVERS",
+        "value" : "${memcache_servers}"
+      }
+    ]
+  }
+]
