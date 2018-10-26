@@ -1,0 +1,42 @@
+[
+  {
+    "name": "oai",
+    "image": "datacite/oaip:${version}",
+    "cpu": 1024,
+    "memory": 2048,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/oai",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "SOLR_URL",
+        "value" : "${solr_url}"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "INFO"
+      },
+      {
+        "name" : "CDN_URL",
+        "value" : "${cdn_url}"
+      },
+      {
+        "name" : "RAILS_ENV",
+        "value" : "production"
+      }
+    ]
+  }
+]
