@@ -63,81 +63,81 @@ resource "aws_ecs_task_definition" "search" {
   container_definitions =  "${data.template_file.search_task.rendered}"
 }
 
-resource "aws_lb_listener_rule" "solr-api" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 80
+// resource "aws_lb_listener_rule" "solr-api" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 80
 
-  action {
-    type             = "forward"
-    target_group_arn = "${data.aws_lb_target_group.solr.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${data.aws_lb_target_group.solr.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.search.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/api*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.search.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/api*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "solr-list" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 81
+// resource "aws_lb_listener_rule" "solr-list" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 81
 
-  action {
-    type             = "forward"
-    target_group_arn = "${data.aws_lb_target_group.solr.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${data.aws_lb_target_group.solr.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.search.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/list*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.search.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/list*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "solr-ui" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 82
+// resource "aws_lb_listener_rule" "solr-ui" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 82
 
-  action {
-    type             = "forward"
-    target_group_arn = "${data.aws_lb_target_group.solr.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${data.aws_lb_target_group.solr.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.search.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/ui*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.search.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/ui*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "solr-resources" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 83
+// resource "aws_lb_listener_rule" "solr-resources" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 83
 
-  action {
-    type             = "forward"
-    target_group_arn = "${data.aws_lb_target_group.solr.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${data.aws_lb_target_group.solr.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.search.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/resources*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.search.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/resources*"]
+//   }
+// }
 
 resource "aws_lb_listener_rule" "search" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
