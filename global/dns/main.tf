@@ -113,3 +113,11 @@ resource "aws_route53_record" "dmarc-datacite" {
     ttl = "300"
     records = ["${var.dmarc_record}"]
 }
+
+resource "aws_route53_record" "github_datacite" {
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "_github-challenge-datacite.datacite.org"
+    type = "TXT"
+    ttl = "300"
+    records = ["7aea104794"]
+}
