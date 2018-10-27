@@ -10,6 +10,11 @@ resource "aws_instance" "ecs-stage" {
         volume_size = 100
         volume_type = "gp2"
     }
+    ebs_block_device {
+        device_name = "/dev/xvdcz"
+        volume_size = 40
+        volume_type = "gp2"
+    }
     tags {
         Name = "ECS-Stage"
     }
