@@ -2,7 +2,7 @@ resource "aws_ecs_service" "levriero" {
   name = "levriero"
   cluster = "${data.aws_ecs_cluster.default.id}"
   task_definition = "${aws_ecs_task_definition.levriero.arn}"
-  desired_count = 4
+  desired_count = 3
   iam_role        = "${data.aws_iam_role.ecs_service.arn}"
 
   placement_strategy {
