@@ -3,7 +3,7 @@
     "name": "eventdata-stage",
     "image": "datacite/lagottino",
     "cpu": 512,
-    "memory": 1000,
+    "memory": 2048,
     "essential": true,
     "hostname": "eventdata-stage",
     "portMappings": [

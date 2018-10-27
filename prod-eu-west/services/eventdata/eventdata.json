@@ -2,8 +2,8 @@
   {
     "name": "eventdata",
     "image": "datacite/lagottino:${version}",
-    "cpu": 512,
-    "memory": 1000,
+    "cpu": 1024,
+    "memory": 2048,
     "essential": true,
     "hostname": "eventdata",
     "portMappings": [
