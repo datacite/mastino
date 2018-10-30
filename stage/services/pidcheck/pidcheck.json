@@ -22,6 +22,10 @@
       {
         "name" : "REDIS_HOST",
         "value" : "${redis_host}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
       }
     ]
   }
