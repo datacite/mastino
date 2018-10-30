@@ -1,7 +1,7 @@
 [
   {
     "name": "pidcheck-crawler",
-    "image": "datacite/pidcheck-crawler",
+    "image": "datacite/pidcheck-crawler:${version}",
     "cpu": 256,
     "memory": 512,
     "essential": true,

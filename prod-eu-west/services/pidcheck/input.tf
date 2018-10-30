@@ -16,7 +16,8 @@ data "template_file" "pidcheck_task" {
   template = "${file("pidcheck.json")}"
 
   vars {
-    redis_host = "${var.redis_host}"
+    redis_host = "${var.redis_host}",
+    version = "${var.pidcheck_tags["version"]}"
   }
 }
 
