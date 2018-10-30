@@ -13,5 +13,6 @@ variable "subnet_datacite-alt_id" {}
 variable "redis_host" {
   default = "redis1.datacite.org"
 }
-
-
+variable "pidcheck_tags" {
+  type = "map"
+}
