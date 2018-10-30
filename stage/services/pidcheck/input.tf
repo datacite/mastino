@@ -17,7 +17,7 @@ data "template_file" "pidcheck_task" {
 
   vars {
     redis_host = "${var.redis_host}"
-    version = "${var.poodle_tags["sha"]}"
+    version = "${var.pidcheck_tags["sha"]}"
   }
 }
 
