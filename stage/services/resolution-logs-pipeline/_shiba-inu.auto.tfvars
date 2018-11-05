@@ -1,4 +1,4 @@
 shiba-inu_tags = {
-  sha = "7321d2b"
+  sha = "eb98e6f"
   version = ""
 }
