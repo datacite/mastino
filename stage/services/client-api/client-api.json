@@ -2,7 +2,7 @@
   {
     "name": "client-api-stage",
     "image": "datacite/lupo",
-    "cpu": 1024,
+    "cpu": 512,
     "memory": 2048,
     "essential": true,
     "hostname": "client-api-stage",

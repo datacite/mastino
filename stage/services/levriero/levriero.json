@@ -2,7 +2,7 @@
   {
     "name": "levriero-stage",
     "image": "datacite/levriero",
-    "cpu": 1024,
+    "cpu": 512,
     "memory": 2000,
     "essential": true,
     "portMappings": [
