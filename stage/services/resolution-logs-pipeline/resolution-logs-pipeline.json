@@ -53,6 +53,14 @@
         "value" : "${s3_bucket}"
       },
       {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "RESOLUTION_INDEX",
+        "value" : "${resolution_index}"
+      },
+      {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
       }

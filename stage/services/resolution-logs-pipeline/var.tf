@@ -23,4 +23,5 @@ variable "ttl" {
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "bugsnag_key" {}
-
+variable "resolution_index" {}
+variable "es_host" {}
