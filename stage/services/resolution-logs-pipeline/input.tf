@@ -34,7 +34,7 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-data "template_file" "logs-pipeline_task" {
+data "template_file" "resolution-logs-pipeline_task" {
   template = "${file("resolution-logs-pipeline.json")}"
 
   vars {
