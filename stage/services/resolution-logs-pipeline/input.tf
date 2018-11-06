@@ -47,6 +47,9 @@ data "template_file" "resolution-logs-pipeline_task" {
     bugsnag_key        = "${var.bugsnag_key}"
     es_host            = "${var.es_host}"
     resolution_index   = "${var.resolution_index}"
+    es_name            = "${var.es_name}"
+    s3_resolution_logs_bucket   = "${var.s3_resolution_logs_bucket}"
+    s3_merged_logs_bucket       = "${var.s3_merged_logs_bucket}"
     version            = "${var.shiba-inu_tags["sha"]}"
   }
 }
