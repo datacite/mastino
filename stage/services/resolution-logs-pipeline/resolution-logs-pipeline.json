@@ -49,12 +49,20 @@
         "value" : "${secret_key}"
       },
       {
-        "name" : "AWS_S3_BUCKET",
-        "value" : "${s3_bucket}"
+        "name" : "S3_RESOLUTION_LOGS_BUCKET",
+        "value" : "${s3_resolution_logs_bucket}"
+      },
+      {
+        "name" : "S3_MERGED_LOGS_BUCKET",
+        "value" : "${s3_merged_logs_bucket}"
       },
       {
         "name" : "ES_HOST",
         "value" : "${es_host}"
+      },
+      {
+        "name" : "ES_NAME",
+        "value" : "${es_name}"
       },
       {
         "name" : "RESOLUTION_INDEX",
