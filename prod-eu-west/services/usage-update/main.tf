@@ -4,17 +4,17 @@ resource "aws_ecs_task_definition" "usage-update" {
   container_definitions =  "${data.template_file.usage_update_task.rendered}"
 }
 
-resource "aws_cloudwatch_event_rule" "usage-update" {
-  name = "usage-update"
-  description = "Run usage-update container via cron"
-  schedule_expression = "cron(30	*	*	*	? *)"
-}
+// resource "aws_cloudwatch_event_rule" "usage-update" {
+//   name = "usage-update"
+//   description = "Run usage-update container via cron"
+//   schedule_expression = "cron(30	*	*	*	? *)"
+// }
 
-resource "aws_cloudwatch_event_target" "usage-update" {
-  target_id = "usage-update"
-  rule = "${aws_cloudwatch_event_rule.usage-update.name}"
-  arn = "${aws_lambda_function.usage-update.arn}"
-}
+// resource "aws_cloudwatch_event_target" "usage-update" {
+//   target_id = "usage-update"
+//   rule = "${aws_cloudwatch_event_rule.usage-update.name}"
+//   arn = "${aws_lambda_function.usage-update.arn}"
+// }
 
 resource "aws_lambda_function" "usage-update" {
   filename = "ecs_task_runner.js.zip"
@@ -43,5 +43,5 @@ resource "aws_lambda_permission" "usage-update" {
   action = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.usage-update.function_name}"
   principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.usage-update.arn}"
+  // source_arn = "${aws_cloudwatch_event_rule.usage-update.arn}"
 }
