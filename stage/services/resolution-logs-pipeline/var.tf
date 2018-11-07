@@ -26,7 +26,6 @@ variable "bugsnag_key" {}
 variable "resolution_index" {
   default = "resolutions"
 }
-variable "es_host" {}
 
 variable "es_host" {
   default = "elasticsearch.test.datacite.org"
