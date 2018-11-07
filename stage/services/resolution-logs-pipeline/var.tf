@@ -34,3 +34,6 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+
+variable "s3_merged_logs_bucket" {}
+variable "s3_resolution_logs_bucket" {}
