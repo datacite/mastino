@@ -3,6 +3,7 @@ resource "aws_lb" "stage" {
   internal = false
   subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
   security_groups = ["${data.aws_security_group.datacite-public.id}"]
+  idle_timeout = 100
 
   enable_deletion_protection = true
 
