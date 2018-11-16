@@ -1,4 +1,4 @@
 sashimi_tags = {
-  sha = "f8356e0"
+  sha = "9223954"
   version = "0.8.5"
 }
