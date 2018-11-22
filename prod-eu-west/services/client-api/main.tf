@@ -38,20 +38,20 @@ resource "aws_lb_target_group" "client-api" {
   }
 }
 
-resource "aws_lb_listener_rule" "client-api" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 20
+// resource "aws_lb_listener_rule" "client-api" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 20
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.client-api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.client-api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.client-api.name}"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.client-api.name}"]
+//   }
+// }
 
 resource "aws_lb_listener_rule" "api" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
@@ -68,18 +68,18 @@ resource "aws_lb_listener_rule" "api" {
   }
 }
 
-resource "aws_route53_record" "client-api" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "api.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.default.dns_name}"]
-}
+// resource "aws_route53_record" "client-api" {
+//     zone_id = "${data.aws_route53_zone.production.zone_id}"
+//     name = "api.datacite.org"
+//     type = "CNAME"
+//     ttl = "${var.ttl}"
+//     records = ["${data.aws_lb.default.dns_name}"]
+// }
 
-resource "aws_route53_record" "split-client-api" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "api.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.default.dns_name}"]
-}
+// resource "aws_route53_record" "split-client-api" {
+//     zone_id = "${data.aws_route53_zone.internal.zone_id}"
+//     name = "api.datacite.org"
+//     type = "CNAME"
+//     ttl = "${var.ttl}"
+//     records = ["${data.aws_lb.default.dns_name}"]
+// }

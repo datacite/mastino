@@ -146,43 +146,43 @@ resource "aws_lb_listener_rule" "api-datasets-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-data-centers-stage" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 26
+// resource "aws_lb_listener_rule" "api-data-centers-stage" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 26
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api-stage.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/data-centers*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api-stage.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/data-centers*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "api-members-stage" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 27
+// resource "aws_lb_listener_rule" "api-members-stage" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 27
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api-stage.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/members*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api-stage.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/members*"]
+//   }
+// }
 
 resource "aws_route53_record" "api-stage" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
