@@ -51,24 +51,24 @@ resource "aws_lb_target_group" "api-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-works-stage" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 21
+// resource "aws_lb_listener_rule" "api-works-stage" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 21
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api-stage.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/works*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api-stage.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/works*"]
+//   }
+// }
 
 resource "aws_lb_listener_rule" "api-pages-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"

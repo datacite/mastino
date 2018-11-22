@@ -33,7 +33,7 @@ variable "orcid_update_url" {
   default = "https://profiles.test.datacite.org"
 }
 variable "api_url" {
-  default = "https://app.test.datacite.org"
+  default = "https://api.test.datacite.org"
 }
 variable "blog_url" {
   default = "https://blog.test.datacite.org"
