@@ -50,8 +50,8 @@
         "value" : "${api_url}"
       },
       {
-        "name" : "APP_URL",
-        "value" : "${app_url}"
+        "name" : "SITEMAPS_URL",
+        "value" : "${sitemaps_url}"
       },
       {
         "name" : "JWT_HOST",

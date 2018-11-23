@@ -38,14 +38,14 @@ variable "volpino_url" {
 variable "api_url" {
   default = "https://api.datacite.org"
 }
-variable "app_url" {
+variable "sitemaps_url" {
   default = "https://search.datacite.org"
 }
 variable "sitemaps_bucket_url" {
   default = "http://search.datacite.org.s3.amazonaws.com"
 }
 variable "data_url" {
-  default = "https://data.datacite.org"
+  default = "https://api.datacite.org"
 }
 variable "gabba_url" {
   default = "search.datacite.org"
