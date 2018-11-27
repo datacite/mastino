@@ -1,7 +1,7 @@
 [
   {
     "name": "mds-stage",
-    "image": "datacite/poodle",
+    "image": "datacite/poodle:WIP-db-fields-for-schema-attributes",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
