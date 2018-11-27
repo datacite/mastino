@@ -1,7 +1,7 @@
 [
   {
     "name": "cheetoh-stage",
-    "image": "datacite/cheetoh",
+    "image": "datacite/cheetoh:WIP-db-fields-for-schema-attributes",
     "cpu": 512,
     "memory": 1024,
     "essential": true,
