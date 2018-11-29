@@ -64,6 +64,15 @@ resource "aws_sqs_queue" "usage-test" {
   }
 }
 
+resource "aws_sqs_queue" "sashimi-test" {
+  name                      = "stage_sashimi"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "test"
+  }
+}
+
 resource "aws_sqs_queue" "dead-letter-test" {
   name                      = "stage_dead-letter"
 
