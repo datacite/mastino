@@ -1,7 +1,7 @@
 [
   {
     "name": "api-stage",
-    "image": "datacite/spinone",
+    "image": "datacite/spinone:WIP-db-fields-for-schema-attributes",
     "cpu": 512,
     "memory": 1024,
     "networkMode": "awsvpc",
