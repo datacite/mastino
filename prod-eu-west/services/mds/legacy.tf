@@ -53,20 +53,20 @@ resource "aws_lb_listener_rule" "mds-legacy-legacy" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-legacy" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 14
+// resource "aws_lb_listener_rule" "mds-legacy" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 14
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["mds.datacite.org"]
+//   }
+// }
 
 resource "aws_route53_record" "mds-legacy" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
