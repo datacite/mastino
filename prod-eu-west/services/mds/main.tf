@@ -51,7 +51,7 @@ resource "aws_lb_target_group" "mds" {
   }
 }
 
-resource "aws_lb_listener_rule" "mds-doi" {
+resource "aws_lb_listener_rule" "mds" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 6
 
@@ -64,112 +64,127 @@ resource "aws_lb_listener_rule" "mds-doi" {
     field  = "host-header"
     values = ["mds.datacite.org"]
   }
+}
+
+// resource "aws_lb_listener_rule" "mds-doi" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 6
+
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds.arn}"
+//   }
+
+//   condition {
+//     field  = "host-header"
+//     values = ["mds.datacite.org"]
+//   }
   
-  condition {
-    field  = "path-pattern"
-    values = ["/doi*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/doi*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-metadatas" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 7
+// resource "aws_lb_listener_rule" "mds-metadatas" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 7
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["mds.datacite.org"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/metadatas"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/metadatas"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-metadata" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 8
+// resource "aws_lb_listener_rule" "mds-metadata" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 8
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["mds.datacite.org"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/metadata*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/metadata*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-media-legacy" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 9
+// resource "aws_lb_listener_rule" "mds-media-legacy" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 9
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds-legacy.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["mds.datacite.org"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/medias*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/medias*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-media" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 11
+// resource "aws_lb_listener_rule" "mds-media" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 11
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["mds.datacite.org"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/media*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/media*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "mds-heartbeat" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 12
+// resource "aws_lb_listener_rule" "mds-heartbeat" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 12
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.mds.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["mds.datacite.org"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/heartbeat"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/heartbeat"]
+//   }
+// }
 
 resource "aws_route53_record" "mds" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
