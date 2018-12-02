@@ -1,7 +1,7 @@
 [
   {
     "name": "levriero-stage",
-    "image": "datacite/levriero",
+    "image": "datacite/levriero::WIP-db-fields-for-schema-attributes",
     "cpu": 512,
     "memory": 2000,
     "essential": true,
