@@ -1,7 +1,7 @@
 [
   {
     "name": "search-stage",
-    "image": "crosscite/doi-metadata-search",
+    "image": "crosscite/doi-metadata-search:WIP-db-fields-for-schema-attributes",
     "cpu": 512,
     "memory": 1024,
     "networkMode": "awsvpc",
