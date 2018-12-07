@@ -55,6 +55,15 @@ resource "aws_sqs_queue" "levriero" {
   }
 }
 
+resource "aws_sqs_queue" "sashimi" {
+  name                      = "production_sashimi"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "production"
+  }
+}
+
 resource "aws_sqs_queue" "usage" {
   name                      = "production_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
