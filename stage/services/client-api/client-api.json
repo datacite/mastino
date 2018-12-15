@@ -1,7 +1,7 @@
 [
   {
     "name": "client-api-stage",
-    "image": "datacite/lupo:WIP-db-fields-for-schema-attributes",
+    "image": "datacite/lupo",
     "cpu": 512,
     "memory": 2048,
     "essential": true,
