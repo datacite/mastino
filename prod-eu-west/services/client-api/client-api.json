@@ -2,7 +2,7 @@
   {
     "name": "client-api",
     "image": "datacite/lupo:${version}",
-    "cpu": 1440,
+    "cpu": 1024,
     "memory": 2000,
     "essential": true,
     "hostname": "client-api",
