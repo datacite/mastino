@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "cheetoh" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
-  memory = "1024"
+  memory = "512"
 
   container_definitions =  "${data.template_file.cheetoh_task.rendered}"
 }

@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "pidcheck" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "256"
-  memory = "512"
+  memory = "384"
 
   container_definitions = "${data.template_file.pidcheck_task.rendered}"
 }

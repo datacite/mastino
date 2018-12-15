@@ -3,7 +3,7 @@
     "name": "pidcheck-crawler",
     "image": "datacite/pidcheck-crawler:${version}",
     "cpu": 256,
-    "memory": 512,
+    "memory": 384,
     "essential": true,
     "networkMode": "awsvpc",
     "logConfiguration": {

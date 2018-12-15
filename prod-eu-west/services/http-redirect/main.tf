@@ -45,8 +45,8 @@ resource "aws_ecs_task_definition" "http-redirect" {
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}",
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "512"
-  memory = "1024"
+  cpu = "384"
+  memory = "384"
 
   container_definitions =  "${data.template_file.http-redirect_task.rendered}"
 }
