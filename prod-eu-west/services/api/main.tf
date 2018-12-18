@@ -147,43 +147,43 @@ resource "aws_lb_listener_rule" "api-datasets" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-data-centers" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 26
+// resource "aws_lb_listener_rule" "api-data-centers" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 26
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/data-centers*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/data-centers*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "api-members" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 27
+// resource "aws_lb_listener_rule" "api-members" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 27
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/members*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/members*"]
+//   }
+// }
 
 resource "aws_route53_record" "api" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
