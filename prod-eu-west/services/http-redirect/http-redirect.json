@@ -2,8 +2,8 @@
   {
     "name": "http-redirect",
     "image": "datacite/http-redirect:${version}",
-    "cpu": 384,
-    "memory": 384,
+    "cpu": 512,
+    "memory": 1024,
     "essential": true,
     "portMappings": [
       {
