@@ -105,8 +105,8 @@
         "value" : "${bugsnag_js_key}"
       },
       {
-        "name" : "APP_URL",
-        "value" : "${app_url}"
+        "name" : "API_URL",
+        "value" : "${api_url}"
       },
       {
         "name" : "CDN_URL",

@@ -33,7 +33,7 @@ variable "orcid_api_url" {
 variable "bracco_url" {
   default = "https://doi.test.datacite.org"
 }
-variable "app_url" {
+variable "api_url" {
   default = "https://api.test.datacite.org"
 }
 variable "cdn_url" {
