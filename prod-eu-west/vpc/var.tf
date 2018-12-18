@@ -9,8 +9,8 @@ variable "ecs_ami" {
   description = "Amazon Linux ECS-optimized AMI"
 
   default = {
-    eu-west-1 = "ami-066826c6a40879d75"
-    us-east-1 = "ami-07eb698ce660402d2"
+    eu-west-1 = "ami-0627e141ce928067c"
+    us-east-1 = "ami-045f1b3f87ed83659"
   }
 }
 variable "security_group_public_id" {}
