@@ -1,7 +1,7 @@
 [
   {
     "name": "re3data-stage",
-    "image": "datacite/schnauzer:WIP-db-fields-for-schema-attributes",
+    "image": "datacite/schnauzer",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
