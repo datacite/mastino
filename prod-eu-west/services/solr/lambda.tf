@@ -1,14 +1,14 @@
-resource "aws_cloudwatch_event_rule" "solr-index-0" {
-  name = "solr-index-0"
-  description = "Run solr-index container via cron"
-  schedule_expression = "cron(10 1,9,17 * * ? *)"
-}
+// resource "aws_cloudwatch_event_rule" "solr-index-0" {
+//   name = "solr-index-0"
+//   description = "Run solr-index container via cron"
+//   schedule_expression = "cron(10 1,9,17 * * ? *)"
+// }
 
-resource "aws_cloudwatch_event_rule" "solr-index-1" {
-  name = "solr-index-1"
-  description = "Run solr-index container via cron"
-  schedule_expression = "cron(10 5,13,21 * * ? *)"
-}
+// resource "aws_cloudwatch_event_rule" "solr-index-1" {
+//   name = "solr-index-1"
+//   description = "Run solr-index container via cron"
+//   schedule_expression = "cron(10 5,13,21 * * ? *)"
+// }
 
 resource "aws_cloudwatch_event_target" "solr-index-0" {
   target_id = "solr-index-0"
