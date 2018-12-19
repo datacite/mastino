@@ -10,17 +10,17 @@
 //   schedule_expression = "cron(10 5,13,21 * * ? *)"
 // }
 
-resource "aws_cloudwatch_event_target" "solr-index-0" {
-  target_id = "solr-index-0"
-  rule = "${aws_cloudwatch_event_rule.solr-index-0.name}"
-  arn = "${aws_lambda_function.solr-index-0.arn}"
-}
+// resource "aws_cloudwatch_event_target" "solr-index-0" {
+//   target_id = "solr-index-0"
+//   rule = "${aws_cloudwatch_event_rule.solr-index-0.name}"
+//   arn = "${aws_lambda_function.solr-index-0.arn}"
+// }
 
-resource "aws_cloudwatch_event_target" "solr-index-1" {
-  target_id = "solr-index-1"
-  rule = "${aws_cloudwatch_event_rule.solr-index-1.name}"
-  arn = "${aws_lambda_function.solr-index-1.arn}"
-}
+// resource "aws_cloudwatch_event_target" "solr-index-1" {
+//   target_id = "solr-index-1"
+//   rule = "${aws_cloudwatch_event_rule.solr-index-1.name}"
+//   arn = "${aws_lambda_function.solr-index-1.arn}"
+// }
 
 resource "aws_lambda_function" "solr-index-0" {
   filename = "solr_index_runner.js.zip"
@@ -66,18 +66,18 @@ resource "aws_lambda_function" "solr-index-1" {
   }
 }
 
-resource "aws_lambda_permission" "solr-index-0" {
-  statement_id = "AllowExecutionFromCloudWatch"
-  action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.solr-index-0.function_name}"
-  principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.solr-index-0.arn}"
-}
+// resource "aws_lambda_permission" "solr-index-0" {
+//   statement_id = "AllowExecutionFromCloudWatch"
+//   action = "lambda:InvokeFunction"
+//   function_name = "${aws_lambda_function.solr-index-0.function_name}"
+//   principal = "events.amazonaws.com"
+//   source_arn = "${aws_cloudwatch_event_rule.solr-index-0.arn}"
+// }
 
-resource "aws_lambda_permission" "solr-index-1" {
-  statement_id = "AllowExecutionFromCloudWatch"
-  action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.solr-index-1.function_name}"
-  principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.solr-index-1.arn}"
-}
+// resource "aws_lambda_permission" "solr-index-1" {
+//   statement_id = "AllowExecutionFromCloudWatch"
+//   action = "lambda:InvokeFunction"
+//   function_name = "${aws_lambda_function.solr-index-1.function_name}"
+//   principal = "events.amazonaws.com"
+//   source_arn = "${aws_cloudwatch_event_rule.solr-index-1.arn}"
+// }
