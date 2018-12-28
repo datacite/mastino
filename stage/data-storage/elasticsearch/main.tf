@@ -1,6 +1,6 @@
 resource "aws_elasticsearch_domain" "test" {
   domain_name           = "elasticsearch-test"
-  elasticsearch_version = "5.5"
+  elasticsearch_version = "6.3"
   cluster_config {
     instance_type = "m4.large.elasticsearch"
     instance_count = 1
