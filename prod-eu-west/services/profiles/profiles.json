@@ -65,10 +65,6 @@
         "value" : "${search_url}"
       },
       {
-        "name" : "SOLR_URL",
-        "value" : "${solr_url}"
-      },
-      {
         "name" : "BLOG_URL",
         "value" : "${blog_url}"
       },

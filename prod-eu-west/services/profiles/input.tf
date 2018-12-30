@@ -50,7 +50,6 @@ data "template_file" "profiles_task" {
     orcid_url          = "${var.orcid_url}"
     orcid_token        = "${var.orcid_token}"
     search_url         = "${var.search_url}"
-    solr_url           = "${var.solr_url}"
     blog_url           = "${var.blog_url}"
     mysql_user         = "${var.mysql_user}"
     mysql_password     = "${var.mysql_password}"

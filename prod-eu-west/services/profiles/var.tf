@@ -18,9 +18,6 @@ variable "ttl" {
   default = "300"
 }
 
-variable "solr_url" {
-  default = "https://solr.datacite.org/api"
-}
 variable "search_url" {
   default = "https://search.datacite.org"
 }
