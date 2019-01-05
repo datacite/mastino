@@ -28,6 +28,10 @@ resource "aws_elasticsearch_domain" "test" {
   tags {
     Domain = "elasticsearch-test"
   }
+
+  lifecycle {
+    prevent_destroy = "true"
+  }
 }
 
 resource "aws_elasticsearch_domain_policy" "test" {
