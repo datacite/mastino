@@ -29,6 +29,11 @@ resource "aws_elasticsearch_domain" "test" {
     Domain = "elasticsearch-test"
   }
 
+  log_publishing_options {
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.elasticsearch-test.arn}"
+    log_type                 = "INDEX_SLOW_LOGS"
+  }
+
   lifecycle {
     prevent_destroy = "true"
   }
@@ -38,6 +43,33 @@ resource "aws_elasticsearch_domain_policy" "test" {
   domain_name = "${aws_elasticsearch_domain.test.domain_name}"
 
   access_policies = "${file("elasticsearch_policy.json")}"
+}
+
+resource "aws_cloudwatch_log_group" "elasticsearch-test" {
+  name = "elasticsearch-test"
+}
+
+resource "aws_cloudwatch_log_resource_policy" "elasticsearch-test" {
+  policy_name = "elasticsearch-test"
+  policy_document = <<CONFIG
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "es.amazonaws.com"
+      },
+      "Action": [
+        "logs:PutLogEvents",
+        "logs:PutLogEventsBatch",
+        "logs:CreateLogStream"
+      ],
+      "Resource": "arn:aws:logs:*"
+    }
+  ]
+}
+CONFIG
 }
 
 resource "aws_route53_record" "elasticsearch-test" {

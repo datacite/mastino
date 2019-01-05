@@ -2,7 +2,7 @@ resource "aws_elasticsearch_domain" "default" {
   domain_name           = "elasticsearch"
   elasticsearch_version = "6.3"
   cluster_config {
-    instance_type = "m4.large.elasticsearch"
+    instance_type = "m4.2xlarge.elasticsearch"
     instance_count = 2
     zone_awareness_enabled = true
   }
@@ -26,6 +26,11 @@ resource "aws_elasticsearch_domain" "default" {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
   }
 
+  log_publishing_options {
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.elasticsearch.arn}"
+    log_type                 = "INDEX_SLOW_LOGS"
+  }
+
   tags {
     Domain = "elasticsearch"
   }
@@ -39,6 +44,33 @@ resource "aws_elasticsearch_domain_policy" "default" {
   domain_name = "${aws_elasticsearch_domain.default.domain_name}"
 
   access_policies = "${file("elasticsearch_policy.json")}"
+}
+
+resource "aws_cloudwatch_log_group" "elasticsearch" {
+  name = "elasticsearch"
+}
+
+resource "aws_cloudwatch_log_resource_policy" "elasticsearch" {
+  policy_name = "elasticsearch"
+  policy_document = <<CONFIG
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "es.amazonaws.com"
+      },
+      "Action": [
+        "logs:PutLogEvents",
+        "logs:PutLogEventsBatch",
+        "logs:CreateLogStream"
+      ],
+      "Resource": "arn:aws:logs:*"
+    }
+  ]
+}
+CONFIG
 }
 
 resource "aws_route53_record" "elasticsearch" {
