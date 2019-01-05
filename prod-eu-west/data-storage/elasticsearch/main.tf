@@ -35,9 +35,9 @@ resource "aws_elasticsearch_domain" "default" {
     Domain = "elasticsearch"
   }
 
-  lifecycle {
-    prevent_destroy = "true"
-  }
+  // lifecycle {
+  //   prevent_destroy = "true"
+  // }
 }
 
 resource "aws_elasticsearch_domain_policy" "default" {
