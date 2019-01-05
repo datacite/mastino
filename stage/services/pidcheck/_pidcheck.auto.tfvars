@@ -1,4 +1,4 @@
 pidcheck_tags = {
-  sha = "f0307b5"
+  sha     = "600ed88"
   version = ""
 }
