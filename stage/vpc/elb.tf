@@ -47,8 +47,13 @@ resource "aws_lb_listener" "http-stage" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.http-redirect-stage.id}"
-    type             = "forward"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 }
 
