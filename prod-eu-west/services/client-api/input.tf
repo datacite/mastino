@@ -52,6 +52,7 @@ data "template_file" "client-api_task" {
     mysql_host         = "${var.mysql_host}"
     es_name            = "${var.es_name}"
     es_host            = "${var.es_host}"
+    public_key         = "${var.public_key}"
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"

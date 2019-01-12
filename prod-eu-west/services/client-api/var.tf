@@ -32,6 +32,8 @@ variable "memcache_servers" {
   default = "memcached1.datacite.org:11211"
 }
 
+variable "public_key" {}
+
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "session_encrypted_cookie_salt" {}

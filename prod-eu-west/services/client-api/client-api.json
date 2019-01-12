@@ -93,6 +93,10 @@
         "value" : "${bugsnag_key}"
       },
       {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
+      },
+      {
         "name" : "SERVERNAME",
         "value" : "client-api.datacite.org"
       },
