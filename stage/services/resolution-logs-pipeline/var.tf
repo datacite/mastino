@@ -28,7 +28,7 @@ variable "es_index" {
 }
 
 variable "es_host" {
-  default = "elasticsearch.test.datacite.org"
+  default = "${aws_elasticsearch_domain.test.domain_name}"
 }
 variable "es_name" {
   default = "es"
