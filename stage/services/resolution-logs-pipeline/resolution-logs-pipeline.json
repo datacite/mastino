@@ -65,8 +65,8 @@
         "value" : "${es_name}"
       },
       {
-        "name" : "RESOLUTION_INDEX",
-        "value" : "${resolution_index}"
+        "name" : "ES_INDEX",
+        "value" : "${es_index}"
       },
       {
         "name" : "GITHUB_VERSION",
