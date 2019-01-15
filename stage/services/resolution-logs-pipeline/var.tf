@@ -28,7 +28,7 @@ variable "es_index" {
 }
 
 variable "es_host" {
-  default = "arn:aws:es:eu-west-1:404017989009:domain/elasticsearch-test"
+  default = "https://vpc-elasticsearch-test-ejxgdtvxo76tzpax6kwet64ipu.eu-west-1.es.amazonaws.com"
 }
 variable "es_name" {
   default = "es"
