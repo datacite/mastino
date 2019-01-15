@@ -28,7 +28,7 @@ variable "es_index" {
 }
 
 variable "es_host" {
-  default = "https://vpc-elasticsearch-test-ejxgdtvxo76tzpax6kwet64ipu.eu-west-1.es.amazonaws.com"
+  default = "elasticsearch.test.datacite.org"
 }
 variable "es_name" {
   default = "es"
