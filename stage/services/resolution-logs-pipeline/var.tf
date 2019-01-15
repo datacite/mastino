@@ -28,7 +28,7 @@ variable "es_index" {
 }
 
 variable "es_host" {
-  default = "${aws_elasticsearch_domain.test.domain_name}"
+  default = "arn:aws:es:eu-west-1:404017989009:domain/elasticsearch-test"
 }
 variable "es_name" {
   default = "es"
