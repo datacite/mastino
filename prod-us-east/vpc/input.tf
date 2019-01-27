@@ -39,8 +39,9 @@ data "aws_route53_zone" "internal" {
 }
 
 data "aws_acm_certificate" "default" {
-  domain = "*.datacite.org"
+  domain = "datacite.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "aws_iam_instance_profile" "ecs_instance" {

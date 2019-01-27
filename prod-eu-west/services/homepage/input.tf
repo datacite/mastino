@@ -22,8 +22,9 @@ data "template_file" "www" {
 
 data "aws_acm_certificate" "cloudfront" {
   provider = "aws.use1"
-  domain = "*.datacite.org"
+  domain = "datacite.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "aws_route53_zone" "production" {

@@ -22,14 +22,16 @@ data "template_file" "schema" {
 
 data "aws_acm_certificate" "cloudfront" {
   provider = "aws.use1"
-  domain = "*.datacite.org"
+  domain = "datacite.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "aws_acm_certificate" "cloudfront-test" {
   provider = "aws.use1"
   domain = "*.test.datacite.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "aws_route53_zone" "production" {

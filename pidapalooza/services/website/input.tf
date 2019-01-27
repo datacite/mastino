@@ -22,8 +22,9 @@ data "template_file" "pidapalooza" {
 
 data "aws_acm_certificate" "pidapalooza" {
   provider = "aws.use1"
-  domain = "*.pidapalooza.org"
+  domain = "pidapalooza.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "aws_route53_zone" "pidapalooza" {

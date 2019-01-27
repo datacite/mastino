@@ -52,8 +52,9 @@ data "aws_ecs_cluster" "default" {
 }
 
 data "aws_acm_certificate" "default" {
-  domain = "*.datacite.org"
+  domain = "datacite.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "aws_s3_bucket" "logs" {

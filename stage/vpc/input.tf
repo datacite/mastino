@@ -41,6 +41,7 @@ data "aws_route53_zone" "internal" {
 data "aws_acm_certificate" "test" {
   domain = "*.test.datacite.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "template_cloudinit_config" "ecs-user-data" {

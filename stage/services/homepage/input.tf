@@ -24,6 +24,7 @@ data "aws_acm_certificate" "cloudfront-test" {
   provider = "aws.use1"
   domain = "*.test.datacite.org"
   statuses = ["ISSUED"]
+  most_recent = true
 }
 
 data "aws_route53_zone" "production" {
