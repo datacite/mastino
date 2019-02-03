@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "www" {
 resource "aws_cloudfront_distribution" "www" {
   origin {
     domain_name = "${aws_s3_bucket.www.website_endpoint}"
-    origin_id   = "www.datacite.org"
+    origin_id   = "datacite.org"
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
@@ -35,12 +35,12 @@ resource "aws_cloudfront_distribution" "www" {
     prefix          = "homepage/"
   }
 
-  aliases = ["www.datacite.org", "datacite.org"]
+  aliases = ["datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "www.datacite.org"
+    target_origin_id = "datacite.org"
 
     forwarded_values {
       query_string = false
@@ -75,18 +75,6 @@ resource "aws_cloudfront_distribution" "www" {
   }
 }
 
-resource "aws_route53_record" "www" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "www.datacite.org"
-   type = "A"
-
-   alias {
-     name = "${aws_cloudfront_distribution.www.domain_name}"
-     zone_id = "${var.cloudfront_alias_zone_id}"
-     evaluate_target_health = true
-   }
-}
-
 resource "aws_route53_record" "apex" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
   name = "datacite.org"
@@ -97,18 +85,6 @@ resource "aws_route53_record" "apex" {
     zone_id = "${var.cloudfront_alias_zone_id}"
     evaluate_target_health = true
   }
-}
-
-resource "aws_route53_record" "split-www" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "www.datacite.org"
-   type = "A"
-
-   alias {
-     name = "${aws_cloudfront_distribution.www.domain_name}"
-     zone_id = "${var.cloudfront_alias_zone_id}"
-     evaluate_target_health = true
-   }
 }
 
 resource "aws_route53_record" "split-apex" {

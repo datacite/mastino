@@ -1,43 +1,35 @@
-// resource "aws_lb" "alternate" {
-//   name = "lb-alternate"
-//   internal = false
-//   subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
-//   security_groups = ["${data.aws_security_group.datacite-public.id}"]
+resource "aws_lb_listener_rule" "redirect_www" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
 
-//   enable_deletion_protection = true
+  action {
+    type = "redirect"
 
-//   access_logs {
-//     bucket = "${data.aws_s3_bucket.logs.bucket}"
-//     prefix = "lb-alternate"
-//     enabled = true
-//   }
+    redirect {
+      host        = "datacite.org"
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_302"
+    }
+  }
 
-//   tags {
-//     Environment = "alternate"
-//     Name = "lb-alternate"
-//   }
-// }
+  condition {
+    field  = "host-header"
+    values = ["www.datacite.org"]
+  }
+}
 
-// resource "aws_lb_listener" "alternate" {
-//   load_balancer_arn = "${aws_lb.alternate.id}"
-//   port              = "443"
-//   protocol          = "HTTPS"
-//   ssl_policy        = "ELBSecurityPolicy-2016-08"
-//   certificate_arn   = "${data.aws_acm_certificate.default.arn}"
+resource "aws_route53_record" "www" {
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "www.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.default.dns_name}"]
+}
 
-//   default_action {
-//     target_group_arn = "${data.aws_lb_target_group.mds.id}"
-//     type             = "forward"
-//   }
-// }
-
-// resource "aws_lb_listener" "alternate-http" {
-//   load_balancer_arn = "${aws_lb.alternate.id}"
-//   port              = "80"
-//   protocol          = "HTTP"
-
-//   default_action {
-//     target_group_arn = "${data.aws_lb_target_group.http-redirect-alternate.id}"
-//     type             = "forward"
-//   }
-// }
+resource "aws_route53_record" "split-www" {
+    zone_id = "${aws_route53_zone.internal.zone_id}"
+    name = "www.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.default.dns_name}"]
+}
