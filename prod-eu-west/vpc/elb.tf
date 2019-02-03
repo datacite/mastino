@@ -19,7 +19,7 @@ resource "aws_lb_listener_rule" "redirect_www" {
 }
 
 resource "aws_route53_record" "www" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = "${data.aws_route53_zone.production.zone_id}"
     name = "www.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
@@ -27,7 +27,7 @@ resource "aws_route53_record" "www" {
 }
 
 resource "aws_route53_record" "split-www" {
-    zone_id = "${aws_route53_zone.internal.zone_id}"
+    zone_id = "${data.aws_route53_zone.internal.zone_id}"
     name = "www.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
