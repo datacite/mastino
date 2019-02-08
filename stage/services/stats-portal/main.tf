@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "stats-stage" {
     prefix          = "stats/"
   }
 
-  aliases = ["stats.stage.datacite.org"]
+  aliases = ["stats.test.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
