@@ -13,6 +13,10 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
 data "aws_ecs_cluster" "stage" {
   cluster_name = "stage"
 }
@@ -38,6 +42,7 @@ data "template_file" "levriero_task" {
   template = "${file("levriero.json")}"
 
   vars {
+    public_key         = "${var.public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
     access_key         = "${var.access_key}"

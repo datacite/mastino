@@ -25,6 +25,8 @@ variable "api_dns_name" {
   default = "api.test.datacite.org"
 }
 
+variable "public_key" {}
+
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "bugsnag_key" {}
@@ -51,3 +53,5 @@ variable "datacite_funder_source_token" {}
 variable "datacite_usage_source_token" {}
 variable "datacite_resolution_source_token" {}
 variable "datacite_orcid_auto_update_source_token" {}
+
+variable "namespace_id" {}
