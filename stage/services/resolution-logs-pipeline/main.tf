@@ -4,7 +4,7 @@ resource "aws_ecs_service" "resolution-logs-pipeline-stage" {
   task_definition = "${aws_ecs_task_definition.resolution-logs-pipeline-stage.arn}"
   desired_count   = 1
 
-  placement_strategy {
+  ordered_placement_strategy {
     type  = "binpack"
     field = "cpu"
   }

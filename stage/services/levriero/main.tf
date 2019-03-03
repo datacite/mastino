@@ -5,7 +5,7 @@ resource "aws_ecs_service" "levriero-stage" {
   desired_count = 1
   iam_role        = "${data.aws_iam_role.ecs_service.arn}"
 
-  placement_strategy {
+  ordered_placement_strategy {
     type  = "binpack"
     field = "cpu"
   }

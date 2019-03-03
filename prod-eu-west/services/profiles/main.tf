@@ -5,7 +5,7 @@ resource "aws_ecs_service" "profiles" {
   desired_count = 2
   iam_role        = "${data.aws_iam_role.ecs_service.arn}"
 
-  placement_strategy {
+  ordered_placement_strategy {
     type  = "binpack"
     field = "cpu"
   }
