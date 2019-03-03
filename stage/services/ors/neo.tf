@@ -14,9 +14,9 @@ resource "aws_ecs_service" "neo-stage" {
     ]
   }
 
-  service_registries {
-    registry_arn = "${aws_service_discovery_service.neo-stage.arn}"
-  }
+  // service_registries {
+  //   registry_arn = "${aws_service_discovery_service.neo-stage.arn}"
+  // }
 }
 
 resource "aws_cloudwatch_log_group" "neo-stage" {
@@ -63,7 +63,7 @@ resource "aws_route53_record" "neo-stage" {
 }
 
 # Service Discovery Namepace
-resource "aws_service_discovery_private_dns_namespace" "internal-stage" {
-  name = "test.local"
-  vpc = "${data.aws_subnet.datacite-private.vpc_id}"
-}
+// resource "aws_service_discovery_private_dns_namespace" "internal-stage" {
+//   name = "test.local"
+//   vpc = "${data.aws_subnet.datacite-private.vpc_id}"
+// }
