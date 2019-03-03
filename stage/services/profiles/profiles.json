@@ -2,13 +2,14 @@
   {
     "name": "profiles-stage",
     "image": "datacite/volpino",
-    "cpu": 384,
-    "memory": 1024,
+    "cpu": 512,
+    "memory": 2048,
     "essential": true,
-    "hostname": "profiles-stage",
+    "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "logConfiguration": { 
@@ -43,6 +44,10 @@
       {
         "name" : "BRACCO_URL",
         "value" : "${bracco_url}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       },
       {
         "name" : "JWT_PRIVATE_KEY",
