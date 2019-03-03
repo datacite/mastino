@@ -57,6 +57,10 @@ variable "api_dns_name" {
   default = "api.datacite.org"
 }
 
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
 variable "handle_url" {}
 variable "handle_username" {}
 variable "handle_password" {}
