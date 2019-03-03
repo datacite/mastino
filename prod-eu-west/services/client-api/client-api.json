@@ -3,12 +3,13 @@
     "name": "client-api",
     "image": "datacite/lupo:${version}",
     "cpu": 1024,
-    "memory": 4000,
+    "memory": 2048,
     "essential": true,
-    "hostname": "client-api",
+    "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "logConfiguration": { 

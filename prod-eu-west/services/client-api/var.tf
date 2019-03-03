@@ -62,3 +62,5 @@ variable "handle_username" {}
 variable "handle_password" {}
 variable "admin_username" {}
 variable "admin_password" {}
+
+variable "namespace_id" {}
