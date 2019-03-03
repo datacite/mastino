@@ -25,6 +25,8 @@ variable "memcache_servers" {
   default = "memcached.test.datacite.org:11211"
 }
 
+variable "public_key" {}
+
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "bugsnag_key" {}
@@ -44,3 +46,9 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
+variable "namespace_id" {}

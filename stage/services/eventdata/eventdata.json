@@ -5,10 +5,11 @@
     "cpu": 512,
     "memory": 2048,
     "essential": true,
-    "hostname": "eventdata-stage",
+    "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "logConfiguration": { 
@@ -35,6 +36,10 @@
       {
         "name" : "LOG_LEVEL",
         "value" : "info"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       },
       {
         "name" : "JWT_PUBLIC_KEY",
