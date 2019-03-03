@@ -61,9 +61,3 @@ resource "aws_ecs_task_definition" "neo-stage" {
 //      evaluate_target_health = true
 //    }
 // }
-
-# Service Discovery Namepace
-// resource "aws_service_discovery_private_dns_namespace" "internal-stage" {
-//   name = "test.local"
-//   vpc = "${data.aws_subnet.datacite-private.vpc_id}"
-// }
