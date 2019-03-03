@@ -19,9 +19,9 @@ resource "aws_ecs_service" "client-api" {
     container_port   = "80"
   }
 
-  // service_registries {
-  //   registry_arn = "${aws_service_discovery_service.client-api.arn}"
-  // }
+  service_registries {
+    registry_arn = "${aws_service_discovery_service.client-api.arn}"
+  }
 
   depends_on = [
     "data.aws_lb_listener.default",
@@ -100,19 +100,19 @@ resource "aws_lb_listener_rule" "api" {
 //     records = ["${data.aws_lb.default.dns_name}"]
 // }
 
-// resource "aws_service_discovery_service" "client-api" {
-//   name = "client-api"
+resource "aws_service_discovery_service" "client-api" {
+  name = "client-api"
 
-//   health_check_custom_config {
-//     failure_threshold = 3
-//   }
+  health_check_custom_config {
+    failure_threshold = 3
+  }
 
-//   dns_config {
-//     namespace_id = "${var.namespace_id}"
+  dns_config {
+    namespace_id = "${var.namespace_id}"
     
-//     dns_records {
-//       ttl = 300
-//       type = "A"
-//     }
-//   }
-// }
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
+  }
+}
