@@ -34,33 +34,33 @@ resource "aws_ecs_task_definition" "neo-stage" {
    container_definitions = "${data.template_file.neo_task.rendered}"
 }
 
-resource "aws_service_discovery_service" "neo-stage" {
-  name = "neo"
+// resource "aws_service_discovery_service" "neo-stage" {
+//   name = "neo"
 
-  health_check_custom_config {
-    failure_threshold = 1
-  }
+//   health_check_custom_config {
+//     failure_threshold = 1
+//   }
 
-  dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.internal-stage.id}"
-    dns_records {
-      ttl = 300
-      type = "A"
-    }
-  }
-}
+//   dns_config {
+//     namespace_id = "${aws_service_discovery_private_dns_namespace.internal-stage.id}"
+//     dns_records {
+//       ttl = 300
+//       type = "A"
+//     }
+//   }
+// }
 
-resource "aws_route53_record" "neo-stage" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "neo.test.datacite.org"
-   type = "A"
+// resource "aws_route53_record" "neo-stage" {
+//    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+//    name = "neo.test.datacite.org"
+//    type = "A"
 
-   alias {
-     name = "${aws_service_discovery_service.neo-stage.name}.${aws_service_discovery_private_dns_namespace.internal-stage.name}"
-     zone_id = "${aws_service_discovery_private_dns_namespace.internal-stage.hosted_zone}"
-     evaluate_target_health = true
-   }
-}
+//    alias {
+//      name = "${aws_service_discovery_service.neo-stage.name}.${aws_service_discovery_private_dns_namespace.internal-stage.name}"
+//      zone_id = "${aws_service_discovery_private_dns_namespace.internal-stage.hosted_zone}"
+//      evaluate_target_health = true
+//    }
+// }
 
 # Service Discovery Namepace
 // resource "aws_service_discovery_private_dns_namespace" "internal-stage" {
