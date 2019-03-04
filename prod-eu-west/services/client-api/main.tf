@@ -3,7 +3,7 @@ resource "aws_ecs_service" "client-api" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.client-api.arn}"
-  desired_count = 4
+  desired_count = 6
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
