@@ -45,6 +45,12 @@ variable "memcache_servers" {
   default = "memcached.test.datacite.org:11211"
 }
 
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
+variable "public_key" {}
+
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "bugsnag_key" {}
@@ -68,3 +74,5 @@ variable "github_client_id" {}
 variable "github_client_secret" {}
 variable "google_client_id" {}
 variable "google_client_secret" {}
+
+variable "namespace_id" {}
