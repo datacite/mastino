@@ -94,6 +94,10 @@
         "value" : "${bugsnag_key}"
       },
       {
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
+      },
+      {
         "name" : "PUBLIC_KEY",
         "value" : "${public_key}"
       },

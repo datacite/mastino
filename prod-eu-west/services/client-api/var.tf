@@ -38,6 +38,7 @@ variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "session_encrypted_cookie_salt" {}
 variable "bugsnag_key" {}
+variable "sentry_dsn" {}
 variable "mailgun_api_key" {}
 variable "slack_webhook_url" {}
 
