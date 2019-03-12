@@ -1,4 +1,4 @@
 levriero_tags = {
-  sha = "5713ede"
-  version = "0.16.6"
+  sha = "397c5d9"
+  version = "0.16.10"
 }
