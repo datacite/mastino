@@ -33,7 +33,7 @@ variable "public_key" {}
 
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
-variable "bugsnag_key" {}
+variable "sentry_dsn" {}
 variable "slack_webhook_url" {}
 
 variable "volpino_url" {

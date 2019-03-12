@@ -57,7 +57,7 @@ data "template_file" "levriero_task" {
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"
-    bugsnag_key        = "${var.bugsnag_key}"
+    sentry_dsn         = "${var.sentry_dsn}"
     memcache_servers   = "${var.memcache_servers}"
     slack_webhook_url  = "${var.slack_webhook_url}"
     solr_url           = "${var.solr_url}"
