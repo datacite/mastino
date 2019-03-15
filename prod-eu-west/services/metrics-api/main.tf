@@ -42,25 +42,25 @@ resource "aws_lb_target_group" "metrics-api" {
   }
 }
 
-// resource "aws_lb_listener_rule" "metrics-api" {
-//   listener_arn = "${data.aws_lb_listener.default.arn}"
-//   priority     = 19
+resource "aws_lb_listener_rule" "metrics-api" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 19
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.metrics-api.arn}"
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.metrics-api.arn}"
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = ["api.datacite.org"]
-//   }
+  condition {
+    field  = "host-header"
+    values = ["api.datacite.org"]
+  }
 
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/reports*"]
-//   }
-// }
+  condition {
+    field  = "path-pattern"
+    values = ["/reports*"]
+  }
+}
 
 resource "aws_cloudwatch_log_group" "metrics-api" {
   name = "/ecs/metrics-api"
