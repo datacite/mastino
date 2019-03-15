@@ -18,13 +18,13 @@ resource "aws_ecs_service" "metrics-api-stage" {
       "${data.aws_subnet.datacite-alt.id}"
     ]
   }
-  
+
   service_registries {
     registry_arn = "${aws_service_discovery_service.metrics-api-stage.arn}"
   }
 
    depends_on = [
-    "data.aws_lb_listener.default",
+    "data.aws_lb_listener.stage",
   ]
 }
 
@@ -90,7 +90,7 @@ resource "aws_route53_record" "split-metrics-api-stage" {
   records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-resource "aws_service_discovery_service" "levriero" {
+resource "aws_service_discovery_service" "metrics-api-stage" {
   name = "metrics-api.test"
 
    health_check_custom_config {
