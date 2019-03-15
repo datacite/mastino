@@ -5,11 +5,6 @@ resource "aws_ecs_service" "metrics-api-stage" {
   desired_count   = 1
   launch_type = "FARGATE"
 
-  load_balancer {
-    target_group_arn = "${aws_lb_target_group.metrics-api-stage.id}"
-    container_name   = "metrics-api-stage"
-    container_port   = "80"
-  }
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -17,6 +12,13 @@ resource "aws_ecs_service" "metrics-api-stage" {
       "${data.aws_subnet.datacite-private.id}",
       "${data.aws_subnet.datacite-alt.id}"
     ]
+  }
+
+
+  load_balancer {
+    target_group_arn = "${aws_lb_target_group.metrics-api-stage.id}"
+    container_name   = "metrics-api-stage"
+    container_port   = "80"
   }
 
   service_registries {
@@ -44,25 +46,25 @@ resource "aws_cloudwatch_log_group" "metrics-api-stage" {
   name = "/ecs/metrics-api-stage"
 }
 
-resource "aws_lb_listener_rule" "metrics-api-stage" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 29
+// resource "aws_lb_listener_rule" "metrics-api-stage" {
+//   listener_arn = "${data.aws_lb_listener.stage.arn}"
+//   priority     = 29
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.metrics-api-stage.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.metrics-api-stage.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["api.test.datacite.org"]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = ["api.test.datacite.org"]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/reports*"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/reports*"]
+//   }
+// }
 
 resource "aws_ecs_task_definition" "metrics-api-stage" {
   family = "metrics-api-stage"
