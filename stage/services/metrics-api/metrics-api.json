@@ -3,12 +3,14 @@
     "name": "metrics-api-stage",
     "image": "datacite/sashimi",
     "cpu": 512,
-    "memory": 1000,
+    "memory": 2048,
     "essential": true,
+    "networkMode": "awsvpc",
     "hostname": "metrics-api-stage",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
       }
     ],
     "logConfiguration": { 
@@ -87,6 +89,10 @@
       {
         "name" : "AWS_S3_BUCKET",
         "value" : "${s3_bucket}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       },
       {
         "name" : "USAGE_URL",

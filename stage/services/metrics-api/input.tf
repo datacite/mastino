@@ -8,6 +8,18 @@ data "aws_route53_zone" "production" {
   name = "datacite.org"
 }
 
+data "aws_security_group" "datacite-private" {
+  id = "${var.security_group_id}"
+}
+
+data "aws_subnet" "datacite-private" {
+  id = "${var.subnet_datacite-private_id}"
+}
+
+data "aws_subnet" "datacite-alt" {
+  id = "${var.subnet_datacite-alt_id}"
+}
+
 data "aws_route53_zone" "internal" {
   name = "datacite.org"
   private_zone = true
@@ -38,6 +50,7 @@ data "template_file" "metrics-api_task" {
   template = "${file("metrics-api.json")}"
 
   vars {
+    public_key         = "${var.public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
     memcache_servers   = "${var.memcache_servers}"
