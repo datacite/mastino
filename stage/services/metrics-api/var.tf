@@ -36,7 +36,6 @@ variable "mysql_database" {
 }
 variable "mysql_host" {}
 variable "public_key" {}
-variable "datacite_usage_source_token" {}
 
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
