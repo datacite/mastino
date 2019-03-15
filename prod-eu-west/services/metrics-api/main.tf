@@ -92,7 +92,7 @@ resource "aws_route53_record" "split-metrics-api" {
   records = ["${data.aws_lb.default.dns_name}"]
 }
 
-resource "aws_service_discovery_service" "matrics-api" {
+resource "aws_service_discovery_service" "metrics-api" {
   name = "metrics-api"
 
     health_check_custom_config {
