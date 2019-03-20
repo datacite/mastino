@@ -53,8 +53,7 @@ variable "public_key" {}
 
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
-variable "bugsnag_key" {}
-variable "bugsnag_js_key" {}
+variable "sentry_dsn" {}
 variable "orcid_update_uuid" {}
 variable "orcid_token" {}
 variable "notification_access_token" {}

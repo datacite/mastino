@@ -98,12 +98,8 @@
         "value" : "${github_personal_access_token}"
       },
       {
-        "name" : "BUGSNAG_KEY",
-        "value" : "${bugsnag_key}"
-      },
-      {
-        "name" : "BUGSNAG_JS_KEY",
-        "value" : "${bugsnag_js_key}"
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
       },
       {
         "name" : "API_URL",

@@ -71,7 +71,6 @@ data "template_file" "client-api_task" {
     s3_bucket          = "${var.s3_bucket}"
     admin_username     = "${var.admin_username}"
     admin_password     = "${var.admin_password}"
-    bugsnag_key        = "${var.bugsnag_key}"
     sentry_dsn         = "${var.sentry_dsn}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
