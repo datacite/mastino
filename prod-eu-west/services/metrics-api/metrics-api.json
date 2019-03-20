@@ -2,13 +2,15 @@
   {
     "name": "metrics-api",
     "image": "datacite/sashimi:${version}",
-    "cpu": 512,
-    "memory": 1000,
+    "cpu": 1024,
+    "memory": 2048,
     "essential": true,
-    "hostname": "metrics-api",
+    "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": 80
+        "containerPort": 80,
+        "hostPort": 80
+
       }
     ],    
     "logConfiguration": { 
@@ -91,6 +93,10 @@
       {
         "name" : "USAGE_URL",
         "value" : "${usage_url}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       },
       {
         "name" : "GITHUB_VERSION",
