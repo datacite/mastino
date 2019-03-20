@@ -86,8 +86,8 @@
         "value" : "${mysql_database}"
       },
       {
-        "name" : "BUGSNAG_KEY",
-        "value" : "${bugsnag_key}"
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
       },
       {
         "name" : "SERVERNAME",
