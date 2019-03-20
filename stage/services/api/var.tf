@@ -48,7 +48,7 @@ variable "jwt_public_key" {}
 variable "orcid_update_uuid" {}
 variable "orcid_update_token" {}
 variable "github_personal_access_token" {}
-variable "bugsnag_key" {}
+variable "sentry_dsn" {}
 variable "mailgun_api_key" {}
 
 variable "github_milestones_url" {
