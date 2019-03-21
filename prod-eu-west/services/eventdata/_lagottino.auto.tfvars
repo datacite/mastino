@@ -1,4 +1,4 @@
 lagottino_tags = {
-  sha = "1989f3e"
-  version = "0.16.5"
+  sha = "5face03"
+  version = "0.16.7"
 }
