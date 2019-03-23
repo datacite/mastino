@@ -31,4 +31,4 @@ variable "memcache_servers" {
   default = "memcached1.datacite.org:11211"
 }
 
-variable "bugsnag_key" {}
+variable "sentry_dsn" {}

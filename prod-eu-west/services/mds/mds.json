@@ -38,8 +38,8 @@
         "value" : "info"
       },
       {
-        "name" : "BUGSNAG_KEY",
-        "value" : "${bugsnag_key}"
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
       },
       {
         "name" : "MEMCACHE_SERVERS",

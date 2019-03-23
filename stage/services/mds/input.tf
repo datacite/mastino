@@ -50,7 +50,7 @@ data "template_file" "mds_task" {
   template = "${file("mds.json")}"
 
   vars {
-    bugsnag_key        = "${var.bugsnag_key}"
+    sentry_dsn         = "${var.sentry_dsn}"
     memcache_servers   = "${var.memcache_servers}"
     version            = "${var.poodle_tags["sha"]}"
   }

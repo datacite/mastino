@@ -27,5 +27,5 @@ variable "memcache_servers" {
   default = "memcached.test.datacite.org:11211"
 }
 
-variable "bugsnag_key" {}
+variable "sentry_dsn" {}
 variable "compose_id" {}

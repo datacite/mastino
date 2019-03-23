@@ -71,7 +71,6 @@ data "template_file" "client-api_task" {
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"
     s3_bucket          = "${var.s3_bucket}"
-    bugsnag_key        = "${var.bugsnag_key}"
     sentry_dsn         = "${var.sentry_dsn}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
