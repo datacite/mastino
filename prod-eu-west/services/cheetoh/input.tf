@@ -52,7 +52,7 @@ data "template_file" "cheetoh_task" {
   vars {
     api_url            = "${var.api_url}"
     secret_key_base    = "${var.secret_key_base}"
-    bugsnag_key        = "${var.bugsnag_key}"
+    sentry_dsn         = "${var.sentry_dsn}"
     memcache_servers   = "${var.memcache_servers}"
     admin_username     = "${var.admin_username}"
     admin_password     = "${var.admin_password}"

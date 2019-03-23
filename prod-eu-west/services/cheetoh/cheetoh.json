@@ -42,8 +42,8 @@
         "value" : "${secret_key_base}"
       },
       {
-        "name" : "BUGSNAG_KEY",
-        "value" : "${bugsnag_key}"
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
       },
       {
         "name" : "API_URL",

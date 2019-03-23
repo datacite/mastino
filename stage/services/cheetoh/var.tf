@@ -28,7 +28,7 @@ variable "memcache_servers" {
 }
 
 variable "secret_key_base" {}
-variable "bugsnag_key" {}
+variable "sentry_dsn" {}
 
 variable "admin_username" {}
 variable "admin_password" {}
