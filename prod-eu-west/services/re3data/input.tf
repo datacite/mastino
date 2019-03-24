@@ -55,7 +55,7 @@ data "template_file" "re3data_task" {
     elastic_password   = "${var.elastic_password}"
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"
-    bugsnag_key        = "${var.bugsnag_key}"
+    sentry_dsn         = "${var.sentry_dsn}"
     memcache_servers   = "${var.memcache_servers}"
     version            = "${var.schnauzer_tags["version"]}"
   }

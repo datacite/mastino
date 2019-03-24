@@ -27,7 +27,7 @@ variable "memcache_servers" {
   default = "memcached.test.datacite.org:11211"
 }
 
-variable "bugsnag_key" {}
+variable "sentry_dsn" {}
 variable "es_host" {}
 variable "elastic_user" {}
 variable "elastic_password" {}
