@@ -52,7 +52,7 @@ data "template_file" "data_task" {
   vars {
     search_url         = "${var.search_url}"
     citeproc_url       = "${var.citeproc_url}"
-    bugsnag_key        = "${var.bugsnag_key}"
+    sentry_dsn         = "${var.sentry_dsn}"
     ssh_public_key     = "${var.ssh_public_key}"
     memcache_servers   = "${var.memcache_servers}"
     version            = "${var.content-negotiation_tags["sha"]}"

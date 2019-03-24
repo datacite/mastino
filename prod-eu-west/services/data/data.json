@@ -30,8 +30,8 @@
         "value" : "${citeproc_url}"
       },
       {
-        "name" : "BUGSNAG_KEY",
-        "value" : "${bugsnag_key}"
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
       },
       {
         "name" : "SITE_TITLE",
