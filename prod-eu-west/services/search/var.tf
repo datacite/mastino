@@ -58,7 +58,6 @@ variable "memcache_servers" {
 variable "jwt_public_key" {}
 variable "orcid_update_uuid" {}
 variable "orcid_update_token" {}
-variable "bugsnag_key" {}
-variable "bugsnag_js_key" {}
+variable "sentry_dsn" {}
 variable "gabba_cookie" {}
 variable "secret_key_base" {}
