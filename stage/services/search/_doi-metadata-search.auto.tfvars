@@ -1,4 +1,4 @@
 doi-metadata-search_tags = {
-  sha = "95f88ae"
+  sha = "d5a60d9"
   version = "1.20.27"
 }
