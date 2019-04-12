@@ -20,8 +20,6 @@ resource "aws_ecs_service" "resolution-logs-pipeline-stage" {
     depends_on = [
     "data.aws_lb_listener.default",
   ]
-  }	
-
 }
 
 resource "aws_cloudwatch_log_group" "resolution-logs-pipeline-stage" {
@@ -66,7 +64,7 @@ resource "aws_s3_bucket" "merged-logs-bucket-stage" {
   }
 }
 
-resource "aws_service_discovery_service" "levriero" {
+resource "aws_service_discovery_service" "resolution-logs-pipeline-stage" {
   name = "resolution-logs-pipeline.test"
 
     health_check_custom_config {
