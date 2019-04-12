@@ -6,7 +6,6 @@
     "memory": 2048,
     "essential": true,
     "networkMode": "awsvpc",
-    "hostname": "resolution-logs-pipeline-stage",
     "portMappings": [
       {
         "containerPort": 80,
