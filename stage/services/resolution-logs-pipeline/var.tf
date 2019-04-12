@@ -40,3 +40,12 @@ variable "s3_merged_logs_bucket" {
 variable "s3_resolution_logs_bucket" {
   default = "resolution-logs-bucket.stage.datacite.org"
 }
+
+variable "public_key" {}
+variable "datacite_usage_source_token" {}
+
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
+variable "namespace_id" {}

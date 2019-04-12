@@ -17,6 +17,18 @@ data "aws_ecs_cluster" "stage" {
   cluster_name = "stage"
 }
 
+data "aws_security_group" "datacite-private" {
+  id = "${var.security_group_id}"
+}
+
+ data "aws_subnet" "datacite-private" {
+  id = "${var.subnet_datacite-private_id}"
+}
+
+ data "aws_subnet" "datacite-alt" {
+  id = "${var.subnet_datacite-alt_id}"
+}
+
 data "aws_iam_role" "ecs_service" {
   name = "ecs_service"
 }
@@ -38,6 +50,7 @@ data "template_file" "resolution-logs-pipeline_task" {
   template = "${file("resolution-logs-pipeline.json")}"
 
   vars {
+    public_key         = "${var.public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
     access_key         = "${var.access_key}"
