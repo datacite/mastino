@@ -17,9 +17,6 @@ resource "aws_ecs_service" "resolution-logs-pipeline-stage" {
     registry_arn = "${aws_service_discovery_service.resolution-logs-pipeline-stage.arn}"
   }
   
-    depends_on = [
-    "data.aws_lb_listener.default",
-  ]
 }
 
 resource "aws_cloudwatch_log_group" "resolution-logs-pipeline-stage" {
