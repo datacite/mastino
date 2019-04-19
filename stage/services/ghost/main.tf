@@ -57,10 +57,15 @@ resource "aws_route53_record" "split-ghost-stage" {
 
 resource "aws_lb_target_group" "ghost-stage" {
   name     = "ghost-stage"
-  port     = 80
+  port     = 2368
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
   target_type = "ip"
+
+  health_check {
+    path = "/"
+    port = 2368
+  }
 }
 
 resource "aws_lb_listener_rule" "ghost-stage" {
