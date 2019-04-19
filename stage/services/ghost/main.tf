@@ -63,7 +63,7 @@ resource "aws_lb_target_group" "ghost-stage" {
   target_type = "ip"
 
   health_check {
-    path = "/"
+    path = "/mission/"
   }
 }
 
