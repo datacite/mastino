@@ -16,7 +16,7 @@ resource "aws_ecs_service" "ghost-stage" {
   load_balancer {
     target_group_arn = "${aws_lb_target_group.ghost-stage.id}"
     container_name   = "ghost-stage"
-    container_port   = "80"
+    container_port   = "2368"
   }
 
   depends_on = [
@@ -57,7 +57,7 @@ resource "aws_route53_record" "split-ghost-stage" {
 
 resource "aws_lb_target_group" "ghost-stage" {
   name     = "ghost-stage"
-  port     = 2368
+  port     = 80
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
   target_type = "ip"
