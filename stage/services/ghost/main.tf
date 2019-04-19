@@ -57,7 +57,7 @@ resource "aws_route53_record" "split-ghost-stage" {
 
 resource "aws_lb_target_group" "ghost-stage" {
   name     = "ghost-stage"
-  port     = 80
+  port     = 2368
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
   target_type = "ip"
@@ -69,7 +69,7 @@ resource "aws_lb_target_group" "ghost-stage" {
 
 resource "aws_lb_listener_rule" "ghost-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 2
+  priority     = 121
 
   action {
     type             = "forward"
