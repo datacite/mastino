@@ -1,0 +1,46 @@
+[
+  {
+    "name": "ghost-stage",
+    "image": "ghost",
+    "cpu": 512,
+    "memory": 2048,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 2368
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/ghost-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "database__client",
+        "value" : "mysql"
+      },
+      {
+        "name" : "database__connection__host",
+        "value" : "${mysql_host}"
+      },
+      {
+        "name" : "database__connection__user",
+        "value" : "${mysql_user}"
+      },
+      {
+        "name" : "database__connection__password",
+        "value" : "${mysql_password}"
+      },
+      {
+        "name" : "database__connection__database",
+        "value" : "${mysql_database}"
+      }
+    ]
+  }
+]
