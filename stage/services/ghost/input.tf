@@ -54,5 +54,8 @@ data "template_file" "ghost_task" {
     mysql_password     = "${var.mysql_password}"
     mysql_database     = "${var.mysql_database}"
     mysql_host         = "${var.mysql_host}"
+    url                = "${var.url}"
+    mailgun_user       = "${var.mailgun_user}"
+    mailgun_password   = "${var.mailgun_password}"
   }
 }

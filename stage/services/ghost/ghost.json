@@ -40,6 +40,26 @@
       {
         "name" : "database__connection__database",
         "value" : "${mysql_database}"
+      },
+      {
+        "name" : "url",
+        "value" : "${url}"
+      },
+      {
+        "name" : "mail__transport",
+        "value" : "SMTP"
+      },
+      {
+        "name" : "mail__options__service",
+        "value" : "Mailgun"
+      },
+      {
+        "name" : "mail__options__auth__user",
+        "value" : "${mailgun_user}"
+      },
+      {
+        "name" : "mail__options__auth__pass",
+        "value" : "${mailgun_password}"
       }
     ]
   }
