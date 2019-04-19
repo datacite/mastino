@@ -15,7 +15,7 @@ resource "aws_lambda_function" "delete-test-dois-test" {
   function_name = "delete-test-dois-test"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "delete-test-dois_runner.handler"
-  runtime = "nodejs6.10"
+  runtime = "nodejs8.10"
   source_code_hash = "${base64sha256(file("delete-test-dois_runner.js.zip"))}"
   timeout = "270"
 

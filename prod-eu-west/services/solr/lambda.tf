@@ -27,7 +27,7 @@ resource "aws_lambda_function" "solr-index-0" {
   function_name = "solr-index-0"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "solr_index_runner.handler"
-  runtime = "nodejs6.10"
+  runtime = "nodejs8.10"
   vpc_config {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
     security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
@@ -49,7 +49,7 @@ resource "aws_lambda_function" "solr-index-1" {
   function_name = "solr-index-1"
   role = "${data.aws_iam_role.lambda.arn}"
   handler = "solr_index_runner.handler"
-  runtime = "nodejs6.10"
+  runtime = "nodejs8.10"
   vpc_config {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
     security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
