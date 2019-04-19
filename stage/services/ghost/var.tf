@@ -27,7 +27,7 @@ variable "mysql_database" {
 variable "mysql_host" {}
 
 variable "url" {
-  default = "https://ghost.test.datacite.org:2368"
+  default = "https://ghost.test.datacite.org/"
 }
 
 variable "mailgun_user" {}

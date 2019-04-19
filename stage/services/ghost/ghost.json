@@ -42,6 +42,10 @@
         "value" : "${mysql_database}"
       },
       {
+        "name" : "url",
+        "value" : "${url}"
+      },
+      {
         "name" : "mail__transport",
         "value" : "SMTP"
       },
