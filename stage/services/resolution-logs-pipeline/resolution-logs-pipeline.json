@@ -3,13 +3,14 @@
     "name": "resolution-logs-pipeline-stage",
     "image": "datacite/shiba-inu",
     "cpu": 512,
-    "memory": 1024,
+    "memory": 2048,
     "essential": true,
-    "hostname": "resolution-logs-pipeline-stage",
+    "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": 80
-      }
+        "containerPort": 80,
+        "hostPort": 80
+            }
     ],
     "logConfiguration": { 
       "logDriver": "awslogs",
@@ -35,6 +36,10 @@
       {
         "name" : "BUGSNAG_KEY",
         "value" : "${bugsnag_key}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       },
       {
         "name" : "AWS_REGION",
