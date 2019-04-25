@@ -28,7 +28,7 @@
       "KeyPrefixEquals": "about-datacite/board"
     },
     "Redirect": {
-      "ReplaceKeyWith": "board.html"
+      "ReplaceKeyWith": "governance.html"
     }
   },
   {
@@ -301,6 +301,14 @@
   {
     "Condition": {
       "KeyPrefixEquals": "board.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "governance.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "statutes.html"
     },
     "Redirect": {
       "ReplaceKeyWith": "governance.html"
