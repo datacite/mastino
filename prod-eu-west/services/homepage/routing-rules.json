@@ -300,6 +300,14 @@
   },
   {
     "Condition": {
+      "KeyPrefixEquals": "board.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "governance.html"
+    }
+  },
+  {
+    "Condition": {
       "HttpErrorCodeReturnedEquals": "400"
     },
     "Redirect": {
