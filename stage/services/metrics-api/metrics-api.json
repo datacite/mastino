@@ -90,6 +90,10 @@
         "value" : "${s3_bucket}"
       },
       {
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
+      },
+      {
         "name" : "PUBLIC_KEY",
         "value" : "${public_key}"
       },
