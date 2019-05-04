@@ -8,3 +8,4 @@ terraform.*
 *.tfstate
 *.tfstate.*
 .DS_Store
+.vscode
