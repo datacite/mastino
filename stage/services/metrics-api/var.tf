@@ -42,3 +42,5 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
  variable "namespace_id" {}
+
+ variable "sentry_dsn" {}
