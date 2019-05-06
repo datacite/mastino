@@ -2,7 +2,7 @@
   {
     "name": "client-api-stage",
     "image": "datacite/lupo",
-    "cpu": 512,
+    "cpu": 1024,
     "memory": 2048,
     "essential": true,
     "networkMode": "awsvpc",
