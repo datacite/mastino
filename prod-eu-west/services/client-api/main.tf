@@ -64,12 +64,14 @@ resource "aws_lb_listener_rule" "client-api-graphql" {
   //   target_group_arn = "${aws_lb_target_group.client-api.arn}"
   // }
 
+  // uncomment this action and comment out the action above to temporarily disable the GraphQL API
   action {
     type = "fixed-response"
 
+
     fixed_response {
       content_type = "text/plain"
-      message_body = "The server is currently unable to handle the request due to a temporary overloading or maintenance of the server."
+      message_body = "The server is currently unable to handle the GraphQL API call due to a temporary overloading or maintenance of the server."
       status_code  = "503"
     }
   }
