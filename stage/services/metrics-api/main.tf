@@ -69,7 +69,7 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
 
 resource "aws_lb_listener_rule" "metrics-api-stage-subset" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 34
+  priority     = 28
 
   action {
     type             = "forward"
