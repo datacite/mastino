@@ -67,6 +67,26 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
 
 }
 
+resource "aws_lb_listener_rule" "metrics-api-stage-subset" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 34
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.metrics-api-stage.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["api.test.datacite.org"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/report-subsets*"]
+  }
+}
+
 resource "aws_ecs_task_definition" "metrics-api-stage" {
   family = "metrics-api-stage"
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
