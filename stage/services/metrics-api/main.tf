@@ -65,10 +65,6 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
     values = ["/reports*"]
   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/report-subsets*"]
-  }
 }
 
 resource "aws_ecs_task_definition" "metrics-api-stage" {
