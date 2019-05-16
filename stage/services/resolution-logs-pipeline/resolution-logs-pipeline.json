@@ -5,6 +5,7 @@
     "cpu": 512,
     "memory": 1024,
     "essential": true,
+    "hostname": "resolution-logs-pipeline-stage",
     "portMappings": [
       {
         "containerPort": 80
