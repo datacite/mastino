@@ -3,7 +3,7 @@
     "name": "resolution-logs-pipeline-stage",
     "image": "datacite/shiba-inu",
     "cpu": 512,
-    "memory": 2048,
+    "memory": 1024,
     "essential": true,
     "portMappings": [
       {
