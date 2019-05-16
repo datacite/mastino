@@ -41,10 +41,11 @@ variable "s3_resolution_logs_bucket" {
   default = "resolution-logs-bucket.stage.datacite.org"
 }
 
-variable "public_key" {}
+//  for fargate
+// variable "public_key" {}
 
-variable "security_group_id" {}
-variable "subnet_datacite-private_id" {}
-variable "subnet_datacite-alt_id" {}
+// variable "security_group_id" {}
+// variable "subnet_datacite-private_id" {}
+// variable "subnet_datacite-alt_id" {}
 
-variable "namespace_id" {}
+// variable "namespace_id" {}

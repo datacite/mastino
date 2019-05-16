@@ -5,11 +5,9 @@
     "cpu": 512,
     "memory": 2048,
     "essential": true,
-    "networkMode": "awsvpc",
     "portMappings": [
       {
-        "containerPort": 80,
-        "hostPort": 80
+        "containerPort": 80
             }
     ],
     "logConfiguration": { 
@@ -36,10 +34,6 @@
       {
         "name" : "BUGSNAG_KEY",
         "value" : "${bugsnag_key}"
-      },
-      {
-        "name" : "PUBLIC_KEY",
-        "value" : "${public_key}"
       },
       {
         "name" : "AWS_REGION",
