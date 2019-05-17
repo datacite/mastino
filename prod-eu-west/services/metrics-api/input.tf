@@ -62,8 +62,7 @@ data "template_file" "metrics-api_task" {
     mysql_user         = "${var.mysql_user}"
     mysql_password     = "${var.mysql_password}"
     mysql_host         = "${var.mysql_host}"
-    bugsnag_key        = "${var.bugsnag_key}"
-    usage_url        = "${var.usage_url}"
+    usage_url          = "${var.usage_url}"
     sentry_dsn         = "${var.sentry_dsn}"
     version            = "${var.sashimi_tags["version"]}"
   }

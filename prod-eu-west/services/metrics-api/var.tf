@@ -26,7 +26,6 @@ variable "memcache_servers" {
 
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
-variable "bugsnag_key" {}
 variable "usage_url" {}
 
 variable "mysql_user" {}
