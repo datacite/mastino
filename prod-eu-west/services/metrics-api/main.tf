@@ -62,6 +62,26 @@ resource "aws_lb_listener_rule" "metrics-api" {
   }
 }
 
+resource "aws_lb_listener_rule" "metrics-api-subset" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 18
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.metrics-api.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["api.datacite.org"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/report-subsets*"]
+  }
+}
+
 resource "aws_cloudwatch_log_group" "metrics-api" {
   name = "/ecs/metrics-api"
 }
