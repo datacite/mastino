@@ -2,10 +2,8 @@ var AWS = require('aws-sdk')
 var ecs = new AWS.ECS();
 
 exports.handler = (events, context) => {
-  // CLI example:
-  // aws  --region eu-west-1 ecs run-task --task-definition orcid-update-test
-
   console.log(events)
+  
   var ecs_task_def = process.env.ecs_task_def;
   var exec_region  = 'eu-west-1';
   var cluster      = process.env.cluster;

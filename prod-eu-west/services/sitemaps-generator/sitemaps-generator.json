@@ -15,10 +15,6 @@
         "value" : "production"
       },
       {
-        "name" : "FROM_DATE",
-        "value" : "2000-01-01"
-      },
-      {
         "name" : "AWS_ACCESS_KEY_ID",
         "value" : "${access_key}"
       },

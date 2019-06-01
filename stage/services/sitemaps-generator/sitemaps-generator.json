@@ -15,10 +15,6 @@
         "value" : "stage"
       },
       {
-        "name" : "FROM_DATE",
-        "value" : "2017-01-01"
-      },
-      {
         "name" : "AWS_ACCESS_KEY_ID",
         "value" : "${access_key}"
       },
