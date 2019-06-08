@@ -67,7 +67,7 @@ resource "aws_lb_listener_rule" "eventdata" {
     type = "fixed-response"
     fixed_response {
       content_type = "text/plain"
-      message_body = "The server is currently unable to handle the GraphQL API call due to a temporary overloading or maintenance of the server."
+      message_body = "The server is currently unable to handle the Events API call due to a temporary maintenance of the server."
       status_code = "503"
     }
   }
