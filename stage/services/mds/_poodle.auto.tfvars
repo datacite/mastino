@@ -1,4 +1,4 @@
 poodle_tags = {
-  sha = "59db666"
+  sha = "e4f7f45"
   version = "1.1.9"
 }
