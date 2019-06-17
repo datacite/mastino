@@ -24,6 +24,9 @@ variable "ttl" {
 variable "re3data_url" {
   default = "http://www.re3data.org/api/beta"
 }
+variable "api_url" {
+  default = "https://api.datacite.org"
+}
 variable "bracco_url" {
   default = "https://doi.datacite.org"
 }

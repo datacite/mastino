@@ -51,6 +51,7 @@ data "template_file" "client-api_task" {
 
   vars {
     re3data_url        = "${var.re3data_url}"
+    api_url            = "${var.api_url}"
     bracco_url         = "${var.bracco_url}"
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"

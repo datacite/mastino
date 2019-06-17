@@ -46,6 +46,10 @@
         "value" : "${jwt_private_key}"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "RE3DATA_URL",
         "value" : "${re3data_url}"
       },
