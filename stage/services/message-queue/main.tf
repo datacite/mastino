@@ -36,19 +36,19 @@ resource "aws_sqs_queue" "lupo-background-test" {
   }
 }
 
-resource "aws_sqs_queue" "levriero-test" {
-  name                      = "stage_levriero"
+resource "aws_sqs_queue" "lupo-transfer-test" {
+  name                      = "stage_lupo_transfer"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  visibility_timeout_seconds = 3600
 
   tags {
     Environment = "test"
   }
 }
 
-resource "aws_sqs_queue" "lagottino-test" {
-  name                      = "stage_lagottino"
+resource "aws_sqs_queue" "levriero-test" {
+  name                      = "stage_levriero"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 3600
 
   tags {
     Environment = "test"

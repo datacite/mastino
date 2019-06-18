@@ -36,8 +36,8 @@ resource "aws_sqs_queue" "lupo-background" {
   }
 }
 
-resource "aws_sqs_queue" "lagottino" {
-  name                      = "production_lagottino"
+resource "aws_sqs_queue" "lupo-transfer" {
+  name                      = "production_lupo_transfer"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
