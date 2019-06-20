@@ -34,8 +34,8 @@ resource "aws_sqs_queue" "lupo-background-dev" {
   }
 }
 
-resource "aws_sqs_queue" "lagottino-dev" {
-  name                      = "development_lagottino"
+resource "aws_sqs_queue" "lupo-transfer-dev" {
+  name                      = "development_lupo_transfer"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
 
   tags {
