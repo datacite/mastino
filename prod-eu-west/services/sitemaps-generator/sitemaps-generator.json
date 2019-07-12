@@ -2,7 +2,7 @@
   {
     "name": "sitemaps-generator",
     "image": "datacite/maltese",
-    "cpu": 256,
+    "cpu": 512,
     "memory": 2000,
     "essential": true,
     "environment" : [
@@ -28,7 +28,7 @@
       },
       {
         "name" : "REVISION",
-        "value" : "9"
+        "value" : "10"
       }
     ]
   }
