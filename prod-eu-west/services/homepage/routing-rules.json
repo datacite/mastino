@@ -1,6 +1,14 @@
 [
   {
     "Condition": {
+      "KeyPrefixEquals": "dc2ap"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "source/DataCite%20Dublin%20Core%20AP%20-%20Draft%201_8.pdf"
+    }
+  },
+  {
+    "Condition": {
       "KeyPrefixEquals": "meta/kernel-2.2/index.html"
     },
     "Redirect": {
