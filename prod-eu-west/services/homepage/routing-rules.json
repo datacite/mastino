@@ -1,6 +1,30 @@
 [
   {
     "Condition": {
+      "KeyPrefixEquals": "meta/kernel-2.2/index.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "archive/kernel-2.2/index.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "meta/kernel-2.1/index.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "archive/kernel-2.1/index.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "meta/kernel-2.0/index.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "archive/kernel-2.0/index.html"
+    }
+  },
+  {
+    "Condition": {
       "KeyPrefixEquals": "faq"
     },
     "Redirect": {
