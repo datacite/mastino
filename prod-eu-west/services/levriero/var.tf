@@ -59,6 +59,7 @@ variable "datacite_related_source_token" {}
 variable "datacite_other_source_token" {}
 variable "datacite_url_source_token" {}
 variable "datacite_funder_source_token" {}
+variable "datacite_affiliation_source_token" {}
 variable "datacite_orcid_auto_update_source_token" {}
 variable "datacite_resolution_source_token" {}
 variable "datacite_usage_source_token" {}
