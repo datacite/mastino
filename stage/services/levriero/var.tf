@@ -58,5 +58,6 @@ variable "datacite_affiliation_source_token" {}
 variable "datacite_usage_source_token" {}
 variable "datacite_resolution_source_token" {}
 variable "datacite_orcid_auto_update_source_token" {}
+variable "orcid_affiliation_source_token" {}
 
 variable "namespace_id" {}

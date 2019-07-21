@@ -118,6 +118,10 @@
         "value" : "${datacite_affiliation_source_token}"
       },
       {
+        "name" : "ORCID_AFFILIATION_SOURCE_TOKEN",
+        "value" : "${orcid_affiliation_source_token}"
+      },
+      {
         "name" : "DATACITE_USAGE_SOURCE_TOKEN",
         "value" : "${datacite_usage_source_token}"
       },
