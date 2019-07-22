@@ -102,10 +102,6 @@ data "aws_lb_target_group" "api-stage" {
   name = "api-stage"
 }
 
-data "aws_lb_target_group" "http-redirect-stage" {
-  name = "http-redirect-stage"
-}
-
 data "template_file" "logs-stage" {
   template = "${file("s3_lb_write_access.json")}"
 
