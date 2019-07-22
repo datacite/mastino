@@ -61,6 +61,19 @@ resource "aws_lb_listener" "stage" {
   }
 }
 
+resource "aws_lb_listener" "crosscite-stage" {
+  load_balancer_arn = "${aws_lb.crosscite-stage.id}"
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = "${data.aws_acm_certificate.crosscite-test.arn}"
+
+  default_action {
+    target_group_arn = "${data.aws_lb_target_group.content-negotiation-stage.id}"
+    type             = "forward"
+  }
+}
+
 resource "aws_lb_listener" "http-stage" {
   load_balancer_arn = "${aws_lb.stage.id}"
   port              = "80"

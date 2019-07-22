@@ -44,6 +44,12 @@ data "aws_acm_certificate" "test" {
   most_recent = true
 }
 
+data "aws_acm_certificate" "crosscite-test" {
+  domain = "*.test.crosscite.org"
+  statuses = ["ISSUED"]
+  most_recent = true
+}
+
 data "template_cloudinit_config" "ecs-user-data" {
   gzip = false
   base64_encode = false
