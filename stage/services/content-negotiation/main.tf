@@ -71,7 +71,7 @@ resource "aws_lb_listener_rule" "content-negotiation-stage" {
 }
 
 resource "aws_route53_record" "content-negotiation-stage" {
-    zone_id = "${data.aws_route53_zone.crosscite-stage.zone_id}"
+    zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
     name = "data.test.crosscite.org"
     type = "CNAME"
     ttl = "${var.ttl}"

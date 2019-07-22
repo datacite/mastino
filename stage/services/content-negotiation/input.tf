@@ -20,8 +20,8 @@ data "aws_subnet" "datacite-alt" {
   id = "${var.subnet_datacite-alt_id}"
 }
 
-data "aws_ecs_cluster" "crosscite-stage" {
-  cluster_name = "crosscite-stage"
+data "aws_ecs_cluster" "stage" {
+  cluster_name = "stage"
 }
 
 data "aws_iam_role" "ecs_service" {
