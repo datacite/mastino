@@ -14,7 +14,7 @@ resource "aws_ecs_service" "content-negotiation-stage" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.content-negotiation-stage.id}"
+    target_group_arn = "${data.aws_lb_target_group.content-negotiation-stage.id}"
     container_name   = "content-negotiation-stage"
     container_port   = "80"
   }
