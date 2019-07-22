@@ -22,8 +22,8 @@ resource "aws_lb" "stage" {
 resource "aws_lb" "crosscite-stage" {
   name = "crosscite-stage"
   internal = false
-  subnets = ["${aws_subnet.datacite-public.id}", "${aws_subnet.datacite-public-alt.id}"]
-  security_groups = ["${aws_security_group.datacite-public.id}"]
+  subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
+  security_groups = ["${data.aws_security_group.datacite-public.id}"]
 
   enable_deletion_protection = true
 
