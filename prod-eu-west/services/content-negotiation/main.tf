@@ -53,7 +53,7 @@ resource "aws_lb_target_group" "content-negotiation" {
 
 resource "aws_lb_listener_rule" "content-negotiation" {
   listener_arn = "${data.aws_lb_listener.crosscite.arn}"
-  priority     = 61
+  priority     = 10
 
   action {
     type             = "forward"
