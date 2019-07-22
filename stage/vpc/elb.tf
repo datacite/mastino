@@ -19,6 +19,26 @@ resource "aws_lb" "stage" {
   }
 }
 
+resource "aws_lb" "crosscite-stage" {
+  name = "crosscite-stage"
+  internal = false
+  subnets = ["${aws_subnet.datacite-public.id}", "${aws_subnet.datacite-public-alt.id}"]
+  security_groups = ["${aws_security_group.datacite-public.id}"]
+
+  enable_deletion_protection = true
+
+  access_logs {
+    bucket = "${aws_s3_bucket.logs-stage.bucket}"
+    prefix = "crosscite-stage"
+    enabled = true
+  }
+
+  tags {
+    Environment = "stage"
+    Name = "crosscite-stage"
+  }
+}
+
 resource "aws_s3_bucket" "logs-stage" {
   bucket = "logs.stage.datacite.org"
   acl    = "private"
