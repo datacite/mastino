@@ -41,6 +41,10 @@ data "aws_lb_listener" "crosscite-stage" {
   port = 443
 }
 
+data "aws_lb_target_group" "content-negotiation-stage" {
+  name = "content-negotiation-stage"
+}
+
 data "template_file" "content-negotiation_task" {
   template = "${file("content-negotiation.json")}"
 
