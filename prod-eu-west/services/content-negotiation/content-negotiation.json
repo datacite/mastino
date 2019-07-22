@@ -34,6 +34,10 @@
         "value" : "${memcache_servers}"
       },
       {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
+      },
+      {
         "name" : "LOG_LEVEL",
         "value" : "info"
       },

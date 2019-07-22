@@ -29,3 +29,4 @@ variable "memcache_servers" {
 
 variable "namespace_id" {}
 variable "sentry_dsn" {}
+variable "public_key" {}

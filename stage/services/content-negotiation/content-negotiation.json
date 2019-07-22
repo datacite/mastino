@@ -26,8 +26,8 @@
         "value" : "${sentry_dsn}"
       },
       {
-        "name" : "SSH_PUBLIC_KEY",
-        "value" : "${ssh_public_key}"
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       },
       {
         "name" : "SITE_TITLE",
