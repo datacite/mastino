@@ -67,7 +67,7 @@ resource "aws_lb_listener_rule" "data" {
 }
 
 resource "aws_route53_record" "data" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
     name = "data.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"

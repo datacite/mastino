@@ -1,7 +1,7 @@
 [
   {
-    "name": "data",
-    "image": "crosscite/content-negotiation:1.1.39",
+    "name": "content-negotiation",
+    "image": "crosscite/content-negotiation:${version}",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
@@ -15,27 +15,19 @@
     "logConfiguration": { 
       "logDriver": "awslogs",
       "options": { 
-         "awslogs-group" : "/ecs/data",
+         "awslogs-group" : "/ecs/content-negotiation",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
       }
     },
     "environment" : [
       {
-        "name" : "SEARCH_URL",
-        "value" : "${search_url}"
-      },
-      {
-        "name" : "CITEPROC_URL",
-        "value" : "${citeproc_url}"
-      },
-      {
         "name" : "SENTRY_DSN",
         "value" : "${sentry_dsn}"
       },
       {
         "name" : "SITE_TITLE",
-        "value" : "DataCite Content Negotiation"
+        "value" : "Crosscite Content Negotiation"
       },
       {
         "name" : "MEMCACHE_SERVERS",

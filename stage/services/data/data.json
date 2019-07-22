@@ -1,7 +1,7 @@
 [
   {
     "name": "data-stage",
-    "image": "crosscite/content-negotiation",
+    "image": "crosscite/content-negotiation:1.1.39",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
