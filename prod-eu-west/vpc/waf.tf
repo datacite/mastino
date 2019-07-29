@@ -46,7 +46,7 @@ resource "aws_waf_rule_group" "limit" {
     }
 
     priority = 1
-    rule_id  = "${aws_waf_rule.nat.id}"
+    rule_id  = "${aws_waf_rate_based_rule.nat.id}"
     type = "RATE_BASED"
   }
 }
