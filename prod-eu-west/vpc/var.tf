@@ -56,3 +56,11 @@ variable "key_name" {}
 variable "lb_name" {
   default = "lb"
 }
+
+variable "environment" {
+  default = "prod-eu-west"
+}
+
+variable "ips_disallow" {}
+variable "ip_rate_limit" {}
+variable "wafregional_rule_id" {}
