@@ -9,5 +9,5 @@ module "waf" {
   ips_disallow                        = "${var.waf_ips_disallow}"
   regex_path_disallow_pattern_strings = "${var.waf_regex_path_disallow_pattern_strings}"
   regex_host_allow_pattern_strings    = "${var.waf_regex_host_allow_pattern_strings}"
-  ip_rate_limit                       = "3000"
+  ip_rate_limit                       = "${var.waf_ip_rate_limit}"
 }
