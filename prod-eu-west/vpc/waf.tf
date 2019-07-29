@@ -35,3 +35,18 @@ resource "aws_waf_rate_based_rule" "nat" {
     type    = "IPMatch"
   }
 }
+
+resource "aws_waf_rule_group" "limit" {
+  name        = "limit"
+  metric_name = "limit"
+
+  activated_rule {
+    action {
+      type = "BLOCK"
+    }
+
+    priority = 1
+    rule_id  = "${aws_waf_rule.nat.id}"
+    type = "RATE_BASED"
+  }
+}
