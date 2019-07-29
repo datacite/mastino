@@ -61,6 +61,8 @@ variable "environment" {
   default = "prod-eu-west"
 }
 
-variable "ips_disallow" {}
-variable "ip_rate_limit" {}
+variable "waf_ips_disallow" {}
+variable "waf_ip_rate_limit" {}
 variable "wafregional_rule_id" {}
+variable "waf_regex_path_disallow_pattern_strings" {}
+variable "waf_regex_host_allow_pattern_strings" {}
