@@ -72,3 +72,5 @@ variable "waf_regex_path_disallow_pattern_strings" {
 variable "waf_regex_host_allow_pattern_strings" {
   type = "list"
 }
+
+variable "waf_nat_ip" {}
