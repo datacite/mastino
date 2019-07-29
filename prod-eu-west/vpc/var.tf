@@ -64,7 +64,9 @@ variable "environment" {
 variable "waf_ips_disallow" {
   type = "list"
 }
-variable "waf_ip_rate_limit" {}
+variable "waf_ip_rate_limit" {
+  type = "string"
+}
 variable "wafregional_rule_id" {}
 variable "waf_regex_path_disallow_pattern_strings" {
   type = "list"
