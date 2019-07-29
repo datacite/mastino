@@ -15,7 +15,7 @@
 resource "aws_wafregional_ipset" "nat" {
   name = "natIPSet"
 
-  ip_set_descriptors {
+  ip_set_descriptor {
     type  = "IPV4"
     value = "${var.waf_nat_ip}"
   }
@@ -29,7 +29,7 @@ resource "aws_wafregional_rate_based_rule" "rate" {
   rate_key   = "IP"
   rate_limit = 3000
 
-  predicates {
+  predicate {
     data_id = "${aws_wafregional_ipset.nat.id}"
     negated = true
     type    = "IPMatch"
