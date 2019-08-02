@@ -63,6 +63,6 @@ resource "aws_lb_listener_rule" "re3data" {
 
   condition {
     field  = "path-pattern"
-    values = ["/repositories*"]
+    values = ["/re3data*"]
   }
 }
