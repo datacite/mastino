@@ -96,3 +96,19 @@ resource "aws_route53_record" "apex" {
     evaluate_target_health = true
   }
 }
+
+resource "aws_route53_record" "staging" {
+    zone_id = "${aws_route53_zone.public.zone_id}"
+    name = "staging.pidapalooza.org"
+    type = "CNAME"
+    ttl = "60"
+    records = ["www75.wixdns.net"]
+}
+
+resource "aws_route53_record" "www-staging" {
+    zone_id = "${aws_route53_zone.public.zone_id}"
+    name = "www.staging.pidapalooza.org"
+    type = "CNAME"
+    ttl = "60"
+    records = ["www75.wixdns.net"]
+}
