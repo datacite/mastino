@@ -42,10 +42,10 @@ resource "aws_cloudfront_distribution" "pidapalooza" {
     target_origin_id = "pidapalooza.org"
 
     forwarded_values {
-      query_string = false
+      query_string = true
 
       cookies {
-        forward = "none"
+        forward = "all"
       }
     }
 
