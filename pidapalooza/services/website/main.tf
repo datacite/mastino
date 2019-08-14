@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "pidapalooza" {
     policy = "${data.template_file.pidapalooza.rendered}"
     
     website {
-      redirect_all_requests_to = "23.236.62.147"
+      redirect_all_requests_to = "https://www.pidapalooza.org"
     }
     tags {
         Name = "Pidapalooza"
@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "pidapalooza" {
     prefix          = "pidapalooza/"
   }
 
-  aliases = ["www.pidapalooza.org", "pidapalooza.org"]
+  aliases = ["pidapalooza.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
