@@ -73,13 +73,13 @@ resource "aws_s3_bucket" "pidapalooza" {
 //   }
 // }
 
-// resource "aws_route53_record" "www" {
-//    zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
-//    name = "www.pidapalooza.org"
-//    type = "CNAME"
-//    ttl = "300"
-//    records = ["www75.wixdns.net"]
-// }
+resource "aws_route53_record" "www" {
+   zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
+   name = "www.pidapalooza.org"
+   type = "CNAME"
+   ttl = "300"
+   records = ["www75.wixdns.net"]
+}
 
 // resource "aws_route53_record" "apex" {
 //   zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
@@ -93,18 +93,18 @@ resource "aws_s3_bucket" "pidapalooza" {
 //   }
 // }
 
-// resource "aws_route53_record" "staging" {
-//     zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
-//     name = "staging.pidapalooza.org"
-//     type = "CNAME"
-//     ttl = "300"
-//     records = ["www75.wixdns.net"]
-// }
+resource "aws_route53_record" "staging" {
+    zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
+    name = "staging.pidapalooza.org"
+    type = "CNAME"
+    ttl = "300"
+    records = ["www75.wixdns.net"]
+}
 
-// resource "aws_route53_record" "www-staging" {
-//     zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
-//     name = "www.staging.pidapalooza.org"
-//     type = "CNAME"
-//     ttl = "300"
-//     records = ["www75.wixdns.net"]
-// }
+resource "aws_route53_record" "www-staging" {
+    zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
+    name = "www.staging.pidapalooza.org"
+    type = "CNAME"
+    ttl = "300"
+    records = ["www75.wixdns.net"]
+}
