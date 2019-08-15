@@ -81,17 +81,12 @@ resource "aws_route53_record" "www" {
    records = ["www75.wixdns.net"]
 }
 
-// resource "aws_route53_record" "apex" {
-//   zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
-//   name = "pidapalooza.org"
-//   type = "A"
-
-//   alias {
-//     name = "${aws_cloudfront_distribution.pidapalooza.domain_name}"
-//     zone_id = "${var.cloudfront_alias_zone_id}"
-//     evaluate_target_health = true
-//   }
-// }
+resource "aws_route53_record" "apex" {
+  zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
+  name = "pidapalooza.org"
+  type = "A"
+  records = ["23.236.62.147"]
+}
 
 resource "aws_route53_record" "staging" {
     zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
