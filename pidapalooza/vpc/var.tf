@@ -9,5 +9,4 @@ variable "name_servers" {
         "ns6.wixdns.net",
         "ns7.wixdns.net"
     ]
-  }
 }
