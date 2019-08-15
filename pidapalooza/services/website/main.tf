@@ -85,6 +85,7 @@ resource "aws_route53_record" "apex" {
   zone_id = "${data.aws_route53_zone.pidapalooza.zone_id}"
   name = "pidapalooza.org"
   type = "A"
+  ttl = "300"
   records = ["23.236.62.147"]
 }
 
