@@ -8,6 +8,11 @@ variable "ttl" {
   default = "300"
 }
 
+variable "vpc_id" {}
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
 variable "orcid_url" {
   default = "https://sandbox.orcid.org"
 }
@@ -36,3 +41,4 @@ variable "jwt_public_key" {}
 variable "sentry_dsn" {}
 variable "tracking_id" {}
 variable "public_key" {}
+variable "namespace_id" {}

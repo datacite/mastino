@@ -19,6 +19,10 @@ resource "aws_ecs_service" "doi-stage" {
     container_port   = "80"
   }
 
+  service_registries {
+    registry_arn = "${aws_service_discovery_service.doi-stage.arn}"
+  }
+
   depends_on = [
     "data.aws_lb_listener.stage",
   ]
@@ -80,4 +84,21 @@ resource "aws_route53_record" "split-doi-stage" {
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.stage.dns_name}"]
+}
+
+resource "aws_service_discovery_service" "doi-stage" {
+  name = "doi.test"
+
+  health_check_custom_config {
+    failure_threshold = 3
+  }
+
+  dns_config {
+    namespace_id = "${var.namespace_id}"
+    
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
+  }
 }
