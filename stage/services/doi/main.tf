@@ -1,99 +1,83 @@
-resource "aws_s3_bucket" "doi-stage" {
-    bucket = "doi.stage.datacite.org"
-    acl = "public-read"
-    policy = "${data.template_file.doi-stage.rendered}"
-    website {
-        index_document = "index.html"
-    }
-    tags {
-        Name = "doi-stage"
-    }
-    versioning {
-        enabled = true
-    }
+resource "aws_ecs_service" "doi-stage" {
+  name = "doi-stage"
+  cluster = "${data.aws_ecs_cluster.stage.id}"
+  launch_type = "FARGATE"
+  task_definition = "${aws_ecs_task_definition.doi-stage.arn}"
+  desired_count = 1
+
+  network_configuration {
+    security_groups = ["${data.aws_security_group.datacite-private.id}"]
+    subnets         = [
+      "${data.aws_subnet.datacite-private.id}",
+      "${data.aws_subnet.datacite-alt.id}"
+    ]
+  }
+
+  load_balancer {
+    target_group_arn = "${aws_lb_target_group.doi-stage.id}"
+    container_name   = "doi-stage"
+    container_port   = "80"
+  }
+
+  depends_on = [
+    "data.aws_lb_listener.stage",
+  ]
 }
 
-resource "aws_cloudfront_origin_access_identity" "doi_stage_datacite_org" {}
+resource "aws_cloudwatch_log_group" "doi-stage" {
+  name = "/ecs/doi-stage"
+}
 
-resource "aws_cloudfront_distribution" "doi-stage" {
-  origin {
-    domain_name = "${aws_s3_bucket.doi-stage.bucket_domain_name}"
-    origin_id   = "doi.stage.datacite.org"
+resource "aws_ecs_task_definition" "doi-stage" {
+  family = "doi-stage"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
+  network_mode = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  cpu = "1024"
+  memory = "2048"
 
-    s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.doi_stage_datacite_org.cloudfront_access_identity_path}"
-    }
-  }
+  container_definitions =  "${data.template_file.doi_task.rendered}"
+}
 
-  enabled             = true
-  is_ipv6_enabled     = true
-  default_root_object = "index.html"
+resource "aws_lb_target_group" "doi-stage" {
+  name     = "doi-stage"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = "${var.vpc_id}"
+  target_type = "ip"
 
-  logging_config {
-    include_cookies = false
-    bucket          = "${data.aws_s3_bucket.logs-stage.bucket_domain_name}"
-    prefix          = "doi/"
-  }
-
-  aliases = ["doi.test.datacite.org"]
-
-  custom_error_response {
-    error_code            = "404"
-    error_caching_min_ttl = "5"
-    response_code         = "200"
-    response_page_path    = "/index.html"
-  }
-
-  default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "doi.stage.datacite.org"
-
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "whitelist"
-        whitelisted_names = ["_datacite_jwt"]
-      }
-    }
-
-    viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
-  }
-
-  price_class = "PriceClass_All"
-
-  restrictions {
-    geo_restriction {
-      restriction_type = "none"
-    }
-  }
-
-  tags {
-    Environment = "stage"
-  }
-
-  viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-test.arn}"
-    ssl_support_method  = "sni-only"
+  health_check {
+    path = "/"
   }
 }
 
-resource "aws_route53_record" "doi-test" {
-  zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "doi.test.datacite.org"
-  type = "CNAME"
-  ttl = "${var.ttl}"
-  records = ["${aws_cloudfront_distribution.doi-stage.domain_name}"]
+resource "aws_lb_listener_rule" "doi-stage" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 80
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.doi-stage.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.doi-stage.name}"]
+  }
 }
 
-resource "aws_route53_record" "split-doi-test" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "doi.test.datacite.org"
-  type = "CNAME"
-  ttl = "${var.ttl}"
-  records = ["${aws_cloudfront_distribution.doi-stage.domain_name}"]
+resource "aws_route53_record" "doi-stage" {
+    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    name = "doi.test.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.stage.dns_name}"]
+}
+
+resource "aws_route53_record" "split-doi-stage" {
+    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+    name = "doi.test.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.stage.dns_name}"]
 }

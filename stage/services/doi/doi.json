@@ -1,0 +1,78 @@
+[
+  {
+    "name": "doi-stage",
+    "image": "datacite/bracco",
+    "cpu": 1024,
+    "memory": 2048,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/doi-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite DOI Fabrica Test"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "warn"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
+      },
+      {
+        "name" : "JWT_PUBLIC_KEY",
+        "value" : "${jwt_public_key}"
+      },
+      {
+        "name" : "ORCID_URL",
+        "value" : "${orcid_url}"
+      },
+      {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
+        "name" : "EVENTDATA_URL",
+        "value" : "${eventdata_url}"
+      },
+      {
+        "name" : "SEARCH_URL",
+        "value" : "${search_url}"
+      },
+      {
+        "name" : "CDN_URL",
+        "value" : "${cdn_url}"
+      },
+      {
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
+      },
+      {
+        "name" : "TRACKING_ID",
+        "value" : "${tracking_id}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
