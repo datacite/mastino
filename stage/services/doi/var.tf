@@ -24,6 +24,14 @@ variable "cdn_url" {
   default = "https://assets.test.datacite.org"
 }
 
+variable "content-negotiation_tags" {
+  type = "map"
+}
+
+variable "lb_name" {
+  default = "lb-stage"
+}
+
 variable "jwt_public_key" {}
 variable "sentry_dsn" {}
 variable "tracking_id" {}
