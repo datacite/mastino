@@ -73,6 +73,11 @@ resource "aws_lb_listener_rule" "api-stage-authenticate" {
     }
   }
 
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api-stage.arn}"
+  }
+
   condition {
     field  = "host-header"
     values = ["${var.api_dns_name}"]
