@@ -56,6 +56,21 @@ resource "aws_lb_listener" "stage" {
   certificate_arn   = "${data.aws_acm_certificate.test.arn}"
 
   default_action {
+    type = "authenticate-oidc"
+
+    authenticate_oidc {
+      authorization_endpoint = "https://auth.globus.org/v2/oauth2/authorize"
+      client_id              = "${var.oidc_client_id}"
+      client_secret          = "${var.oidc_client_secret}"
+      issuer                 = "https://auth.globus.org"
+      token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
+      user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
+      on_unauthenticated_request = "allow"
+      scope                  = "openid"
+    }
+  }
+
+  default_action {
     target_group_arn = "${data.aws_lb_target_group.api-stage.id}"
     type             = "forward"
   }
