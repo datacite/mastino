@@ -69,7 +69,7 @@ resource "aws_lb_listener_rule" "api-stage-authenticate" {
       token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
       user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
       on_unauthenticated_request = "authenticate"
-      scope                  = "openid"
+      scope                  = "openid profile"
     }
   }
 
