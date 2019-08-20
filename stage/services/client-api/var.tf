@@ -69,5 +69,3 @@ variable "admin_username" {}
 variable "admin_password" {}
 
 variable "namespace_id" {}
-variable "oidc_client_id" {}
-variable "oidc_client_secret" {}
