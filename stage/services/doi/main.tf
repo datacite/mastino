@@ -86,7 +86,7 @@ resource "aws_lb_listener_rule" "doi-stage-auth" {
 
   condition {
     field  = "path-pattern"
-    values = ["/authenticate"]
+    values = ["/authorize"]
   }
 }
 
