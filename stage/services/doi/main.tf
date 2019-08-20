@@ -75,8 +75,14 @@ resource "aws_lb_listener_rule" "doi-stage-auth" {
   }
 
   action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.doi-stage.arn}"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      path = "/callback"
+      status_code = "HTTP_301"
+    }
   }
 
   condition {
