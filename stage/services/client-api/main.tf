@@ -54,24 +54,9 @@ resource "aws_lb_target_group" "client-api-stage" {
   }
 }
 
-// resource "aws_lb_listener_rule" "client-api-stage" {
-//   listener_arn = "${data.aws_lb_listener.stage.arn}"
-//   priority     = 30
-
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.client-api-stage.arn}"
-//   }
-
-//   condition {
-//     field  = "host-header"
-//     values = ["${aws_route53_record.client-api-stage.name}"]
-//   }
-// }
-
-resource "aws_lb_listener_rule" "api-stage" {
+resource "aws_lb_listener_rule" "api-stage-authenticate" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 33
+  priority     = 30
 
   action {
     type = "authenticate-oidc"
@@ -83,10 +68,25 @@ resource "aws_lb_listener_rule" "api-stage" {
       issuer                 = "https://auth.globus.org"
       token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
       user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
-      on_unauthenticated_request = "allow"
+      on_unauthenticated_request = "authenticate"
       scope                  = "openid"
     }
   }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.client-api-stage.name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/sign-in"]
+  }
+}
+
+resource "aws_lb_listener_rule" "api-stage" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 33
 
   action {
     type             = "forward"
