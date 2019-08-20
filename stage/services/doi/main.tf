@@ -55,6 +55,41 @@ resource "aws_lb_target_group" "doi-stage" {
   }
 }
 
+resource "aws_lb_listener_rule" "doi-stage-auth" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 30
+
+  action {
+    type = "authenticate-oidc"
+
+    authenticate_oidc {
+      authorization_endpoint = "https://auth.globus.org/v2/oauth2/authorize"
+      client_id              = "${var.oidc_client_id}"
+      client_secret          = "${var.oidc_client_secret}"
+      issuer                 = "https://auth.globus.org"
+      token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
+      user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
+      on_unauthenticated_request = "authenticate"
+      scope                  = "openid profile email"
+    }
+  }
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.doi-stage.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.doi-stage.name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/authenticate"]
+  }
+}
+
 resource "aws_lb_listener_rule" "doi-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 85

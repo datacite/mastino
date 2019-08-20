@@ -54,48 +54,6 @@ resource "aws_lb_target_group" "client-api-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-stage-oidc-token" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 30
-
-  action {
-    type = "authenticate-oidc"
-
-    authenticate_oidc {
-      authorization_endpoint = "https://auth.globus.org/v2/oauth2/authorize"
-      client_id              = "${var.oidc_client_id}"
-      client_secret          = "${var.oidc_client_secret}"
-      issuer                 = "https://auth.globus.org"
-      token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
-      user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
-      on_unauthenticated_request = "authenticate"
-      scope                  = "openid profile email"
-    }
-  }
-
-  action {
-    type = "redirect"
-
-    redirect {
-      port        = "443"
-      protocol    = "HTTPS"
-      host = "doi.test.datacite.org"
-      path = "/authorize"
-      status_code = "HTTP_301"
-    }
-  }
-
-  condition {
-    field  = "host-header"
-    values = ["${var.api_dns_name}"]
-  }
-
-  condition {
-    field  = "path-pattern"
-    values = ["/oidc-token"]
-  }
-}
-
 resource "aws_lb_listener_rule" "api-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 33
