@@ -42,6 +42,10 @@
         "value" : "${public_key}"
       },
       {
+        "name" : "ALB_PUBLIC_KEY",
+        "value" : "${alb_public_key}"
+      },
+      {
         "name" : "JWT_PUBLIC_KEY",
         "value" : "${jwt_public_key}"
       },

@@ -53,6 +53,7 @@ data "template_file" "client-api_task" {
     re3data_url        = "${var.re3data_url}"
     bracco_url         = "${var.bracco_url}"
     public_key         = "${var.public_key}"
+    alb_public_key     = "${var.alb_public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
     session_encrypted_cookie_salt = "${var.session_encrypted_cookie_salt}"
