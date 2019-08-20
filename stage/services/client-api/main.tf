@@ -92,7 +92,7 @@ resource "aws_lb_listener_rule" "api-stage-oidc-token" {
 
   condition {
     field  = "path-pattern"
-    values = ["/authorize"]
+    values = ["/oidc-token"]
   }
 }
 
