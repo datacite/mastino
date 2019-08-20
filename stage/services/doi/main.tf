@@ -60,6 +60,21 @@ resource "aws_lb_listener_rule" "doi-stage" {
   priority     = 85
 
   action {
+    type = "authenticate-oidc"
+
+    authenticate_oidc {
+      authorization_endpoint = "https://auth.globus.org/v2/oauth2/authorize"
+      client_id              = "${var.oidc_client_id}"
+      client_secret          = "${var.oidc_client_secret}"
+      issuer                 = "https://auth.globus.org"
+      token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
+      user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
+      on_unauthenticated_request = "allow"
+      scope                  = "openid"
+    }
+  }
+
+  action {
     type             = "forward"
     target_group_arn = "${aws_lb_target_group.doi-stage.arn}"
   }

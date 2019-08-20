@@ -51,5 +51,3 @@ variable "cluster" {
 
 variable "key_name" {}
 variable "dd_api_key" {}
-variable "oidc_client_id" {}
-variable "oidc_client_secret" {}
