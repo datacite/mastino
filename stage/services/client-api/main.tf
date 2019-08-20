@@ -85,7 +85,7 @@ resource "aws_lb_listener_rule" "api-stage-authenticate" {
 
   condition {
     field  = "path-pattern"
-    values = ["/sign-in"]
+    values = ["/oidc-token"]
   }
 }
 
