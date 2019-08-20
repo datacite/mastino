@@ -74,8 +74,15 @@ resource "aws_lb_listener_rule" "api-stage-authenticate" {
   }
 
   action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.client-api-stage.arn}"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      host = "doi.test.datacite.org"
+      path = "/callback"
+      status_code = "HTTP_301"
+    }
   }
 
   condition {
@@ -85,7 +92,7 @@ resource "aws_lb_listener_rule" "api-stage-authenticate" {
 
   condition {
     field  = "path-pattern"
-    values = ["/oidc-token"]
+    values = ["/auth/oidc"]
   }
 }
 
