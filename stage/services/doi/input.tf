@@ -65,6 +65,7 @@ data "template_file" "doi_task" {
     cdn_url            = "${var.cdn_url}"
     sentry_dsn         = "${var.sentry_dsn}"
     public_key         = "${var.public_key}"
+    alb_public_key     = "${var.alb_public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     tracking_id        = "${var.tracking_id}"
     version            = "${var.bracco_tags["sha"]}"
