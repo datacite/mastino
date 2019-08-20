@@ -42,5 +42,3 @@ variable "sentry_dsn" {}
 variable "tracking_id" {}
 variable "public_key" {}
 variable "namespace_id" {}
-variable "oidc_client_id" {}
-variable "oidc_client_secret" {}
