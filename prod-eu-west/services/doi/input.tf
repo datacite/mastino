@@ -60,6 +60,7 @@ data "template_file" "doi_task" {
   vars {
     orcid_url          = "${var.orcid_url}"
     api_url            = "${var.api_url}"
+    fabrica_url        = "${var.fabrica_url}"
     eventdata_url      = "${var.eventdata_url}"
     search_url         = "${var.search_url}"
     cdn_url            = "${var.cdn_url}"

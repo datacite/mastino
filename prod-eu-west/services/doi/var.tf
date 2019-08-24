@@ -19,6 +19,9 @@ variable "orcid_url" {
 variable "api_url" {
   default = "https://api.datacite.org"
 }
+variable "fabrica_url" {
+  default = "https://doi.datacite.org"
+}
 variable "eventdata_url" {
   default = "https://api.datacite.org"
 }
