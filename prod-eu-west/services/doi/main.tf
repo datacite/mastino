@@ -91,7 +91,7 @@ resource "aws_lb_listener_rule" "doi-auth" {
 }
 
 resource "aws_lb_listener_rule" "doi" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 85
 
   action {
