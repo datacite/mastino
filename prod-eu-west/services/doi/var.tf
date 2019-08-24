@@ -37,7 +37,6 @@ variable "lb_name" {
   default = "lb"
 }
 
-variable "alb_public_key" {}
 variable "jwt_public_key" {}
 variable "sentry_dsn" {}
 variable "tracking_id" {}
