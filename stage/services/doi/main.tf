@@ -52,6 +52,8 @@ resource "aws_lb_target_group" "doi-stage" {
 
   health_check {
     path = "/"
+    interval = 60
+    timeout = 10
   }
 }
 
