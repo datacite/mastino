@@ -26,6 +26,10 @@
         "value" : "production"
       },
       {
+        "name" : "DEPLOY_TARGET",
+        "value" : "production"
+      },
+      {
         "name" : "SITE_TITLE",
         "value" : "DataCite DOI Fabrica"
       },

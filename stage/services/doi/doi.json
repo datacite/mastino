@@ -23,7 +23,11 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "stage"
+        "value" : "staging"
+      },
+      {
+        "name" : "DEPLOY_TARGET",
+        "value" : "staging"
       },
       {
         "name" : "SITE_TITLE",
