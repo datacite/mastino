@@ -51,9 +51,7 @@ resource "aws_lb_target_group" "doi" {
   target_type = "ip"
 
   health_check {
-    path = "/"
-    interval = 60
-    timeout = 10
+    path = "/heartbeat"
   }
 }
 
