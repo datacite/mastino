@@ -52,6 +52,8 @@ resource "aws_lb_target_group" "doi" {
 
   health_check {
     path = "/heartbeat"
+    interval = 60
+    timeout = 10
   }
 }
 
