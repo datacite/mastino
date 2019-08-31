@@ -78,6 +78,10 @@ data "template_file" "profiles_task" {
     google_client_secret = "${var.google_client_secret}"
     notification_access_token = "${var.notification_access_token}"
     memcache_servers   = "${var.memcache_servers}"
+    access_key         = "${var.access_key}"
+    secret_key         = "${var.secret_key}"
+    region             = "${var.region}"
+    s3_bucket          = "${var.s3_bucket}"
     version            = "${var.volpino_tags["sha"]}"
   }
 }

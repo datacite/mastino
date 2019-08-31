@@ -151,6 +151,22 @@
       {
         "name" : "MEMCACHE_SERVERS",
         "value" : "${memcache_servers}"
+      },
+      {
+        "name" : "AWS_ACCESS_KEY_ID",
+        "value" : "${access_key}"
+      },
+            {
+        "name" : "AWS_SECRET_ACCESS_KEY",
+        "value" : "${secret_key}"
+      },
+      {
+        "name" : "AWS_REGION",
+        "value" : "${region}"
+      },
+      {
+        "name" : "AWS_S3_BUCKET",
+        "value" : "${s3_bucket}"
       }
     ]
   }
