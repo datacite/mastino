@@ -16,6 +16,16 @@ resource "aws_sqs_queue" "event" {
   }
 }
 
+resource "aws_sqs_queue" "volpino" {
+  name                      = "production_volpino"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
+  visibility_timeout_seconds = 120
+
+  tags {
+    Environment = "production"
+  }
+}
+
 resource "aws_sqs_queue" "lupo" {
   name                      = "production_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"

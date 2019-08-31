@@ -16,6 +16,16 @@ resource "aws_sqs_queue" "event-test" {
   }
 }
 
+resource "aws_sqs_queue" "volpino-test" {
+  name                      = "stage_volpino"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  visibility_timeout_seconds = 120
+  
+  tags {
+    Environment = "test"
+  }
+}
+
 resource "aws_sqs_queue" "lupo-test" {
   name                      = "stage_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
