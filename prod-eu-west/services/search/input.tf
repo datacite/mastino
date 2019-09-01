@@ -76,6 +76,7 @@ data "template_file" "search_task" {
     orcid_url          = "${var.orcid_url}"
     volpino_url        = "${var.volpino_url}"
     api_url            = "${var.api_url}"
+    fabrica_url        = "${var.fabrica_url}"
     data_url           = "${var.data_url}"
     cdn_url            = "${var.cdn_url}"
     sitemaps_url       = "${var.sitemaps_url}"

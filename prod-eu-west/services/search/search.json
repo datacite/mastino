@@ -50,6 +50,10 @@
         "value" : "${api_url}"
       },
       {
+        "name" : "FABRICA_URL",
+        "value" : "${fabrica_url}"
+      },
+      {
         "name" : "SITEMAPS_URL",
         "value" : "${sitemaps_url}"
       },

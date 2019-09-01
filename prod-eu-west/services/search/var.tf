@@ -38,6 +38,9 @@ variable "volpino_url" {
 variable "api_url" {
   default = "https://api.datacite.org"
 }
+variable "fabrica_url" {
+  default = "https://doi.datacite.org"
+}
 variable "sitemaps_url" {
   default = "https://search.datacite.org"
 }
