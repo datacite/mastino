@@ -3,7 +3,7 @@ resource "aws_ecs_service" "doi-stage" {
   cluster = "${data.aws_ecs_cluster.stage.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.doi-stage.arn}"
-  desired_count = 0
+  desired_count = 2
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
