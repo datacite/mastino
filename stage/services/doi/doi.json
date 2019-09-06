@@ -2,8 +2,8 @@
   {
     "name": "doi-stage",
     "image": "datacite/bracco",
-    "cpu": 1024,
-    "memory": 2048,
+    "cpu": 2048,
+    "memory": 4096,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [
