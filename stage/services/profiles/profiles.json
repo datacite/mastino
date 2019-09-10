@@ -126,6 +126,14 @@
         "value" : "${orcid_client_secret}"
       },
       {
+        "name" : "GLOBUS_CLIENT_ID",
+        "value" : "${globus_client_id}"
+      },
+      {
+        "name" : "GLOBUS_CLIENT_SECRET",
+        "value" : "${globus_client_secret}"
+      },
+      {
         "name" : "ORCID_MEMBER",
         "value" : "1"
       },
