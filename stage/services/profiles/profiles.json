@@ -154,14 +154,6 @@
         "value" : "${github_client_secret}"
       },
       {
-        "name" : "GOOGLE_CLIENT_ID",
-        "value" : "${google_client_id}"
-      },
-      {
-        "name" : "GOOGLE_CLIENT_SECRET",
-        "value" : "${google_client_secret}"
-      },
-      {
         "name" : "ORCID_TOKEN",
         "value" : "${orcid_token}"
       },
