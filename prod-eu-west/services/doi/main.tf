@@ -38,7 +38,7 @@ resource "aws_ecs_task_definition" "doi" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "2048"
-  memory = "4096"
+  memory = "5120"
 
   container_definitions =  "${data.template_file.doi_task.rendered}"
 }
