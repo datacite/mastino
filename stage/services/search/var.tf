@@ -62,7 +62,5 @@ variable "jwt_public_key" {}
 variable "orcid_update_uuid" {}
 variable "orcid_update_token" {}
 variable "sentry_dsn" {}
-variable "gabba_cookie" {
-  default = ""
-}
+variable "gabba_cookie" {}
 variable "secret_key_base" {}
