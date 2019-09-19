@@ -26,3 +26,5 @@ variable "subnet_datacite-alt_id" {}
 variable "api_url" {
   default = "https://api.test.datacite.org"
 }
+
+variable "sentry_dsn" {}

@@ -50,7 +50,8 @@ data "template_file" "oai_task" {
   template = "${file("oai.json")}"
 
   vars {
-    api_url           = "${var.api_url}"
+    api_url            = "${var.api_url}"
     version            = "${var.oaip_tags["sha"]}"
+    sentry_dsn         = "${var.sentry_dsn}"
   }
 }
