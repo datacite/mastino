@@ -47,9 +47,9 @@ resource "aws_lb_target_group" "oai-stage" {
   target_type = "ip"
   slow_start = 240
 
-  health_check {
-    path = "/heartbeat"
-  }
+  # health_check {
+  #   path = "/heartbeat"
+  # }
 }
 
 resource "aws_lb_listener_rule" "oai-stage" {
