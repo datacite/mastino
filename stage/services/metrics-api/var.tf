@@ -40,6 +40,9 @@ variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
- variable "namespace_id" {}
+variable "namespace_id" {}
 
- variable "sentry_dsn" {}
+variable "sentry_dsn" {}
+rack_timeout_service_timeout {
+  default = "40"
+}

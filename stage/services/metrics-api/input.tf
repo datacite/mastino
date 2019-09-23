@@ -64,6 +64,7 @@ data "template_file" "metrics-api_task" {
     mysql_host         = "${var.mysql_host}"
     usage_url          = "${var.usage_url}"
     sentry_dsn         = "${var.sentry_dsn}"
+    rack_timeout_service_timeout = "${var.rack_timeout_service_timeout}"
     version            = "${var.sashimi_tags["sha"]}"
   }
 }

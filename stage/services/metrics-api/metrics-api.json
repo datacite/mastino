@@ -35,7 +35,7 @@
       },
       {
         "name" : "LOG_LEVEL",
-        "value" : "debug"
+        "value" : "info"
       },
       {
         "name" : "JWT_PUBLIC_KEY",
@@ -92,6 +92,10 @@
       {
         "name" : "PUBLIC_KEY",
         "value" : "${public_key}"
+      },
+      {
+        "name" : "RACK_TIMEOUT_SERVICE_TIMEOUT",
+        "value" : "${rack_timeout_service_timeout}"
       },
       {
         "name" : "USAGE_URL",
