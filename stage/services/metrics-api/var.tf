@@ -43,6 +43,6 @@ variable "subnet_datacite-alt_id" {}
 variable "namespace_id" {}
 
 variable "sentry_dsn" {}
-rack_timeout_service_timeout {
+variable "rack_timeout_service_timeout" {
   default = "40"
 }
