@@ -2,7 +2,7 @@ resource "aws_ecs_service" "metrics-api" {
   name            = "metrics-api"
   cluster         = "${data.aws_ecs_cluster.default.id}"
   task_definition = "${aws_ecs_task_definition.metrics-api.arn}"
-  desired_count   = 1
+  desired_count   = 2
   launch_type = "FARGATE"
 
   load_balancer {
