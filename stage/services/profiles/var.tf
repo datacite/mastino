@@ -79,3 +79,10 @@ variable "globus_client_id" {}
 variable "globus_client_secret" {}
 
 variable "namespace_id" {}
+
+variable "es_host" {
+  default = "elasticsearch.test.datacite.org"
+}
+variable "es_name" {
+  default = "es"
+}

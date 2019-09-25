@@ -178,6 +178,14 @@
         "value" : "${s3_bucket}"
       },
       {
+        "name" : "ES_HOST",
+        "value" : "${es_host}"
+      },
+      {
+        "name" : "ES_NAME",
+        "value" : "${es_name}"
+      },
+      {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
       }

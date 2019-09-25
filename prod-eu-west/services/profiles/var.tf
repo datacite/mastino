@@ -69,3 +69,10 @@ variable "github_client_id" {}
 variable "github_client_secret" {}
 variable "google_client_id" {}
 variable "google_client_secret" {}
+
+variable "es_host" {
+  default = "elasticsearch.datacite.org"
+}
+variable "es_name" {
+  default = "es"
+}

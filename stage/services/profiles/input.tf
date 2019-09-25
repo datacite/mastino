@@ -82,6 +82,8 @@ data "template_file" "profiles_task" {
     secret_key         = "${var.secret_key}"
     region             = "${var.region}"
     s3_bucket          = "${var.s3_bucket}"
+    es_name            = "${var.es_name}"
+    es_host            = "${var.es_host}"
     version            = "${var.volpino_tags["sha"]}"
   }
 }
