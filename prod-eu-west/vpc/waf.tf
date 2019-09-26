@@ -21,8 +21,17 @@ resource "aws_wafregional_ipset" "nat" {
   }
 }
 
+resource "aws_wafregional_ipset" "whitelist" {
+  name = "whitelistIPSet"
+
+  ip_set_descriptor {
+    type  = "IPV4"
+    value = "${var.waf_whitelisted_ip}"
+  }
+}
+
 resource "aws_wafregional_rate_based_rule" "rate" {
-  depends_on  = ["aws_wafregional_ipset.nat"]
+  depends_on  = ["aws_wafregional_ipset.nat", "aws_wafregional_ipset.whitelist"]
   name        = "natWAFRule"
   metric_name = "natWAFRule"
 
@@ -31,6 +40,12 @@ resource "aws_wafregional_rate_based_rule" "rate" {
 
   predicate {
     data_id = "${aws_wafregional_ipset.nat.id}"
+    negated = true
+    type    = "IPMatch"
+  }
+
+  predicate {
+    data_id = "${aws_wafregional_ipset.whitelist.id}"
     negated = true
     type    = "IPMatch"
   }
