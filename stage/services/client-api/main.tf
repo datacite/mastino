@@ -56,7 +56,7 @@ resource "aws_lb_target_group" "client-api-stage" {
 
 resource "aws_lb_listener_rule" "api-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 33
+  priority     = 53
 
   action {
     type             = "forward"
