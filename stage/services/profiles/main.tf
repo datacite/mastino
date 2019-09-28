@@ -69,7 +69,7 @@ resource "aws_lb_listener_rule" "profiles-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "profiles-api-stage" {
+resource "aws_lb_listener_rule" "profiles-api-stage-users" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 51
 
@@ -89,7 +89,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "profiles-api-stage" {
+resource "aws_lb_listener_rule" "profiles-api-stage-claims" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 52
 
