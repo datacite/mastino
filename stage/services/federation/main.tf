@@ -66,28 +66,17 @@ resource "aws_lb_listener_rule" "federation-stage" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.federation-stage.name}"]
+    values = ["${var.api_dns_name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/graphql"]
   }
 }
 
-resource "aws_route53_record" "federation-stage" {
-    zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "graphql.test.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.stage.dns_name}"]
-}
-
-resource "aws_route53_record" "split-federation-stage" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "graphql.test.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.stage.dns_name}"]
-}
-
 resource "aws_service_discovery_service" "federation-stage" {
-  name = "graphql.test"
+  name = "federation.test"
 
   health_check_custom_config {
     failure_threshold = 3

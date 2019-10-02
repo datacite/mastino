@@ -21,5 +21,9 @@ variable "lb_name" {
   default = "lb-stage"
 }
 
+variable "api_dns_name" {
+  default = "api.test.datacite.org"
+}
+
 variable "sentry_dsn" {}
 variable "namespace_id" {}
