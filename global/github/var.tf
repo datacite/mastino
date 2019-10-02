@@ -15,7 +15,6 @@ variable "github_repositories" {
     "levriero",
     "maremma",
     "mastino",
-    "mds",
     "oaip",
     "omniauth-orcid",
     "schema",
