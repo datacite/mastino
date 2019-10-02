@@ -57,7 +57,7 @@ resource "aws_lb_target_group" "federation-stage" {
 
 resource "aws_lb_listener_rule" "federation-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
-  priority     = 85
+  priority     = 49
 
   action {
     type             = "forward"
