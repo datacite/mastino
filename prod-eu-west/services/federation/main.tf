@@ -71,7 +71,7 @@ resource "aws_lb_listener_rule" "federation" {
 
   condition {
     field  = "path-pattern"
-    values = ["/graphqll"]
+    values = ["/graphql"]
   }
 }
 
