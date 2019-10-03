@@ -109,7 +109,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage-claims" {
   }
 }
 
-resource "aws_lb_listener_rule" "profiles-api-stage-researchers" {
+resource "aws_lb_listener_rule" "profiles-api-stage-people" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 53
 
@@ -125,7 +125,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage-researchers" {
 
   condition {
     field  = "path-pattern"
-    values = ["/researchers/graphql"]
+    values = ["/people/graphql"]
   }
 }
 
