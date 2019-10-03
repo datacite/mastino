@@ -19,9 +19,9 @@ resource "aws_ecs_service" "federation-stage" {
     container_port   = "80"
   }
 
-  service_registries {
-    registry_arn = "${aws_service_discovery_service.federation-stage.arn}"
-  }
+  // service_registries {
+  //   registry_arn = "${aws_service_discovery_service.federation-stage.arn}"
+  // }
 
   depends_on = [
     "data.aws_lb_listener.stage",
@@ -75,19 +75,19 @@ resource "aws_lb_listener_rule" "federation-stage" {
   }
 }
 
-resource "aws_service_discovery_service" "federation-stage" {
-  name = "federation.test"
+// resource "aws_service_discovery_service" "federation-stage" {
+//   name = "federation.test"
 
-  health_check_custom_config {
-    failure_threshold = 3
-  }
+//   health_check_custom_config {
+//     failure_threshold = 3
+//   }
 
-  dns_config {
-    namespace_id = "${var.namespace_id}"
+//   dns_config {
+//     namespace_id = "${var.namespace_id}"
     
-    dns_records {
-      ttl = 300
-      type = "A"
-    }
-  }
-}
+//     dns_records {
+//       ttl = 300
+//       type = "A"
+//     }
+//   }
+// }
