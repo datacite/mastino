@@ -55,25 +55,25 @@ resource "aws_lb_target_group" "federation" {
   }
 }
 
-// resource "aws_lb_listener_rule" "federation" {
-//   listener_arn = "${data.aws_lb_listener.default.arn}"
-//   priority     = 49
+resource "aws_lb_listener_rule" "federation" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 49
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = "${aws_lb_target_group.federation.arn}"
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.federation.arn}"
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = ["${var.api_dns_name}"]
-//   }
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
 
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/graphql"]
-//   }
-// }
+  condition {
+    field  = "path-pattern"
+    values = ["/graphqll"]
+  }
+}
 
 resource "aws_service_discovery_service" "federation" {
   name = "federation"
