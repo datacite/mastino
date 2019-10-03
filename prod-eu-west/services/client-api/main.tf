@@ -55,38 +55,6 @@ resource "aws_lb_target_group" "client-api" {
   }
 }
 
-resource "aws_lb_listener_rule" "client-api-graphql" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority = 38
-
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.client-api.arn}"
-  }
-
-  // uncomment this action and comment out the action above to temporarily disable the GraphQL API
-  // action {
-  //   type = "fixed-response"
-
-
-  //   fixed_response {
-  //     content_type = "text/plain"
-  //     message_body = "The server is currently unable to handle the GraphQL API call due to a temporary overloading or maintenance of the server."
-  //     status_code  = "503"
-  //   }
-  // }
-
-  condition {
-    field  = "host-header"
-    values = ["${var.api_dns_name}"]
-  }
-
-  condition {
-    field  = "path-pattern"
-    values = ["/graphql"]
-  }
-}
-
 // resource "aws_lb_listener_rule" "client-api" {
 //   listener_arn = "${data.aws_lb_listener.default.arn}"
 //   priority     = 20
