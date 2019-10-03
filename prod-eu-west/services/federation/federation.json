@@ -32,6 +32,14 @@
       {
         "name" : "SENTRY_DSN",
         "value" : "${sentry_dsn}"
+      },
+      {
+        "name" : "PROFILES_URL",
+        "value" : "${profiles_url}"
+      },
+      {
+        "name" : "DOIS_URL",
+        "value" : "${dois_url}"
       }
     ]
   }

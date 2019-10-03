@@ -25,5 +25,12 @@ variable "api_dns_name" {
   default = "api.test.datacite.org"
 }
 
+variable "profiles_url" {
+  default = "https://api.test.datacite.org/people/graphql"
+}
+variable "dois_url" {
+  default = "https://api.test.datacite.org/dois/graphql"
+}
+
 variable "sentry_dsn" {}
 variable "namespace_id" {}

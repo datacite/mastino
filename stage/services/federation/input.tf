@@ -51,6 +51,8 @@ data "template_file" "federation_task" {
 
   vars {
     sentry_dsn         = "${var.sentry_dsn}"
+    profiles_url       = "${var.profiles_url}"
+    dois_url           = "${var.dois_url}"
     version            = "${var.vaestgoetaspets_tags["sha"]}"
   }
 }
