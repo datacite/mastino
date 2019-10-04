@@ -40,6 +40,10 @@
       {
         "name" : "DOIS_URL",
         "value" : "${dois_url}"
+      },
+      {
+        "name" : "APOLLO_API_URL",
+        "value" : "${apollo_api_url}"
       }
     ]
   }

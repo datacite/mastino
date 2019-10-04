@@ -34,3 +34,4 @@ variable "dois_url" {
 
 variable "sentry_dsn" {}
 variable "namespace_id" {}
+variable "apollo_api_url" {}

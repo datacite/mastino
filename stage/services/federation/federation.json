@@ -23,7 +23,7 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "production"
+        "value" : "staging"
       },
       {
         "name" : "LOG_LEVEL",
@@ -40,6 +40,10 @@
       {
         "name" : "DOIS_URL",
         "value" : "${dois_url}"
+      },
+      {
+        "name" : "APOLLO_API_URL",
+        "value" : "${apollo_api_url}"
       },
       {
         "name" : "GITHUB_VERSION",
