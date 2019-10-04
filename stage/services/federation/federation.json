@@ -38,8 +38,12 @@
         "value" : "${profiles_url}"
       },
       {
-        "name" : "DOIS_URL",
-        "value" : "${dois_url}"
+        "name" : "CLIENT_API_URL",
+        "value" : "${client_api_url}"
+      },
+      {
+        "name" : "API_URL",
+        "value" : "${api_url}"
       },
       {
         "name" : "APOLLO_API_KEY",

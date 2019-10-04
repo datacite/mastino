@@ -28,8 +28,11 @@ variable "api_dns_name" {
 variable "profiles_url" {
   default = "https://api.datacite.org/people/graphql"
 }
-variable "dois_url" {
-  default = "https://api.datacite.org/dois/graphql"
+variable "client_api_url" {
+  default = "https://api.datacite.org/client-api/graphql"
+}
+variable "api_url" {
+  default = "https://api.datacite.org/api/graphql"
 }
 
 variable "sentry_dsn" {}

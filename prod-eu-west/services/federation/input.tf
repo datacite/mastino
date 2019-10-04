@@ -52,7 +52,8 @@ data "template_file" "federation_task" {
   vars {
     sentry_dsn         = "${var.sentry_dsn}"
     profiles_url       = "${var.profiles_url}"
-    dois_url           = "${var.dois_url}"
+    client_api_url     = "${var.client_api_url}"
+    api_url            = "${var.api_url}"
     apollo_api_key     = "${var.apollo_api_key}"
     version            = "${var.vaestgoetaspets_tags["version"]}"
   }
