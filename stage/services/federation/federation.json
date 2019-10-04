@@ -42,8 +42,8 @@
         "value" : "${dois_url}"
       },
       {
-        "name" : "APOLLO_API_URL",
-        "value" : "${apollo_api_url}"
+        "name" : "APOLLO_API_KEY",
+        "value" : "${apollo_api_key}"
       },
       {
         "name" : "GITHUB_VERSION",
