@@ -70,6 +70,26 @@ resource "aws_lb_target_group" "client-api" {
 //   }
 // }
 
+resource "aws_lb_listener_rule" "api-graphql" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 39
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.client-api.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/client-api/graphql"]
+  }
+}
+
 resource "aws_lb_listener_rule" "api" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 41
