@@ -26,13 +26,13 @@ variable "api_dns_name" {
 }
 
 variable "profiles_url" {
-  default = "http://profiles.test.local/profiles/graphql"
+  default = "https://api.test.datacite.org/profiles/graphql"
 }
 variable "client_api_url" {
-  default = "https://client-api.test.local/client-api/graphql"
+  default = "https://api.test.datacite.org/client-api/graphql"
 }
 variable "api_url" {
-  default = "https://api.test.local/api/graphql"
+  default = "https://api.test.datacite.org/api/graphql"
 }
 
 variable "sentry_dsn" {}
