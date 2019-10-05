@@ -71,7 +71,7 @@ resource "aws_lb_target_group" "api" {
 //   }
 // }
 
-resource "aws_lb_listener_rule" "api-pages" {
+resource "aws_lb_listener_rule" "api-graphql" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 22
 
@@ -86,7 +86,7 @@ resource "aws_lb_listener_rule" "api-pages" {
   }
   condition {
     field  = "path-pattern"
-    values = ["/pages*"]
+    values = ["/api/graphql"]
   }
 }
 

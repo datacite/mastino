@@ -125,7 +125,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage-people" {
 
   condition {
     field  = "path-pattern"
-    values = ["/people/graphql"]
+    values = ["/profiles/graphql"]
   }
 }
 
