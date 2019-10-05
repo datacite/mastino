@@ -205,7 +205,7 @@ resource "aws_route53_record" "split-api" {
     records = ["${data.aws_lb.default.dns_name}"]
 }
 
-esource "aws_service_discovery_service" "api" {
+resource "aws_service_discovery_service" "api" {
   name = "api"
 
   health_check_custom_config {
