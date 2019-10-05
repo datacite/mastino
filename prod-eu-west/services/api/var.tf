@@ -57,3 +57,5 @@ variable "github_milestones_url" {
 variable "github_issues_repo_url" {
   default = "https://github.com/datacite/datacite"
 }
+
+variable "namespace_id" {}

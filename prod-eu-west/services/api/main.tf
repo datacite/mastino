@@ -20,6 +20,10 @@ resource "aws_ecs_service" "api" {
     container_port   = "80"
   }
 
+  service_registries {
+    registry_arn = "${aws_service_discovery_service.api.arn}"
+  }
+
   depends_on = [
     "data.aws_lb_listener.default",
   ]
@@ -199,4 +203,21 @@ resource "aws_route53_record" "split-api" {
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.default.dns_name}"]
+}
+
+esource "aws_service_discovery_service" "api" {
+  name = "api"
+
+  health_check_custom_config {
+    failure_threshold = 3
+  }
+
+  dns_config {
+    namespace_id = "${var.namespace_id}"
+    
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
+  }
 }
