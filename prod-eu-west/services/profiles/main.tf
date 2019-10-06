@@ -51,6 +51,8 @@ resource "aws_lb_target_group" "profiles" {
 
   health_check {
     path = "/heartbeat"
+    interval = 300
+    timeout = 120
   }
 }
 
