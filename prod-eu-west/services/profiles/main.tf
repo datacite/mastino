@@ -55,7 +55,7 @@ resource "aws_lb_target_group" "profiles" {
 }
 
 resource "aws_lb_listener_rule" "profiles" {
-  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 50
 
   action {
@@ -69,7 +69,7 @@ resource "aws_lb_listener_rule" "profiles" {
   }
 }
 
-resource "aws_lb_listener_rule" "profiles-api--users" {
+resource "aws_lb_listener_rule" "profiles-api-users" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 51
 
