@@ -24,6 +24,8 @@ variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
+variable "public_key" {}
+
 variable "search_url" {
   default = "https://search.datacite.org"
 }

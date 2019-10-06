@@ -46,6 +46,10 @@
         "value" : "${bracco_url}"
       },
       {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
+      },
+      {
         "name" : "JWT_PRIVATE_KEY",
         "value" : "${jwt_private_key}"
       },

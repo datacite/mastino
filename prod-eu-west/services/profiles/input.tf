@@ -52,6 +52,7 @@ data "template_file" "profiles_task" {
   vars {
     redis_url          = "${var.redis_url}"
     bracco_url         = "${var.bracco_url}"
+    public_key         = "${var.public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     github_personal_access_token = "${var.github_personal_access_token}"
