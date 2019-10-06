@@ -51,8 +51,6 @@ resource "aws_lb_target_group" "profiles" {
 
   health_check {
     path = "/heartbeat"
-    interval = 300
-    timeout = 120
   }
 }
 
@@ -73,7 +71,7 @@ resource "aws_lb_listener_rule" "profiles" {
 
 resource "aws_lb_listener_rule" "profiles-api-users" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 51
+  priority     = 37
 
   action {
     type             = "forward"
@@ -93,7 +91,7 @@ resource "aws_lb_listener_rule" "profiles-api-users" {
 
 resource "aws_lb_listener_rule" "profiles-api-claims" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 52
+  priority     = 36
 
   action {
     type             = "forward"
@@ -113,7 +111,7 @@ resource "aws_lb_listener_rule" "profiles-api-claims" {
 
 resource "aws_lb_listener_rule" "profiles-api-graphql" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 53
+  priority     = 35
 
   action {
     type             = "forward"
