@@ -36,7 +36,7 @@ variable "solr_url" {
   default = "https://solr.datacite.org"
 }
 variable "volpino_url" {
-  default = "https://profiles.datacite.org/api"
+  default = "https://api.datacite.org"
 }
 variable "crossref_query_url" {
   default = "https://api.eventdata.crossref.org"

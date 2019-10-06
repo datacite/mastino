@@ -37,7 +37,7 @@ variable "sentry_dsn" {}
 variable "slack_webhook_url" {}
 
 variable "volpino_url" {
-  default = "https://profiles.test.datacite.org/api"
+  default = "https://api.test.datacite.org"
 }
 variable "lagottino_url" {
   default = "https://api.test.datacite.org"
