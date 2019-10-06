@@ -38,6 +38,9 @@ variable "volpino_url" {
 variable "api_url" {
   default = "https://api.test.datacite.org"
 }
+variable "jwt_host" {
+  default = "https://profiles.test.datacite.org"
+}
 variable "fabrica_url" {
   default = "https://doi.test.datacite.org"
 }

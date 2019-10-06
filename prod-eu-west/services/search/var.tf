@@ -29,6 +29,9 @@ variable "cdn_url" {
 variable "orcid_url" {
   default = "https://orcid.org"
 }
+variable "jwt_host" {
+  default = "https://profiles.datacite.org"
+}
 variable "orcid_update_url" {
   default = "https://api.datacite.org"
 }

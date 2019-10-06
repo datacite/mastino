@@ -59,7 +59,7 @@
       },
       {
         "name" : "JWT_HOST",
-        "value" : "${volpino_url}"
+        "value" : "${jwt_host}"
       },
       {
         "name" : "VOLPINO_URL",

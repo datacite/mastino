@@ -75,6 +75,7 @@ data "template_file" "search_stage_task" {
     orcid_update_token = "${var.orcid_update_token}"
     orcid_url          = "${var.orcid_url}"
     volpino_url        = "${var.volpino_url}"
+    jwt_host           = "${var.jwt_host}"
     api_url            = "${var.api_url}"
     fabrica_url        = "${var.fabrica_url}"
     data_url           = "${var.data_url}"
