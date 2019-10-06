@@ -67,8 +67,10 @@ variable "orcid_client_id" {}
 variable "orcid_client_secret" {}
 variable "github_client_id" {}
 variable "github_client_secret" {}
-variable "google_client_id" {}
-variable "google_client_secret" {}
+variable "globus_client_id" {}
+variable "globus_client_secret" {}
+
+variable "namespace_id" {}
 
 variable "es_host" {
   default = "elasticsearch.datacite.org"

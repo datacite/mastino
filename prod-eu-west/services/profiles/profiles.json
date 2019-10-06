@@ -121,6 +121,14 @@
         "value" : "${orcid_client_secret}"
       },
       {
+        "name" : "GLOBUS_CLIENT_ID",
+        "value" : "${globus_client_id}"
+      },
+      {
+        "name" : "GLOBUS_CLIENT_SECRET",
+        "value" : "${globus_client_secret}"
+      },
+      {
         "name" : "ORCID_MEMBER",
         "value" : "1"
       },
@@ -135,14 +143,6 @@
       {
         "name" : "GITHUB_CLIENT_SECRET",
         "value" : "${github_client_secret}"
-      },
-      {
-        "name" : "GOOGLE_CLIENT_ID",
-        "value" : "${google_client_id}"
-      },
-      {
-        "name" : "GOOGLE_CLIENT_SECRET",
-        "value" : "${google_client_secret}"
       },
       {
         "name" : "ORCID_TOKEN",
