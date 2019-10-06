@@ -1,7 +1,7 @@
 [
   {
     "name": "profiles",
-    "image": "datacite/volpino:{version}",
+    "image": "datacite/volpino:${version}",
     "cpu": 1024,
     "memory": 2048,
     "essential": true,
