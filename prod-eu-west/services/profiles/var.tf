@@ -20,6 +20,10 @@ variable "ttl" {
   default = "300"
 }
 
+variable "security_group_id" {}
+variable "subnet_datacite-private_id" {}
+variable "subnet_datacite-alt_id" {}
+
 variable "search_url" {
   default = "https://search.datacite.org"
 }
