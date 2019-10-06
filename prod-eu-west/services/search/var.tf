@@ -30,10 +30,10 @@ variable "orcid_url" {
   default = "https://orcid.org"
 }
 variable "orcid_update_url" {
-  default = "https://profiles.datacite.org"
+  default = "https://api.datacite.org"
 }
 variable "volpino_url" {
-  default = "https://profiles.datacite.org"
+  default = "https://api.datacite.org"
 }
 variable "api_url" {
   default = "https://api.datacite.org"
