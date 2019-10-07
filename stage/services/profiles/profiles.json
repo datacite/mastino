@@ -142,10 +142,6 @@
         "value" : "1"
       },
       {
-        "name" : "NOTIFICATION_ACCESS_TOKEN",
-        "value" : "${notification_access_token}"
-      },
-      {
         "name" : "GITHUB_CLIENT_ID",
         "value" : "${github_client_id}"
       },

@@ -76,7 +76,6 @@ data "template_file" "profiles_task" {
     github_client_secret = "${var.github_client_secret}"
     globus_client_id   = "${var.globus_client_id}"
     globus_client_secret = "${var.globus_client_secret}"
-    notification_access_token = "${var.notification_access_token}"
     memcache_servers   = "${var.memcache_servers}"
     access_key         = "${var.access_key}"
     secret_key         = "${var.secret_key}"

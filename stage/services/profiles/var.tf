@@ -60,7 +60,6 @@ variable "jwt_private_key" {}
 variable "sentry_dsn" {}
 variable "orcid_update_uuid" {}
 variable "orcid_token" {}
-variable "notification_access_token" {}
 variable "secret_key_base" {}
 variable "github_personal_access_token" {}
 
