@@ -75,6 +75,25 @@ resource "aws_lb_target_group" "api" {
 //   }
 // }
 
+resource "aws_lb_listener_rule" "api-pages" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 21
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.api.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.api.name}"]
+  }
+  condition {
+    field  = "path-pattern"
+    values = ["/pages*"]
+  }
+}
+
 resource "aws_lb_listener_rule" "api-graphql" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 22
