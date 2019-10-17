@@ -72,6 +72,7 @@ data "template_file" "profiles_task" {
     secret_key_base    = "${var.secret_key_base}"
     orcid_client_id    = "${var.orcid_client_id}"
     orcid_client_secret = "${var.orcid_client_secret}"
+    notification_access_token = "${var.notification_access_token}"
     globus_client_id   = "${var.globus_client_id}"
     globus_client_secret = "${var.globus_client_secret}"
     github_client_id   = "${var.github_client_id}"

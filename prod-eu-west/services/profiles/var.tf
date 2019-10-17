@@ -74,6 +74,9 @@ variable "github_client_id" {}
 variable "github_client_secret" {}
 variable "globus_client_id" {}
 variable "globus_client_secret" {}
+variable "notification_access_token" {}
+
+
 
 variable "namespace_id" {}
 

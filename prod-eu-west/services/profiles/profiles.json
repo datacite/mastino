@@ -166,6 +166,10 @@
         "value" : "${region}"
       },
       {
+        "name" : "NOTIFICATION_ACCESS_TOKEN",
+        "value" : "${notification_access_token}"
+      },
+      {
         "name" : "AWS_S3_BUCKET",
         "value" : "${s3_bucket}"
       },
