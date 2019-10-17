@@ -4,7 +4,7 @@ resource "aws_ecs_service" "wsgi-stage" {
    cluster = "${data.aws_ecs_cluster.stage.id}"
    launch_type = "FARGATE"
    task_definition = "${aws_ecs_task_definition.wsgi-stage.arn}"
-   desired_count = 1
+   desired_count = 0
 
   load_balancer {
     target_group_arn = "${aws_lb_target_group.wsgi-stage.id}"
