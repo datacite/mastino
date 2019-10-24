@@ -3,7 +3,7 @@
     "name": "doi",
     "image": "datacite/bracco:${version}",
     "cpu": 2048,
-    "memory": 5120,
+    "memory": 4096,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [
