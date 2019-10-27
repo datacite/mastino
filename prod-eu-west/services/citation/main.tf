@@ -52,7 +52,7 @@ resource "aws_lb_target_group" "citation" {
 }
 
 resource "aws_lb_listener_rule" "citation" {
-  listener_arn = "${aws_lb_listener.crosscite.arn}"
+  listener_arn = "${data.aws_lb_listener.crosscite.arn}"
   priority     = 70
 
   action {
@@ -67,7 +67,7 @@ resource "aws_lb_listener_rule" "citation" {
 }
 
 resource "aws_route53_record" "crosscite-apex" {
-  zone_id = "${aws_route53_zone.crosscite.zone_id}"
+  zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
   name = "crosscite.org"
   type = "A"
 
@@ -79,7 +79,7 @@ resource "aws_route53_record" "crosscite-apex" {
 }
 
 resource "aws_route53_record" "crosscite-www" {
-  zone_id = "${aws_route53_zone.crosscite.zone_id}"
+  zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
   name = "www.crosscite.org"
   type = "A"
 
@@ -91,7 +91,7 @@ resource "aws_route53_record" "crosscite-www" {
 }
 
 resource "aws_route53_record" "citation" {
-    zone_id = "${aws_route53_zone.crosscite.zone_id}"
+    zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
     name = "citation.crosscite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
