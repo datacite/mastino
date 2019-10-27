@@ -7,7 +7,7 @@ resource "aws_lb" "crosscite" {
   enable_deletion_protection = true
 
   access_logs {
-    bucket = "${aws_s3_bucket.logs.bucket}"
+    bucket = "${data.aws_s3_bucket.logs.bucket}"
     prefix = "crosscite"
     enabled = true
   }
