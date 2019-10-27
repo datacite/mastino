@@ -20,7 +20,7 @@ resource "aws_ecs_service" "citation" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default",
+    "data.aws_lb_listener.crosscite",
   ]
 }
 
