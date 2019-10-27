@@ -37,12 +37,12 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
-data "aws_lb" "default" {
+data "aws_lb" "crosscite" {
   name = "${var.lb_name}"
 }
 
-data "aws_lb_listener" "default" {
-  load_balancer_arn = "${data.aws_lb.default.arn}"
+data "aws_lb_listener" "crosscite" {
+  load_balancer_arn = "${data.aws_lb.crosscite.arn}"
   port = 443
 }
 

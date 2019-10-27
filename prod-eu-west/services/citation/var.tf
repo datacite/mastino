@@ -11,7 +11,7 @@ variable "citeproc-doi-server_tags" {
 }
 
 variable "lb_name" {
-  default = "lb"
+  default = "crosscite"
 }
 
 variable "security_group_id" {}
