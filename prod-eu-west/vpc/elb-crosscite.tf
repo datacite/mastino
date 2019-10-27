@@ -31,12 +31,12 @@ resource "aws_lb_listener" "crosscite" {
   // }
 
   default_action {
-    type = "redirect"
+    type = "fixed-response"
 
-    redirect {
-      port        = "80"
-      protocol    = "HTTP"
-      status_code = "HTTP_301"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "OK"
+      status_code  = "200"
     }
   }
 }
