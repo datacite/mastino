@@ -4,12 +4,12 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "aws_route53_zone" "production" {
-  name = "datacite.org"
+data "aws_route53_zone" "crosscite" {
+  name = "crosscite.org"
 }
 
 data "aws_route53_zone" "internal" {
-  name = "datacite.org"
+  name = "crosscite.org"
   private_zone = true
 }
 
