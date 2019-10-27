@@ -65,6 +65,10 @@ data "aws_lb_target_group" "citation" {
   name = "citation"
 }
 
+data "aws_lb_target_group" "content-negotiation" {
+  name = "content-negotiation"
+}
+
 data "template_cloudinit_config" "ecs-solr-user-data" {
   count = 2
   gzip = false
