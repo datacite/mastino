@@ -19,9 +19,9 @@ resource "aws_ecs_service" "citation" {
     container_port   = "80"
   }
 
-  // depends_on = [
-  //   "data.aws_lb_listener.crosscite",
-  // ]
+  depends_on = [
+    "data.aws_lb_listener.crosscite"
+  ]
 }
 
 resource "aws_cloudwatch_log_group" "citation" {
