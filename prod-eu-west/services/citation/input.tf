@@ -8,11 +8,6 @@ data "aws_route53_zone" "crosscite" {
   name = "crosscite.org"
 }
 
-data "aws_route53_zone" "internal" {
-  name = "crosscite.org"
-  private_zone = true
-}
-
 data "aws_security_group" "datacite-private" {
   id = "${var.security_group_id}"
 }

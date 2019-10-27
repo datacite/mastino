@@ -97,11 +97,3 @@ resource "aws_route53_record" "citation" {
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.crosscite.dns_name}"]
 }
-
-resource "aws_route53_record" "split-citation" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "citation.crosscite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.crosscite.dns_name}"]
-}
