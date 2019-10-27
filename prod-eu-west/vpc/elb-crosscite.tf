@@ -26,7 +26,7 @@ resource "aws_lb_listener" "crosscite" {
   certificate_arn   = "${data.aws_acm_certificate.crosscite.arn}"
 
   default_action {
-    target_group_arn = "${aws_lb_target_group.citation.id}"
+    target_group_arn = "${data.aws_lb_target_group.citation.id}"
     type             = "forward"
   }
 }

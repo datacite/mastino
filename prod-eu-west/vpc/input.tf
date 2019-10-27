@@ -61,6 +61,10 @@ data "aws_s3_bucket" "logs" {
   bucket = "logs.datacite.org"
 }
 
+data "aws_lb_target_group" "citation" {
+  name = "citation"
+}
+
 data "template_cloudinit_config" "ecs-solr-user-data" {
   count = 2
   gzip = false
