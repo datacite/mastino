@@ -1,6 +1,6 @@
 [
   {
-    "name": "data",
+    "name": "citation",
     "image": "crosscite/citeproc-doi-server:${version}",
     "cpu": 512,
     "memory": 2048,
