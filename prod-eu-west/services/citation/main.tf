@@ -95,7 +95,7 @@ resource "aws_route53_record" "citation" {
     name = "citation.crosscite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
-    records = ["${data.aws_lb.default.dns_name}"]
+    records = ["${data.aws_lb.crosscite.dns_name}"]
 }
 
 resource "aws_route53_record" "split-citation" {
@@ -103,5 +103,5 @@ resource "aws_route53_record" "split-citation" {
     name = "citation.crosscite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
-    records = ["${data.aws_lb.default.dns_name}"]
+    records = ["${data.aws_lb.crosscite.dns_name}"]
 }
