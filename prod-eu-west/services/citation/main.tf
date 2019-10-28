@@ -79,16 +79,13 @@ resource "aws_route53_record" "crosscite-apex" {
 }
 
 resource "aws_route53_record" "crosscite-www" {
-  zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
-  name = "www.crosscite.org"
-  type = "A"
-
-  alias {
-    name = "${data.aws_lb.crosscite.dns_name}"
-    zone_id = "${data.aws_lb.crosscite.zone_id}"
-    evaluate_target_health = true
-  }
+    zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
+    name = "www.crosscite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.crosscite.dns_name}"]
 }
+
 
 resource "aws_route53_record" "citation" {
     zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
