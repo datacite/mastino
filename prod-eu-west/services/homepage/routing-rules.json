@@ -25,6 +25,14 @@
   },
   {
     "Condition": {
+      "KeyPrefixEquals": "board.html"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "governance.html"
+    }
+  },
+  {
+    "Condition": {
       "KeyPrefixEquals": "about-datacite/board"
     },
     "Redirect": {
@@ -296,14 +304,6 @@
     },
     "Redirect": {
       "ReplaceKeyWith": "404.html"
-    }
-  },
-  {
-    "Condition": {
-      "KeyPrefixEquals": "board.html"
-    },
-    "Redirect": {
-      "ReplaceKeyWith": "governance.html"
     }
   },
   {
