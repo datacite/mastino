@@ -51,7 +51,9 @@ data "template_file" "oai_task" {
 
   vars {
     api_url            = "${var.api_url}"
-    version            = "${var.oaip_tags["sha"]}"
+    base_url           = "${var.base_url}"
+    public_key         = "${var.public_key}"
+    version            = "${var.viringo_tags["sha"]}"
     sentry_dsn         = "${var.sentry_dsn}"
   }
 }

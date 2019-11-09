@@ -47,9 +47,9 @@ resource "aws_lb_target_group" "oai-stage" {
   target_type = "ip"
   slow_start = 240
 
-  # health_check {
-  #   path = "/heartbeat"
-  # }
+  health_check {
+    path = "/heartbeat"
+  }
 }
 
 resource "aws_lb_listener_rule" "oai-stage" {
@@ -75,10 +75,19 @@ resource "aws_route53_record" "oai-stage" {
     records = ["${data.aws_lb.stage.dns_name}"]
 }
 
-resource "aws_route53_record" "split-oai-stage" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "oai.test.datacite.org"
-    type = "CNAME"
-    ttl = "${var.ttl}"
-    records = ["${data.aws_lb.stage.dns_name}"]
+resource "aws_service_discovery_service" "oai-stage" {
+  name = "oai.test"
+
+  health_check_custom_config {
+    failure_threshold = 3
+  }
+
+  dns_config {
+    namespace_id = "${var.namespace_id}"
+    
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
+  }
 }

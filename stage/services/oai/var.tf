@@ -6,7 +6,7 @@ variable "region" {
 
 variable "vpc_id" {}
 
-variable "oaip_tags" {
+variable "viringo_tags" {
   type = "map"
 }
 
@@ -23,8 +23,14 @@ variable "ttl" {
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
+variable "base_url" {
+  default = "https://oai.test.datacite.org/oai"
+}
+
 variable "api_url" {
   default = "https://api.test.datacite.org"
 }
 
+variable "namespace_id" {}
 variable "sentry_dsn" {}
+variable "public_key" {}

@@ -1,4 +1,4 @@
-oaip_tags = {
+viringo_tags = {
   sha = "de1edfc"
   version = ""
 }
