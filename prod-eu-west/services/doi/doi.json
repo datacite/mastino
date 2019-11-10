@@ -1,7 +1,7 @@
 [
   {
     "name": "doi",
-    "image": "datacite/bracco:${version}",
+    "image": "datacite/bracco:3.0.15",
     "cpu": 2048,
     "memory": 4096,
     "essential": true,
