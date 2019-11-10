@@ -31,7 +31,7 @@
       },
       {
         "name" : "LOG_LEVEL",
-        "value" : "DEBUG"
+        "value" : "INFO"
       },
       {
         "name": "OAIPMH_BASE_URL",
