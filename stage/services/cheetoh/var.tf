@@ -32,3 +32,7 @@ variable "sentry_dsn" {}
 
 variable "admin_username" {}
 variable "admin_password" {}
+
+variable "api_url" {
+  default = "http://api.test.local"
+}

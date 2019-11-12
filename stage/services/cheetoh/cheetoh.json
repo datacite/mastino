@@ -34,6 +34,10 @@
         "value" : "DataCite EZ API Test"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "LOG_LEVEL",
         "value" : "info"
       },
