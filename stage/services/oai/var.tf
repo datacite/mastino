@@ -28,7 +28,7 @@ variable "base_url" {
 }
 
 variable "api_url" {
-  default = "https://api.test.datacite.org"
+  default = "http://client-api.test.locL"
 }
 
 variable "namespace_id" {}
