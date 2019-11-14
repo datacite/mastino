@@ -54,7 +54,6 @@ data "template_file" "api_task" {
   template = "${file("api.json")}"
 
   vars {
-    solr_url           = "${var.solr_url}"
     volpino_url        = "${var.volpino_url}"
     volpino_token      = "${var.volpino_token}"
     api_url            = "${var.api_url}"
