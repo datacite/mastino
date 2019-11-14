@@ -39,7 +39,7 @@ variable "volpino_url" {
   default = "https://api.datacite.org"
 }
 variable "api_url" {
-  default = "https://api.datacite.org"
+  default = "http://client-api.local"
 }
 variable "fabrica_url" {
   default = "https://doi.datacite.org"
