@@ -38,6 +38,10 @@
         "value" : "info"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "SENTRY_DSN",
         "value" : "${sentry_dsn}"
       },
