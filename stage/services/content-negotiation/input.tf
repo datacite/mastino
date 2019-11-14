@@ -51,6 +51,7 @@ data "template_file" "content-negotiation_task" {
   vars {
     sentry_dsn         = "${var.sentry_dsn}"
     memcache_servers   = "${var.memcache_servers}"
+    api_url            = "${var.api_url}"
     public_key         = "${var.public_key}"
     version            = "${var.content-negotiation_tags["sha"]}"
   }

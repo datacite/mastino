@@ -30,3 +30,7 @@ variable "memcache_servers" {
 variable "namespace_id" {}
 variable "sentry_dsn" {}
 variable "public_key" {}
+
+variable "api_url" {
+  default = "http://client-api.test.local"
+}

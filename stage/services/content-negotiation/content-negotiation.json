@@ -38,6 +38,10 @@
         "value" : "${memcache_servers}"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "LOG_LEVEL",
         "value" : "info"
       },
