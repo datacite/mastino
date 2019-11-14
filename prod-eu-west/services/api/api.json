@@ -42,10 +42,6 @@
         "value" : "${jwt_public_key}"
       },
       {
-        "name" : "SOLR_URL",
-        "value" : "${solr_url}"
-      },
-      {
         "name" : "API_URL",
         "value" : "${api_url}"
       },

@@ -23,9 +23,6 @@ variable "ttl" {
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
-variable "solr_url" {
-  default = "https://solr.datacite.org/api"
-}
 variable "volpino_url" {
   default = "https://profiles.datacite.org/api"
 }
@@ -33,7 +30,7 @@ variable "orcid_update_url" {
   default = "https://profiles.datacite.org"
 }
 variable "api_url" {
-  default = "https://api.datacite.org"
+  default = "http://client-api.local"
 }
 variable "blog_url" {
   default = "https://blog.datacite.org"
