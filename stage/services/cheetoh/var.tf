@@ -34,5 +34,5 @@ variable "admin_username" {}
 variable "admin_password" {}
 
 variable "api_url" {
-  default = "http://api.test.local"
+  default = "http://client-api.test.local"
 }
