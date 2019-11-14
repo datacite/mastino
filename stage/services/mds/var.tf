@@ -31,6 +31,6 @@ variable "sentry_dsn" {}
 variable "compose_id" {}
 
 variable "api_url" {
-  default = "https://api.test.datacite.org"
-  // default = "http://client-api.test.local"
+  // default = "https://api.test.datacite.org"
+  default = "http://client-api.test.local"
 }
