@@ -36,7 +36,7 @@ variable "volpino_url" {
   default = "https://api.test.datacite.org"
 }
 variable "api_url" {
-  default = "https://api.test.datacite.org"
+  default = "http://client-api.test.local"
 }
 variable "jwt_host" {
   default = "https://profiles.test.datacite.org"
