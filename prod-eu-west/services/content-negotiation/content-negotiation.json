@@ -42,6 +42,10 @@
         "value" : "info"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "PASSENGER_MAX_POOL_SIZE",
         "value" : "15"
       },
