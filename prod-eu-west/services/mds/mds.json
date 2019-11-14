@@ -42,6 +42,10 @@
         "value" : "${sentry_dsn}"
       },
       {
+        "name" : "API_URL",
+        "value" : "${api_url}"
+      },
+      {
         "name" : "MEMCACHE_SERVERS",
         "value" : "${memcache_servers}"
       },

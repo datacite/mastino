@@ -32,3 +32,8 @@ variable "memcache_servers" {
 }
 
 variable "sentry_dsn" {}
+
+variable "api_url" {
+  default = "https://api.datacite.org"
+  // default = "http://client-api.test.local"
+}
