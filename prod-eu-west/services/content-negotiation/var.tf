@@ -32,5 +32,5 @@ variable "namespace_id" {}
 variable "public_key" {}
 
 variable "api_url" {
-  default = "http://client-api.test.local"
+  default = "http://client-api.local"
 }

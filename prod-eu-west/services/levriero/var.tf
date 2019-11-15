@@ -42,7 +42,7 @@ variable "crossref_query_url" {
   default = "https://api.eventdata.crossref.org"
 }
 variable "api_url" {
-  default = "https://api.datacite.org"
+  default = "http://client-api.local"
 }
 variable "lagottino_url" {
   default = "https://api.datacite.org"

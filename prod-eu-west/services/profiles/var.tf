@@ -39,7 +39,7 @@ variable "bracco_url" {
   default = "https://doi.datacite.org"
 }
 variable "api_url" {
-  default = "https://api.datacite.org"
+  default = "http://client-api.local"
 }
 variable "cdn_url" {
   default = "https://assets.datacite.org"

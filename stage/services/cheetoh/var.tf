@@ -34,6 +34,5 @@ variable "admin_username" {}
 variable "admin_password" {}
 
 variable "api_url" {
-  // default = "https://api.test.datacite.org"
   default = "http://client-api.test.local"
 }
