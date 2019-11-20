@@ -28,7 +28,7 @@ variable "base_url" {
 }
 
 variable "api_url" {
-  default = "http://client-api.test.locL"
+  default = "http://client-api.test.local"
 }
 
 variable "namespace_id" {}
