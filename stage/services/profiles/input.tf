@@ -83,6 +83,8 @@ data "template_file" "profiles_task" {
     s3_bucket          = "${var.s3_bucket}"
     es_name            = "${var.es_name}"
     es_host            = "${var.es_host}"
+    es_scheme          = "${var.es_scheme}"
+    es_port            = "${var.es_port}"
     elastic_password   = "${var.elastic_password}"
     version            = "${var.volpino_tags["sha"]}"
   }

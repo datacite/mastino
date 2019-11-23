@@ -79,9 +79,11 @@ variable "globus_client_secret" {}
 
 variable "namespace_id" {}
 
-variable "es_host" {
-  default = "elasticsearch.test.datacite.org"
+variable "es_host" {}
+variable "es_scheme" {
+  default = "https"
 }
+variable "es_port" {}
 variable "es_name" {
   default = "es"
 }
