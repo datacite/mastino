@@ -63,6 +63,8 @@ data "template_file" "client-api_task" {
     mysql_host         = "${var.mysql_host}"
     es_name            = "${var.es_name}"
     es_host            = "${var.es_host}"
+    es_scheme          = "${var.es_scheme}"
+    es_port            = "${var.es_port}"
     elastic_password   = "${var.elastic_password}"
     handle_url         = "${var.handle_url}"
     handle_username    = "${var.handle_username}"

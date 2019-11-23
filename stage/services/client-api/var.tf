@@ -49,6 +49,10 @@ variable "mysql_database" {
 }
 variable "mysql_host" {}
 variable "es_host" {}
+variable "es_scheme" {
+  default = "https"
+}
+variable "es_port" {}
 variable "es_name" {
   default = "es"
 }

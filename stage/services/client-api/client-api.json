@@ -130,6 +130,14 @@
         "value" : "${es_host}"
       },
       {
+        "name" : "ES_SCHEME",
+        "value" : "${es_scheme}"
+      },
+      {
+        "name" : "ES_PORT",
+        "value" : "${es_port}"
+      },
+      {
         "name" : "ES_NAME",
         "value" : "${es_name}"
       },
