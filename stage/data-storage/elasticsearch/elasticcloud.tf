@@ -1,15 +1,15 @@
-resource "aws_route53_record" "elasticcloud-test" {
+resource "aws_route53_record" "kibana-test" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "elasticcloud.test.datacite.org"
+  name = "kibana.test.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.elasticcloud-name}"]
+  records = ["${var.kibana-name}"]
 }
 
-resource "aws_route53_record" "elasticcloud-test-internal" {
+resource "aws_route53_record" "kibana-test-internal" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "elasticcloud.test.datacite.org"
+  name = "kibana.test.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${var.elasticcloud-name}"]
+  records = ["${var.kibana-name}"]
 }
