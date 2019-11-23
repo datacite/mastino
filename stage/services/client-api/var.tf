@@ -75,5 +75,5 @@ variable "namespace_id" {}
 variable "oidc_client_id" {}
 variable "oidc_client_secret" {}
 
-variable "apm_secret_token" {}
-variable "apm_server_url" {}
+variable "elastic_apm_secret_token" {}
+variable "elastic_apm_server_url" {}

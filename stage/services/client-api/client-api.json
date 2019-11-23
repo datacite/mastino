@@ -102,12 +102,12 @@
         "value" : "${sentry_dsn}"
       },
       {
-        "name" : "APM_SECRET_TOKEN",
-        "value" : "${apm_secret_token}"
+        "name" : "ELASTIC_APM_SECRET_TOKEN",
+        "value" : "${elastic_apm_secret_token}"
       },
       {
-        "name" : "APM_SERVER_URL",
-        "value" : "${apm_server_url}"
+        "name" : "ELASTIC_APM_SERVER_URL",
+        "value" : "${elastic_apm_server_url}"
       },
       {
         "name" : "SERVERNAME",
