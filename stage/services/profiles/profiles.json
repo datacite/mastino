@@ -102,6 +102,14 @@
         "value" : "${sentry_dsn}"
       },
       {
+        "name" : "ELASTIC_APM_SECRET_TOKEN",
+        "value" : "${elastic_apm_secret_token}"
+      },
+      {
+        "name" : "ELASTIC_APM_SERVER_URL",
+        "value" : "${elastic_apm_server_url}"
+      },
+      {
         "name" : "API_URL",
         "value" : "${api_url}"
       },

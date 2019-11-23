@@ -88,3 +88,5 @@ variable "es_name" {
   default = "es"
 }
 variable "elastic_password" {}
+variable "elastic_apm_secret_token" {}
+variable "elastic_apm_server_url" {}

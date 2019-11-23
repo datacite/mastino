@@ -86,6 +86,8 @@ data "template_file" "profiles_task" {
     es_scheme          = "${var.es_scheme}"
     es_port            = "${var.es_port}"
     elastic_password   = "${var.elastic_password}"
+    elastic_apm_secret_token   = "${var.elastic_apm_secret_token}"
+    elastic_apm_server_url     = "${var.elastic_apm_server_url}"
     version            = "${var.volpino_tags["sha"]}"
   }
 }
