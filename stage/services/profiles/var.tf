@@ -85,3 +85,4 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+variable "elastic_password" {}

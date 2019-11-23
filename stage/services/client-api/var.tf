@@ -54,6 +54,7 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+variable "elastic_password" {}
 
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}

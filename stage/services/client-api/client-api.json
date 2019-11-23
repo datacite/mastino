@@ -134,6 +134,10 @@
         "value" : "${es_name}"
       },
       {
+        "name" : "ELASTIC_PASSWORD",
+        "value" : "${elastic_password}"
+      },
+      {
         "name" : "MAILGUN_API_KEY",
         "value" : "${mailgun_api_key}"
       },
