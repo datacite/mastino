@@ -1,43 +1,43 @@
-resource "aws_elasticsearch_domain" "test" {
-  domain_name           = "elasticsearch-test"
-  elasticsearch_version = "6.3"
-  cluster_config {
-    instance_type = "m4.large.elasticsearch"
-    instance_count = 1
-  }
+// resource "aws_elasticsearch_domain" "test" {
+//   domain_name           = "elasticsearch-test"
+//   elasticsearch_version = "6.3"
+//   cluster_config {
+//     instance_type = "m4.large.elasticsearch"
+//     instance_count = 1
+//   }
 
-  advanced_options {
-    rest.action.multi.allow_explicit_index = "true"
-  }
+//   advanced_options {
+//     rest.action.multi.allow_explicit_index = "true"
+//   }
 
-  snapshot_options {
-    automated_snapshot_start_hour = 23
-  }
+//   snapshot_options {
+//     automated_snapshot_start_hour = 23
+//   }
 
-  ebs_options{
-      ebs_enabled = true
-      volume_type = "gp2"
-      volume_size = 60
-  }
+//   ebs_options{
+//       ebs_enabled = true
+//       volume_type = "gp2"
+//       volume_size = 60
+//   }
 
-  vpc_options {
-    security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
-    subnet_ids = ["${data.aws_subnet.datacite-private.id}"]
-  }
+//   vpc_options {
+//     security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
+//     subnet_ids = ["${data.aws_subnet.datacite-private.id}"]
+//   }
 
-  tags {
-    Domain = "elasticsearch-test"
-  }
+//   tags {
+//     Domain = "elasticsearch-test"
+//   }
 
-  log_publishing_options {
-    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.elasticsearch-test.arn}"
-    log_type                 = "SEARCH_SLOW_LOGS"
-  }
+//   log_publishing_options {
+//     cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.elasticsearch-test.arn}"
+//     log_type                 = "SEARCH_SLOW_LOGS"
+//   }
 
-  lifecycle {
-    prevent_destroy = "true"
-  }
-}
+//   lifecycle {
+//     prevent_destroy = "true"
+//   }
+// }
 
 resource "aws_elasticsearch_domain_policy" "test" {
   domain_name = "${aws_elasticsearch_domain.test.domain_name}"
