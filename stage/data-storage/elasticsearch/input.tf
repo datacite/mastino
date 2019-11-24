@@ -27,5 +27,6 @@ data "template_file" "functionbeat" {
 
     vars {
         bucket_name = "functionbeat-deploy-stage"
+        principal = "${var.principal}"
     }
 }

@@ -3,6 +3,11 @@
     "Statement": [{
         "Effect": "Allow",
         "Action": "s3:*",
-        "Resource": "arn:aws:s3:::${bucket_name}/*"
+        "Resource": "arn:aws:s3:::${bucket_name}/*",
+        "Principal": {
+          "AWS": [
+            "${principal}"
+          ]
+        }
     }]
 }

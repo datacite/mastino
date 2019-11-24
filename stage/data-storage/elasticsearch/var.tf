@@ -12,4 +12,4 @@ variable "ttl" {
 
 variable "subnet_datacite-private_id" {}
 
-variable "kibana-name" {}
+variable "principal" {}
