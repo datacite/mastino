@@ -21,3 +21,11 @@ data "aws_route53_zone" "internal" {
   name         = "datacite.org"
   private_zone = true
 }
+
+data "template_file" "functionbeat" {
+    template = "${file("s3_full_access.json")}"
+
+    vars {
+        bucket_name = "functionbeat-deploy-stage"
+    }
+}
