@@ -3,7 +3,7 @@ resource "aws_ecs_service" "client-api" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.client-api.arn}"
-  desired_count = 6
+  desired_count = 8
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -130,7 +130,7 @@ resource "aws_service_discovery_service" "client-api" {
 
   dns_config {
     namespace_id = "${var.namespace_id}"
-    
+
     dns_records {
       ttl = 300
       type = "A"
