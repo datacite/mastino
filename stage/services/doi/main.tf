@@ -92,6 +92,26 @@ resource "aws_lb_listener_rule" "doi-stage-auth" {
   }
 }
 
+resource "aws_lb_listener_rule" "doi-stage-clients" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 84
+
+  action {
+    type = "redirect"
+
+    redirect {
+      path        = "/"
+      protocol    = "HTTPS"
+      status_code = "HTTP_302"
+    }
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/clients*"]
+  }
+}
+
 resource "aws_lb_listener_rule" "doi-stage" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 85
