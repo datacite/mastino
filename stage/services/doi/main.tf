@@ -93,7 +93,7 @@ resource "aws_lb_listener_rule" "doi-stage-auth" {
 }
 
 resource "aws_lb_listener_rule" "doi-stage-clients" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 84
 
   action {
