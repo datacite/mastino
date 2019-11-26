@@ -23,9 +23,18 @@ variable "ttl" {
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
-variable "solr_url" {
-  default = "https://solr.datacite.org"
-}
 variable "cdn_url" {
   default = "https://assets.datacite.org"
 }
+
+variable "base_url" {
+  default = "https://oai.datacite.org/oai"
+}
+
+variable "api_url" {
+  default = "http://client-api.local"
+}
+
+variable "namespace_id" {}
+variable "sentry_dsn" {}
+variable "public_key" {}
