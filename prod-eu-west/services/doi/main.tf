@@ -92,6 +92,26 @@ resource "aws_lb_listener_rule" "doi-auth" {
   }
 }
 
+resource "aws_lb_listener_rule" "doi-clients" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 84
+
+  action {
+    type = "redirect"
+
+    redirect {
+      path        = "/"
+      protocol    = "HTTPS"
+      status_code = "HTTP_302"
+    }
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/clients*"]
+  }
+}
+
 resource "aws_lb_listener_rule" "doi" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
   priority     = 85
