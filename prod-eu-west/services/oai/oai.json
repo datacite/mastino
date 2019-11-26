@@ -2,7 +2,7 @@
   {
     "name": "oai",
     "image": "datacite/viringo:${version}",
-    "cpu": 512,
+    "cpu": 1024,
     "memory": 1024,
     "networkMode": "awsvpc",
     "essential": true,
