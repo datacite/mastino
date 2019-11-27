@@ -35,7 +35,7 @@
       },
       {
         "name" : "LOG_LEVEL",
-        "value" : "warn"
+        "value" : "error"
       },
       {
         "name" : "JWT_PUBLIC_KEY",
