@@ -6,7 +6,7 @@ variable "region" {
 
 variable "vpc_id" {}
 
-variable "oaip_tags" {
+variable "viringo_tags" {
   type = "map"
 }
 
