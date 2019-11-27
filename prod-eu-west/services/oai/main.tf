@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "oai" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "1024"
-  memory = "1024"
+  memory = "2048"
 
   container_definitions =  "${data.template_file.oai_task.rendered}"
 }
