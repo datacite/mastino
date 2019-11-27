@@ -50,8 +50,11 @@ data "template_file" "oai_task" {
   template = "${file("oai.json")}"
 
   vars {
-    solr_url           = "${var.solr_url}"
     cdn_url            = "${var.cdn_url}"
+    api_url            = "${var.api_url}"
+    base_url           = "${var.base_url}"
+    public_key         = "${var.public_key}"
+    sentry_dsn         = "${var.sentry_dsn}"
     version            = "${var.oaip_tags["version"]}"
   }
 }

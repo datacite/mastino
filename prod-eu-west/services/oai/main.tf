@@ -3,7 +3,7 @@ resource "aws_ecs_service" "oai" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.oai.arn}"
-  desired_count = 2
+  desired_count = 4
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "oai" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "1024"
-  memory = "2048"
+  memory = "1024"
 
   container_definitions =  "${data.template_file.oai_task.rendered}"
 }
