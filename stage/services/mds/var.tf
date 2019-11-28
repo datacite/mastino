@@ -33,6 +33,3 @@ variable "compose_id" {}
 variable "api_url" {
   default = "http://client-api.test.local"
 }
-
-variable "elastic_apm_secret_token" {}
-variable "elastic_apm_server_url" {}

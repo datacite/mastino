@@ -53,8 +53,6 @@ data "template_file" "mds_task" {
     sentry_dsn         = "${var.sentry_dsn}"
     api_url            = "${var.api_url}"
     memcache_servers   = "${var.memcache_servers}"
-    elastic_apm_secret_token   = "${var.elastic_apm_secret_token}"
-    elastic_apm_server_url     = "${var.elastic_apm_server_url}"
     version            = "${var.poodle_tags["sha"]}"
   }
 }

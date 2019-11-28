@@ -76,8 +76,6 @@ data "template_file" "client-api_task" {
     region             = "${var.region}"
     s3_bucket          = "${var.s3_bucket}"
     sentry_dsn         = "${var.sentry_dsn}"
-    elastic_apm_secret_token   = "${var.elastic_apm_secret_token}"
-    elastic_apm_server_url     = "${var.elastic_apm_server_url}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
     slack_webhook_url  = "${var.slack_webhook_url}"
