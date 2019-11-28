@@ -37,7 +37,7 @@ resource "aws_ecs_task_definition" "federation-stage" {
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "512"
+  cpu = "256"
   memory = "512"
 
   container_definitions =  "${data.template_file.federation_task.rendered}"
