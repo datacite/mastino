@@ -39,6 +39,25 @@ resource "aws_appautoscaling_target" "content-negotiation" {
   service_namespace  = "ecs"
 }
 
+resource "aws_appautoscaling_policy" "content-negotiation_scale_up" {
+  name               = "scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = "${aws_appautoscaling_target.content-negotiation.resource_id}"
+  scalable_dimension = "${aws_appautoscaling_target.content-negotiation.scalable_dimension}"
+  service_namespace  = "${aws_appautoscaling_target.content-negotiation.service_namespace}"
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = +1
+    }
+  }
+}
+
 resource "aws_appautoscaling_policy" "content-negotiation_scale_down" {
   name               = "scale-down"
   policy_type        = "StepScaling"
@@ -58,13 +77,32 @@ resource "aws_appautoscaling_policy" "content-negotiation_scale_down" {
   }
 }
 
+resource "aws_cloudwatch_metric_alarm" "content-negotiation_cpu_scale_up" {
+  alarm_name          = "content-negotiation_cpu_scale_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "80"
+
+  dimensions {
+    ClusterName = "default"
+    ServiceName = "${aws_ecs_service.content-negotiation.name}"
+  }
+
+  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_actions     = ["${aws_appautoscaling_policy.content-negotiation_scale_up.arn}"]
+}
+
 resource "aws_cloudwatch_metric_alarm" "content-negotiation_cpu_scale_down" {
   alarm_name          = "content-negotiation_cpu_scale_down"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = "60"
+  period              = "120"
   statistic           = "Average"
   threshold           = "20"
 
