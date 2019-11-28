@@ -39,7 +39,7 @@ resource "aws_appautoscaling_target" "content-negotiation" {
   service_namespace  = "ecs"
 }
 
-resource "aws_appautoscaling_policy" "content-negotiation" {
+resource "aws_appautoscaling_policy" "content-negotiation_scale_down" {
   name               = "scale-down"
   policy_type        = "StepScaling"
   resource_id        = "${aws_appautoscaling_target.content-negotiation.resource_id}"
@@ -74,7 +74,7 @@ resource "aws_cloudwatch_metric_alarm" "content-negotiation_cpu_scale_down" {
   }
 
   alarm_description = "This metric monitors ecs cpu utilization"
-  alarm_actions     = ["${aws_appautoscaling_policy.ecs_service_scale_down.arn}"]
+  alarm_actions     = ["${aws_appautoscaling_policy.content-negotiation_scale_down.arn}"]
 }
 
 resource "aws_cloudwatch_log_group" "content-negotiation" {
