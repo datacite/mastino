@@ -58,6 +58,25 @@ resource "aws_appautoscaling_policy" "content-negotiation" {
   }
 }
 
+resource "aws_cloudwatch_metric_alarm" "content-negotiation_cpu_scale_down" {
+  alarm_name          = "content-negotiation_cpu_scale_down"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = "20"
+
+  dimensions {
+    ClusterName = "default"
+    ServiceName = "${aws_ecs_service.content-negotiation.name}"
+  }
+
+  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_actions     = ["${aws_appautoscaling_policy.ecs_service_scale_down.arn}"]
+}
+
 resource "aws_cloudwatch_log_group" "content-negotiation" {
   name = "/ecs/content-negotiation"
 }
