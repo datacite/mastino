@@ -3,7 +3,7 @@
     "name": "mds-stage",
     "image": "datacite/poodle",
     "cpu": 512,
-    "memory": 2048,
+    "memory": 512,
     "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [

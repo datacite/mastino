@@ -2,8 +2,8 @@
   {
     "name": "federation-stage",
     "image": "datacite/vaestgoetaspets",
-    "cpu": 1024,
-    "memory": 2048,
+    "cpu": 512,
+    "memory": 512,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [
