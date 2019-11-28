@@ -3,7 +3,14 @@ resource "aws_ecs_service" "content-negotiation" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.content-negotiation.arn}"
-  desired_count = 4
+
+  # Create service with 2 instances to start
+  desired_count = 2
+
+  # Allow external changes without Terraform plan difference
+  lifecycle {
+    ignore_changes = ["desired_count"]
+  }
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -22,6 +29,33 @@ resource "aws_ecs_service" "content-negotiation" {
   depends_on = [
     "data.aws_lb_listener.crosscite",
   ]
+}
+
+resource "aws_appautoscaling_target" "content-negotiation" {
+  max_capacity       = 4
+  min_capacity       = 2
+  resource_id        = "service/${aws_ecs_cluster.default.name}/${aws_ecs_service.content-negotiation.name}"s
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+
+resource "aws_appautoscaling_policy" "content-negotiation" {
+  name               = "scale-down"
+  policy_type        = "StepScaling"
+  resource_id        = "${aws_appautoscaling_target.content-negotiation.resource_id}"
+  scalable_dimension = "${aws_appautoscaling_target.content-negotiation.scalable_dimension}"
+  service_namespace  = "${aws_appautoscaling_target.content-negotiation.service_namespace}"
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = -1
+    }
+  }
 }
 
 resource "aws_cloudwatch_log_group" "content-negotiation" {
