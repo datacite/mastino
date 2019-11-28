@@ -53,7 +53,7 @@ resource "aws_appautoscaling_policy" "content-negotiation_scale_up" {
 
     step_adjustment {
       metric_interval_upper_bound = 0
-      scaling_adjustment          = +1
+      scaling_adjustment          = 1
     }
   }
 }
