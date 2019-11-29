@@ -9,7 +9,7 @@
                 ]
             },
             "Effect": "Allow",
-            "Resource": "arn:aws:es:eu-west-1:datacite:domain/*"
+            "Resource": "arn:aws:es:eu-west-1:404017989009:domain/elasticsearch-test/*"
         }
     ]
 }
