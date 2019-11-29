@@ -3,7 +3,11 @@
     "Statement": [
         {
             "Action": "es:*",
-            "Principal": "*",
+            "Principal": {
+                "AWS": [
+                  "*"
+                ]
+            },
             "Effect": "Allow",
             "Resource": "arn:aws:es:eu-west-1:datacite:domain/*"
         }
