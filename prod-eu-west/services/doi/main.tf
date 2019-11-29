@@ -56,8 +56,6 @@ resource "aws_appautoscaling_policy" "doi_scale_up" {
     metric_aggregation_type = "Maximum"
 
     step_adjustment {
-      metric_interval_upper_bound = 10
-      metric_interval_lower_bound = 2
       scaling_adjustment          = 1
     }
   }
