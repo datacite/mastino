@@ -134,6 +134,12 @@ resource "aws_lb_target_group" "search" {
   vpc_id   = "${var.vpc_id}"
   target_type = "ip"
 
+  health_check {
+    path = "/heartbeat"
+    interval = 60
+    timeout = 10
+  }
+
   stickiness {
     type   = "lb_cookie"
   }
