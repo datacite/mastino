@@ -2,7 +2,7 @@ resource "aws_ecs_service" "resolution-logs-pipeline-stage" {
   name            = "resolution-logs-pipeline-stage"
   cluster         = "${data.aws_ecs_cluster.stage.id}"
   task_definition = "${aws_ecs_task_definition.resolution-logs-pipeline-stage.arn}"
-  desired_count   = 1
+  desired_count   = 0
   // For fargate
   // launch_type = "FARGATE"
 
