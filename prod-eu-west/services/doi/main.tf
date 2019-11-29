@@ -88,7 +88,7 @@ resource "aws_cloudwatch_metric_alarm" "doi_cpu_scale_up" {
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = "120"
-  statistic           = "Average"
+  statistic           = "Maximum"
   threshold           = "80"
 
   dimensions {
@@ -128,8 +128,8 @@ resource "aws_ecs_task_definition" "doi" {
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "1024"
-  memory = "2048"
+  cpu = "512"
+  memory = "1024"
 
   container_definitions =  "${data.template_file.doi_task.rendered}"
 }
