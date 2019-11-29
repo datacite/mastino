@@ -73,11 +73,11 @@ resource "aws_appautoscaling_policy" "re3data_scale_down" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "re3data_cpu_scale_up" {
-  alarm_name          = "re3data_cpu_scale_up"
+resource "aws_cloudwatch_metric_alarm" "re3data_memory_scale_up" {
+  alarm_name          = "re3data_memory_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
+  metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
   period              = "120"
   statistic           = "Average"
@@ -88,15 +88,15 @@ resource "aws_cloudwatch_metric_alarm" "re3data_cpu_scale_up" {
     ServiceName = "${aws_ecs_service.re3data.name}"
   }
 
-  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_description = "This metric monitors ecs memory utilization"
   alarm_actions     = ["${aws_appautoscaling_policy.re3data_scale_up.arn}"]
 }
 
-resource "aws_cloudwatch_metric_alarm" "re3data_cpu_scale_down" {
-  alarm_name          = "re3data_cpu_scale_down"
+resource "aws_cloudwatch_metric_alarm" "re3data_memory_scale_down" {
+  alarm_name          = "re3data_memory_scale_down"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
+  metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
   period              = "120"
   statistic           = "Average"
@@ -107,7 +107,7 @@ resource "aws_cloudwatch_metric_alarm" "re3data_cpu_scale_down" {
     ServiceName = "${aws_ecs_service.re3data.name}"
   }
 
-  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_description = "This metric monitors ecs memory utilization"
   alarm_actions     = ["${aws_appautoscaling_policy.re3data_scale_down.arn}"]
 }
 
