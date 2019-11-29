@@ -3,7 +3,14 @@ resource "aws_ecs_service" "profiles" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.profiles.arn}"
+  
+  # Create service with 2 instances to start
   desired_count = 2
+
+  # Allow external changes without Terraform plan difference
+  lifecycle {
+    ignore_changes = ["desired_count"]
+  }
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -27,6 +34,91 @@ resource "aws_ecs_service" "profiles" {
     "data.aws_lb_listener.default",
   ]
 }
+
+resource "aws_appautoscaling_target" "profiles" {
+  max_capacity       = 10
+  min_capacity       = 2
+  resource_id        = "service/default/${aws_ecs_service.profiles.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+
+resource "aws_appautoscaling_policy" "profiles_scale_up" {
+  name               = "scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = "${aws_appautoscaling_target.profiles.resource_id}"
+  scalable_dimension = "${aws_appautoscaling_target.profiles.scalable_dimension}"
+  service_namespace  = "${aws_appautoscaling_target.profiles.service_namespace}"
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+resource "aws_appautoscaling_policy" "profiles_scale_down" {
+  name               = "scale-down"
+  policy_type        = "StepScaling"
+  resource_id        = "${aws_appautoscaling_target.profiles.resource_id}"
+  scalable_dimension = "${aws_appautoscaling_target.profiles.scalable_dimension}"
+  service_namespace  = "${aws_appautoscaling_target.profiles.service_namespace}"
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = -1
+    }
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "profiles_cpu_scale_up" {
+  alarm_name          = "profiles_cpu_scale_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "80"
+
+  dimensions {
+    ClusterName = "default"
+    ServiceName = "${aws_ecs_service.profiles.name}"
+  }
+
+  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_actions     = ["${aws_appautoscaling_policy.profiles_scale_up.arn}"]
+}
+
+resource "aws_cloudwatch_metric_alarm" "profiles_cpu_scale_down" {
+  alarm_name          = "profiles_cpu_scale_down"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "20"
+
+  dimensions {
+    ClusterName = "default"
+    ServiceName = "${aws_ecs_service.profiles.name}"
+  }
+
+  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_actions     = ["${aws_appautoscaling_policy.profiles_scale_down.arn}"]
+}
+
 
 resource "aws_cloudwatch_log_group" "profiles" {
   name = "/ecs/profiles"

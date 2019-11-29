@@ -184,8 +184,8 @@ resource "aws_ecs_task_definition" "metrics-api" {
   container_definitions =  "${data.template_file.metrics-api_task.rendered}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "1024"
-  memory = "2048"
+  cpu = "256"
+  memory = "1024"
 }
 
 resource "aws_route53_record" "metrics-api" {
