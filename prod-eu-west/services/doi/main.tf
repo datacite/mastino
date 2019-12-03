@@ -88,7 +88,7 @@ resource "aws_cloudwatch_metric_alarm" "doi_cpu_scale_up" {
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = "120"
-  statistic           = "Maximum"
+  statistic           = "Average"
   threshold           = "80"
 
   dimensions {
