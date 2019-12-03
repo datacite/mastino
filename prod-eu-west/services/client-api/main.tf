@@ -81,49 +81,11 @@ resource "aws_appautoscaling_policy" "client-api_scale_down" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_up" {
-  alarm_name          = "client-api_cpu_scale_up"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "80"
-
-  dimensions {
-    ClusterName = "default"
-    ServiceName = "${aws_ecs_service.client-api.name}"
-  }
-
-  alarm_description = "This metric monitors ecs cpu utilization"
-  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_up.arn}"]
-}
-
-resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_down" {
-  alarm_name          = "client-api_cpu_scale_down"
-  comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "20"
-
-  dimensions {
-    ClusterName = "default"
-    ServiceName = "${aws_ecs_service.client-api.name}"
-  }
-
-  alarm_description = "This metric monitors ecs cpu utilization"
-  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_down.arn}"]
-}
-
-// resource "aws_cloudwatch_metric_alarm" "client-api_memory_scale_up" {
-//   alarm_name          = "client-api_memory_scale_up"
+// resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_up" {
+//   alarm_name          = "client-api_cpu_scale_up"
 //   comparison_operator = "GreaterThanOrEqualToThreshold"
 //   evaluation_periods  = "2"
-//   metric_name         = "MemoryUtilization"
+//   metric_name         = "CPUUtilization"
 //   namespace           = "AWS/ECS"
 //   period              = "120"
 //   statistic           = "Average"
@@ -134,15 +96,15 @@ resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_down" {
 //     ServiceName = "${aws_ecs_service.client-api.name}"
 //   }
 
-//   alarm_description = "This metric monitors ecs memory utilization"
+//   alarm_description = "This metric monitors ecs cpu utilization"
 //   alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_up.arn}"]
 // }
 
-// resource "aws_cloudwatch_metric_alarm" "client-api_memory_scale_down" {
-//   alarm_name          = "client-api_memory_scale_down"
+// resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_down" {
+//   alarm_name          = "client-api_cpu_scale_down"
 //   comparison_operator = "LessThanOrEqualToThreshold"
 //   evaluation_periods  = "2"
-//   metric_name         = "MemoryUtilization"
+//   metric_name         = "CPUUtilization"
 //   namespace           = "AWS/ECS"
 //   period              = "120"
 //   statistic           = "Average"
@@ -153,9 +115,47 @@ resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_down" {
 //     ServiceName = "${aws_ecs_service.client-api.name}"
 //   }
 
-//   alarm_description = "This metric monitors ecs memory utilization"
+//   alarm_description = "This metric monitors ecs cpu utilization"
 //   alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_down.arn}"]
 // }
+
+resource "aws_cloudwatch_metric_alarm" "client-api_memory_scale_up" {
+  alarm_name          = "client-api_memory_scale_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "MemoryUtilization"
+  namespace           = "AWS/ECS"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "80"
+
+  dimensions {
+    ClusterName = "default"
+    ServiceName = "${aws_ecs_service.client-api.name}"
+  }
+
+  alarm_description = "This metric monitors ecs memory utilization"
+  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_up.arn}"]
+}
+
+resource "aws_cloudwatch_metric_alarm" "client-api_memory_scale_down" {
+  alarm_name          = "client-api_memory_scale_down"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "MemoryUtilization"
+  namespace           = "AWS/ECS"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "20"
+
+  dimensions {
+    ClusterName = "default"
+    ServiceName = "${aws_ecs_service.client-api.name}"
+  }
+
+  alarm_description = "This metric monitors ecs memory utilization"
+  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_down.arn}"]
+}
 
 resource "aws_cloudwatch_log_group" "client-api" {
   name = "/ecs/client-api"
