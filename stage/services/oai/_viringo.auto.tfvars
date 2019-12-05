@@ -1,4 +1,4 @@
 viringo_tags = {
-  sha = "bb125a6"
-  version = "1.0.1"
+  sha = "d76116c"
+  version = "1.0.2"
 }
