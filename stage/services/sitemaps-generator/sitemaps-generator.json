@@ -27,8 +27,8 @@
         "value" : "${region}"
       },
       {
-        "name" : "REVISION",
-        "value" : "11"
+        "name" : "VERSION",
+        "value" : "0.8.9"
       }
     ]
   }
