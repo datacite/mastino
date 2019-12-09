@@ -1,33 +1,57 @@
-// module "fargate-scheduled-task" {
-//   source  = "baikonur-oss/fargate-scheduled-task/aws"
-//   version = "v2.0.1"
+resource "aws_iam_role" "ecs_events" {
+  name = "ecs_events"
 
-//   execution_role_arn  = data.aws_iam_role.ecs_task_execution_role.arn
-//   name                = "sitemaps-generator-test"
-//   schedule_expression = "cron(55 11 * * ? *)"
-//   is_enabled          = "true"
+  assume_role_policy = <<DOC
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "events.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+DOC
+}
 
-//   target_cluster_arn = data.aws_ecs_cluster.stage.arn
+resource "aws_iam_role_policy" "ecs_events_run_task_with_any_role" {
+  name = "ecs_events_run_task_with_any_role"
+  role = "${aws_iam_role.ecs_events.id}"
 
-//   task_definition_arn = aws_ecs_task_definition.sitemaps-generator-test.arn
-//   task_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
-//   task_count          = 1
-
-//   subnet_ids = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
-//   security_group_ids = [data.aws_security_group.datacite-private.id]
-// }
+  policy = <<DOC
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ecs:RunTask",
+            "Resource": "${replace(aws_ecs_task_definition.sitemaps-generator-stage.arn, "/:\\d+$/", ":*")}"
+        }
+    ]
+}
+DOC
+}
 
 resource "aws_cloudwatch_event_rule" "sitemaps-generator-stage" {
   name = "sitemaps-generator-stage"
   description = "Run sitemaps-generator-stage container via cron"
-  schedule_expression = "cron(30 12 * * ? *)"
+  schedule_expression = "cron(45 12 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "sitemaps-generator-stage" {
   target_id = "sitemaps-generator-stage"
   arn = data.aws_ecs_cluster.stage.arn
   rule = aws_cloudwatch_event_rule.sitemaps-generator-stage.name
-  role_arn  = data.aws_iam_role.ecs_task_execution_role.arn
+  role_arn  = aws_iam_role.ecs_events.arn
 
   ecs_target {
     task_count          = 1
