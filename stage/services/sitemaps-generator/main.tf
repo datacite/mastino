@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "sitemaps-search-test" {
     acl = "public-read"
     policy = templatefile("s3_public_read.json",
       {
-        vpce_id = data.aws_vpc_endpoint.datacite.id
+        vpce_id = data.aws_vpc_endpoint.datacite.id,
         bucket_name = "search.test.datacite.org"
       }
     website {
@@ -46,8 +46,8 @@ resource "aws_ecs_task_definition" "sitemaps-generator-test" {
   family = "sitemaps-generator-test"
   container_definitions =  templatefile("sitemaps-generator.json",
     {
-      access_key  = var.access_key
-      secret_key  = var.secret_key
+      access_key  = var.access_key,
+      secret_key  = var.secret_key,
       region      = var.region
     })
 }
