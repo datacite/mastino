@@ -1,29 +1,3 @@
-resource "aws_s3_bucket" "sitemaps-search" {
-    bucket = "search.datacite.org"
-    acl = "public-read"
-    policy = "${data.template_file.sitemaps-search.rendered}"
-    website {
-        index_document = "sitemap.xml.gz"
-    }
-    tags {
-        Name = "SitemapsSearch"
-    }
-}
-
-data "template_file" "sitemaps-search" {
-    template = "${file("s3_public_read.json")}"
-
-    vars {
-        vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
-        bucket_name = "search.datacite.org"
-    }
-}
-
-resource "aws_ecs_task_definition" "sitemaps-generator" {
-  family = "sitemaps-generator"
-  container_definitions =  "${data.template_file.sitemaps_generator_task.rendered}"
-}
-
 resource "aws_cloudwatch_event_rule" "sitemaps-generator" {
   name = "sitemaps-generator"
   description = "Run sitemaps-generator container via cron"
@@ -32,47 +6,57 @@ resource "aws_cloudwatch_event_rule" "sitemaps-generator" {
 
 resource "aws_cloudwatch_event_target" "sitemaps-generator" {
   target_id = "sitemaps-generator"
-  rule = "${aws_cloudwatch_event_rule.sitemaps-generator.name}"
-  arn = "${aws_lambda_function.sitemaps-generator.arn}"
+  arn = data.aws_ecs_cluster.default.arn
+  rule = aws_cloudwatch_event_rule.sitemaps-generator.name
+  role_arn  = data.aws_iam_role.ecs_task_execution_role.arn
 
   ecs_target {
     task_count          = 1
     launch_type         = "FARGATE"
-    task_definition_arn = "${aws_ecs_task_definition.sitemaps-generator.arn}"
+    task_definition_arn = aws_ecs_task_definition.sitemaps-generator.arn
     
     network_configuration {
-      security_groups = ["${data.aws_security_group.datacite-private.id}"]
+      security_groups = [data.aws_security_group.datacite-private.id]
       subnets         = [
-        "${data.aws_subnet.datacite-private.id}",
-        "${data.aws_subnet.datacite-alt.id}"
+        data.aws_subnet.datacite-private.id,
+        data.aws_subnet.datacite-alt.id
       ]
     }
   }
 }
 
-resource "aws_lambda_function" "sitemaps-generator" {
-  filename = "ecs_task_runner.js.zip"
-  function_name = "sitemaps-generator"
-  role = "${data.aws_iam_role.lambda.arn}"
-  handler = "ecs_task_runner.handler"
-  runtime = "nodejs10.x"
-  vpc_config {
-    subnet_ids = ["${data.aws_subnet.datacite-private.id}", "${data.aws_subnet.datacite-alt.id}"]
-    security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
-  }
-  environment {
-    variables = {
-      ecs_task_def = "sitemaps-generator"
-      cluster = "default"
-      count = 1
+resource "aws_s3_bucket" "sitemaps-search" {
+    bucket = "search.datacite.org"
+    acl = "public-read"
+    policy = templatefile("s3_public_read.json",
+      {
+        vpce_id = data.aws_vpc_endpoint.datacite.id,
+        bucket_name = "search.datacite.org"
+      })
+    website {
+        index_document = "index.html"
     }
-  }
+    tags = {
+      Name = "SitemapsSearch"
+    }
 }
 
-resource "aws_lambda_permission" "sitemaps-generator" {
-  statement_id = "AllowExecutionFromCloudWatch"
-  action = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.sitemaps-generator.function_name}"
-  principal = "events.amazonaws.com"
-  source_arn = "${aws_cloudwatch_event_rule.sitemaps-generator.arn}"
+resource "aws_cloudwatch_log_group" "sitemaps-generator" {
+  name = "/ecs/sitemaps-generator"
+}
+
+resource "aws_ecs_task_definition" "sitemaps-generator" {
+  family = "sitemaps-generator"
+  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
+  network_mode = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  cpu = "512"
+  memory = "2048"
+
+  container_definitions =  templatefile("sitemaps-generator.json",
+    {
+      access_key  = var.access_key,
+      secret_key  = var.secret_key,
+      region      = var.region
+    })
 }
