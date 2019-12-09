@@ -2,6 +2,7 @@ module "fargate-scheduled-task" {
   source  = "baikonur-oss/fargate-scheduled-task/aws"
   version = "v2.0.1"
 
+  execution_role_arn  = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   name                = "sitemaps-generator-test"
   schedule_expression = "cron(05 9 * * ? *)"
   is_enabled          = "true"
