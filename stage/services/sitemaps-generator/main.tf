@@ -33,6 +33,10 @@ resource "aws_s3_bucket" "sitemaps-search-test" {
     }
 }
 
+resource "aws_cloudwatch_log_group" "sitemaps-generator-stage" {
+  name = "/ecs/sitemaps-generator-stage"
+}
+
 resource "aws_ecs_task_definition" "sitemaps-generator-test" {
   family = "sitemaps-generator-test"
   container_definitions =  templatefile("sitemaps-generator.json",
