@@ -19,6 +19,10 @@ data "aws_vpc_endpoint" "datacite" {
   service_name = "com.amazonaws.eu-west-1.s3"
 }
 
+data "aws_ecs_cluster" "stage" {
+  cluster_name = "stage"
+}
+
 data "aws_iam_role" "lambda" {
   name = "lambda"
 }

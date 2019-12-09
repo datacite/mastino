@@ -7,7 +7,7 @@ module "fargate-scheduled-task" {
   schedule_expression = "cron(05 9 * * ? *)"
   is_enabled          = "true"
 
-  target_cluster_arn = "stage"
+  target_cluster_arn = data.aws_ecs_cluster.stage.arn
 
   task_definition_arn = "${aws_ecs_task_definition.sitemaps-generator-test.arn}"
   task_role_arn       = "${data.aws_iam_role.ecs_task_execution_role.arn}"
