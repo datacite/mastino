@@ -44,7 +44,7 @@ DOC
 resource "aws_cloudwatch_event_rule" "sitemaps-generator-stage" {
   name = "sitemaps-generator-stage"
   description = "Run sitemaps-generator-stage container via cron"
-  schedule_expression = "cron(45 12 * * ? *)"
+  schedule_expression = "cron(20 13 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "sitemaps-generator-stage" {
