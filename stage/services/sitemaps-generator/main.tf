@@ -24,7 +24,7 @@ resource "aws_s3_bucket" "sitemaps-search-test" {
       {
         vpce_id = data.aws_vpc_endpoint.datacite.id,
         bucket_name = "search.test.datacite.org"
-      }
+      })
     website {
         index_document = "index.html"
     }
