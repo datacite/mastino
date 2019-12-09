@@ -90,6 +90,12 @@ resource "aws_cloudwatch_log_group" "sitemaps-generator-stage" {
 
 resource "aws_ecs_task_definition" "sitemaps-generator-stage" {
   family = "sitemaps-generator-stage"
+  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
+  network_mode = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  cpu = "256"
+  memory = "1024"
+
   container_definitions =  templatefile("sitemaps-generator.json",
     {
       access_key  = var.access_key,

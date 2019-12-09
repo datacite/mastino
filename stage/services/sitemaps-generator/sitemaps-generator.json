@@ -3,7 +3,7 @@
     "name": "sitemaps-generator-stage",
     "image": "datacite/maltese",
     "cpu": 256,
-    "memory": 512,
+    "memory": 1024,
     "networkMode": "awsvpc",
     "essential": true,
     "logConfiguration": { 
