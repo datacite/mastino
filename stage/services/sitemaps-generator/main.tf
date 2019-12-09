@@ -4,7 +4,7 @@ module "fargate-scheduled-task" {
 
   execution_role_arn  = data.aws_iam_role.ecs_task_execution_role.arn
   name                = "sitemaps-generator-test"
-  schedule_expression = "cron(30 11 * * ? *)"
+  schedule_expression = "cron(55 11 * * ? *)"
   is_enabled          = "true"
 
   target_cluster_arn = data.aws_ecs_cluster.stage.arn
