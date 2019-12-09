@@ -28,8 +28,8 @@ resource "aws_s3_bucket" "sitemaps-search-test" {
     website {
         index_document = "index.html"
     }
-    tags {
-        Name = "SitemapsSearchTest"
+    tags = {
+      Name = "SitemapsSearchTest"
     }
 }
 
