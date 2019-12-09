@@ -4,15 +4,15 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "template_file" "sitemaps_generator_test_task" {
-  template = "${file("sitemaps-generator.json")}"
+// data "template_file" "sitemaps_generator_test_task" {
+//   template = "${file("sitemaps-generator.json")}"
 
-  vars {
-    access_key  = "${var.access_key}"
-    secret_key  = "${var.secret_key}"
-    region      = "${var.region}"
-  }
-}
+//   vars {
+//     access_key  = "${var.access_key}"
+//     secret_key  = "${var.secret_key}"
+//     region      = "${var.region}"
+//   }
+// }
 
 data "aws_vpc_endpoint" "datacite" {
   vpc_id       = "${var.vpc_id}"

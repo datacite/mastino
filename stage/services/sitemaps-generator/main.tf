@@ -20,7 +20,11 @@ module "fargate-scheduled-task" {
 resource "aws_s3_bucket" "sitemaps-search-test" {
     bucket = "search.test.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.sitemaps-search-test.rendered}"
+    policy = templatefile("s3_public_read.json",
+      {
+        vpce_id = data.aws_vpc_endpoint.datacite.id
+        bucket_name = "search.test.datacite.org"
+      }
     website {
         index_document = "index.html"
     }
@@ -29,18 +33,23 @@ resource "aws_s3_bucket" "sitemaps-search-test" {
     }
 }
 
-data "template_file" "sitemaps-search-test" {
-    template = "${file("s3_public_read.json")}"
+// data "template_file" "sitemaps-search-test" {
+//     template = "${file("s3_public_read.json")}"
 
-    vars {
-        vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
-        bucket_name = "search.test.datacite.org"
-    }
-}
+//     vars {
+//         vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
+//         bucket_name = "search.test.datacite.org"
+//     }
+// }
 
 resource "aws_ecs_task_definition" "sitemaps-generator-test" {
   family = "sitemaps-generator-test"
-  container_definitions =  "${data.template_file.sitemaps_generator_test_task.rendered}"
+  container_definitions =  templatefile("sitemaps-generator.json",
+    {
+      access_key  = var.access_key
+      secret_key  = var.secret_key
+      region      = var.region
+    })
 }
 
 // resource "aws_cloudwatch_event_rule" "sitemaps-generator-test" {
