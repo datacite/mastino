@@ -3,7 +3,8 @@
     "name": "sitemaps-generator",
     "image": "datacite/maltese",
     "cpu": 512,
-    "memory": 2000,
+    "memory": 2048,
+    "networkMode": "awsvpc",
     "essential": true,
     "environment" : [
       {
