@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_events-stage" {
-  name = "ecs_events"
+  name = "ecs_events-stage"
 
   assume_role_policy = <<DOC
 {
