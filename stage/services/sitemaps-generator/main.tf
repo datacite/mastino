@@ -8,7 +8,7 @@ resource "aws_cloudwatch_event_target" "sitemaps-generator-stage" {
   target_id = "sitemaps-generator-stage"
   arn = data.aws_ecs_cluster.stage.arn
   rule = aws_cloudwatch_event_rule.sitemaps-generator-stage.name
-  role_arn  = data.aws_iam_role.ecs_task_execution_role.arn
+  role_arn  = data.aws_iam_role.ecs_events-stage.arn
 
   ecs_target {
     task_count          = 1

@@ -17,6 +17,10 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
+data "aws_iam_role" "ecs_events-stage" {
+  name = "ecs_events-stage"
+}
+
 data "aws_security_group" "datacite-private" {
   id = var.security_group_id
 }
