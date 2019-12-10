@@ -1,14 +1,14 @@
 resource "aws_cloudwatch_event_rule" "sitemaps-generator" {
   name = "sitemaps-generator"
   description = "Run sitemaps-generator container via cron"
-  schedule_expression = "cron(10 17 * * ? *)"
+  schedule_expression = "cron(55 13 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "sitemaps-generator" {
   target_id = "sitemaps-generator"
   arn = data.aws_ecs_cluster.default.arn
   rule = aws_cloudwatch_event_rule.sitemaps-generator.name
-  role_arn  = data.aws_iam_role.ecs_task_execution_role.arn
+  role_arn  = data.aws_iam_role.ecs_events.arn
 
   ecs_target {
     task_count          = 1
