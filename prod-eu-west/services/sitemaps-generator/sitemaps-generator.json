@@ -6,6 +6,14 @@
     "memory": 2048,
     "networkMode": "awsvpc",
     "essential": true,
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/sitemaps-generator",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment" : [
       {
         "name" : "SITEMAP_BUCKET",
@@ -29,7 +37,7 @@
       },
       {
         "name" : "REVISION",
-        "value" : "0.9.0"
+        "value" : "0.9.1"
       }
     ]
   }
