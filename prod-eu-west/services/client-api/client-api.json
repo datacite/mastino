@@ -3,7 +3,7 @@
     "name": "client-api",
     "image": "datacite/lupo:${version}",
     "cpu": 2048,
-    "memory": 4096,
+    "memory": 6144,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [
