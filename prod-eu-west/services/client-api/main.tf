@@ -167,7 +167,7 @@ resource "aws_ecs_task_definition" "client-api" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "2048"
-  memory = "6144"
+  memory = "8192"
   container_definitions =  "${data.template_file.client-api_task.rendered}"
 }
 
