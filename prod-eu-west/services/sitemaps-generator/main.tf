@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "sitemaps-generator" {
   name = "sitemaps-generator"
   description = "Run sitemaps-generator container via cron"
-  schedule_expression = "cron(20 10 ? * FRI *)"
+  schedule_expression = "cron(20 3 ? * SAT *)"
 }
 
 resource "aws_cloudwatch_event_target" "sitemaps-generator" {
@@ -57,6 +57,7 @@ resource "aws_ecs_task_definition" "sitemaps-generator" {
     {
       access_key  = var.access_key,
       secret_key  = var.secret_key,
-      region      = var.region
+      region      = var.region,
+      slack_webhook_url = var.slack_webhook_url
     })
 }

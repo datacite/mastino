@@ -36,6 +36,10 @@
         "value" : "${region}"
       },
       {
+        "name" : "SLACK_WEBHOOK_URL",
+        "value" : "${slack_webhook_url}"
+      },
+      {
         "name" : "REVISION",
         "value" : "0.9.8"
       }
