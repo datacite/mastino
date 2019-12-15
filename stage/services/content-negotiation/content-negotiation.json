@@ -43,7 +43,7 @@
       },
       {
         "name" : "LOG_LEVEL",
-        "value" : "info"
+        "value" : "warn"
       },
       {
         "name" : "PASSENGER_MAX_POOL_SIZE",
