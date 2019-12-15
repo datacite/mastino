@@ -39,7 +39,7 @@
       },
       {
         "name" : "LOG_LEVEL",
-        "value" : "info"
+        "value" : "warn"
       },
       {
         "name" : "SECRET_KEY_BASE",
