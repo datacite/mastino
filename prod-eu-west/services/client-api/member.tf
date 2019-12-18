@@ -228,8 +228,10 @@ resource "aws_lb_listener_rule" "member-api" {
   }
 
   condition {
-    http_header_name = "Authorization"
-    values           = ["Basic*", "Bearer*"]
+    http_header {
+      http_header_name = "Authorization"
+      values           = ["Basic*", "Bearer*"]
+    }
   }
 }
 
