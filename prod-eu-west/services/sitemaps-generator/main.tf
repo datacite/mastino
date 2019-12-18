@@ -53,7 +53,7 @@ resource "aws_ecs_task_definition" "sitemaps-generator" {
   cpu = "512"
   memory = "2048"
 
-  container_definitions =  templatefile("sitemaps-generator.json",
+  container_definitions = templatefile("sitemaps-generator.json",
     {
       access_key  = var.access_key,
       secret_key  = var.secret_key,
