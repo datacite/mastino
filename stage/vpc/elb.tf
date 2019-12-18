@@ -10,7 +10,7 @@ resource "aws_lb" "stage" {
   access_logs {
     bucket = "${aws_s3_bucket.logs-stage.bucket}"
     prefix = "lb"
-    enabled = true
+    enabled = false
   }
 
   tags {
@@ -30,7 +30,7 @@ resource "aws_lb" "crosscite-stage" {
   access_logs {
     bucket = "${aws_s3_bucket.logs-stage.bucket}"
     prefix = "crosscite-stage"
-    enabled = true
+    enabled = false
   }
 
   tags {
