@@ -221,7 +221,7 @@ resource "aws_lb_listener_rule" "api-graphql" {
 
 resource "aws_lb_listener_rule" "api" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 41
+  priority     = 42
 
   action {
     type             = "forward"
