@@ -78,8 +78,9 @@ data "template_file" "client-api_task" {
     slack_webhook_url  = "${var.slack_webhook_url}"
     version            = "${var.lupo_tags["version"]}"
   }
+}
 
-  data "template_file" "member-api_task" {
+data "template_file" "member-api_task" {
   template = "${file("member-api.json")}"
 
   vars {
