@@ -36,7 +36,7 @@ resource "aws_ecs_service" "levriero" {
 }
 
 resource "aws_appautoscaling_target" "levriero" {
-  max_capacity       = 10
+  max_capacity       = 2
   min_capacity       = 2
   resource_id        = "service/default/${aws_ecs_service.levriero.name}"
   scalable_dimension = "ecs:service:DesiredCount"
