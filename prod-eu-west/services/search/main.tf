@@ -15,7 +15,7 @@ resource "aws_ecs_service" "search" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.search.arn}"
-  
+
   # Create service with 2 instances to start
   desired_count = 3
 
@@ -265,4 +265,56 @@ resource "aws_route53_record" "split-search" {
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.default.dns_name}"]
+}
+
+// Old solr search interfaces
+
+resource "aws_lb_listener_rule" "solr-api" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 80
+
+  action {
+    type = "redirect"
+
+    redirect {
+      path        = "/"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/api*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "solr-ui" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 82
+
+  action {
+    type = "redirect"
+
+    redirect {
+      path        = "/"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/ui*"]
+  }
 }

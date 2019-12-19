@@ -56,6 +56,9 @@ variable "data_url" {
 variable "gabba_url" {
   default = "search.datacite.org"
 }
+variable "aws_route53_record_search_name" {
+    default = "search.datacite.org"
+}
 
 variable "memcache_servers" {
   default = "memcached1.datacite.org:11211"
