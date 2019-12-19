@@ -36,7 +36,7 @@ resource "aws_ecs_service" "profiles" {
 }
 
 resource "aws_appautoscaling_target" "profiles" {
-  max_capacity       = 10
+  max_capacity       = 8
   min_capacity       = 2
   resource_id        = "service/default/${aws_ecs_service.profiles.name}"
   scalable_dimension = "ecs:service:DesiredCount"
@@ -129,7 +129,7 @@ resource "aws_ecs_task_definition" "profiles" {
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "1024"
+  cpu = "512"
   memory = "2048"
   container_definitions =  "${data.template_file.profiles_task.rendered}"
 }
