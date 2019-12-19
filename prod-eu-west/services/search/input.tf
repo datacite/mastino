@@ -47,9 +47,9 @@ data "aws_lb_listener" "default" {
   port = 443
 }
 
-data "aws_lb_target_group" "solr" {
-  name = "solr"
-}
+# data "aws_lb_target_group" "solr" {
+#   name = "solr"
+# }
 
 data "aws_vpc_endpoint" "datacite" {
   vpc_id       = "${var.vpc_id}"

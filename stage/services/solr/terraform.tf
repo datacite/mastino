@@ -1,7 +1,7 @@
-terraform {
-  required_version = ">= 0.11"
+# terraform {
+#   required_version = ">= 0.11"
 
-  backend "atlas" {
-    name         = "datacite-ng/stage-services-solr"
-  }
-}
+#   backend "atlas" {
+#     name         = "datacite-ng/stage-services-solr"
+#   }
+# }

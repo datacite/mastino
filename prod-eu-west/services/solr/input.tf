@@ -15,19 +15,19 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-data "aws_instance" "ecs-solr-1" {
-  filter {
-    name   = "tag:Name"
-    values = ["ECS1"]
-  }
-}
+# data "aws_instance" "ecs-solr-1" {
+#   filter {
+#     name   = "tag:Name"
+#     values = ["ECS1"]
+#   }
+# }
 
-data "aws_instance" "ecs-solr-2" {
-  filter {
-    name   = "tag:Name"
-    values = ["ECS2"]
-  }
-}
+# data "aws_instance" "ecs-solr-2" {
+#   filter {
+#     name   = "tag:Name"
+#     values = ["ECS2"]
+#   }
+# }
 
 data "aws_security_group" "datacite-private" {
   id = "${var.security_group_id}"
