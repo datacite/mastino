@@ -2,8 +2,8 @@
   {
     "name": "metrics-api",
     "image": "datacite/sashimi:${version}",
-    "cpu": 256,
-    "memory": 1024,
+    "cpu": 512,
+    "memory": 2048,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [
