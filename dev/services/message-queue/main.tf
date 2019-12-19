@@ -87,6 +87,14 @@ resource "aws_sqs_queue" "dead-letter-dev" {
   }
 }
 
+resource "aws_sqs_queue" "sashimi-dev" {
+  name                      = "development_sashimi"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
 resource "aws_iam_policy" "sqs-dev" {
   name = "sqs-dev"
   policy = "${data.template_file.queue-dev.rendered}"
