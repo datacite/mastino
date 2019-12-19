@@ -24,19 +24,19 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "production"
+        "value" : "development"
       },
       {
         "name" : "RAILS_ENV",
-        "value" : "production"
+        "value" : "development"
       },
       {
         "name" : "SITE_TITLE",
-        "value" : "DLM API"
+        "value" : "Metrics API"
       },
       {
         "name" : "LOG_LEVEL",
-        "value" : "info"
+        "value" : "warn"
       },
       {
         "name" : "JWT_PUBLIC_KEY",
