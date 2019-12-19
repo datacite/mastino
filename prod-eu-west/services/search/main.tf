@@ -284,6 +284,11 @@ resource "aws_lb_listener_rule" "solr-api" {
   }
 
   condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
+  }
+
+  condition {
     field  = "path-pattern"
     values = ["/api*"]
   }
@@ -301,6 +306,11 @@ resource "aws_lb_listener_rule" "solr-ui" {
       protocol    = "HTTPS"
       status_code = "HTTP_301"
     }
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.aws_route53_record_search_name}"]
   }
 
   condition {
