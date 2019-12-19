@@ -285,7 +285,7 @@ resource "aws_lb_listener_rule" "solr-api" {
 
   condition {
     field  = "host-header"
-    values = ["${var.aws_route53_record_search_name}"]
+    values = ["${aws_route53_record.search.name}"]
   }
 
   condition {
@@ -310,7 +310,7 @@ resource "aws_lb_listener_rule" "solr-ui" {
 
   condition {
     field  = "host-header"
-    values = ["${var.aws_route53_record_search_name}"]
+    values = ["${aws_route53_record.search.name}"]
   }
 
   condition {
