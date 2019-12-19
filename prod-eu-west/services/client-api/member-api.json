@@ -103,7 +103,7 @@
       },
       {
         "name" : "SERVERNAME",
-        "value" : "client-api.datacite.org"
+        "value" : "member-api.datacite.org"
       },
       {
         "name" : "MEMCACHE_SERVERS",
