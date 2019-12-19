@@ -185,7 +185,7 @@ resource "aws_ecs_task_definition" "metrics-api" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
-  memory = "2048"
+  memory = "4096"
 }
 
 resource "aws_route53_record" "metrics-api" {
