@@ -74,6 +74,16 @@ resource "aws_wafregional_web_acl" "default" {
     rule_id  = "${aws_wafregional_rate_based_rule.rate.id}"
     type     = "RATE_BASED"
   }
+
+  rule {
+    action {
+      type = "BLOCK"
+    }
+
+    priority = 2
+    rule_id  = "${aws_wafregional_rule.block.id}"
+    type     = "REGULAR"
+  }
 }
 
 resource "aws_wafregional_web_acl_association" "default" {
