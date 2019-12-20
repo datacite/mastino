@@ -75,3 +75,4 @@ variable "waf_regex_host_allow_pattern_strings" {
 
 variable "waf_nat_ip" {}
 variable "waf_whitelisted_ip" {}
+variable "waf_blacklisted_ip" {}

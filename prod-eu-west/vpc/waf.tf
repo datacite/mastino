@@ -30,6 +30,15 @@ resource "aws_wafregional_ipset" "whitelist" {
   }
 }
 
+resource "aws_wafregional_ipset" "blacklist" {
+  name = "blacklistIPSet"
+
+  ip_set_descriptor {
+    type  = "IPV4"
+    value = "${var.waf_blacklisted_ip}"
+  }
+}
+
 resource "aws_wafregional_rate_based_rule" "rate" {
   depends_on  = ["aws_wafregional_ipset.nat", "aws_wafregional_ipset.whitelist"]
   name        = "natWAFRule"
@@ -48,6 +57,17 @@ resource "aws_wafregional_rate_based_rule" "rate" {
     data_id = "${aws_wafregional_ipset.whitelist.id}"
     negated = true
     type    = "IPMatch"
+  }
+}
+
+resource "aws_wafregional_rule" "block" {
+  name        = "blockWAFRule"
+  metric_name = "blockWAFRule"
+
+  predicate {
+    type    = "IPMatch"
+    data_id = "${aws_wafregional_ipset.blacklist.id}"
+    negated = false
   }
 }
 
