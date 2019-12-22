@@ -2,8 +2,8 @@
   {
     "name": "search",
     "image": "crosscite/doi-metadata-search:${version}",
-    "cpu": 1024,
-    "memory": 2048,
+    "cpu": 2048,
+    "memory": 4096,
     "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [
