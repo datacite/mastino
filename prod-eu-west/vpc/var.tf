@@ -61,9 +61,6 @@ variable "environment" {
   default = "prod"
 }
 
-variable "waf_ips_disallow" {
-  type = "list"
-}
 variable "waf_ip_rate_limit" {}
 variable "wafregional_rule_id" {}
 variable "waf_regex_path_disallow_pattern_strings" {
@@ -75,3 +72,4 @@ variable "waf_regex_host_allow_pattern_strings" {
 
 variable "waf_nat_ip" {}
 variable "waf_whitelisted_ip" {}
+variable "waf_blacklisted_ip" {}
