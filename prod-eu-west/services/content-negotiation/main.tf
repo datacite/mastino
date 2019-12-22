@@ -125,7 +125,7 @@ resource "aws_ecs_task_definition" "content-negotiation" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "256"
-  memory = "512"
+  memory = "1024"
 
   container_definitions =  "${data.template_file.content-negotiation_task.rendered}"
 }

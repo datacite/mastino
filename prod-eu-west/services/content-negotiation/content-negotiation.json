@@ -3,7 +3,7 @@
     "name": "content-negotiation",
     "image": "crosscite/content-negotiation:${version}",
     "cpu": 256,
-    "memory": 512,
+    "memory": 1024,
     "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [
