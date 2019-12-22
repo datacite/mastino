@@ -16,8 +16,8 @@ resource "aws_ecs_service" "search" {
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.search.arn}"
 
-  # Create service with 2 instances to start
-  desired_count = 3
+  # Create service with 6 instances to start
+  desired_count = 6
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -44,8 +44,8 @@ resource "aws_ecs_service" "search" {
 }
 
 resource "aws_appautoscaling_target" "search" {
-  max_capacity       = 10
-  min_capacity       = 3
+  max_capacity       = 12
+  min_capacity       = 6
   resource_id        = "service/default/${aws_ecs_service.search.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -192,8 +192,8 @@ resource "aws_ecs_task_definition" "search" {
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}",
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "2048"
-  memory = "4096"
+  cpu = "1024"
+  memory = "2048"
 
   container_definitions =  "${data.template_file.search_task.rendered}"
 }
