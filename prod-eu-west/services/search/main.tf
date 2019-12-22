@@ -175,7 +175,7 @@ resource "aws_lb_target_group" "search" {
   health_check {
     path = "/heartbeat"
     interval = 60
-    timeout = 10
+    timeout = 30
   }
 
   stickiness {
