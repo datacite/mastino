@@ -167,7 +167,7 @@ resource "aws_ecs_task_definition" "client-api" {
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "2048"
-  memory = "8192"
+  memory = "10240"
   container_definitions =  templatefile("client-api.json",
     {
       re3data_url        = var.re3data_url
