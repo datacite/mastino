@@ -16,8 +16,8 @@ resource "aws_ecs_service" "search" {
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.search.arn}"
 
-  # Create service with 6 instances to start
-  desired_count = 6
+  # Create service with 2 instances to start
+  desired_count = 2
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -44,8 +44,8 @@ resource "aws_ecs_service" "search" {
 }
 
 resource "aws_appautoscaling_target" "search" {
-  max_capacity       = 12
-  min_capacity       = 6
+  max_capacity       = 8
+  min_capacity       = 2
   resource_id        = "service/default/${aws_ecs_service.search.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -175,7 +175,7 @@ resource "aws_lb_target_group" "search" {
   health_check {
     path = "/heartbeat"
     interval = 60
-    timeout = 30
+    timeout = 10
   }
 
   stickiness {
