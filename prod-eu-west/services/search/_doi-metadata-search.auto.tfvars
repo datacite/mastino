@@ -1,4 +1,4 @@
 doi-metadata-search_tags = {
-  sha = "8575146"
-  version = "1.24.23"
+  sha = "effec2d"
+  version = "1.24.24"
 }
