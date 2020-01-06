@@ -89,6 +89,42 @@ resource "aws_appautoscaling_policy" "search_scale_down" {
   }
 }
 
+resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
+  alarm_name          = "search_request_scale_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "RequestCountPerTarget"
+  namespace           = "AWS/ApplicationELB"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "300"
+
+  dimensions {
+    TargetGroup  = "${aws_lb_target_group.search}"
+  }
+
+  alarm_description = "This metric monitors request counts"
+  alarm_actions     = ["${aws_appautoscaling_policy.search_scale_up.arn}"]
+}
+
+resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
+  alarm_name          = "search_request_scale_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "RequestCountPerTarget"
+  namespace           = "AWS/ApplicationELB"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "200"
+
+  dimensions {
+    TargetGroup  = "${aws_lb_target_group.search}"
+  }
+
+  alarm_description = "This metric monitors request counts"
+  alarm_actions     = ["${aws_appautoscaling_policy.search_scale_down.arn}"]
+}
+
 resource "aws_cloudwatch_metric_alarm" "search_cpu_scale_up" {
   alarm_name          = "search_cpu_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
