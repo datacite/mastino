@@ -92,7 +92,7 @@ resource "aws_appautoscaling_policy" "search_scale_down" {
 resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   alarm_name          = "search_request_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "RequestCountPerTarget"
   namespace           = "AWS/ApplicationELB"
   period              = "300"
@@ -110,7 +110,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
   alarm_name          = "search_request_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "RequestCountPerTarget"
   namespace           = "AWS/ApplicationELB"
   period              = "300"
