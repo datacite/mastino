@@ -100,7 +100,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   threshold           = "1000"
 
   dimensions {
-    TargetGroup  = "${aws_lb_target_group.search}"
+    TargetGroupName  = "${aws_lb_target_group.search.name}"
   }
 
   alarm_description = "This metric monitors request counts"
