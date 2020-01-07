@@ -89,7 +89,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_up" {
   namespace           = "AWS/ECS"
   period              = "120"
   statistic           = "Average"
-  threshold           = "80"
+  threshold           = "60"
 
   dimensions = {
     ClusterName = "default"
