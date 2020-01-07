@@ -108,7 +108,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
-  alarm_name          = "search_request_scale_up"
+  alarm_name          = "search_request_scale_down"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "RequestCountPerTarget"
