@@ -17,7 +17,7 @@ resource "aws_ecs_service" "search" {
   task_definition = "${aws_ecs_task_definition.search.arn}"
 
   # Create service with 4 instances to start
-  desired_count = 4
+  desired_count = 3
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -97,7 +97,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   namespace           = "AWS/ApplicationELB"
   period              = "120"
   statistic           = "Sum"
-  threshold           = "200"
+  threshold           = "100"
 
   dimensions {
     TargetGroupName  = "${aws_lb_target_group.search.name}"
@@ -115,7 +115,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
   namespace           = "AWS/ApplicationELB"
   period              = "120"
   statistic           = "Sum"
-  threshold           = "50"
+  threshold           = "25"
 
   dimensions {
     TargetGroupName  = "${aws_lb_target_group.search.name}"
