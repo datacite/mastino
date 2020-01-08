@@ -106,7 +106,7 @@ resource "aws_cloudwatch_metric_alarm" "levriero_cpu_scale_down" {
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = "120"
+  period              = "300"
   statistic           = "Average"
   threshold           = "20"
 
