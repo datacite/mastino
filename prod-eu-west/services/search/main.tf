@@ -95,12 +95,12 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   evaluation_periods  = "2"
   metric_name         = "RequestCountPerTarget"
   namespace           = "AWS/ApplicationELB"
-  period              = "120"
+  period              = "60"
   statistic           = "Sum"
   threshold           = "100"
 
   dimensions {
-    TargetGroupName  = "${aws_lb_target_group.search.name}"
+    TargetGroup  = "${aws_lb_target_group.search.arn}"
   }
 
   alarm_description = "This metric monitors request counts"
@@ -113,12 +113,12 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
   evaluation_periods  = "2"
   metric_name         = "RequestCountPerTarget"
   namespace           = "AWS/ApplicationELB"
-  period              = "120"
+  period              = "60"
   statistic           = "Sum"
   threshold           = "25"
 
   dimensions {
-    TargetGroupName  = "${aws_lb_target_group.search.name}"
+    TargetGroup  = "${aws_lb_target_group.search.arn}"
   }
 
   alarm_description = "This metric monitors request counts"
