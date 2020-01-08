@@ -97,7 +97,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   namespace           = "AWS/ApplicationELB"
   period              = "60"
   statistic           = "Sum"
-  threshold           = "500"
+  threshold           = "100"
 
   dimensions {
     TargetGroupName  = "${aws_lb_target_group.search.name}"
@@ -115,7 +115,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
   namespace           = "AWS/ApplicationELB"
   period              = "60"
   statistic           = "Sum"
-  threshold           = "100"
+  threshold           = "20"
 
   dimensions {
     TargetGroupName  = "${aws_lb_target_group.search.name}"
