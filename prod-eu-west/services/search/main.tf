@@ -45,7 +45,7 @@ resource "aws_ecs_service" "search" {
 
 resource "aws_appautoscaling_target" "search" {
   max_capacity       = 8
-  min_capacity       = 4
+  min_capacity       = 3
   resource_id        = "service/default/${aws_ecs_service.search.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -92,12 +92,12 @@ resource "aws_appautoscaling_policy" "search_scale_down" {
 resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   alarm_name          = "search_request_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "1"
+  evaluation_periods  = "2"
   metric_name         = "RequestCountPerTarget"
   namespace           = "AWS/ApplicationELB"
-  period              = "60"
+  period              = "120"
   statistic           = "Sum"
-  threshold           = "100"
+  threshold           = "200"
 
   dimensions {
     TargetGroupName  = "${aws_lb_target_group.search.name}"
@@ -110,12 +110,12 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
   alarm_name          = "search_request_scale_down"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "1"
+  evaluation_periods  = "2"
   metric_name         = "RequestCountPerTarget"
   namespace           = "AWS/ApplicationELB"
-  period              = "60"
+  period              = "120"
   statistic           = "Sum"
-  threshold           = "20"
+  threshold           = "50"
 
   dimensions {
     TargetGroupName  = "${aws_lb_target_group.search.name}"
