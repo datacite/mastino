@@ -100,7 +100,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   threshold           = "100"
 
   dimensions {
-    TargetGroup  = "${aws_lb_target_group.search.arn}"
+    TargetGroup  = "${aws_lb_target_group.search.id}"
   }
 
   alarm_description = "This metric monitors request counts"
@@ -118,7 +118,7 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
   threshold           = "25"
 
   dimensions {
-    TargetGroup  = "${aws_lb_target_group.search.arn}"
+    TargetGroup  = "${aws_lb_target_group.search.id}"
   }
 
   alarm_description = "This metric monitors request counts"
