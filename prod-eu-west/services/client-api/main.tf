@@ -5,7 +5,7 @@ resource "aws_ecs_service" "client-api" {
   task_definition = aws_ecs_task_definition.client-api.arn
   
   # Create service with 2 instances to start
-  desired_count = 2
+  desired_count = 3
 
   # Allow external changes without Terraform plan difference
   lifecycle {
