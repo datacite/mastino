@@ -36,7 +36,7 @@ resource "aws_ecs_service" "levriero" {
 }
 
 resource "aws_appautoscaling_target" "levriero" {
-  max_capacity       = 2
+  max_capacity       = 4
   min_capacity       = 2
   resource_id        = "service/default/${aws_ecs_service.levriero.name}"
   scalable_dimension = "ecs:service:DesiredCount"
@@ -106,7 +106,7 @@ resource "aws_cloudwatch_metric_alarm" "levriero_cpu_scale_down" {
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = "120"
+  period              = "300"
   statistic           = "Average"
   threshold           = "20"
 

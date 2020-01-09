@@ -16,8 +16,8 @@ resource "aws_ecs_service" "search" {
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.search.arn}"
 
-  # Create service with 2 instances to start
-  desired_count = 2
+  # Create service with 4 instances to start
+  desired_count = 6
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -45,7 +45,7 @@ resource "aws_ecs_service" "search" {
 
 resource "aws_appautoscaling_target" "search" {
   max_capacity       = 8
-  min_capacity       = 2
+  min_capacity       = 6
   resource_id        = "service/default/${aws_ecs_service.search.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -89,43 +89,79 @@ resource "aws_appautoscaling_policy" "search_scale_down" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "search_cpu_scale_up" {
-  alarm_name          = "search_cpu_scale_up"
+resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
+  alarm_name          = "search_request_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "80"
+  metric_name         = "RequestCountPerTarget"
+  namespace           = "AWS/ApplicationELB"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "100"
 
   dimensions {
-    ClusterName = "default"
-    ServiceName = "${aws_ecs_service.search.name}"
+    TargetGroup  = "${aws_lb_target_group.search.arn_suffix}"
   }
 
-  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_description = "This metric monitors request counts"
   alarm_actions     = ["${aws_appautoscaling_policy.search_scale_up.arn}"]
 }
 
-resource "aws_cloudwatch_metric_alarm" "search_cpu_scale_down" {
-  alarm_name          = "search_cpu_scale_down"
+resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
+  alarm_name          = "search_request_scale_down"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "20"
+  metric_name         = "RequestCountPerTarget"
+  namespace           = "AWS/ApplicationELB"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "25"
 
   dimensions {
-    ClusterName = "default"
-    ServiceName = "${aws_ecs_service.search.name}"
+    TargetGroup  = "${aws_lb_target_group.search.arn_suffix}"
   }
 
-  alarm_description = "This metric monitors ecs cpu utilization"
+  alarm_description = "This metric monitors request counts"
   alarm_actions     = ["${aws_appautoscaling_policy.search_scale_down.arn}"]
 }
+
+// resource "aws_cloudwatch_metric_alarm" "search_cpu_scale_up" {
+//  alarm_name          = "search_cpu_scale_up"
+//  comparison_operator = "GreaterThanOrEqualToThreshold"
+//  evaluation_periods  = "2"
+//  metric_name         = "CPUUtilization"
+//  namespace           = "AWS/ECS"
+//  period              = "120"
+//  statistic           = "Average"
+//  threshold           = "80"
+
+//  dimensions {
+//    ClusterName = "default"
+//    ServiceName = "${aws_ecs_service.search.name}"
+//  }
+
+//  alarm_description = "This metric monitors ecs cpu utilization"
+//  alarm_actions     = ["${aws_appautoscaling_policy.search_scale_up.arn}"]
+// }
+
+// resource "aws_cloudwatch_metric_alarm" "search_cpu_scale_down" {
+// alarm_name          = "search_cpu_scale_down"
+// comparison_operator = "LessThanOrEqualToThreshold"
+//  evaluation_periods  = "2"
+//  metric_name         = "CPUUtilization"
+//  namespace           = "AWS/ECS"
+//  period              = "120"
+//  statistic           = "Average"
+//  threshold           = "20"
+
+//  dimensions {
+//    ClusterName = "default"
+//    ServiceName = "${aws_ecs_service.search.name}"
+//  }
+
+//  alarm_description = "This metric monitors ecs cpu utilization"
+//  alarm_actions     = ["${aws_appautoscaling_policy.search_scale_down.arn}"]
+// }
 
 // resource "aws_cloudwatch_metric_alarm" "search_memory_scale_up" {
 //   alarm_name          = "search_memory_scale_up"
