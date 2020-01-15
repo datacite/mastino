@@ -17,7 +17,7 @@ resource "aws_ecs_service" "search" {
   task_definition = "${aws_ecs_task_definition.search.arn}"
 
   # Create service with 4 instances to start
-  desired_count = 3
+  desired_count = 6
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -45,7 +45,7 @@ resource "aws_ecs_service" "search" {
 
 resource "aws_appautoscaling_target" "search" {
   max_capacity       = 8
-  min_capacity       = 3
+  min_capacity       = 6
   resource_id        = "service/default/${aws_ecs_service.search.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
