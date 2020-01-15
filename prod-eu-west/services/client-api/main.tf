@@ -5,7 +5,7 @@ resource "aws_ecs_service" "client-api" {
   task_definition = aws_ecs_task_definition.client-api.arn
   
   # Create service with 2 instances to start
-  desired_count = 3
+  desired_count = 6
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -37,7 +37,7 @@ resource "aws_ecs_service" "client-api" {
 
 resource "aws_appautoscaling_target" "client-api" {
   max_capacity       = 8
-  min_capacity       = 3
+  min_capacity       = 6
   resource_id        = "service/default/${aws_ecs_service.client-api.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
