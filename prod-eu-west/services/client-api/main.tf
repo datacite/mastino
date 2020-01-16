@@ -91,7 +91,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_up" {
   statistic           = "Sum"
   threshold           = "100"
 
-  dimensions {
+  dimensions = {
     TargetGroup  = "${aws_lb_target_group.client-api.arn_suffix}"
   }
 
@@ -109,7 +109,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_down" {
   statistic           = "Sum"
   threshold           = "25"
 
-  dimensions {
+  dimensions = {
     TargetGroup  = "${aws_lb_target_group.client-api.arn_suffix}"
   }
 
