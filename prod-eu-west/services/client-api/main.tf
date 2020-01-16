@@ -81,7 +81,43 @@ resource "aws_appautoscaling_policy" "client-api_scale_down" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_up" {
+resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_up" {
+  alarm_name          = "client-api_request_scale_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "RequestCountPerTarget"
+  namespace           = "AWS/ApplicationELB"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "100"
+
+  dimensions {
+    TargetGroup  = "${aws_lb_target_group.client-api.arn_suffix}"
+  }
+
+  alarm_description = "This metric monitors request counts"
+  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_up.arn}"]
+}
+
+resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_down" {
+  alarm_name          = "client-api_request_scale_down"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "RequestCountPerTarget"
+  namespace           = "AWS/ApplicationELB"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "25"
+
+  dimensions {
+    TargetGroup  = "${aws_lb_target_group.client-api.arn_suffix}"
+  }
+
+  alarm_description = "This metric monitors request counts"
+  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_down.arn}"]
+}
+
+/* resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_up" {
   alarm_name          = "client-api_cpu_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
@@ -117,7 +153,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_down" {
 
   alarm_description = "This metric monitors ecs cpu utilization"
   alarm_actions     = [aws_appautoscaling_policy.client-api_scale_down.arn]
-}
+} */
 
 // resource "aws_cloudwatch_metric_alarm" "client-api_memory_scale_up" {
 //   alarm_name          = "client-api_memory_scale_up"
