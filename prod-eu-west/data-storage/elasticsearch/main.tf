@@ -1,9 +1,9 @@
 resource "aws_elasticsearch_domain" "default" {
   domain_name           = "elasticsearch"
-  elasticsearch_version = "6.3"
+  elasticsearch_version = "7.1"
   cluster_config {
     instance_type = "m5.2xlarge.elasticsearch"
-    instance_count = 2
+    instance_count = 3
     zone_awareness_enabled = true
   }
 
