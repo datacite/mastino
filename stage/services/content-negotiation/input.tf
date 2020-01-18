@@ -8,6 +8,10 @@ data "aws_route53_zone" "crosscite" {
   name = "crosscite.org"
 }
 
+data "aws_route53_zone" "production" {
+  name = "datacite.org"
+}
+
 data "aws_security_group" "datacite-private" {
   id = "${var.security_group_id}"
 }
@@ -36,8 +40,17 @@ data "aws_lb" "crosscite-stage" {
   name = "${var.lb_name}"
 }
 
+data "aws_lb" "stage" {
+  name = "${var.lb_name}"
+}
+
 data "aws_lb_listener" "crosscite-stage" {
   load_balancer_arn = "${data.aws_lb.crosscite-stage.arn}"
+  port = 443
+}
+
+data "aws_lb_listener" "stage" {
+  load_balancer_arn = "${data.aws_lb.stage.arn}"
   port = 443
 }
 
