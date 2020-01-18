@@ -68,6 +68,6 @@ data "template_file" "doi_task" {
     public_key         = "${var.public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     tracking_id        = "${var.tracking_id}"
-    version            = "3.1.11"
+    version            = "${var.bracco_tags["version"]}"
   }
 }
