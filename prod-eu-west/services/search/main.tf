@@ -272,12 +272,12 @@ resource "aws_lb_listener_rule" "solr-api" {
   priority     = 80
 
   action {
-    type = "redirect"
+    type = "fixed-response"
 
-    redirect {
-      path        = "/"
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "This resource is no longer available."
+      status_code  = "410"
     }
   }
 
@@ -297,12 +297,12 @@ resource "aws_lb_listener_rule" "solr-ui" {
   priority     = 82
 
   action {
-    type = "redirect"
+    type = "fixed-response"
 
-    redirect {
-      path        = "/"
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "This resource is no longer available."
+      status_code  = "410"
     }
   }
 
