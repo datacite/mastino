@@ -58,6 +58,35 @@ resource "aws_lb_listener_rule" "content-negotiation-stage" {
   }
 }
 
+resource "aws_lb_listener_rule" "data-stage" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 60
+
+  action {
+    type = "redirect"
+
+    redirect {
+      host        = "data.test.crosscite.org"
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_302"
+    }
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.data-stage.name}"]
+  }
+}
+
+resource "aws_route53_record" "data-stage" {
+    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    name = "data.test.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.stage.dns_name}"]
+}
+
 resource "aws_route53_record" "content-negotiation-stage" {
     zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
     name = "data.test.crosscite.org"

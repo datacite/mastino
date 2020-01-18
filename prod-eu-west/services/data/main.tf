@@ -24,9 +24,9 @@
 //   ]
 // }
 
-resource "aws_cloudwatch_log_group" "data" {
-  name = "/ecs/data"
-}
+// resource "aws_cloudwatch_log_group" "data" {
+//   name = "/ecs/data"
+// }
 
 // resource "aws_ecs_task_definition" "data" {
 //   family = "data"
