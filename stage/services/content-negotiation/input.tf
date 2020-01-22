@@ -44,6 +44,11 @@ data "aws_lb" "stage" {
   name = "${var.lb_name}"
 }
 
+data "aws_lb" "crosscite-stage" {
+  name = "${var.lb_name_crosscite}"
+}
+
+
 data "aws_lb_listener" "crosscite-stage" {
   load_balancer_arn = "${data.aws_lb.crosscite-stage.arn}"
   port = 443

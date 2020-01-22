@@ -37,7 +37,7 @@ data "aws_iam_role" "ecs_task_execution_role" {
 }
 
 data "aws_lb" "crosscite" {
-  name = "${var.lb_name}"
+  name = "${var.lb_name_crosscite}"
 }
 
 data "aws_lb" "default" {

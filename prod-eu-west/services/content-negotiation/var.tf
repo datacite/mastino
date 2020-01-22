@@ -11,6 +11,10 @@ variable "content-negotiation_tags" {
 }
 
 variable "lb_name" {
+  default = "default"
+}
+
+variable "lb_name_crosscite" {
   default = "crosscite"
 }
 
