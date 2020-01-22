@@ -12,9 +12,6 @@ resource "aws_ecs_service" "doi" {
     ignore_changes = ["desired_count"]
   }
 
-  # give container time to start up
-  health_check_grace_period_seconds = 600
-
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
     subnets         = [

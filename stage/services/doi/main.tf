@@ -5,9 +5,6 @@ resource "aws_ecs_service" "doi-stage" {
   task_definition = "${aws_ecs_task_definition.doi-stage.arn}"
   desired_count = 1
 
-  # give container time to start up
-  health_check_grace_period_seconds = 600
-
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
     subnets         = [
