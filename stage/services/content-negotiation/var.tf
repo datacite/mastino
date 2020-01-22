@@ -11,7 +11,7 @@ variable "content-negotiation_tags" {
 }
 
 variable "lb_name" {
-  default = "stage"
+  default = "lb-stage"
 }
 
 variable "lb_name_crosscite" {
