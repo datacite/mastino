@@ -75,15 +75,15 @@ resource "aws_wafregional_web_acl" "default" {
     type     = "RATE_BASED"
   }
 
-  rule {
-    action {
-      type = "BLOCK"
-    }
+  // rule {
+  //   action {
+  //     type = "BLOCK"
+  //   }
 
-    priority = 2
-    rule_id  = "${aws_wafregional_rule.block.id}"
-    type     = "REGULAR"
-  }
+  //   priority = 2
+  //   rule_id  = "${aws_wafregional_rule.block.id}"
+  //   type     = "REGULAR"
+  // }
 }
 
 resource "aws_wafregional_web_acl_association" "default" {
