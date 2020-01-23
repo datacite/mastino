@@ -16,14 +16,14 @@ resource "aws_wafregional_ipset" "whitelist" {
   }
 }
 
-// resource "aws_wafregional_ipset" "blacklist" {
-//   name = "blacklistIPSet"
+resource "aws_wafregional_ipset" "blacklist" {
+  name = "blacklistIPSet"
 
-//   ip_set_descriptor {
-//     type  = "IPV4"
-//     value = "${var.waf_blacklisted_ip}"
-//   }
-// }
+  ip_set_descriptor {
+    type  = "IPV4"
+    value = "${var.waf_blacklisted_ip}"
+  }
+}
 
 resource "aws_wafregional_rate_based_rule" "rate" {
   depends_on  = ["aws_wafregional_ipset.nat", "aws_wafregional_ipset.whitelist"]
@@ -46,16 +46,16 @@ resource "aws_wafregional_rate_based_rule" "rate" {
   }
 }
 
-// resource "aws_wafregional_rule" "block" {
-//   name        = "blockWAFRule"
-//   metric_name = "blockWAFRule"
+resource "aws_wafregional_rule" "block" {
+  name        = "blockWAFRule"
+  metric_name = "blockWAFRule"
 
-//   predicate {
-//     type    = "IPMatch"
-//     data_id = "${aws_wafregional_ipset.blacklist.id}"
-//     negated = false
-//   }
-// }
+  predicate {
+    type    = "IPMatch"
+    data_id = "${aws_wafregional_ipset.blacklist.id}"
+    negated = false
+  }
+}
 
 resource "aws_wafregional_web_acl" "default" {
   name        = "default"
@@ -75,15 +75,15 @@ resource "aws_wafregional_web_acl" "default" {
     type     = "RATE_BASED"
   }
 
-  // rule {
-  //   action {
-  //     type = "BLOCK"
-  //   }
+  rule {
+    action {
+      type = "BLOCK"
+    }
 
-  //   priority = 2
-  //   rule_id  = "${aws_wafregional_rule.block.id}"
-  //   type     = "REGULAR"
-  // }
+    priority = 2
+    rule_id  = "${aws_wafregional_rule.block.id}"
+    type     = "REGULAR"
+  }
 }
 
 resource "aws_wafregional_web_acl_association" "default" {
