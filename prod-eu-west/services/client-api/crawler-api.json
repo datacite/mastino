@@ -3,7 +3,7 @@
     "name": "crawler-api",
     "image": "datacite/lupo:${version}",
     "cpu": 2048,
-    "memory": 10240,
+    "memory": 8192,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [
