@@ -112,7 +112,7 @@ resource "aws_cloudwatch_metric_alarm" "crawler-api_cpu_scale_down" {
 
   dimensions = {
     ClusterName = "default"
-    ServiceName = aws_ecs_service.crawlercrawler-api.name
+    ServiceName = aws_ecs_service.crawler-api.name
   }
 
   alarm_description = "This metric monitors ecs cpu utilization"
