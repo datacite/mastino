@@ -87,7 +87,7 @@ resource "aws_cloudwatch_metric_alarm" "search-crawler_request_scale_up" {
   statistic           = "Sum"
   threshold           = "100"
 
-  dimensions {
+  dimensions = {
     TargetGroup  = aws_lb_target_group.search-crawler.arn_suffix
   }
 
@@ -105,7 +105,7 @@ resource "aws_cloudwatch_metric_alarm" "search-crawler_request_scale_down" {
   statistic           = "Sum"
   threshold           = "25"
 
-  dimensions {
+  dimensions = {
     TargetGroup  = aws_lb_target_group.search-crawler.arn_suffix
   }
 
