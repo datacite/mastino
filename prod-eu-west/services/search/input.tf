@@ -55,12 +55,3 @@ data "aws_vpc_endpoint" "datacite" {
   vpc_id       = "${var.vpc_id}"
   service_name = "com.amazonaws.eu-west-1.s3"
 }
-
-data "template_file" "search" {
-    template = "${file("s3_public_read.json")}"
-
-    vars {
-        vpce_id = "${data.aws_vpc_endpoint.datacite.id}"
-        bucket_name = "${aws_route53_record.search.name}"
-    }
-}
