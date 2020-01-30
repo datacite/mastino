@@ -307,7 +307,7 @@ resource "aws_lb_listener_rule" "user-agent" {
   condition {
     http_header {
       http_header_name = "user-agent"
-      values           = ["Googlebot", "curl*"]
+      values           = ["*Googlebot*", "curl*"]
     }
   }
 
