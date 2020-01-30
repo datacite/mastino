@@ -92,7 +92,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_up" {
   threshold           = "100"
 
   dimensions = {
-    TargetGroup  = "${aws_lb_target_group.client-api.arn_suffix}"
+    TargetGroup  = aws_lb_target_group.client-api.arn_suffix
   }
 
   alarm_description = "This metric monitors request counts"
@@ -110,11 +110,11 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_down" {
   threshold           = "25"
 
   dimensions = {
-    TargetGroup  = "${aws_lb_target_group.client-api.arn_suffix}"
+    TargetGroup  = aws_lb_target_group.client-api.arn_suffix
   }
 
   alarm_description = "This metric monitors request counts"
-  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_down.arn}"]
+  alarm_actions     = [aws_appautoscaling_policy.client-api_scale_down.arn]
 }
 
 /* resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_up" {
