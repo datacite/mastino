@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "search" {
     bucket = "search.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.search.rendered}"
+    policy = data.template_file.search.rendered
     website {
         index_document = "index.html"
     }
@@ -12,9 +12,9 @@ resource "aws_s3_bucket" "search" {
 
 resource "aws_ecs_service" "search" {
   name = "search"
-  cluster = "${data.aws_ecs_cluster.default.id}"
+  cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.search.arn}"
+  task_definition = aws_ecs_task_definition.search.arn
 
   # Create service with 4 instances to start
   desired_count = 3
@@ -25,7 +25,7 @@ resource "aws_ecs_service" "search" {
   }
 
   network_configuration {
-    security_groups = ["${data.aws_security_group.datacite-private.id}"]
+    security_groups = [data.aws_security_group.datacite-private.id]
     subnets         = [
       "${data.aws_subnet.datacite-private.id}",
       "${data.aws_subnet.datacite-alt.id}"
@@ -33,7 +33,7 @@ resource "aws_ecs_service" "search" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_lb_target_group.search.id}"
+    target_group_arn = aws_lb_target_group.search.id
     container_name   = "search"
     container_port   = "80"
   }
@@ -54,9 +54,9 @@ resource "aws_appautoscaling_target" "search" {
 resource "aws_appautoscaling_policy" "search_scale_up" {
   name               = "scale-up"
   policy_type        = "StepScaling"
-  resource_id        = "${aws_appautoscaling_target.search.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.search.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.search.service_namespace}"
+  resource_id        = aws_appautoscaling_target.search.resource_id
+  scalable_dimension = aws_appautoscaling_target.search.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.search.service_namespace
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
@@ -73,9 +73,9 @@ resource "aws_appautoscaling_policy" "search_scale_up" {
 resource "aws_appautoscaling_policy" "search_scale_down" {
   name               = "scale-down"
   policy_type        = "StepScaling"
-  resource_id        = "${aws_appautoscaling_target.search.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.search.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.search.service_namespace}"
+  resource_id        = aws_appautoscaling_target.search.resource_id
+  scalable_dimension = aws_appautoscaling_target.search.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.search.service_namespace
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
@@ -100,11 +100,11 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_up" {
   threshold           = "100"
 
   dimensions {
-    TargetGroup  = "${aws_lb_target_group.search.arn_suffix}"
+    TargetGroup  = aws_lb_target_group.search.arn_suffix
   }
 
   alarm_description = "This metric monitors request counts"
-  alarm_actions     = ["${aws_appautoscaling_policy.search_scale_up.arn}"]
+  alarm_actions     = [aws_appautoscaling_policy.search_scale_up.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
@@ -118,11 +118,11 @@ resource "aws_cloudwatch_metric_alarm" "search_request_scale_down" {
   threshold           = "25"
 
   dimensions {
-    TargetGroup  = "${aws_lb_target_group.search.arn_suffix}"
+    TargetGroup  = aws_lb_target_group.search.arn_suffix
   }
 
   alarm_description = "This metric monitors request counts"
-  alarm_actions     = ["${aws_appautoscaling_policy.search_scale_down.arn}"]
+  alarm_actions     = [aws_appautoscaling_policy.search_scale_down.arn]
 }
 
 // resource "aws_cloudwatch_metric_alarm" "search_cpu_scale_up" {
@@ -205,7 +205,7 @@ resource "aws_lb_target_group" "search" {
   name     = "search"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = "${var.vpc_id}"
+  vpc_id   = var.vpc_id
   target_type = "ip"
 
   health_check {
@@ -225,7 +225,7 @@ resource "aws_cloudwatch_log_group" "search" {
 
 resource "aws_ecs_task_definition" "search" {
   family = "search"
-  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}",
+  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "1024"
@@ -235,40 +235,40 @@ resource "aws_ecs_task_definition" "search" {
 }
 
 resource "aws_lb_listener_rule" "search" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = data.aws_lb_listener.default.arn
   priority     = 89
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.search.arn}"
+    target_group_arn = aws_lb_target_group.search.arn
   }
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.search.name}"]
+    values = [aws_route53_record.search.name]
   }
 }
 
 resource "aws_route53_record" "search" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   zone_id = data.aws_route53_zone.production.zone_id
    name = "search.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${data.aws_lb.default.dns_name}"]
+   records = [data.aws_lb.default.dns_name]
 }
 
 resource "aws_route53_record" "split-search" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   zone_id = data.aws_route53_zone.internal.zone_id
    name = "search.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${data.aws_lb.default.dns_name}"]
+   records = [data.aws_lb.default.dns_name]
 }
 
 // Old solr search interfaces
 
 resource "aws_lb_listener_rule" "solr-api" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = data.aws_lb_listener.default.arn
   priority     = 80
 
   action {
@@ -283,7 +283,7 @@ resource "aws_lb_listener_rule" "solr-api" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.search.name}"]
+    values = [aws_route53_record.search.name]
   }
 
   condition {
@@ -293,7 +293,7 @@ resource "aws_lb_listener_rule" "solr-api" {
 }
 
 resource "aws_lb_listener_rule" "solr-ui" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = data.aws_lb_listener.default.arn
   priority     = 82
 
   action {
@@ -308,7 +308,7 @@ resource "aws_lb_listener_rule" "solr-ui" {
 
   condition {
     field  = "host-header"
-    values = ["${aws_route53_record.search.name}"]
+    values = [aws_route53_record.search.name]
   }
 
   condition {
