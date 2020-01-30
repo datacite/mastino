@@ -290,8 +290,39 @@ resource "aws_route53_record" "split-search" {
    records = [data.aws_lb.default.dns_name]
 }
 
-// Old solr search interfaces
+resource "aws_lb_listener_rule" "user-agent" {
+  listener_arn = data.aws_lb_listener.default.arn
+  priority     = 81
 
+  action {
+    type = "fixed-response"
+
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "The user-agent was found."
+      status_code  = "200"
+    }
+  }
+
+  condition {
+    http_header {
+      http_header_name = "user-agent"
+      values           = ["Googlebot"]
+    }
+  }
+
+  condition {
+    field  = "host-header"
+    values = [aws_route53_record.search.name]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/user-agent*"]
+  }
+}
+
+// Old solr search interfaces
 resource "aws_lb_listener_rule" "solr-api" {
   listener_arn = data.aws_lb_listener.default.arn
   priority     = 80
