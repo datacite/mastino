@@ -90,3 +90,29 @@ data "template_file" "search_task" {
     version            = "${var.doi-metadata-search_tags["version"]}"
   }
 }
+
+data "template_file" "search-crawler_task" {
+  template = "${file("search-crawler.json")}"
+
+  vars {
+    jwt_public_key     = "${var.jwt_public_key}"
+    orcid_update_uuid  = "${var.orcid_update_uuid}"
+    orcid_update_url   = "${var.orcid_update_url}"
+    orcid_update_token = "${var.orcid_update_token}"
+    orcid_url          = "${var.orcid_url}"
+    volpino_url        = "${var.volpino_url}"
+    jwt_host           = "${var.jwt_host}"
+    api_url            = "${var.api_url}"
+    fabrica_url        = "${var.fabrica_url}"
+    data_url           = "${var.data_url}"
+    cdn_url            = "${var.cdn_url}"
+    sitemaps_url       = "${var.sitemaps_url}"
+    sitemaps_bucket_url = "${var.sitemaps_bucket_url}"
+    secret_key_base    = "${var.secret_key_base}"
+    memcache_servers   = "${var.memcache_servers}"
+    sentry_dsn         = "${var.sentry_dsn}"
+    gabba_cookie       = "${var.gabba_cookie}"
+    gabba_url          = "${var.gabba_url}"
+    version            = "${var.doi-metadata-search_tags["version"]}"
+  }
+}
