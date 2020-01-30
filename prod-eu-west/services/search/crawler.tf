@@ -39,7 +39,7 @@ resource "aws_appautoscaling_target" "search-crawler" {
   service_namespace  = "ecs"
 }
 
-resource "aws_appautoscaling_policy" "search_scale_up" {
+resource "aws_appautoscaling_policy" "search-crawler_scale_up" {
   name               = "scale-up"
   policy_type        = "StepScaling"
   resource_id        = "${aws_appautoscaling_target.search-crawler.resource_id}"
