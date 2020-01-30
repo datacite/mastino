@@ -2,9 +2,9 @@ resource "aws_ecs_service" "search-crawler" {
   name = "search-crawler"
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
-  task_definition = "${aws_ecs_task_definition.search.arn}"
+  task_definition = "${aws_ecs_task_definition.search-crawler.arn}"
 
-  # Create service with 4 instances to start
+  # Create service with 3 instances to start
   desired_count = 3
 
   # Allow external changes without Terraform plan difference
@@ -224,7 +224,7 @@ resource "aws_ecs_task_definition" "search-crawler" {
 
 resource "aws_lb_listener_rule" "search-crawler" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 89
+  priority     = 88
 
   action {
     type             = "forward"
