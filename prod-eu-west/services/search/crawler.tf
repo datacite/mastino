@@ -232,6 +232,13 @@ resource "aws_lb_listener_rule" "search-crawler" {
   }
 
   condition {
+    http_header {
+      http_header_name = "User-Agent"
+      values           = ["Googlebot"]
+    }
+  }
+
+  condition {
     field  = "host-header"
     values = ["${aws_route53_record.search.name}"]
   }
