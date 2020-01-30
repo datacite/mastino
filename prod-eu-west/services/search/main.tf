@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "search" {
     website {
         index_document = "index.html"
     }
-    tags {
+    tags = {
         Name = "Search"
     }
 }
