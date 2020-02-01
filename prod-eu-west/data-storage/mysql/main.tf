@@ -47,6 +47,11 @@ resource "aws_db_parameter_group" "datacite57" {
     name  = "log_output"
     value = "FILE"
   }
+
+  parameter {
+    name  = "log_bin_trust_function_creators"
+    value = "1"
+  }
 }
 
 resource "aws_db_subnet_group" "datacite-prod" {
