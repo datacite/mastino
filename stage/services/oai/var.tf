@@ -31,6 +31,8 @@ variable "api_url" {
   default = "http://client-api.test.local"
 }
 
+variable "api_password" {}
+
 variable "namespace_id" {}
 variable "sentry_dsn" {}
 variable "public_key" {}

@@ -51,6 +51,7 @@ data "template_file" "oai_task" {
 
   vars {
     api_url            = "${var.api_url}"
+    api_password       = "${var.api_password}"
     base_url           = "${var.base_url}"
     public_key         = "${var.public_key}"
     version            = "${var.viringo_tags["sha"]}"

@@ -30,6 +30,10 @@
         "value" : "${api_url}"
       },
       {
+        "name" : "DATACITE_API_ADMIN_PASSWORD",
+        "value" : "${api_password}"
+      },
+      {
         "name" : "LOG_LEVEL",
         "value" : "INFO"
       },

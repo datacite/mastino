@@ -52,6 +52,7 @@ data "template_file" "oai_task" {
   vars {
     cdn_url            = "${var.cdn_url}"
     api_url            = "${var.api_url}"
+    api_password       = "${var.api_password}"
     base_url           = "${var.base_url}"
     public_key         = "${var.public_key}"
     sentry_dsn         = "${var.sentry_dsn}"
