@@ -79,6 +79,15 @@ resource "aws_sqs_queue" "levriero-dev" {
   }
 }
 
+resource "aws_sqs_queue" "levriero-usage-dev" {
+  name                      = "development_levriero_usage"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
 resource "aws_sqs_queue" "dead-letter-dev" {
   name                      = "development_dead-letter"
 
