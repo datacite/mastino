@@ -7,7 +7,7 @@ resource "aws_cloudwatch_event_rule" "crossref-orcid-agent" {
 resource "aws_cloudwatch_event_target" "crossref-orcid-agent" {
   target_id = "crossref-orcid-agent"
   rule = aws_cloudwatch_event_rule.crossref-orcid-agent.name
-  arn = aws_lambda_function.crossref-agent-orcid.arn
+  arn = aws_lambda_function.crossref-orcid-agent.arn
 }
 
 resource "aws_lambda_function" "crossref-orcid-agent" {
