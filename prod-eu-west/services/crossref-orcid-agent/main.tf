@@ -16,7 +16,7 @@ resource "aws_lambda_function" "crossref-orcid-agent" {
   role = data.aws_iam_role.lambda.arn
   handler = "crossref-orcid-agent_runner.handler"
   runtime = "nodejs10.x"
-  source_code_hash = base64sha256(file("crossref-orcid-agent_runner.js.zip"))
+  source_code_hash = filesha256(filebase64("crossref-orcid-agent_runner.js.zip"))
   timeout = "270"
 
   vpc_config {
