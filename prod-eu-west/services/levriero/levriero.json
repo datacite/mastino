@@ -142,6 +142,18 @@
         "value" : "${crossref_orcid_auto_update_source_token}"
       },
       {
+        "name" : "CROSSREF_RELATED_SOURCE_TOKEN",
+        "value" : "${crossref_related_source_token}"
+      },
+      {
+        "name" : "CROSSREF_DATACITE_SOURCE_TOKEN",
+        "value" : "${crossref_datacite_source_token}"
+      },
+      {
+        "name" : "CROSSREF_OTHER_SOURCE_TOKEN",
+        "value" : "${crossref_other_source_token}"
+      },
+      {
         "name" : "DATACITE_USAGE_SOURCE_TOKEN",
         "value" : "${datacite_usage_source_token}"
       },

@@ -76,6 +76,9 @@ data "template_file" "levriero_task" {
     datacite_usage_source_token    = "${var.datacite_usage_source_token}"
     datacite_orcid_auto_update_source_token = "${var.datacite_orcid_auto_update_source_token}"
     crossref_orcid_auto_update_source_token = "${var.crossref_orcid_auto_update_source_token}"
+    crossref_related_source_token = "${var.crossref_related_source_token}"
+    crossref_datacite_source_token = "${var.crossref_datacite_source_token}"
+    crossref_other_source_token = "${var.crossref_other_source_token}"
     version            = "${var.levriero_tags["sha"]}"
   }
 }
