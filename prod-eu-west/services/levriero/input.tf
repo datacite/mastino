@@ -60,7 +60,6 @@ data "template_file" "levriero_task" {
     sentry_dsn         = "${var.sentry_dsn}"
     memcache_servers   = "${var.memcache_servers}"
     slack_webhook_url  = "${var.slack_webhook_url}"
-    solr_url           = "${var.solr_url}"
     volpino_url        = "${var.volpino_url}"
     crossref_query_url = "${var.crossref_query_url}"
     volpino_token      = "${var.volpino_token}"

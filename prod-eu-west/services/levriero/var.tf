@@ -31,12 +31,8 @@ variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "sentry_dsn" {}
 variable "slack_webhook_url" {}
-
-variable "solr_url" {
-  default = "https://solr.datacite.org"
-}
 variable "volpino_url" {
-  default = "https://api.datacite.org"
+  default = "http://profiles.local"
 }
 variable "crossref_query_url" {
   default = "https://api.eventdata.crossref.org"
