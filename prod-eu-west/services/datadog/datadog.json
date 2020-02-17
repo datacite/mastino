@@ -8,7 +8,6 @@
     "essential": true,
     "portMappings": [
       {
-        "protocol": "tcp",
         "containerPort": 8126
       }
     ],
