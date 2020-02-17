@@ -8,8 +8,8 @@
     "essential": true,
     "portMappings": [
       {
-        "protocol": "tcp",
-        "containerPort": 8126
+        "containerPort": 8126,
+        "hostPort": 8126
       }
     ],
     "logConfiguration": { 
