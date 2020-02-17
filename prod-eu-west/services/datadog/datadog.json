@@ -6,6 +6,12 @@
     "memory": 512,
     "networkMode": "awsvpc",
     "essential": true,
+    "portMappings": [
+      {
+        "protocol": "tcp",
+        "containerPort": 8126
+      }
+    ],
     "logConfiguration": { 
       "logDriver": "awslogs",
       "options": { 
