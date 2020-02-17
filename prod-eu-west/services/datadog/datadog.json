@@ -8,6 +8,7 @@
     "essential": true,
     "portMappings": [
       {
+        "protocol": "tcp",
         "containerPort": 8126
       }
     ],
@@ -26,7 +27,7 @@
       },
       {
         "name": "DD_APM_ENABLED",
-        "value": true
+        "value": "true"
       },
       {
         "name": "ECS_FARGATE",
