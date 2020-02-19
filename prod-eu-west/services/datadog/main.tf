@@ -12,6 +12,10 @@ resource "aws_ecs_service" "datadog" {
       "${data.aws_subnet.datacite-alt.id}"
     ]
   }
+
+  service_registries {
+    registry_arn = "${aws_service_discovery_service.datadog.arn}"
+  }
 }
 
 resource "aws_cloudwatch_log_group" "datadog" {
@@ -29,3 +33,19 @@ resource "aws_ecs_task_definition" "datadog" {
   container_definitions =  "${data.template_file.datadog_task.rendered}"
 }
 
+resource "aws_service_discovery_service" "datadog" {
+  name = "datadog"
+
+  health_check_custom_config {
+    failure_threshold = 3
+  }
+
+  dns_config {
+    namespace_id = "${var.namespace_id}"
+    
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
+  }
+}

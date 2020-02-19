@@ -18,3 +18,4 @@ variable "ttl" {
 }
 
 variable "dd_api_key" {}
+variable "namespace_id" {}
