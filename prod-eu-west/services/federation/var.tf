@@ -26,13 +26,13 @@ variable "api_dns_name" {
 }
 
 variable "profiles_url" {
-  default = "http://profiles.local/graphql"
+  default = "http://profiles.local/profiles/graphql"
 }
 variable "client_api_url" {
-  default = "http://client-api.local/graphql"
+  default = "http://client-api.local/client-api/graphql"
 }
 variable "api_url" {
-  default = "http://api.local/graphql"
+  default = "http://api.local/api/graphql"
 }
 
 variable "sentry_dsn" {}
