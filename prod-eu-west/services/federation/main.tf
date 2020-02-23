@@ -142,7 +142,7 @@ resource "aws_lb_target_group" "federation" {
   target_type = "ip"
 
   health_check {
-    path = "/heartbeat"
+    path = "/.well-known/apollo/server-health"
   }
 }
 
