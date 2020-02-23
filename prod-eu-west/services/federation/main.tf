@@ -166,6 +166,26 @@ resource "aws_lb_listener_rule" "federation" {
   }
 }
 
+resource "aws_lb_listener_rule" "federation-healthcheck" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 33
+
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.federation.arn}"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${var.api_dns_name}"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/.well-known/apollo/server-health"]
+  }
+}
+
 resource "aws_service_discovery_service" "federation" {
   name = "federation"
 
