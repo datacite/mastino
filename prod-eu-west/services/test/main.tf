@@ -1,16 +1,16 @@
-# resource "aws_s3_bucket" "test" {
-#     bucket = "test.datacite.org"
-#     acl = "public-read"
-#     policy = "${data.template_file.test.rendered}"
-#     website {
-#         index_document = "index.html"
-#         error_document = "404.html"
-#         routing_rules = "${file("routing-rules.json")}"
-#     }
-#     tags {
-#         Name = "Test"
-#     }
-# }
+resource "aws_s3_bucket" "test" {
+    bucket = "test.datacite.org"
+    acl = "public-read"
+    policy = "${data.template_file.test.rendered}"
+    website {
+        index_document = "index.html"
+        error_document = "404.html"
+        routing_rules = "${file("routing-rules.json")}"
+    }
+    tags {
+        Name = "Test"
+    }
+}
 
 # resource "aws_cloudfront_distribution" "test" {
 #   origin {
