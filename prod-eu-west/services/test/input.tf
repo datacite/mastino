@@ -39,3 +39,8 @@ data "aws_route53_zone" "internal" {
 data "aws_s3_bucket" "logs" {
   bucket = "logs.datacite.org"
 }
+
+data "aws_lb_listener" "default" {
+  load_balancer_arn = "${data.aws_lb.default.arn}"
+  port = 443
+}
