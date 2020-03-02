@@ -93,7 +93,6 @@ resource "aws_route53_record" "split-test" {
 
 resource "aws_lb_listener_rule" "test-support-redirect" {
   listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 60
 
   action {
     type = "redirect"
