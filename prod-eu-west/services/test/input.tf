@@ -41,7 +41,7 @@ data "aws_s3_bucket" "logs" {
 }
 
 data "aws_lb" "default" {
-  name = var.lb_name
+  name = "${var.lb_name}"
 }
 
 data "aws_lb_listener" "default" {
