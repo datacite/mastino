@@ -99,7 +99,10 @@ resource "aws_lb_listener_rule" "test-support-redirect" {
     type = "redirect"
 
     redirect {
-      path        = "https://support.datacite.org/docs/testing-guide"
+      host = "support.datacite.org"
+      path = "/docs/testing-guide"
+      port        = "443"
+      protocol    = "HTTPS"
       status_code = "HTTP_301"
     }
   }
