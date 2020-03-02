@@ -90,3 +90,22 @@ resource "aws_route53_record" "split-test" {
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.test.domain_name}"]
 }
+
+resource "aws_lb_listener_rule" "test-support-redirect" {
+  listener_arn = "${data.aws_lb_listener.default.arn}"
+  priority     = 60
+
+  action {
+    type = "redirect"
+
+    redirect {
+      path        = "https://support.datacite.org/docs/testing-guide"
+      status_code = "HTTP_301"
+    }
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["${aws_route53_record.test.name}"]
+  }
+}
