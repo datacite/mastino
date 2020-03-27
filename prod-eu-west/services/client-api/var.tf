@@ -71,3 +71,4 @@ variable "admin_username" {}
 variable "admin_password" {}
 
 variable "namespace_id" {}
+variable "jwt_blacklisted" {}
