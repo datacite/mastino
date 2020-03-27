@@ -78,6 +78,7 @@ data "template_file" "client-api_task" {
     sentry_dsn         = "${var.sentry_dsn}"
     mailgun_api_key    = "${var.mailgun_api_key}"
     memcache_servers   = "${var.memcache_servers}"
+    jwt_blacklisted    = "${var.jwt_blacklisted}"
     slack_webhook_url  = "${var.slack_webhook_url}"
     version            = "${var.lupo_tags["sha"]}"
   }

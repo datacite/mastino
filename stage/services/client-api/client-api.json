@@ -158,6 +158,10 @@
         "value" : "${slack_webhook_url}"
       },
       {
+        "name" : "JWT_BLACKLISTED",
+        "value" : "${jwt_blacklisted}"
+      },
+      {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
       }

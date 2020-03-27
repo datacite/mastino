@@ -46,3 +46,5 @@ variable "sentry_dsn" {}
 variable "rack_timeout_service_timeout" {
   default = "40"
 }
+variable "jwt_blacklisted" {}
+
