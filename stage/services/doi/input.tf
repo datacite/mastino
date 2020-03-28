@@ -67,6 +67,7 @@ data "template_file" "doi_task" {
     public_key         = "${var.public_key}"
     alb_public_key     = "${var.alb_public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
+    jwt_blacklisted    = "${var.jwt_blacklisted}"
     tracking_id        = "${var.tracking_id}"
     version            = "${var.bracco_tags["sha"]}"
   }

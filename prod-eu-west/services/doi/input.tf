@@ -67,6 +67,7 @@ data "template_file" "doi_task" {
     sentry_dsn         = "${var.sentry_dsn}"
     public_key         = "${var.public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
+    jwt_blacklisted    = "${var.jwt_blacklisted}"
     tracking_id        = "${var.tracking_id}"
     version            = "${var.bracco_tags["version"]}"
   }
