@@ -99,6 +99,10 @@
         "value" : "${public_key}"
       },
       {
+        "name" : "JWT_BLACKLISTED",
+        "value" : "${jwt_blacklisted}"
+      },
+      {
         "name" : "RACK_TIMEOUT_SERVICE_TIMEOUT",
         "value" : "${rack_timeout_service_timeout}"
       },
