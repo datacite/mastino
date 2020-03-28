@@ -142,6 +142,10 @@
         "value" : "${bracco_url}"
       },
       {
+        "name" : "JWT_BLACKLISTED",
+        "value" : "${jwt_blacklisted}"
+      },
+      {
         "name" : "SLACK_WEBHOOK_URL",
         "value" : "${slack_webhook_url}"
       }
