@@ -1,4 +1,4 @@
 bracco_tags = {
-  sha = "b018097"
+  sha = "7144d44"
   version = "3.6.3"
 }
