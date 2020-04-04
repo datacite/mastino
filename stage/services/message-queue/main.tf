@@ -46,6 +46,16 @@ resource "aws_sqs_queue" "lupo-background-test" {
   }
 }
 
+resource "aws_sqs_queue" "lupo-import-test" {
+  name                      = "stage_lupo_import"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  visibility_timeout_seconds = 3600
+
+  tags {
+    Environment = "test"
+  }
+}
+
 resource "aws_sqs_queue" "lupo-transfer-test" {
   name                      = "stage_lupo_transfer"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
