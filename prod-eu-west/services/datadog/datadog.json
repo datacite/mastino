@@ -32,6 +32,10 @@
       {
         "name": "ECS_FARGATE",
         "value": "true"
+      },
+      {
+        "name": "DD_TRACE_ANALYTICS_ENABLED",
+        "value": "true"
       }
       
     ]
