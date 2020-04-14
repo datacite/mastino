@@ -62,6 +62,8 @@ variable "crossref_orcid_auto_update_source_token" {}
 variable "crossref_related_source_token" {}
 variable "crossref_datacite_source_token" {}
 variable "crossref_other_source_token" {}
+variable "crossref_funder_source_token" {}
+variable "crossref_import_source_token" {}
 variable "orcid_affiliation_source_token" {}
 
 variable "namespace_id" {}
