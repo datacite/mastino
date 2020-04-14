@@ -150,6 +150,14 @@
         "value" : "${crossref_other_source_token}"
       },
       {
+        "name" : "CROSSREF_FUNDER_SOURCE_TOKEN",
+        "value" : "${crossref_funder_source_token}"
+      },
+      {
+        "name" : "CROSSREF_IMPORT_SOURCE_TOKEN",
+        "value" : "${crossref_import_source_token}"
+      },
+      {
         "name" : "SLACK_WEBHOOK_URL",
         "value" : "${slack_webhook_url}"
       },
