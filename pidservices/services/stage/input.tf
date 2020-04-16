@@ -1,7 +1,7 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
 }
 
 data "template_file" "pidservices-stage" {
@@ -13,7 +13,7 @@ data "template_file" "pidservices-stage" {
 }
 
 data "aws_acm_certificate" "cloudfront-test" {
-  provider = "aws.use1"
+  provider = aws.use1
   domain = "*.test.pidservices.org"
   statuses = ["ISSUED"]
 }
