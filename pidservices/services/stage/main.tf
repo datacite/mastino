@@ -64,7 +64,7 @@ resource "aws_cloudfront_distribution" "pidservices-stage" {
     }
   }
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 
