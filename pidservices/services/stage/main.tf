@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "pidservices-stage" {
     bucket = "stage.pidservices.org"
     acl = "public-read"
-    policy = "${data.template_file.pidservices-stage.rendered}"
+    policy = data.template_file.pidservices-stage.rendered
 
     website {
         index_document = "index.html"
@@ -20,11 +20,11 @@ resource "aws_cloudfront_origin_access_identity" "pidservices_stage_datacite_org
 
 resource "aws_cloudfront_distribution" "pidservices-finder-stage" {
   origin {
-    domain_name = "${aws_s3_bucket.pidservices-stage.bucket_domain_name}"
+    domain_name = aws_s3_bucket.pidservices-stage.bucket_domain_name
     origin_id   = "pidservices.stage.datacite.org"
 
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.pidservices_stage_datacite_org.cloudfront_access_identity_path}"
+      origin_access_identity = aws_cloudfront_origin_access_identity.pidservices_stage_datacite_org.cloudfront_access_identity_path
     }
   }
 
@@ -67,16 +67,16 @@ resource "aws_cloudfront_distribution" "pidservices-finder-stage" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-test.arn}"
+    acm_certificate_arn = data.aws_acm_certificate.cloudfront-test.arn
     ssl_support_method  = "sni-only"
   }
 }
 
 
 resource "aws_route53_record" "staging" {
-    zone_id = "${data.aws_route53_zone.pidservices.zone_id}"
+    zone_id = data.aws_route53_zone.pidservices.zone_id
     name = "stage.pidservices.org"
     type = "CNAME"
     ttl = "300"
-    records = ["${aws_cloudfront_distribution.pidservices-stage.domain_name}"]
+    records = aws_cloudfront_distribution.pidservices-stage.domain_name
 }
