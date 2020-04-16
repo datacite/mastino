@@ -6,7 +6,7 @@ provider "aws" {
 
 data "aws_acm_certificate" "cloudfront-test" {
   provider = aws
-  domain = "*.pidservices.org"
+  domain = "pidservices.org"
   statuses = ["ISSUED"]
 }
 
