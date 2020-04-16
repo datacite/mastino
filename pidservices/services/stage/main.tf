@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "pidservices-stage" {
         index_document = "index.html"
     }
 
-    tags {
+    tags = {
         Name = "pidservices-stage"
     }
 
@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "pidservices-stage" {
 
 resource "aws_cloudfront_origin_access_identity" "stage_pidservices_org" {}
 
-resource "aws_cloudfront_distribution" "pidservices-finder-stage" {
+resource "aws_cloudfront_distribution" "pidservices-stage" {
   origin {
     domain_name = aws_s3_bucket.pidservices-stage.bucket_domain_name
     origin_id   = "stage.pidservices.org"
