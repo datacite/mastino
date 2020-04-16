@@ -13,7 +13,7 @@ data "template_file" "pidservices-stage" {
 }
 
 data "aws_acm_certificate" "cloudfront-test" {
-  provider = aws.use1
+  provider = aws
   domain = "*.test.pidservices.org"
   statuses = ["ISSUED"]
 }
