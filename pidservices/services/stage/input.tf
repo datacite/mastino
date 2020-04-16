@@ -4,14 +4,6 @@ provider "aws" {
   region     = var.region
 }
 
-data "template_file" "pidservices-stage" {
-  template = "${file("s3_cloudfront.json")}"
-
-  vars {
-    bucket_name = "pidservices.stage.datacite.org"
-  }
-}
-
 data "aws_acm_certificate" "cloudfront-test" {
   provider = aws
   domain = "*.test.pidservices.org"

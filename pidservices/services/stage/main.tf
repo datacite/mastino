@@ -1,7 +1,9 @@
 resource "aws_s3_bucket" "pidservices-stage" {
     bucket = "stage.pidservices.org"
     acl = "public-read"
-    policy = data.template_file.pidservices-stage.rendered
+    policy = templatefile("s3_cloudfront.json", {
+      bucket_name = "stage.pidservices.org"
+    })
 
     website {
         index_document = "index.html"
@@ -16,15 +18,15 @@ resource "aws_s3_bucket" "pidservices-stage" {
     }
 }
 
-resource "aws_cloudfront_origin_access_identity" "pidservices_stage_datacite_org" {}
+resource "aws_cloudfront_origin_access_identity" "stage_pidservices_org" {}
 
 resource "aws_cloudfront_distribution" "pidservices-finder-stage" {
   origin {
     domain_name = aws_s3_bucket.pidservices-stage.bucket_domain_name
-    origin_id   = "pidservices.stage.datacite.org"
+    origin_id   = "stage.pidservices.org"
 
     s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.pidservices_stage_datacite_org.cloudfront_access_identity_path
+      origin_access_identity = aws_cloudfront_origin_access_identity.stage_pidservices_org.cloudfront_access_identity_path
     }
   }
 
@@ -42,7 +44,7 @@ resource "aws_cloudfront_distribution" "pidservices-finder-stage" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "pidservices.stage.datacite.org"
+    target_origin_id = "stage.pidservices.org"
 
     forwarded_values {
       query_string = false
