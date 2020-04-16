@@ -48,6 +48,11 @@ resource "aws_cloudfront_distribution" "pidservices-stage" {
 
     forwarded_values {
       query_string = false
+
+      cookies {
+        forward = "whitelist"
+        whitelisted_names = ["_datacite_jwt"]
+      }
     }
 
     viewer_protocol_policy = "redirect-to-https"
