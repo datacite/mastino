@@ -30,5 +30,13 @@
   "Redirect": {
     "ReplaceKeyWith": "archive/kernel-2.0/index.html"
   }
+},
+{
+  "Condition": {
+    "KeyPrefixEquals": "meta/index.html"
+  },
+  "Redirect": {
+    "ReplaceKeyWith": "meta/kernel-4/index.html"
+  }
 }
 ]
