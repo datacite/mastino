@@ -197,7 +197,7 @@ resource "aws_ecs_task_definition" "member-api" {
       memcache_servers   = var.memcache_servers
       slack_webhook_url  = var.slack_webhook_url
       jwt_blacklisted    = var.jwt_blacklisted
-      version            = "3.4.38"
+      version            = var.lupo_tags["version"]
     })
 }
 
@@ -210,7 +210,7 @@ resource "aws_lb_target_group" "member-api" {
 
   health_check {
     path = "/heartbeat"
-    timeout = 10
+    timeout = 30
   }
 }
 
