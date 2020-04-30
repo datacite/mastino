@@ -210,7 +210,7 @@ resource "aws_lb_target_group" "member-api" {
 
   health_check {
     path = "/heartbeat"
-    timeout = 30
+    timeout = 10
   }
 }
 
