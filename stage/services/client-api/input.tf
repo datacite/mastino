@@ -80,6 +80,6 @@ data "template_file" "client-api_task" {
     memcache_servers   = "${var.memcache_servers}"
     jwt_blacklisted    = "${var.jwt_blacklisted}"
     slack_webhook_url  = "${var.slack_webhook_url}"
-    version            = "3.4.38"
+    version            = "${var.lupo_tags["sha"]}"
   }
 }
