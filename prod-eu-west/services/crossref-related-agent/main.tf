@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "crossref-related-agent" {
   name = "crossref-related-agent"
   description = "Trigger crossref-related agent via cron"
-  schedule_expression = "cron(55 4 * * ? *)"
+  schedule_expression = "cron(55 4 31 12 ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "crossref-related-agent" {

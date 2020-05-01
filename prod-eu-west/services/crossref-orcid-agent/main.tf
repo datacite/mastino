@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "crossref-orcid-agent" {
   name = "crossref-orcid-agent"
   description = "Trigger crossref-orcid agent via cron"
-  schedule_expression = "cron(55 16 * * ? *)"
+  schedule_expression = "cron(55 16 31 12 ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "crossref-orcid-agent" {
