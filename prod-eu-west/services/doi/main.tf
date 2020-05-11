@@ -3,7 +3,7 @@ resource "aws_ecs_service" "doi" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.doi.arn}"
-  
+
   # Create service with 2 instances to start
   desired_count = 2
 
@@ -13,7 +13,7 @@ resource "aws_ecs_service" "doi" {
   }
 
   # give container time to start up
-  health_check_grace_period_seconds = 600
+  health_check_grace_period_seconds = 900
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
@@ -146,7 +146,7 @@ resource "aws_lb_target_group" "doi" {
 
   health_check {
     path = "/heartbeat"
-    interval = 60
+    interval = 120
     timeout = 30
   }
 }
@@ -246,7 +246,7 @@ resource "aws_service_discovery_service" "doi" {
 
   dns_config {
     namespace_id = "${var.namespace_id}"
-    
+
     dns_records {
       ttl = 300
       type = "A"
