@@ -42,13 +42,11 @@ resource "aws_ecs_task_definition" "akita-stage" {
   requires_compatibilities = ["FARGATE"]
   cpu = "1024"
   memory = "2048"
-
   container_definitions =  templatefile("akita.json",
     {
       sentry_dsn         = var.sentry_dsn
       version            = var.akita_tags["sha"]
     })
-  }
 }
 
 resource "aws_lb_target_group" "akita-stage" {
