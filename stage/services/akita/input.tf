@@ -53,12 +53,3 @@ data "aws_lb_listener" "stage" {
   load_balancer_arn = data.aws_lb.stage.arn
   port = 443
 }
-
-data "template_file" "doi_task" {
-  template = file("doi.json")
-
-  vars {
-    sentry_dsn         = var.sentry_dsn
-    version            = var.akita_tags["sha"]
-  }
-}
