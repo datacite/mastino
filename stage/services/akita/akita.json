@@ -1,0 +1,54 @@
+[
+  {
+    "name": "akita-stage",
+    "image": "datacite/akita",
+    "cpu": 1024,
+    "memory": 2048,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+         "awslogs-group" : "/ecs/akita-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name" : "PASSENGER_APP_ENV",
+        "value" : "stage"
+      },
+      {
+        "name" : "SITE_TITLE",
+        "value" : "DataCite DOI Search"
+      },
+      {
+        "name" : "LOG_LEVEL",
+        "value" : "warn"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
+      },
+      {
+        "name" : "SENTRY_DSN",
+        "value" : "${sentry_dsn}"
+      },
+      {
+        "name" : "TRACKING_ID",
+        "value" : "${tracking_id}"
+      },
+      {
+        "name" : "GITHUB_VERSION",
+        "value" : "${version}"
+      }
+    ]
+  }
+]
