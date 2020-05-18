@@ -66,7 +66,7 @@ resource "aws_lb_target_group" "akita-stage" {
 
 resource "aws_lb_listener_rule" "akita-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 85
+  priority     = 86
 
   action {
     type             = "forward"
