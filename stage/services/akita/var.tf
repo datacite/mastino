@@ -21,9 +21,6 @@ variable "lb_name" {
   default = "lb-stage"
 }
 
-variable "alb_public_key" {}
-variable "jwt_public_key" {}
 variable "sentry_dsn" {}
 variable "tracking_id" {}
-variable "public_key" {}
 variable "namespace_id" {}

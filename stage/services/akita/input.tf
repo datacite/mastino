@@ -59,7 +59,6 @@ data "template_file" "doi_task" {
 
   vars {
     sentry_dsn         = var.sentry_dsn
-    public_key         = var.public_key
     version            = var.akita_tags["sha"]
   }
 }
