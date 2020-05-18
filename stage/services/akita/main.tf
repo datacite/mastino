@@ -42,9 +42,10 @@ resource "aws_ecs_task_definition" "akita-stage" {
   requires_compatibilities = ["FARGATE"]
   cpu = "1024"
   memory = "2048"
-  container_definitions =  templatefile("akita.json",
+  container_definitions = templatefile("akita.json",
     {
       sentry_dsn         = var.sentry_dsn
+      tracking_id        = var.tracking_id
       version            = var.akita_tags["sha"]
     })
 }
