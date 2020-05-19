@@ -1,32 +1,32 @@
 provider "aws" {
-  access_key = testvar.access_keytest
-  secret_key = testvar.secret_keytest
-  region     = testvar.regiontest
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
   version    = "~> 2.7"
 }
 
 data "aws_security_group" "datacite-public" {
-  id = testvar.security_group_public_idtest
+  id = var.security_group_public_id
 }
 
 data "aws_security_group" "datacite-private" {
-  id = testvar.security_group_private_idtest
+  id = var.security_group_private_id
 }
 
 data "aws_subnet" "datacite-public" {
-  id = testvar.subnet_datacite-public_idtest
+  id = var.subnet_datacite-public_id
 }
 
 data "aws_subnet" "datacite-private" {
-  id = testvar.subnet_datacite-private_idtest
+  id = var.subnet_datacite-private_id
 }
 
 data "aws_subnet" "datacite-public-alt" {
-  id = testvar.subnet_datacite-public-alt_idtest
+  id = var.subnet_datacite-public-alt_id
 }
 
 data "aws_subnet" "datacite-alt" {
-  id = testvar.subnet_datacite-alt_idtest
+  id = var.subnet_datacite-alt_id
 }
 
 data "aws_route53_zone" "production" {
@@ -57,7 +57,7 @@ data "aws_lb_target_group" "api-test" {
 }
 
 data "template_file" "logs-test" {
-  template = testfile("s3_lb_write_access.json")test
+  template = file("s3_lb_write_access.json")
 
   vars {
     bucket_name = "logs.test.datacite.org"
