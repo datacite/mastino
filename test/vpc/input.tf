@@ -52,6 +52,6 @@ data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
 
-data "aws_lb_target_group" "api-test" {
-  name = "api-test"
-}
+// data "aws_lb_target_group" "api-test" {
+//   name = "api-test"
+// }
