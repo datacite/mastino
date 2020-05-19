@@ -22,8 +22,11 @@ resource "aws_lb" "test" {
 resource "aws_s3_bucket" "logs-test" {
   bucket = "logs.test.datacite.org"
   acl    = "private"
-  policy = data.template_file.logs-test.rendered
-  tags {
+  policy = templatefile("s3_lb_write_access.json",
+      {
+        bucket_name = "logs.test.datacite.org"
+      })
+  tags = {
       Name = "lb-test"
   }
 }

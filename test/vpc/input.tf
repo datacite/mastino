@@ -55,11 +55,3 @@ data "aws_iam_role" "ecs_instance_role" {
 data "aws_lb_target_group" "api-test" {
   name = "api-test"
 }
-
-data "template_file" "logs-test" {
-  template = file("s3_lb_write_access.json")
-
-  vars {
-    bucket_name = "logs.test.datacite.org"
-  }
-}
