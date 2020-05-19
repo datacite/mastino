@@ -13,7 +13,7 @@ resource "aws_lb" "test" {
     enabled = false
   }
 
-  tags {
+  tags = {
     Environment = "test"
     Name = "lb-test"
   }
