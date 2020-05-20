@@ -50,52 +50,6 @@ data "aws_acm_certificate" "crosscite-test" {
   most_recent = true
 }
 
-data "template_cloudinit_config" "ecs-user-data" {
-  gzip = false
-  base64_encode = false
-
-  part {
-    content_type = "text/cloud-boothook"
-    content      = "${data.template_file.ecs-user-data-boothook.rendered}"
-  }
-
-  part {
-    content_type = "text/cloud-config"
-    content      = "${data.template_file.ecs-user-data-cfg.rendered}"
-  }
-}
-
-data "template_file" "ecs-user-data-cfg" {
-  template = "${file("user_data.cfg")}"
-
-  vars {
-    hostname     = "ecs-stage"
-    fqdn         = "ecs.stage.datacite.org"
-  }
-}
-
-data "template_file" "ecs-user-data-boothook" {
-  template = "${file("user_data_solr.sh")}"
-
-  vars {
-    cluster_name       = "${var.cluster}"
-    hostname           = "solr.test.datacite.org"
-    solr_port          = 40195
-    mysql_host         = "${var.mysql_host}"
-    mysql_database     = "${var.mysql_database}"
-    mysql_user         = "${var.mysql_user}"
-    mysql_password     = "${var.mysql_password}"
-    test_prefix        = "${var.test_prefix}"
-    solr_home          = "${var.solr_home}"
-    solr_url           = "${var.solr_url}"
-    solr_user          = "${var.solr_user}"
-    solr_password      = "${var.solr_password}"
-    dd_api_key         = "${var.dd_api_key}"
-    solr_version       = "${var.search_tags["sha"]}"
-    solr_tag           = "latest"
-  }
-}
-
 data "aws_iam_instance_profile" "ecs_instance" {
   name  = "ecs_instance"
 }
