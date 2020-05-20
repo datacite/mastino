@@ -24,26 +24,12 @@ variable "ttl" {
   default = "300"
 }
 
-variable "solr_url" {
-  default = "https://solr.test.datacite.org"
-}
-variable "solr_user" {}
-variable "solr_password" {}
-variable "solr_home" {
-  default = "/data/solr"
-}
-variable "test_prefix" {}
-
 variable "mysql_host" {}
 variable "mysql_database" {
   default = "datacite"
 }
 variable "mysql_user" {}
 variable "mysql_password" {}
-
-variable "search_tags" {
-  type = "map"
-}
 
 variable "cluster" {
   default = "stage"
