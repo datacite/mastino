@@ -28,7 +28,6 @@ variable "memcache_servers" {
 }
 
 variable "sentry_dsn" {}
-variable "compose_id" {}
 
 variable "api_url" {
   default = "http://client-api.test.local"

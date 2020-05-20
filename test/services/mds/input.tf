@@ -56,7 +56,3 @@ data "template_file" "mds_task" {
     version            = "${var.poodle_tags["sha"]}"
   }
 }
-
-data "aws_instance" "compose-test" {
-  instance_id = "${var.compose_id}"
-}
