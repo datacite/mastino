@@ -122,7 +122,7 @@ resource "aws_lb_listener_rule" "api-test" {
 }
 
 resource "aws_service_discovery_service" "client-api-test" {
-  name = "client-api.test"
+  name = "client-api1.test"
 
   health_check_custom_config {
     failure_threshold = 3

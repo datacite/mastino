@@ -160,7 +160,7 @@ resource "aws_route53_record" "split-doi-test" {
 }
 
 resource "aws_service_discovery_service" "doi-test" {
-  name = "doi.test"
+  name = "doi1.test"
 
   health_check_custom_config {
     failure_threshold = 3
