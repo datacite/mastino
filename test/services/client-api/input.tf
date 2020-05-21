@@ -46,3 +46,8 @@ data "aws_acm_certificate" "test" {
   statuses = ["ISSUED"]
   most_recent = true
 }
+
+data "aws_lb_listener" "test" {
+  load_balancer_arn = data.aws_lb.test.arn
+  port = 443
+}
