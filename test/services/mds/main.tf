@@ -20,7 +20,7 @@ resource "aws_ecs_service" "mds-test" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.test",
+    "data.aws_lb_listener.test"
   ]
 }
 
