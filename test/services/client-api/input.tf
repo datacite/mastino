@@ -47,11 +47,6 @@ data "aws_acm_certificate" "test" {
   most_recent = true
 }
 
-data "aws_lb_listener" "test" {
-  load_balancer_arn = data.aws_lb.test.arn
-  port = 443
-}
-
 data "template_file" "client-api_task" {
   template = file("client-api.json")
 
