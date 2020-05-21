@@ -42,7 +42,6 @@ resource "aws_ecs_task_definition" "client-api-test" {
   container_definitions =  templatefile("client-api.json",
     {
       re3data_url        = var.re3data_url
-      api_url            = var.api_url
       bracco_url         = var.bracco_url
       jwt_public_key     = var.jwt_public_key
       jwt_private_key    = var.jwt_private_key
@@ -67,7 +66,6 @@ resource "aws_ecs_task_definition" "client-api-test" {
       mailgun_api_key    = var.mailgun_api_key
       memcache_servers   = var.memcache_servers
       slack_webhook_url  = var.slack_webhook_url
-      jwt_blacklisted    = var.jwt_blacklisted
       version            = var.lupo_tags["sha"]
     })
 }
