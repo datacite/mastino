@@ -73,40 +73,40 @@ resource "aws_lb_target_group" "doi-test" {
   }
 }
 
-resource "aws_lb_listener_rule" "doi-test-auth" {
-  listener_arn = data.aws_lb_listener.test.arn
-  priority     = 30
+// resource "aws_lb_listener_rule" "doi-test-auth" {
+//   listener_arn = data.aws_lb_listener.test.arn
+//   priority     = 30
 
-  action {
-    type = "authenticate-oidc"
+//   action {
+//     type = "authenticate-oidc"
 
-    authenticate_oidc {
-      authorization_endpoint = "https://auth.globus.org/v2/oauth2/authorize"
-      client_id              = var.oidc_client_id
-      client_secret          = var.oidc_client_secret
-      issuer                 = "https://auth.globus.org"
-      token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
-      user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
-      on_unauthenticated_request = "authenticate"
-      scope                  = "openid profile email"
-    }
-  }
+//     authenticate_oidc {
+//       authorization_endpoint = "https://auth.globus.org/v2/oauth2/authorize"
+//       client_id              = var.oidc_client_id
+//       client_secret          = var.oidc_client_secret
+//       issuer                 = "https://auth.globus.org"
+//       token_endpoint         = "https://auth.globus.org/v2/oauth2/token"
+//       user_info_endpoint     = "https://auth.globus.org/v2/oauth2/userinfo"
+//       on_unauthenticated_request = "authenticate"
+//       scope                  = "openid profile email"
+//     }
+//   }
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.doi-test.arn
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = aws_lb_target_group.doi-test.arn
+//   }
 
-  condition {
-    field  = "host-header"
-    values = [aws_route53_record.doi-test.name]
-  }
+//   condition {
+//     field  = "host-header"
+//     values = [aws_route53_record.doi-test.name]
+//   }
 
-  condition {
-    field  = "path-pattern"
-    values = ["/authorize"]
-  }
-}
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/authorize"]
+//   }
+// }
 
 resource "aws_lb_listener_rule" "doi-test-clients" {
   listener_arn = data.aws_lb_listener.test.arn
