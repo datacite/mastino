@@ -46,7 +46,7 @@ resource "aws_ecs_task_definition" "mds-test" {
 
 resource "aws_route53_record" "mds-test" {
    zone_id = data.aws_route53_zone.production.zone_id
-   name = "mds.test.datacite.org"
+   name = "mds1.test.datacite.org"
    type = "CNAME"
    ttl = var.ttl
    records = [data.aws_lb.test.dns_name]
@@ -54,7 +54,7 @@ resource "aws_route53_record" "mds-test" {
 
 resource "aws_route53_record" "split-mds-test" {
    zone_id = data.aws_route53_zone.internal.zone_id
-   name = "mds.test.datacite.org"
+   name = "mds1.test.datacite.org"
    type = "CNAME"
    ttl = var.ttl
    records = [data.aws_lb.test.dns_name]
