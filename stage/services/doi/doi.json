@@ -1,7 +1,7 @@
 [
   {
     "name": "doi-stage",
-    "image": "datacite/bracco:${version}",
+    "image": "datacite/bracco",
     "cpu": 2048,
     "memory": 4096,
     "essential": true,
