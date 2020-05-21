@@ -24,7 +24,7 @@ resource "aws_ecs_service" "client-api-test" {
   }
 
   depends_on = [
-    "aws_lb_listener.test"
+    "aws_lb_listener.test",
   ]
 }
 
@@ -43,6 +43,8 @@ resource "aws_ecs_task_definition" "client-api-test" {
     {
       re3data_url        = var.re3data_url
       bracco_url         = var.bracco_url
+      jwt_public_key     = var.jwt_public_key
+      jwt_private_key    = var.jwt_private_key
       session_encrypted_cookie_salt = var.session_encrypted_cookie_salt
       handle_url         = var.handle_url
       handle_username    = var.handle_username
