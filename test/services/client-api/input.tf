@@ -49,7 +49,7 @@ data "aws_lb_listener" "test" {
 data "template_file" "client-api_task" {
   template = file("client-api.json")
 
-  vars {
+  vars = {
     re3data_url        = var.re3data_url
     bracco_url         = var.bracco_url
     public_key         = var.public_key
