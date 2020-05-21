@@ -39,12 +39,10 @@ resource "aws_ecs_task_definition" "client-api-test" {
   requires_compatibilities = ["FARGATE"]
   cpu = "2048"
   memory = "4096"
-  container_definitions =  templatefile("client-api.json",
+  container_definitions = templatefile("client-api.json",
     {
       re3data_url        = var.re3data_url
       bracco_url         = var.bracco_url
-      jwt_public_key     = var.jwt_public_key
-      jwt_private_key    = var.jwt_private_key
       session_encrypted_cookie_salt = var.session_encrypted_cookie_salt
       handle_url         = var.handle_url
       handle_username    = var.handle_username
