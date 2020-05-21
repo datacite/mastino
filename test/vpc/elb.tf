@@ -31,6 +31,24 @@ resource "aws_s3_bucket" "logs-test" {
   }
 }
 
+resource "aws_lb_listener" "test" {
+  load_balancer_arn = data.aws_lb.test.id
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = data.aws_acm_certificate.test.arn
+
+  default_action {
+    type = "fixed-response"
+
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "OK"
+      status_code  = "200"
+    }
+  }
+}
+
 resource "aws_lb_listener" "http-test" {
   load_balancer_arn = aws_lb.test.id
   port              = "80"

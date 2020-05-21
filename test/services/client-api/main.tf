@@ -74,19 +74,6 @@ resource "aws_ecs_task_definition" "client-api-test" {
     })
 }
 
-resource "aws_lb_listener" "test" {
-  load_balancer_arn = data.aws_lb.test.id
-  port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = data.aws_acm_certificate.test.arn
-
-  default_action {
-    target_group_arn = aws_lb_target_group.client-api-test.id
-    type             = "forward"
-  }
-}
-
 resource "aws_lb_target_group" "client-api-test" {
   name     = "client-api-test"
   port     = 80
