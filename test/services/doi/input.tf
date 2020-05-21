@@ -1,13 +1,13 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
 }
 
 provider "aws" {
   # us-east-1 instance
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  access_key = var.access_key
+  secret_key = var.secret_key
   region = "us-east-1"
   alias = "use1"
 }
@@ -22,15 +22,15 @@ data "aws_route53_zone" "internal" {
 }
 
 data "aws_security_group" "datacite-private" {
-  id = "${var.security_group_id}"
+  id = var.security_group_id
 }
 
 data "aws_subnet" "datacite-private" {
-  id = "${var.subnet_datacite-private_id}"
+  id = var.subnet_datacite-private_id
 }
 
 data "aws_subnet" "datacite-alt" {
-  id = "${var.subnet_datacite-alt_id}"
+  id = var.subnet_datacite-alt_id
 }
 
 data "aws_ecs_cluster" "test" {
@@ -46,29 +46,10 @@ data "aws_iam_role" "ecs_task_execution_role" {
 }
 
 data "aws_lb" "test" {
-  name = "${var.lb_name}"
+  name = var.lb_name
 }
 
 data "aws_lb_listener" "test" {
-  load_balancer_arn = "${data.aws_lb.test.arn}"
+  load_balancer_arn = data.aws_lb.test.arn
   port = 443
-}
-
-data "template_file" "doi_task" {
-  template = "${file("doi.json")}"
-
-  vars {
-    orcid_url          = "${var.orcid_url}"
-    api_url            = "${var.api_url}"
-    eventdata_url      = "${var.eventdata_url}"
-    search_url         = "${var.search_url}"
-    cdn_url            = "${var.cdn_url}"
-    sentry_dsn         = "${var.sentry_dsn}"
-    public_key         = "${var.public_key}"
-    alb_public_key     = "${var.alb_public_key}"
-    jwt_public_key     = "${var.jwt_public_key}"
-    jwt_blacklisted    = "${var.jwt_blacklisted}"
-    tracking_id        = "${var.tracking_id}"
-    version            = "${var.bracco_tags["sha"]}"
-  }
 }
