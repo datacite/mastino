@@ -51,3 +51,7 @@ data "aws_iam_instance_profile" "ecs_instance" {
 data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
+
+data "aws_lb" "test" {
+  name = var.lb_name
+}
