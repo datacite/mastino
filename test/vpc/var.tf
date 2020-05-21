@@ -18,3 +18,7 @@ variable "ttl" {
 variable "cluster" {
   default = "test"
 }
+
+variable "lb_name" {
+  default = "lb-test"
+}
