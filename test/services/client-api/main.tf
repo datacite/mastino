@@ -68,7 +68,7 @@ resource "aws_lb_target_group" "client-api-test" {
 }
 
 resource "aws_lb_listener_rule" "api-graphql-test" {
-  listener_arn = data.aws_lb_listener.test.arn
+  listener_arn = aws_lb_listener.test.arn
   priority     = 48
 
   action {
@@ -88,7 +88,7 @@ resource "aws_lb_listener_rule" "api-graphql-test" {
 }
 
 resource "aws_lb_listener_rule" "api-test" {
-  listener_arn = data.aws_lb_listener.test.arn
+  listener_arn = aws_lb_listener.test.arn
   priority     = 54
 
   action {
