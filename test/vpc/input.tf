@@ -51,7 +51,3 @@ data "aws_iam_instance_profile" "ecs_instance" {
 data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
-
-data "aws_lb_target_group" "handle-test" {
-  name = "handle-test"
-}
