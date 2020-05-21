@@ -34,7 +34,6 @@ variable "memcache_servers" {
 
 variable "public_key" {}
 
-variable "alb_public_key" {}
 variable "jwt_public_key" {}
 variable "jwt_private_key" {}
 variable "session_encrypted_cookie_salt" {}
