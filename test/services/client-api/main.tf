@@ -55,6 +55,9 @@ resource "aws_ecs_task_definition" "client-api-test" {
       mysql_host         = var.mysql_host
       es_name            = var.es_name
       es_host            = var.es_host
+      es_scheme          = var.es_scheme
+      es_port            = var.es_port
+      elastic_password   = var.elastic_password
       public_key         = var.public_key
       access_key         = var.access_key
       secret_key         = var.secret_key
