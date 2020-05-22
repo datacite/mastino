@@ -1,7 +1,7 @@
 [
   {
     "name": "cheetoh-test",
-    "image": "datacite/cheetoh",
+    "image": "datacite/cheetoh${version}",
     "cpu": 512,
     "memory": 1024,
     "essential": true,

@@ -1,7 +1,7 @@
 [
   {
     "name": "mds-test",
-    "image": "datacite/poodle",
+    "image": "datacite/poodle${version}",
     "cpu": 256,
     "memory": 512,
     "networkMode": "awsvpc",

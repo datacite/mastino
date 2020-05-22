@@ -43,7 +43,7 @@ resource "aws_ecs_task_definition" "cheetoh-test" {
       api_url            = var.api_url
       admin_username     = var.admin_username
       admin_password     = var.admin_password
-      version            = var.cheetoh_tags["sha"]
+      version            = var.cheetoh_tags["version"]
     })
 }
 

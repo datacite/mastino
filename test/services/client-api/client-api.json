@@ -1,7 +1,7 @@
 [
   {
     "name": "client-api-test",
-    "image": "datacite/lupo",
+    "image": "datacite/lupo${version}",
     "cpu": 2048,
     "memory": 4096,
     "essential": true,

@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "mds-test" {
       sentry_dsn         = var.sentry_dsn
       api_url            = var.api_url
       memcache_servers   = var.memcache_servers
-      version            = var.poodle_tags["sha"]
+      version            = var.poodle_tags["version"]
     })
 }
 
