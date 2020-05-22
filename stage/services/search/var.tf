@@ -24,41 +24,41 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "cdn_url" {
-  default = "https://assets.test.datacite.org"
+  default = "https://assets.datacite.org"
 }
 variable "orcid_url" {
   default = "https://sandbox.orcid.org"
 }
 variable "orcid_update_url" {
-  default = "https://api.test.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 variable "volpino_url" {
-  default = "https://api.test.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 variable "api_url" {
-  default = "http://client-api.test.local"
+  default = "http://client-api.stage.local"
 }
 variable "jwt_host" {
-  default = "https://profiles.test.datacite.org"
+  default = "https://profiles.stage.datacite.org"
 }
 variable "fabrica_url" {
-  default = "https://doi.test.datacite.org"
+  default = "https://doi.stage.datacite.org"
 }
 variable "sitemaps_url" {
-  default = "https://search.test.datacite.org"
+  default = "https://search.stage.datacite.org"
 }
 variable "sitemaps_bucket_url" {
   default = "http://search.test.datacite.org.s3.amazonaws.com"
 }
 variable "data_url" {
-  default = "https://api.test.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 variable "gabba_url" {
-  default = "search.test.datacite.org"
+  default = "search.stage.datacite.org"
 }
 
 variable "memcache_servers" {
-  default = "memcached.test.datacite.org:11211"
+  default = "memcached.stage.datacite.org:11211"
 }
 
 variable "jwt_public_key" {}
