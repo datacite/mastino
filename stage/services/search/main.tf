@@ -70,7 +70,7 @@ resource "aws_cloudwatch_log_group" "search-stage" {
 
 resource "aws_ecs_task_definition" "search-stage" {
   family = "search-stage"
-  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn,
+  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
@@ -96,7 +96,7 @@ resource "aws_ecs_task_definition" "search-stage" {
       gabba_cookie       = var.gabba_cookie
       gabba_url          = var.gabba_url
       version            = var.doi-metadata-search_tags["sha"]
-    }}
+    })
 }
 
 resource "aws_lb_listener_rule" "search-stage" {
