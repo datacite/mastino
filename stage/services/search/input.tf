@@ -47,6 +47,15 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
+data "aws_lb" "test" {
+  name = "lb-test"
+}
+
+data "aws_lb_listener" "test" {
+  load_balancer_arn = data.aws_lb.test.arn
+  port = 443
+}
+
 data "aws_lb_target_group" "solr-stage" {
   name = "solr-stage"
 }
