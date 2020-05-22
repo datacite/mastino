@@ -83,7 +83,7 @@ resource "aws_cloudfront_distribution" "assets-test" {
   }
 }
 
-resource "aws_route53_record" "assets-test" {
+resource "aws_route53_record" "assets-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "assets.stage.datacite.org"
    type = "CNAME"
@@ -91,9 +91,25 @@ resource "aws_route53_record" "assets-test" {
    records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
 }
 
-resource "aws_route53_record" "split-assets-test" {
+resource "aws_route53_record" "split-assets-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "assets.stage.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
+}
+
+resource "aws_route53_record" "assets-test" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "assets.tests.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
+}
+
+resource "aws_route53_record" "split-assets-test" {
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   name = "assets.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
