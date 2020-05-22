@@ -20,9 +20,9 @@ data "template_file" "blog-stage" {
   }
 }
 
-data "aws_acm_certificate" "cloudfront-test" {
+data "aws_acm_certificate" "cloudfront-stage" {
   provider = "aws.use1"
-  domain = "*.test.datacite.org"
+  domain = "*.stage.datacite.org"
   statuses = ["ISSUED"]
   most_recent = true
 }
