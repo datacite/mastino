@@ -3,7 +3,7 @@ resource "aws_ecs_service" "doi-stage" {
   cluster = "${data.aws_ecs_cluster.stage.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.doi-stage.arn}"
-  desired_count = 1
+  desired_count = 0
 
   # give container time to start up
   health_check_grace_period_seconds = 600
@@ -147,7 +147,7 @@ resource "aws_route53_record" "split-doi-stage" {
 }
 
 resource "aws_service_discovery_service" "doi-stage" {
-  name = "doi.test"
+  name = "doi.stage"
 
   health_check_custom_config {
     failure_threshold = 3
