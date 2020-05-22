@@ -29,7 +29,7 @@ variable "bracco_url" {
 }
 
 variable "memcache_servers" {
-  default = "memcached.test.datacite.org:11211"
+  default = "memcached.stage.datacite.org:11211"
 }
 
 variable "public_key" {}
