@@ -1,7 +1,11 @@
 resource "aws_s3_bucket" "search-stage" {
     bucket = "search.test.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.search-stage.rendered}"
+    policy = templatefile("s3_public_read.json",
+      {
+        vpce_id = data.aws_vpc_endpoint.datacite.id
+        bucket_name = aws_route53_record.search-stage.name
+      })
     website {
         index_document = "index.html"
     }
