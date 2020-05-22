@@ -70,7 +70,7 @@ resource "aws_cloudfront_distribution" "www-stage" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-test.arn}"
+    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-stage.arn}"
     ssl_support_method  = "sni-only"
   }
 }

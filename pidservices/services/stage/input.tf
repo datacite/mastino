@@ -12,7 +12,7 @@ provider "aws" {
   alias = "use1"
 }
 
-data "aws_acm_certificate" "cloudfront-test" {
+data "aws_acm_certificate" "cloudfront-pidservices" {
   provider = aws.use1
   domain = "pidservices.org"
   statuses = ["ISSUED"]

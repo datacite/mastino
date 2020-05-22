@@ -20,9 +20,9 @@ data "template_file" "repository-finder-stage" {
   }
 }
 
-data "aws_acm_certificate" "cloudfront-test" {
+data "aws_acm_certificate" "cloudfront-stage" {
   provider = "aws.use1"
-  domain = "*.test.datacite.org"
+  domain = "*.stage.datacite.org"
   statuses = ["ISSUED"]
 }
 
