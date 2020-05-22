@@ -80,7 +80,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage-users" {
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
@@ -100,7 +100,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage-claims" {
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
@@ -120,7 +120,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage-people" {
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
