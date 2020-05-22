@@ -97,7 +97,7 @@ resource "aws_route53_record" "content-negotiation-stage" {
 
 resource "aws_route53_record" "data-test" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "data.stage.datacite.org"
+    name = "data.test.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.test.dns_name}"]
