@@ -3,7 +3,7 @@ resource "aws_ecs_service" "doi-test" {
   cluster = data.aws_ecs_cluster.test.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.doi-test.arn
-  desired_count = 0
+  desired_count = 1
 
   # give container time to start up
   health_check_grace_period_seconds = 600
