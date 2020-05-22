@@ -131,7 +131,7 @@ resource "aws_lb_listener_rule" "profiles-api-stage-people" {
 
 resource "aws_route53_record" "profiles-stage" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "profiles.test.datacite.org"
+    name = "profiles.stage.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.stage.dns_name}"]
@@ -139,14 +139,30 @@ resource "aws_route53_record" "profiles-stage" {
 
 resource "aws_route53_record" "split-profiles-stage" {
     zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "profiles.test.datacite.org"
+    name = "profiles.stage.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.stage.dns_name}"]
 }
 
+resource "aws_route53_record" "profiles-test" {
+    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    name = "profiles.test.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.test.dns_name}"]
+}
+
+resource "aws_route53_record" "split-profiles-test" {
+    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+    name = "profiles.test.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.test.dns_name}"]
+}
+
 resource "aws_service_discovery_service" "profiles-stage" {
-  name = "profiles.test"
+  name = "profiles.stage"
 
   health_check_custom_config {
     failure_threshold = 3

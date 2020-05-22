@@ -95,6 +95,14 @@ resource "aws_route53_record" "content-negotiation-stage" {
     records = ["${data.aws_lb.crosscite-stage.dns_name}"]
 }
 
+resource "aws_route53_record" "data-test" {
+    zone_id = "${data.aws_route53_zone.production.zone_id}"
+    name = "data.stage.datacite.org"
+    type = "CNAME"
+    ttl = "${var.ttl}"
+    records = ["${data.aws_lb.test.dns_name}"]
+}
+
 resource "aws_service_discovery_service" "content-negotiation-stage" {
   name = "content-negotiation.test"
 

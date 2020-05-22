@@ -46,6 +46,15 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
+data "aws_lb" "test" {
+  name = "lb-test"
+}
+
+data "aws_lb_listener" "test" {
+  load_balancer_arn = "${data.aws_lb.test.arn}"
+  port = 443
+}
+
 data "template_file" "profiles_task" {
   template = "${file("profiles.json")}"
 
