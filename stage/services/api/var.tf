@@ -24,20 +24,20 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "volpino_url" {
-  default = "http://profiles.test.local/api"
+  default = "http://profiles.stage.local/api"
 }
 variable "orcid_update_url" {
-  default = "http://profiles.test.local"
+  default = "http://profiles.stage.local"
 }
 variable "api_url" {
-  default = "http://client-api.test.local"
+  default = "http://client-api.stage.local"
 }
 variable "blog_url" {
-  default = "https://blog.test.datacite.org"
+  default = "https://blog.stage.datacite.org"
 }
 
 variable "memcache_servers" {
-  default = "memcached.test.datacite.org:11211"
+  default = "memcached.stage.datacite.org:11211"
 }
 
 variable "volpino_token" {}

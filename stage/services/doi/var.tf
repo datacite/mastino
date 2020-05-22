@@ -17,16 +17,16 @@ variable "orcid_url" {
   default = "https://sandbox.orcid.org"
 }
 variable "api_url" {
-  default = "https://api.test.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 variable "eventdata_url" {
-  default = "https://api.test.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 variable "search_url" {
-  default = "https://search.test.datacite.org"
+  default = "https://search.stage.datacite.org"
 }
 variable "cdn_url" {
-  default = "https://assets.test.datacite.org"
+  default = "https://assets.stage.datacite.org"
 }
 
 variable "bracco_tags" {

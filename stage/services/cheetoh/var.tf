@@ -24,7 +24,7 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "memcache_servers" {
-  default = "memcached.test.datacite.org:11211"
+  default = "memcached.stage.datacite.org:11211"
 }
 
 variable "secret_key_base" {}
@@ -34,5 +34,5 @@ variable "admin_username" {}
 variable "admin_password" {}
 
 variable "api_url" {
-  default = "http://client-api.test.local"
+  default = "http://client-api.stage.local"
 }

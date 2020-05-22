@@ -30,5 +30,5 @@ variable "memcache_servers" {
 variable "sentry_dsn" {}
 
 variable "api_url" {
-  default = "http://client-api.test.local"
+  default = "http://client-api.stage.local"
 }

@@ -19,10 +19,10 @@ variable "ttl" {
 }
 
 variable "memcache_servers" {
-  default = "memcached.test.datacite.org:11211"
+  default = "memcached.stage.datacite.org:11211"
 }
 variable "api_dns_name" {
-  default = "api.test.datacite.org"
+  default = "api.stage.datacite.org"
 }
 
 variable "security_group_id" {}
@@ -37,10 +37,10 @@ variable "sentry_dsn" {}
 variable "slack_webhook_url" {}
 
 variable "volpino_url" {
-  default = "https://api.test.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 variable "lagottino_url" {
-  default = "https://api.test.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 variable "eventdata_url" {
   default = "https://bus-staging.eventdata.crossref.org"

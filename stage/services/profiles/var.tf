@@ -23,7 +23,7 @@ variable "ttl" {
 }
 
 variable "search_url" {
-  default = "https://search.test.datacite.org"
+  default = "https://search.stage.datacite.org"
 }
 variable "orcid_url" {
   default = "https://sandbox.orcid.org"
@@ -32,16 +32,16 @@ variable "orcid_api_url" {
   default = "https://api.sandbox.orcid.org"
 }
 variable "bracco_url" {
-  default = "https://doi.test.datacite.org"
+  default = "https://doi.stage.datacite.org"
 }
 variable "api_url" {
-  default = "http://client-api.test.local"
+  default = "http://client-api.stage.local"
 }
 variable "cdn_url" {
-  default = "https://assets.test.datacite.org"
+  default = "https://assets.stage.datacite.org"
 }
 variable "blog_url" {
-  default = "https://blog.test.datacite.org"
+  default = "https://blog.stage.datacite.org"
 }
 
 variable "redis_url" {}

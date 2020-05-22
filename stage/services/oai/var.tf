@@ -24,11 +24,11 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "base_url" {
-  default = "https://oai.test.datacite.org/oai"
+  default = "https://oai.stage.datacite.org/oai"
 }
 
 variable "api_url" {
-  default = "http://client-api.test.local"
+  default = "http://client-api.stage.local"
 }
 
 variable "api_password" {}
