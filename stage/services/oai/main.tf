@@ -108,7 +108,7 @@ resource "aws_route53_record" "oai-test" {
     name = "oai.test.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
-    records = ["${data.aws_lb.task_definition.dns_name}"]
+    records = ["${data.aws_lb.test.dns_name}"]
 }
 
 resource "aws_service_discovery_service" "oai-stage" {
