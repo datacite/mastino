@@ -123,7 +123,7 @@ resource "aws_lb_listener_rule" "api-test" {
 
 resource "aws_route53_record" "api-stage" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "api1.test.datacite.org"
+    name = "api.test.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.test.dns_name}"]
@@ -131,14 +131,14 @@ resource "aws_route53_record" "api-stage" {
 
 resource "aws_route53_record" "split-api-stage" {
     zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "api1.test.datacite.org"
+    name = "api.test.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.test.dns_name}"]
 }
 
 resource "aws_service_discovery_service" "client-api-test" {
-  name = "client-api1.test"
+  name = "client-api.test"
 
   health_check_custom_config {
     failure_threshold = 3

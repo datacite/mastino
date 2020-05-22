@@ -62,7 +62,7 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "api_dns_name" {
-  default = "api1.test.datacite.org"
+  default = "api.test.datacite.org"
 }
 variable "handle_url" {}
 variable "handle_username" {}
