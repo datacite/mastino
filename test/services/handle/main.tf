@@ -67,7 +67,7 @@ resource "aws_lb_listener_rule" "handle-test" {
 
 resource "aws_route53_record" "handle-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "handle1.test.datacite.org"
+   name = "handle.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.test.dns_name}"]
@@ -75,7 +75,7 @@ resource "aws_route53_record" "handle-test" {
 
 resource "aws_route53_record" "split-handle-test" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "handle1.test.datacite.org"
+   name = "handle.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.test.dns_name}"]
