@@ -46,10 +46,10 @@ data "aws_iam_role" "ecs_task_execution_role" {
 }
 
 data "aws_lb" "stage" {
-  name = var.lb_name
+  name = "${var.lb_name}"
 }
 
 data "aws_lb_listener" "stage" {
-  load_balancer_arn = data.aws_lb.stage.arn
+  load_balancer_arn = "${data.aws_lb.stage.arn}"
   port = 443
 }

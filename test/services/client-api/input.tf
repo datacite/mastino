@@ -37,17 +37,17 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
-data "aws_lb" "test" {
-  name = var.lb_name
-}
-
 data "aws_acm_certificate" "test" {
   domain = "*.test.datacite.org"
   statuses = ["ISSUED"]
   most_recent = true
 }
 
+data "aws_lb" "test" {
+  name = "${var.lb_name}"
+}
+
 data "aws_lb_listener" "test" {
-  load_balancer_arn = data.aws_lb.test.arn
+  load_balancer_arn = "${data.aws_lb.test.arn}"
   port = 443
 }

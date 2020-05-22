@@ -21,6 +21,7 @@ data "aws_lb_listener" "test" {
   load_balancer_arn = "${data.aws_lb.test.arn}"
   port = 443
 }
+
 data "aws_ecs_cluster" "test" {
   cluster_name = "test"
 }
