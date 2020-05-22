@@ -19,9 +19,9 @@ resource "aws_ecs_service" "client-api-stage" {
     container_port   = "80"
   }
 
-  // service_registries {
-  //   registry_arn = aws_service_discovery_service.client-api-stage.arn
-  // }
+  service_registries {
+    registry_arn = aws_service_discovery_service.client-api-stage.arn
+  }
 
   depends_on = [
     "data.aws_lb_listener.stage"
