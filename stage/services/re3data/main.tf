@@ -58,7 +58,7 @@ resource "aws_lb_listener_rule" "re3data-stage" {
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.stage.datacite.org"]
   }
 
   condition {

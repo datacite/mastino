@@ -84,7 +84,7 @@ resource "aws_cloudfront_distribution" "repository-finder-stage" {
 
 resource "aws_route53_record" "repository-finder-test" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "repositoryfinder.test.datacite.org"
+  name = "repositoryfinder.stage.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
   records = ["${aws_cloudfront_distribution.repository-finder-stage.domain_name}"]
@@ -92,7 +92,7 @@ resource "aws_route53_record" "repository-finder-test" {
 
 resource "aws_route53_record" "split-repository-finder-test" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "repositoryfinder.test.datacite.org"
+  name = "repositoryfinder.stage.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
   records = ["${aws_cloudfront_distribution.repository-finder-stage.domain_name}"]

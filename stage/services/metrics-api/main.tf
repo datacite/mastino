@@ -119,7 +119,7 @@ resource "aws_ecs_task_definition" "metrics-api-stage" {
 
 resource "aws_route53_record" "metrics-api-stage" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "metrics.test.datacite.org"
+  name = "metrics.stage.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
   records = ["${data.aws_lb.stage.dns_name}"]
@@ -127,14 +127,14 @@ resource "aws_route53_record" "metrics-api-stage" {
 
 resource "aws_route53_record" "split-metrics-api-stage" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "metrics.test.datacite.org"
+  name = "metrics.stage.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
   records = ["${data.aws_lb.stage.dns_name}"]
 }
 
 resource "aws_service_discovery_service" "metrics-api-stage" {
-  name = "metrics-api.test"
+  name = "metrics-api.stage"
 
    health_check_custom_config {
     failure_threshold = 3

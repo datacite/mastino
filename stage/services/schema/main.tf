@@ -76,7 +76,7 @@ resource "aws_cloudfront_distribution" "schema-stage" {
 
 resource "aws_route53_record" "schema-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "schema.test.datacite.org"
+   name = "schema.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.schema-stage.domain_name}"]
@@ -84,7 +84,7 @@ resource "aws_route53_record" "schema-test" {
 
 resource "aws_route53_record" "split-schema-test" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "schema.test.datacite.org"
+   name = "schema.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.schema-stage.domain_name}"]

@@ -104,7 +104,7 @@ resource "aws_route53_record" "data-test" {
 }
 
 resource "aws_service_discovery_service" "content-negotiation-stage" {
-  name = "content-negotiation.test"
+  name = "content-negotiation.stage"
 
   health_check_custom_config {
     failure_threshold = 3

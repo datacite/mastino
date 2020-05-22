@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "ghost-stage" {
 
 resource "aws_route53_record" "ghost-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "ghost.test.datacite.org"
+   name = "ghost.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.stage.dns_name}"]
@@ -49,7 +49,7 @@ resource "aws_route53_record" "ghost-stage" {
 
 resource "aws_route53_record" "split-ghost-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "ghost.test.datacite.org"
+   name = "ghost.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.stage.dns_name}"]
