@@ -55,7 +55,7 @@ resource "aws_ecs_task_definition" "doi-test" {
       jwt_public_key     = var.jwt_public_key
       jwt_blacklisted    = var.jwt_blacklisted
       tracking_id        = var.tracking_id
-      version            = var.bracco_tags["sha"]
+      version            = var.bracco_tags["version"]
     })
 }
 
