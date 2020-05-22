@@ -101,7 +101,7 @@ resource "aws_route53_record" "split-assets-stage" {
 
 resource "aws_route53_record" "assets-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "assets.tests.datacite.org"
+   name = "assets.test.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
