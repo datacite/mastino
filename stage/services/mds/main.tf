@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "mds-stage" {
 
 resource "aws_route53_record" "mds-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "mds.test.datacite.org"
+   name = "mds.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.stage.dns_name}"]
@@ -49,7 +49,7 @@ resource "aws_route53_record" "mds-stage" {
 
 resource "aws_route53_record" "split-mds-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "mds.test.datacite.org"
+   name = "mds.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${data.aws_lb.stage.dns_name}"]

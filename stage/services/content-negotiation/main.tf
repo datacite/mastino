@@ -81,7 +81,7 @@ resource "aws_lb_listener_rule" "data-stage" {
 
 resource "aws_route53_record" "data-stage" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "data.test.datacite.org"
+    name = "data.stage.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.stage.dns_name}"]
@@ -89,7 +89,7 @@ resource "aws_route53_record" "data-stage" {
 
 resource "aws_route53_record" "content-negotiation-stage" {
     zone_id = "${data.aws_route53_zone.crosscite.zone_id}"
-    name = "data.test.crosscite.org"
+    name = "data.stage.crosscite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.crosscite-stage.dns_name}"]

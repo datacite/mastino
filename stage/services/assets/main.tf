@@ -85,7 +85,7 @@ resource "aws_cloudfront_distribution" "assets-test" {
 
 resource "aws_route53_record" "assets-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "assets.test.datacite.org"
+   name = "assets.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
@@ -93,7 +93,7 @@ resource "aws_route53_record" "assets-test" {
 
 resource "aws_route53_record" "split-assets-test" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "assets.test.datacite.org"
+   name = "assets.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]

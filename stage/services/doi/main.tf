@@ -132,7 +132,7 @@ resource "aws_lb_listener_rule" "doi-stage" {
 
 resource "aws_route53_record" "doi-stage" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
-    name = "doi.test.datacite.org"
+    name = "doi.stage.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.stage.dns_name}"]
@@ -140,7 +140,7 @@ resource "aws_route53_record" "doi-stage" {
 
 resource "aws_route53_record" "split-doi-stage" {
     zone_id = "${data.aws_route53_zone.internal.zone_id}"
-    name = "doi.test.datacite.org"
+    name = "doi.stage.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
     records = ["${data.aws_lb.stage.dns_name}"]

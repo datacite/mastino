@@ -77,7 +77,7 @@ resource "aws_cloudfront_distribution" "www-stage" {
 
 resource "aws_route53_record" "www-test" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "www.test.datacite.org"
+   name = "www.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.www-stage.domain_name}"]
@@ -85,7 +85,7 @@ resource "aws_route53_record" "www-test" {
 
 resource "aws_route53_record" "split-www-test" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "www.test.datacite.org"
+   name = "www.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.www-stage.domain_name}"]

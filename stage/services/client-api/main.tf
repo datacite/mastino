@@ -90,7 +90,7 @@ resource "aws_lb_listener_rule" "api-stage" {
 }
 
 resource "aws_service_discovery_service" "client-api-stage" {
-  name = "client-api.test"
+  name = "client-api.stage"
 
   health_check_custom_config {
     failure_threshold = 3
