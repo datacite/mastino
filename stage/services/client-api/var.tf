@@ -25,11 +25,11 @@ variable "re3data_url" {
   default = "http://www.re3data.org/api/beta"
 }
 variable "bracco_url" {
-  default = "https://doi.test.datacite.org"
+  default = "https://doi.stage.datacite.org"
 }
 
 variable "memcache_servers" {
-  default = "memcached.test.datacite.org:11211"
+  default = "memcached.stage.datacite.org:11211"
 }
 
 variable "public_key" {}
