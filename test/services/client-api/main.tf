@@ -121,7 +121,7 @@ resource "aws_lb_listener_rule" "api-test" {
   }
 }
 
-resource "aws_route53_record" "api-stage" {
+resource "aws_route53_record" "api-test" {
     zone_id = data.aws_route53_zone.production.zone_id
     name = "api.test.datacite.org"
     type = "CNAME"
@@ -129,7 +129,7 @@ resource "aws_route53_record" "api-stage" {
     records = [data.aws_lb.test.dns_name]
 }
 
-resource "aws_route53_record" "split-api-stage" {
+resource "aws_route53_record" "split-api-test" {
     zone_id = data.aws_route53_zone.internal.zone_id
     name = "api.test.datacite.org"
     type = "CNAME"
