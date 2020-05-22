@@ -22,9 +22,9 @@ resource "aws_ecs_service" "doi-test" {
     container_port   = "80"
   }
 
-  service_registries {
-    registry_arn = aws_service_discovery_service.doi-test.arn
-  }
+  // service_registries {
+  //   registry_arn = aws_service_discovery_service.doi-test.arn
+  // }
 
   depends_on = [
     "data.aws_lb_listener.test"
