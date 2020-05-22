@@ -52,7 +52,7 @@ data "aws_lb" "test" {
 }
 
 data "aws_lb_listener" "test" {
-  load_balancer_arn = data.aws_lb.test.arn
+  load_balancer_arn = "${data.aws_lb.test.arn}"
   port = 443
 }
 
