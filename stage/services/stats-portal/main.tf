@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "stats-stage" {
     prefix          = "stats/"
   }
 
-  aliases = ["stats.test.datacite.org"]
+  aliases = ["stats.stage.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -74,7 +74,7 @@ resource "aws_cloudfront_distribution" "stats-stage" {
   }
 }
 
-resource "aws_route53_record" "stats-test" {
+resource "aws_route53_record" "stats-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "stats.stage.datacite.org"
    type = "CNAME"
@@ -82,7 +82,7 @@ resource "aws_route53_record" "stats-test" {
    records = ["${aws_cloudfront_distribution.stats-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-stats-test" {
+resource "aws_route53_record" "split-stats-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "stats.stage.datacite.org"
    type = "CNAME"
