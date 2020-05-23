@@ -35,7 +35,7 @@ resource "aws_cloudfront_distribution" "www-stage" {
     prefix          = "homepage/"
   }
 
-  aliases = ["www.test.datacite.org"]
+  aliases = ["www.stage.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -75,7 +75,7 @@ resource "aws_cloudfront_distribution" "www-stage" {
   }
 }
 
-resource "aws_route53_record" "www-test" {
+resource "aws_route53_record" "www-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "www.stage.datacite.org"
    type = "CNAME"
@@ -83,7 +83,7 @@ resource "aws_route53_record" "www-test" {
    records = ["${aws_cloudfront_distribution.www-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-www-test" {
+resource "aws_route53_record" "split-www-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
    name = "www.stage.datacite.org"
    type = "CNAME"
