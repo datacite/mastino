@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "assets-test" {
-    bucket = "assets.test.datacite.org"
+resource "aws_s3_bucket" "assets-stage" {
+    bucket = "assets.stage.datacite.org"
     acl = "public-read"
     policy = "${data.template_file.assets-test.rendered}"
     website {
@@ -18,10 +18,10 @@ resource "aws_s3_bucket" "assets-test" {
     }
 }
 
-resource "aws_cloudfront_distribution" "assets-test" {
+resource "aws_cloudfront_distribution" "assets-stage" {
   origin {
-    domain_name = "${aws_s3_bucket.assets-test.website_endpoint}"
-    origin_id   = "assets.test.datacite.org"
+    domain_name = "${aws_s3_bucket.assets-stage.website_endpoint}"
+    origin_id   = "assets.stage.datacite.org"
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
@@ -41,12 +41,12 @@ resource "aws_cloudfront_distribution" "assets-test" {
     prefix          = "assets/"
   }
 
-  aliases = ["assets.test.datacite.org"]
+  aliases = ["assets.stage.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "assets.test.datacite.org"
+    target_origin_id = "assets.stage.datacite.org"
 
     forwarded_values {
       query_string = false
@@ -88,7 +88,7 @@ resource "aws_route53_record" "assets-stage" {
    name = "assets.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
+   records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
 }
 
 resource "aws_route53_record" "split-assets-stage" {
@@ -96,5 +96,5 @@ resource "aws_route53_record" "split-assets-stage" {
    name = "assets.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.assets-test.domain_name}"]
+   records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
 }
