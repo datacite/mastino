@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "assets-stage" {
     bucket = "assets.stage.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.assets-test.rendered}"
+    policy = "${data.template_file.assets-stage.rendered}"
     website {
         index_document = "index.html"
         error_document = "404.html"
