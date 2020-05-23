@@ -83,18 +83,18 @@ resource "aws_s3_bucket" "assets-stage" {
 //   }
 // }
 
-// resource "aws_route53_record" "assets-stage" {
-//    zone_id = "${data.aws_route53_zone.production.zone_id}"
-//    name = "assets.stage.datacite.org"
-//    type = "CNAME"
-//    ttl = "${var.ttl}"
-//    records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
-// }
+resource "aws_route53_record" "assets-stage" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "assets.stage.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
+}
 
-// resource "aws_route53_record" "split-assets-stage" {
-//    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-//    name = "assets.stage.datacite.org"
-//    type = "CNAME"
-//    ttl = "${var.ttl}"
-//    records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
-// }
+resource "aws_route53_record" "split-assets-stage" {
+   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   name = "assets.stage.datacite.org"
+   type = "CNAME"
+   ttl = "${var.ttl}"
+   records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
+}
