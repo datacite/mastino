@@ -20,8 +20,8 @@ resource "aws_s3_bucket" "assets-stage" {
 
 resource "aws_cloudfront_distribution" "assets-stage" {
   origin {
-    domain_name = "${aws_s3_bucket.assets-stage.website_endpoint}"
-    # origin_id   = "assets.stage.datacite.org"
+    # domain_name = "${aws_s3_bucket.assets-stage.website_endpoint}"
+    origin_id   = "assets.stage.datacite.org"
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
