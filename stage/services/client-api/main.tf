@@ -83,6 +83,8 @@ resource "aws_lb_target_group" "client-api-stage" {
 
   health_check {
     path = "/heartbeat"
+    timeout = 30
+    interval = 60
   }
 }
 
