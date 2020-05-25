@@ -22,17 +22,17 @@ variable "lb_name" {
 }
 
 variable "api_dns_name" {
-  default = "api.test.datacite.org"
+  default = "api.stage.datacite.org"
 }
 
 variable "profiles_url" {
-  default = "https://api.test.datacite.org/profiles/graphql"
+  default = "https://api.stage.datacite.org/profiles/graphql"
 }
 variable "client_api_url" {
-  default = "https://api.test.datacite.org/client-api/graphql"
+  default = "https://api.stage.datacite.org/client-api/graphql"
 }
 variable "api_url" {
-  default = "https://api.test.datacite.org/api/graphql"
+  default = "https://api.stage.datacite.org/api/graphql"
 }
 
 variable "sentry_dsn" {}
