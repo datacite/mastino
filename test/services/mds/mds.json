@@ -46,6 +46,10 @@
         "value" : "${sentry_dsn}"
       },
       {
+        "name" : "REALM",
+        "value" : "${realm}"
+      },
+      {
         "name" : "MEMCACHE_SERVERS",
         "value" : "${memcache_servers}"
       },

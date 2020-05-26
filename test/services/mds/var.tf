@@ -27,6 +27,10 @@ variable "memcache_servers" {
   default = "memcached.stage.datacite.org:11211"
 }
 
+variable "realm" {
+  default = "mds.test.datacite.org"
+}
+
 variable "sentry_dsn" {}
 
 variable "api_url" {
