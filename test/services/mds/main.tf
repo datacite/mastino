@@ -148,22 +148,22 @@ resource "aws_lb_listener_rule" "mds-test" {
 //   }
 // }
 
-// resource "aws_lb_listener_rule" "mds-test-heartbeat" {
-//   listener_arn = data.aws_lb_listener.test.arn
-//   priority     = 7
+resource "aws_lb_listener_rule" "mds-test-heartbeat" {
+  listener_arn = data.aws_lb_listener.test.arn
+  priority     = 7
 
-//   action {
-//     type             = "forward"
-//     target_group_arn = aws_lb_target_group.mds-test.arn
-//   }
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.mds-test.arn
+  }
 
-//   condition {
-//     field  = "host-header"
-//     values = [aws_route53_record.mds-test.name]
-//   }
+  condition {
+    field  = "host-header"
+    values = [aws_route53_record.mds-test.name]
+  }
 
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/heartbeat"]
-//   }
-// }
+  condition {
+    field  = "path-pattern"
+    values = ["/heartbeat"]
+  }
+}
