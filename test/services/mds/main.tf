@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "mds-test" {
       api_url            = var.api_url
       realm              = var.realm
       memcache_servers   = var.memcache_servers
-      version            = var.poodle_tags["version"]
+      version            = var.poodle_tags["sha"]
     })
 }
 
