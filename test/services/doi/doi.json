@@ -2,7 +2,7 @@
   {
     "name": "doi-test",
     "image": "datacite/bracco:${version}",
-    "cpu": 2048,
+    "cpu": 1024,
     "memory": 4096,
     "essential": true,
     "networkMode": "awsvpc",
