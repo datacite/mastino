@@ -55,6 +55,9 @@ variable "es_port" {}
 variable "es_name" {
   default = "es"
 }
+variable "es_prefix" {
+  default = "sandbox"
+}
 variable "elastic_password" {}
 
 variable "security_group_id" {}
