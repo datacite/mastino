@@ -32,3 +32,7 @@ variable "sentry_dsn" {}
 variable "api_url" {
   default = "http://client-api.stage.local"
 }
+
+variable "mds_url" {
+  default = "https://mds.stage.datacite.org"
+}

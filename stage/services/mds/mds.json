@@ -42,6 +42,10 @@
         "value" : "${api_url}"
       },
       {
+        "name" : "MDS_URL",
+        "value" : "${mds_url}"
+      },
+      {
         "name" : "SENTRY_DSN",
         "value" : "${sentry_dsn}"
       },
