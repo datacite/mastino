@@ -56,7 +56,7 @@ variable "es_name" {
   default = "es"
 }
 variable "es_prefix" {
-  default = "sandbox"
+  default = ""
 }
 variable "elastic_password" {}
 
