@@ -56,7 +56,7 @@ variable "es_name" {
   default = "es"
 }
 variable "es_prefix" {
-  default = ""
+  default = "stage"
 }
 variable "elastic_password" {}
 
