@@ -26,7 +26,7 @@ resource "aws_elasticsearch_domain" "test" {
   }
 
   cognito_options {
-    enabled          = "${var.enable_cognito}"
+    enabled          = true
     identity_pool_id = "${aws_cognito_identity_pool.identity_pool.id}"
     role_arn         = "${aws_iam_role.CognitoAccessForAmazonES.arn}"
     user_pool_id     = "${aws_cognito_user_pool.user_pool.id}"

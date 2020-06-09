@@ -8,7 +8,7 @@ resource "aws_cognito_identity_pool" "identity_pool" {
 
   cognito_identity_providers {
     client_id               = "${aws_cognito_user_pool_client.kibana_client.id}"
-    provider_name           = "cognito-idp.eu-west-1.amazonaws.com/${aws_cognito_user_pool.identity_pool.id}"
+    provider_name           = "cognito-idp.eu-west-1.amazonaws.com/${aws_cognito_user_pool.user_pool.id}"
     server_side_token_check = false
   }
 }
