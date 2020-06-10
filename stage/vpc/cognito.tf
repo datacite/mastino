@@ -3,7 +3,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 }
 
 resource "aws_cognito_identity_pool" "identity_pool" {
-  identity_pool_name               = "kibana-identity-pool"
+  identity_pool_name               = "kibana identity pool"
   allow_unauthenticated_identities = false
 
   /*cognito_identity_providers {
