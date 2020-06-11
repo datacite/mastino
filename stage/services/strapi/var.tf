@@ -22,13 +22,6 @@ variable "subnet_datacite-alt_id" {}
 variable "mysql_user" {}
 variable "mysql_password" {}
 variable "mysql_database" {
-  default = "ghost"
+  default = "strapi"
 }
 variable "mysql_host" {}
-
-variable "url" {
-  default = "https://ghost.test.datacite.org/"
-}
-
-variable "mailgun_user" {}
-variable "mailgun_password" {}
