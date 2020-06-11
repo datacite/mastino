@@ -8,5 +8,5 @@ resource "aws_efs_file_system" "stage" {
 
 resource "aws_efs_mount_target" "stage" {
   file_system_id = aws_efs_file_system.stage.id
-  subnet_id      = aws_subnet.datacite-private.id
+  subnet_id      = data.aws_subnet.datacite-private.id
 }
