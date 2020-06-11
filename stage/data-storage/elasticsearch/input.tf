@@ -35,5 +35,5 @@ data "aws_iam_role" "CognitoAccessForAmazonES" {
 }
 
 data "aws_cognito_user_pool" "user_pool" {
-  name = "user_pool"
+  name = "kibana-userpool"
 }
