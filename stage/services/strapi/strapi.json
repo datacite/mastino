@@ -6,6 +6,12 @@
     "memory": 2048,
     "networkMode": "awsvpc",
     "essential": true,
+    "mountPoints": [
+      {
+        "containerPath": "/srv/app",
+        "sourceVolume": "strapi-stage-storage"
+      }
+    ],
     "portMappings": [
       {
         "containerPort": 1337,

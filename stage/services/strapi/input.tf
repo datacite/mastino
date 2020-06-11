@@ -45,3 +45,7 @@ data "aws_lb_listener" "stage" {
   load_balancer_arn = data.aws_lb.stage.arn
   port = 443
 }
+
+data "aws_efs_file_system" "stage" {
+  file_system_id = var.file_system_id
+}

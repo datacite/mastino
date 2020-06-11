@@ -29,3 +29,4 @@ variable "mysql_database" {
 variable "mysql_host" {}
 
 variable "namespace_id" {}
+variable "file_system_id" {}

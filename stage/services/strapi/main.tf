@@ -51,7 +51,14 @@ resource "aws_ecs_task_definition" "strapi-stage" {
       mysql_host         = var.mysql_host
       public_key         = var.public_key
     })
+  volume {
+    name = "strapi-stage-storage"
 
+    efs_volume_configuration {
+      file_system_id = data.aws_efs_file_system.stage.id
+      root_directory = "/strapi/app"
+    }
+  }
 }
 
 resource "aws_route53_record" "strapi-stage" {
