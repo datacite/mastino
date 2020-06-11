@@ -16,3 +16,8 @@ data "aws_subnet" "datacite-private" {
 data "aws_subnet" "datacite-alt" {
   id = var.subnet_datacite-alt_id
 }
+
+data "aws_route53_zone" "internal" {
+  name         = "datacite.org"
+  private_zone = true
+}
