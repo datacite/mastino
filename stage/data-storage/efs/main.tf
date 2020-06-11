@@ -5,3 +5,8 @@ resource "aws_efs_file_system" "stage" {
     Name = "EFS-Stage"
   }
 }
+
+resource "aws_efs_mount_target" "stage" {
+  file_system_id = aws_efs_file_system.stage.id
+  subnet_id      = aws_subnet.datacite-private.id
+}
