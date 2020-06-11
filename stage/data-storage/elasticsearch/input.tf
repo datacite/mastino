@@ -33,3 +33,7 @@ data "template_file" "functionbeat" {
 data "aws_iam_role" "CognitoAccessForAmazonES" {
   name = "CognitoAccessForAmazonES"
 }
+
+data "aws_cognito_user_pool" "user_pool" {
+  name = "user_pool"
+}
