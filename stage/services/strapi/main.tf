@@ -5,6 +5,9 @@ resource "aws_ecs_service" "strapi-stage" {
   task_definition = aws_ecs_task_definition.strapi-stage.arn
   desired_count = 1
 
+  # give container time to start up
+  health_check_grace_period_seconds = 900
+
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
     subnets         = [
