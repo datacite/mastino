@@ -30,3 +30,6 @@ data "template_file" "functionbeat" {
         principal = "${var.principal}"
     }
 }
+data "aws_iam_role" "CognitoAccessForAmazonES" {
+  name = "CognitoAccessForAmazonES"
+}
