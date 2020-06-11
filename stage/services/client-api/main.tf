@@ -11,26 +11,26 @@ resource "aws_ecs_service" "client-api-stage" {
       data.aws_subnet.datacite-private.id,
       data.aws_subnet.datacite-alt.id
     ]
-  }
+  
 
   load_balancer {
     target_group_arn = aws_lb_target_group.client-api-stage.id
     container_name   = "client-api-stage"
     container_port   = "80"
-  }
+  
 
   service_registries {
     registry_arn = aws_service_discovery_service.client-api-stage.arn
-  }
+  
 
   depends_on = [
     "data.aws_lb_listener.stage"
   ]
-}
+
 
 resource "aws_cloudwatch_log_group" "client-api-stage" {
   name = "/ecs/client-api-stage"
-}
+
 
 resource "aws_ecs_task_definition" "client-api-stage" {
   family = "client-api-stage"
@@ -72,8 +72,8 @@ resource "aws_ecs_task_definition" "client-api-stage" {
       jwt_blacklisted    = var.jwt_blacklisted
       slack_webhook_url  = var.slack_webhook_url
       version            = var.lupo_tags["sha"]
-    })
-}
+    )
+
 
 resource "aws_lb_target_group" "client-api-stage" {
   name     = "client-api-stage"
@@ -86,8 +86,8 @@ resource "aws_lb_target_group" "client-api-stage" {
     path = "/heartbeat"
     interval = 60
     timeout = 30
-  }
-}
+  
+
 
 resource "aws_lb_listener_rule" "api-graphql-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
@@ -96,18 +96,18 @@ resource "aws_lb_listener_rule" "api-graphql-stage" {
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.client-api-stage.arn
-  }
+  
 
   condition {
     field  = "host-header"
     values = [var.api_dns_name]
-  }
+  
 
   condition {
     field  = "path-pattern"
     values = ["/client-api/graphql"]
-  }
-}
+  
+
 
 resource "aws_lb_listener_rule" "api-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
@@ -116,20 +116,20 @@ resource "aws_lb_listener_rule" "api-stage" {
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.client-api-stage.arn
-  }
+  
 
   condition {
     field  = "host-header"
     values = [var.api_dns_name]
-  }
-}
+  
+
 
 resource "aws_service_discovery_service" "client-api-stage" {
   name = "client-api.stage"
 
   health_check_custom_config {
     failure_threshold = 3
-  }
+  
 
   dns_config {
     namespace_id = var.namespace_id
@@ -137,6 +137,6 @@ resource "aws_service_discovery_service" "client-api-stage" {
     dns_records {
       ttl = 300
       type = "A"
-    }
-  }
-}
+    
+  
+
