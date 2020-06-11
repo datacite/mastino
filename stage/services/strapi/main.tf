@@ -16,6 +16,10 @@ resource "aws_ecs_service" "strapi-stage" {
     ]
   }
 
+  service_registries {
+    registry_arn = aws_service_discovery_service.strapi-stage.arn
+  }
+
   load_balancer {
     target_group_arn = aws_lb_target_group.strapi-stage.id
     container_name   = "strapi-stage"
@@ -44,6 +48,7 @@ resource "aws_ecs_task_definition" "strapi-stage" {
       mysql_password     = var.mysql_password,
       mysql_database     = var.mysql_database,
       mysql_host         = var.mysql_host
+      public_key         = var.public_key
     })
 
 }
@@ -88,5 +93,22 @@ resource "aws_lb_listener_rule" "strapi-stage" {
   condition {
     field  = "host-header"
     values = [aws_route53_record.strapi-stage.name]
+  }
+}
+
+resource "aws_service_discovery_service" "strapi-stage" {
+  name = "strapi.stage"
+
+  health_check_custom_config {
+    failure_threshold = 3
+  }
+
+  dns_config {
+    namespace_id = var.namespace_id
+
+    dns_records {
+      ttl = 300
+      type = "A"
+    }
   }
 }

@@ -6,6 +6,8 @@ variable "region" {
 
 variable "vpc_id" {}
 
+variable "public_key" {}
+
 variable "lb_name" {
   default = "lb-stage"
 }
@@ -25,3 +27,5 @@ variable "mysql_database" {
   default = "strapi"
 }
 variable "mysql_host" {}
+
+variable "namespace_id" {}

@@ -44,6 +44,10 @@
       {
         "name" : "DATABASE_NAME",
         "value" : "${mysql_database}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       }
     ]
   }
