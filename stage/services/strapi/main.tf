@@ -3,6 +3,7 @@ resource "aws_ecs_service" "strapi-stage" {
   cluster = data.aws_ecs_cluster.stage.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.strapi-stage.arn
+  platform_version = "1.4.0"
   desired_count = 1
 
   # give container time to start up
