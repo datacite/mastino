@@ -37,12 +37,11 @@ resource "aws_ecs_task_definition" "strapi-stage" {
   memory = "2048"
   container_definitions = templatefile("strapi.json",
     {
-      mysql_user         = {var.mysql_user}
-      mysql_password     = {var.mysql_password}
-      mysql_database     = {var.mysql_database}
+      mysql_user         = {var.mysql_user},
+      mysql_password     = {var.mysql_password},
+      mysql_database     = {var.mysql_database},
       mysql_host         = {var.mysql_host}
-    }
-  }
+    })
 }
 
 resource "aws_route53_record" "strapi-stage" {
