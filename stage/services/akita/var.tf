@@ -21,6 +21,10 @@ variable "lb_name" {
   default = "lb-stage"
 }
 
+variable "next_public_title" {
+  default = "DataCite Commons Stage"
+}
+
 variable "sentry_dsn" {}
 variable "tracking_id" {}
 variable "namespace_id" {}

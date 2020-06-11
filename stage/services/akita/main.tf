@@ -46,6 +46,7 @@ resource "aws_ecs_task_definition" "akita-stage" {
     {
       sentry_dsn         = var.sentry_dsn
       tracking_id        = var.tracking_id
+      next_public_title  = var.next_public_title
       version            = var.akita_tags["sha"]
     })
 }

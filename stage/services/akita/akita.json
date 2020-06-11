@@ -46,6 +46,10 @@
         "value" : "${tracking_id}"
       },
       {
+        "name" : "NEXT_PUBLIC_TITLE",
+        "value" : "${next_public_title}"
+      },
+      {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
       }
