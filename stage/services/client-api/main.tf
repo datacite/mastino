@@ -139,4 +139,4 @@ resource "aws_service_discovery_service" "client-api-stage" {
       type = "A"
     }
   }
-}  
+}
