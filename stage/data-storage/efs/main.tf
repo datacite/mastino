@@ -6,7 +6,7 @@ resource "aws_efs_file_system" "stage" {
   }
 }
 
-resource "aws_efs_access_point" "stage" {
+resource "aws_efs_access_point" "strapi-stage" {
   file_system_id = aws_efs_file_system.stage.id
   
   posix_user {
@@ -16,7 +16,7 @@ resource "aws_efs_access_point" "stage" {
   }
 
   root_directory {
-    path = "/stage"
+    path = "/strapi"
 
     creation_info {
       owner_uid      = 1001
