@@ -25,12 +25,12 @@ resource "aws_elasticsearch_domain" "test" {
     subnet_ids = ["${data.aws_subnet.datacite-private.id}"]
   }
 
-  cognito_options {
+/*  cognito_options {
     enabled          = true
     identity_pool_id = "${aws_cognito_identity_pool.identity_pool.id}"
     role_arn         = "${data.aws_iam_role.CognitoAccessForAmazonES.arn}"
     user_pool_id     = "${data.aws_cognito_user_pool.user_pool.id}"
-  }
+  }*/
   
   tags {
     Domain = "elasticsearch-test"
@@ -46,7 +46,7 @@ resource "aws_elasticsearch_domain" "test" {
   }
 }
 
-resource "aws_cognito_user_pool_client" "kibana_client" {
+/*resource "aws_cognito_user_pool_client" "kibana_client" {
   name          = "kibana-client"
   user_pool_id  = "${data.aws_cognito_user_pool.user_pool.id}"
   callback_urls = "${aws_elasticsearch_domain.test.kibana_endpoint}"
@@ -59,10 +59,10 @@ resource "aws_cognito_identity_pool" "identity_pool" {
 
   cognito_identity_providers {
     client_id               = "${aws_cognito_user_pool_client.kibana_client.id}"
-    provider_name           = "${data.aws_cognito_user_pool.user_pool.id}"
+    provider_name           = "provider kibana" 
     server_side_token_check = false
   }
-}
+}*/
 
 resource "aws_elasticsearch_domain_policy" "test" {
   domain_name = "${aws_elasticsearch_domain.test.domain_name}"
