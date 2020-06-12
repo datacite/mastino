@@ -20,7 +20,7 @@ resource "aws_efs_access_point" "stage" {
 
     creation_info {
       owner_uid      = 1001
-      owner_gud      = 1001
+      owner_gid      = 1001
       permissions    = 755
     }
   }
@@ -28,7 +28,7 @@ resource "aws_efs_access_point" "stage" {
 
 resource "aws_efs_mount_target" "stage" {
   file_system_id  = aws_efs_file_system.stage.id
-
+  subnet_id       = data.aws_subnet.datacite-private.id
   security_groups = [data.aws_security_group.datacite-private.id]
 }
 
