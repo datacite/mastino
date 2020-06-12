@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "strapi-stage" {
 
     efs_volume_configuration {
       file_system_id = data.aws_efs_file_system.stage.id
-      // root_directory = "/strapi/app"
+      root_directory = "/strapi"
     }
   }
 }
