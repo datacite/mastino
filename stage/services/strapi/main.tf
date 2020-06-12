@@ -12,8 +12,7 @@ resource "aws_ecs_service" "strapi-stage" {
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
     subnets         = [
-      data.aws_subnet.datacite-private.id,
-      data.aws_subnet.datacite-alt.id
+      data.aws_subnet.datacite-private.id
     ]
   }
 
