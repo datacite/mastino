@@ -16,7 +16,7 @@ resource "aws_efs_access_point" "strapi-stage" {
   }
 
   root_directory {
-    path = "/strapi"
+    path = "/strapi-stage"
 
     creation_info {
       owner_uid      = 1001
