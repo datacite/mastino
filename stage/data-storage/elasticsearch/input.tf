@@ -2,7 +2,7 @@ provider "aws" {
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
   region     = "${var.region}"
-  version    = "~> 1.6"
+  version    = "~> 2.63"
 }
 
 data "aws_security_group" "datacite-private" {
@@ -32,4 +32,8 @@ data "template_file" "functionbeat" {
 }
 data "aws_iam_role" "CognitoAccessForAmazonES" {
   name = "CognitoAccessForAmazonES"
+}
+
+data "aws_cognito_user_pool" "user_pool" {
+  name = "kibana-userpool"
 }
