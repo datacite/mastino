@@ -54,6 +54,7 @@ data "template_file" "federation_task" {
     profiles_url       = "${var.profiles_url}"
     client_api_url     = "${var.client_api_url}"
     api_url            = "${var.api_url}"
+    strapi_url         = "${var.strapi_url}"
     apollo_api_key     = "${var.apollo_api_key}"
     version            = "${var.vaestgoetaspets_tags["sha"]}"
   }

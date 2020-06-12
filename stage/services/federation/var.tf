@@ -34,6 +34,9 @@ variable "client_api_url" {
 variable "api_url" {
   default = "https://api.stage.datacite.org/api/graphql"
 }
+variable "strapi_url" {
+  default = "https://strapi.stage.datacite.org/graphql"
+}
 
 variable "sentry_dsn" {}
 variable "namespace_id" {}
