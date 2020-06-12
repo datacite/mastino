@@ -4,7 +4,7 @@ provider "aws" {
   region     = var.region
   version    = "~> 2.63"
 }
-63
+
 data "aws_security_group" "datacite-private" {
   id = var.security_group_id
 }
