@@ -4,7 +4,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
 resource "aws_cognito_identity_provider" "google" {
   user_pool_id  = aws_cognito_user_pool.user_pool.id
-  provider_name = "Google-Stage"
+  provider_name = "Google"
   provider_type = "Google"
 
   provider_details = {
