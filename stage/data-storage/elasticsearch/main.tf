@@ -46,6 +46,11 @@ resource "aws_elasticsearch_domain" "test" {
   }
 }
 
+resource "aws_cognito_user_pool_domain" "kibana-stage" {
+  domain       = "elasticsearch-test"
+  user_pool_id = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
+}
+
 resource "aws_cognito_user_pool_client" "kibana_client" {
   name          = "kibana-client"
   user_pool_id  = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
