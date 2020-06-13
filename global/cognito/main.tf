@@ -2,7 +2,7 @@ resource "aws_cognito_user_pool" "user_pool" {
   name = "kibana-userpool"
 }
 
-resource "aws_cognito_identity_provider" "google-stage" {
+resource "aws_cognito_identity_provider" "google" {
   user_pool_id  = aws_cognito_user_pool.user_pool.id
   provider_name = "Google-Stage"
   provider_type = "Google"
