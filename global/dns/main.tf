@@ -71,12 +71,12 @@ resource "aws_route53_record" "support" {
     records = ["${var.support_dns_name}"]
 }
 
-resource "aws_route53_record" "stage" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
-    name = "stage.datacite.org"
-    type = "A"
-    ttl = "300"
-}
+// resource "aws_route53_record" "stage" {
+//     zone_id = "${aws_route53_zone.production.zone_id}"
+//     name = "stage.datacite.org"
+//     type = "A"
+//     ttl = "300"
+// }
 
 resource "aws_route53_record" "mx-datacite" {
     zone_id = "${aws_route53_zone.production.zone_id}"
