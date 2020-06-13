@@ -47,7 +47,8 @@ resource "aws_elasticsearch_domain" "test" {
 }
 
 resource "aws_cognito_user_pool_domain" "kibana-stage" {
-  domain       = "elasticsearch-test"
+  domain          = "auth.stage.datacite.org"
+  certificate_arn = "${data.aws_acm_certificate.stage.arn}"
   user_pool_id = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
 }
 

@@ -37,3 +37,9 @@ data "aws_iam_role" "CognitoAccessForAmazonES" {
 data "aws_cognito_user_pools" "user_pool" {
   name = "kibana-userpool"
 }
+
+data "aws_acm_certificate" "stage" {
+  domain = "*.stage.datacite.org"
+  statuses = ["ISSUED"]
+  most_recent = true
+}
