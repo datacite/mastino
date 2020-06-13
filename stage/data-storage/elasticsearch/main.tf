@@ -49,8 +49,8 @@ resource "aws_elasticsearch_domain" "test" {
 resource "aws_cognito_user_pool_client" "kibana_client" {
   name          = "kibana-client"
   user_pool_id  = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
-  callback_urls = ["${aws_elasticsearch_domain.test.kibana_endpoint}"]
-  logout_urls   = ["${aws_elasticsearch_domain.test.kibana_endpoint}"]
+  // callback_urls = ["${aws_elasticsearch_domain.test.kibana_endpoint}"]
+  // logout_urls   = ["${aws_elasticsearch_domain.test.kibana_endpoint}"]
 }
 
 // resource "aws_cognito_identity_pool" "identity_pool" {
