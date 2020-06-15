@@ -98,5 +98,5 @@ resource "aws_route53_record" "www" {
     name = "www.pidservices.org"
     type = "CNAME"
     ttl = "300"
-    records = [ aws_cloudfront_distribution.pidservices-stage.domain_name ]
+    records = [ aws_cloudfront_distribution.pidservices.domain_name ]
 }
