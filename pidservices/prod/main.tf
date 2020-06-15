@@ -41,7 +41,7 @@ resource "aws_cloudfront_distribution" "pidservices" {
     response_page_path    = "/index.html"
   }
 
-  aliases = ["pidservices.org"]
+  aliases = ["pidservices.org", "www.pidservices.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -91,4 +91,12 @@ resource "aws_route53_record" "apex" {
       zone_id = var.cloudfront_alias_zone_id
       evaluate_target_health = true
     }
+}
+
+resource "aws_route53_record" "www" {
+    zone_id = data.aws_route53_zone.pidservices.zone_id
+    name = "www.pidservices.org"
+    type = "CNAME"
+    ttl = "300"
+    records = [ aws_cloudfront_distribution.pidservices-stage.domain_name ]
 }
