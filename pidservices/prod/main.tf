@@ -87,5 +87,9 @@ resource "aws_route53_record" "apex" {
     name = "pidservices.org"
     type = "A"
     ttl = "300"
-    records = [ aws_cloudfront_distribution.pidservices.domain_name ]
+    alias {
+      name = "${aws_cloudfront_distribution.pidservices.domain_name}"
+      zone_id = "${var.cloudfront_alias_zone_id}"
+      evaluate_target_health = true
+    }
 }
