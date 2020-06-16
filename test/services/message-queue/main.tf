@@ -2,7 +2,7 @@ resource "aws_sqs_queue" "doi-test" {
   name                      = "test_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -11,7 +11,7 @@ resource "aws_sqs_queue" "event-test" {
   name                      = "test_event"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -21,7 +21,7 @@ resource "aws_sqs_queue" "volpino-test" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
   
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -31,7 +31,7 @@ resource "aws_sqs_queue" "lupo-test" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
   
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -41,7 +41,7 @@ resource "aws_sqs_queue" "lupo-background-test" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -51,7 +51,7 @@ resource "aws_sqs_queue" "lupo-import-test" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -61,7 +61,7 @@ resource "aws_sqs_queue" "lupo-transfer-test" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -70,7 +70,7 @@ resource "aws_sqs_queue" "levriero-test" {
   name                      = "test_levriero"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -79,7 +79,7 @@ resource "aws_sqs_queue" "levriero-usage-test" {
   name                      = "test_levriero_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -89,7 +89,7 @@ resource "aws_sqs_queue" "usage-test" {
   name                      = "test_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -98,7 +98,7 @@ resource "aws_sqs_queue" "sashimi-test" {
   name                      = "test_sashimi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -106,7 +106,7 @@ resource "aws_sqs_queue" "sashimi-test" {
 resource "aws_sqs_queue" "dead-letter-test" {
   name                      = "test_dead-letter"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
