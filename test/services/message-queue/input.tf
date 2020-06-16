@@ -7,7 +7,7 @@ provider "aws" {
 data "template_file" "queue-test" {
   template = "${file("sqs.json")}"
 
-  vars {
+  vars = {
     region = "${var.region}"
   }
 }
