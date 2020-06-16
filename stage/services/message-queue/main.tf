@@ -1,117 +1,117 @@
-resource "aws_sqs_queue" "doi-test" {
+resource "aws_sqs_queue" "doi-stage" {
   name                      = "stage_doi"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "event-test" {
+resource "aws_sqs_queue" "event-stage" {
   name                      = "stage_event"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "volpino-test" {
+resource "aws_sqs_queue" "volpino-stage" {
   name                      = "stage_volpino"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
   
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "lupo-test" {
+resource "aws_sqs_queue" "lupo-stage" {
   name                      = "stage_lupo"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
   
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "lupo-background-test" {
+resource "aws_sqs_queue" "lupo-background-stage" {
   name                      = "stage_lupo_background"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "lupo-import-test" {
+resource "aws_sqs_queue" "lupo-import-stage" {
   name                      = "stage_lupo_import"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "lupo-transfer-test" {
+resource "aws_sqs_queue" "lupo-transfer-stage" {
   name                      = "stage_lupo_transfer"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "levriero-test" {
+resource "aws_sqs_queue" "levriero-stage" {
   name                      = "stage_levriero"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "levriero-usage-test" {
+resource "aws_sqs_queue" "levriero-usage-stage" {
   name                      = "stage_levriero_usage"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
 
-resource "aws_sqs_queue" "usage-test" {
+resource "aws_sqs_queue" "usage-stage" {
   name                      = "stage_usage"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "sashimi-test" {
+resource "aws_sqs_queue" "sashimi-stage" {
   name                      = "stage_sashimi"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_sqs_queue" "dead-letter-test" {
+resource "aws_sqs_queue" "dead-letter-stage" {
   name                      = "stage_dead-letter"
 
   tags {
-    Environment = "test"
+    Environment = "stage"
   }
 }
 
-resource "aws_iam_policy" "sqs-test" {
-  name = "sqs-test"
-  policy = "${data.template_file.queue-test.rendered}"
+resource "aws_iam_policy" "sqs-stage" {
+  name = "sqs-stage"
+  policy = "${data.template_file.queue-stage.rendered}"
 }
