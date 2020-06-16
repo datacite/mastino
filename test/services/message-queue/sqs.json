@@ -1,0 +1,22 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "ShoryukenAccess",
+			"Effect": "Allow",
+			"Action": [
+				"sqs:ChangeMessageVisibility",
+				"sqs:ChangeMessageVisibilityBatch",
+				"sqs:DeleteMessage",
+				"sqs:DeleteMessageBatch",
+				"sqs:GetQueueAttributes",
+				"sqs:GetQueueUrl",
+				"sqs:ReceiveMessage",
+				"sqs:SendMessage",
+				"sqs:SendMessageBatch",
+ 				"sqs:ListQueues"
+			],
+			"Resource": "arn:aws:sqs:${region}:*"
+		}
+	]
+}
