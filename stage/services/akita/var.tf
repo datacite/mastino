@@ -25,6 +25,10 @@ variable "next_public_title" {
   default = "DataCite Commons Stage"
 }
 
+variable "next_public_api_url" {
+  default = "https://api.stage.datacite.org"
+}
+
 variable "sentry_dsn" {}
 variable "tracking_id" {}
 variable "namespace_id" {}
