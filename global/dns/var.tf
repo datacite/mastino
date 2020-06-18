@@ -17,3 +17,4 @@ variable "google_site_verification_record" {}
 variable "ms_record" {}
 variable "verification_record" {}
 variable "dkim_salesforce" {}
+variable "dkim_alt_salesforce" {}
