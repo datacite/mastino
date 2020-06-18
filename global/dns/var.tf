@@ -16,3 +16,4 @@ variable "dmarc_record" {}
 variable "google_site_verification_record" {}
 variable "ms_record" {}
 variable "verification_record" {}
+variable "dkim_salesforce" {}
