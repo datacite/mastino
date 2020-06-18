@@ -121,6 +121,14 @@ resource "aws_route53_record" "dkim-salesforce" {
     records = ["${var.dkim_salesforce}"]
 }
 
+resource "aws_route53_record" "dkim-alt-salesforce" {
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "DataCite.org._domainkey.${aws_route53_zone.production.name}"
+    type = "TXT"
+    ttl = "300"
+    records = ["${var.dkim_alt_salesforce}"]
+}
+
 resource "aws_route53_record" "dmarc-datacite" {
     zone_id = "${aws_route53_zone.production.zone_id}"
     name = "_dmarc.${aws_route53_zone.production.name}"
