@@ -12,7 +12,7 @@ resource "aws_lb" "crosscite" {
     enabled = true
   }
 
-  tags {
+  tags = {
     Environment = "default"
     Name = "crosscite"
   }

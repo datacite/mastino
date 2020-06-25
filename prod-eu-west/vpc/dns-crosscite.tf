@@ -1,7 +1,7 @@
 resource "aws_route53_zone" "crosscite" {
     name = "crosscite.org"
 
-    tags {
+    tags = {
         Environment = "production"
     }
 }

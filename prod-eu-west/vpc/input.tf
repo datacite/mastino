@@ -69,57 +69,6 @@ data "aws_lb_target_group" "content-negotiation" {
   name = "content-negotiation"
 }
 
-data "template_cloudinit_config" "ecs-solr-user-data" {
-  count = 2
-  gzip = false
-  base64_encode = false
-
-  part {
-    content_type = "text/cloud-boothook"
-    content      = "${element(data.template_file.ecs-solr-user-data-boothook.*.rendered, count.index)}"
-  }
-
-  part {
-    content_type = "text/cloud-config"
-    content      = "${element(data.template_file.ecs-solr-user-data-cfg.*.rendered, count.index)}"
-  }
-}
-
-data "template_file" "ecs-solr-user-data-cfg" {
-  count = 2
-  template = "${file("user_data.cfg")}"
-
-  vars {
-    hostname     = "ecs${count.index}"
-    fqdn         = "ecs${count.index}.datacite.org"
-  }
-}
-
-data "template_file" "ecs-solr-user-data-boothook" {
-  count = 2
-  template = "${file("user_data_solr.sh")}"
-
-  vars {
-    cluster_name       = "default"
-    hostname           = "solr${count.index + 1}.datacite.org"
-    solr_port          = 40195
-    mysql_host         = "${var.mysql_host}"
-    mysql_database     = "${var.mysql_database}"
-    mysql_user         = "${var.mysql_user}"
-    mysql_password     = "${var.mysql_password}"
-    test_prefix        = "${var.test_prefix}"
-    sorl_host          = "solr${count.index + 1}.datacite.org"
-    solr_home          = "${var.solr_home}"
-    solr_url           = "${var.solr_url}"
-    solr_user          = "${var.solr_user}"
-    solr_password      = "${var.solr_password}"
-    region             = "${var.region}"
-    dd_api_key         = "${var.dd_api_key}"
-    solr_version       = "${lookup(var.search_tags, count.index)}"
-    solr_tag           = "${lookup(var.search_tags, count.index)}"
-  }
-}
-
 data "aws_iam_instance_profile" "ecs_instance" {
   name  = "ecs_instance"
 }
