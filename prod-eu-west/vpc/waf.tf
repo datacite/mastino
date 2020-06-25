@@ -3,7 +3,7 @@ resource "aws_wafregional_ipset" "nat" {
 
   ip_set_descriptor {
     type  = "IPV4"
-    value = "${var.waf_nat_ip}"
+    value = var.waf_nat_ip
   }
 }
 
@@ -52,7 +52,7 @@ resource "aws_wafregional_rule" "block" {
 
   predicate {
     type    = "IPMatch"
-    data_id = "${aws_wafregional_ipset.blacklist.id}"
+    data_id = aws_wafregional_ipset.blacklist.id
     negated = false
   }
 }
@@ -71,7 +71,7 @@ resource "aws_wafregional_web_acl" "default" {
     }
 
     priority = 1
-    rule_id  = "${aws_wafregional_rate_based_rule.rate.id}"
+    rule_id  = aws_wafregional_rate_based_rule.rate.id
     type     = "RATE_BASED"
   }
 
@@ -81,12 +81,12 @@ resource "aws_wafregional_web_acl" "default" {
     }
 
     priority = 2
-    rule_id  = "${aws_wafregional_rule.block.id}"
+    rule_id  = aws_wafregional_rule.block.id
     type     = "REGULAR"
   }
 }
 
 resource "aws_wafregional_web_acl_association" "default" {
-  resource_arn = "${data.aws_lb.default.arn}"
-  web_acl_id   = "${aws_wafregional_web_acl.default.id}"
+  resource_arn = data.aws_lb.default.arn
+  web_acl_id   = aws_wafregional_web_acl.default.id
 }
