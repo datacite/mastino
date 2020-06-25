@@ -1,5 +1,5 @@
 module "wireguard" {
-  source                        = "git@github.com:datacite/terraform-aws-wireguard.git"
+  source                        = "github.com/datacite/terraform-aws-wireguard"
   ssh_key_id                    = ""
   vpc_id                        = "${var.vpc_id}"
   additional_security_group_ids = ["${aws_security_group.wireguard_ssh_check.id}"]
