@@ -1,4 +1,4 @@
 volpino_tags = {
-  sha = "bb5232f"
+  sha = "c60258f"
   version = "2.1.19"
 }
