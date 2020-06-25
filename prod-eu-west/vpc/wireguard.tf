@@ -2,9 +2,9 @@ module "wireguard" {
   source                        = "git@github.com:datacite/terraform-wireguard.git"
   ssh_key_id                    = ""
   vpc_id                        = "${var.vpc_id}"
-  additional_security_group_ids = [aws_security_group.wireguard_ssh_check.id]
+  additional_security_group_ids = ["${aws_security_group.wireguard_ssh_check.id}"]
   subnet_ids                    = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
-  target_group_arns             = [aws_lb_target_group.wireguard.arn]
+  target_group_arns             = ["${aws_lb_target_group.wireguard.arn}"]
   asg_min_size                  = 1
   asg_desired_capacity          = 2
   asg_max_size                  = 5
@@ -45,12 +45,12 @@ resource "aws_lb_target_group" "wireguard" {
 }
 
 resource "aws_lb_listener" "wireguard" {
-  load_balancer_arn = aws_lb.wireguard.arn
+  load_balancer_arn = "${aws_lb.wireguard.arn}"
   port              = 51820
   protocol          = "UDP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.wireguard.arn
+    target_group_arn = "${aws_lb_target_group.wireguard.arn}"
   }
 }
