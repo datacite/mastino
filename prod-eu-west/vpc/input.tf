@@ -84,7 +84,7 @@ data "aws_lb_target_group" "mds" {
 data "template_file" "logs" {
   template = "${file("s3_lb_write_access.json")}"
 
-  vars {
+  vars = {
     bucket_name = "logs.datacite.org"
   }
 }
