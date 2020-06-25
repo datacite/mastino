@@ -1,7 +1,7 @@
 module "wireguard" {
   source                        = "git@github.com:datacite/terraform-wireguard.git"
   ssh_key_id                    = ""
-  vpc_id                        = var.vpc_id
+  vpc_id                        = "${var.vpc_id}"
   additional_security_group_ids = [aws_security_group.wireguard_ssh_check.id]
   subnet_ids                    = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
   target_group_arns             = [aws_lb_target_group.wireguard.arn]
@@ -21,7 +21,7 @@ resource "aws_lb" "wireguard" {
 
 resource "aws_security_group" "wireguard_ssh_check" {
   name   = "wireguard_ssh_check"
-  vpc_id = var.vpc_id
+  vpc_id = "${var.vpc_id}"
 
   ingress {
     from_port   = 22
@@ -35,7 +35,7 @@ resource "aws_lb_target_group" "wireguard" {
   name_prefix = "wg"
   port        = 51820
   protocol    = "UDP"
-  vpc_id      = var.vpc_id
+  vpc_id      = "${var.vpc_id}"
 
   health_check {
     port     = 22
