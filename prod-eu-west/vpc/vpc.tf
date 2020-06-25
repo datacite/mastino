@@ -3,7 +3,7 @@ resource "aws_subnet" "datacite-private-3" {
     cidr_block = "10.0.31.0/24"
     availability_zone = "eu-west-1c"
 
-    tags {
+    tags = {
         Name = "datacite-private-3"
     }
 }
