@@ -92,7 +92,7 @@ resource "aws_route53_record" "staging" {
 resource "aws_route53_zone" "pidnotebooks" {
   name = "pidnotebooks.org"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
