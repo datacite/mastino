@@ -122,3 +122,4 @@ resource "aws_route53_record" "mx-pidnotebooks" {
     "10 aspmx2.googlemail.com",
     "10 aspmx3.googlemail.com"
   ]
+}
