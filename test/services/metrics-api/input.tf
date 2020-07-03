@@ -4,8 +4,8 @@ provider "aws" {
   region     = "${var.region}"
 }
 
-data "aws_route53_zone" "test" {
-  name = "test.datacite.org"
+data "aws_route53_zone" "production" {
+  name = "datacite.org"
 }
 
 data "aws_security_group" "datacite-private" {
