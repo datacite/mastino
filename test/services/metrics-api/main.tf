@@ -53,7 +53,26 @@ resource "aws_ecs_task_definition" "metrics-api-test" {
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
   memory = "2048"
-  container_definitions = "${data.template_file.metrics-api_task.rendered}"
+  container_definitions = template("metrics-api.json",
+  {
+      public_key         = var.public_key
+      jwt_public_key     = var.jwt_public_key
+      jwt_private_key    = var.jwt_private_key
+      memcache_servers   = var.memcache_servers
+      access_key         = var.access_key
+      secret_key         = var.secret_key
+      region             = var.region
+      s3_bucket          = var.s3_bucket
+      mysql_database     = var.mysql_database
+      mysql_user         = var.mysql_user
+      mysql_password     = var.mysql_password
+      mysql_host         = var.mysql_host
+      usage_url          = var.usage_url
+      sentry_dsn         = var.sentry_dsn
+      jwt_blacklisted    = var.jwt_blacklisted
+      rack_timeout_service_timeout = var.rack_timeout_service_timeout
+      version            = var.sashimi_tags["version"]
+    })
 }
 
 resource "aws_lb_listener_rule" "metrics-api-test" {
