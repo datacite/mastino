@@ -53,7 +53,7 @@ resource "aws_ecs_task_definition" "metrics-api-test" {
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
   memory = "2048"
-  container_definitions = template("metrics-api.json",
+  container_definitions = templatefile("metrics-api.json",
   {
       public_key         = var.public_key
       jwt_public_key     = var.jwt_public_key
