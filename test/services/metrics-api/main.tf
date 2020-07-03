@@ -46,6 +46,16 @@ resource "aws_cloudwatch_log_group" "metrics-api-test" {
   name = "/ecs/metrics-api-test"
 }
 
+resource "aws_ecs_task_definition" "metrics-api-test" {
+  family = "metrics-api-test"
+  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
+  network_mode = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  cpu = "512"
+  memory = "2048"
+  container_definitions =  "${data.template_file.metrics-api_task.rendered}"
+}
+
 resource "aws_lb_listener_rule" "metrics-api-test" {
   listener_arn = "${data.aws_lb_listener.test.arn}"
   priority     = 29
@@ -107,15 +117,7 @@ resource "aws_lb_listener_rule" "metrics-api-test-repositories" {
   }
 }
 
-resource "aws_ecs_task_definition" "metrics-api-test" {
-  family = "metrics-api-test"
-  execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
-  network_mode = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
-  cpu = "512"
-  memory = "2048"
-  container_definitions =  "${data.template_file.metrics-api_task.rendered}"
-}
+
 
 
 resource "aws_service_discovery_service" "metrics-api-test" {
