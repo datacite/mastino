@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "metrics-api-test" {
   name            = "metrics-api-test"
   cluster         = "${data.aws_ecs_cluster.test.id}"
-  task_definition = "${aws_ecs_task_definition.metrics-api-test.arn}"
+  // task_definition = "${aws_ecs_task_definition.metrics-api-test.arn}"
   desired_count   = 1
   launch_type = "FARGATE"
 
