@@ -1,8 +1,7 @@
 resource "aws_ecs_service" "metrics-api-test" {
   name            = "metrics-api-test"
   cluster         = "${data.aws_ecs_cluster.test.id}"
-  // task_definition = "${aws_ecs_task_definition.metrics-api-test.arn}"
-  
+  task_definition = "${aws_ecs_task_definition.metrics-api-test.arn}"
   desired_count   = 1
   launch_type = "FARGATE"
 
@@ -54,7 +53,7 @@ resource "aws_ecs_task_definition" "metrics-api-test" {
   requires_compatibilities = ["FARGATE"]
   cpu = "512"
   memory = "2048"
-  container_definitions =  "${data.template_file.metrics-api_task.rendered}"
+  container_definitions = "${data.template_file.metrics-api_task.rendered}"
 }
 
 resource "aws_lb_listener_rule" "metrics-api-test" {
