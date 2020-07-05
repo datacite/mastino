@@ -13,6 +13,7 @@ resource "aws_ecs_service" "akita-stage" {
     subnets         = [
       data.aws_subnet.datacite-private.id
     ]
+    assign_public_ip = false
   }
 
   load_balancer {
