@@ -3,7 +3,7 @@ resource "aws_ecs_service" "akita-stage" {
   cluster = data.aws_ecs_cluster.stage.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.akita-stage.arn
-  desired_count = 0
+  desired_count = 1
 
   # give container time to start up
   health_check_grace_period_seconds = 600
@@ -11,9 +11,9 @@ resource "aws_ecs_service" "akita-stage" {
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
     subnets         = [
-      data.aws_subnet.datacite-private.id
+      data.aws_subnet.datacite-private.id,
+      data.aws_subnet.datacite-alt.id
     ]
-    assign_public_ip = false
   }
 
   load_balancer {
