@@ -1,6 +1,6 @@
 [
   {
-    "name": "strapi-stage",
+    "name": "strapi",
     "image": "strapi/strapi",
     "cpu": 512,
     "memory": 2048,
@@ -9,7 +9,7 @@
     "mountPoints": [
       {
         "containerPath": "/srv/app",
-        "sourceVolume": "strapi-stage-storage"
+        "sourceVolume": "strapi-storage"
       }
     ],
     "portMappings": [
@@ -21,7 +21,7 @@
     "logConfiguration": { 
       "logDriver": "awslogs",
       "options": { 
-         "awslogs-group" : "/ecs/strapi-stage",
+         "awslogs-group" : "/ecs/strapi",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
       }
