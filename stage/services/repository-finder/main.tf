@@ -35,7 +35,7 @@ resource "aws_cloudfront_distribution" "repository-finder-stage" {
     prefix          = "repository-finder/"
   }
 
-  aliases = ["repositoryfinder.test.datacite.org"]
+  aliases = ["repositoryfinder.stage.datacite.org"]
 
   custom_error_response {
     error_code            = "404"
@@ -82,7 +82,7 @@ resource "aws_cloudfront_distribution" "repository-finder-stage" {
   }
 }
 
-resource "aws_route53_record" "repository-finder-test" {
+resource "aws_route53_record" "repository-finder-stage" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
   name = "repositoryfinder.stage.datacite.org"
   type = "CNAME"
@@ -90,7 +90,7 @@ resource "aws_route53_record" "repository-finder-test" {
   records = ["${aws_cloudfront_distribution.repository-finder-stage.domain_name}"]
 }
 
-resource "aws_route53_record" "split-repository-finder-test" {
+resource "aws_route53_record" "split-repository-finder-stage" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
   name = "repositoryfinder.stage.datacite.org"
   type = "CNAME"
