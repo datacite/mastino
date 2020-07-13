@@ -87,6 +87,7 @@ resource "aws_lb_listener_rule" "metrics-api-stage-subset" {
   }
 }
 
+
 resource "aws_lb_listener_rule" "metrics-api-stage-repositories" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
   priority     = 31
