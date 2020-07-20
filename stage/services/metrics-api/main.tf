@@ -57,7 +57,7 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
@@ -78,7 +78,7 @@ resource "aws_lb_listener_rule" "metrics-api-stage-subset" {
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
@@ -86,6 +86,7 @@ resource "aws_lb_listener_rule" "metrics-api-stage-subset" {
     values = ["/report-subsets*"]
   }
 }
+
 
 resource "aws_lb_listener_rule" "metrics-api-stage-repositories" {
   listener_arn = "${data.aws_lb_listener.stage.arn}"
@@ -98,7 +99,7 @@ resource "aws_lb_listener_rule" "metrics-api-stage-repositories" {
 
   condition {
     field  = "host-header"
-    values = ["api.test.datacite.org"]
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
