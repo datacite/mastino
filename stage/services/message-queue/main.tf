@@ -56,6 +56,16 @@ resource "aws_sqs_queue" "lupo-import-stage" {
   }
 }
 
+resource "aws_sqs_queue" "lupo-import-other-doi-stage" {
+  name                      = "stage_lupo_import_other_doi"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
+  visibility_timeout_seconds = 3600
+
+  tags {
+    Environment = "stage"
+  }
+}
+
 resource "aws_sqs_queue" "lupo-transfer-stage" {
   name                      = "stage_lupo_transfer"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"

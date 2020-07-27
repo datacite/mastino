@@ -61,6 +61,15 @@ resource "aws_sqs_queue" "lupo-import-dev" {
   }
 }
 
+resource "aws_sqs_queue" "lupo-import-other-doi-dev" {
+  name                      = "development_lupo_import_other_doi"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
 resource "aws_sqs_queue" "doi-testing" {
   name                      = "test_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-dev.arn}\",\"maxReceiveCount\":4}"
