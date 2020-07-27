@@ -20,7 +20,7 @@ resource "aws_ecs_service" "levriero-stage" {
   }
 
   service_registries {
-    registry_arn = aws_service_discovery_service.levriero-stage.arn
+    registry_arn = "${aws_service_discovery_service.levriero-stage.arn}"
   }
 
   depends_on = [
