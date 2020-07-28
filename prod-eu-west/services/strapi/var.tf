@@ -31,6 +31,6 @@ variable "mysql_host" {}
 variable "namespace_id" {}
 variable "file_system_id" {}
 
-variable "version" {
+variable "vers" {
   default = "3.1.1"
 }
