@@ -1,7 +1,7 @@
 [
   {
     "name": "strapi",
-    "image": "strapi/strapi",
+    "image": "strapi/strapi:${version}",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",

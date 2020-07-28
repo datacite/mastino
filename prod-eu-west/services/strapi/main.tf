@@ -49,6 +49,7 @@ resource "aws_ecs_task_definition" "strapi" {
       mysql_database     = var.mysql_database,
       mysql_host         = var.mysql_host
       public_key         = var.public_key
+      version            = var.version
     })
   volume {
     name = "strapi-storage"
