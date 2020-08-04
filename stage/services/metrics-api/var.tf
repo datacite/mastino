@@ -31,7 +31,7 @@ variable "usage_url" {}
 variable "mysql_user" {}
 variable "mysql_password" {}
 variable "mysql_database" {
-  default = "metrics"
+  default = "metrics_stage"
 }
 variable "mysql_host" {}
 variable "public_key" {}
