@@ -1,7 +1,7 @@
 [
   {
     "name": "metrics-api-test",
-    "image": "datacite/sashimi:${version}",
+    "image": "datacite/sashimi:remove_provider_id",
     "cpu": 512,
     "memory": 2048,
     "essential": true,
