@@ -233,7 +233,7 @@ resource "aws_ecs_task_definition" "client-api" {
       memcache_servers   = var.memcache_servers
       slack_webhook_url  = var.slack_webhook_url
       jwt_blacklisted    = var.jwt_blacklisted
-      version            = var.lupo_tags["version"]
+      version            = "3.6.5"
     })
 }
 
