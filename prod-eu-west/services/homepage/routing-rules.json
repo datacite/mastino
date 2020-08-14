@@ -1,10 +1,18 @@
 [
   {
     "Condition": {
+      "KeyPrefixEquals": "mission"
+    },
+    "Redirect": {
+      "ReplaceKeyWith": "value.html"
+    }
+  },
+  {
+    "Condition": {
       "KeyPrefixEquals": "faq"
     },
     "Redirect": {
-      "ReplaceKeyWith": "mission.html"
+      "ReplaceKeyWith": "value.html"
     }
   },
   {
@@ -12,7 +20,7 @@
       "KeyPrefixEquals": "whatisdatacite"
     },
     "Redirect": {
-      "ReplaceKeyWith": "mission.html"
+      "ReplaceKeyWith": "value.html"
     }
   },
   {
@@ -20,7 +28,7 @@
       "KeyPrefixEquals": "about-datacite/what-do-we-do"
     },
     "Redirect": {
-      "ReplaceKeyWith": "mission.html"
+      "ReplaceKeyWith": "value.html"
     }
   },
   {
