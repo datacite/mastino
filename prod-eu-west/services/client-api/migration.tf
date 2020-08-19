@@ -60,7 +60,7 @@ resource "aws_ecs_task_definition" "migration-api" {
       memcache_servers   = var.memcache_servers
       slack_webhook_url  = var.slack_webhook_url
       jwt_blacklisted    = var.jwt_blacklisted
-      version            = "3.6.7"
+      version            = "3.6.8"
     })
 }
 
