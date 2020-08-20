@@ -197,7 +197,7 @@ resource "aws_ecs_task_definition" "member-api" {
       memcache_servers   = var.memcache_servers
       slack_webhook_url  = var.slack_webhook_url
       jwt_blacklisted    = var.jwt_blacklisted
-      version            = "3.6.9"
+      version            = "4.0.1"
     })
 }
 
