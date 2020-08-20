@@ -138,6 +138,10 @@
         "value" : "${crossref_orcid_auto_update_source_token}"
       },
       {
+        "name" : "CROSSREF_FUNDER_SOURCE_TOKEN",
+        "value" : "${crossref_funder_source_token}"
+      },
+      {
         "name" : "CROSSREF_RELATED_SOURCE_TOKEN",
         "value" : "${crossref_related_source_token}"
       },
