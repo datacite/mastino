@@ -94,7 +94,7 @@ resource "aws_route53_record" "split-akita" {
     name = "commons.datacite.org"
     type = "CNAME"
     ttl = var.ttl
-    records = [data.aws_lb.stage.dns_name]
+    records = [data.aws_lb.default.dns_name]
 }
 
 resource "aws_service_discovery_service" "akita" {
