@@ -44,6 +44,7 @@ resource "aws_ecs_task_definition" "akita-stage" {
   memory = "2048"
   container_definitions = templatefile("akita.json",
     {
+      public_key           = var.public_key
       sentry_dsn           = var.sentry_dsn
       tracking_id          = var.tracking_id
       next_public_title    = var.next_public_title
@@ -106,7 +107,7 @@ resource "aws_service_discovery_service" "akita-stage" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
