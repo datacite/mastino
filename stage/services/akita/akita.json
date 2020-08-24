@@ -12,46 +12,50 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
-         "awslogs-group" : "/ecs/akita-stage",
-         "awslogs-region": "eu-west-1",
-         "awslogs-stream-prefix": "ecs"
+      "options": {
+        "awslogs-group": "/ecs/akita-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
       }
     },
-    "environment" : [
+    "environment": [
       {
-        "name" : "PASSENGER_APP_ENV",
-        "value" : "production"
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
       },
       {
-        "name" : "NODE_ENV",
-        "value" : "production"
+        "name": "PASSENGER_APP_ENV",
+        "value": "production"
       },
       {
-        "name" : "LOG_LEVEL",
-        "value" : "info"
+        "name": "NODE_ENV",
+        "value": "production"
       },
       {
-        "name" : "SENTRY_DSN",
-        "value" : "${sentry_dsn}"
+        "name": "LOG_LEVEL",
+        "value": "info"
       },
       {
-        "name" : "TRACKING_ID",
-        "value" : "${tracking_id}"
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
       },
       {
-        "name" : "NEXT_PUBLIC_TITLE",
-        "value" : "${next_public_title}"
+        "name": "TRACKING_ID",
+        "value": "${tracking_id}"
       },
       {
-        "name" : "NEXT_PUBLIC_API_URL",
-        "value" : "${next_public_api_url}"
+        "name": "NEXT_PUBLIC_TITLE",
+        "value": "${next_public_title}"
       },
       {
-        "name" : "GITHUB_VERSION",
-        "value" : "${version}"
+        "name": "NEXT_PUBLIC_API_URL",
+        "value": "${next_public_api_url}"
+      },
+      {
+        "name": "GITHUB_VERSION",
+        "value": "${version}"
       }
     ]
   }

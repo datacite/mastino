@@ -8,6 +8,8 @@ variable "ttl" {
   default = "300"
 }
 
+variable "public_key" {}
+
 variable "vpc_id" {}
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
