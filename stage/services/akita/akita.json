@@ -46,10 +46,6 @@
         "value": "${tracking_id}"
       },
       {
-        "name": "NEXT_PUBLIC_TITLE",
-        "value": "${next_public_title}"
-      },
-      {
         "name": "NEXT_PUBLIC_API_URL",
         "value": "${next_public_api_url}"
       },

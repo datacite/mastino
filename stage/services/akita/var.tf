@@ -23,10 +23,6 @@ variable "lb_name" {
   default = "lb-stage"
 }
 
-variable "next_public_title" {
-  default = "DataCite Commons Stage"
-}
-
 variable "next_public_api_url" {
   default = "https://api.stage.datacite.org"
 }
