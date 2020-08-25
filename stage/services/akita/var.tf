@@ -28,7 +28,7 @@ variable "next_public_title" {
 }
 
 variable "next_public_api_url" {
-  default = "https://api.datacite.org"
+  default = "https://api.stage.datacite.org"
 }
 
 variable "sentry_dsn" {}
