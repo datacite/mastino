@@ -42,8 +42,8 @@
         "value" : "${tracking_id}"
       },
       {
-        "name" : "NEXT_PUBLIC_TITLE",
-        "value" : "${next_public_title}"
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       },
       {
         "name" : "NEXT_PUBLIC_API_URL",

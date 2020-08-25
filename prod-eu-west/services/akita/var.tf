@@ -21,10 +21,6 @@ variable "lb_name" {
   default = "lb"
 }
 
-variable "next_public_title" {
-  default = "DataCite Commons"
-}
-
 variable "next_public_api_url" {
   default = "https://api.datacite.org"
 }
@@ -32,3 +28,4 @@ variable "next_public_api_url" {
 variable "sentry_dsn" {}
 variable "tracking_id" {}
 variable "namespace_id" {}
+variable "public_key" {}
