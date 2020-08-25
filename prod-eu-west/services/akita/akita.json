@@ -23,11 +23,11 @@
     "environment" : [
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "production"
+        "value" : "development"
       },
       {
         "name" : "NODE_ENV",
-        "value" : "production"
+        "value" : "development"
       },
       {
         "name" : "LOG_LEVEL",
