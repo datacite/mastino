@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "akita" {
       tracking_id          = var.tracking_id
       next_public_title    = var.next_public_title
       next_public_api_url  = var.next_public_api_url
-      version              = var.akita_tags["version"]
+      version              = "1.0.8"
     })
 }
 
