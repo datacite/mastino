@@ -28,6 +28,8 @@
       "KeyPrefixEquals": "about-datacite/what-do-we-do"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "value.html"
     }
   },
@@ -254,6 +256,8 @@
       "KeyPrefixEquals": "not-found"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "404.html"
     }
   },
@@ -262,11 +266,15 @@
       "KeyPrefixEquals": "invaliddoi"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "invalid.html"
     }
   },
   {
     "Condition": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "KeyPrefixEquals": "invaliddoi?"
     },
     "Redirect": {
@@ -286,6 +294,8 @@
       "KeyPrefixEquals": "InvalidDOI"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "invalid.html"
     }
   },
@@ -303,6 +313,8 @@
       "HttpErrorCodeReturnedEquals": "404"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "members.html"
     }
   },
@@ -311,6 +323,8 @@
       "HttpErrorCodeReturnedEquals": "404"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "404.html"
     }
   },
@@ -319,6 +333,8 @@
       "HttpErrorCodeReturnedEquals": "400"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "400.html"
     }
   }
