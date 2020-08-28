@@ -25,7 +25,7 @@ variable "next_public_api_url" {
   default = "https://api.datacite.org"
 }
 
+variable "next_public_ga_tracking_id" {}
 variable "sentry_dsn" {}
-variable "tracking_id" {}
 variable "namespace_id" {}
 variable "public_key" {}
