@@ -45,7 +45,6 @@ resource "aws_ecs_task_definition" "akita" {
   container_definitions = templatefile("akita.json",
     {
       sentry_dsn           = var.sentry_dsn
-      tracking_id          = var.tracking_id
       public_key           = var.public_key
       next_public_api_url  = var.next_public_api_url
       next_public_ga_tracking_id = var.next_public_ga_tracking_id

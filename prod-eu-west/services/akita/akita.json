@@ -38,10 +38,6 @@
         "value" : "${sentry_dsn}"
       },
       {
-        "name" : "TRACKING_ID",
-        "value" : "${tracking_id}"
-      },
-      {
         "name" : "PUBLIC_KEY",
         "value" : "${public_key}"
       },
