@@ -32,5 +32,5 @@ variable "namespace_id" {}
 variable "file_system_id" {}
 
 variable "vers" {
-  default = "3.1.1"
+  default = "3.1.4"
 }
