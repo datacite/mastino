@@ -1,4 +1,4 @@
 akita_tags = {
-  sha = "a8b2ef8"
+  sha = "961049e"
   version = "1.0.22"
 }
