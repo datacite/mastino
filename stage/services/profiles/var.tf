@@ -31,14 +31,14 @@ variable "orcid_url" {
 variable "orcid_api_url" {
   default = "https://api.sandbox.orcid.org"
 }
-variable "bracco_url" {
-  default = "https://doi.stage.datacite.org"
+variable "commons_url" {
+  default = "https://commons.stage.datacite.org"
 }
 variable "api_url" {
   default = "http://client-api.stage.local"
 }
 variable "cdn_url" {
-  default = "https://assets.datacite.org"
+  default = "https://assets.stage.datacite.org"
 }
 variable "blog_url" {
   default = "https://blog.stage.datacite.org"
