@@ -27,6 +27,11 @@ variable "next_public_api_url" {
   default = "https://api.stage.datacite.org"
 }
 
+variable "next_public_profiles_url" {
+  default = "https://profiles.stage.datacite.org"
+}
+
+variable "next_public_jwt_public_key" {}
 variable "sentry_dsn" {}
 variable "tracking_id" {}
 variable "namespace_id" {}

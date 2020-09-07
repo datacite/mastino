@@ -50,6 +50,14 @@
         "value": "${next_public_api_url}"
       },
       {
+        "name": "NEXT_PUBLIC_PROFILES_URL",
+        "value": "${next_public_profiles_url}"
+      },
+      {
+        "name": "NEXT_PUBLIC_JWT_PUBLIC_KEY",
+        "value": "${next_public_jwt_public_key}"
+      },
+      {
         "name": "GITHUB_VERSION",
         "value": "${version}"
       }
