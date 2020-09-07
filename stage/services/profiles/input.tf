@@ -94,6 +94,7 @@ data "template_file" "profiles_task" {
     es_host            = "${var.es_host}"
     es_scheme          = "${var.es_scheme}"
     es_port            = "${var.es_port}"
+    es_prefix          = "${var.es_prefix}"
     elastic_password   = "${var.elastic_password}"
     version            = "${var.volpino_tags["sha"]}"
   }

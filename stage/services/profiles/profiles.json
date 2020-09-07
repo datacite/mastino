@@ -190,6 +190,10 @@
         "value" : "${es_name}"
       },
       {
+        "name" : "ES_PREFIX",
+        "value" : "${es_prefix}"
+      },
+      {
         "name" : "ELASTIC_PASSWORD",
         "value" : "${elastic_password}"
       },
