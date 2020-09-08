@@ -47,6 +47,9 @@ variable "cdn_url" {
 variable "blog_url" {
   default = "https://blog.datacite.org"
 }
+variable "homepage_url" {
+  default = "https://datacite.org"
+}
 
 variable "redis_url" {}
 variable "memcache_servers" {

@@ -78,6 +78,10 @@
         "value" : "${orcid_url}"
       },
       {
+        "name" : "HOMEPAGE_URL",
+        "value" : "${homepage_url}"
+      },
+      {
         "name" : "MYSQL_USER",
         "value" : "${mysql_user}"
       },
