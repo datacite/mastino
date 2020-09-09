@@ -42,7 +42,7 @@ variable "api_url" {
   default = "http://client-api.local"
 }
 variable "cdn_url" {
-  default = "https://assets.datacite.org"
+  default = "https://datacite.org"
 }
 variable "blog_url" {
   default = "https://blog.datacite.org"

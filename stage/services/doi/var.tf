@@ -26,7 +26,7 @@ variable "search_url" {
   default = "https://search.stage.datacite.org"
 }
 variable "cdn_url" {
-  default = "https://assets.datacite.org"
+  default = "https://www.stage.datacite.org"
 }
 
 variable "bracco_tags" {
