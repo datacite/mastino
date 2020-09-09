@@ -24,7 +24,10 @@ variable "lb_name" {
 variable "next_public_api_url" {
   default = "https://api.datacite.org"
 }
-
+variable "next_public_profiles_url" {
+  default = "https://profiles.datacite.org"
+}
+variable "next_public_jwt_public_key" {}
 variable "next_public_ga_tracking_id" {}
 variable "sentry_dsn" {}
 variable "namespace_id" {}

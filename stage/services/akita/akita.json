@@ -58,6 +58,10 @@
         "value": "${next_public_jwt_public_key}"
       },
       {
+        "name" : "NEXT_PUBLIC_GA_TRACKING_ID",
+        "value" : "${next_public_ga_tracking_id}"
+      },
+      {
         "name": "GITHUB_VERSION",
         "value": "${version}"
       }
