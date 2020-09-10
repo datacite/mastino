@@ -24,7 +24,7 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "cdn_url" {
-  default = "https://datacite.org"
+  default = "https://assets.datacite.org"
 }
 variable "orcid_url" {
   default = "https://orcid.org"
