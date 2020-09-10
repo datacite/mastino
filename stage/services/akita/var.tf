@@ -34,5 +34,4 @@ variable "next_public_profiles_url" {
 variable "next_public_jwt_public_key" {}
 variable "next_public_ga_tracking_id" {}
 variable "sentry_dsn" {}
-variable "tracking_id" {}
 variable "namespace_id" {}
