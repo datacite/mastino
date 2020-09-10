@@ -42,10 +42,6 @@
         "value": "${sentry_dsn}"
       },
       {
-        "name": "TRACKING_ID",
-        "value": "${tracking_id}"
-      },
-      {
         "name": "NEXT_PUBLIC_API_URL",
         "value": "${next_public_api_url}"
       },
