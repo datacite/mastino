@@ -4,6 +4,8 @@
       "KeyPrefixEquals": "mission"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "value.html"
     }
   },
@@ -12,6 +14,8 @@
       "KeyPrefixEquals": "faq"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "value.html"
     }
   },
@@ -20,6 +24,8 @@
       "KeyPrefixEquals": "whatisdatacite"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "value.html"
     }
   },
@@ -38,6 +44,8 @@
       "KeyPrefixEquals": "board.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "governance.html"
     }
   },
@@ -46,6 +54,8 @@
       "KeyPrefixEquals": "about-datacite/board"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "governance.html"
     }
   },
@@ -54,6 +64,8 @@
       "KeyPrefixEquals": "/"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "index.html"
     }
   },
@@ -62,6 +74,8 @@
       "KeyPrefixEquals": "about-datacite/working-groups"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "steering.html"
     }
   },
@@ -70,6 +84,8 @@
       "KeyPrefixEquals": "about-datacite/staff"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "staff.html"
     }
   },
@@ -78,6 +94,8 @@
       "KeyPrefixEquals": "about-datacite/job-opportunities"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "jobopportunities.html"
     }
   },
@@ -87,6 +105,8 @@
       "HttpErrorCodeReturnedEquals": "404"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "cite-your-data.html"
     }
   },
@@ -96,6 +116,8 @@
       "HttpErrorCodeReturnedEquals": "404"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "cite-your-data.html"
     }
   },
@@ -104,6 +126,8 @@
       "KeyPrefixEquals": "services/metadata-store.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "dois.html"
     }
   },
@@ -112,6 +136,8 @@
       "KeyPrefixEquals": "services/find-dataset.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "search.html"
     }
   },
@@ -120,6 +146,8 @@
       "KeyPrefixEquals": "services/find-repository.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "re3data.html"
     }
   },
@@ -128,6 +156,8 @@
       "KeyPrefixEquals": "services/format-your-citation.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "citation.html"
     }
   },
@@ -136,6 +166,8 @@
       "KeyPrefixEquals": "services/get-your-doi-statistics.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "stats.html"
     }
   },
@@ -144,6 +176,8 @@
       "KeyPrefixEquals": "services/content-negotiation.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "content.html"
     }
   },
@@ -152,6 +186,8 @@
       "KeyPrefixEquals": "services/oai-provider.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "oaipmh.html"
     }
   },
@@ -160,6 +196,8 @@
       "KeyPrefixEquals": "services/test-environment.html"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "test.html"
     }
   },
@@ -168,6 +206,8 @@
       "KeyPrefixEquals": "services"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "services.html"
     }
   },
@@ -176,6 +216,8 @@
       "KeyPrefixEquals": "events/past"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "events.html"
     }
   },
@@ -184,6 +226,8 @@
       "KeyPrefixEquals": "about-datacite/members"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "members.html"
     }
   },
@@ -192,6 +236,8 @@
       "KeyPrefixEquals": "about-datacite/partners"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "partners.html"
     }
   },
@@ -200,6 +246,8 @@
       "KeyPrefixEquals": "join-datacite"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "become.html"
     }
   },
@@ -208,6 +256,8 @@
       "KeyPrefixEquals": "participate/researchers"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "become.html"
     }
   },
@@ -216,6 +266,8 @@
       "KeyPrefixEquals": "participate/research-organisations"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "become.html"
     }
   },
@@ -224,6 +276,8 @@
       "KeyPrefixEquals": "participate/libraries"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "become.html"
     }
   },
@@ -232,6 +286,8 @@
       "KeyPrefixEquals": "participate/journal-editors"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "become.html"
     }
   },
@@ -240,6 +296,8 @@
       "KeyPrefixEquals": "participate/data-centres"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "become.html"
     }
   },
@@ -248,6 +306,8 @@
       "KeyPrefixEquals": "news"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "index.html"
     }
   },
@@ -278,6 +338,8 @@
       "KeyPrefixEquals": "invaliddoi?"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "invalid.html"
     }
   },
@@ -286,6 +348,8 @@
       "KeyPrefixEquals": "invalidDOI"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "invalid.html"
     }
   },
@@ -304,6 +368,8 @@
       "KeyPrefixEquals": "rss/"
     },
     "Redirect": {
+      "HostName" : "datacite.org",
+      "Protocol": "https",
       "ReplaceKeyWith": "rss.xml"
     }
   },
