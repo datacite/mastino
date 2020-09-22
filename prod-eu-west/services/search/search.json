@@ -94,6 +94,14 @@
         "value" : "${cdn_url}"
       },
       {
+        "name" : "HOMEPAGE_URL",
+        "value" : "${homepage_url}"
+      },
+      {
+        "name" : "COMMONS_URL",
+        "value" : "${commons_url}"
+      },
+      {
         "name" : "GABBA_COOKIE",
         "value" : "${gabba_cookie}"
       },

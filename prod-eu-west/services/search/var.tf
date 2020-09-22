@@ -26,6 +26,12 @@ variable "subnet_datacite-alt_id" {}
 variable "cdn_url" {
   default = "https://datacite.org"
 }
+variable "homepage_url" {
+  default = "https://datacite.org"
+}
+variable "commons_url" {
+  default = "https://commons.datacite.org"
+}
 variable "orcid_url" {
   default = "https://orcid.org"
 }
