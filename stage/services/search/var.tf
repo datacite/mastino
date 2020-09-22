@@ -24,7 +24,13 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "cdn_url" {
-  default = "https://datacite.org"
+  default = "https://www.stage.datacite.org"
+}
+variable "homepage_url" {
+  default = "https://www.stage.datacite.org"
+}
+variable "commons_url" {
+  default = "https://commons.stage.datacite.org"
 }
 variable "orcid_url" {
   default = "https://sandbox.orcid.org"
