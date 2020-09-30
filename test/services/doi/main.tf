@@ -123,7 +123,7 @@ resource "aws_lb_listener_rule" "doi-test-clients" {
   }
 
   condition {
-    path-pattern {
+    path_pattern {
       values = ["/clients*"]
     }
   }
@@ -139,7 +139,7 @@ resource "aws_lb_listener_rule" "doi-test" {
   }
 
   condition {
-    host-header {
+    host_header {
       values = [aws_route53_record.doi-test.name]
     }
   }
