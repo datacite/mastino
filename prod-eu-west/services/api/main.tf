@@ -36,8 +36,8 @@ resource "aws_ecs_service" "api" {
 }
 
 resource "aws_appautoscaling_target" "api" {
-  max_capacity       = 10
-  min_capacity       = 2
+  max_capacity       = 0
+  min_capacity       = 0
   resource_id        = "service/default/${aws_ecs_service.api.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
