@@ -5,7 +5,7 @@ resource "aws_ecs_service" "api" {
   task_definition = "${aws_ecs_task_definition.api.arn}"
 
   # Create service with 2 instances to start
-  desired_count = 2
+  desired_count = 0
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -134,17 +134,17 @@ resource "aws_ecs_task_definition" "api" {
   container_definitions =  "${data.template_file.api_task.rendered}"
 }
 
-resource "aws_lb_target_group" "api" {
-  name     = "api"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = "${var.vpc_id}"
-  target_type = "ip"
+// resource "aws_lb_target_group" "api" {
+//   name     = "api"
+//   port     = 80
+//   protocol = "HTTP"
+//   vpc_id   = "${var.vpc_id}"
+//   target_type = "ip"
 
-  health_check {
-    path = "/heartbeat"
-  }
-}
+//   health_check {
+//     path = "/heartbeat"
+//   }
+// }
 
 // resource "aws_lb_listener_rule" "api-works" {
 //   listener_arn = "${data.aws_lb_listener.default.arn}"
@@ -165,100 +165,100 @@ resource "aws_lb_target_group" "api" {
 //   }
 // }
 
-resource "aws_lb_listener_rule" "api-pages" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 21
+// resource "aws_lb_listener_rule" "api-pages" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 21
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/pages*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/pages*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "api-graphql" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 22
+// resource "aws_lb_listener_rule" "api-graphql" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 22
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/api/graphql"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/api/graphql"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "api-milestones" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 23
+// resource "aws_lb_listener_rule" "api-milestones" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 23
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/milestones*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/milestones*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "api-user-stories" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 24
+// resource "aws_lb_listener_rule" "api-user-stories" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 24
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/user-stories*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/user-stories*"]
+//   }
+// }
 
-resource "aws_lb_listener_rule" "api-datasets" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
-  priority     = 25
+// resource "aws_lb_listener_rule" "api-datasets" {
+//   listener_arn = "${data.aws_lb_listener.default.arn}"
+//   priority     = 25
 
-  action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.api.arn}"
-  }
+//   action {
+//     type             = "forward"
+//     target_group_arn = "${aws_lb_target_group.api.arn}"
+//   }
 
-  condition {
-    field  = "host-header"
-    values = ["${aws_route53_record.api.name}"]
-  }
-  condition {
-    field  = "path-pattern"
-    values = ["/datasets*"]
-  }
-}
+//   condition {
+//     field  = "host-header"
+//     values = ["${aws_route53_record.api.name}"]
+//   }
+//   condition {
+//     field  = "path-pattern"
+//     values = ["/datasets*"]
+//   }
+// }
 
 // resource "aws_lb_listener_rule" "api-data-centers" {
 //   listener_arn = "${data.aws_lb_listener.default.arn}"
