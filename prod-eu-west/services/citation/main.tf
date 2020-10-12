@@ -32,7 +32,7 @@ resource "aws_ecs_service" "citation" {
 }
 
 resource "aws_appautoscaling_target" "citation" {
-  max_capacity       = 10
+  max_capacity       = 4
   min_capacity       = 2
   resource_id        = "service/default/${aws_ecs_service.citation.name}"
   scalable_dimension = "ecs:service:DesiredCount"
