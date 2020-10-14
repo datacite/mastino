@@ -55,6 +55,6 @@ data "template_file" "federation_task" {
     client_api_url     = "${var.client_api_url}"
     api_url            = "${var.api_url}"
     apollo_api_key     = "${var.apollo_api_key}"
-    version            = "1.0.1"
+    version            = "${var.vaestgoetaspets_tags["version"]}"
   }
 }
