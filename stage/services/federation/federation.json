@@ -1,7 +1,7 @@
 [
   {
     "name": "federation-stage",
-    "image": "datacite/vaestgoetaspets",
+    "image": "datacite/vaestgoetaspets:${version}",
     "cpu": 256,
     "memory": 512,
     "essential": true,
