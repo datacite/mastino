@@ -23,11 +23,11 @@
     "environment" : [
       {
         "name" : "RACK_ENV",
-        "value" : "stage"
+        "value" : "development"
       },
       {
         "name" : "PASSENGER_APP_ENV",
-        "value" : "stage"
+        "value" : "development"
       },
       {
         "name" : "SITE_TITLE",
