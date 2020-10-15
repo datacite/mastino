@@ -89,6 +89,14 @@ resource "aws_route53_record" "staging" {
     records = [ aws_cloudfront_distribution.pidnotebooks-stage.domain_name ]
 }
 
+resource "aws_route53_zone" "pidnotebooks" {
+  name = "pidnotebooks.org"
+
+  tags = {
+    Environment = "production"
+  }
+}
+
 resource "aws_route53_record" "pidnotebooks-ns" {
   zone_id = data.aws_route53_zone.pidnotebooks.zone_id
   name = data.aws_route53_zone.pidnotebooks.name
