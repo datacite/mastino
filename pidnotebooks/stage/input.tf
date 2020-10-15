@@ -18,7 +18,3 @@ data "aws_acm_certificate" "cloudfront-pidnotebooks" {
   domain = "pidnotebooks.org"
   statuses = ["ISSUED"]
 }
-
-data "aws_route53_zone" "pidnotebooks" {
-  name         = "pidnotebooks.org"
-}
