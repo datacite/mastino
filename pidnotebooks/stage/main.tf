@@ -132,7 +132,7 @@ resource "aws_route53_record" "apex" {
      records = var.github_pages_records
 }
 
-resource "aws_route53_record" "status" {
+resource "aws_route53_record" "www" {
     zone_id = data.aws_route53_zone.pidnotebooks.zone_id
     name = "www.pidnotebooks.org"
     type = "CNAME"
