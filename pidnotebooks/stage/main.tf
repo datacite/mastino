@@ -121,7 +121,7 @@ resource "aws_route53_record" "stage" {
      name = "pidnotebooks.org"
      type = "A"
      ttl = "300"
-     records = ${var.github_pages_records}
+     records = var.github_pages_records
 }
 
 resource "aws_route53_record" "status" {
