@@ -79,42 +79,42 @@
 #     acm_certificate_arn = data.aws_acm_certificate.cloudfront-pidnotebooks.arn
 #     ssl_support_method  = "sni-only"
 #   }
+# # }
+
+# resource "aws_route53_zone" "pidnotebooks" {
+#   name = "pidnotebooks.org"
+
+#   tags = {
+#     Environment = "production"
+#   }
 # }
 
-resource "aws_route53_zone" "pidnotebooks" {
-  name = "pidnotebooks.org"
+# resource "aws_route53_record" "pidnotebooks-ns" {
+#   zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+#   name = "${aws_route53_zone.pidnotebooks.name}"
+#   type = "NS"
+#   ttl = "300"
+#     records = [
+#     "${aws_route53_zone.pidnotebooks.name_servers.0}",
+#     "${aws_route53_zone.pidnotebooks.name_servers.1}",
+#     "${aws_route53_zone.pidnotebooks.name_servers.2}",
+#     "${aws_route53_zone.pidnotebooks.name_servers.3}"
+#   ]
+# }
 
-  tags = {
-    Environment = "production"
-  }
-}
-
-resource "aws_route53_record" "pidnotebooks-ns" {
-  zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
-  name = "${aws_route53_zone.pidnotebooks.name}"
-  type = "NS"
-  ttl = "300"
-    records = [
-    "${aws_route53_zone.pidnotebooks.name_servers.0}",
-    "${aws_route53_zone.pidnotebooks.name_servers.1}",
-    "${aws_route53_zone.pidnotebooks.name_servers.2}",
-    "${aws_route53_zone.pidnotebooks.name_servers.3}"
-  ]
-}
-
-resource "aws_route53_record" "mx-pidnotebooks" {
-  zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
-  name = "${aws_route53_zone.pidnotebooks.name}"
-  type = "MX"
-  ttl = "300"
-  records = [
-    "1 aspmx.l.google.com",
-    "5 alt1.aspmx.l.google.com",
-    "5 alt2.aspmx.l.google.com",
-    "10 aspmx2.googlemail.com",
-    "10 aspmx3.googlemail.com"
-  ]
-}
+# resource "aws_route53_record" "mx-pidnotebooks" {
+#   zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+#   name = "${aws_route53_zone.pidnotebooks.name}"
+#   type = "MX"
+#   ttl = "300"
+#   records = [
+#     "1 aspmx.l.google.com",
+#     "5 alt1.aspmx.l.google.com",
+#     "5 alt2.aspmx.l.google.com",
+#     "10 aspmx2.googlemail.com",
+#     "10 aspmx3.googlemail.com"
+#   ]
+# }
 
 # resource "aws_route53_record" "staging" {
 #     zone_id = data.aws_route53_zone.pidnotebooks.zone_id
@@ -124,8 +124,8 @@ resource "aws_route53_record" "mx-pidnotebooks" {
 #     records = [ aws_cloudfront_distribution.pidnotebooks-stage.domain_name ]
 # }
 
-resource "aws_route53_record" "stage" {
-     zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+resource "aws_route53_record" "apex" {
+     zone_id = data.aws_route53_zone.pidnotebooks.zone_id
      name = "pidnotebooks.org"
      type = "A"
      ttl = "300"
@@ -133,7 +133,7 @@ resource "aws_route53_record" "stage" {
 }
 
 resource "aws_route53_record" "status" {
-    zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+    zone_id = data.aws_route53_zone.pidnotebooks.zone_id
     name = "www.pidnotebooks.org"
     type = "CNAME"
     ttl = "3600"
