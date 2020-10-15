@@ -123,3 +123,19 @@ resource "aws_route53_record" "mx-pidnotebooks" {
     "10 aspmx3.googlemail.com"
   ]
 }
+
+resource "aws_route53_record" "stage" {
+     zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+     name = "pidnotebooks.org"
+     type = "A"
+     ttl = "300"
+     records = ["${var.github_pages_records}"]
+}
+
+resource "aws_route53_record" "status" {
+    zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+    name = "www.pidnotebooks.org"
+    type = "CNAME"
+    ttl = "3600"
+    records = ["pidnotebooks.org"]
+}
