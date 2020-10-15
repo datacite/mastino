@@ -89,17 +89,9 @@ resource "aws_route53_record" "staging" {
     records = [ aws_cloudfront_distribution.pidnotebooks-stage.domain_name ]
 }
 
-resource "aws_route53_zone" "pidnotebooks" {
-  name = "pidnotebooks.org"
-
-  tags = {
-    Environment = "production"
-  }
-}
-
 resource "aws_route53_record" "pidnotebooks-ns" {
-  zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
-  name = "${aws_route53_zone.pidnotebooks.name}"
+  zone_id = data.aws_route53_zone.pidnotebooks.zone_id
+  name = data.aws_route53_zone.pidnotebooks.name
   type = "NS"
   ttl = "300"
     records = [
@@ -111,8 +103,8 @@ resource "aws_route53_record" "pidnotebooks-ns" {
 }
 
 resource "aws_route53_record" "mx-pidnotebooks" {
-  zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
-  name = "${aws_route53_zone.pidnotebooks.name}"
+  zone_id = data.aws_route53_zone.pidnotebooks.zone_id
+  name = data.aws_route53_zone.pidnotebooks.name
   type = "MX"
   ttl = "300"
   records = [
@@ -125,15 +117,15 @@ resource "aws_route53_record" "mx-pidnotebooks" {
 }
 
 resource "aws_route53_record" "stage" {
-     zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+     zone_id = data.aws_route53_zone.pidnotebooks.zone_id
      name = "pidnotebooks.org"
      type = "A"
      ttl = "300"
-     records = ["${var.github_pages_records}"]
+     records = ${var.github_pages_records}
 }
 
 resource "aws_route53_record" "status" {
-    zone_id = "${aws_route53_zone.pidnotebooks.zone_id}"
+    zone_id = data.aws_route53_zone.pidnotebooks.zone_id
     name = "www.pidnotebooks.org"
     type = "CNAME"
     ttl = "3600"
