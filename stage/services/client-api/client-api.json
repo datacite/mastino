@@ -1,7 +1,7 @@
 [
   {
     "name": "client-api-stage",
-    "image": "datacite/lupo:${version}",
+    "image": "datacite/lupo",
     "cpu": 2048,
     "memory": 4096,
     "essential": true,
