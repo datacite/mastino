@@ -42,6 +42,10 @@
         "value" : "${redis_url}"
       },
       {
+        "name" : "COMMONS_URL",
+        "value" : "${commons_url}"
+      },
+      {
         "name" : "BRACCO_URL",
         "value" : "${bracco_url}"
       },

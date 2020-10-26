@@ -50,6 +50,9 @@ variable "blog_url" {
 variable "homepage_url" {
   default = "https://datacite.org"
 }
+variable "commons_url" {
+  default = "https://commons.datacite.org"
+}
 
 variable "redis_url" {}
 variable "memcache_servers" {
@@ -78,8 +81,6 @@ variable "github_client_secret" {}
 variable "globus_client_id" {}
 variable "globus_client_secret" {}
 variable "notification_access_token" {}
-
-
 
 variable "namespace_id" {}
 
