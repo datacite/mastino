@@ -1,19 +1,3 @@
-resource "aws_s3_bucket" "search-stage" {
-    bucket = "search.test.datacite.org"
-    acl = "public-read"
-    policy = templatefile("s3_public_read.json",
-      {
-        vpce_id = data.aws_vpc_endpoint.datacite.id
-        bucket_name = aws_route53_record.search-stage.name
-      })
-    website {
-        index_document = "index.html"
-    }
-    tags = {
-        Name = "Search Stage"
-    }
-}
-
 resource "aws_ecs_service" "search-stage" {
   name = "search-stage"
   cluster = data.aws_ecs_cluster.stage.id
