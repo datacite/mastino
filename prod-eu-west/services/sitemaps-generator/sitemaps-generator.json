@@ -17,7 +17,7 @@
     "environment" : [
       {
         "name" : "SITEMAP_BUCKET",
-        "value" : "search.datacite.org"
+        "value" : "commons.datacite.org"
       },
       {
         "name" : "RACK_ENV",
@@ -41,7 +41,7 @@
       },
       {
         "name" : "REVISION",
-        "value" : "0.9.8"
+        "value" : "0.9.12"
       }
     ]
   }
