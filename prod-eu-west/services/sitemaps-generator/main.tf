@@ -41,6 +41,22 @@ resource "aws_s3_bucket" "sitemaps-search" {
     }
 }
 
+resource "aws_s3_bucket" "akita" {
+    bucket = "commons.datacite.org"
+    acl = "public-read"
+    policy = templatefile("s3_public_read.json",
+      {
+        vpce_id = data.aws_vpc_endpoint.datacite.id
+        bucket_name = "commons.datacite.org"
+      })
+    website {
+        index_document = "index.html"
+    }
+    tags = {
+        Name = "Commons"
+    }
+}
+
 resource "aws_cloudwatch_log_group" "sitemaps-generator" {
   name = "/ecs/sitemaps-generator"
 }
