@@ -23,6 +23,12 @@ data "aws_route53_zone" "internal" {
   private_zone = true
 }
 
+data "aws_vpc_endpoint" "datacite" {
+  vpc_id       = var.vpc_id
+  service_name = "com.amazonaws.eu-west-1.s3"
+}
+
+
 data "aws_security_group" "datacite-private" {
   id = var.security_group_id
 }

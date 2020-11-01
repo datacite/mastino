@@ -100,6 +100,22 @@ resource "aws_route53_record" "split-akita-stage" {
     records = [data.aws_lb.stage.dns_name]
 }
 
+resource "aws_s3_bucket" "akita-stage" {
+    bucket = "commons.stage.datacite.org"
+    acl = "public-read"
+    policy = templatefile("s3_public_read.json",
+      {
+        vpce_id = data.aws_vpc_endpoint.datacite.id
+        bucket_name = aws_route53_record.akita-stage.name
+      })
+    website {
+        index_document = "index.html"
+    }
+    tags = {
+        Name = "Commons Stage"
+    }
+}
+
 resource "aws_service_discovery_service" "akita-stage" {
   name = "akita.stage"
 
