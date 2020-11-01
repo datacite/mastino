@@ -30,7 +30,12 @@ variable "next_public_api_url" {
 variable "next_public_profiles_url" {
   default = "https://profiles.stage.datacite.org"
 }
-
+variable "sitemaps_url" {
+  default = "https://commons.stage.datacite.org"
+}
+variable "sitemaps_bucket_url" {
+  default = "http://search.test.datacite.org.s3.amazonaws.com"
+}
 variable "next_public_jwt_public_key" {}
 variable "sentry_dsn" {}
 variable "namespace_id" {}

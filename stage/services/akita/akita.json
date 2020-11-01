@@ -54,6 +54,14 @@
         "value": "${next_public_jwt_public_key}"
       },
       {
+        "name" : "SITEMAPS_URL",
+        "value" : "${sitemaps_url}"
+      },
+      {
+        "name" : "SITEMAPS_BUCKET_URL",
+        "value" : "${sitemaps_bucket_url}"
+      },
+      {
         "name": "GITHUB_VERSION",
         "value": "${version}"
       }

@@ -49,6 +49,8 @@ resource "aws_ecs_task_definition" "akita-stage" {
       next_public_api_url  = var.next_public_api_url
       next_public_profiles_url = var.next_public_profiles_url
       next_public_jwt_public_key = var.next_public_jwt_public_key
+      sitemaps_url         = var.sitemaps_url
+      sitemaps_bucket_url  = var.sitemaps_bucket_url
       version              = var.akita_tags["sha"]
     })
 }
