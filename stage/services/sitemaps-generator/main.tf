@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "akita-stage" {
     policy = templatefile("s3_public_read.json",
       {
         vpce_id = data.aws_vpc_endpoint.datacite.id
-        bucket_name = aws_route53_record.akita-stage.name
+        bucket_name = "commons.stage.datacite.org"
       })
     website {
         index_document = "index.html"
