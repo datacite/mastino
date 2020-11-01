@@ -25,19 +25,19 @@ resource "aws_cloudwatch_event_target" "sitemaps-generator-stage" {
   }
 }
 
-resource "aws_s3_bucket" "sitemaps-search-test" {
-    bucket = "search.test.datacite.org"
+resource "aws_s3_bucket" "akita-stage" {
+    bucket = "commons.stage.datacite.org"
     acl = "public-read"
     policy = templatefile("s3_public_read.json",
       {
-        vpce_id = data.aws_vpc_endpoint.datacite.id,
-        bucket_name = "search.test.datacite.org"
+        vpce_id = data.aws_vpc_endpoint.datacite.id
+        bucket_name = aws_route53_record.akita-stage.name
       })
     website {
         index_document = "index.html"
     }
     tags = {
-      Name = "SitemapsSearchTest"
+        Name = "Commons Stage"
     }
 }
 
