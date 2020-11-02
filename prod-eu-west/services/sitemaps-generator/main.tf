@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "sitemaps-generator" {
   name = "sitemaps-generator"
   description = "Run sitemaps-generator container via cron"
-  schedule_expression = "cron(50 18 ? * SUN *)"
+  schedule_expression = "cron(50 9 ? * MON *)"
 }
 
 resource "aws_cloudwatch_event_target" "sitemaps-generator" {
