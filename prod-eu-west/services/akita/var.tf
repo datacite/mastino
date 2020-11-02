@@ -27,6 +27,12 @@ variable "next_public_api_url" {
 variable "next_public_profiles_url" {
   default = "https://profiles.datacite.org"
 }
+variable "sitemaps_url" {
+  default = "https://commons.datacite.org"
+}
+variable "sitemaps_bucket_url" {
+  default = "http://commons.datacite.org.s3.amazonaws.com"
+}
 variable "next_public_jwt_public_key" {}
 variable "next_public_ga_tracking_id" {}
 variable "sentry_dsn" {}
