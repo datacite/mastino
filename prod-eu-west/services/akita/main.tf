@@ -9,7 +9,7 @@ resource "aws_ecs_service" "akita" {
 
   # Allow external changes without Terraform plan difference
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [desired_count]
   }
 
   # give container time to start up
@@ -49,9 +49,9 @@ resource "aws_appautoscaling_target" "akita" {
 resource "aws_appautoscaling_policy" "akita_scale_up" {
   name               = "scale-up"
   policy_type        = "StepScaling"
-  resource_id        = aws_appautoscaling_target.akita_tags.resource_id
-  scalable_dimension = aws_appautoscaling_target.akita_scale_up.scalable_dimension
-  service_namespace  = aws_appautoscaling_target.akita_scale_up.service_namespace
+  resource_id        = aws_appautoscaling_target.akita.resource_id
+  scalable_dimension = aws_appautoscaling_target.akita.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.akita.service_namespace
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
@@ -115,7 +115,7 @@ resource "aws_cloudwatch_metric_alarm" "akita_cpu_scale_down" {
 
   dimensions = {
     ClusterName = "default"
-    ServiceName = aws_ecs_service.akita_cpu_scale_up.name
+    ServiceName = aws_ecs_service.akita.name
   }
 
   alarm_description = "This metric monitors ecs cpu utilization"

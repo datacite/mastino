@@ -14,7 +14,7 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "akita_tags" {
-  type = "map"
+  type = map
 }
 
 variable "lb_name" {
