@@ -35,89 +35,89 @@ resource "aws_ecs_service" "api" {
   ]
 }
 
-resource "aws_appautoscaling_target" "api" {
-  max_capacity       = 0
-  min_capacity       = 0
-  resource_id        = "service/default/${aws_ecs_service.api.name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-  service_namespace  = "ecs"
-}
+// resource "aws_appautoscaling_target" "api" {
+//   max_capacity       = 0
+//   min_capacity       = 0
+//   resource_id        = "service/default/${aws_ecs_service.api.name}"
+//   scalable_dimension = "ecs:service:DesiredCount"
+//   service_namespace  = "ecs"
+// }
 
-resource "aws_appautoscaling_policy" "api_scale_up" {
-  name               = "scale-up"
-  policy_type        = "StepScaling"
-  resource_id        = "${aws_appautoscaling_target.api.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.api.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.api.service_namespace}"
+// resource "aws_appautoscaling_policy" "api_scale_up" {
+//   name               = "scale-up"
+//   policy_type        = "StepScaling"
+//   resource_id        = "${aws_appautoscaling_target.api.resource_id}"
+//   scalable_dimension = "${aws_appautoscaling_target.api.scalable_dimension}"
+//   service_namespace  = "${aws_appautoscaling_target.api.service_namespace}"
 
-  step_scaling_policy_configuration {
-    adjustment_type         = "ChangeInCapacity"
-    cooldown                = 300
-    metric_aggregation_type = "Maximum"
+//   step_scaling_policy_configuration {
+//     adjustment_type         = "ChangeInCapacity"
+//     cooldown                = 300
+//     metric_aggregation_type = "Maximum"
 
-    step_adjustment {
-      metric_interval_lower_bound = 0
-      scaling_adjustment          = 1
-    }
-  }
-}
+//     step_adjustment {
+//       metric_interval_lower_bound = 0
+//       scaling_adjustment          = 1
+//     }
+//   }
+// }
 
-resource "aws_appautoscaling_policy" "api_scale_down" {
-  name               = "scale-down"
-  policy_type        = "StepScaling"
-  resource_id        = "${aws_appautoscaling_target.api.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.api.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.api.service_namespace}"
+// resource "aws_appautoscaling_policy" "api_scale_down" {
+//   name               = "scale-down"
+//   policy_type        = "StepScaling"
+//   resource_id        = "${aws_appautoscaling_target.api.resource_id}"
+//   scalable_dimension = "${aws_appautoscaling_target.api.scalable_dimension}"
+//   service_namespace  = "${aws_appautoscaling_target.api.service_namespace}"
 
-  step_scaling_policy_configuration {
-    adjustment_type         = "ChangeInCapacity"
-    cooldown                = 300
-    metric_aggregation_type = "Maximum"
+//   step_scaling_policy_configuration {
+//     adjustment_type         = "ChangeInCapacity"
+//     cooldown                = 300
+//     metric_aggregation_type = "Maximum"
 
-    step_adjustment {
-      metric_interval_upper_bound = 0
-      scaling_adjustment          = -1
-    }
-  }
-}
+//     step_adjustment {
+//       metric_interval_upper_bound = 0
+//       scaling_adjustment          = -1
+//     }
+//   }
+// }
 
-resource "aws_cloudwatch_metric_alarm" "api_cpu_scale_up" {
-  alarm_name          = "api_cpu_scale_up"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "80"
+// resource "aws_cloudwatch_metric_alarm" "api_cpu_scale_up" {
+//   alarm_name          = "api_cpu_scale_up"
+//   comparison_operator = "GreaterThanOrEqualToThreshold"
+//   evaluation_periods  = "2"
+//   metric_name         = "CPUUtilization"
+//   namespace           = "AWS/ECS"
+//   period              = "120"
+//   statistic           = "Average"
+//   threshold           = "80"
 
-  dimensions {
-    ClusterName = "default"
-    ServiceName = "${aws_ecs_service.api.name}"
-  }
+//   dimensions {
+//     ClusterName = "default"
+//     ServiceName = "${aws_ecs_service.api.name}"
+//   }
 
-  alarm_description = "This metric monitors ecs cpu utilization"
-  alarm_actions     = ["${aws_appautoscaling_policy.api_scale_up.arn}"]
-}
+//   alarm_description = "This metric monitors ecs cpu utilization"
+//   alarm_actions     = ["${aws_appautoscaling_policy.api_scale_up.arn}"]
+// }
 
-resource "aws_cloudwatch_metric_alarm" "api_cpu_scale_down" {
-  alarm_name          = "api_cpu_scale_down"
-  comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "20"
+// resource "aws_cloudwatch_metric_alarm" "api_cpu_scale_down" {
+//   alarm_name          = "api_cpu_scale_down"
+//   comparison_operator = "LessThanOrEqualToThreshold"
+//   evaluation_periods  = "2"
+//   metric_name         = "CPUUtilization"
+//   namespace           = "AWS/ECS"
+//   period              = "120"
+//   statistic           = "Average"
+//   threshold           = "20"
 
-  dimensions {
-    ClusterName = "default"
-    ServiceName = "${aws_ecs_service.api.name}"
-  }
+//   dimensions {
+//     ClusterName = "default"
+//     ServiceName = "${aws_ecs_service.api.name}"
+//   }
 
-  alarm_description = "This metric monitors ecs cpu utilization"
-  alarm_actions     = ["${aws_appautoscaling_policy.api_scale_down.arn}"]
-}
+//   alarm_description = "This metric monitors ecs cpu utilization"
+//   alarm_actions     = ["${aws_appautoscaling_policy.api_scale_down.arn}"]
+// }
 
 resource "aws_cloudwatch_log_group" "api" {
   name = "/ecs/api"
