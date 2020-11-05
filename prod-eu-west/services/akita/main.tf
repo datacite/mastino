@@ -49,9 +49,9 @@ resource "aws_appautoscaling_target" "akita" {
 resource "aws_appautoscaling_policy" "akita_scale_up" {
   name               = "scale-up"
   policy_type        = "StepScaling"
-  resource_id        = "${aws_appautoscaling_target.akita_tags.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.akita_scale_up.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.akita_scale_up.service_namespace}"
+  resource_id        = aws_appautoscaling_target.akita_tags.resource_id
+  scalable_dimension = aws_appautoscaling_target.akita_scale_up.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.akita_scale_up.service_namespace
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
@@ -68,9 +68,9 @@ resource "aws_appautoscaling_policy" "akita_scale_up" {
 resource "aws_appautoscaling_policy" "akita_scale_down" {
   name               = "scale-down"
   policy_type        = "StepScaling"
-  resource_id        = "${aws_appautoscaling_target.akita.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.akita.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.akita.service_namespace}"
+  resource_id        = aws_appautoscaling_target.akita.resource_id
+  scalable_dimension = aws_appautoscaling_target.akita.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.akita.service_namespace
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
@@ -96,11 +96,11 @@ resource "aws_cloudwatch_metric_alarm" "akita_cpu_scale_up" {
 
   dimensions {
     ClusterName = "default"
-    ServiceName = "${aws_ecs_service.akita.name}"
+    ServiceName = aws_ecs_service.akita.name
   }
 
   alarm_description = "This metric monitors ecs cpu utilization"
-  alarm_actions     = ["${aws_appautoscaling_policy.akita_scale_up.arn}"]
+  alarm_actions     = [aws_appautoscaling_policy.akita_scale_up.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "akita_cpu_scale_down" {
@@ -113,13 +113,13 @@ resource "aws_cloudwatch_metric_alarm" "akita_cpu_scale_down" {
   statistic           = "Average"
   threshold           = "20"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
-    ServiceName = "${aws_ecs_service.akita_cpu_scale_up.name}"
+    ServiceName = aws_ecs_service.akita_cpu_scale_up.name
   }
 
   alarm_description = "This metric monitors ecs cpu utilization"
-  alarm_actions     = ["${aws_appautoscaling_policy.akita_scale_down.arn}"]
+  alarm_actions     = [aws_appautoscaling_policy.akita_scale_down.arn]
 }
 
 resource "aws_cloudwatch_log_group" "akita" {
