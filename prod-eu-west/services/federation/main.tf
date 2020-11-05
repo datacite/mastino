@@ -108,7 +108,7 @@ resource "aws_cloudwatch_metric_alarm" "federation_cpu_scale_down" {
   namespace           = "AWS/ECS"
   period              = "120"
   statistic           = "Average"
-  threshold           = "20"
+  threshold           = "10"
 
   dimensions {
     ClusterName = "default"
