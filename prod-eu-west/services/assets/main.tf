@@ -16,6 +16,9 @@ resource "aws_s3_bucket" "assets" {
     tags {
         Name = "Assets"
     }
+    versioning {
+      enabled = true
+    }
 }
 
 resource "aws_cloudfront_distribution" "assets" {

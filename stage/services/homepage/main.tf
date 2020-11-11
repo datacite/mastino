@@ -10,6 +10,9 @@ resource "aws_s3_bucket" "www-stage" {
     tags {
         Name = "HomepageStage"
     }
+    versioning {
+      enabled = true
+    }
 }
 
 resource "aws_cloudfront_distribution" "www-stage" {
