@@ -89,7 +89,7 @@ resource "aws_route53_record" "akita-stage" {
     name = "commons.stage.datacite.org"
     type = "CNAME"
     ttl = var.ttl
-    records = [data.aws_lb.stage.dns_name]
+    records = ['cname.vercel-dns.com']
 }
 
 resource "aws_route53_record" "split-akita-stage" {
