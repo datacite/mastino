@@ -3,7 +3,7 @@ resource "aws_ecs_service" "akita-stage" {
   cluster = data.aws_ecs_cluster.stage.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.akita-stage.arn
-  desired_count = 1
+  desired_count = 0
 
   # give container time to start up
   health_check_grace_period_seconds = 600
