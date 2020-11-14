@@ -5,7 +5,7 @@ resource "aws_ecs_service" "akita" {
   task_definition = aws_ecs_task_definition.akita.arn
 
   # Create service with 2 instances to start
-  desired_count = 2
+  desired_count = 0
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -176,21 +176,21 @@ resource "aws_lb_listener_rule" "akita" {
   }
 }
 
-resource "aws_route53_record" "akita-common" {
-    zone_id = data.aws_route53_zone.production.zone_id
-    name = "common.datacite.org"
-    type = "CNAME"
-    ttl = var.ttl
-    records = ["cname.vercel-dns.com"]
-}
-
 resource "aws_route53_record" "akita" {
     zone_id = data.aws_route53_zone.production.zone_id
     name = "commons.datacite.org"
     type = "CNAME"
     ttl = var.ttl
-    records = [data.aws_lb.default.dns_name]
+    records = ["cname.vercel-dns.com"]
 }
+
+// resource "aws_route53_record" "akita" {
+//     zone_id = data.aws_route53_zone.production.zone_id
+//     name = "commons.datacite.org"
+//     type = "CNAME"
+//     ttl = var.ttl
+//     records = [data.aws_lb.default.dns_name]
+// }
 
 resource "aws_route53_record" "split-akita" {
     zone_id = data.aws_route53_zone.internal.zone_id
