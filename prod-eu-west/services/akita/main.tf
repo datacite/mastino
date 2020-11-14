@@ -176,6 +176,14 @@ resource "aws_lb_listener_rule" "akita" {
   }
 }
 
+resource "aws_route53_record" "akita-common" {
+    zone_id = data.aws_route53_zone.production.zone_id
+    name = "common.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = ["cname.vercel-dns.com"]
+}
+
 resource "aws_route53_record" "akita" {
     zone_id = data.aws_route53_zone.production.zone_id
     name = "commons.datacite.org"
