@@ -69,6 +69,6 @@ data "template_file" "doi_task" {
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_blacklisted    = "${var.jwt_blacklisted}"
     tracking_id        = "${var.tracking_id}"
-    version            = "3.9.8"
+    version            = "${var.bracco_tags["version"]}"
   }
 }
