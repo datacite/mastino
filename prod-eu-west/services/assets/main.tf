@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "assets" {
     bucket = "assets.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.assets.rendered}"
+    policy = data.template_file.assets.rendered
     website {
         index_document = "index.html"
         error_document = "404.html"
@@ -23,7 +23,7 @@ resource "aws_s3_bucket" "assets" {
 
 resource "aws_cloudfront_distribution" "assets" {
   origin {
-    domain_name = "${aws_s3_bucket.assets.website_endpoint}"
+    domain_name = aws_s3_bucket.assets.website_endpoint
     origin_id   = "assets.datacite.org"
 
     custom_origin_config {
@@ -40,7 +40,7 @@ resource "aws_cloudfront_distribution" "assets" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${data.aws_s3_bucket.logs.bucket_domain_name}"
+    bucket          = data.aws_s3_bucket.logs.bucket_domain_name
     prefix          = "assets/"
   }
 
@@ -81,23 +81,23 @@ resource "aws_cloudfront_distribution" "assets" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront.arn}"
+    acm_certificate_arn = data.aws_acm_certificate.cloudfront.arn
     ssl_support_method  = "sni-only"
   }
 }
 
 resource "aws_route53_record" "assets" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   zone_id = data.aws_route53_zone.production.zone_id
    name = "assets.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.assets.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.assets.domain_name]
 }
 
 resource "aws_route53_record" "split-assets" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   zone_id = data.aws_route53_zone.internal.zone_id
    name = "assets.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.assets.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.assets.domain_name]
 }
