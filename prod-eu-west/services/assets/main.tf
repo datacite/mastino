@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "assets" {
       expose_headers  = ["ETag"]
       max_age_seconds = 3000
     }
-    tags {
+    tags = {
         Name = "Assets"
     }
     versioning {
