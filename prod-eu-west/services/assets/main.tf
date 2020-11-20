@@ -76,7 +76,7 @@ resource "aws_cloudfront_distribution" "assets" {
     }
   }
 
-  tags {
+  tags = {
     Environment = "prod"
   }
 
