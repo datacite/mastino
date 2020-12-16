@@ -1,3 +1,12 @@
+resource "aws_s3_bucket" "metrics" {
+    bucket = "metrics-api.stage.datacite.org"
+    acl = "public-read"
+    policy = data.template_file.metrics-api_task.rendered
+    tags = {
+        Name = "metricsApiStage"
+    }
+}
+
 resource "aws_ecs_service" "metrics-api-stage" {
   name            = "metrics-api-stage"
   cluster         = "${data.aws_ecs_cluster.stage.id}"

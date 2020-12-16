@@ -4,7 +4,7 @@ variable "region" {
   default = "eu-west-1"
 }
 variable "s3_bucket" {
-  default = "assets.test.datacite.org"
+  default = "metrics-api.test.datacite.org"
 }
 variable "vpc_id" {}
 
