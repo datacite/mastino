@@ -1,12 +1,3 @@
-resource "aws_s3_bucket" "metrics" {
-    bucket = "metrics-api.test.datacite.org"
-    acl = "public-read"
-    policy = "${data.template_file.metrics-api_task.rendered}"
-    tags = {
-        Name = "metricsApiTest"
-    }
-}
-
 resource "aws_ecs_service" "metrics-api-test" {
   name            = "metrics-api-test"
   cluster         = "${data.aws_ecs_cluster.test.id}"
@@ -75,15 +66,13 @@ resource "aws_lb_listener_rule" "metrics-api-test" {
   }
 
   condition {
-    host_header {
-      values = ["api.test.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.test.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/reports*"]
-    }
+    field  = "path-pattern"
+    values = ["/reports*"]
   }
 
 }
@@ -98,15 +87,13 @@ resource "aws_lb_listener_rule" "metrics-api-test-subset" {
   }
 
   condition {
-    host_header {
-      values = ["api.test.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.test.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/report-subsets*"]
-    }
+    field  = "path-pattern"
+    values = ["/report-subsets*"]
   }
 }
 
@@ -120,15 +107,13 @@ resource "aws_lb_listener_rule" "metrics-api-test-repositories" {
   }
 
   condition {
-    host_header {
-      values = ["api.test.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.test.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/repositories-usage-reports*"]
-    }
+    field  = "path-pattern"
+    values = ["/repositories-usage-reports*"]
   }
 }
 

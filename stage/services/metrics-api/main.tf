@@ -1,12 +1,3 @@
-resource "aws_s3_bucket" "metrics" {
-    bucket = "metrics-api.stage.datacite.org"
-    acl = "public-read"
-    policy = "${data.template_file.metrics-api_task.rendered}"
-    tags = {
-        Name = "metricsApiStage"
-    }
-}
-
 resource "aws_ecs_service" "metrics-api-stage" {
   name            = "metrics-api-stage"
   cluster         = "${data.aws_ecs_cluster.stage.id}"
@@ -65,15 +56,13 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
   }
 
   condition {
-    host_header {
-      values = ["api.stage.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/reports*"]
-    }
+    field  = "path-pattern"
+    values = ["/reports*"]
   }
 
 }
@@ -88,15 +77,13 @@ resource "aws_lb_listener_rule" "metrics-api-stage-subset" {
   }
 
   condition {
-    host_header {
-      values = ["api.stage.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/report-subsets*"]
-    }
+    field  = "path-pattern"
+    values = ["/report-subsets*"]
   }
 }
 
@@ -111,15 +98,13 @@ resource "aws_lb_listener_rule" "metrics-api-stage-repositories" {
   }
 
   condition {
-    host_header {
-      values = ["api.stage.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.stage.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/repositories-usage-reports*"]
-    }
+    field  = "path-pattern"
+    values = ["/repositories-usage-reports*"]
   }
 }
 
