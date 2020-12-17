@@ -153,13 +153,13 @@ resource "aws_lb_listener_rule" "metrics-api" {
   }
 
   condition {
-    host-header {
+    host_header {
       values = ["api.datacite.org"]
     }
   }
 
   condition {
-    path-pattern {
+    path_pattern {
       values = ["/reports*"]
     }
   }
@@ -175,13 +175,13 @@ resource "aws_lb_listener_rule" "metrics-api-subset" {
   }
 
   condition {
-    host-header {
+    host_header {
       values = ["api.datacite.org"]
     }
   }
 
   condition {
-    path-pattern {
+    path_pattern {
       values = ["/report-subsets*"]
     }
   }
@@ -197,13 +197,13 @@ resource "aws_lb_listener_rule" "metrics-api--repositories" {
   }
 
   condition {
-    host-header {
+    host_header {
       values = ["api.datacite.org"]
     }
   }
 
   condition {
-    path-pattern {
+    path_pattern {
       values = ["/repositories-usage-reports*"]
     }
   }
