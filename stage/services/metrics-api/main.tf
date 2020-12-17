@@ -56,13 +56,15 @@ resource "aws_lb_listener_rule" "metrics-api-stage" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.stage.datacite.org"]
+    host_header {
+      values = ["api.stage.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/reports*"]
+    path_pattern {
+      values = ["/reports*"]
+    }
   }
 
 }
@@ -77,13 +79,15 @@ resource "aws_lb_listener_rule" "metrics-api-stage-subset" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.stage.datacite.org"]
+    host_header {
+      values = ["api.stage.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/report-subsets*"]
+    path_pattern {
+      values = ["/report-subsets*"]
+    }
   }
 }
 
@@ -98,13 +102,15 @@ resource "aws_lb_listener_rule" "metrics-api-stage-repositories" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.stage.datacite.org"]
+    host_header {
+      values = ["api.stage.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/repositories-usage-reports*"]
+    path_pattern {
+      values = ["/repositories-usage-reports*"]
+    }
   }
 }
 
