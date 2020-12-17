@@ -1,12 +1,3 @@
-resource "aws_s3_bucket" "metrics" {
-    bucket = "metrics-api.datacite.org"
-    acl = "public-read"
-    policy = "${data.template_file.metrics-api_task.rendered}"
-    tags = {
-        Name = "metricsApi"
-    }
-}
-
 resource "aws_ecs_service" "metrics-api" {
   name            = "metrics-api"
   cluster         = "${data.aws_ecs_cluster.default.id}"
@@ -102,7 +93,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_up" {
   statistic           = "Average"
   threshold           = "80"
 
-  dimensions = {
+  dimensions {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
@@ -121,7 +112,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_down" {
   statistic           = "Average"
   threshold           = "20"
 
-  dimensions = {
+  dimensions {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
@@ -153,15 +144,13 @@ resource "aws_lb_listener_rule" "metrics-api" {
   }
 
   condition {
-    host_header {
-      values = ["api.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/reports*"]
-    }
+    field  = "path-pattern"
+    values = ["/reports*"]
   }
 }
 
@@ -175,15 +164,13 @@ resource "aws_lb_listener_rule" "metrics-api-subset" {
   }
 
   condition {
-    host_header {
-      values = ["api.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/report-subsets*"]
-    }
+    field  = "path-pattern"
+    values = ["/report-subsets*"]
   }
 }
 
@@ -197,15 +184,13 @@ resource "aws_lb_listener_rule" "metrics-api--repositories" {
   }
 
   condition {
-    host_header {
-      values = ["api.datacite.org"]
-    }
+    field  = "host-header"
+    values = ["api.datacite.org"]
   }
 
   condition {
-    path_pattern {
-      values = ["/repositories-usage-reports*"]
-    }
+    field  = "path-pattern"
+    values = ["/repositories-usage-reports*"]
   }
 }
 
