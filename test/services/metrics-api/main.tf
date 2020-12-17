@@ -66,14 +66,14 @@ resource "aws_lb_listener_rule" "metrics-api-test" {
   }
 
   condition {
-    path_pattern {
-      values = ["/reports*"]
-    }
-  }
-
-  condition {
     host_header {
       values = ["api.test.datacite.org"]
+    }
+  }
+  
+  condition {
+    path_pattern {
+      values = ["/reports*"]
     }
   }
 }
@@ -86,16 +86,16 @@ resource "aws_lb_listener_rule" "metrics-api-test-subset" {
     type             = "forward"
     target_group_arn = "${aws_lb_target_group.metrics-api-test.arn}"
   }
-
-  condition {
-    path_pattern {
-      values = ["/report-subsets*"]
-    }
-  }
   
   condition {
     host_header {
       values = ["api.test.datacite.org"]
+    }
+  }
+  
+  condition {
+    path_pattern {
+      values = ["/report-subsets*"]
     }
   }
 }
