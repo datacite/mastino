@@ -73,7 +73,7 @@ resource "aws_lb_listener_rule" "metrics-api-test" {
 
   condition {
     host_header {
-      values = [api.test.datacite.org]
+      values = ["api.test.datacite.org"]
     }
   }
 }
@@ -95,7 +95,7 @@ resource "aws_lb_listener_rule" "metrics-api-test-subset" {
   
   condition {
     host_header {
-      values = [api.test.datacite.org]
+      values = ["api.test.datacite.org"]
     }
   }
 }
@@ -111,7 +111,7 @@ resource "aws_lb_listener_rule" "metrics-api-test-repositories" {
 
   condition {
     host_header {
-      values = [api.test.datacite.org]
+      values = ["api.test.datacite.org"]
     }
   }
 
