@@ -93,7 +93,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_up" {
   statistic           = "Average"
   threshold           = "80"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
@@ -112,7 +112,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_down" {
   statistic           = "Average"
   threshold           = "20"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
