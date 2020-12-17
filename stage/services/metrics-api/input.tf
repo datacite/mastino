@@ -49,7 +49,7 @@ data "aws_lb_listener" "stage" {
 data "template_file" "metrics-api_task" {
   template = "${file("metrics-api.json")}"
 
-  vars {
+  vars = {
     public_key         = "${var.public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
