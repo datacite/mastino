@@ -102,7 +102,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_up" {
   statistic           = "Average"
   threshold           = "80"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
@@ -121,7 +121,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_down" {
   statistic           = "Average"
   threshold           = "20"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
@@ -153,13 +153,15 @@ resource "aws_lb_listener_rule" "metrics-api" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host-header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/reports*"]
+    path-pattern {
+      values = ["/reports*"]
+    }
   }
 }
 
@@ -173,13 +175,15 @@ resource "aws_lb_listener_rule" "metrics-api-subset" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host-header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/report-subsets*"]
+    path-pattern {
+      values = ["/report-subsets*"]
+    }
   }
 }
 
@@ -193,13 +197,15 @@ resource "aws_lb_listener_rule" "metrics-api--repositories" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host-header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/repositories-usage-reports*"]
+    path-pattern {
+      values = ["/repositories-usage-reports*"]
+    }
   }
 }
 
