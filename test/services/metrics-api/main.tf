@@ -66,15 +66,16 @@ resource "aws_lb_listener_rule" "metrics-api-test" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.test.datacite.org"]
+    path_pattern {
+      values = ["/reports*"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/reports*"]
+    host_header {
+      values = [api.test.datacite.org]
+    }
   }
-
 }
 
 resource "aws_lb_listener_rule" "metrics-api-test-subset" {
@@ -87,13 +88,15 @@ resource "aws_lb_listener_rule" "metrics-api-test-subset" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.test.datacite.org"]
+    path_pattern {
+      values = ["/report-subsets*"]
+    }
   }
-
+  
   condition {
-    field  = "path-pattern"
-    values = ["/report-subsets*"]
+    host_header {
+      values = [api.test.datacite.org]
+    }
   }
 }
 
@@ -107,18 +110,17 @@ resource "aws_lb_listener_rule" "metrics-api-test-repositories" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.test.datacite.org"]
+    host_header {
+      values = [api.test.datacite.org]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/repositories-usage-reports*"]
+    path_pattern {
+      values = ["/repositories-usage-reports*"]
+    }
   }
 }
-
-
-
 
 resource "aws_service_discovery_service" "metrics-api-test" {
   name = "metrics-api.test"
