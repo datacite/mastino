@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "metrics" {
-    bucket = "metrics-api.test.datacite.org"
+    bucket = "${var.s3_bucket}"
     acl = "public-read"
-    policy = "${data.template_file.metrics-api_task.rendered}"
+    policy = "${data.template_file.metrics-api_s3.rendered}"
     tags = {
         Name = "metricsApiTest"
     }

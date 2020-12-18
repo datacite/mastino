@@ -69,3 +69,11 @@ data "template_file" "metrics-api_task" {
     version            = "${var.sashimi_tags["sha"]}"
   }
 }
+
+data "template_file" "metrics-api_s3" {
+  template = "${file("s3_public_read.json")}"
+
+  vars = {
+      bucket_name = "${var.s3_bucket}"
+  }
+}
