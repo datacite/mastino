@@ -73,7 +73,7 @@ data "template_file" "metrics-api_task" {
 data "template_file" "metrics-api_s3" {
   template = "${file("s3_public_read.json")}"
 
-  vars {
+  vars = {
       bucket_name = "${var.s3_bucket}"
   }
 }
