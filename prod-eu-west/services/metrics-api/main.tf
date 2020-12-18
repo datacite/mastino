@@ -1,4 +1,3 @@
-@@ -1,3 +1,12 @@
 resource "aws_s3_bucket" "metrics" {
     bucket = "metrics-api.datacite.org"
     acl = "public-read"
