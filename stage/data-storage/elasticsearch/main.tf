@@ -1,8 +1,8 @@
 resource "aws_elasticsearch_domain" "test" {
   domain_name           = "elasticsearch-test"
-  elasticsearch_version = "7.1"
+  elasticsearch_version = "7.9"
   cluster_config {
-    instance_type = "m4.large.elasticsearch"
+    instance_type = "m5.large.elasticsearch"
     instance_count = 1
   }
 
@@ -33,7 +33,7 @@ resource "aws_elasticsearch_domain" "test" {
   }
   
   tags {
-    Domain = "elasticsearch-test"
+    Domain = "elasticsearch-stage"
   }
 
   log_publishing_options {
