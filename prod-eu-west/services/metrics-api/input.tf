@@ -49,7 +49,7 @@ data "aws_lb_listener" "default" {
 data "template_file" "metrics-api_task" {
   template = "${file("metrics-api.json")}"
 
-  vars {
+  vars = {
     public_key         = "${var.public_key}"
     jwt_public_key     = "${var.jwt_public_key}"
     jwt_private_key    = "${var.jwt_private_key}"
@@ -67,5 +67,13 @@ data "template_file" "metrics-api_task" {
     jwt_blacklisted    = "${var.jwt_blacklisted}"
     rack_timeout_service_timeout = "${var.rack_timeout_service_timeout}"
     version            = "${var.sashimi_tags["version"]}"
+  }
+}
+
+data "template_file" "metrics-api_s3" {
+  template = "${file("s3_public_read.json")}"
+
+  vars = {
+      bucket_name = "${var.s3_bucket}"
   }
 }

@@ -1,3 +1,12 @@
+resource "aws_s3_bucket" "metrics" {
+    bucket = "${var.s3_bucket}"
+    acl = "public-read"
+    policy = "${data.template_file.metrics-api_s3.rendered}"
+    tags = {
+        Name = "metricsApi"
+    }
+}
+
 resource "aws_ecs_service" "metrics-api" {
   name            = "metrics-api"
   cluster         = "${data.aws_ecs_cluster.default.id}"
@@ -93,7 +102,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_up" {
   statistic           = "Average"
   threshold           = "80"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
@@ -112,7 +121,7 @@ resource "aws_cloudwatch_metric_alarm" "metrics-api_cpu_scale_down" {
   statistic           = "Average"
   threshold           = "20"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = "${aws_ecs_service.metrics-api.name}"
   }
@@ -144,13 +153,15 @@ resource "aws_lb_listener_rule" "metrics-api" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host_header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/reports*"]
+    path_pattern {
+      values = ["/reports*"]
+    }
   }
 }
 
@@ -164,13 +175,15 @@ resource "aws_lb_listener_rule" "metrics-api-subset" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host_header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/report-subsets*"]
+    path_pattern {
+      values = ["/report-subsets*"]
+    }
   }
 }
 
@@ -184,13 +197,15 @@ resource "aws_lb_listener_rule" "metrics-api--repositories" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host_header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/repositories-usage-reports*"]
+    path_pattern {
+      values = ["/repositories-usage-reports*"]
+    }
   }
 }
 
