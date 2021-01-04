@@ -18,7 +18,7 @@ resource "aws_elasticsearch_domain" "default" {
   ebs_options{
       ebs_enabled = true
       volume_type = "gp2"
-      volume_size = 750
+      volume_size = 1500
   }
 
   vpc_options {
