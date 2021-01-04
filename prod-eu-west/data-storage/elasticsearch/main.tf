@@ -27,7 +27,7 @@ resource "aws_elasticsearch_domain" "default" {
   }
 
   log_publishing_options {
-    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.elasticsearch.arn}"
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.elasticsearch-slowlogs.arn}"
     log_type                 = "SEARCH_SLOW_LOGS"
   }
 
@@ -48,6 +48,10 @@ resource "aws_elasticsearch_domain_policy" "default" {
 
 resource "aws_cloudwatch_log_group" "elasticsearch" {
   name = "elasticsearch"
+}
+
+resource "aws_cloudwatch_log_group" "elasticsearch-slowlogs" {
+  name = "elasticsearch-slowlogs"
 }
 
 resource "aws_cloudwatch_log_resource_policy" "elasticsearch" {
