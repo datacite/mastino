@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "check-indexed-dois-stage" {
   name = "check-indexed-dois-stage"
   description = "Run check-indexed-dois API call via cron"
-  schedule_expression = "cron(15 3 * * 1 *)"
+  schedule_expression = "cron(15 3 ? * MON *)"
 }
 
 resource "aws_cloudwatch_event_target" "check-indexed-dois-stage" {
