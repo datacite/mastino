@@ -16,7 +16,7 @@ resource "aws_lambda_function" "check-indexed-dois-stage" {
   role = data.aws_iam_role.lambda.arn
   handler = "check-indexed-dois_runner.handler"
   runtime = "nodejs12.x"
-  source_code_hash = filebase64(file("check-indexed-dois_runner.js.zip"))
+  source_code_hash = sha256(filebase64("check-indexed-dois_runner.js.zip"))
   timeout = "270"
 
   vpc_config {
