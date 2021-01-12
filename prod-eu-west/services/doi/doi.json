@@ -19,7 +19,7 @@
   },
   "environment": [{
       "name": "PASSENGER_APP_ENV",
-      "value": "development"
+      "value": "production"
     },
     {
       "name": "DEPLOY_TARGET",
