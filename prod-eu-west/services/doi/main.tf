@@ -13,7 +13,7 @@ resource "aws_ecs_service" "doi" {
   }
 
   # give container time to start up
-  health_check_grace_period_seconds = 1200
+  health_check_grace_period_seconds = 1800
 
   network_configuration {
     security_groups = ["${data.aws_security_group.datacite-private.id}"]
