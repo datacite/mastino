@@ -2,6 +2,7 @@ resource "aws_ecs_service" "doi" {
   name = "doi"
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
+  platform_version = "1.4.0"
   task_definition = "${aws_ecs_task_definition.doi.arn}"
 
   # Create service with 2 instances to start
@@ -39,7 +40,7 @@ resource "aws_ecs_service" "doi" {
 }
 
 resource "aws_appautoscaling_target" "doi" {
-  max_capacity       = 10
+  max_capacity       = 6
   min_capacity       = 2
   resource_id        = "service/default/${aws_ecs_service.doi.name}"
   scalable_dimension = "ecs:service:DesiredCount"

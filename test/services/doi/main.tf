@@ -2,6 +2,7 @@ resource "aws_ecs_service" "doi-test" {
   name = "doi-test"
   cluster = data.aws_ecs_cluster.test.id
   launch_type = "FARGATE"
+  platform_version = "1.4.0"
   task_definition = aws_ecs_task_definition.doi-test.arn
   desired_count = 1
 
