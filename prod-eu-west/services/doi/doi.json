@@ -19,11 +19,11 @@
   },
   "environment": [{
       "name": "PASSENGER_APP_ENV",
-      "value": "development"
+      "value": "production"
     },
     {
       "name": "DEPLOY_TARGET",
-      "value": "development"
+      "value": "production"
     },
     {
       "name": "SITE_TITLE",
@@ -31,7 +31,7 @@
     },
     {
       "name": "LOG_LEVEL",
-      "value": "info"
+      "value": "warn"
     },
     {
       "name": "PUBLIC_KEY",
