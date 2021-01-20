@@ -99,7 +99,7 @@ resource "aws_route53_record" "txt-datacite" {
     ttl = "300"
     records = [
         "${var.google_site_verification_record}",
-        "v=spf1 include:_spf.google.com ~all",
+        "v=spf1 include:_spf.google.com include:_spf.salesforce.com ~all",
         "${var.ms_record}",
         "${var.verification_record}"
     ]
