@@ -7,7 +7,7 @@ resource "aws_ecs_service" "doi-test" {
   desired_count = 1
 
   # give container time to start up
-  health_check_grace_period_seconds = 600
+  health_check_grace_period_seconds = 1800
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
@@ -171,7 +171,7 @@ resource "aws_service_discovery_service" "doi-test" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
