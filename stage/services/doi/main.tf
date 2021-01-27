@@ -135,7 +135,7 @@ resource "aws_route53_record" "doi-stage" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
     name = "doi.stage.datacite.org"
     type = "CNAME"
-    ttl = var.ttl
+    ttl = "${var.ttl}"
     records = ["doi.datacite.vercel.app"]
 }
 
