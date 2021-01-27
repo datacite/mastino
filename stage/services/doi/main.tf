@@ -4,7 +4,7 @@ resource "aws_ecs_service" "doi-stage" {
   launch_type = "FARGATE"
   platform_version = "1.4.0"
   task_definition = "${aws_ecs_task_definition.doi-stage.arn}"
-  desired_count = 1
+  desired_count = 0
 
   # give container time to start up
   health_check_grace_period_seconds = 1800
