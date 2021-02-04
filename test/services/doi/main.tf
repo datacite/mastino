@@ -159,7 +159,7 @@ resource "aws_route53_record" "doi-test" {
     name = "doi.test.datacite.org"
     type = "CNAME"
     ttl = var.ttl
-    records = ["cname.vercel-dns.com"]
+    records = ["bracco-test.vercel.app"]
 }
 
 resource "aws_route53_record" "split-doi-test" {
