@@ -222,12 +222,20 @@ resource "aws_lb_listener_rule" "doi" {
   }
 }
 
+// resource "aws_route53_record" "doi" {
+//     zone_id = "${data.aws_route53_zone.production.zone_id}"
+//     name = "doi.datacite.org"
+//     type = "CNAME"
+//     ttl = "${var.ttl}"
+//     records = ["${data.aws_lb.default.dns_name}"]
+// }
+
 resource "aws_route53_record" "doi" {
     zone_id = "${data.aws_route53_zone.production.zone_id}"
     name = "doi.datacite.org"
     type = "CNAME"
     ttl = "${var.ttl}"
-    records = ["${data.aws_lb.default.dns_name}"]
+    records = ["cname.vercel-dns.com"]
 }
 
 resource "aws_route53_record" "split-doi" {
