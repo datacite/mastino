@@ -112,6 +112,15 @@ resource "aws_sqs_queue" "usage" {
   }
 }
 
+resource "aws_sqs_queue" "salesforce" {
+  name                      = "production_salesforce"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "production"
+  }
+}
+
 resource "aws_sqs_queue" "dead-letter" {
   name                      = "production_dead-letter"
 

@@ -113,6 +113,15 @@ resource "aws_sqs_queue" "sashimi-stage" {
   }
 }
 
+resource "aws_sqs_queue" "salesforce-stage" {
+  name                      = "stage_salesforce"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "stage"
+  }
+}
+
 resource "aws_sqs_queue" "dead-letter-stage" {
   name                      = "stage_dead-letter"
 
