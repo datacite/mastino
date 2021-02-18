@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "salesforce-api-stage" {
-  filename = "salesforce-api.js.zip"
+  filename = "salesforce-api_runner.js.zip"
   function_name = "salesforce-api-stage"
   role = data.aws_iam_role.lambda.arn
   handler = "salesforce-api_runner.handler"
