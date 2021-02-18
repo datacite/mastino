@@ -22,16 +22,17 @@ exports.handler = async function (event, context) {
     method: "POST",
   };
 
-  console.log(options);
-
   const req = https.request(options, (res) => {
     console.log("status:", res.statusCode);
 
     res.setEncoding("utf8");
-    res.on("data", (d) => {
-      let json = JSON.parse(d);
-      console.log("message:", json.message);
+    res.on("access_token", (t) => {
+      console.log("message:", t);
     });
+    // res.on("data", (d) => {
+    //   let json = JSON.parse(d);
+    //   console.log("message:", json.message);
+    // });
   });
 
   req.on("error", (e) => {
