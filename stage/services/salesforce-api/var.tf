@@ -7,3 +7,9 @@ variable "region" {
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
+
+variable "host" {}
+variable "username" {}
+variable "password" {}
+variable "client_id" {}
+variable "client_secret" {}

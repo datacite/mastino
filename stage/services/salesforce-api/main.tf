@@ -11,13 +11,15 @@ resource "aws_lambda_function" "salesforce-api-stage" {
     subnet_ids = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
     security_group_ids = [data.aws_security_group.datacite-private.id]
   }
-  // environment {
-  //   variables = {
-  //     host     = var.host
-  //     username = var.username
-  //     password = var.password
-  //   }
-  // }
+  environment {
+    variables = {
+      host     = var.host
+      username = var.username
+      password = var.password
+      client_id = var.client_id
+      client_secret = var.client_secret
+    }
+  }
 }
 
 resource "aws_lambda_permission" "salesforce-api-stage" {
