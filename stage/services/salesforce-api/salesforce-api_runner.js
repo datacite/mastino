@@ -1,12 +1,14 @@
 exports.handler = async function (event, context) {
   const username = process.env.username;
   const password = process.env.password;
-  const host = process.env.host;
+  const host = "https://" + process.env.host;
   const client_id = process.env.client_id;
   const client_secret = process.env.client_secret;
 
   const axios = require("axios");
   axios.defaults.baseURL = host;
+
+  console.log(axios);
 
   axios
     .post("/services/oauth2/token", {
