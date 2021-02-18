@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "salesforce-api_runner-stage" {
+resource "aws_lambda_function" "salesforce-api-stage" {
   filename = "salesforce-api_runner.js.zip"
   function_name = "salesforce-api-stage"
   role = data.aws_iam_role.lambda.arn
@@ -20,9 +20,9 @@ resource "aws_lambda_function" "salesforce-api_runner-stage" {
   // }
 }
 
-resource "aws_lambda_permission" "salesforce-api_runner-stage" {
+resource "aws_lambda_permission" "salesforce-api-stage" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.salesforce-api_runner-stage.function_name
+  function_name = aws_lambda_function.salesforce-api-stage.function_name
   principal = "events.amazonaws.com"
 }
