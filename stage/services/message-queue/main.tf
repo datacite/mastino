@@ -115,6 +115,7 @@ resource "aws_sqs_queue" "sashimi-stage" {
 
 resource "aws_sqs_queue" "salesforce-stage" {
   name                      = "stage_salesforce"
+  visibility_timeout_seconds = 60
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
   tags {

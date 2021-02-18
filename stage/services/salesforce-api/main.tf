@@ -5,7 +5,7 @@ resource "aws_lambda_function" "salesforce-api_runner-stage" {
   handler = "salesforce-api_runner.handler"
   runtime = "nodejs12.x"
   source_code_hash = sha256(filebase64("salesforce-api_runner.js.zip"))
-  timeout = "270"
+  timeout = "60"
 
   vpc_config {
     subnet_ids = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
