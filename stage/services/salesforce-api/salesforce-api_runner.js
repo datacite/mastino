@@ -18,7 +18,7 @@ exports.handler = async function (event, context) {
 
   let options = {
     host: host,
-    path: `/services/oauth2/token${params}`,
+    path: `/services/oauth2/token?${params}`,
     method: "POST",
   };
 
