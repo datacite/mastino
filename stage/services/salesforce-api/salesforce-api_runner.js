@@ -8,8 +8,6 @@ exports.handler = async function (event, context) {
   const axios = require("axios");
   axios.defaults.baseURL = host;
 
-  console.log(axios);
-
   axios
     .post("/services/oauth2/token", {
       grant_type: "password",
