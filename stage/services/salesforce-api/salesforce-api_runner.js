@@ -2,13 +2,13 @@ exports.handler = async function (event, context) {
   const https = require("https");
   const querystring = require("querystring");
 
-  const username = process.env.username;
-  const password = process.env.password;
-  const host = process.env.host;
-  const client_id = process.env.client_id;
-  const client_secret = process.env.client_secret;
+  let username = process.env.username;
+  let password = process.env.password;
+  let host = process.env.host;
+  let client_id = process.env.client_id;
+  let client_secret = process.env.client_secret;
 
-  const params = querystring.stringify({
+  let params = querystring.stringify({
     grant_type: "password",
     username: username,
     password: password,
@@ -16,18 +16,20 @@ exports.handler = async function (event, context) {
     client_secret: client_secret,
   });
 
-  const options = {
+  let options = {
     host: host,
     path: `/services/oauth2/token${params}`,
     method: "POST",
   };
+
+  console.log(options);
 
   const req = https.request(options, (res) => {
     console.log("status:", res.statusCode);
 
     res.setEncoding("utf8");
     res.on("data", (d) => {
-      var json = JSON.parse(d);
+      let json = JSON.parse(d);
       console.log("message:", json.message);
     });
   });
@@ -35,6 +37,7 @@ exports.handler = async function (event, context) {
   req.on("error", (e) => {
     console.error(e);
   });
+
   req.end();
 
   // event.Records.forEach((record) => {
