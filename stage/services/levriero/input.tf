@@ -69,6 +69,7 @@ data "template_file" "levriero_task" {
     datacite_related_source_token  = "${var.datacite_related_source_token}"
     datacite_other_source_token    = "${var.datacite_other_source_token}"
     datacite_url_source_token      = "${var.datacite_url_source_token}"
+    datacite_arxiv_source_token    = "${var.datacite_arxiv_source_token}"
     datacite_funder_source_token   = "${var.datacite_funder_source_token}"
     datacite_affiliation_source_token  = "${var.datacite_affiliation_source_token}"
     orcid_affiliation_source_token  = "${var.orcid_affiliation_source_token}"
