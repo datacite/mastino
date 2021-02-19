@@ -118,6 +118,18 @@
       "value": "${datacite_arxiv_source_token}"
     },
     {
+      "name": "DATACITE_PMID_SOURCE_TOKEN",
+      "value": "${datacite_pmid_source_token}"
+    },
+    {
+      "name": "DATACITE_IGSN_SOURCE_TOKEN",
+      "value": "${datacite_igsn_source_token}"
+    },
+    {
+      "name": "DATACITE_HANDLE_SOURCE_TOKEN",
+      "value": "${datacite_handle_source_token}"
+    },
+    {
       "name": "DATACITE_FUNDER_SOURCE_TOKEN",
       "value": "${datacite_funder_source_token}"
     },
