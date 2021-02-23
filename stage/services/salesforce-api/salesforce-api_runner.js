@@ -1,32 +1,26 @@
 exports.handler = async function (event, context) {
   const username = process.env.username;
   const password = process.env.password;
-  const loginUrl = "https://" + process.env.host;
-  const clientId = process.env.client_id;
-  const clientSecret = process.env.client_secret;
+  const url = `https://${process.env.host}/services/oauth2/token`;
+  const client_id = process.env.client_id;
+  const client_secret = process.env.client_secret;
 
-  var jsforce = require("jsforce");
-  var conn = new jsforce.Connection({
-    oauth2: {
-      loginUrl,
-      clientId,
-      clientSecret,
-      redirectUri: "<callback URI is here>",
-    },
-  });
+  const axios = require("axios");
 
-  console.log(conn);
-
-  conn.login(username, password, function (err, userInfo) {
-    if (err) {
-      return console.error(err);
-    }
-    console.log(conn.accessToken);
-    console.log(conn.instanceUrl);
-    // logged in user property
-    console.log("User ID: " + userInfo.id);
-    console.log("Org ID: " + userInfo.organizationId);
-  });
+  axios
+    .post(url, {
+      grant_type: "password",
+      username: username,
+      password: password,
+      client_id: client_id,
+      client_secret: client_secret,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
   // event.Records.forEach((record) => {
   //   const { body } = record;
