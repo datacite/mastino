@@ -1,19 +1,13 @@
 exports.handler = async function (event, context) {
   const username = process.env.username;
   const password = process.env.password;
-  const host = process.env.host;
-  const client_id = process.env.client_id;
-  const client_secret = process.env.client_secret;
-
-  console.log(host);
+  const loginUrl = "https://" + process.env.host;
+  // const client_id = process.env.client_id;
+  // const client_secret = process.env.client_secret;
 
   var jsforce = require("jsforce");
   var conn = new jsforce.Connection({
-    oauth2: {
-      loginUrl: "https://" + host,
-      clientId: client_id,
-      clientSecret: client_secret,
-    },
+    loginUrl,
   });
 
   console.log(conn);
