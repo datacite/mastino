@@ -22,8 +22,6 @@ exports.handler = async function (event, context) {
     })
     .catch((err) => console.warn(err));
 
-  console.log(auth);
-
   event.Records.forEach((record) => {
     let response = JSON.parse(record.body);
     if (response.type === "contacts") {
@@ -35,8 +33,6 @@ exports.handler = async function (event, context) {
     } else if (response.type === "repositories") {
       console.log("Repository");
       console.log(response.attributes);
-    } else {
-      console.log(response);
     }
   });
 };
