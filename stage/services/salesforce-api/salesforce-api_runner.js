@@ -25,8 +25,15 @@ exports.handler = async function (event, context) {
   console.log(auth);
 
   event.Records.forEach((record) => {
-    const { body } = record;
-    console.log(body);
+    if (record.type === "contacts") {
+      console.log("Contact");
+      console.log(record.attributes);
+    } else if (record.type === "providers") {
+      console.log("Organization");
+      console.log(record.attributes);
+    } else if (record.type === "repositories") {
+      console.log("Repository");
+      console.log(record.attributes);
+    }
   });
-  return {};
 };
