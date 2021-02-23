@@ -3,7 +3,7 @@ exports.handler = async function (event, context) {
 
   const axios = require("axios");
   const url = `https://${process.env.host}/services/oauth2/token`;
-  const data = await axios
+  const auth = await axios
     .post(
       url,
       {},
@@ -22,11 +22,11 @@ exports.handler = async function (event, context) {
     })
     .catch((err) => console.warn(err));
 
-  console.log(data);
+  console.log(auth);
 
-  // event.Records.forEach((record) => {
-  //   const { body } = record;
-  //   console.log(body);
-  // });
-  // return {};
+  event.Records.forEach((record) => {
+    const { body } = record;
+    console.log(body);
+  });
+  return {};
 };
