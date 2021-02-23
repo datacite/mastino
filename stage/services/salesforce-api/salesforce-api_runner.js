@@ -7,17 +7,18 @@ exports.handler = async function (event, context) {
 
   const axios = require("axios");
 
-  console.log(url);
+  const params = {
+    grant_type: "password",
+    username: username,
+    password: password,
+    client_id: client_id,
+    client_secret: client_secret,
+  };
+  console.log(params);
 
   axios
-    .post(url, {
-      grant_type: "password",
-      username: username,
-      password: password,
-      client_id: client_id,
-      client_secret: client_secret,
-    })
-    .then(function (response) {
+    .post(url, { params })
+    .then((response) => {
       console.log(response);
     })
     .catch((err) => {
