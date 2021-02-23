@@ -7,6 +7,8 @@ exports.handler = async function (event, context) {
 
   const axios = require("axios");
 
+  console.log(url);
+
   axios
     .post(url, {
       grant_type: "password",
