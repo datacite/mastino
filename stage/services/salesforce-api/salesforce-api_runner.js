@@ -13,7 +13,6 @@ exports.handler = async function (event, context) {
       loginUrl: "https://" + host,
       clientId: client_id,
       clientSecret: client_secret,
-      redirectUri: "https://" + host,
     },
   });
 
