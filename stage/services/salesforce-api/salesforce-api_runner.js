@@ -34,6 +34,8 @@ exports.handler = async function (event, context) {
     } else if (record.type === "repositories") {
       console.log("Repository");
       console.log(record.attributes);
+    } else {
+      console.log(record);
     }
   });
 };
