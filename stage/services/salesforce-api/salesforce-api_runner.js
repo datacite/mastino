@@ -5,7 +5,7 @@ exports.handler = async function (event, context) {
   const client_id = process.env.client_id;
   const client_secret = process.env.client_secret;
 
-  console.log(1);
+  console.log(host);
 
   var jsforce = require("jsforce");
   var conn = new jsforce.Connection({
@@ -17,7 +17,7 @@ exports.handler = async function (event, context) {
     },
   });
 
-  console.log(2);
+  console.log("https://" + host);
 
   conn.login(username, password, function (err, userInfo) {
     if (err) {
