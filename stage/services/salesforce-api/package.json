@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0"
+  },
+  "scripts": {
+    "locally": "node -e \"console.log(require('./salesforce-api_runner').handler({}));\""
   }
 }
