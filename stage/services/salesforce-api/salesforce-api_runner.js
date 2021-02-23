@@ -20,8 +20,14 @@ exports.handler = async function (event, context) {
     .then(function (response) {
       console.log(response);
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      if (err.response) {
+        console.log(err.response);
+      } else if (err.request) {
+        console.log(err.request);
+      } else {
+        console.log(err);
+      }
     });
 
   // event.Records.forEach((record) => {
