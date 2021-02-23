@@ -2,12 +2,17 @@ exports.handler = async function (event, context) {
   const username = process.env.username;
   const password = process.env.password;
   const loginUrl = "https://" + process.env.host;
-  // const client_id = process.env.client_id;
-  // const client_secret = process.env.client_secret;
+  const clientId = process.env.client_id;
+  const clientSecret = process.env.client_secret;
 
   var jsforce = require("jsforce");
   var conn = new jsforce.Connection({
-    loginUrl,
+    oauth2: {
+      loginUrl,
+      clientId,
+      clientSecret,
+      redirectUri: "<callback URI is here>",
+    },
   });
 
   console.log(conn);
