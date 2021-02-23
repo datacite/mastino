@@ -2,22 +2,28 @@ exports.handler = async function (event, context) {
   const username = process.env.username;
   const password = process.env.password;
   const host = process.env.host;
+  const client_id = process.env.client_id;
+  const client_secret = process.env.client_secret;
 
   var jsforce = require("jsforce");
   var conn = new jsforce.Connection({
-    loginUrl: "https://" + host,
+    oauth2: {
+      loginUrl: "https://" + host,
+      clientId: client_id,
+      clientSecret: client_secret,
+      redirectUri: "https://" + host,
+    },
   });
 
-  conn.login(username, password, function (err, res) {
+  conn.login(username, password, function (err, userInfo) {
     if (err) {
       return console.error(err);
     }
-    conn.query("SELECT Id, Name FROM Account", function (err, res) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log(res);
-    });
+    console.log(conn.accessToken);
+    console.log(conn.instanceUrl);
+    // logged in user property
+    console.log("User ID: " + userInfo.id);
+    console.log("Org ID: " + userInfo.organizationId);
   });
 
   // event.Records.forEach((record) => {
