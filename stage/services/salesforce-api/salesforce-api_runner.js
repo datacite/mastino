@@ -17,7 +17,7 @@ exports.handler = async function (event, context) {
     },
   });
 
-  console.log("https://" + host);
+  console.log(conn);
 
   conn.login(username, password, function (err, userInfo) {
     if (err) {
