@@ -17,7 +17,7 @@ exports.handler = async function (event, context) {
   console.log(params);
 
   axios
-    .post(url, null, { params })
+    .post(url, {}, { params })
     .then((response) => {
       console.log(response);
     })
