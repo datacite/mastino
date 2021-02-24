@@ -52,8 +52,44 @@ exports.handler = async function (event, context) {
         })
         .catch((err) => console.warn(err));
     } else if (res.type === "providers") {
-      console.log("Organization");
-      console.log(res.attributes);
+      let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.symbol}`;
+      let body = {
+        Name: res.attributes.name,
+        Website: res.attributes.website,
+        Fabrica__c: res.attributes.symbol,
+        System_Email__c: res.attributes["system-email"],
+        Group_Email__c: res.attributes["group-email"],
+        ROR__c: res.attributes.ror_id,
+        Twitter__c: res.attribures.twitter_handle,
+        // Member_Type__c: res.attributes.
+        // Sector__c: res.attributes.
+        // Focus_Area__c: res.attributes
+        // Assign_DOIs__c: res.attributes
+        // BillingStreet:
+        // BillingCity:
+        // BillingState:
+        // BillingPostalCode:
+        // BillingCountry:
+        // BillingStateCode:
+        // BillingCountryCode: res.attributes
+        Description: res.attributes.description,
+        Date_Joined__c: res.attributes.joined,
+        Fabrica_Creation_Date__c: res.attributes.created,
+        Fabrica_Modification_Date__c: res.attributes.updated,
+        Fabrica_Deletion_Date__c: res.attributes.deleted_at,
+        Is_Active__c: res.attributes["is-active"],
+      };
+
+      console.log(body);
+
+      axios
+        .patch(url, body, {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((err) => console.warn(err));
     } else if (res.type === "repositories") {
       console.log("Repository");
       console.log(res.attributes);
