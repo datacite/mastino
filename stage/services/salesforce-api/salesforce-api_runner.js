@@ -60,7 +60,7 @@ exports.handler = async function (event, context) {
         System_Email__c: res.attributes["system-email"],
         Group_Email__c: res.attributes["group-email"],
         ROR__c: res.attributes.ror_id,
-        Twitter__c: res.attribures.twitter_handle,
+        Twitter__c: res.attributes.twitter_handle,
         // Member_Type__c: res.attributes.
         // Sector__c: res.attributes.
         // Focus_Area__c: res.attributes
@@ -79,6 +79,8 @@ exports.handler = async function (event, context) {
         Fabrica_Deletion_Date__c: res.attributes.deleted_at,
         Is_Active__c: res.attributes["is-active"],
       };
+
+      console.log(res.attributes);
 
       console.log(body);
 
