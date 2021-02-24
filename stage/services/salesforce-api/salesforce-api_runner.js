@@ -1,7 +1,7 @@
 exports.handler = async function (event, context) {
   require("dotenv").config();
 
-  const apiVersion = "v51.0"
+  const apiVersion = "v51.0";
   const axios = require("axios");
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
   const auth = await axios
@@ -26,27 +26,25 @@ exports.handler = async function (event, context) {
   event.Records.forEach((record) => {
     let res = JSON.parse(record.body);
     if (res.type === "contacts") {
-      let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.attributes.uid}`
+      let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.attributes.uid}`;
       let body = {
-        "FirstName": res.attributes.given_name,
-        "LastName": res.attributes.family_name,
-        "Email": res.attributes.email,
-        "Fabrica_ID__c": `${res.attributes.provider_id.toUpperCase()}-${res.attributes.email}`,
-        "Type__c": res.attributes.role_name.join(";"),
-        "CreatedAt__c": res.attributes.created_at,
-        "ModifiedAt__c": res.attributes.updated_at,
-        "DeletedAt__c": res.attributes.deleted_at,
-        "Active__c": !res.attributes.deleted_at
-      }
+        FirstName: res.attributes.given_name,
+        LastName: res.attributes.family_name,
+        Email: res.attributes.email,
+        Fabrica_ID__c: `${res.attributes.provider_id.toUpperCase()}-${
+          res.attributes.email
+        }`,
+        Type__c: res.attributes.role_name.join(";"),
+        CreatedAt__c: res.attributes.created_at,
+        ModifiedAt__c: res.attributes.updated_at,
+        DeletedAt__c: res.attributes.deleted_at,
+        Active__c: !res.attributes.deleted_at,
+      };
 
-      await axios
-        .patch(
-          url,
-          body,
-          {
-            headers: { Authorization: `Bearer ${auth.access_token}` }
-          }
-        )
+      axios
+        .patch(url, body, {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
         .then((response) => {
           console.log(response.data);
         })
