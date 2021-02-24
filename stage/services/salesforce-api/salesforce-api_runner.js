@@ -53,10 +53,10 @@ exports.handler = async function (event, context) {
         .catch((err) => console.warn(err));
     } else if (res.type === "providers") {
       console.log("Organization");
-      console.log(response.attributes);
+      console.log(res.attributes);
     } else if (res.type === "repositories") {
       console.log("Repository");
-      console.log(response.attributes);
+      console.log(res.attributes);
     }
   });
 };
