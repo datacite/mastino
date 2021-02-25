@@ -57,27 +57,31 @@ exports.handler = async function (event, context) {
         Name: res.attributes.name,
         Website: res.attributes.website,
         Fabrica__c: res.attributes.symbol,
-        System_Email__c: res.attributes["system-email"],
-        Group_Email__c: res.attributes["group-email"],
+        System_Email__c: res.attributes.system_email,
+        Group_Email__c: res.attributes.group_email,
         ROR__c: res.attributes.ror_id,
         Twitter__c: res.attributes.twitter_handle,
-        // Member_Type__c: res.attributes.
-        // Sector__c: res.attributes.
-        // Focus_Area__c: res.attributes
-        // Assign_DOIs__c: res.attributes
-        // BillingStreet:
-        // BillingCity:
-        // BillingState:
-        // BillingPostalCode:
-        // BillingCountry:
-        // BillingStateCode:
-        // BillingCountryCode: res.attributes
+        Member_Type__c: res.attributes.member_type,
+        Sector__c: res.attributes.organization_type,
+        Focus_Area__c: res.attributes.focus_area,
+        Assign_DOIs__c: [
+          "Direct Member",
+          "Consortium",
+          "Consortium Organization",
+        ].includes(res.attributes.member_type),
+        Billing_Organization__c: res.attributes.billing_organization,
+        Billing_Department__c: res.attributes.billing_department,
+        BillingAddress: res.attributes.billing_address,
+        BillingCity: res.attributes.billing_city,
+        BillingState: res.attributes.billing_state,
+        BillingPostalCode: res.attributes.billing_post_code,
+        BillingCountry: res.attributes.billing_country,
         Description: res.attributes.description,
         Date_Joined__c: res.attributes.joined,
         Fabrica_Creation_Date__c: res.attributes.created,
         Fabrica_Modification_Date__c: res.attributes.updated,
         Fabrica_Deletion_Date__c: res.attributes.deleted_at,
-        Is_Active__c: res.attributes["is-active"],
+        Is_Active__c: res.attributes.is_active,
       };
 
       console.log(res.attributes);
