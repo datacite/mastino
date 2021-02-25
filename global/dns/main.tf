@@ -47,6 +47,16 @@ resource "aws_route53_record" "internal-ns" {
     ]
 }
 
+resource "aws_route53_record" "dkim-cm" {
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "cm._domainkey.datacite.org"
+    type = "TXT"
+    ttl = "300"
+    records = [
+        "k=rsa; p=${var.dkim_cm}"
+    ]
+}
+
 resource "aws_route53_record" "status" {
     zone_id = "${aws_route53_zone.production.zone_id}"
     name = "status.datacite.org"
