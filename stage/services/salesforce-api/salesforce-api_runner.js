@@ -55,9 +55,13 @@ exports.handler = async function (event, context) {
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
     organization = await axios
-      .patch(url, body, {
-        headers: { Authorization: `Bearer ${auth.access_token}` },
-      })
+      .get(
+        url,
+        {},
+        {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        }
+      )
       .then((response) => {
         console.log(response.data);
       })
@@ -109,9 +113,13 @@ exports.handler = async function (event, context) {
     if (res.attributes.parent_organization) {
       url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
       organization = await axios
-        .patch(url, body, {
-          headers: { Authorization: `Bearer ${auth.access_token}` },
-        })
+        .get(
+          url,
+          {},
+          {
+            headers: { Authorization: `Bearer ${auth.access_token}` },
+          }
+        )
         .then((response) => {
           console.log(response.data);
         })
@@ -182,9 +190,13 @@ exports.handler = async function (event, context) {
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
     organization = await axios
-      .patch(url, body, {
-        headers: { Authorization: `Bearer ${auth.access_token}` },
-      })
+      .get(
+        url,
+        {},
+        {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        }
+      )
       .then((response) => {
         console.log(response.data);
       })
