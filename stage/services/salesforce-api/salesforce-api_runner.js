@@ -21,7 +21,15 @@ exports.handler = async function (event, context) {
     .then((response) => {
       return response.data;
     })
-    .catch((err) => console.warn(err));
+    .catch((err) => {
+      if (err.response) {
+        console.log(err.response.data);
+      } else if (err.request) {
+        console.log(err.request);
+      } else {
+        console.log(err);
+      }
+    });
 
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
