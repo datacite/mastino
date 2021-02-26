@@ -41,7 +41,6 @@ exports.handler = async function (event, context) {
         }
       });
   }
-  console.log(auth);
 
   if (!auth) {
     console.log("Authentication error.");
@@ -62,7 +61,7 @@ exports.handler = async function (event, context) {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       })
       .then((response) => {
-        console.log(response.data);
+        return response.data;
       })
       .catch((err) => {
         if (err.response) {
@@ -118,7 +117,7 @@ exports.handler = async function (event, context) {
           headers: { Authorization: `Bearer ${auth.access_token}` },
         })
         .then((response) => {
-          console.log(response.data);
+          return response.data;
         })
         .catch((err) => {
           if (err.response) {
@@ -190,7 +189,7 @@ exports.handler = async function (event, context) {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       })
       .then((response) => {
-        console.log(response.data);
+        return response.data;
       })
       .catch((err) => {
         if (err.response) {
