@@ -107,7 +107,7 @@ exports.handler = async function (event, context) {
           console.log(err);
         }
       });
-  } else if (res.type === "repositories") {
+  } else if (res.type === "clients") {
     console.log(res.attributes);
 
     let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
