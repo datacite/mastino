@@ -1,36 +1,42 @@
+//persistent storage between lambda invocations
+let auth;
+
 exports.handler = async function (event, context) {
   require("dotenv").config();
 
   const apiVersion = "v51.0";
   const axios = require("axios");
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
-  const auth = await axios
-    .post(
-      authUrl,
-      {},
-      {
-        params: {
-          grant_type: "password",
-          username: process.env.username,
-          password: process.env.password,
-          client_id: process.env.client_id,
-          client_secret: process.env.client_secret,
-        },
-      }
-    )
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      if (err.response) {
-        console.log(err.response.status);
-        console.log(err.response.data);
-      } else if (err.request) {
-        console.log(err.request);
-      } else {
-        console.log(err);
-      }
-    });
+
+  // check if no token or token older than 20 min
+  if (!auth || new Date() - Date.new(auth.issued_at) > 20 * 60 * 1000) {
+    auth = await axios
+      .post(
+        authUrl,
+        {},
+        {
+          params: {
+            grant_type: "password",
+            username: process.env.username,
+            password: process.env.password,
+            client_id: process.env.client_id,
+            client_secret: process.env.client_secret,
+          },
+        }
+      )
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err);
+        }
+      });
+  }
 
   if (!auth) {
     console.log("Authentication error.");
