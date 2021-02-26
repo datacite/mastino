@@ -55,6 +55,7 @@ exports.handler = async function (event, context) {
     let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.symbol}`;
     let body = {
       Name: res.attributes.name,
+      ParentId: res.attributes.parent_organization,
       Website: res.attributes.website,
       Description: res.attributes.description,
       System_Email__c: res.attributes.system_email,
@@ -97,47 +98,29 @@ exports.handler = async function (event, context) {
   } else if (res.type === "repositories") {
     console.log(res.attributes);
 
-    // let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
-    // let body = {
-    //   Name: res.attributes.name,
-    //   Website: res.attributes.website,
-    //   Description: res.attributes.description,
-    //   System_Email__c: res.attributes.system_email,
-    //   Group_Email__c: res.attributes.group_email,
-    //   ROR__c: res.attributes.ror_id,
-    //   Twitter__c: res.attributes.twitter_handle,
-    //   Member_Type__c: res.attributes.member_type,
-    //   Sector__c: res.attributes.organization_type,
-    //   Focus_Area__c: res.attributes.focus_area,
-    //   Region__c: res.attributes.region,
-    //   Assign_DOIs__c: [
-    //     "Direct Member",
-    //     "Consortium",
-    //     "Consortium Organization",
-    //   ].includes(res.attributes.member_type),
-    //   Billing_Organization__c: res.attributes.billing_organization,
-    //   Billing_Department__c: res.attributes.billing_department,
-    //   BillingAddress: res.attributes.billing_address,
-    //   BillingCity: res.attributes.billing_city,
-    //   BillingState: res.attributes.billing_state,
-    //   BillingPostalCode: res.attributes.billing_post_code,
-    //   BillingCountry: res.attributes.billing_country,
-    //   Date_Joined__c: res.attributes.joined,
-    //   Fabrica_Creation_Date__c: res.attributes.created,
-    //   Fabrica_Modification_Date__c: res.attributes.updated,
-    //   Fabrica_Deletion_Date__c: res.attributes.deleted_at,
-    //   Is_Active__c: res.attributes.is_active,
-    // };
+    let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
+    let body = {
+      Name: res.attributes.name,
+      Organization__c: res.attributes.provider_id,
+      Repository_URL__c: res.attributes.url,
+      re3data_Record__c: res.attributes.re3data_id,
+      Description__c: res.attributes.description,
+      Service_Email__c: res.attributes.system_email,
+      Fabrica_creation_Date__c: res.attributes.created,
+      Fabrica_modified_Date__c: res.attributes.updated,
+      Fabrica_Deletion_Date__c: res.attributes.deleted_at,
+      Is_Active__c: res.attributes.is_active,
+    };
 
-    // console.log(body);
+    console.log(body);
 
-    // axios
-    //   .patch(url, body, {
-    //     headers: { Authorization: `Bearer ${auth.access_token}` },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((err) => console.warn(err));
+    axios
+      .patch(url, body, {
+        headers: { Authorization: `Bearer ${auth.access_token}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => console.warn(err));
   }
 };
