@@ -50,7 +50,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
+          console.log(err.response.data);
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -100,7 +100,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
+          console.log(err.response.data);
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -123,6 +123,8 @@ exports.handler = async function (event, context) {
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       Is_Active__c: res.attributes.is_active,
     };
+
+    console.log(body);
 
     axios
       .patch(url, body, {
