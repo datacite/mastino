@@ -85,7 +85,9 @@ exports.handler = async function (event, context) {
       Fabrica_ID__c: `${res.attributes.provider_id.toUpperCase()}-${
         res.attributes.email
       }`,
-      Type__c: res.attributes.role_name.join(";"),
+      Type__c: res.attributes.role_name
+        ? res.attributes.role_name.join(";")
+        : null,
       CreatedAt__c: res.attributes.created_at,
       ModifiedAt__c: res.attributes.updated_at,
       DeletedAt__c: res.attributes.deleted_at,
