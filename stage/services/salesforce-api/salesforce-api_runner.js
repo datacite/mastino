@@ -75,6 +75,7 @@ exports.handler = async function (event, context) {
           console.log(err);
         }
       });
+    console.log(organization);
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
     body = {
@@ -136,6 +137,7 @@ exports.handler = async function (event, context) {
           }
         });
     }
+    console.log(organization);
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id}`;
     body = {
@@ -212,6 +214,7 @@ exports.handler = async function (event, context) {
           console.log(err);
         }
       });
+    console.log(organization);
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
     body = {
