@@ -41,8 +41,6 @@ exports.handler = async function (event, context) {
       Active__c: !res.attributes.deleted_at,
     };
 
-    console.log(body);
-
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -50,7 +48,15 @@ exports.handler = async function (event, context) {
       .then((response) => {
         console.log(response.data);
       })
-      .catch((err) => console.warn(err));
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err);
+        }
+      });
   } else if (res.type === "providers") {
     let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.symbol}`;
     let body = {
@@ -85,8 +91,6 @@ exports.handler = async function (event, context) {
       Is_Active__c: res.attributes.is_active,
     };
 
-    console.log(body);
-
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -120,8 +124,6 @@ exports.handler = async function (event, context) {
       Is_Active__c: res.attributes.is_active,
     };
 
-    console.log(body);
-
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -129,6 +131,14 @@ exports.handler = async function (event, context) {
       .then((response) => {
         console.log(response.data);
       })
-      .catch((err) => console.warn(err));
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err);
+        }
+      });
   }
 };
