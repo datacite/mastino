@@ -211,7 +211,7 @@ exports.handler = async function (event, context) {
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
     body = {
-      Name: res.attributes.name,
+      Name: res.attributes.name.substring(0, 80),
       Organization__c: organization.Id,
       Repository_URL__c: res.attributes.url,
       re3data_Record__c: res.attributes.re3data_id,
