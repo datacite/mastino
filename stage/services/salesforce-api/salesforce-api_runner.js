@@ -124,7 +124,7 @@ exports.handler = async function (event, context) {
       Fabrica_creation_Date__c: res.attributes.created,
       Fabrica_modified_Date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
-      Is_Active__c: res.attributes.is_active,
+      IsActive__c: res.attributes.is_active,
     };
 
     console.log(body);
