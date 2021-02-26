@@ -107,6 +107,7 @@ exports.handler = async function (event, context) {
         }
       });
   } else if (res.type === "providers") {
+    console.log(res.attributes);
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
     if (res.attributes.parent_organization) {
       url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
