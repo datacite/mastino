@@ -46,14 +46,37 @@ exports.handler = async function (event, context) {
     return null;
   }
 
+  let url, body, organization;
+
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "contacts") {
-    let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
-    let body = {
+    url = `${
+      auth.instance_url
+    }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
+    organization = await axios
+      .patch(url, body, {
+        headers: { Authorization: `Bearer ${auth.access_token}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err);
+        }
+      });
+
+    url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
+    body = {
       FirstName: res.attributes.given_name,
       LastName: res.attributes.family_name,
       Email: res.attributes.email,
+      AccountId: organization ? organization.Id : null,
       Fabrica_ID__c: `${res.attributes.provider_id.toUpperCase()}-${
         res.attributes.email
       }`,
@@ -82,10 +105,31 @@ exports.handler = async function (event, context) {
       });
   } else if (res.type === "providers") {
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
-    let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id}`;
-    let body = {
+
+    if (res.attributes.parent_organization) {
+      url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
+      organization = await axios
+        .patch(url, body, {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((err) => {
+          if (err.response) {
+            console.log(err.response.data);
+          } else if (err.request) {
+            console.log(err.request);
+          } else {
+            console.log(err);
+          }
+        });
+    }
+
+    url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id}`;
+    body = {
       Name: res.attributes.name,
-      ParentId: res.attributes.parent_organization,
+      ParentId: organization ? organization.Id : null,
       Website: res.attributes.website,
       Description: res.attributes.description,
       System_Email__c: res.attributes.system_email,
@@ -134,12 +178,30 @@ exports.handler = async function (event, context) {
   } else if (res.type === "clients") {
     console.log(res.attributes);
 
-    let url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
-    let body = {
+    url = `${
+      auth.instance_url
+    }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
+    organization = await axios
+      .patch(url, body, {
+        headers: { Authorization: `Bearer ${auth.access_token}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err);
+        }
+      });
+
+    url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
+    body = {
       Name: res.attributes.name,
-      Organization__c: res.attributes.provider_id
-        ? res.attributes.provider_id.toUpperCase()
-        : null,
+      Organization__c: organization ? organization.Id : null,
       Repository_URL__c: res.attributes.url,
       re3data_Record__c: res.attributes.re3data_id,
       Description__c: res.attributes.description,
