@@ -9,7 +9,10 @@ exports.handler = async function (event, context) {
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
 
   // check if no token or token older than 20 min
-  if (!auth || new Date() - Date.new(auth.issued_at) > 20 * 60 * 1000) {
+  if (
+    !auth ||
+    (auth.issued_at && new Date() - new Date(auth.issued_at) > 20 * 60 * 1000)
+  ) {
     auth = await axios
       .post(
         authUrl,
