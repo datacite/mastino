@@ -59,13 +59,9 @@ exports.handler = async function (event, context) {
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
     console.log(url);
     organization = await axios
-      .get(
-        url,
-        {},
-        {
-          headers: { Authorization: `Bearer ${auth.access_token}` },
-        }
-      )
+      .get(url, {
+        headers: { Authorization: `Bearer ${auth.access_token}` },
+      })
       .then((response) => {
         console.log(response.data);
       })
@@ -121,13 +117,9 @@ exports.handler = async function (event, context) {
       url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
       console.log(url);
       organization = await axios
-        .get(
-          url,
-          {},
-          {
-            headers: { Authorization: `Bearer ${auth.access_token}` },
-          }
-        )
+        .get(url, {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
         .then((response) => {
           console.log(response.data);
         })
@@ -200,13 +192,9 @@ exports.handler = async function (event, context) {
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
     console.log(url);
     organization = await axios
-      .get(
-        url,
-        {},
-        {
-          headers: { Authorization: `Bearer ${auth.access_token}` },
-        }
-      )
+      .get(url, {
+        headers: { Authorization: `Bearer ${auth.access_token}` },
+      })
       .then((response) => {
         console.log(response.data);
       })
