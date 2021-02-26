@@ -94,7 +94,15 @@ exports.handler = async function (event, context) {
       .then((response) => {
         console.log(response.data);
       })
-      .catch((err) => console.warn(err));
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err);
+        }
+      });
   } else if (res.type === "repositories") {
     console.log(res.attributes);
 
