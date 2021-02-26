@@ -41,6 +41,7 @@ exports.handler = async function (event, context) {
         }
       });
   }
+  console.log(auth);
 
   if (!auth) {
     console.log("Authentication error.");
