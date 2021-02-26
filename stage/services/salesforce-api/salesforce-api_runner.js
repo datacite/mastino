@@ -31,6 +31,11 @@ exports.handler = async function (event, context) {
       }
     });
 
+  if (!auth) {
+    console.log("Authentication error.");
+    return null;
+  }
+
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "contacts") {
