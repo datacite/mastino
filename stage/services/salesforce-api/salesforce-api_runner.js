@@ -57,7 +57,6 @@ exports.handler = async function (event, context) {
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-    console.log(url);
     organization = await axios
       .get(url, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -74,14 +73,13 @@ exports.handler = async function (event, context) {
           console.log(err);
         }
       });
-    console.log(organization);
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
     body = {
       FirstName: res.attributes.given_name,
       LastName: res.attributes.family_name,
       Email: res.attributes.email,
-      AccountId: organization ? organization.Id : null,
+      AccountId: organization.Id,
       Fabrica_ID__c: `${res.attributes.provider_id.toUpperCase()}-${
         res.attributes.email
       }`,
@@ -115,7 +113,6 @@ exports.handler = async function (event, context) {
     console.log(res.attributes);
     if (res.attributes.parent_organization) {
       url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
-      console.log(url);
       organization = await axios
         .get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -185,12 +182,9 @@ exports.handler = async function (event, context) {
         }
       });
   } else if (res.type === "clients") {
-    console.log(res.attributes);
-
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-    console.log(url);
     organization = await axios
       .get(url, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -207,12 +201,11 @@ exports.handler = async function (event, context) {
           console.log(err);
         }
       });
-    console.log(organization);
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
     body = {
       Name: res.attributes.name,
-      Organization__c: organization ? organization.Id : null,
+      Organization__c: organization.Id,
       Repository_URL__c: res.attributes.url,
       re3data_Record__c: res.attributes.re3data_id,
       Description__c: res.attributes.description,
