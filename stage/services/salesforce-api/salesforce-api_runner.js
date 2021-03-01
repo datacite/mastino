@@ -208,11 +208,11 @@ exports.handler = async function (event, context) {
       Object.assign(body, {
         Billing_Organization__c: res.attributes.billing_organization,
         Billing_Department__c: res.attributes.billing_department,
-        BillingAddress: res.attributes.billing_address,
+        BillingStreet: res.attributes.billing_street,
         BillingCity: res.attributes.billing_city,
-        BillingState: res.attributes.billing_state,
-        BillingPostalCode: res.attributes.billing_post_code,
-        BillingCountry: res.attributes.billing_country,
+        BillingState: res.attributes.billing_state_code,
+        BillingPostalCode: res.attributes.billing_postal_code,
+        BillingCountry: res.attributes.billing_country_code,
       });
     }
 
