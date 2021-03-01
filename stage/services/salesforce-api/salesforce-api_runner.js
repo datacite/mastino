@@ -108,16 +108,25 @@ exports.handler = async function (event, context) {
           console.log(err.response.data);
           slack.alert({
             channel: "#ops",
-            username: "fabrica",
+            username: "Fabrica",
             text: "Error updating contact in Salesforce.",
-            fields: [
-              { title: "Message", value: err.response.data.message },
+            attachments: [
               {
-                title: "Error Code",
-                value: err.response.data.errorCode,
-                short: true,
+                fallback: err.response.data.message,
+                fields: [
+                  { title: "Message", value: err.response.data.message },
+                  {
+                    title: "Error Code",
+                    value: err.response.data.errorCode,
+                    short: true,
+                  },
+                  {
+                    title: "Fields",
+                    value: err.response.data.fields,
+                    short: true,
+                  },
+                ],
               },
-              { title: "Fields", value: err.response.data.fields, short: true },
             ],
           });
         } else if (err.request) {
@@ -194,16 +203,25 @@ exports.handler = async function (event, context) {
           console.log(err.response.data);
           slack.alert({
             channel: "#ops",
-            username: "fabrica",
+            username: "Fabrica",
             text: "Error updating organization in Salesforce.",
-            fields: [
-              { title: "Message", value: err.response.data.message },
+            attachments: [
               {
-                title: "Error Code",
-                value: err.response.data.errorCode,
-                short: true,
+                fallback: err.response.data.message,
+                fields: [
+                  { title: "Message", value: err.response.data.message },
+                  {
+                    title: "Error Code",
+                    value: err.response.data.errorCode,
+                    short: true,
+                  },
+                  {
+                    title: "Fields",
+                    value: err.response.data.fields,
+                    short: true,
+                  },
+                ],
               },
-              { title: "Fields", value: err.response.data.fields, short: true },
             ],
           });
         } else if (err.request) {
@@ -264,16 +282,25 @@ exports.handler = async function (event, context) {
           console.log(err.response.data);
           slack.alert({
             channel: "#ops",
-            username: "fabrica",
+            username: "Fabrica",
             text: "Error updating repository in Salesforce.",
-            fields: [
-              { title: "Message", value: err.response.data.message },
+            attachments: [
               {
-                title: "Error Code",
-                value: err.response.data.errorCode,
-                short: true,
+                fallback: err.response.data.message,
+                fields: [
+                  { title: "Message", value: err.response.data.message },
+                  {
+                    title: "Error Code",
+                    value: err.response.data.errorCode,
+                    short: true,
+                  },
+                  {
+                    title: "Fields",
+                    value: err.response.data.fields,
+                    short: true,
+                  },
+                ],
               },
-              { title: "Fields", value: err.response.data.fields, short: true },
             ],
           });
         } else if (err.request) {
