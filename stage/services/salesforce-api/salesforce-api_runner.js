@@ -105,7 +105,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data);
+          console.log(err.response.data[0]);
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
@@ -116,13 +116,23 @@ exports.handler = async function (event, context) {
                 fields: [
                   { title: "Message", value: err.response.data[0].message },
                   {
+                    title: "Contact Name",
+                    value: res.attributes.name,
+                    short: true,
+                  },
+                  {
+                    title: "Contact ID",
+                    value: res.id,
+                    short: true,
+                  },
+                  {
                     title: "Error Code",
                     value: err.response.data[0].errorCode,
                     short: true,
                   },
                   {
                     title: "Fields",
-                    value: err.response.data[0].fields,
+                    value: err.response.data[0].fields.join(", "),
                     short: true,
                   },
                 ],
@@ -200,7 +210,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data);
+          console.log(err.response.data[0]);
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
@@ -211,13 +221,23 @@ exports.handler = async function (event, context) {
                 fields: [
                   { title: "Message", value: err.response.data.message },
                   {
+                    title: "Organization Name",
+                    value: res.attributes.name,
+                    short: true,
+                  },
+                  {
+                    title: "Organization ID",
+                    value: res.attributes.symbol,
+                    short: true,
+                  },
+                  {
                     title: "Error Code",
                     value: err.response.data[0].errorCode,
                     short: true,
                   },
                   {
                     title: "Fields",
-                    value: err.response.data[0].fields,
+                    value: err.response.data[0].fields.join(", "),
                     short: true,
                   },
                 ],
@@ -279,7 +299,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data);
+          console.log(err.response.data[0]);
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
@@ -290,13 +310,23 @@ exports.handler = async function (event, context) {
                 fields: [
                   { title: "Message", value: err.response.data[0].message },
                   {
+                    title: "Repository Name",
+                    value: res.attributes.name.substring(0, 80),
+                    short: true,
+                  },
+                  {
+                    title: "Repository ID",
+                    value: res.attributes.symbol,
+                    short: true,
+                  },
+                  {
                     title: "Error Code",
                     value: err.response.data[0].errorCode,
                     short: true,
                   },
                   {
                     title: "Fields",
-                    value: err.response.data[0].fields,
+                    value: err.response.data[0].fields.join(", "),
                     short: true,
                   },
                 ],
