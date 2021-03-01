@@ -192,19 +192,29 @@ exports.handler = async function (event, context) {
         "Consortium",
         "Consortium Organization",
       ].includes(res.attributes.member_type),
-      Billing_Organization__c: res.attributes.billing_organization,
-      Billing_Department__c: res.attributes.billing_department,
-      BillingAddress: res.attributes.billing_address,
-      BillingCity: res.attributes.billing_city,
-      BillingState: res.attributes.billing_state,
-      BillingPostalCode: res.attributes.billing_post_code,
-      BillingCountry: res.attributes.billing_country,
       Date_Joined__c: res.attributes.joined,
       Fabrica_Creation_Date__c: res.attributes.created,
       Fabrica_Modification_Date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       Is_Active__c: res.attributes.is_active,
     };
+
+    // some member types support billing information
+    if (
+      ["Direct Member", "Consortium Organization", "Member Only"].includes(
+        res.attributes.member_type
+      )
+    ) {
+      Object.assign(body, {
+        Billing_Organization__c: res.attributes.billing_organization,
+        Billing_Department__c: res.attributes.billing_department,
+        BillingAddress: res.attributes.billing_address,
+        BillingCity: res.attributes.billing_city,
+        BillingState: res.attributes.billing_state,
+        BillingPostalCode: res.attributes.billing_post_code,
+        BillingCountry: res.attributes.billing_country,
+      });
+    }
 
     axios
       .patch(url, body, {
