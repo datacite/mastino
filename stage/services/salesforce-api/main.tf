@@ -18,6 +18,7 @@ resource "aws_lambda_function" "salesforce-api-stage" {
       password = var.password
       client_id = var.client_id
       client_secret = var.client_secret
+      slack_webhook_url = var.slack_webhook_url
     }
   }
 }

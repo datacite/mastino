@@ -6,6 +6,7 @@ exports.handler = async function (event, context) {
 
   const apiVersion = "v51.0";
   const axios = require("axios");
+  const slack = require("slack-notify")(host.slack_webhook_url);
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
 
   // check if no token or token older than 20 min
@@ -65,6 +66,12 @@ exports.handler = async function (event, context) {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          slack.alert({
+            channel: "#ops",
+            username: "Fabrica",
+            text: "Error updating organization in Salesforce.",
+            fields: err.response.data,
+          });
         } else if (err.request) {
           console.log(err.request);
         } else {

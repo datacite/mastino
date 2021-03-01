@@ -13,3 +13,4 @@ variable "username" {}
 variable "password" {}
 variable "client_id" {}
 variable "client_secret" {}
+variable "slack_webhook_url" {}
