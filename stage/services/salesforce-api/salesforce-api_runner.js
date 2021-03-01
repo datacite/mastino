@@ -7,6 +7,7 @@ exports.handler = async function (event, context) {
   const apiVersion = "v51.0";
   const axios = require("axios");
   const slack = require("slack-notify")(process.env.slack_webhook_url);
+  const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
 
   // check if no token or token older than 20 min
@@ -81,7 +82,9 @@ exports.handler = async function (event, context) {
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
     body = {
       FirstName: res.attributes.given_name,
-      LastName: res.attributes.family_name,
+      LastName: res.attributes.family_name
+        ? res.attributes.family_name
+        : res.attributes.email,
       Email: res.attributes.email,
       AccountId: organization.Id,
       Fabrica_ID__c: `${res.attributes.provider_id.toUpperCase()}-${
@@ -109,10 +112,12 @@ exports.handler = async function (event, context) {
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
+            icon_url: iconUrl,
             text: "Error updating contact in Salesforce.",
             attachments: [
               {
-                fallback: err.response.data.message,
+                fallback: err.response.data[0].message,
+                level: "warning",
                 fields: [
                   { title: "Message", value: err.response.data[0].message },
                   {
@@ -214,12 +219,14 @@ exports.handler = async function (event, context) {
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
+            icon_url: iconUrl,
             text: "Error updating organization in Salesforce.",
             attachments: [
               {
                 fallback: err.response.data[0].message,
+                level: "warning",
                 fields: [
-                  { title: "Message", value: err.response.data.message },
+                  { title: "Message", value: err.response.data[0].message },
                   {
                     title: "Organization Name",
                     value: res.attributes.name,
@@ -303,10 +310,12 @@ exports.handler = async function (event, context) {
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
+            icon_url: iconUrl,
             text: "Error updating repository in Salesforce.",
             attachments: [
               {
-                fallback: err.response.data.message,
+                fallback: err.response.data[0].message,
+                level: "warning",
                 fields: [
                   { title: "Message", value: err.response.data[0].message },
                   {

@@ -8,6 +8,10 @@ variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
+variable "slack_icon_url" {
+    default = "https://github.com/datacite/segugio/blob/master/source/images/fabrica.png"
+}
+
 variable "host" {}
 variable "username" {}
 variable "password" {}
