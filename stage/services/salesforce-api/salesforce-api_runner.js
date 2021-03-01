@@ -66,12 +66,6 @@ exports.handler = async function (event, context) {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
-          slack.alert({
-            channel: "#ops",
-            username: "Fabrica",
-            text: "Error updating organization in Salesforce.",
-            fields: err.response.data,
-          });
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -112,6 +106,14 @@ exports.handler = async function (event, context) {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          slack.alert({
+            channel: "#ops",
+            username: "Fabrica",
+            text: "Error updating contact in Salesforce.",
+            fields: {
+              Message: err.response.data,
+            },
+          });
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -184,6 +186,14 @@ exports.handler = async function (event, context) {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          slack.alert({
+            channel: "#ops",
+            username: "Fabrica",
+            text: "Error updating organization in Salesforce.",
+            fields: {
+              Message: err.response.data,
+            },
+          });
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -240,6 +250,14 @@ exports.handler = async function (event, context) {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          slack.alert({
+            channel: "#ops",
+            username: "Fabrica",
+            text: "Error updating repository in Salesforce.",
+            fields: {
+              Message: err.response.data,
+            },
+          });
         } else if (err.request) {
           console.log(err.request);
         } else {
