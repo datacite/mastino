@@ -108,11 +108,17 @@ exports.handler = async function (event, context) {
           console.log(err.response.data);
           slack.alert({
             channel: "#ops",
-            username: "Fabrica",
+            username: "fabrica",
             text: "Error updating contact in Salesforce.",
-            fields: {
-              Message: err.response.data,
-            },
+            fields: [
+              { title: "Message", value: err.response.data.message },
+              {
+                title: "Error Code",
+                value: err.response.data.errorCode,
+                short: true,
+              },
+              { title: "Fields", value: err.response.data.fields, short: true },
+            ],
           });
         } else if (err.request) {
           console.log(err.request);
@@ -188,11 +194,17 @@ exports.handler = async function (event, context) {
           console.log(err.response.data);
           slack.alert({
             channel: "#ops",
-            username: "Fabrica",
+            username: "fabrica",
             text: "Error updating organization in Salesforce.",
-            fields: {
-              Message: err.response.data,
-            },
+            fields: [
+              { title: "Message", value: err.response.data.message },
+              {
+                title: "Error Code",
+                value: err.response.data.errorCode,
+                short: true,
+              },
+              { title: "Fields", value: err.response.data.fields, short: true },
+            ],
           });
         } else if (err.request) {
           console.log(err.request);
@@ -252,11 +264,17 @@ exports.handler = async function (event, context) {
           console.log(err.response.data);
           slack.alert({
             channel: "#ops",
-            username: "Fabrica",
+            username: "fabrica",
             text: "Error updating repository in Salesforce.",
-            fields: {
-              Message: err.response.data,
-            },
+            fields: [
+              { title: "Message", value: err.response.data.message },
+              {
+                title: "Error Code",
+                value: err.response.data.errorCode,
+                short: true,
+              },
+              { title: "Fields", value: err.response.data.fields, short: true },
+            ],
           });
         } else if (err.request) {
           console.log(err.request);
