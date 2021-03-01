@@ -114,15 +114,15 @@ exports.handler = async function (event, context) {
               {
                 fallback: err.response.data.message,
                 fields: [
-                  { title: "Message", value: err.response.data.message },
+                  { title: "Message", value: err.response.data[0].message },
                   {
                     title: "Error Code",
-                    value: err.response.data.errorCode,
+                    value: err.response.data[0].errorCode,
                     short: true,
                   },
                   {
                     title: "Fields",
-                    value: err.response.data.fields,
+                    value: err.response.data[0].fields,
                     short: true,
                   },
                 ],
@@ -207,17 +207,17 @@ exports.handler = async function (event, context) {
             text: "Error updating organization in Salesforce.",
             attachments: [
               {
-                fallback: err.response.data.message,
+                fallback: err.response.data[0].message,
                 fields: [
                   { title: "Message", value: err.response.data.message },
                   {
                     title: "Error Code",
-                    value: err.response.data.errorCode,
+                    value: err.response.data[0].errorCode,
                     short: true,
                   },
                   {
                     title: "Fields",
-                    value: err.response.data.fields,
+                    value: err.response.data[0].fields,
                     short: true,
                   },
                 ],
@@ -288,15 +288,15 @@ exports.handler = async function (event, context) {
               {
                 fallback: err.response.data.message,
                 fields: [
-                  { title: "Message", value: err.response.data.message },
+                  { title: "Message", value: err.response.data[0].message },
                   {
                     title: "Error Code",
-                    value: err.response.data.errorCode,
+                    value: err.response.data[0].errorCode,
                     short: true,
                   },
                   {
                     title: "Fields",
-                    value: err.response.data.fields,
+                    value: err.response.data[0].fields,
                     short: true,
                   },
                 ],
