@@ -67,6 +67,41 @@ exports.handler = async function (event, context) {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          slack.alert({
+            channel: "#ops",
+            username: "Fabrica",
+            icon_url: iconUrl,
+            text: "Error updating contact in Salesforce.",
+            attachments: [
+              {
+                fallback: err.response.data[0].message,
+                level: "warning",
+                fields: [
+                  { title: "Message", value: err.response.data[0].message },
+                  {
+                    title: "Contact Name",
+                    value: res.attributes.name,
+                    short: true,
+                  },
+                  {
+                    title: "Contact ID",
+                    value: res.id,
+                    short: true,
+                  },
+                  {
+                    title: "Error Code",
+                    value: err.response.data[0].errorCode,
+                    short: true,
+                  },
+                  {
+                    title: "Fields",
+                    value: err.response.data[0].fields.join(", "),
+                    short: true,
+                  },
+                ],
+              },
+            ],
+          });
         } else if (err.request) {
           console.log(err.request);
         } else {
