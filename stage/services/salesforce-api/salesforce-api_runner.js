@@ -35,7 +35,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data);
+          console.log(err.response);
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -66,7 +66,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data);
+          console.log(err.response);
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
@@ -145,7 +145,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data[0]);
+          console.log(err.response);
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
@@ -203,7 +203,7 @@ exports.handler = async function (event, context) {
         })
         .catch((err) => {
           if (err.response) {
-            console.log(err.response.data);
+            console.log(err.response);
           } else if (err.request) {
             console.log(err.request);
           } else {
@@ -264,7 +264,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data[0]);
+          console.log(err.response);
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
@@ -321,7 +321,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data);
+          console.log(err.response);
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -357,7 +357,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data[0]);
+          console.log(err.response);
           slack.alert({
             channel: "#ops",
             username: "Fabrica",
