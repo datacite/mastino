@@ -95,7 +95,9 @@ exports.handler = async function (event, context) {
                   },
                   {
                     title: "Fields",
-                    value: err.response.data[0].fields.join(", "),
+                    value: err.response.data[0].fields
+                      ? err.response.data[0].fields.join(", ")
+                      : null,
                     short: true,
                   },
                 ],
@@ -172,7 +174,9 @@ exports.handler = async function (event, context) {
                   },
                   {
                     title: "Fields",
-                    value: err.response.data[0].fields.join(", "),
+                    value: err.response.data[0].fields
+                      ? err.response.data[0].fields.join(", ")
+                      : null,
                     short: true,
                   },
                 ],
@@ -289,7 +293,9 @@ exports.handler = async function (event, context) {
                   },
                   {
                     title: "Fields",
-                    value: err.response.data[0].fields.join(", "),
+                    value: err.response.data[0].fields
+                      ? err.response.data[0].fields.join(", ")
+                      : null,
                     short: true,
                   },
                 ],
@@ -380,7 +386,9 @@ exports.handler = async function (event, context) {
                   },
                   {
                     title: "Fields",
-                    value: err.response.data[0].fields.join(", "),
+                    value: err.response.data[0].fields
+                      ? err.response.data[0].fields.join(", ")
+                      : null,
                     short: true,
                   },
                 ],
