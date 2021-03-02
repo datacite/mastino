@@ -215,7 +215,6 @@ exports.handler = async function (event, context) {
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id}`;
     body = {
       Name: res.attributes.name,
-      ParentId: organization ? organization.Id : null,
       Website: res.attributes.website,
       Description: res.attributes.description,
       System_Email__c: res.attributes.system_email,
@@ -238,20 +237,27 @@ exports.handler = async function (event, context) {
       Is_Active__c: res.attributes.is_active,
     };
 
+    // consortium organizations have a parent organization
+    if ("Consortium Organization" === res.attributes.member_type) {
+      body = Object.assign(body, {
+        ParentId: organization ? organization.Id : null,
+      });
+    }
+
     // some member types support billing information
     if (
       ["Direct Member", "Consortium Organization", "Member Only"].includes(
         res.attributes.member_type
       )
     ) {
-      Object.assign(body, {
+      body = Object.assign(body, {
         Billing_Organization__c: res.attributes.billing_organization,
         Billing_Department__c: res.attributes.billing_department,
         BillingStreet: res.attributes.billing_street,
         BillingCity: res.attributes.billing_city,
         BillingState: res.attributes.billing_state_code,
         BillingPostalCode: res.attributes.billing_postal_code,
-        BillingCountry: res.attributes.billing_country_code,
+        BillingCountry: res.attributes.billing_country,
       });
     }
 
