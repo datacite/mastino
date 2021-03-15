@@ -13,13 +13,13 @@ resource "aws_cloudwatch_event_rule" "update-salesforce-weekly-stage" {
 resource "aws_cloudwatch_event_target" "update-salesforce-hourly-stage" {
   target_id = "update-salesforce-hourly-stage"
   rule = aws_cloudwatch_event_rule.update-salesforce-hourly-stage.name
-  arn = aws_lambda_function.salesforce-api-hourly-stage.arn
+  arn = aws_lambda_function.update-salesforce-hourly-stage.arn
 }
 
 resource "aws_cloudwatch_event_target" "update-salesforce-weekly-stage" {
   target_id = "update-salesforce-weekly-stage"
   rule = aws_cloudwatch_event_rule.update-salesforce-weekly-stage.name
-  arn = aws_lambda_function.salesforce-api-hourly-stage.arn
+  arn = aws_lambda_function.update-salesforce-weekly-stage.arn
 }
 
 resource "aws_lambda_function" "update-salesforce-hourly-stage" {
