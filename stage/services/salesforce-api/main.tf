@@ -40,6 +40,9 @@ resource "aws_lambda_function" "update-salesforce-hourly-stage" {
       host     = var.host
       username = var.username
       password = var.password
+      datacite_api_url = var.datacite_api_url
+      datacite_username = var.datacite_username
+      datacite_password = var.datacite_password
     }
   }
 }
