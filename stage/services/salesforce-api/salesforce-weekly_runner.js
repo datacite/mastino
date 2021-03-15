@@ -1,13 +1,13 @@
-exports.handler = (event, context) => {
+exports.handler = async function (event, context) {
   const axios = require("axios");
 
   let username = process.env.username;
   let password = process.env.password;
   let host = process.env.host;
-  let providerUrl = `https://${host}/providers/export`
-  let repositoryUrl = `https://${host}/repositories/export`
-  let contactUrl = `https://${host}/contacts/export`
-  
+  let providerUrl = `https://${host}/providers/export`;
+  let repositoryUrl = `https://${host}/repositories/export`;
+  let contactUrl = `https://${host}/contacts/export`;
+
   await axios
     .post(providerUrl, {
       headers: {
@@ -17,9 +17,10 @@ exports.handler = (event, context) => {
     })
     .then((response) => {
       console.log(response.data);
-    }).catch((err) => {
-      console.log(err)
     })
+    .catch((err) => {
+      console.log(err);
+    });
 
   await axios
     .post(repositoryUrl, {
@@ -30,9 +31,10 @@ exports.handler = (event, context) => {
     })
     .then((response) => {
       console.log(response.data);
-    }).catch((err) => {
-      console.log(err)
     })
+    .catch((err) => {
+      console.log(err);
+    });
 
   await axios
     .post(contactUrl, {
@@ -43,7 +45,8 @@ exports.handler = (event, context) => {
     })
     .then((response) => {
       console.log(response.data);
-    }).catch((err) => {
-      console.log(err)
     })
+    .catch((err) => {
+      console.log(err);
+    });
 };
