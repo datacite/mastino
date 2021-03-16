@@ -22,7 +22,7 @@ exports.handler = async function (event, context) {
       console.log(response.data);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.response);
     });
 
   await axios
@@ -39,7 +39,7 @@ exports.handler = async function (event, context) {
       console.log(response.data);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.response);
     });
 
   await axios
@@ -56,6 +56,6 @@ exports.handler = async function (event, context) {
       console.log(response.data);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.response);
     });
 };
