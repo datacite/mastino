@@ -9,15 +9,16 @@ exports.handler = async function (event, context) {
   let contactUrl = `${datacite_api_url}/contacts/export`;
 
   await axios
-    .post(providerUrl, {
-      headers: {
-        Authorization:
-          "Basic " +
-          Buffer.from(datacite_username + ":" + datacite_password).toString(
-            "base64"
-          ),
-      },
-    })
+    .post(
+      providerUrl,
+      {},
+      {
+        auth: {
+          username: datacite_username,
+          password: datacite_password,
+        },
+      }
+    )
     .then((response) => {
       console.log(response.data);
     })
@@ -26,15 +27,16 @@ exports.handler = async function (event, context) {
     });
 
   await axios
-    .post(repositoryUrl, {
-      headers: {
-        Authorization:
-          "Basic " +
-          Buffer.from(datacite_username + ":" + datacite_password).toString(
-            "base64"
-          ),
-      },
-    })
+    .post(
+      repositoryUrl,
+      {},
+      {
+        auth: {
+          username: datacite_username,
+          password: datacite_password,
+        },
+      }
+    )
     .then((response) => {
       console.log(response.data);
     })
@@ -43,15 +45,16 @@ exports.handler = async function (event, context) {
     });
 
   await axios
-    .post(contactUrl, {
-      headers: {
-        Authorization:
-          "Basic " +
-          Buffer.from(datacite_username + ":" + datacite_password).toString(
-            "base64"
-          ),
-      },
-    })
+    .post(
+      contactUrl,
+      {},
+      {
+        auth: {
+          username: datacite_username,
+          password: datacite_password,
+        },
+      }
+    )
     .then((response) => {
       console.log(response.data);
     })
