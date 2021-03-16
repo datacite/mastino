@@ -13,7 +13,7 @@ exports.handler = async function (event, context) {
       headers: {
         Authorization:
           "Basic " +
-          new Buffer(datacite_username + ":" + datacite_password).toString(
+          Buffer.from((datacite_username + ":" + datacite_password).toString(
             "base64"
           ),
       },
@@ -30,7 +30,7 @@ exports.handler = async function (event, context) {
       headers: {
         Authorization:
           "Basic " +
-          new Buffer(datacite_username + ":" + datacite_password).toString(
+          Buffer.from(datacite_username + ":" + datacite_password).toString(
             "base64"
           ),
       },
@@ -47,7 +47,7 @@ exports.handler = async function (event, context) {
       headers: {
         Authorization:
           "Basic " +
-          new Buffer(datacite_username + ":" + datacite_password).toString(
+          Buffer.from(datacite_username + ":" + datacite_password).toString(
             "base64"
           ),
       },
