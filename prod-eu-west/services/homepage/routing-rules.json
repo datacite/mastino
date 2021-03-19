@@ -20,6 +20,26 @@
   },
   {
     "Condition": {
+      "KeyPrefixEquals": "DOCUMENTS/STATUTES.HTML"
+    },
+    "Redirect": {
+      "HostName": "datacite.org",
+      "Protocol": "https",
+      "ReplaceKeyWith": "documents/statutes.html"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "TERMS.HTML"
+    },
+    "Redirect": {
+      "HostName": "datacite.org",
+      "Protocol": "https",
+      "ReplaceKeyWith": "terms.html"
+    }
+  },
+  {
+    "Condition": {
       "KeyPrefixEquals": "PRIVACY.HTML"
     },
     "Redirect": {
