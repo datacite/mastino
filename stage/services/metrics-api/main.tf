@@ -23,6 +23,7 @@ resource "aws_s3_bucket" "metrics" {
 
     noncurrent_version_expiration {
       days = 305
+    }
   }
 }
 
