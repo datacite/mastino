@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "metrics-api-stage" {
+resource "aws_s3_bucket" "metrics" {
   bucket = "${var.s3_bucket}"
   acl = "public-read"
   policy = "${data.template_file.metrics-api_s3.rendered}"
