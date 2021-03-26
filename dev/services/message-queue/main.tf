@@ -122,6 +122,14 @@ resource "aws_sqs_queue" "sashimi-dev" {
   }
 }
 
+resource "aws_sqs_queue" "salesforce-dev" {
+  name                      = "development_salesforce"
+
+  tags {
+    Environment = "dev"
+  }
+}
+
 resource "aws_iam_policy" "sqs-dev" {
   name = "sqs-dev"
   policy = "${data.template_file.queue-dev.rendered}"
