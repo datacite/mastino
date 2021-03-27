@@ -255,7 +255,7 @@ exports.handler = async function (event, context) {
         BillingCity: res.attributes.billing_city,
         BillingState: res.attributes.billing_state_code,
         BillingPostalCode: res.attributes.billing_postal_code,
-        BillingCountry: res.attributes.billing_country,
+        BillingCountry: res.attributes.billing_country_code,
       });
     }
 
