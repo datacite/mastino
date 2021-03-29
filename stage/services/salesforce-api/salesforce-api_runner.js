@@ -352,6 +352,8 @@ exports.handler = async function (event, context) {
       IsActive__c: res.attributes.is_active,
     };
 
+    console.log(body);
+
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
