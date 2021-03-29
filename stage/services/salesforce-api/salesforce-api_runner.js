@@ -345,7 +345,7 @@ exports.handler = async function (event, context) {
       Service_Email__c: res.attributes.system_email,
       dois_count_current_year__c: res.dois_current_year,
       dois_count_previous_year__c: res.dois_last_year,
-      dois_count_total__c: 0,
+      dois_count_total__c: res.dois_total,
       Fabrica_creation_Date__c: res.attributes.created,
       Fabrica_modified_Date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
