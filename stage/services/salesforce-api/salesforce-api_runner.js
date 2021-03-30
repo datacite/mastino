@@ -131,6 +131,8 @@ exports.handler = async function (event, context) {
       });
     }
 
+    console.log(body);
+
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -140,7 +142,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
+          console.log(err);
           slackMessage({
             text: "Error updating organization in Salesforce.",
             attachments: [
