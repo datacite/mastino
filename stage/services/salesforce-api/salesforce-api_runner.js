@@ -263,12 +263,14 @@ exports.handler = async function (event, context) {
       Active__c: !res.attributes.deleted_at,
     };
 
+    console.log(body);
+
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(data);
       })
       .catch((err) => {
         if (err.response) {
