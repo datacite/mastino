@@ -138,11 +138,12 @@ exports.handler = async function (event, context) {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       })
       .then((response) => {
+        console.log(response);
         console.log(response.data);
       })
       .catch((err) => {
+        console.log(err);
         if (err.response) {
-          console.log(err);
           slackMessage({
             text: "Error updating organization in Salesforce.",
             attachments: [
