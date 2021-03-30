@@ -138,12 +138,11 @@ exports.handler = async function (event, context) {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       })
       .then((response) => {
-        console.log(response);
         console.log(response.data);
       })
       .catch((err) => {
-        console.log(err);
         if (err.response) {
+          console.log(error.response.data);
           slackMessage({
             text: "Error updating organization in Salesforce.",
             attachments: [
@@ -198,7 +197,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
+          console.log(error.response.data);
           slackMessage({
             text: "Error updating contact in Salesforce.",
             attachments: [
@@ -274,7 +273,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
+          console.log(error.response.data);
           slackMessage({
             text: "Error updating contact in Salesforce.",
             attachments: [
@@ -368,7 +367,7 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
+          console.log(error.response.data);
           slackMessage({
             text: "Error updating repository in Salesforce.",
             attachments: [
