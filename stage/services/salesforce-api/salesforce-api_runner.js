@@ -6,7 +6,11 @@ exports.handler = async function (event, context) {
 
   var jsforce = require("jsforce");
   var conn = new jsforce.Connection({
-    loginUrl: `https://${process.env.host}`,
+    oauth2: {
+      loginUrl: `https://${process.env.host}`,
+      client_id: process.env.client_id,
+      client_secret: process.env.client_secret,
+    },
   });
 
   // check if no token or token older than 20 min
