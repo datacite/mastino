@@ -136,6 +136,7 @@ exports.handler = async function (event, context) {
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
+        validateStatus: () => true,
       })
       .then((response) => {
         console.log(response);
@@ -267,6 +268,7 @@ exports.handler = async function (event, context) {
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
+        validateStatus: () => true,
       })
       .then((response) => {
         console.log(response);
@@ -361,6 +363,7 @@ exports.handler = async function (event, context) {
     axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
+        validateStatus: () => true,
       })
       .then((response) => {
         console.log(response);
