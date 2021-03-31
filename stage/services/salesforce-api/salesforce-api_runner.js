@@ -24,7 +24,7 @@ exports.handler = async function (event, context) {
       process.env.password,
       function (err, userInfo) {
         if (err) {
-          return console.error(err);
+          console.error(err);
         }
 
         console.log(conn.accessToken);
