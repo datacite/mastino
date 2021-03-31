@@ -1,29 +1,47 @@
-// //persistent storage between lambda invocations
-// let auth;
+//persistent storage between lambda invocations
+let auth;
 
 exports.handler = async function (event, context) {
   require("dotenv").config();
+
   var jsforce = require("jsforce");
   var conn = new jsforce.Connection({
     loginUrl: `https://${process.env.host}`,
   });
 
-  conn.login(
-    process.env.username,
-    process.env.password,
-    function (err, userInfo) {
-      if (err) {
-        return console.error(err);
-      }
+  // check if no token or token older than 20 min
+  if (
+    !auth ||
+    !auth.issued_at ||
+    (auth.issued_at && new Date() - new Date(auth.issued_at) > 20 * 60 * 1000)
+  ) {
+    conn.login(
+      process.env.username,
+      process.env.password,
+      function (err, userInfo) {
+        if (err) {
+          return console.error(err);
+        }
 
-      console.log(conn.accessToken);
-      console.log(conn.instanceUrl);
-      // logged in user property
-      console.log("User ID: " + userInfo.id);
-      console.log("Org ID: " + userInfo.organizationId);
-      // ...
-    }
-  );
+        console.log(conn.accessToken);
+        console.log(conn.instanceUrl);
+        auth = {
+          accessToken: conn.accessToken,
+          instanceUrl: conn.instanceUrl,
+          issued_at: new Date(),
+        };
+
+        // logged in user property
+        console.log("User ID: " + userInfo.id);
+        console.log("Org ID: " + userInfo.organizationId);
+      }
+    );
+  }
+
+  if (!auth) {
+    console.log("Authentication error.");
+    return null;
+  }
 
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
