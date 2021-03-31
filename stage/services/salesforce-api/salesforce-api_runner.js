@@ -8,18 +8,22 @@ exports.handler = async function (event, context) {
     loginUrl: `https://${process.env.host}`,
   });
 
-  conn.login(username, password, function (err, userInfo) {
-    if (err) {
-      return console.error(err);
-    }
+  conn.login(
+    process.env.username,
+    process.env.password,
+    function (err, userInfo) {
+      if (err) {
+        return console.error(err);
+      }
 
-    console.log(conn.accessToken);
-    console.log(conn.instanceUrl);
-    // logged in user property
-    console.log("User ID: " + userInfo.id);
-    console.log("Org ID: " + userInfo.organizationId);
-    // ...
-  });
+      console.log(conn.accessToken);
+      console.log(conn.instanceUrl);
+      // logged in user property
+      console.log("User ID: " + userInfo.id);
+      console.log("Org ID: " + userInfo.organizationId);
+      // ...
+    }
+  );
 
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
