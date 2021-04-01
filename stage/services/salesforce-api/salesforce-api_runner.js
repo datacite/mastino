@@ -1,65 +1,4 @@
 //persistent storage between lambda invocations
-// let auth;
-
-// exports.handler = async function (event, context) {
-//   require("dotenv").config();
-
-//   var jsforce = require("jsforce");
-//   var conn = new jsforce.Connection({
-//     oauth2: {
-//       loginUrl: `https://${process.env.host}`,
-//       client_id: process.env.client_id,
-//       client_secret: process.env.client_secret,
-//     },
-//   });
-
-//   console.log(auth);
-
-//   // check if no token or token older than 20 min
-//   if (
-//     auth == null ||
-//     !auth.issued_at ||
-//     (auth.issued_at && new Date() - new Date(auth.issued_at) > 20 * 60 * 1000)
-//   ) {
-//     conn.login(
-//       process.env.username,
-//       process.env.password,
-//       function (err, userInfo) {
-//         if (err) {
-//           console.error(err);
-//         }
-
-//         console.log(conn.accessToken);
-//         console.log(conn.instanceUrl);
-//         auth = {
-//           accessToken: conn.accessToken,
-//           instanceUrl: conn.instanceUrl,
-//           issued_at: new Date(),
-//         };
-
-//         // logged in user property
-//         console.log("User ID: " + userInfo.id);
-//         console.log("Org ID: " + userInfo.organizationId);
-//       }
-//     );
-//   }
-
-//   if (!auth) {
-//     console.log("Authentication error.");
-//     return null;
-//   }
-
-//   const slack = require("slack-notify")(process.env.slack_webhook_url);
-//   const iconUrl = process.env.slack_icon_url;
-
-//   var slackMessage = slack.extend({
-//     channel: "#ops",
-//     icon_url: iconUrl,
-//     username: "Fabrica",
-//   });
-// };
-
-//persistent storage between lambda invocations
 let auth;
 
 exports.handler = async function (event, context) {
@@ -76,8 +15,6 @@ exports.handler = async function (event, context) {
     icon_url: iconUrl,
     username: "Fabrica",
   });
-
-  console.log(auth);
 
   // check if no token or token older than 20 min
   if (
@@ -194,19 +131,16 @@ exports.handler = async function (event, context) {
       });
     }
 
-    console.log(body);
-
-    axios
+    result = await axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
         validateStatus: () => true,
       })
       .then((response) => {
-        console.log(response);
+        return response.data;
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
           slackMessage({
             text: "Error updating organization in Salesforce.",
             attachments: [
@@ -241,14 +175,15 @@ exports.handler = async function (event, context) {
               },
             ],
           });
+          return err.response;
         } else if (err.request) {
-          console.log(err.request);
+          return err.request;
         } else {
-          console.log(err);
+          return err;
         }
       });
+    console.log(result);
   } else if (res.type === "contacts") {
-    console.log(event.Records[0].body);
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
@@ -326,19 +261,16 @@ exports.handler = async function (event, context) {
       Active__c: !res.attributes.deleted_at,
     };
 
-    console.log(body);
-
-    axios
+    result = await axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
         validateStatus: () => true,
       })
       .then((response) => {
-        console.log(response);
+        return response.data;
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
           slackMessage({
             text: "Error updating contact in Salesforce.",
             attachments: [
@@ -373,14 +305,15 @@ exports.handler = async function (event, context) {
               },
             ],
           });
+          return err.response;
         } else if (err.request) {
-          console.log(err.request);
+          return err.request;
         } else {
-          console.log(err);
+          return err;
         }
       });
+    console.log(result);
   } else if (res.type === "clients") {
-    console.log(event.Records[0].body);
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
@@ -423,17 +356,16 @@ exports.handler = async function (event, context) {
       IsActive__c: res.attributes.is_active,
     };
 
-    axios
+    result = await axios
       .patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
         validateStatus: () => true,
       })
       .then((response) => {
-        console.log(response);
+        return response.data;
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
           slackMessage({
             text: "Error updating repository in Salesforce.",
             attachments: [
@@ -468,11 +400,13 @@ exports.handler = async function (event, context) {
               },
             ],
           });
+          return err.response;
         } else if (err.request) {
-          console.log(err.request);
+          return err.request;
         } else {
-          console.log(err);
+          return err;
         }
       });
+    console.log(result);
   }
 };
