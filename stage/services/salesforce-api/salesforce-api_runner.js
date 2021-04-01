@@ -72,18 +72,17 @@ exports.handler = async function (event, context) {
         })
         .catch((err) => {
           if (err.response) {
-            return err.response;
+            console.log(err.response);
           } else if (err.request) {
-            return err.request;
+            console.log(err.request);
           } else {
-            return err;
+            console.log(err);
           }
         });
-      console.log(
-        Object.assign(organization, {
-          fabricaId: res.attributes.parent_organization,
-        })
-      );
+
+      if (!organization) {
+        console.log(`No parent organization found for provider ${res.id}.`);
+      }
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id}`;
@@ -242,11 +241,9 @@ exports.handler = async function (event, context) {
         }
       });
 
-    console.log(
-      Object.assign(organization, {
-        fabricaId: res.attributes.provider_id,
-      })
-    );
+    if (!organization) {
+      console.log(`No organization found for contact ${res.id}.`);
+    }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Fabrica_ID__c/${res.attributes.fabrica_id}`;
     body = {
@@ -341,11 +338,9 @@ exports.handler = async function (event, context) {
         }
       });
 
-    console.log(
-      Object.assign(organization, {
-        fabricaId: res.attributes.provider_id,
-      })
-    );
+    if (!organization) {
+      console.log(`No organization found for repository ${res.id}.`);
+    }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
     body = {
