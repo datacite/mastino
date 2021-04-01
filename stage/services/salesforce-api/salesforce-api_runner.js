@@ -60,7 +60,6 @@ exports.handler = async function (event, context) {
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "providers") {
-    console.log(event.Records[0].body);
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
     if (res.attributes.parent_organization) {
       url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
@@ -73,13 +72,18 @@ exports.handler = async function (event, context) {
         })
         .catch((err) => {
           if (err.response) {
-            console.log(err.response);
+            return err.response;
           } else if (err.request) {
-            console.log(err.request);
+            return err.request;
           } else {
-            console.log(err);
+            return err;
           }
         });
+      console.log(
+        Object.assign(organization, {
+          fabricaId: res.attributes.parent_organization,
+        })
+      );
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id}`;
@@ -182,7 +186,7 @@ exports.handler = async function (event, context) {
           return err;
         }
       });
-    console.log(result);
+    console.log(Object.assign(result, { fabricaId: res.id }));
   } else if (res.type === "contacts") {
     url = `${
       auth.instance_url
@@ -196,7 +200,6 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
           slackMessage({
             text: "Error updating contact in Salesforce.",
             attachments: [
@@ -231,17 +234,19 @@ exports.handler = async function (event, context) {
               },
             ],
           });
+          return err.response;
         } else if (err.request) {
-          console.log(err.request);
+          return err.request;
         } else {
-          console.log(err);
+          return err;
         }
       });
 
-    if (!organization) {
-      console.log(`No organization found for contact ${res.id}.`);
-      return null;
-    }
+    console.log(
+      Object.assign(organization, {
+        fabricaId: res.attributes.provider_id,
+      })
+    );
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Fabrica_ID__c/${res.attributes.fabrica_id}`;
     body = {
@@ -312,7 +317,9 @@ exports.handler = async function (event, context) {
           return err;
         }
       });
-    console.log(result);
+    console.log(
+      Object.assign(result, { fabricaId: res.attributes.fabrica_id })
+    );
   } else if (res.type === "clients") {
     url = `${
       auth.instance_url
@@ -326,18 +333,19 @@ exports.handler = async function (event, context) {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response);
+          return err.response;
         } else if (err.request) {
-          console.log(err.request);
+          return err.request;
         } else {
-          console.log(err);
+          return err;
         }
       });
 
-    if (!organization) {
-      console.log(`No organization found for repository ${res.id}.`);
-      return null;
-    }
+    console.log(
+      Object.assign(organization, {
+        fabricaId: res.attributes.provider_id,
+      })
+    );
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
     body = {
@@ -407,6 +415,6 @@ exports.handler = async function (event, context) {
           return err;
         }
       });
-    console.log(result);
+    console.log(Object.assign(result, { fabricaId: res.id }));
   }
 };
