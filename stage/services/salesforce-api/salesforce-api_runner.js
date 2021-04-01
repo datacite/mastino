@@ -17,7 +17,7 @@ exports.handler = async function (event, context) {
 
   // check if no token or token older than 20 min
   if (
-    !auth ||
+    auth == null ||
     !auth.issued_at ||
     (auth.issued_at && new Date() - new Date(auth.issued_at) > 20 * 60 * 1000)
   ) {
