@@ -185,7 +185,9 @@ exports.handler = async function (event, context) {
           return err;
         }
       });
-    console.log(Object.assign(result, { fabricaId: res.id }));
+    console.log(
+      Object.assign(result, { fabricaId: res.id, type: "organizations" })
+    );
   } else if (res.type === "contacts") {
     url = `${
       auth.instance_url
@@ -315,7 +317,10 @@ exports.handler = async function (event, context) {
         }
       });
     console.log(
-      Object.assign(result, { fabricaId: res.attributes.fabrica_id })
+      Object.assign(result, {
+        fabricaId: res.attributes.fabrica_id,
+        type: "contacts",
+      })
     );
   } else if (res.type === "clients") {
     url = `${
@@ -410,6 +415,8 @@ exports.handler = async function (event, context) {
           return err;
         }
       });
-    console.log(Object.assign(result, { fabricaId: res.id }));
+    console.log(
+      Object.assign(result, { fabricaId: res.id, type: "repositories" })
+    );
   }
 };
