@@ -13,6 +13,8 @@ exports.handler = async function (event, context) {
     },
   });
 
+  console.log(auth);
+
   // check if no token or token older than 20 min
   if (
     !auth ||
