@@ -39,13 +39,13 @@ exports.handler = async function (event, context) {
       .then((response) => {
         return response.data;
       })
-      .catch((err) => {
-        if (err.response) {
-          console.log(err.response);
-        } else if (err.request) {
-          console.log(err.request);
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
         } else {
-          console.log(err);
+          console.log(error);
         }
       });
   }
@@ -55,7 +55,7 @@ exports.handler = async function (event, context) {
     return null;
   }
 
-  let url, body, organization;
+  let url, body, organization, result;
 
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
@@ -63,22 +63,19 @@ exports.handler = async function (event, context) {
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
     if (res.attributes.parent_organization) {
       url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
-      organization = await axios
-        .get(url, {
+      try {
+        organization = await axios.get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
-        })
-        .then((response) => {
-          return response.data;
-        })
-        .catch((err) => {
-          if (err.response) {
-            console.log(err.response);
-          } else if (err.request) {
-            console.log(err.request);
-          } else {
-            console.log(err);
-          }
         });
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error);
+        }
+      }
 
       if (!organization) {
         console.log(`No parent organization found for provider ${res.id}.`);
@@ -134,114 +131,108 @@ exports.handler = async function (event, context) {
       });
     }
 
-    result = await axios
-      .patch(url, body, {
+    try {
+      result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
         validateStatus: () => true,
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        if (err.response) {
-          slackMessage({
-            text: "Error updating organization in Salesforce.",
-            attachments: [
-              {
-                fallback: err.response.data[0].message,
-                color: "#D18F2C",
-                fields: [
-                  { title: "Message", value: err.response.data[0].message },
-                  {
-                    title: "Organization Name",
-                    value: res.attributes.name,
-                    short: true,
-                  },
-                  {
-                    title: "Organization ID",
-                    value: res.attributes.symbol,
-                    short: true,
-                  },
-                  {
-                    title: "Error Code",
-                    value: err.response.data[0].errorCode,
-                    short: true,
-                  },
-                  {
-                    title: "Fields",
-                    value: err.response.data[0].fields
-                      ? err.response.data[0].fields.join(", ")
-                      : null,
-                    short: true,
-                  },
-                ],
-              },
-            ],
-          });
-          return err.response;
-        } else if (err.request) {
-          return err.request;
-        } else {
-          return err;
-        }
       });
-    console.log(
-      Object.assign(result, { fabricaId: res.id, type: "organizations" })
-    );
+      console.log(
+        Object.assign(result, { fabricaId: res.id, type: "organizations" })
+      );
+    } catch (error) {
+      if (error.response) {
+        slackMessage({
+          text: "Error updating organization in Salesforce.",
+          attachments: [
+            {
+              fallback: error.response.data[0].message,
+              color: "#D18F2C",
+              fields: [
+                { title: "Message", value: error.response.data[0].message },
+                {
+                  title: "Organization Name",
+                  value: res.attributes.name,
+                  short: true,
+                },
+                {
+                  title: "Organization ID",
+                  value: res.attributes.symbol,
+                  short: true,
+                },
+                {
+                  title: "Error Code",
+                  value: error.response.data[0].errorCode,
+                  short: true,
+                },
+                {
+                  title: "Fields",
+                  value: error.response.data[0].fields
+                    ? error.response.data[0].fields.join(", ")
+                    : null,
+                  short: true,
+                },
+              ],
+            },
+          ],
+        });
+        console.log(error.response);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(error);
+      }
+    }
   } else if (res.type === "contacts") {
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-    organization = await axios
-      .get(url, {
+    try {
+      organization = await axios.get(url, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        if (err.response) {
-          slackMessage({
-            text: "Error updating contact in Salesforce.",
-            attachments: [
-              {
-                fallback: err.response.data[0].message,
-                color: "#D18F2C",
-                fields: [
-                  { title: "Message", value: err.response.data[0].message },
-                  {
-                    title: "Contact Name",
-                    value: res.attributes.name,
-                    short: true,
-                  },
-                  {
-                    title: "Contact ID",
-                    value: res.id,
-                    short: true,
-                  },
-                  {
-                    title: "Error Code",
-                    value: err.response.data[0].errorCode,
-                    short: true,
-                  },
-                  {
-                    title: "Fields",
-                    value: err.response.data[0].fields
-                      ? err.response.data[0].fields.join(", ")
-                      : null,
-                    short: true,
-                  },
-                ],
-              },
-            ],
-          });
-          return err.response;
-        } else if (err.request) {
-          return err.request;
-        } else {
-          return err;
-        }
       });
+    } catch (error) {
+      if (error.response) {
+        slackMessage({
+          text: "Error updating contact in Salesforce.",
+          attachments: [
+            {
+              fallback: error.response.data[0].message,
+              color: "#D18F2C",
+              fields: [
+                { title: "Message", value: error.response.data[0].message },
+                {
+                  title: "Contact Name",
+                  value: res.attributes.name,
+                  short: true,
+                },
+                {
+                  title: "Contact ID",
+                  value: res.id,
+                  short: true,
+                },
+                {
+                  title: "Error Code",
+                  value: error.response.data[0].errorCode,
+                  short: true,
+                },
+                {
+                  title: "Fields",
+                  value: error.response.data[0].fields
+                    ? error.response.data[0].fields.join(", ")
+                    : null,
+                  short: true,
+                },
+              ],
+            },
+          ],
+        });
+        console.log(error.response);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(error);
+      }
+    }
 
     if (!organization) {
       console.log(`No organization found for contact ${res.id}.`);
@@ -265,83 +256,77 @@ exports.handler = async function (event, context) {
       Active__c: !res.attributes.deleted_at,
     };
 
-    result = await axios
-      .patch(url, body, {
+    try {
+      result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
         validateStatus: () => true,
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        if (err.response) {
-          slackMessage({
-            text: "Error updating contact in Salesforce.",
-            attachments: [
-              {
-                fallback: err.response.data[0].message,
-                color: "#D18F2C",
-                fields: [
-                  { title: "Message", value: err.response.data[0].message },
-                  {
-                    title: "Contact Name",
-                    value: res.attributes.name,
-                    short: true,
-                  },
-                  {
-                    title: "Contact ID",
-                    value: res.id,
-                    short: true,
-                  },
-                  {
-                    title: "Error Code",
-                    value: err.response.data[0].errorCode,
-                    short: true,
-                  },
-                  {
-                    title: "Fields",
-                    value: err.response.data[0].fields
-                      ? err.response.data[0].fields.join(", ")
-                      : null,
-                    short: true,
-                  },
-                ],
-              },
-            ],
-          });
-          return err.response;
-        } else if (err.request) {
-          return err.request;
-        } else {
-          return err;
-        }
       });
-    console.log(
-      Object.assign(result, {
-        fabricaId: res.attributes.fabrica_id,
-        type: "contacts",
-      })
-    );
+      console.log(
+        Object.assign(result, {
+          fabricaId: res.attributes.fabrica_id,
+          type: "contacts",
+        })
+      );
+    } catch (error) {
+      if (error.response) {
+        slackMessage({
+          text: "Error updating contact in Salesforce.",
+          attachments: [
+            {
+              fallback: error.response.data[0].message,
+              color: "#D18F2C",
+              fields: [
+                { title: "Message", value: error.response.data[0].message },
+                {
+                  title: "Contact Name",
+                  value: res.attributes.name,
+                  short: true,
+                },
+                {
+                  title: "Contact ID",
+                  value: res.id,
+                  short: true,
+                },
+                {
+                  title: "Error Code",
+                  value: error.response.data[0].errorCode,
+                  short: true,
+                },
+                {
+                  title: "Fields",
+                  value: error.response.data[0].fields
+                    ? error.response.data[0].fields.join(", ")
+                    : null,
+                  short: true,
+                },
+              ],
+            },
+          ],
+        });
+        return error.response;
+      } else if (error.request) {
+        return error.request;
+      } else {
+        return error;
+      }
+    }
   } else if (res.type === "clients") {
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-    organization = await axios
-      .get(url, {
+    try {
+      organization = await axios.get(url, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        if (err.response) {
-          return err.response;
-        } else if (err.request) {
-          return err.request;
-        } else {
-          return err;
-        }
       });
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(error);
+      }
+    }
 
     if (!organization) {
       console.log(`No organization found for repository ${res.id}.`);
@@ -364,59 +349,55 @@ exports.handler = async function (event, context) {
       IsActive__c: res.attributes.is_active,
     };
 
-    result = await axios
-      .patch(url, body, {
+    try {
+      result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
-        validateStatus: () => true,
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => {
-        if (err.response) {
-          slackMessage({
-            text: "Error updating repository in Salesforce.",
-            attachments: [
-              {
-                fallback: err.response.data[0].message,
-                color: "#D18F2C",
-                fields: [
-                  { title: "Message", value: err.response.data[0].message },
-                  {
-                    title: "Repository Name",
-                    value: res.attributes.name.substring(0, 80),
-                    short: true,
-                  },
-                  {
-                    title: "Repository ID",
-                    value: res.attributes.symbol,
-                    short: true,
-                  },
-                  {
-                    title: "Error Code",
-                    value: err.response.data[0].errorCode,
-                    short: true,
-                  },
-                  {
-                    title: "Fields",
-                    value: err.response.data[0].fields
-                      ? err.response.data[0].fields.join(", ")
-                      : null,
-                    short: true,
-                  },
-                ],
-              },
-            ],
-          });
-          return err.response;
-        } else if (err.request) {
-          return err.request;
-        } else {
-          return err;
-        }
       });
-    console.log(
-      Object.assign(result, { fabricaId: res.id, type: "repositories" })
-    );
+      console.log(
+        Object.assign(result, { fabricaId: res.id, type: "repositories" })
+      );
+    } catch (error) {
+      if (error.response) {
+        slackMessage({
+          text: "Error updating repository in Salesforce.",
+          attachments: [
+            {
+              fallback: error.response.data[0].message,
+              color: "#D18F2C",
+              fields: [
+                { title: "Message", value: error.response.data[0].message },
+                {
+                  title: "Repository Name",
+                  value: res.attributes.name.substring(0, 80),
+                  short: true,
+                },
+                {
+                  title: "Repository ID",
+                  value: res.attributes.symbol,
+                  short: true,
+                },
+                {
+                  title: "Error Code",
+                  value: error.response.data[0].errorCode,
+                  short: true,
+                },
+                {
+                  title: "Fields",
+                  value: error.response.data[0].fields
+                    ? error.response.data[0].fields.join(", ")
+                    : null,
+                  short: true,
+                },
+              ],
+            },
+          ],
+        });
+        return error.response;
+      } else if (error.request) {
+        return error.request;
+      } else {
+        return error;
+      }
+    }
   }
 };
