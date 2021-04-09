@@ -104,7 +104,7 @@ exports.handler = async function (event, context) {
       Fabrica_Creation_Date__c: res.attributes.created,
       Fabrica_Modification_Date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
-      Is_Active__c: res.attributes.is_active,
+      Is_Active__c: !res.attributes.deleted_at,
     };
 
     // consortium organizations have a parent organization
@@ -346,7 +346,7 @@ exports.handler = async function (event, context) {
       Fabrica_creation_date__c: res.attributes.created,
       Fabrica_modified_date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
-      IsActive__c: res.attributes.is_active,
+      IsActive__c: !res.attributes.deleted_at,
     };
 
     try {
