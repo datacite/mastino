@@ -250,9 +250,9 @@ exports.handler = async function (event, context) {
       Type__c: res.attributes.role_name
         ? res.attributes.role_name.join(";")
         : null,
-      CreatedAt__c: res.attributes.created_at,
-      ModifiedAt__c: res.attributes.updated_at,
-      DeletedAt__c: res.attributes.deleted_at,
+      Fabrica_Creation_Date__c: res.attributes.created_at,
+      Fabrica_Modification_Date__c: res.attributes.updated_at,
+      Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       Active__c: !res.attributes.deleted_at,
     };
 
@@ -343,8 +343,8 @@ exports.handler = async function (event, context) {
       dois_count_current_year__c: res.attributes.dois_current_year,
       dois_count_previous_year__c: res.attributes.dois_last_year,
       dois_count_total__c: res.attributes.dois_total,
-      Fabrica_creation_Date__c: res.attributes.created,
-      Fabrica_modified_Date__c: res.attributes.updated,
+      Fabrica_Creation_Date__c: res.attributes.created,
+      Fabrica_Modification_Date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       IsActive__c: res.attributes.is_active,
     };
