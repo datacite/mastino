@@ -1,13 +1,13 @@
 resource "aws_cloudwatch_event_rule" "update-salesforce-hourly-stage" {
   name = "update-salesforce-hourly-stage"
-  description = "Update salesforce every 15 min via cron"
-  schedule_expression = "cron(* * * * ? *)"
+  description = "Update salesforce every hour via cron"
+  schedule_expression = "cron(50 * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_rule" "update-salesforce-weekly-stage" {
   name = "update-salesforce-weekly-stage"
-  description = "Update salesforce weekly via cron"
-  schedule_expression = "cron(50 11 * * ? *)"
+  description = "Update salesforce daily via cron"
+  schedule_expression = "cron(40 11 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "update-salesforce-hourly-stage" {
