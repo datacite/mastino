@@ -79,6 +79,7 @@ exports.handler = async function (event, context) {
 
       if (!organization) {
         console.log(`No parent organization found for provider ${res.id}.`);
+        return null;
       }
     }
 
@@ -236,6 +237,7 @@ exports.handler = async function (event, context) {
 
     if (!organization) {
       console.log(`No organization found for contact ${res.id}.`);
+      return null;
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Fabrica_ID__c/${res.attributes.fabrica_id}`;
@@ -330,6 +332,7 @@ exports.handler = async function (event, context) {
 
     if (!organization) {
       console.log(`No organization found for repository ${res.id}.`);
+      return null;
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
