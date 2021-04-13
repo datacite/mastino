@@ -138,7 +138,7 @@ exports.handler = async function (event, context) {
         validateStatus: () => true,
       });
       console.log(
-        Object.assign(result, { fabricaId: res.id, type: "organizations" })
+        Object.assign(result.data, { fabricaId: res.id, type: "organizations" })
       );
     } catch (error) {
       if (error.response) {
@@ -264,7 +264,7 @@ exports.handler = async function (event, context) {
         validateStatus: () => true,
       });
       console.log(
-        Object.assign(result, {
+        Object.assign(result.data, {
           fabricaId: res.attributes.fabrica_id,
           type: "contacts",
         })
@@ -357,7 +357,7 @@ exports.handler = async function (event, context) {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       });
       console.log(
-        Object.assign(result, { fabricaId: res.id, type: "repositories" })
+        Object.assign(result.data, { fabricaId: res.id, type: "repositories" })
       );
     } catch (error) {
       if (error.response) {
