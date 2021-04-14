@@ -142,7 +142,7 @@ exports.handler = async function (event, context) {
         attachments: [
           {
             fallback: result.data,
-            color: "#8AE433",
+            color: "#2AAD73",
             fields: [
               {
                 title: "Organization Name",
@@ -156,7 +156,7 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Organization Fabrica ID",
-                value: result.data.fabricaId,
+                value: res.id.toUpperCase(),
                 short: true,
               },
               {
@@ -308,7 +308,7 @@ exports.handler = async function (event, context) {
         attachments: [
           {
             fallback: result.data,
-            color: "#8AE433",
+            color: "#2AAD73",
             fields: [
               {
                 title: "Contact Name",
@@ -322,7 +322,7 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Contact Fabrica ID",
-                value: result.data.fabricaId,
+                value: res.id,
                 short: true,
               },
               {
@@ -442,7 +442,7 @@ exports.handler = async function (event, context) {
         attachments: [
           {
             fallback: result.data,
-            color: "#8AE433",
+            color: "#2AAD73",
             fields: [
               {
                 title: "Repository Name",
@@ -456,7 +456,7 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Repository Fabrica ID",
-                value: result.data.fabricaId,
+                value: res.id.toUpperCase(),
                 short: true,
               },
               {
