@@ -151,7 +151,7 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Errors",
-                value: result.data.errors.length > 0 ? true : "none",
+                value: result.data.errors.length > 0 ? "true" : "none",
                 short: true,
               },
               {
@@ -166,12 +166,12 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Success",
-                value: result.data.success,
+                value: result.data.success ? "true" : "false",
                 short: true,
               },
               {
                 title: "Created",
-                value: result.data.created,
+                value: result.data.created ? "true" : "false",
                 short: true,
               },
             ],
@@ -317,7 +317,7 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Errors",
-                value: result.data.errors.length > 0 ? true : "none",
+                value: result.data.errors.length > 0 ? "true" : "none",
                 short: true,
               },
               {
@@ -332,12 +332,12 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Success",
-                value: result.data.success,
+                value: result.data.success ? "true" : "false",
                 short: true,
               },
               {
                 title: "Created",
-                value: result.data.created,
+                value: result.data.created ? "true" : "false",
                 short: true,
               },
             ],
@@ -451,7 +451,7 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Errors",
-                value: result.data.errors.length > 0 ? true : "none",
+                value: result.data.errors.length > 0 ? "true" : "none",
                 short: true,
               },
               {
@@ -466,12 +466,12 @@ exports.handler = async function (event, context) {
               },
               {
                 title: "Success",
-                value: result.data.success,
+                value: result.data.success ? "true" : "false",
                 short: true,
               },
               {
                 title: "Created",
-                value: result.data.created,
+                value: result.data.created ? "true" : "false",
                 short: true,
               },
             ],
