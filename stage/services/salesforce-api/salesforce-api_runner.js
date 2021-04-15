@@ -137,47 +137,49 @@ exports.handler = async function (event, context) {
         headers: { Authorization: `Bearer ${auth.access_token}` },
         validateStatus: () => true,
       });
-      slackMessage({
-        text: "An organization was updated in the Salesforce Sandbox.",
-        attachments: [
-          {
-            fallback: result.data,
-            color: "#2AAD73",
-            fields: [
-              {
-                title: "Organization Name",
-                value: res.attributes.name,
-                short: true,
-              },
-              {
-                title: "Errors",
-                value: result.data.errors.length > 0 ? "true" : "none",
-                short: true,
-              },
-              {
-                title: "Organization Fabrica ID",
-                value: res.id.toUpperCase(),
-                short: true,
-              },
-              {
-                title: "Organization Salesforce ID",
-                value: result.data.id,
-                short: true,
-              },
-              {
-                title: "Success",
-                value: result.data.success ? "true" : "false",
-                short: true,
-              },
-              {
-                title: "Created",
-                value: result.data.created ? "true" : "false",
-                short: true,
-              },
-            ],
-          },
-        ],
-      });
+      if (res.attributes.slack_message) {
+        slackMessage({
+          text: "An organization was updated in the Salesforce Sandbox.",
+          attachments: [
+            {
+              fallback: result.data,
+              color: "#2AAD73",
+              fields: [
+                {
+                  title: "Organization Name",
+                  value: res.attributes.name,
+                  short: true,
+                },
+                {
+                  title: "Errors",
+                  value: result.data.errors.length > 0 ? "true" : "none",
+                  short: true,
+                },
+                {
+                  title: "Organization Fabrica ID",
+                  value: res.id.toUpperCase(),
+                  short: true,
+                },
+                {
+                  title: "Organization Salesforce ID",
+                  value: result.data.id,
+                  short: true,
+                },
+                {
+                  title: "Success",
+                  value: result.data.success ? "true" : "false",
+                  short: true,
+                },
+                {
+                  title: "Created",
+                  value: result.data.created ? "true" : "false",
+                  short: true,
+                },
+              ],
+            },
+          ],
+        });
+      }
       console.log(
         Object.assign(result.data, { fabricaId: res.id, type: "organizations" })
       );
@@ -303,47 +305,49 @@ exports.handler = async function (event, context) {
       result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       });
-      slackMessage({
-        text: "A contact was updated in the Salesforce Sandbox.",
-        attachments: [
-          {
-            fallback: result.data,
-            color: "#2AAD73",
-            fields: [
-              {
-                title: "Contact Name",
-                value: res.attributes.name,
-                short: true,
-              },
-              {
-                title: "Errors",
-                value: result.data.errors.length > 0 ? "true" : "none",
-                short: true,
-              },
-              {
-                title: "Contact Fabrica ID",
-                value: res.id,
-                short: true,
-              },
-              {
-                title: "Contact Salesforce ID",
-                value: result.data.id,
-                short: true,
-              },
-              {
-                title: "Success",
-                value: result.data.success ? "true" : "false",
-                short: true,
-              },
-              {
-                title: "Created",
-                value: result.data.created ? "true" : "false",
-                short: true,
-              },
-            ],
-          },
-        ],
-      });
+      if (res.attributes.slack_message) {
+        slackMessage({
+          text: "A contact was updated in the Salesforce Sandbox.",
+          attachments: [
+            {
+              fallback: result.data,
+              color: "#2AAD73",
+              fields: [
+                {
+                  title: "Contact Name",
+                  value: res.attributes.name,
+                  short: true,
+                },
+                {
+                  title: "Errors",
+                  value: result.data.errors.length > 0 ? "true" : "none",
+                  short: true,
+                },
+                {
+                  title: "Contact Fabrica ID",
+                  value: res.id,
+                  short: true,
+                },
+                {
+                  title: "Contact Salesforce ID",
+                  value: result.data.id,
+                  short: true,
+                },
+                {
+                  title: "Success",
+                  value: result.data.success ? "true" : "false",
+                  short: true,
+                },
+                {
+                  title: "Created",
+                  value: result.data.created ? "true" : "false",
+                  short: true,
+                },
+              ],
+            },
+          ],
+        });
+      }
       console.log(
         Object.assign(result.data, {
           fabricaId: res.attributes.fabrica_id,
@@ -437,47 +441,49 @@ exports.handler = async function (event, context) {
       result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       });
-      slackMessage({
-        text: "A repository was updated in the Salesforce Sandbox.",
-        attachments: [
-          {
-            fallback: result.data,
-            color: "#2AAD73",
-            fields: [
-              {
-                title: "Repository Name",
-                value: res.attributes.name,
-                short: true,
-              },
-              {
-                title: "Errors",
-                value: result.data.errors.length > 0 ? "true" : "none",
-                short: true,
-              },
-              {
-                title: "Repository Fabrica ID",
-                value: res.id.toUpperCase(),
-                short: true,
-              },
-              {
-                title: "Repository Salesforce ID",
-                value: result.data.id,
-                short: true,
-              },
-              {
-                title: "Success",
-                value: result.data.success ? "true" : "false",
-                short: true,
-              },
-              {
-                title: "Created",
-                value: result.data.created ? "true" : "false",
-                short: true,
-              },
-            ],
-          },
-        ],
-      });
+      if (res.attributes.slack_message) {
+        slackMessage({
+          text: "A repository was updated in the Salesforce Sandbox.",
+          attachments: [
+            {
+              fallback: result.data,
+              color: "#2AAD73",
+              fields: [
+                {
+                  title: "Repository Name",
+                  value: res.attributes.name,
+                  short: true,
+                },
+                {
+                  title: "Errors",
+                  value: result.data.errors.length > 0 ? "true" : "none",
+                  short: true,
+                },
+                {
+                  title: "Repository Fabrica ID",
+                  value: res.id.toUpperCase(),
+                  short: true,
+                },
+                {
+                  title: "Repository Salesforce ID",
+                  value: result.data.id,
+                  short: true,
+                },
+                {
+                  title: "Success",
+                  value: result.data.success ? "true" : "false",
+                  short: true,
+                },
+                {
+                  title: "Created",
+                  value: result.data.created ? "true" : "false",
+                  short: true,
+                },
+              ],
+            },
+          ],
+        });
+      }
       console.log(
         Object.assign(result.data, { fabricaId: res.id, type: "repositories" })
       );
