@@ -64,7 +64,7 @@ resource "aws_lambda_function" "salesforce-api" {
 resource "aws_lambda_permission" "update-salesforce-daily" {
   statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.update-salesforce-daily_runner.function_name
+  function_name = aws_lambda_function.update-salesforce-daily.function_name
   principal = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.update-salesforce-daily.arn
 }
