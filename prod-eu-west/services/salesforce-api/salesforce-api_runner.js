@@ -62,7 +62,7 @@ exports.handler = async function (event, context) {
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "providers") {
-    console.log(attributes);
+    console.log(res.attributes);
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
     if (res.attributes.parent_organization) {
       url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
@@ -230,7 +230,7 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "contacts") {
-    console.log(attributes);
+    console.log(res.attributes);
 
     url = `${
       auth.instance_url
