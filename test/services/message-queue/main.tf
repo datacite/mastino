@@ -131,7 +131,7 @@ resource "aws_sqs_queue" "salesforce-test" {
   visibility_timeout_seconds = 60
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "test"
   }
 }
