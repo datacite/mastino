@@ -125,13 +125,3 @@ resource "aws_iam_policy" "sqs-test" {
   name = "sqs-test"
   policy = "${data.template_file.queue-test.rendered}"
 }
-
-resource "aws_sqs_queue" "salesforce-test" {
-  name                      = "test_salesforce"
-  visibility_timeout_seconds = 60
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
-
-  tags = {
-    Environment = "test"
-  }
-}
