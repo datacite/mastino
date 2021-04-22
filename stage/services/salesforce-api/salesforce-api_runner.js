@@ -283,9 +283,8 @@ exports.handler = async function (event, context) {
       return null;
     }
 
-    url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Fabrica_ID__c/${res.attributes.fabrica_id}`;
+    url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
     body = {
-      Uid__c: res.id,
       FirstName: res.attributes.given_name,
       LastName: res.attributes.family_name
         ? res.attributes.family_name
@@ -350,7 +349,7 @@ exports.handler = async function (event, context) {
       }
       console.log(
         Object.assign(result.data, {
-          fabricaId: res.attributes.fabrica_id,
+          uid: res.id,
           type: "contacts",
         })
       );
