@@ -184,6 +184,7 @@ exports.handler = async function (event, context) {
         Object.assign(result.data, { fabricaId: res.id, type: "organizations" })
       );
     } catch (error) {
+      console.log(error);
       if (error.response) {
         slackMessage({
           text: "Error updating organization in Salesforce.",
@@ -219,11 +220,6 @@ exports.handler = async function (event, context) {
             },
           ],
         });
-        console.log(error.response);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log(error);
       }
     }
   } else if (res.type === "contacts") {
@@ -235,6 +231,7 @@ exports.handler = async function (event, context) {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       });
     } catch (error) {
+      console.log(error);
       if (error.response) {
         slackMessage({
           text: "Error updating contact in Salesforce.",
@@ -270,11 +267,6 @@ exports.handler = async function (event, context) {
             },
           ],
         });
-        console.log(error.response);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log(error);
       }
     }
 
@@ -355,6 +347,7 @@ exports.handler = async function (event, context) {
         })
       );
     } catch (error) {
+      console.log(error);
       if (error.response) {
         slackMessage({
           text: "Error updating contact in Salesforce.",
@@ -390,11 +383,6 @@ exports.handler = async function (event, context) {
             },
           ],
         });
-        return error.response;
-      } else if (error.request) {
-        return error.request;
-      } else {
-        return error;
       }
     }
   } else if (res.type === "clients") {
@@ -488,6 +476,7 @@ exports.handler = async function (event, context) {
         Object.assign(result.data, { fabricaId: res.id, type: "repositories" })
       );
     } catch (error) {
+      console.log(error);
       if (error.response) {
         slackMessage({
           text: "Error updating repository in Salesforce.",
@@ -523,11 +512,6 @@ exports.handler = async function (event, context) {
             },
           ],
         });
-        return error.response;
-      } else if (error.request) {
-        return error.request;
-      } else {
-        return error;
       }
     }
   }
