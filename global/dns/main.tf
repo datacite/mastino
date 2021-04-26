@@ -154,3 +154,11 @@ resource "aws_route53_record" "github_datacite" {
     ttl = "300"
     records = ["7aea104794"]
 }
+
+resource "aws_route53_record" "lists" {
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "lists.datacite.org"
+    type = "CNAME"
+    ttl = "300"
+    records = ["cname.createsend.com"]
+}
