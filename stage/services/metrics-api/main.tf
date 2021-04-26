@@ -1,10 +1,30 @@
 resource "aws_s3_bucket" "metrics" {
-    bucket = "${var.s3_bucket}"
-    acl = "public-read"
-    policy = "${data.template_file.metrics-api_s3.rendered}"
-    tags = {
-        Name = "metricsApiStage"
+  bucket = "${var.s3_bucket}"
+  acl = "public-read"
+  policy = "${data.template_file.metrics-api_s3.rendered}"
+  tags = {
+      Name = "metricsApiStage"
+  }
+  versioning {
+    enabled = true
+  }
+  lifecycle_rule {
+    enabled = true
+
+    noncurrent_version_transition {
+      days          = 30
+      storage_class = "STANDARD_IA"
     }
+
+    noncurrent_version_transition {
+      days          = 30
+      storage_class = "GLACIER"
+    }
+
+    noncurrent_version_expiration {
+      days = 305
+    }
+  }
 }
 
 resource "aws_ecs_service" "metrics-api-stage" {
