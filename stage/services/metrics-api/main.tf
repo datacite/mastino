@@ -17,12 +17,12 @@ resource "aws_s3_bucket" "metrics" {
     }
 
     noncurrent_version_transition {
-      days          = 30
+      days          = 60
       storage_class = "GLACIER"
     }
 
     noncurrent_version_expiration {
-      days = 305
+      days = 365
     }
   }
 }
