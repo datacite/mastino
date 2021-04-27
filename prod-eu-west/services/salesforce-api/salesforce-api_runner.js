@@ -224,6 +224,7 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "contacts") {
+    console.log(res.attributes);
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
@@ -388,6 +389,7 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "clients") {
+    console.log(res.attributes);
     url = `${
       auth.instance_url
     }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
