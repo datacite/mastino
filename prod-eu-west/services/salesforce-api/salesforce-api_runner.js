@@ -67,6 +67,7 @@ exports.handler = async function (event, context) {
         organization = await axios.get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
         });
+        console.log(organization);
       } catch (error) {
         if (error.response) {
           console.log(error.response);
@@ -230,6 +231,7 @@ exports.handler = async function (event, context) {
       organization = await axios.get(url, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       });
+      console.log(organization);
     } catch (error) {
       console.log(error);
       if (error.response) {
@@ -393,6 +395,7 @@ exports.handler = async function (event, context) {
       organization = await axios.get(url, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
       });
+      console.log(organization);
     } catch (error) {
       if (error.response) {
         console.log(error.response);
