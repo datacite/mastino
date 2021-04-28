@@ -224,58 +224,63 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "contacts") {
-    console.log(res.attributes);
-    url = `${
-      auth.instance_url
-    }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-    try {
-      organization = await axios.get(url, {
-        headers: { Authorization: `Bearer ${auth.access_token}` },
-      });
-      console.log(organization);
-    } catch (error) {
-      console.log(error);
-      if (error.response) {
-        slackMessage({
-          text: "Error updating contact in Salesforce.",
-          attachments: [
-            {
-              fallback: error.response.data[0].message,
-              color: "#D18F2C",
-              fields: [
-                { title: "Message", value: error.response.data[0].message },
-                {
-                  title: "Contact Name",
-                  value: res.attributes.name,
-                  short: true,
-                },
-                {
-                  title: "Contact ID",
-                  value: res.id,
-                  short: true,
-                },
-                {
-                  title: "Error Code",
-                  value: error.response.data[0].errorCode,
-                  short: true,
-                },
-                {
-                  title: "Fields",
-                  value: error.response.data[0].fields
-                    ? error.response.data[0].fields.join(", ")
-                    : null,
-                  short: true,
-                },
-              ],
-            },
-          ],
-        });
-      }
-    }
+    let accountId = res.attributes.provider_salesforce_id;
 
-    if (!organization) {
-      console.log(`No organization found for contact ${res.id}.`);
-      return null;
+    if (!accountId) {
+      url = `${
+        auth.instance_url
+      }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
+      try {
+        organization = await axios.get(url, {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        });
+        console.log(organization);
+      } catch (error) {
+        console.log(error);
+        if (error.response) {
+          slackMessage({
+            text: "Error updating contact in Salesforce.",
+            attachments: [
+              {
+                fallback: error.response.data[0].message,
+                color: "#D18F2C",
+                fields: [
+                  { title: "Message", value: error.response.data[0].message },
+                  {
+                    title: "Contact Name",
+                    value: res.attributes.name,
+                    short: true,
+                  },
+                  {
+                    title: "Contact ID",
+                    value: res.id,
+                    short: true,
+                  },
+                  {
+                    title: "Error Code",
+                    value: error.response.data[0].errorCode,
+                    short: true,
+                  },
+                  {
+                    title: "Fields",
+                    value: error.response.data[0].fields
+                      ? error.response.data[0].fields.join(", ")
+                      : null,
+                    short: true,
+                  },
+                ],
+              },
+            ],
+          });
+        }
+      }
+
+      if (!organization) {
+        console.log(`No organization found for contact ${res.id}.`);
+        return null;
+      }
+
+      accountId = organization.Id;
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
@@ -286,7 +291,7 @@ exports.handler = async function (event, context) {
         : res.attributes.email,
       Email: res.attributes.email,
       Fabrica_ID__c: res.attributes.fabrica_id,
-      AccountId: organization.Id,
+      AccountId: accountId,
       Type__c: res.attributes.role_name
         ? res.attributes.role_name.join(";")
         : null,
@@ -389,34 +394,38 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "clients") {
-    console.log(res.attributes);
-    url = `${
-      auth.instance_url
-    }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-    try {
-      organization = await axios.get(url, {
-        headers: { Authorization: `Bearer ${auth.access_token}` },
-      });
-      console.log(organization);
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log(error);
-      }
-    }
+    let accountId = res.attributes.provider_salesforce_id;
 
-    if (!organization) {
-      console.log(`No organization found for repository ${res.id}.`);
-      return null;
+    if (!accountId) {
+      url = `${
+        auth.instance_url
+      }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
+      try {
+        organization = await axios.get(url, {
+          headers: { Authorization: `Bearer ${auth.access_token}` },
+        });
+        console.log(organization);
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error);
+        }
+      }
+
+      if (!organization) {
+        console.log(`No organization found for repository ${res.id}.`);
+        return null;
+      }
+      accountId = organization.Id;
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
     body = {
       Name: res.attributes.name.substring(0, 80),
-      Organization__c: organization.Id,
+      Organization__c: accountId,
       Repository_URL__c: res.attributes.url,
       re3data_Record__c: res.attributes.re3data_id,
       Description__c: res.attributes.description,
@@ -436,7 +445,7 @@ exports.handler = async function (event, context) {
       });
       if (res.attributes.slack_message) {
         slackMessage({
-          text: "A repository was updated in the Salesforce Sandbox.",
+          text: "A repository was updated in Salesforce.",
           attachments: [
             {
               fallback: result.data,
