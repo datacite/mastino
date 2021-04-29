@@ -101,7 +101,7 @@ exports.handler = async function (event, context) {
 
       await axios
         .patch(
-          providerUrl + `/${res.attributes.parent_organization}`,
+          providerUrl + `/${res.attributes.parent_organization.toLowerCase()}`,
           { salesforceId: accountId },
           {
             auth: {
@@ -331,7 +331,7 @@ exports.handler = async function (event, context) {
 
       await axios
         .patch(
-          providerUrl + `/${res.attributes.provider_id}`,
+          providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
           { salesforceId: accountId },
           {
             auth: {
@@ -496,7 +496,7 @@ exports.handler = async function (event, context) {
 
       await axios
         .patch(
-          providerUrl + `/${res.attributes.provider_id}`,
+          providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
           { salesforceId: accountId },
           {
             auth: {

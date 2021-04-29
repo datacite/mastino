@@ -57,6 +57,9 @@ resource "aws_lambda_function" "salesforce-api" {
       client_secret = var.client_secret
       slack_webhook_url = var.slack_webhook_url
       slack_icon_url = var.slack_icon_url
+      datacite_api_url = var.datacite_api_url
+      datacite_username = var.datacite_username
+      datacite_password = var.datacite_password
     }
   }
 }

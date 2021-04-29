@@ -9,10 +9,9 @@ exports.handler = async function (event, context) {
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
-  let datacite_username = process.env.datacite_username;
-  let datacite_password = process.env.datacite_password;
-  let datacite_api_url = process.env.datacite_api_url;
-  let providerUrl = `${datacite_api_url}/providers`;
+  const datacite_username = process.env.datacite_username;
+  const datacite_password = process.env.datacite_password;
+  const providerUrl = `${process.env.datacite_api_url}/providers`;
 
   var slackMessage = slack.extend({
     channel: "#ops",
@@ -101,7 +100,7 @@ exports.handler = async function (event, context) {
 
       await axios
         .patch(
-          providerUrl + `/${res.attributes.parent_organization}`,
+          providerUrl + `/${res.attributes.parent_organization.toLowerCase()}`,
           { salesforceId: accountId },
           {
             auth: {
@@ -319,6 +318,24 @@ exports.handler = async function (event, context) {
       }
 
       accountId = organization.Id;
+
+      await axios
+        .patch(
+          providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
+          { salesforceId: accountId },
+          {
+            auth: {
+              username: datacite_username,
+              password: datacite_password,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Contact/Uid__c/${res.id}`;
@@ -461,6 +478,24 @@ exports.handler = async function (event, context) {
         return null;
       }
       accountId = organization.Id;
+
+      await axios
+        .patch(
+          providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
+          { salesforceId: accountId },
+          {
+            auth: {
+              username: datacite_username,
+              password: datacite_password,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Repositories__c/Repository_ID__c/${res.attributes.symbol}`;
