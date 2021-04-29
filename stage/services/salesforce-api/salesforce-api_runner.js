@@ -187,7 +187,7 @@ exports.handler = async function (event, context) {
     } catch (error) {
       if (error.response) {
         slackMessage({
-          text: "Error updating organization in Salesforce.",
+          text: "Error updating organization in Salesforce Sandbox.",
           attachments: [
             {
               fallback: error.response.data[0].message,
@@ -242,7 +242,7 @@ exports.handler = async function (event, context) {
       } catch (error) {
         if (error.response) {
           slackMessage({
-            text: "Error updating contact in Salesforce.",
+            text: "Error updating contact in Salesforce Sandbox.",
             attachments: [
               {
                 fallback: error.response.data[0].message,
@@ -365,7 +365,7 @@ exports.handler = async function (event, context) {
     } catch (error) {
       if (error.response) {
         slackMessage({
-          text: "Error updating contact in Salesforce.",
+          text: "Error updating contact in Salesforce Sandbox.",
           attachments: [
             {
               fallback: error.response.data[0].message,
@@ -505,7 +505,7 @@ exports.handler = async function (event, context) {
     } catch (error) {
       if (error.response) {
         slackMessage({
-          text: "Error updating repository in Salesforce.",
+          text: "Error updating repository in Salesforce Sandbox.",
           attachments: [
             {
               fallback: error.response.data[0].message,
