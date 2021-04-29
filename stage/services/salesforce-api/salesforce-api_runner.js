@@ -97,6 +97,24 @@ exports.handler = async function (event, context) {
       }
 
       accountId = organization.Id;
+
+      await axios
+        .patch(
+          providerUrl + `/${res.attributes.parent_organization}`,
+          { salesforceId: accountId },
+          {
+            auth: {
+              username: datacite_username,
+              password: datacite_password,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     url = `${
@@ -251,56 +269,57 @@ exports.handler = async function (event, context) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-      organization = await axios
-        .get(url, {
-          headers: { Authorization: `Bearer ${auth.access_token}` },
-        })
-        .then((response) => {
-          return response.data;
-        })
-        .catch((error) => {
-          if (error.response) {
-            slackMessage({
-              text: "Error updating contact in Salesforce Sandbox.",
-              attachments: [
-                {
-                  fallback: error.response.data[0].message,
-                  color: "#D18F2C",
-                  fields: [
-                    { title: "Message", value: error.response.data[0].message },
-                    {
-                      title: "Contact Name",
-                      value: res.attributes.name,
-                      short: true,
-                    },
-                    {
-                      title: "Contact ID",
-                      value: res.id,
-                      short: true,
-                    },
-                    {
-                      title: "Error Code",
-                      value: error.response.data[0].errorCode,
-                      short: true,
-                    },
-                    {
-                      title: "Fields",
-                      value: error.response.data[0].fields
-                        ? error.response.data[0].fields.join(", ")
-                        : null,
-                      short: true,
-                    },
-                  ],
-                },
-              ],
-            });
-            console.log(error.response);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log(error);
-          }
-        });
+      try {
+        organization = await axios
+          .get(url, {
+            headers: { Authorization: `Bearer ${auth.access_token}` },
+          })
+          .then((response) => {
+            return response.data;
+          });
+      } catch (error) {
+        if (error.response) {
+          slackMessage({
+            text: "Error updating contact in Salesforce Sandbox.",
+            attachments: [
+              {
+                fallback: error.response.data[0].message,
+                color: "#D18F2C",
+                fields: [
+                  { title: "Message", value: error.response.data[0].message },
+                  {
+                    title: "Contact Name",
+                    value: res.attributes.name,
+                    short: true,
+                  },
+                  {
+                    title: "Contact ID",
+                    value: res.id,
+                    short: true,
+                  },
+                  {
+                    title: "Error Code",
+                    value: error.response.data[0].errorCode,
+                    short: true,
+                  },
+                  {
+                    title: "Fields",
+                    value: error.response.data[0].fields
+                      ? error.response.data[0].fields.join(", ")
+                      : null,
+                    short: true,
+                  },
+                ],
+              },
+            ],
+          });
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error);
+        }
+      }
 
       if (!organization) {
         console.log(`No organization found for contact ${res.id}.`);
@@ -323,8 +342,8 @@ exports.handler = async function (event, context) {
         .then((response) => {
           console.log(response.data);
         })
-        .catch((err) => {
-          console.log(err.response);
+        .catch((error) => {
+          console.log(error);
         });
     }
 
@@ -449,22 +468,23 @@ exports.handler = async function (event, context) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-      organization = await axios
-        .get(url, {
-          headers: { Authorization: `Bearer ${auth.access_token}` },
-        })
-        .then((response) => {
-          return response.data;
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log(error);
-          }
-        });
+      try {
+        organization = await axios
+          .get(url, {
+            headers: { Authorization: `Bearer ${auth.access_token}` },
+          })
+          .then((response) => {
+            return response.data;
+          });
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error);
+        }
+      }
 
       if (!organization) {
         console.log(`No organization found for repository ${res.id}.`);
@@ -487,8 +507,8 @@ exports.handler = async function (event, context) {
         .then((response) => {
           console.log(response.data);
         })
-        .catch((err) => {
-          console.log(err.response);
+        .catch((error) => {
+          console.log(error);
         });
     }
 
