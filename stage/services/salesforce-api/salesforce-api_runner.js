@@ -59,13 +59,16 @@ exports.handler = async function (event, context) {
     return null;
   }
 
-  let url, body, organization, result;
+  let url, body, organization, accountId, result;
 
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "providers") {
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
-    if (res.attributes.parent_organization) {
+
+    accountId = res.attributes.consortium_salesforce_id;
+
+    if (!accountId && res.attributes.parent_organization) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization.toUpperCase()}`;
@@ -90,6 +93,8 @@ exports.handler = async function (event, context) {
         );
         return null;
       }
+
+      accountId = organizationId;
     }
 
     url = `${
@@ -122,7 +127,7 @@ exports.handler = async function (event, context) {
     // consortium organizations have a parent organization
     if ("Consortium Organization" === res.attributes.member_type) {
       body = Object.assign(body, {
-        ParentId: organization ? organization.Id : null,
+        ParentId: accountId,
       });
     }
 
@@ -238,7 +243,7 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "contacts") {
-    let accountId = res.attributes.provider_salesforce_id;
+    accountId = res.attributes.provider_salesforce_id;
 
     if (!accountId) {
       url = `${
@@ -434,7 +439,7 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "clients") {
-    let accountId = res.attributes.provider_salesforce_id;
+    accountId = res.attributes.provider_salesforce_id;
 
     if (!accountId) {
       url = `${
