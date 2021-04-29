@@ -101,7 +101,12 @@ exports.handler = async function (event, context) {
       await axios
         .patch(
           providerUrl + `/${res.attributes.parent_organization.toLowerCase()}`,
-          { salesforceId: accountId },
+          {
+            data: {
+              type: "providers",
+              attributes: { salesforceId: accountId },
+            },
+          },
           {
             auth: {
               username: datacite_username,
@@ -322,7 +327,12 @@ exports.handler = async function (event, context) {
       await axios
         .patch(
           providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
-          { salesforceId: accountId },
+          {
+            data: {
+              type: "providers",
+              attributes: { salesforceId: accountId },
+            },
+          },
           {
             auth: {
               username: datacite_username,
@@ -482,7 +492,12 @@ exports.handler = async function (event, context) {
       await axios
         .patch(
           providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
-          { salesforceId: accountId },
+          {
+            data: {
+              type: "providers",
+              attributes: { salesforceId: accountId },
+            },
+          },
           {
             auth: {
               username: datacite_username,
