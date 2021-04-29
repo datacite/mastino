@@ -72,22 +72,23 @@ exports.handler = async function (event, context) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization.toUpperCase()}`;
-      organization = await axios
-        .get(url, {
-          headers: { Authorization: `Bearer ${auth.access_token}` },
-        })
-        .then((response) => {
-          return response.data;
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log(error);
-          }
-        });
+      try {
+        organization = await axios
+          .get(url, {
+            headers: { Authorization: `Bearer ${auth.access_token}` },
+          })
+          .then((response) => {
+            return response.data;
+          });
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error);
+        }
+      }
 
       if (!organization) {
         console.log(
