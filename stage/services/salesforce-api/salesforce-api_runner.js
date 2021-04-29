@@ -62,7 +62,9 @@ exports.handler = async function (event, context) {
   if (res.type === "providers") {
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
     if (res.attributes.parent_organization) {
-      url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization}`;
+      url = `${
+        auth.instance_url
+      }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization.toUpperCase()}`;
       try {
         organization = await axios.get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -79,12 +81,16 @@ exports.handler = async function (event, context) {
       }
 
       if (!organization) {
-        console.log(`No parent organization found for provider ${res.id}.`);
+        console.log(
+          `No parent organization found for provider ${res.id.toUpperCase()}.`
+        );
         return null;
       }
     }
 
-    url = `${auth.instance_url}/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id}`;
+    url = `${
+      auth.instance_url
+    }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.id.toUpperCase()}`;
     body = {
       Name: res.attributes.name,
       Website: res.attributes.website,
