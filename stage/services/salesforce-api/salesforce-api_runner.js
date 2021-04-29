@@ -249,54 +249,56 @@ exports.handler = async function (event, context) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-      try {
-        organization = await axios.get(url, {
+      organization = await axios
+        .get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            slackMessage({
+              text: "Error updating contact in Salesforce Sandbox.",
+              attachments: [
+                {
+                  fallback: error.response.data[0].message,
+                  color: "#D18F2C",
+                  fields: [
+                    { title: "Message", value: error.response.data[0].message },
+                    {
+                      title: "Contact Name",
+                      value: res.attributes.name,
+                      short: true,
+                    },
+                    {
+                      title: "Contact ID",
+                      value: res.id,
+                      short: true,
+                    },
+                    {
+                      title: "Error Code",
+                      value: error.response.data[0].errorCode,
+                      short: true,
+                    },
+                    {
+                      title: "Fields",
+                      value: error.response.data[0].fields
+                        ? error.response.data[0].fields.join(", ")
+                        : null,
+                      short: true,
+                    },
+                  ],
+                },
+              ],
+            });
+            console.log(error.response);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log(error);
+          }
         });
-        console.log(organization);
-      } catch (error) {
-        if (error.response) {
-          slackMessage({
-            text: "Error updating contact in Salesforce Sandbox.",
-            attachments: [
-              {
-                fallback: error.response.data[0].message,
-                color: "#D18F2C",
-                fields: [
-                  { title: "Message", value: error.response.data[0].message },
-                  {
-                    title: "Contact Name",
-                    value: res.attributes.name,
-                    short: true,
-                  },
-                  {
-                    title: "Contact ID",
-                    value: res.id,
-                    short: true,
-                  },
-                  {
-                    title: "Error Code",
-                    value: error.response.data[0].errorCode,
-                    short: true,
-                  },
-                  {
-                    title: "Fields",
-                    value: error.response.data[0].fields
-                      ? error.response.data[0].fields.join(", ")
-                      : null,
-                    short: true,
-                  },
-                ],
-              },
-            ],
-          });
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error);
-        }
-      }
 
       if (!organization) {
         console.log(`No organization found for contact ${res.id}.`);
@@ -445,20 +447,22 @@ exports.handler = async function (event, context) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-      try {
-        organization = await axios.get(url, {
+      organization = await axios
+        .get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log(error);
+          }
         });
-        console.log(organization);
-      } catch (error) {
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error);
-        }
-      }
 
       if (!organization) {
         console.log(`No organization found for repository ${res.id}.`);
