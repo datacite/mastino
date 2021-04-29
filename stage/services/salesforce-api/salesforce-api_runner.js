@@ -72,20 +72,22 @@ exports.handler = async function (event, context) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization.toUpperCase()}`;
-      try {
-        organization = await axios.get(url, {
+      organization = await axios
+        .get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log(error);
+          }
         });
-        console.log(organization);
-      } catch (error) {
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error);
-        }
-      }
 
       if (!organization) {
         console.log(
@@ -94,7 +96,7 @@ exports.handler = async function (event, context) {
         return null;
       }
 
-      accountId = organizationId;
+      accountId = organization.Id;
     }
 
     url = `${

@@ -9,6 +9,10 @@ exports.handler = async function (event, context) {
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
+  let datacite_username = process.env.datacite_username;
+  let datacite_password = process.env.datacite_password;
+  let datacite_api_url = process.env.datacite_api_url;
+  let providerUrl = `${datacite_api_url}/providers`;
 
   var slackMessage = slack.extend({
     channel: "#ops",
@@ -55,30 +59,35 @@ exports.handler = async function (event, context) {
     return null;
   }
 
-  let url, body, organization, result;
+  let url, body, organization, accountId, result;
 
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "providers") {
     const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
-    if (res.attributes.parent_organization) {
+
+    accountId = res.attributes.consortium_salesforce_id;
+
+    if (!accountId && res.attributes.parent_organization) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.parent_organization.toUpperCase()}`;
-      try {
-        organization = await axios.get(url, {
+      organization = await axios
+        .get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log(error);
+          }
         });
-        console.log(organization);
-      } catch (error) {
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error);
-        }
-      }
 
       if (!organization) {
         console.log(
@@ -86,6 +95,8 @@ exports.handler = async function (event, context) {
         );
         return null;
       }
+
+      accountId = organization.Id;
     }
 
     url = `${
@@ -118,7 +129,7 @@ exports.handler = async function (event, context) {
     // consortium organizations have a parent organization
     if ("Consortium Organization" === res.attributes.member_type) {
       body = Object.assign(body, {
-        ParentId: organization ? organization.Id : null,
+        ParentId: accountId,
       });
     }
 
@@ -230,56 +241,57 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "contacts") {
-    let accountId = res.attributes.provider_salesforce_id;
+    accountId = res.attributes.provider_salesforce_id;
 
     if (!accountId) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-      try {
-        organization = await axios.get(url, {
+      organization = await axios
+        .get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            slackMessage({
+              text: "Error updating contact in Salesforce.",
+              attachments: [
+                {
+                  fallback: error.response.data[0].message,
+                  color: "#D18F2C",
+                  fields: [
+                    { title: "Message", value: error.response.data[0].message },
+                    {
+                      title: "Contact Name",
+                      value: res.attributes.name,
+                      short: true,
+                    },
+                    {
+                      title: "Contact ID",
+                      value: res.id,
+                      short: true,
+                    },
+                    {
+                      title: "Error Code",
+                      value: error.response.data[0].errorCode,
+                      short: true,
+                    },
+                    {
+                      title: "Fields",
+                      value: error.response.data[0].fields
+                        ? error.response.data[0].fields.join(", ")
+                        : null,
+                      short: true,
+                    },
+                  ],
+                },
+              ],
+            });
+          }
         });
-        console.log(organization);
-      } catch (error) {
-        console.log(error);
-        if (error.response) {
-          slackMessage({
-            text: "Error updating contact in Salesforce.",
-            attachments: [
-              {
-                fallback: error.response.data[0].message,
-                color: "#D18F2C",
-                fields: [
-                  { title: "Message", value: error.response.data[0].message },
-                  {
-                    title: "Contact Name",
-                    value: res.attributes.name,
-                    short: true,
-                  },
-                  {
-                    title: "Contact ID",
-                    value: res.id,
-                    short: true,
-                  },
-                  {
-                    title: "Error Code",
-                    value: error.response.data[0].errorCode,
-                    short: true,
-                  },
-                  {
-                    title: "Fields",
-                    value: error.response.data[0].fields
-                      ? error.response.data[0].fields.join(", ")
-                      : null,
-                    short: true,
-                  },
-                ],
-              },
-            ],
-          });
-        }
-      }
 
       if (!organization) {
         console.log(`No organization found for contact ${res.id}.`);
@@ -400,26 +412,28 @@ exports.handler = async function (event, context) {
       }
     }
   } else if (res.type === "clients") {
-    let accountId = res.attributes.provider_salesforce_id;
+    accountId = res.attributes.provider_salesforce_id;
 
     if (!accountId) {
       url = `${
         auth.instance_url
       }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
-      try {
-        organization = await axios.get(url, {
+      organization = await axios
+        .get(url, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
+        })
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log(error);
+          }
         });
-        console.log(organization);
-      } catch (error) {
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error);
-        }
-      }
 
       if (!organization) {
         console.log(`No organization found for repository ${res.id}.`);
