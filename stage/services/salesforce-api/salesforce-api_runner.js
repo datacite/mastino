@@ -101,7 +101,8 @@ exports.handler = async function (event, context) {
 
       await axios
         .patch(
-          providerUrl + `/${res.attributes.parent_organization.toLowerCase()}`,
+          providerUrl +
+            `/${res.attributes.parent_organization.toLowerCase()}?include-deleted=true`,
           {
             data: {
               type: "providers",
@@ -336,7 +337,8 @@ exports.handler = async function (event, context) {
 
       await axios
         .patch(
-          providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
+          providerUrl +
+            `/${res.attributes.provider_id.toLowerCase()}?include-deleted=true`,
           {
             data: {
               type: "providers",
@@ -506,7 +508,8 @@ exports.handler = async function (event, context) {
 
       await axios
         .patch(
-          providerUrl + `/${res.attributes.provider_id.toLowerCase()}`,
+          providerUrl +
+            `/${res.attributes.provider_id.toLowerCase()}?include-deleted=true`,
           {
             data: {
               type: "providers",
