@@ -1,17 +1,37 @@
 resource "aws_s3_bucket" "metrics" {
-    bucket = "${var.s3_bucket}"
-    acl = "public-read"
-    policy = "${data.template_file.metrics-api_s3.rendered}"
-    tags = {
-        Name = "metricsApi"
+  bucket = "${var.s3_bucket}"
+  acl = "public-read"
+  policy = "${data.template_file.metrics-api_s3.rendered}"
+  tags = {
+      Name = "metricsApi"
+  }
+  versioning {
+    enabled = true
+  }
+  lifecycle_rule {
+    enabled = true
+
+    noncurrent_version_transition {
+      days          = 30
+      storage_class = "STANDARD_IA"
     }
+
+    noncurrent_version_transition {
+      days          = 60
+      storage_class = "GLACIER"
+    }
+
+    noncurrent_version_expiration {
+      days = 365
+    }
+  }
 }
 
 resource "aws_ecs_service" "metrics-api" {
   name            = "metrics-api"
   cluster         = "${data.aws_ecs_cluster.default.id}"
   task_definition = "${aws_ecs_task_definition.metrics-api.arn}"
-  
+
   # Create service with 2 instances to start
   desired_count = 2
 
@@ -43,7 +63,7 @@ resource "aws_ecs_service" "metrics-api" {
     depends_on = [
     "data.aws_lb_listener.default",
   ]
-  
+
 }
 
 resource "aws_appautoscaling_target" "metrics-api" {
