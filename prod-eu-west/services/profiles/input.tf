@@ -50,7 +50,7 @@ data "aws_lb_listener" "default" {
 data "template_file" "profiles_task" {
   template = file("profiles.json")
 
-  vars {
+  vars = {
     redis_url          = var.redis_url
     bracco_url         = var.bracco_url
     public_key         = var.public_key

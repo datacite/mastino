@@ -59,7 +59,7 @@ data "aws_lb_listener" "test" {
 data "template_file" "profiles_task" {
   template = file("profiles.json")
 
-  vars {
+  vars = {
     redis_url          = var.redis_url
     commons_url        = var.commons_url
     public_key         = var.public_key
