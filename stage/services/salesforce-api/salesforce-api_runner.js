@@ -368,7 +368,6 @@ exports.handler = async function (event, context) {
         : res.attributes.email,
       Email: res.attributes.email,
       AccountId: accountId,
-      Fabrica_ID__c: res.attributes.fabrica_id,
       Type__c: res.attributes.role_name
         ? res.attributes.role_name.join(";")
         : null,
