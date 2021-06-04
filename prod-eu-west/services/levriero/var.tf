@@ -7,7 +7,7 @@ variable "region" {
 variable "vpc_id" {}
 
 variable "levriero_tags" {
-  type = "map"
+  type = map
 }
 
 variable "lb_name" {
