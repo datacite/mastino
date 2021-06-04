@@ -91,7 +91,7 @@ resource "aws_cloudwatch_metric_alarm" "levriero_cpu_scale_up" {
   statistic           = "Average"
   threshold           = "80"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = aws_ecs_service.levriero.name
   }
