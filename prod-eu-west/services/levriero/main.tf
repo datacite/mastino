@@ -31,7 +31,7 @@ resource "aws_ecs_service" "levriero" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default",
+    data.aws_lb_listener.default,
   ]
 }
 

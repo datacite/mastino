@@ -24,7 +24,7 @@ resource "aws_ecs_service" "levriero-stage" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.stage",
+    data.aws_lb_listener.stage,
   ]
 }
 
