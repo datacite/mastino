@@ -63,12 +63,11 @@ data "template_file" "levriero_task" {
     slack_webhook_url  = var.slack_webhook_url
     volpino_url        = var.volpino_url
     crossref_query_url = var.crossref_query_url
-    volpino_token      = var.volpino_token
+    staff_admin_token_token = var.staff_admin_token
     eventdata_url      = var.eventdata_url
     eventdata_token    = var.eventdata_token
     api_url            = var.api_url
     lagottino_url      = var.lagottino_url
-    lagottino_token    = var.lagottino_token
     datacite_crossref_source_token = var.datacite_crossref_source_token
     datacite_related_source_token  = var.datacite_related_source_token
     datacite_other_source_token    = var.datacite_other_source_token

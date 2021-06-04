@@ -45,9 +45,8 @@ variable "lagottino_url" {
 variable "eventdata_url" {
   default = "https://bus-staging.eventdata.crossref.org"
 }
-variable "volpino_token" {}
 variable "eventdata_token" {}
-variable "lagottino_token" {}
+variable "staff_admin_token" {}
 
 variable "datacite_crossref_source_token" {}
 variable "datacite_related_source_token" {}

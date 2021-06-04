@@ -70,8 +70,8 @@
       "value": "${volpino_url}"
     },
     {
-      "name": "VOLPINO_TOKEN",
-      "value": "${volpino_token}"
+      "name": "STAFF_ADMIN_TOKEN",
+      "value": "${staff_admin_token}"
     },
     {
       "name": "EVENTDATA_URL",
@@ -84,10 +84,6 @@
     {
       "name": "LAGOTTINO_URL",
       "value": "${lagottino_url}"
-    },
-    {
-      "name": "LAGOTTINO_TOKEN",
-      "value": "${lagottino_token}"
     },
     {
       "name": "DATACITE_CROSSREF_SOURCE_TOKEN",
