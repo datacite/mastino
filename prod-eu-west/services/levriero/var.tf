@@ -41,7 +41,7 @@ variable "api_url" {
   default = "http://client-api.local"
 }
 variable "lagottino_url" {
-  default = "https://api.datacite.org"
+  default = "http://client-api.local"
 }
 variable "eventdata_url" {
   default = "https://bus.eventdata.crossref.org"

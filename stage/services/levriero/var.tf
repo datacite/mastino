@@ -40,7 +40,7 @@ variable "volpino_url" {
   default = "https://api.stage.datacite.org"
 }
 variable "lagottino_url" {
-  default = "https://api.stage.datacite.org"
+  default = "http://client-api.stage.local"
 }
 variable "eventdata_url" {
   default = "https://bus-staging.eventdata.crossref.org"
