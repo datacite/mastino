@@ -28,3 +28,21 @@ resource "aws_route53_record" "split-main" {
    ttl = "${var.ttl}"
    records = ["10.0.20.195"]
 }
+
+resource "aws_globalaccelerator_accelerator" "mds" {
+  name            = "mds"
+  ip_address_type = "IPV4"
+  enabled         = true
+
+  attributes {
+    flow_logs_enabled   = true
+    flow_logs_s3_bucket = "/ecs/mds"
+    flow_logs_s3_prefix = "flow-logs/"
+  }
+}
+
+resource "aws_globalaccelerator_listener" "mds" {
+  accelerator_arn = aws_globalaccelerator_accelerator.mds.id
+  client_affinity = "SOURCE_IP"
+  protocol        = "TCP"
+}
