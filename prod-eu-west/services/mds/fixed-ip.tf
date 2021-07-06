@@ -30,9 +30,9 @@ resource "aws_route53_record" "split-main" {
    records = ["10.0.20.195"]
 }
 
-// resource "aws_eip" "fixed-proxy" {
-//   vpc = "true"
-// }
+resource "aws_eip" "fixed-proxy" {
+  vpc = "true"
+}
 
 // resource "aws_eip_association" "fixed-proxy" {
 //   instance_id = "${aws_instance.fixed-proxy.id}"
