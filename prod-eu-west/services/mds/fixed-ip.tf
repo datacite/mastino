@@ -30,6 +30,23 @@ resource "aws_route53_record" "split-main" {
    records = ["10.0.20.195"]
 }
 
+// resource "aws_eip" "fixed-proxy" {
+//   vpc = "true"
+// }
+
+// resource "aws_eip_association" "fixed-proxy" {
+//   instance_id = "${aws_instance.fixed-proxy.id}"
+//   allocation_id = "${aws_eip.fixed-proxy.id}"
+// }
+
+resource "aws_route53_record" "mds-fixed" {
+  zone_id = data.aws_route53_zone.production.zone_id
+  name = "mds-fixed.datacite.org"
+  type = "A"
+  ttl = "60"
+  records = [data.aws_lb.default.dns_name]
+}
+
 resource "aws_s3_bucket" "mds-fixed" {
     bucket = "mds-fixed.datacite.org"
     acl = "public-read"
