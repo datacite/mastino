@@ -8,8 +8,9 @@ resource "aws_lb_listener_rule" "mds-fixed" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["mds-fixed.datacite.org"]
+    host_header {
+      values = ["mds-fixed.datacite.org"]
+    }
   }
 }
 

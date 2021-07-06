@@ -190,8 +190,9 @@ resource "aws_lb_listener_rule" "mds" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["mds.datacite.org"]
+    host_header {
+      values = ["mds.datacite.org"]
+    }
   }
 }
 
