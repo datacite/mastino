@@ -62,4 +62,9 @@ resource "aws_globalaccelerator_listener" "mds" {
   accelerator_arn = aws_globalaccelerator_accelerator.mds.id
   client_affinity = "SOURCE_IP"
   protocol        = "TCP"
+
+  port_range {
+    from_port = 80
+    to_port   = 80
+  }
 }
