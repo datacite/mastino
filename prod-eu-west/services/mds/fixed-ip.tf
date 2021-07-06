@@ -1,10 +1,10 @@
 resource "aws_lb_listener_rule" "mds-fixed" {
-  listener_arn = "${data.aws_lb_listener.default-http.arn}"
+  listener_arn = data.aws_lb_listener.default-http.arn
   priority     = 15
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.mds.arn}"
+    target_group_arn = aws_lb_target_group.mds.arn
   }
 
   condition {
@@ -22,10 +22,10 @@ resource "aws_lb_listener_rule" "mds-fixed" {
 // }
 
 resource "aws_route53_record" "split-main" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   zone_id = data.aws_route53_zone.internal.zone_id
    name = "main.datacite.org"
    type = "A"
-   ttl = "${var.ttl}"
+   ttl = var.ttl
    records = ["10.0.20.195"]
 }
 
