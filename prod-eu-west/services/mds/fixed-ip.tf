@@ -64,7 +64,7 @@ resource "aws_globalaccelerator_listener" "mds" {
   protocol        = "TCP"
 
   port_range {
-    from_port = 80
-    to_port   = 80
+    from_port = 443
+    to_port   = 443
   }
 }
