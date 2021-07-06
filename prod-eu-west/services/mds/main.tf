@@ -9,7 +9,7 @@ resource "aws_ecs_service" "mds" {
 
   # Allow external changes without Terraform plan difference
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [desired_count]
   }
 
   network_configuration {
@@ -87,7 +87,7 @@ resource "aws_cloudwatch_metric_alarm" "mds_cpu_scale_up" {
   statistic           = "Average"
   threshold           = "80"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = aws_ecs_service.mds.name
   }
@@ -106,7 +106,7 @@ resource "aws_cloudwatch_metric_alarm" "mds_cpu_scale_down" {
   statistic           = "Average"
   threshold           = "20"
 
-  dimensions {
+  dimensions = {
     ClusterName = "default"
     ServiceName = aws_ecs_service.mds.name
   }
