@@ -68,3 +68,13 @@ resource "aws_globalaccelerator_listener" "mds" {
     to_port   = 443
   }
 }
+
+resource "aws_globalaccelerator_endpoint_group" "mds" {
+  listener_arn = aws_globalaccelerator_listener.mds.id
+
+  endpoint_configuration {
+    client_ip_preservation_enabled = true
+    endpoint_id = data.aws_lb.default.arn
+    weight      = 100
+  }
+}
