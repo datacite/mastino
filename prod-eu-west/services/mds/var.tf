@@ -36,3 +36,7 @@ variable "sentry_dsn" {}
 variable "api_url" {
   default = "http://member-api.local"
 }
+
+variable "eip" {
+  default = "34.242.20.234"
+}

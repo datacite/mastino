@@ -44,7 +44,7 @@ resource "aws_route53_record" "mds-fixed" {
   name = "mds-fixed.datacite.org"
   type = "A"
   ttl = "60"
-  records = [data.aws_lb.default.dns_name]
+  records = [var.eip]
 }
 
 resource "aws_s3_bucket" "mds-fixed" {
