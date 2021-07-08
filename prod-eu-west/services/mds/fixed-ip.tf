@@ -42,9 +42,9 @@ resource "aws_eip" "fixed-proxy" {
 resource "aws_route53_record" "mds-fixed" {
   zone_id = data.aws_route53_zone.production.zone_id
   name = "mds-fixed.datacite.org"
-  type = "A"
-  ttl = "60"
-  records = [var.eip]
+  type = "CNAME"
+  ttl = var.ttl
+  records = [aws_globalaccelerator_accelerator.mds.dns_name]
 }
 
 resource "aws_s3_bucket" "mds-fixed" {
