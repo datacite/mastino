@@ -201,7 +201,7 @@ resource "aws_route53_record" "mds" {
    name = "mds.datacite.org"
    type = "CNAME"
    ttl = var.ttl
-   records = [data.aws_lb.default.dns_name]
+   records = [aws_globalaccelerator_accelerator.mds.dns_name]
 }
 
 resource "aws_route53_record" "split-mds" {
