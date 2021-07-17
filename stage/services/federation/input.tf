@@ -50,7 +50,7 @@ data "aws_lb_listener" "stage" {
 data "template_file" "federation_task" {
   template = file("federation.json")
 
-  vars {
+  vars = {
     sentry_dsn         = var.sentry_dsn
     profiles_url       = var.profiles_url
     client_api_url     = var.client_api_url
