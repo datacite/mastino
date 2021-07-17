@@ -31,14 +31,14 @@ resource "aws_ecs_service" "federation" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default",
+    data.aws_lb_listener.default,
   ]
 }
 
 resource "aws_appautoscaling_target" "federation" {
   max_capacity       = 10
   min_capacity       = 2
-  resource_id        = "service/default/${aws_ecs_service.federation.name
+  resource_id        = "service/default/${aws_ecs_service.federation.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 }
