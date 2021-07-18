@@ -1,5 +1,4 @@
 resource "aws_ecs_service" "analytics-stage" {
-
   name = "analytics-stage"
   cluster = data.aws_ecs_cluster.stage.id
   launch_type = "FARGATE"
@@ -56,8 +55,8 @@ resource "aws_lb_target_group" "analytics-stage" {
   target_type = "ip"
 }
 
-/*
-resource "aws_lb_listener_rule" "api-stage" {
+
+resource "aws_lb_listener_rule" "analytics-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
   priority     = 54
 
@@ -71,7 +70,7 @@ resource "aws_lb_listener_rule" "api-stage" {
     values = [var.api_dns_name]
   }
 }
-*/
+
 
 resource "aws_service_discovery_service" "analytics-stage" {
   name = "analytics.stage"

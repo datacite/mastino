@@ -25,3 +25,7 @@ variable "ttl" {
 variable "sentry_dsn" {}
 variable "mailgun_api_key" {}
 variable "slack_webhook_url" {}
+
+variable "analytics_dns_name" {
+  default = "analytics.stage.datacite.org"
+}
