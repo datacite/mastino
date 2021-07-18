@@ -1,148 +1,48 @@
-resource "aws_ecs_service" "analytics-stage" {
-  name = "analytics-stage"
-  cluster = data.aws_ecs_cluster.stage.id
-  launch_type = "FARGATE"
-  task_definition = aws_ecs_task_definition.analytics-stage.arn
-  desired_count = 1
-
-  network_configuration {
-    security_groups = [data.aws_security_group.datacite-private.id]
-    subnets         = [
-      data.aws_subnet.datacite-private.id,
-      data.aws_subnet.datacite-alt.id
-    ]
-  }
-
-  load_balancer {
-    target_group_arn = aws_lb_target_group.analytics-stage.id
-    container_name   = "analytics-stage"
-    container_port   = "80"
-  }
-
-  service_registries {
-    registry_arn = aws_service_discovery_service.analytics-stage.arn
-  }
-
-  depends_on = [
-    data.aws_lb_listener.stage
-  ]
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
+  version    = "~> 2.70"
 }
 
-resource "aws_cloudwatch_log_group" "analytics-stage" {
-  name = "/ecs/analytics-stage"
+data "aws_route53_zone" "production" {
+  name = "datacite.org"
 }
 
-resource "aws_ecs_task_definition" "analytics-stage" {
-  family = "analytics-stage"
-  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
-  network_mode = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
-  cpu = "2048"
-  memory = "4096"
-
-  container_definitions = templatefile("analytics.json",
-  /*
-    {
-      re3data_url        = var.re3data_url
-      bracco_url         = var.bracco_url
-      public_key         = var.public_key
-      jwt_public_key     = var.jwt_public_key
-      jwt_private_key    = var.jwt_private_key
-      session_encrypted_cookie_salt = var.session_encrypted_cookie_salt
-      mysql_user         = var.mysql_user
-      mysql_password     = var.mysql_password
-      mysql_database     = var.mysql_database
-      mysql_host         = var.mysql_host
-      es_name            = var.es_name
-      es_host            = var.es_host
-      es_scheme          = var.es_scheme
-      es_port            = var.es_port
-      es_prefix          = var.es_prefix
-      elastic_password   = var.elastic_password
-      handle_url         = var.handle_url
-      handle_username    = var.handle_username
-      handle_password    = var.handle_password
-      admin_username     = var.admin_username
-      admin_password     = var.admin_password
-      access_key         = var.access_key
-      secret_key         = var.secret_key
-      region             = var.region
-      s3_bucket          = var.s3_bucket
-      sentry_dsn         = var.sentry_dsn
-      mailgun_api_key    = var.mailgun_api_key
-      memcache_servers   = var.memcache_servers
-      jwt_blacklisted    = var.jwt_blacklisted
-      slack_webhook_url  = var.slack_webhook_url
-*/
-      mailgun_api_key    = var.mailgun_api_key
-      version            = var.analytics_tags["sha"]
-    })
+data "aws_route53_zone" "internal" {
+  name = "datacite.org"
+  private_zone = true
 }
 
-/*
-resource "aws_lb_target_group" "client-api-stage" {
-  name     = "client-api-stage"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
-  target_type = "ip"
-
-  health_check {
-    path = "/heartbeat"
-    interval = 300
-    timeout = 120
-  }
+data "aws_security_group" "datacite-private" {
+  id = var.security_group_id
 }
 
-resource "aws_lb_listener_rule" "api-graphql-stage" {
-  listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 48
-
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.client-api-stage.arn
-  }
-
-  condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
-  }
-
-  condition {
-    field  = "path-pattern"
-    values = ["/client-api/graphql"]
-  }
+data "aws_subnet" "datacite-private" {
+  id = var.subnet_datacite-private_id
 }
 
-resource "aws_lb_listener_rule" "api-stage" {
-  listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 54
-
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.client-api-stage.arn
-  }
-
-  condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
-  }
+data "aws_subnet" "datacite-alt" {
+  id = var.subnet_datacite-alt_id
 }
 
-resource "aws_service_discovery_service" "client-api-stage" {
-  name = "client-api.stage"
-
-  health_check_custom_config {
-    failure_threshold = 3
-  }
-
-  dns_config {
-    namespace_id = var.namespace_id
-
-    dns_records {
-      ttl = 300
-      type = "A"
-    }
-  }
+data "aws_ecs_cluster" "stage" {
+  cluster_name = "stage"
 }
-*/
+
+data "aws_iam_role" "ecs_service" {
+  name = "ecs_service"
+}
+
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
+data "aws_lb" "stage" {
+  name = var.lb_name
+}
+
+data "aws_lb_listener" "stage" {
+  load_balancer_arn = data.aws_lb.stage.arn
+  port = 443
+}
