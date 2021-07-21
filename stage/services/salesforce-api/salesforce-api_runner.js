@@ -1,3 +1,25 @@
+function hasBillingInfo(res = new Object({})) {
+  return (
+    res && res.attributes && (
+      res.attributes.billing_organization ||
+      res.attributes.billing_department ||
+      res.attributes.billing_street ||
+      res.attributes.billing_city ||
+      res.attributes.billing_state_code ||
+      res.attributes.billing_postal_code ||
+      res.attributes.billing_country_code
+    )
+  ) ? true : false;
+}
+
+function hasjoinedDate(res = new Object({})) {
+  return (
+    res && res.attributes && (
+      res.attributes.joined
+    )
+  ) ? true : false;
+}
+
 //persistent storage between lambda invocations
 let auth;
 
@@ -144,12 +166,16 @@ exports.handler = async function (event, context) {
         "Consortium",
         "Consortium Organization",
       ].includes(res.attributes.member_type),
-      Date_Joined__c: res.attributes.joined,
+      //Date_Joined__c: res.attributes.joined,
       Fabrica_Creation_Date__c: res.attributes.created,
       Fabrica_Modification_Date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       Is_Active__c: !res.attributes.deleted_at,
     };
+
+    if (hasJoinedDate(res)) {
+      body.Date_Joined__c = res.attributes.joined;
+    }
 
     // consortium organizations have a parent organization
     if ("Consortium Organization" === res.attributes.member_type) {
@@ -160,9 +186,9 @@ exports.handler = async function (event, context) {
 
     // some member types support billing information
     if (
-      ["Direct Member", "Consortium Organization", "Member Only"].includes(
-        res.attributes.member_type
-      )
+      ["Direct Member", "Consortium Organization", "Member Only"].includes(res.attributes.member_type) &&
+      hasBillingInfo(res) &&
+      hasJoinedDate(res)
     ) {
       body = Object.assign(body, {
         Billing_Organization__c: res.attributes.billing_organization,
