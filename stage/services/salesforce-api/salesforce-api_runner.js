@@ -12,7 +12,7 @@ function hasBillingInfo(res = new Object({})) {
   ) ? true : false;
 }
 
-function hasjoinedDate(res = new Object({})) {
+function hasJoinedDate(res = new Object({})) {
   return (
     res && res.attributes && (
       res.attributes.joined
