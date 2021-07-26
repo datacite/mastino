@@ -199,6 +199,8 @@ exports.handler = async function (event, context) {
         BillingPostalCode: res.attributes.billing_postal_code,
         BillingCountryCode: res.attributes.billing_country_code,
       });
+    } else {
+      console.log(`Not forwarding null date joined and/or billing info for organization: ${res.id}.`)
     }
 
     try {
