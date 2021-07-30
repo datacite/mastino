@@ -1,4 +1,4 @@
 vaestgoetaspets_tags = {
-  sha = "4215829"
-  version = "1.0.3"
+  sha = "24bd514"
+  version = "1.0.5"
 }
