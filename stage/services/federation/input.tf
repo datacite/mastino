@@ -57,5 +57,6 @@ data "template_file" "federation_task" {
     api_url            = var.api_url
     strapi_url         = var.strapi_url
     apollo_api_key     = var.apollo_api_key
+    version            = var.vaestgoetaspets_tags["sha"]
   }
 }
