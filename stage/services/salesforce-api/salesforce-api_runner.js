@@ -575,6 +575,11 @@ exports.handler = async function (event, context) {
       IsActive__c: !res.attributes.deleted_at,
     };
 
+    console.log('DEBUG SF LOG - BEGIN');
+    console.log(url);
+    console.log(body;)
+    console.log('DEBUG SF LOG - END');
+
     try {
       result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
