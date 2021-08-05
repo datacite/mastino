@@ -577,7 +577,7 @@ exports.handler = async function (event, context) {
 
     console.log('DEBUG SF LOG - BEGIN');
     console.log(url);
-    console.log(body;)
+    console.log(body);
     console.log('DEBUG SF LOG - END');
 
     try {
