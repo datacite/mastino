@@ -187,8 +187,7 @@ exports.handler = async function (event, context) {
     // some member types support billing information
     if (
       ["Direct Member", "Consortium Organization", "Member Only"].includes(res.attributes.member_type) &&
-      hasBillingInfo(res) &&
-      hasJoinedDate(res)
+      hasBillingInfo(res)
     ) {
       body = Object.assign(body, {
         Billing_Organization__c: res.attributes.billing_organization,
