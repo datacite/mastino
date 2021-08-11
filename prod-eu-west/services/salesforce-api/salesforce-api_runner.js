@@ -186,8 +186,7 @@ exports.handler = async function (event, context) {
     // some member types support billing information
     if (
       ["Direct Member", "Consortium Organization", "Member Only"].includes(res.attributes.member_type) &&
-      hasBillingInfo(res) &&
-      hasJoinedDate(res)
+      hasBillingInfo(res)
     ) {
       body = Object.assign(body, {
         Billing_Organization__c: res.attributes.billing_organization,
@@ -198,8 +197,9 @@ exports.handler = async function (event, context) {
         BillingPostalCode: res.attributes.billing_postal_code,
         BillingCountryCode: res.attributes.billing_country_code,
       });
+      console.log(`Forwarding nonnull billing info for organization: ${res.id}.`);
     } else {
-      console.log(`Not forwarding null date joined and/or billing info for organization: ${res.id}.`)
+      console.log(`Not forwarding null billing info for organization: ${res.id}.`);
     }
 
     try {
