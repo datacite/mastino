@@ -198,9 +198,15 @@ exports.handler = async function (event, context) {
         BillingPostalCode: res.attributes.billing_postal_code,
         BillingCountryCode: res.attributes.billing_country_code,
       });
+      console.log(`Forwarding null date joined and/or billing info for organization: ${res.id}.`);
     } else {
-      console.log(`Not forwarding null date joined and/or billing info for organization: ${res.id}.`)
+      console.log(`Not forwarding null date joined and/or billing info for organization: ${res.id}.`);
     }
+
+    console.log('DEBUG SF LOG1 - BEGIN');
+    console.log(url);
+    console.log(body);
+    console.log('DEBUG SF LOG1 - END');
 
     try {
       result = await axios.patch(url, body, {
