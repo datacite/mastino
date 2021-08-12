@@ -1,47 +1,131 @@
-[{
-  "name": "analytics-stage",
-  //"image": "ghcr.io/datacite/analytics",
-  "image": "nginx:latest",
-  "cpu": 2048,
-  "memory": 4096,
-  "essential": true,
-  "networkMode": "awsvpc",
-  "portMappings": [{
-    "containerPort": 80,
-    "hostPort": 80
-  }],
-  "logConfiguration": {
-    "logDriver": "awslogs",
-    "options": {
-      "awslogs-group": "/ecs/analytics-stage",
-      "awslogs-region": "eu-west-1",
-      "awslogs-stream-prefix": "ecs"
-    }
-  },
-  "environment": [
-    {
-      "name": "AWS_ACCESS_KEY_ID",
-      "value": "${access_key}"
+[
+  {
+    "name": "analytics-stage",
+    "image": "ghcr.io/datacite/analytics:latest",
+    "cpu": 1918,
+    "memory": 3968,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "portMappings": [{
+      "containerPort": 8000,
+      "hostPort": 8000
+    }],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/analytics-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
     },
-    {
-      "name": "AWS_SECRET_ACCESS_KEY",
-      "value": "${secret_key}"
-    },
-    {
-      "name": "AWS_REGION",
-      "value": "${region}"
-    },
-    {
-      "name": "MAILGUN_API_KEY",
-      "value": "${mailgun_api_key}"
-    },
-    {
-      "name": "SLACK_WEBHOOK_URL",
-      "value": "${slack_webhook_url}"
-    },
-    {
-      "name": "GITHUB_VERSION",
-      "value": "${version}"
-    }
-  ]
-}]
+    "command": [
+      "sh -c \"sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh db init-admin && /entrypoint.sh run\""
+    ],
+    "entryPoint": [
+      "sh",
+      "-c"
+    ],
+    "environment": [
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "${region}"
+      },
+      {
+        "name": "MAILGUN_API_KEY",
+        "value": "${mailgun_api_key}"
+      },
+      {
+        "name": "SLACK_WEBHOOK_URL",
+        "value": "${slack_webhook_url}"
+      },
+      {
+        "name": "GITHUB_VERSION",
+        "value": "${version}"
+      },
+      {
+        "name": "SMTP_HOST_PORT",
+        "value": "${smtp_host_port}"
+      },
+      {
+        "name": "CLICKHOUSE_DATABASE_URL",
+        "value": "${clickhouse_database_url}"
+      },
+      {
+        "name": "CLICKHOUSE_DATABASE_USER",
+        "value": "${clickhouse_database_user}"
+      },
+      {
+        "name": "CLICKHOUSE_DATABASE_PASSWORD",
+        "value": "${clickhouse_database_password}"
+      },
+      {
+        "name": "ADMIN_USER_EMAIL",
+        "value": "${admin_user_email}"
+      },
+      {
+        "name": "SMTP_RETRIES",
+        "value": "${smtp_retries}"
+      },
+      {
+        "name": "SMTP_HOST_SSL_ENABLED",
+        "value": "${smtp_host_ssl_enabled}"
+      },
+      {
+        "name": "MAILER_ADAPTER",
+        "value": "${mailer_adapter}"
+      },
+      {
+        "name": "DATABASE_URL",
+        "value": "${database_url}"
+      },
+      {
+        "name": "POSTMARK_API_KEY",
+        "value": "${postmark_api_key}"
+      },
+      {
+        "name": "SMTP_USER_PWD",
+        "value": "${smtp_user_pwd}"
+      },
+      {
+        "name": "ADMIN_USER_PWD",
+        "value": "${admin_user_pwd}"
+      },
+      {
+        "name": "GEOLITE2_COUNTRY_DB",
+        "value": "${geolite2_country_db}"
+      },
+      {
+        "name": "SMTP_HOST_ADDR",
+        "value": "${smtp_host_addr}"
+      },
+      {
+        "name": "ADMIN_USER_NAME",
+        "value": "${admin_user_name}"
+      },
+      {
+        "name": "BASE_URL",
+        "value": "${base_url}"
+      },
+      {
+        "name": "MAILER_EMAIL",
+        "value": "${mailer_email}"
+      },
+      {
+        "name": "SECRET_KEY_BASE",
+        "value": "${secret_key_base}"
+      },
+      {
+        "name": "SMTP_USER_NAME",
+        "value": "${smtp_user_name}"
+      }
+    ]
+  }
+]

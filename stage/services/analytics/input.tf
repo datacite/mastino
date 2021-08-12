@@ -46,3 +46,35 @@ data "aws_lb_listener" "stage" {
   load_balancer_arn = data.aws_lb.stage.arn
   port = 443
 }
+
+data "template_file" "analytics_task" {
+  template = file("analytics.json")
+
+  vars = {
+    access_key               = var.access_key
+    secret_key               = var.secret_key
+    region                   = var.region
+    mailgun_api_key          = var.mailgun_api_key
+    slack_webhook_url        = var.slack_webhook_url
+    version                  = var.analytics_tags["sha"]
+    smtp_host_port           = var.smtp_host_port
+    clickhouse_database_url  = var.clickhouse_database_url
+    clickhouse_database_user = var.clickhouse_database_user
+    clickhouse_database_password = var.clickhouse_database_password
+    admin_user_email         = var.admin_user_email
+    smtp_retries             = var.smtp_retries
+    smtp_host_ssl_enabled    = var.smtp_host_ssl_enabled
+    mailer_adapter           = var.mailer_adapter
+    database_url             = var.database_url
+    postmark_api_key         = var.postmark_api_key
+    smtp_user_pwd            = var.smtp_user_pwd
+    admin_user_pwd           = var.admin_user_pwd
+    geolite2_country_db      = var.geolite2_country_db
+    smtp_host_addr           = var.smtp_host_addr
+    admin_user_name          = var.admin_user_name
+    base_url                 = var.base_url
+    mailer_email             = var.mailer_email
+    secret_key_base          = var.secret_key_base
+    smtp_user_name           = var.smtp_user_name
+  }
+}
