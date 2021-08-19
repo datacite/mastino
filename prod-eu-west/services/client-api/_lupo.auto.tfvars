@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "b33ef06"
-  version = "4.4.42"
+  sha = "da3bb67"
+  version = "4.4.43"
 }
