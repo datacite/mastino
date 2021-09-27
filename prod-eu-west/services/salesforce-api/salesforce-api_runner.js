@@ -560,6 +560,11 @@ exports.handler = async function (event, context) {
       IsActive__c: !res.attributes.deleted_at,
     };
 
+    console.log("SKV - UPDATING REPOSITORIES - BEGIN");
+    console.log(url);
+    console.log(body);
+    console.log("SKV - UPDATING REPOSITORIES - END");
+
     try {
       result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
