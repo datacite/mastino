@@ -3,9 +3,8 @@ resource "aws_ecs_service" "client-api" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.client-api.arn
-  
-  # Create service with 2 instances to start
-  desired_count = 3
+
+  desired_count = 4
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -37,7 +36,7 @@ resource "aws_ecs_service" "client-api" {
 
 resource "aws_appautoscaling_target" "client-api" {
   max_capacity       = 8
-  min_capacity       = 3
+  min_capacity       = 4
   resource_id        = "service/default/${aws_ecs_service.client-api.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -89,7 +88,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_up" {
   namespace           = "AWS/ApplicationELB"
   period              = "60"
   statistic           = "Sum"
-  threshold           = "100"
+  threshold           = "200"
 
   dimensions = {
     TargetGroup  = aws_lb_target_group.client-api.arn_suffix
@@ -107,7 +106,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_down" {
   namespace           = "AWS/ApplicationELB"
   period              = "60"
   statistic           = "Sum"
-  threshold           = "25"
+  threshold           = "50"
 
   dimensions = {
     TargetGroup  = aws_lb_target_group.client-api.arn_suffix
