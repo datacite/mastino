@@ -88,7 +88,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_up" {
   namespace           = "AWS/ApplicationELB"
   period              = "60"
   statistic           = "Sum"
-  threshold           = "200"
+  threshold           = "180"
 
   dimensions = {
     TargetGroup  = aws_lb_target_group.client-api.arn_suffix
