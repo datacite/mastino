@@ -1,38 +1,38 @@
-variable "access_key" {}
-variable "secret_key" {}
-variable "region" {
-    default = "eu-west-1"
-}
+# variable "access_key" {}
+# variable "secret_key" {}
+# variable "region" {
+#     default = "eu-west-1"
+# }
 
-variable "vpc_id" {}
+# variable "vpc_id" {}
 
-variable "cheetoh_tags" {
-  type = "map"
-}
+# variable "cheetoh_tags" {
+#   type = "map"
+# }
 
-variable "lb_name" {
-  default = "lb-test"
-}
+# variable "lb_name" {
+#   default = "lb-test"
+# }
 
-variable "security_group_id" {}
+# variable "security_group_id" {}
 
-variable "ttl" {
-  default = "300"
-}
+# variable "ttl" {
+#   default = "300"
+# }
 
-variable "subnet_datacite-private_id" {}
-variable "subnet_datacite-alt_id" {}
+# variable "subnet_datacite-private_id" {}
+# variable "subnet_datacite-alt_id" {}
 
-variable "memcache_servers" {
-  default = "memcached.stage.datacite.org:11211"
-}
+# variable "memcache_servers" {
+#   default = "memcached.stage.datacite.org:11211"
+# }
 
-variable "secret_key_base" {}
-variable "sentry_dsn" {}
+# variable "secret_key_base" {}
+# variable "sentry_dsn" {}
 
-variable "admin_username" {}
-variable "admin_password" {}
+# variable "admin_username" {}
+# variable "admin_password" {}
 
-variable "api_url" {
-  default = "http://client-api.test.local"
-}
+# variable "api_url" {
+#   default = "http://client-api.test.local"
+# }
