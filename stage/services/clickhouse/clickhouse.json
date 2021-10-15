@@ -1,0 +1,46 @@
+[
+  {
+    "name": "clickhouse-stage",
+    "image": "yandex/clickhouse-server:21.3.2.5",
+    "cpu": 2048,
+    "memory": 4096,
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8123,
+        "hostPort": 8123
+      },
+      {
+        "containerPort": 9000,
+        "hostPort": 9000
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+         "awslogs-group" : "/ecs/clickhouse-stage",
+         "awslogs-region": "eu-west-1",
+         "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment" : [
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "${region}"
+      },
+     {
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
+      }
+    ]
+  }
+]
