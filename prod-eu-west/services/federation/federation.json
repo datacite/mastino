@@ -1,7 +1,7 @@
 [
   {
     "name": "federation",
-    "image": "datacite/vaestgoetaspets:${version}",
+    "image": "ghcr.io/datacite/vaestgoetaspets:${version}",
     "cpu": 256,
     "memory": 512,
     "essential": true,
@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/federation",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
