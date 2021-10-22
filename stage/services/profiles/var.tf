@@ -52,6 +52,10 @@ variable "memcache_servers" {
   default = "memcached.stage.datacite.org:11211"
 }
 
+variable "log_level" {
+  default = "warn"
+}
+
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}

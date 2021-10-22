@@ -60,6 +60,7 @@ data "template_file" "profiles_task" {
   template = file("profiles.json")
 
   vars = {
+    log_level          = var.log_level
     redis_url          = var.redis_url
     commons_url        = var.commons_url
     public_key         = var.public_key
