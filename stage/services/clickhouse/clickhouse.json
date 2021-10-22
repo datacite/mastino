@@ -1,7 +1,7 @@
 [
   {
     "name": "clickhouse-stage",
-    "image": "yandex/clickhouse-server:21.3.2.5",
+    "image": "yandex/clickhouse-server:21.8.10.19",
     "cpu": 2048,
     "memory": 4096,
     "networkMode": "awsvpc",
