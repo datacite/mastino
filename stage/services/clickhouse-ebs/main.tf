@@ -5,7 +5,7 @@ resource "aws_instance" "clickhouse-ebs-stage" {
   vpc_security_group_ids = [var.security_group_id]
   ebs_optimized = "false"
   source_dest_check = "false"
-  user_data = "${data.template_file.clickhouse-ebs-user-data-cfg.rendered}"
+  user_data = data.template_file.clickhouse-ebs-user-data-cfg.rendered
   root_block_device = {
     volume_type = "gp2"
     volume_size = "30"

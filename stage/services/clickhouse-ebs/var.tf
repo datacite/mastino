@@ -30,7 +30,7 @@ variable "hostname" {}
 variable "key_name" {}
 
 variable "ami" {
-  type = "map"
+  type = map(string)
   description = "Amazon Linux default AMI"
 
   default = {
