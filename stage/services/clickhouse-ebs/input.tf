@@ -71,9 +71,5 @@ data "aws_iam_policy_document" "ecs-service-policy" {
 
 
 data "template_file" "clickhouse-ebs-user-data-cfg" {
-  template = "${file("user_data.cfg")}"
-
-  vars {
-
-  }
+  template = file("user_data.cfg")
 }
