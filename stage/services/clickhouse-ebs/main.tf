@@ -1,4 +1,5 @@
-resource "aws_instance" "clickhouse-ebs-stage" {  ami = var.ami[var.region]
+resource "aws_instance" "clickhouse-ebs-stage" {
+  ami = var.ami[var.region]
   subnet_id =  var.subnet_datacite-private_id
   instance_type = "t2.medium"
   vpc_security_group_ids = [var.security_group_id]
