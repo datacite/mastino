@@ -3,7 +3,7 @@ resource "aws_db_instance" "postgres-stage" {
   storage_type                = "gp2"
   allocated_storage           = 20
   engine                      = "postgres"
-  engine_version              = "12"
+  engine_version              = "12.7"
   instance_class              = "db.t3.micro"
   username                    = var.postgres_user
   password                    = var.postgres_password
