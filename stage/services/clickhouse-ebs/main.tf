@@ -6,14 +6,18 @@ resource "aws_instance" "clickhouse-ebs-stage" {
   ebs_optimized = "false"
   source_dest_check = "false"
   user_data = data.template_file.clickhouse-ebs-user-data-cfg.rendered
-  root_block_device = {
+  root_block_device = [{
     volume_type = "gp2"
     volume_size = "30"
     delete_on_termination = "true"
-  }
+  }]
   key_name = var.key_name
-  tags {
+  tags = {
     name = "clickhouse-ebs-stage"
+  }
+
+  lifecycle {
+    ignore_changes = ["ami", "user_data", "subnet_id", "key_name", "ebs_optimized", "private_ip"]
   }
 }
 
