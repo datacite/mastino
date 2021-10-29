@@ -7,7 +7,7 @@ resource "aws_instance" "clickhouse-ebs-stage" {
   key_name = var.key_name
   user_data = data.template_file.clickhouse-ebs-user-data-cfg.rendered
   tags = {
-    name = "clickhouse-ebs-stage"
+    Name = "clickhouse-ebs-stage"
   }
 
   // lifecycle {
