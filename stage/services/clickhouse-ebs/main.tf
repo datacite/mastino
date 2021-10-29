@@ -91,7 +91,7 @@ resource "aws_lb_target_group" "clickhouse-ebs-stage" {
 
 resource "aws_lb_listener_rule" "clickhouse-ebs-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 131
+  priority     = 132
 
   action {
     type             = "forward"
