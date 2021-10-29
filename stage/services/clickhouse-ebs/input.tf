@@ -49,27 +49,6 @@ data "aws_lb_listener" "stage" {
 
 ////////////////////
 
-data "aws_iam_policy_document" "ecs-instance-policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-    principals {
-      type = "Service"
-      identifiers = ["ec2.amazonaws.com"]
-    }
-  }
-}
-
-data "aws_iam_policy_document" "ecs-service-policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-    principals {
-      type = "Service"
-      identifiers = ["ecs.amazonaws.com"]
-    }
-  }
-}
-
-
 data "template_file" "clickhouse-ebs-user-data-cfg" {
   template = file("user_data.cfg")
 }
