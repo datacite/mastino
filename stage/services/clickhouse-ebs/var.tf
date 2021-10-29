@@ -34,6 +34,6 @@ variable "ami" {
   description = "Amazon Linux default AMI"
 
   default = {
-    eu-west-1 = "ami-05cd35b907b4ffe77"
+    eu-west-1 = "ami-06c11ea68c61e5570"
   }
 }
