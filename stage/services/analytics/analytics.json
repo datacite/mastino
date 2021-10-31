@@ -127,5 +127,26 @@
         "value": "${smtp_user_name}"
       }
     ]
+  },
+  {
+    "name": "bytemark-mail",
+    "image": "bytemark/smtp",
+    "cpu": 128,
+    "memory": 128,
+    "essential": true,
+    "memoryReservation": 64,
+    "networkMode": "awsvpc",
+    "portMappings": [{
+      "containerPort": 25,
+      "hostPort": 25
+    }],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/analytics-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
   }
 ]
