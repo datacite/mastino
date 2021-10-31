@@ -8,7 +8,7 @@ resource "aws_efs_file_system" "stage" {
 
 resource "aws_efs_access_point" "strapi-stage" {
   file_system_id = aws_efs_file_system.stage.id
-  
+
   posix_user {
     uid = 1001
     gid = 1001
@@ -17,6 +17,26 @@ resource "aws_efs_access_point" "strapi-stage" {
 
   root_directory {
     path = "/strapi-stage"
+
+    creation_info {
+      owner_uid      = 1001
+      owner_gid      = 1001
+      permissions    = 755
+    }
+  }
+}
+
+resource "aws_efs_access_point" "geoip-stage" {
+  file_system_id = aws_efs_file_system.stage.id
+
+  posix_user {
+    uid = 1001
+    gid = 1001
+    secondary_gids = [1003, 1004]
+  }
+
+  root_directory {
+    path = "/geoip"
 
     creation_info {
       owner_uid      = 1001
