@@ -1,7 +1,7 @@
 resource "aws_instance" "clickhouse-ebs-stage" {
   ami = var.ami[var.region]
   subnet_id =  var.subnet_datacite-private_id
-  instance_type = "t2.large"
+  instance_type = "t2.medium"
   iam_instance_profile = aws_iam_instance_profile.ecs-instance-profile.name
   vpc_security_group_ids = [var.security_group_id]
   key_name = var.key_name
