@@ -19,7 +19,6 @@ variable database_url {}
 variable postmark_api_key {}
 variable smtp_user_pwd {}
 variable admin_user_pwd {}
-variable geolite2_country_db  {}
 variable smtp_host_addr  {}
 variable admin_user_name {}
 variable base_url {}
