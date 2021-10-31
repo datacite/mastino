@@ -10,6 +10,11 @@
       "containerPort": 8000,
       "hostPort": 8000
     }],
+    "mountPoints": [{
+        "containerPath": "/geoip",
+        "sourceVolume": "geoip",
+        "readOnly": true
+    }],
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
@@ -125,6 +130,10 @@
       {
         "name": "SMTP_USER_NAME",
         "value": "${smtp_user_name}"
+      },
+      {
+        "name": "GEOLITE2_COUNTRY_DB",
+        "value": "${geolite2_country_db}"
       }
     ]
   },
@@ -148,5 +157,44 @@
         "awslogs-stream-prefix": "ecs"
       }
     }
+  },
+  {
+    "name": "maxmind-geoip",
+    "image": "maxmindinc/geoipupdate",
+    "cpu": 128,
+    "memory": 128,
+    "essential": true,
+    "memoryReservation": 64,
+    "networkMode": "awsvpc",
+    "mountPoints": [{
+      "containerPath": "/usr/share/GeoIP",
+      "sourceVolume": "geoip"
+    }],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/analytics-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment": [
+      {
+        "name": "GEOIPUPDATE_EDITION_IDS",
+        "value": "${geoipupdate_edition_ids}"
+      },
+      {
+        "name": "GEOIPUPDATE_FREQUENCY",
+        "value": "${geoipupdate_frequency}"
+      },
+      {
+        "name": "GEOIPUPDATE_ACCOUNT_ID",
+        "value": "${geoipupdate_account_id}"
+      },
+      {
+        "name": "GEOIPUPDATE_LICENSE_KEY",
+        "value": "${geoipupdate_license_key}"
+      }
+    ]
   }
 ]
