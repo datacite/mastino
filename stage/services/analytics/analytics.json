@@ -2,8 +2,8 @@
   {
     "name": "analytics-stage",
     "image": "ghcr.io/datacite/analytics:latest",
-    "cpu": 1918,
-    "memory": 3968,
+    "cpu": 1790,
+    "memory": 3840,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [{
