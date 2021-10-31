@@ -69,12 +69,16 @@ data "template_file" "analytics_task" {
     postmark_api_key         = var.postmark_api_key
     smtp_user_pwd            = var.smtp_user_pwd
     admin_user_pwd           = var.admin_user_pwd
-    geolite2_country_db      = var.geolite2_country_db
     smtp_host_addr           = var.smtp_host_addr
     admin_user_name          = var.admin_user_name
     base_url                 = var.base_url
     mailer_email             = var.mailer_email
     secret_key_base          = var.secret_key_base
     smtp_user_name           = var.smtp_user_name
+    geolite2_country_db      = var.geolite2_country_db
+    geoipupdate_edition_ids  = var.geoipupdate_edition_ids
+    geoipupdate_frequency    = var.geoipupdate_frequency
+    geoipupdate_account_id   = var.geoipupdate_account_id
+    geoipupdate_license_key  = var.geoipupdate_license_key
   }
 }

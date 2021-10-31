@@ -51,3 +51,9 @@ variable "analytics_dns_name" {
 variable "ttl" {
   default = "300"
 }
+
+variable geolite2_country_db  {}
+variable geoipupdate_edition_ids  {}
+variable geoipupdate_frequency  {}
+variable geoipupdate_account_id  {}
+variable geoipupdate_license_key  {}
