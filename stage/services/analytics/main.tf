@@ -48,7 +48,7 @@ resource "aws_ecs_task_definition" "analytics-stage" {
     efs_volume_configuration {
       file_system_id = "fs-f6817e3c"
       root_directory = "/geoip"
-      authorization_config = {
+      authorization_config {
           access_point_id = "fsap-09f51dfb1417fb9e3"
       }
     }
