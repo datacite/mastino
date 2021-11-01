@@ -57,3 +57,4 @@ variable geoipupdate_edition_ids  {}
 variable geoipupdate_frequency  {}
 variable geoipupdate_account_id  {}
 variable geoipupdate_license_key  {}
+variable "public_key" {}

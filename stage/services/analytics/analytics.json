@@ -129,6 +129,10 @@
       {
         "name": "GEOLITE2_COUNTRY_DB",
         "value": "${geolite2_country_db}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       }
     ]
   },
@@ -189,6 +193,10 @@
       {
         "name": "GEOIPUPDATE_LICENSE_KEY",
         "value": "${geoipupdate_license_key}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
       }
     ]
   }

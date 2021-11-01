@@ -84,5 +84,6 @@ data "template_file" "analytics_task" {
     geoipupdate_frequency    = var.geoipupdate_frequency
     geoipupdate_account_id   = var.geoipupdate_account_id
     geoipupdate_license_key  = var.geoipupdate_license_key
+    public_key               = var.public_key
   }
 }
