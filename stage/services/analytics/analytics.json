@@ -10,11 +10,6 @@
       "containerPort": 8000,
       "hostPort": 8000
     }],
-    "mountPoints": [{
-        "containerPath": "/geoip",
-        "sourceVolume": "geoip",
-        "readOnly": true
-    }],
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
