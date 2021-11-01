@@ -42,6 +42,7 @@ variable "subnet_datacite-alt_id" {}
 
 variable "sentry_dsn" {}
 variable "namespace_id" {}
+variable "file_system_id" {}
 
 variable "analytics_dns_name" {
   default = "analytics.stage.datacite.org"

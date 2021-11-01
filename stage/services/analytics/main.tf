@@ -44,10 +44,10 @@ resource "aws_ecs_task_definition" "analytics-stage" {
 
   volume {
     name = "geoip"
-    docker_volume_configuration {
-      scope = "shared"
-      autoprovision = true
-      driver= "local"
+
+    efs_volume_configuration {
+      file_system_id = data.aws_efs_file_system.stage.id
+      root_directory = "/geoip"
     }
   }
 }
@@ -113,3 +113,4 @@ resource "aws_service_discovery_service" "analytics-stage" {
     }
   }
 }
+
