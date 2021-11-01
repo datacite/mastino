@@ -138,7 +138,7 @@
     ]
   },
   {
-    "name": "bytemark-mail",
+    "name": "bytemark-smtp",
     "image": "bytemark/smtp",
     "cpu": 128,
     "memory": 128,
