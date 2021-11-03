@@ -51,9 +51,6 @@ resource "aws_ecs_service" "clickhouse-ebs-stage" {
   task_definition = aws_ecs_task_definition.clickhouse-ebs-stage.arn
   desired_count = 1
 
-  # give container time to start up
-  # health_check_grace_period_seconds = 900
-
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
     subnets         = [
@@ -65,48 +62,8 @@ resource "aws_ecs_service" "clickhouse-ebs-stage" {
   service_registries {
     registry_arn = aws_service_discovery_service.clickhouse-ebs-stage.arn
   }
-
-/*
-  load_balancer {
-    target_group_arn = aws_lb_target_group.clickhouse-ebs-stage.id
-    container_name   = "clickhouse-ebs-stage"
-    container_port   = "8123"
-  }
-
-  depends_on = [
-    data.aws_lb_listener.stage
-  ]
-*/
 }
 
-/*
-resource "aws_lb_target_group" "clickhouse-ebs-stage" {
-  name     = "clickhouse-ebs-stage"
-  port     = 8123
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
-  target_type = "ip"
-
-  health_check {
-    path = "/"
-  }
-}
-
-resource "aws_lb_listener_rule" "clickhouse-ebs-stage" {
-  listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 132
-
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.clickhouse-ebs-stage.arn
-  }
-
-  condition {
-    field  = "host-header"
-    values = [aws_route53_record.clickhouse-ebs-stage.name]
-  }
-}
-*/
 resource "aws_service_discovery_service" "clickhouse-ebs-stage" {
   name = "clickhouse-ebs.stage"
 
@@ -123,24 +80,6 @@ resource "aws_service_discovery_service" "clickhouse-ebs-stage" {
     }
   }
 }
-/*
-resource "aws_route53_record" "clickhouse-ebs-stage" {
-   zone_id = data.aws_route53_zone.production.zone_id
-   name = "clickhouse-ebs.stage.datacite.org"
-   type = "CNAME"
-   ttl = var.ttl
-   records = [data.aws_lb.stage.dns_name]
-}
-
-
-resource "aws_route53_record" "split-clickhouse-ebs-stage" {
-    zone_id = data.aws_route53_zone.internal.zone_id
-    name = "clickhouse-ebs.stage.datacite.org"
-    type = "CNAME"
-    ttl = var.ttl
-    records = [data.aws_lb.stage.dns_name]
-}
-*/
 
 resource "aws_route53_record" "clickhouse-ebs-stage" {
     zone_id = data.aws_route53_zone.internal.zone_id
