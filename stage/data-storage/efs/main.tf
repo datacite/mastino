@@ -26,26 +26,6 @@ resource "aws_efs_access_point" "strapi-stage" {
   }
 }
 
-resource "aws_efs_access_point" "geoip-stage" {
-  file_system_id = aws_efs_file_system.stage.id
-
-  posix_user {
-    uid = 1001
-    gid = 1001
-    secondary_gids = [1003, 1004]
-  }
-
-  root_directory {
-    path = "/geoip"
-
-    creation_info {
-      owner_uid      = 1001
-      owner_gid      = 1001
-      permissions    = 755
-    }
-  }
-}
-
 resource "aws_efs_mount_target" "stage" {
   file_system_id  = aws_efs_file_system.stage.id
   subnet_id       = data.aws_subnet.datacite-private.id

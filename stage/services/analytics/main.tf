@@ -46,7 +46,7 @@ resource "aws_ecs_task_definition" "analytics-stage" {
     name = "geoip"
 
     efs_volume_configuration {
-      file_system_id = "fs-029b47047ce9a0c16"
+      file_system_id = data.aws_efs_file_system.stage.id
       root_directory = "/"
     }
   }
