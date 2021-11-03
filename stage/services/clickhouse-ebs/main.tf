@@ -147,7 +147,7 @@ resource "aws_route53_record" "clickhouse-ebs-stage" {
     name = "clickhouse-ebs.stage.datacite.org"
     type = "CNAME"
     ttl = var.ttl
-    records = [data.aws_instance.clickhouse-ebs-stage.private_dns]
+    records = [aws_instance.clickhouse-ebs-stage.private_dns]
 }
 
 resource "aws_cloudwatch_log_group" "clickhouse-ebs-stage" {
