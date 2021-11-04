@@ -63,6 +63,8 @@ data "template_file" "analytics_task" {
     version                  = var.analytics_tags["sha"]
     smtp_host_port           = var.smtp_host_port
     clickhouse_database_url  = var.clickhouse_database_url
+    clickhouse_database_user = var.clickhouse_database_user
+    clickhouse_database_password = var.clickhouse_database_password
     admin_user_email         = var.admin_user_email
     smtp_retries             = var.smtp_retries
     smtp_host_ssl_enabled    = var.smtp_host_ssl_enabled

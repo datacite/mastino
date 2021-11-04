@@ -64,6 +64,14 @@
         "value": "${clickhouse_database_url}"
       },
       {
+        "name": "CLICKHOUSE_DATABASE_USER",
+        "value": "${clickhouse_database_user}"
+      },
+      {
+        "name": "CLICKHOUSE_DATABASE_PASSWORD",
+        "value": "${clickhouse_database_password}"
+      },
+      {
         "name": "ADMIN_USER_EMAIL",
         "value": "${admin_user_email}"
       },

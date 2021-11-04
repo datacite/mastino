@@ -9,6 +9,8 @@ variable "slack_webhook_url" {
 }
 variable "smtp_host_port" {}
 variable "clickhouse_database_url" {}
+variable "clickhouse_database_user" {}
+variable "clickhouse_database_password" {}
 variable "admin_user_email" {}
 variable "smtp_retries" {}
 variable smtp_host_ssl_enabled {}
