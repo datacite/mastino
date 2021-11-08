@@ -3,9 +3,9 @@ resource "aws_ecs_service" "member-api" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.member-api.arn
-  
+
   # Create service with 2 instances to start
-  desired_count = 2
+  desired_count = 4
 
   # Allow external changes without Terraform plan difference
   lifecycle {
