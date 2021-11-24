@@ -10,11 +10,11 @@ resource "aws_s3_bucket" "blog-stage" {
         Name = "BlogStage"
     }
 }
-
+// Remove after blog migration is complete
 resource "aws_cloudfront_distribution" "blog-stage" {
   origin {
     domain_name = "${aws_s3_bucket.blog-stage.website_endpoint}"
-    origin_id   = "blog.stage.datacite.org"
+    origin_id   = "oldblog.stage.datacite.org"
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
@@ -34,12 +34,12 @@ resource "aws_cloudfront_distribution" "blog-stage" {
     prefix          = "blog/"
   }
 
-  aliases = ["blog.stage.datacite.org"]
+  aliases = ["oldblog.stage.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "blog.stage.datacite.org"
+    target_origin_id = "oldblog.stage.datacite.org"
 
     forwarded_values {
       query_string = false
@@ -73,19 +73,27 @@ resource "aws_cloudfront_distribution" "blog-stage" {
     ssl_support_method  = "sni-only"
   }
 }
-
-resource "aws_route53_record" "blog-stage" {
+// Remove after blog migration is complete
+resource "aws_route53_record" "old-blog-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "blog.stage.datacite.org"
+   name = "oldblog.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.blog-stage.domain_name}"]
 }
-
-resource "aws_route53_record" "split-blog-stage" {
+// Remove after blog migration is complete
+resource "aws_route53_record" "split-old-blog-stage" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "blog.stage.datacite.org"
+   name = "oldblog.stage.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.blog-stage.domain_name}"]
+}
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "blog-stage" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "blog.stage.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_stage}"]
 }
