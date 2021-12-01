@@ -1,3 +1,4 @@
+/*
 function hasBillingInfo(res = new Object({})) {
   return (
     res && res.attributes && (
@@ -11,6 +12,7 @@ function hasBillingInfo(res = new Object({})) {
     )
   ) ? true : false;
 }
+*/
 
 function hasJoinedDate(res = new Object({})) {
   return (
@@ -185,6 +187,7 @@ exports.handler = async function (event, context) {
     }
 
     // some member types support billing information
+    /*
     if (
       ["Direct Member", "Consortium Organization", "Member Only"].includes(res.attributes.member_type) &&
       hasBillingInfo(res)
@@ -202,6 +205,7 @@ exports.handler = async function (event, context) {
     } else {
       console.log(`Not forwarding null billing info for organization: ${res.id}.`);
     }
+    */
 
     try {
       result = await axios.patch(url, body, {
