@@ -1,7 +1,7 @@
 [
   {
     "name": "citation",
-    "image": "crosscite/citeproc-doi-server:${version}",
+    "image": "ghcr.io/crosscite/citeproc-doi-server:${version}",
     "cpu": 256,
     "memory": 512,
     "networkMode": "awsvpc",
@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/citation",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
