@@ -93,7 +93,7 @@ resource "aws_route53_record" "split-old-blog-stage" {
 resource "aws_route53_record" "blog-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
    name = "blog.stage.datacite.org"
-   type = "CNAME"
+   type = "A"
    ttl = "${var.ttl}"
-   records = ["${var.siteground_stage_domain_name}"]
+   records = ["${var.siteground_ip_stage}"]
 }
