@@ -47,10 +47,6 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-data "aws_efs_file_system" "stage" {
-  file_system_id = var.file_system_id
-}
-
 data "template_file" "analytics_task" {
   template = file("analytics.json")
 
