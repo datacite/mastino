@@ -30,6 +30,12 @@
       "sh",
       "-c"
     ],
+    "dependsOn": [
+      {
+        "containerName": "maxmind-geoip",
+        "condition": "start"
+      }
+    ],
     "environment": [
       {
         "name": "AWS_ACCESS_KEY_ID",
