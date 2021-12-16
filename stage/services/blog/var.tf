@@ -7,3 +7,4 @@ variable "ttl" {
   default = "300"
 }
 variable "siteground_ip_stage" {}
+variable "siteground_stage_domain_name" {}
