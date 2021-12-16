@@ -12,7 +12,7 @@
     }],
     "mountPoints": [{
       "containerPath": "/geoip",
-      "sourceVolume": "geoip",
+      "sourceVolume": "geoip-stage-storage",
       "readOnly": true
     }],
     "logConfiguration": {
@@ -172,7 +172,7 @@
     "networkMode": "awsvpc",
     "mountPoints": [{
       "containerPath": "/usr/share/GeoIP",
-      "sourceVolume": "geoip"
+      "sourceVolume": "geoip-stage-storage"
     }],
     "logConfiguration": {
       "logDriver": "awslogs",
