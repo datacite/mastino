@@ -47,6 +47,10 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
+data "aws_efs_file_system" "stage" {
+  file_system_id = var.file_system_id
+}
+
 data "template_file" "analytics_task" {
   template = file("analytics.json")
 
@@ -81,5 +85,6 @@ data "template_file" "analytics_task" {
     geoipupdate_account_id   = var.geoipupdate_account_id
     geoipupdate_license_key  = var.geoipupdate_license_key
     public_key               = var.public_key
+    file_system_id           = var.file_system_id
   }
 }

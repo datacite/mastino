@@ -43,10 +43,10 @@ resource "aws_ecs_task_definition" "analytics-stage" {
   container_definitions =  data.template_file.analytics_task.rendered
 
   volume {
-    name = "geoip"
+    name = "geoip-stage-storage"
 
     efs_volume_configuration {
-      file_system_id = aws_efs_file_system.stage.id
+      file_system_id = data.aws_efs_file_system.stage.id
       root_directory = "/"
     }
   }
@@ -112,46 +112,4 @@ resource "aws_service_discovery_service" "analytics-stage" {
       type = "A"
     }
   }
-}
-
-resource "aws_efs_file_system" "stage" {
-  creation_token = "efs-geoip-stage"
-
-  tags = {
-    Name = "EFS-GeoIP-Stage"
-  }
-}
-
-resource "aws_efs_access_point" "geoip-stage" {
-  file_system_id = aws_efs_file_system.stage.id
-
-  posix_user {
-    uid = 1001
-    gid = 1001
-    secondary_gids = [1003, 1004]
-  }
-
-  root_directory {
-    path = "/geoip-stage"
-
-    creation_info {
-      owner_uid      = 1001
-      owner_gid      = 1001
-      permissions    = 755
-    }
-  }
-}
-
-resource "aws_efs_mount_target" "stage" {
-  file_system_id  = aws_efs_file_system.stage.id
-  subnet_id       = data.aws_subnet.datacite-private.id
-  security_groups = [data.aws_security_group.datacite-private.id]
-}
-
-resource "aws_route53_record" "efs-geoip-stage" {
-   zone_id = data.aws_route53_zone.internal.zone_id
-   name = "efs-geoip.stage.datacite.org"
-   type = "CNAME"
-   ttl = var.ttl
-   records = [aws_efs_file_system.stage.dns_name]
 }
