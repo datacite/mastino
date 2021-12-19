@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "blog" {
         Name = "Blog"
     }
 }
-
+// Remove after blog migration is complete
 resource "aws_cloudfront_distribution" "blog" {
   origin {
     domain_name = "${aws_s3_bucket.blog.website_endpoint}"
@@ -34,12 +34,12 @@ resource "aws_cloudfront_distribution" "blog" {
     prefix          = "blog/"
   }
 
-  aliases = ["blog.datacite.org"]
+  aliases = ["oldblog.datacite.org"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "blog.datacite.org"
+    target_origin_id = "oldblog.datacite.org"
 
     forwarded_values {
       query_string = false
@@ -73,19 +73,36 @@ resource "aws_cloudfront_distribution" "blog" {
     ssl_support_method  = "sni-only"
   }
 }
-
-resource "aws_route53_record" "blog" {
+// Remove after blog migration is complete
+resource "aws_route53_record" "old-blog" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "blog.datacite.org"
+   name = "oldblog.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.blog.domain_name}"]
 }
-
-resource "aws_route53_record" "split-blog" {
+// Remove after blog migration is complete
+resource "aws_route53_record" "split-old-blog" {
    zone_id = "${data.aws_route53_zone.internal.zone_id}"
-   name = "blog.datacite.org"
+   name = "oldblog.datacite.org"
    type = "CNAME"
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.blog.domain_name}"]
+}
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "blog" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "blog.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_prod}"]
+}
+
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "blog-stage-wildcard" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "*.blog.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_prod}"]
 }
