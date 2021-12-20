@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "blog" {
 resource "aws_cloudfront_distribution" "blog" {
   origin {
     domain_name = "${aws_s3_bucket.blog.website_endpoint}"
-    origin_id   = "blog.datacite.org"
+    origin_id   = "oldblog.datacite.org"
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
