@@ -5,7 +5,7 @@ resource "aws_ecs_service" "content-negotiation" {
   task_definition = "${aws_ecs_task_definition.content-negotiation.arn}"
 
   # Create service with 2 instances to start
-  desired_count = 2
+  desired_count = 4
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -203,7 +203,7 @@ resource "aws_service_discovery_service" "content-negotiation" {
 
   dns_config {
     namespace_id = "${var.namespace_id}"
-    
+
     dns_records {
       ttl = 300
       type = "A"
