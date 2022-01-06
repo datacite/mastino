@@ -1,7 +1,7 @@
 [
   {
     "name": "content-negotiation",
-    "image": "crosscite/content-negotiation:${version}",
+    "image": "ghcr.io/crosscite/content-negotiation:${version}",
     "cpu": 256,
     "memory": 1024,
     "networkMode": "awsvpc",
@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/content-negotiation",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
