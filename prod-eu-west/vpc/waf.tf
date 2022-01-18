@@ -84,10 +84,14 @@ resource "aws_wafregional_web_acl" "default" {
     rule_id  = aws_wafregional_rule.block.id
     type     = "REGULAR"
   }
-
 }
 
 resource "aws_wafregional_web_acl_association" "default" {
   resource_arn = data.aws_lb.default.arn
   web_acl_id   = aws_wafregional_web_acl.default.id
+}
+
+resource "aws_wafregional_web_acl_association" "crosscite-default" {
+  resource_arn = data.aws_lb.crosscite.arn
+  web_acl_id   = aws_wafregional_web_acl.crosscite-default.id
 }
