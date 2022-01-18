@@ -138,10 +138,10 @@ resource "aws_lb_target_group" "content-negotiation" {
   target_type = "ip"
 
   health_check {
-    enabled = false
     healthy_threshold = "4"
+    unhealthy_threshold = "10"
     path = "/heartbeat"
-    interval = "60"
+    interval = "180"
   }
 }
 
