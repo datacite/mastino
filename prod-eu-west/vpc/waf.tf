@@ -46,34 +46,6 @@ resource "aws_wafregional_rate_based_rule" "rate" {
   }
 }
 
-resource "aws_waf_geo_match_set" "china_set" {
-  name = "china_geo_match_set"
-
-  geo_match_constraint {
-    type  = "Country"
-    value = "CN"
-  }
-}
-
-// This rule exists due to a high number of requests coming from geographical region of china
-// As a result of high load to CN and while the requests were legitimate,
-// we're adding this in to just minimise the number of requests while we look to load better.
-resource "aws_wafregional_rate_based_rule" "rate_china" {
-  depends_on  = [aws_waf_geo_match_set.china_set]
-  name        = "natWAFRuleGeo"
-  metric_name = "natWAFRuleGeo"
-
-  rate_key   = "IP"
-  rate_limit = 500
-
-  predicate {
-    data_id = aws_waf_geo_match_set.china_set.id
-    negated = false
-    type    = "GeoMatch"
-  }
-}
-
-
 resource "aws_wafregional_rule" "block" {
   name        = "blockWAFRule"
   metric_name = "blockWAFRule"
@@ -113,15 +85,6 @@ resource "aws_wafregional_web_acl" "default" {
     type     = "REGULAR"
   }
 
-  rule {
-    action {
-      type = "BLOCK"
-    }
-
-    priority = 3
-    rule_id  = aws_wafregional_rate_based_rule.rate_china.id
-    type     = "REGULAR"
-  }
 }
 
 resource "aws_wafregional_web_acl_association" "default" {
