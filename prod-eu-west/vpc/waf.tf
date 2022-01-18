@@ -113,16 +113,6 @@ resource "aws_wafregional_web_acl" "default" {
     rule_id  = aws_wafregional_rule.block.id
     type     = "REGULAR"
   }
-
-  rule {
-    action {
-      type = "BLOCK"
-    }
-
-    priority = 3
-    rule_id  = aws_wafregional_rate_based_rule.contentnegotiation-rate.id
-    type     = "RATE_BASED"
-  }
 }
 
 resource "aws_wafregional_web_acl_association" "default" {
