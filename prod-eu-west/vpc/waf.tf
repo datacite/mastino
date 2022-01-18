@@ -46,26 +46,22 @@ resource "aws_wafregional_rate_based_rule" "rate" {
   }
 }
 
-resource "aws_wafregional_regex_match_set" "cn-suri" {
-  name = "cn-uri"
+resource "aws_wafregional_byte_match_set" "cn-uri-match" {
+  name = "cn-uri-match"
 
-  regex_match_tuple {
+  byte_match_tuples {
+    text_transformation   = "NONE"
+    target_string         = "data.crosscite.org"
+    positional_constraint = "CONTAINS"
+
     field_to_match {
       type = "URI"
     }
-
-    regex_pattern_set_id = aws_wafregional_regex_pattern_set.example.id
-    text_transformation  = "NONE"
   }
 }
 
-resource "aws_wafregional_regex_pattern_set" "cn-regex" {
-  name                  = "cn-regex"
-  regex_pattern_strings = ["data\.crosscite\.org"]
-}
-
 resource "aws_wafregional_rate_based_rule" "contentnegotiation-rate" {
-  depends_on  = [aws_wafregional_regex_match_set.cn-uri]
+  depends_on  = [aws_wafregional_byte_match_set.cn-uri-match]
   name        = "cnWAFRule"
   metric_name = "cnWAFRule"
 
@@ -73,7 +69,7 @@ resource "aws_wafregional_rate_based_rule" "contentnegotiation-rate" {
   rate_limit = 1000
 
   predicate {
-    data_id = aws_wafregional_regex_match_set.cn-uri.id
+    data_id = aws_wafregional_byte_match_set.cn-uri-match.id
     negated = false
     type    = "IPMatch"
   }
