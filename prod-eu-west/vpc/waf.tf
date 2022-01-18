@@ -46,8 +46,8 @@ resource "aws_wafregional_rate_based_rule" "rate" {
   }
 }
 
-resource "aws_wafregional_byte_match_set" "cn-uri-match" {
-  name = "cn-uri-match"
+resource "aws_wafregional_byte_match_set" "cnUriMatch" {
+  name = "cnUriMatch"
 
   byte_match_tuples {
     text_transformation   = "NONE"
@@ -60,8 +60,8 @@ resource "aws_wafregional_byte_match_set" "cn-uri-match" {
   }
 }
 
-resource "aws_wafregional_rate_based_rule" "contentnegotiation-rate" {
-  depends_on  = [aws_wafregional_byte_match_set.cn-uri-match]
+resource "aws_wafregional_rate_based_rule" "cnRate" {
+  depends_on  = [aws_wafregional_byte_match_set.cnUriMatch]
   name        = "cnWAFRule"
   metric_name = "cnWAFRule"
 
@@ -69,7 +69,7 @@ resource "aws_wafregional_rate_based_rule" "contentnegotiation-rate" {
   rate_limit = 1000
 
   predicate {
-    data_id = aws_wafregional_byte_match_set.cn-uri-match.id
+    data_id = aws_wafregional_byte_match_set.cnUriMatch.id
     negated = false
     type    = "IPMatch"
   }
@@ -112,6 +112,16 @@ resource "aws_wafregional_web_acl" "default" {
     priority = 2
     rule_id  = aws_wafregional_rule.block.id
     type     = "REGULAR"
+  }
+
+  rule {
+    action {
+      type = "BLOCK"
+    }
+
+    priority = 3
+    rule_id  = aws_wafregional_rate_based_rule.cnRate.id
+    type     = "RATE_BASED"
   }
 }
 
