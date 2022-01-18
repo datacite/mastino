@@ -61,7 +61,6 @@ resource "aws_wafregional_byte_match_set" "cnUriMatch" {
 }
 
 resource "aws_wafregional_rate_based_rule" "cnRate" {
-  depends_on  = [aws_wafregional_byte_match_set.cnUriMatch]
   name        = "cnWAFRule"
   metric_name = "cnWAFRule"
 
