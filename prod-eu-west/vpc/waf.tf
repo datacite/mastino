@@ -120,7 +120,7 @@ resource "aws_wafregional_web_acl" "default" {
     }
 
     priority = 3
-    rule_id  = aws_wafregional_rate_based_rule.cnRate.id
+    rule_id  = aws_wafregional_rate_based_rule.cnWAFRule.id
     type     = "RATE_BASED"
   }
 }
