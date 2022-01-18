@@ -125,36 +125,6 @@ resource "aws_wafregional_web_acl" "default" {
   }
 }
 
-
-resource "aws_wafregional_web_acl" "crosscite-default" {
-  name        = "crosscite-default"
-  metric_name = "crosscite-default"
-
-  default_action {
-    type = "ALLOW"
-  }
-
-  rule {
-    action {
-      type = "BLOCK"
-    }
-
-    priority = 1
-    rule_id  = aws_wafregional_rate_based_rule.rate.id
-    type     = "RATE_BASED"
-  }
-
-  rule {
-    action {
-      type = "BLOCK"
-    }
-
-    priority = 3
-    rule_id  = aws_wafregional_rate_based_rule.rate_china.id
-    type     = "REGULAR"
-  }
-}
-
 resource "aws_wafregional_web_acl_association" "default" {
   resource_arn = data.aws_lb.default.arn
   web_acl_id   = aws_wafregional_web_acl.default.id
