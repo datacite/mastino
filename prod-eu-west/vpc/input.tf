@@ -47,6 +47,10 @@ data "aws_lb_listener" "default" {
   port = 443
 }
 
+data "aws_lb" "crosscite" {
+  name = "crosscite"
+}
+
 data "aws_ecs_cluster" "default" {
   cluster_name = "default"
 }
