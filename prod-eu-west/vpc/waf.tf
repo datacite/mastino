@@ -46,6 +46,39 @@ resource "aws_wafregional_rate_based_rule" "rate" {
   }
 }
 
+resource "aws_wafregional_regex_match_set" "cn-suri" {
+  name = "cn-uri"
+
+  regex_match_tuple {
+    field_to_match {
+      type = "URI"
+    }
+
+    regex_pattern_set_id = aws_wafregional_regex_pattern_set.example.id
+    text_transformation  = "NONE"
+  }
+}
+
+resource "aws_wafregional_regex_pattern_set" "cn-regex" {
+  name                  = "cn-regex"
+  regex_pattern_strings = ["data\.crosscite\.org"]
+}
+
+resource "aws_wafregional_rate_based_rule" "contentnegotiation-rate" {
+  depends_on  = [aws_wafregional_regex_match_set.cn-uri]
+  name        = "cnWAFRule"
+  metric_name = "cnWAFRule"
+
+  rate_key   = "IP"
+  rate_limit = 1000
+
+  predicate {
+    data_id = aws_wafregional_regex_match_set.cn-uri.id
+    negated = false
+    type    = "IPMatch"
+  }
+}
+
 resource "aws_wafregional_rule" "block" {
   name        = "blockWAFRule"
   metric_name = "blockWAFRule"
@@ -82,6 +115,46 @@ resource "aws_wafregional_web_acl" "default" {
 
     priority = 2
     rule_id  = aws_wafregional_rule.block.id
+    type     = "REGULAR"
+  }
+
+  rule {
+    action {
+      type = "BLOCK"
+    }
+
+    priority = 3
+    rule_id  = aws_wafregional_rate_based_rule.contentnegotiation-rate.id
+    type     = "RATE_BASED"
+  }
+}
+
+
+resource "aws_wafregional_web_acl" "crosscite-default" {
+  name        = "crosscite-default"
+  metric_name = "crosscite-default"
+
+  default_action {
+    type = "ALLOW"
+  }
+
+  rule {
+    action {
+      type = "BLOCK"
+    }
+
+    priority = 1
+    rule_id  = aws_wafregional_rate_based_rule.rate.id
+    type     = "RATE_BASED"
+  }
+
+  rule {
+    action {
+      type = "BLOCK"
+    }
+
+    priority = 3
+    rule_id  = aws_wafregional_rate_based_rule.rate_china.id
     type     = "REGULAR"
   }
 }
