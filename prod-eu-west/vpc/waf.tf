@@ -55,7 +55,8 @@ resource "aws_wafregional_byte_match_set" "cnUriMatch" {
     positional_constraint = "CONTAINS"
 
     field_to_match {
-      type = "URI"
+      type = "HEADER"
+      data = "host"
     }
   }
 }
@@ -66,7 +67,7 @@ resource "aws_wafregional_rate_based_rule" "cnWAFRule" {
   metric_name = "cnWAFRule"
 
   rate_key   = "IP"
-  rate_limit = 1000
+  rate_limit = 100
 
   predicate {
     data_id = aws_wafregional_byte_match_set.cnUriMatch.id
