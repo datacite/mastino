@@ -124,8 +124,8 @@ resource "aws_ecs_task_definition" "content-negotiation" {
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "2048"
-  memory = "16384"
+  cpu = "512"
+  memory = "4096"
 
   container_definitions =  "${data.template_file.content-negotiation_task.rendered}"
 }
