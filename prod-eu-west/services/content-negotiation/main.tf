@@ -5,7 +5,7 @@ resource "aws_ecs_service" "content-negotiation" {
   task_definition = "${aws_ecs_task_definition.content-negotiation.arn}"
 
   # Create service with 2 instances to start
-  desired_count = 4
+  desired_count = 10
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -33,7 +33,7 @@ resource "aws_ecs_service" "content-negotiation" {
 
 resource "aws_appautoscaling_target" "content-negotiation" {
   max_capacity       = 10
-  min_capacity       = 4
+  min_capacity       = 8
   resource_id        = "service/default/${aws_ecs_service.content-negotiation.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -124,8 +124,8 @@ resource "aws_ecs_task_definition" "content-negotiation" {
   execution_role_arn = "${data.aws_iam_role.ecs_task_execution_role.arn}"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "2048"
-  memory = "16384"
+  cpu = "512"
+  memory = "4096"
 
   container_definitions =  "${data.template_file.content-negotiation_task.rendered}"
 }
