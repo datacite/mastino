@@ -2,8 +2,8 @@
   {
     "name": "content-negotiation",
     "image": "ghcr.io/crosscite/content-negotiation:${version}",
-    "cpu": 256,
-    "memory": 1024,
+    "cpu": 512,
+    "memory": 4096,
     "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [
