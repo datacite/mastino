@@ -33,7 +33,7 @@ resource "aws_ecs_service" "content-negotiation" {
 
 resource "aws_appautoscaling_target" "content-negotiation" {
   max_capacity       = 10
-  min_capacity       = 4
+  min_capacity       = 8
   resource_id        = "service/default/${aws_ecs_service.content-negotiation.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
