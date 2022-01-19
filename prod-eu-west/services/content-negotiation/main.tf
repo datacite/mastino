@@ -5,7 +5,7 @@ resource "aws_ecs_service" "content-negotiation" {
   task_definition = "${aws_ecs_task_definition.content-negotiation.arn}"
 
   # Create service with 2 instances to start
-  desired_count = 4
+  desired_count = 10
 
   # Allow external changes without Terraform plan difference
   lifecycle {
