@@ -1,7 +1,7 @@
 [
   {
     "name": "oai",
-    "image": "datacite/viringo:${version}",
+    "image": "ghcr.io/datacite/viringo:${version}",
     "cpu": 512,
     "memory": 1024,
     "networkMode": "awsvpc",
