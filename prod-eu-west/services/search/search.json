@@ -1,7 +1,7 @@
 [
   {
     "name": "search",
-    "image": "crosscite/doi-metadata-search:${version}",
+    "image": "ghcr.io/crosscite/doi-metadata-search:${version}",
     "cpu": 1024,
     "memory": 2048,
     "networkMode": "awsvpc",
@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/search",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
