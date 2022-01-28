@@ -1,6 +1,6 @@
 [{
   "name": "levriero",
-  "image": "datacite/levriero:${version}",
+  "image": "ghcr.io/datacite/levriero:${version}",
   "cpu": 1024,
   "memory": 2048,
   "essential": true,
