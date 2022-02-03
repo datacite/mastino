@@ -1,7 +1,7 @@
 [
   {
     "name": "metrics-api-test",
-    "image": "datacite/sashimi:${version}",
+    "image": "ghcr.io/datacite/sashimi:${version}",
     "cpu": 512,
     "memory": 2048,
     "essential": true,
@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/metrics-api-test",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
