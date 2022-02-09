@@ -3,7 +3,7 @@ resource "aws_ecs_service" "levriero" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.levriero.arn
-  
+
   # Create service with 2 instances to start
   desired_count = 2
 
@@ -36,8 +36,8 @@ resource "aws_ecs_service" "levriero" {
 }
 
 resource "aws_appautoscaling_target" "levriero" {
-  max_capacity       = 3
-  min_capacity       = 2
+  max_capacity       = 8
+  min_capacity       = 6
   resource_id        = "service/default/${aws_ecs_service.levriero.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -174,7 +174,7 @@ resource "aws_service_discovery_service" "levriero" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
