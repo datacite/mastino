@@ -4,7 +4,7 @@ resource "aws_ecs_service" "client-api" {
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.client-api.arn
 
-  desired_count = 8
+  desired_count = 4
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -35,8 +35,8 @@ resource "aws_ecs_service" "client-api" {
 }
 
 resource "aws_appautoscaling_target" "client-api" {
-  max_capacity       = 10
-  min_capacity       = 8
+  max_capacity       = 8
+  min_capacity       = 4
   resource_id        = "service/default/${aws_ecs_service.client-api.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
