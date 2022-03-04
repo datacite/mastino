@@ -183,6 +183,7 @@ exports.handler = async function (event, context) {
     if ("Consortium Organization" === res.attributes.member_type) {
       body = Object.assign(body, {
         ParentId: accountId,
+        DOI_Estimate_Year_1__c: res.attributes.doi_estimate_year_one,
       });
     }
 
