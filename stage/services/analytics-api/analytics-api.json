@@ -23,11 +23,11 @@
         "environment": [
             {
                 "name": "PLAUSIBLE_URL",
-                "value": "https://analytics.stage.datacite.org"
+                "value": "${plausible_url}"
             },
             {
                 "name": "DATACITE_API_URL",
-                "value": "https://api.stage.datacite.org"
+                "value": "${datacite_api_url}"
             },
             {
                 "name": "GITHUB_VERSION",

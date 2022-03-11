@@ -41,6 +41,8 @@ resource "aws_ecs_task_definition" "analytics-api-stage" {
   memory = "512"
   container_definitions = templatefile("analytics-api.json",
     {
+      plausible_url      = var.plausible_url
+      datacite_api_url   = var.datacite_api_url
       version            = var.keeshond_tags["sha"]
     })
 }

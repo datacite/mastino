@@ -22,3 +22,10 @@ variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 variable "namespace_id" {}
+
+variable "datacite_api_url" {
+    default = "https://api.stage.datacite.org"
+}
+variable "plausible_url" {
+    default = "https://analytics.stage.local"
+}
