@@ -16,7 +16,7 @@ resource "aws_ecs_service" "analytics-api-stage" {
   load_balancer {
     target_group_arn = aws_lb_target_group.analytics-api-stage.id
     container_name   = "analytics-api-stage"
-    container_port   = "8081"
+    container_port   = "80"
   }
 
   service_registries {

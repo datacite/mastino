@@ -8,7 +8,7 @@
         "networkMode": "awsvpc",
         "portMappings": [
             {
-                "containerPort": 8081,
+                "containerPort": 80,
                 "hostPort": 80
             }
         ],
@@ -21,6 +21,10 @@
             }
         },
         "environment": [
+            {
+                "name": "HTTP_ADDR",
+                "value": ":80"
+            },
             {
                 "name": "PLAUSIBLE_URL",
                 "value": "https://analytics.stage.datacite.org/"
