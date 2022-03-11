@@ -23,7 +23,7 @@
         "environment": [
             {
                 "name": "PLAUSIBLE_URL",
-                "value": "https://analytics.stage.datacite.org/"
+                "value": "https://analytics.stage.datacite.org"
             },
             {
                 "name": "DATACITE_API_URL",
