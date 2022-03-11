@@ -16,7 +16,7 @@ resource "aws_ecs_service" "analytics-api-stage" {
   load_balancer {
     target_group_arn = aws_lb_target_group.analytics-api-stage.id
     container_name   = "analytics-api-stage"
-    container_port   = "80"
+    container_port   = "8081"
   }
 
   service_registries {
@@ -70,7 +70,7 @@ resource "aws_lb_listener_rule" "api-stage" {
 
   condition {
     field  = "host-header"
-    values = ["api.stage.datacite.org"]
+    values = ["analytics.stage.datacite.org"]
   }
 
   condition {
