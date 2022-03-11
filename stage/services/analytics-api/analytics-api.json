@@ -1,0 +1,38 @@
+[
+    {
+        "name": "analytics-api-stage",
+        "image": "ghcr.io/datacite/keeshond",
+        "cpu": 256,
+        "memory": 512,
+        "essential": true,
+        "networkMode": "awsvpc",
+        "portMappings": [
+            {
+                "containerPort": 8081,
+                "hostPort": 80
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/analytics-api-stage",
+                "awslogs-region": "eu-west-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "environment": [
+            {
+                "name": "PLAUSIBLE_URL",
+                "value": "https://analytics.stage.datacite.org/"
+            },
+            {
+                "name": "DATACITE_API_URL",
+                "value": "https://api.stage.datacite.org"
+            },
+            {
+                "name": "GITHUB_VERSION",
+                "value": "${version}"
+            }
+        ]
+    }
+]
