@@ -173,7 +173,6 @@ exports.handler = async function (event, context) {
       Fabrica_Modification_Date__c: res.attributes.updated,
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       Is_Active__c: !res.attributes.deleted_at,
-      DOI_Estimate_Year_1__c: res.attributes.doi_estimate,
     };
 
     if (hasJoinedDate(res)) {
@@ -184,6 +183,7 @@ exports.handler = async function (event, context) {
     if ("Consortium Organization" === res.attributes.member_type) {
       body = Object.assign(body, {
         ParentId: accountId,
+        DOI_Estimate_Year_1__c: res.attributes.doi_estimate,
       });
     }
 
