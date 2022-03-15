@@ -27,5 +27,5 @@ variable "datacite_api_url" {
     default = "https://api.stage.datacite.org"
 }
 variable "plausible_url" {
-    default = "https://analytics.stage.local"
+    default = "http://analytics.stage.local:8000"
 }
