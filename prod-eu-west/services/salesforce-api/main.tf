@@ -17,7 +17,7 @@ resource "aws_lambda_function" "update-salesforce-daily" {
   handler = "salesforce-daily_runner.handler"
   runtime = "nodejs12.x"
   source_code_hash = sha256(filebase64("salesforce-daily_runner.js.zip"))
-  timeout = "270"
+  timeout = "600"
 
   vpc_config {
     subnet_ids = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
