@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "update-salesforce-daily" {
   name = "update-salesforce-daily"
   description = "Update salesforce daily via cron"
-  schedule_expression = "cron(40 11 * * ? *)"
+  schedule_expression = "cron(30 23 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "update-salesforce-daily" {
