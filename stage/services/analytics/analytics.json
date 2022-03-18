@@ -1,7 +1,7 @@
 [
   {
     "name": "analytics-stage",
-    "image": "ghcr.io/datacite/analytics:latest",
+    "image": "plausible/analytics:latest",
     "cpu": 1790,
     "memory": 3840,
     "essential": true,
