@@ -42,14 +42,14 @@ resource "aws_ecs_task_definition" "analytics-stage" {
 
   container_definitions =  data.template_file.analytics_task.rendered
 
-  volume {
-    name = "geoip-stage-storage"
+  # volume {
+  #   name = "geoip-stage-storage"
 
-    efs_volume_configuration {
-      file_system_id = data.aws_efs_file_system.stage.id
-      root_directory = "/"
-    }
-  }
+  #   efs_volume_configuration {
+  #     file_system_id = data.aws_efs_file_system.stage.id
+  #     root_directory = "/"
+  #   }
+  # }
 }
 
 resource "aws_lb_target_group" "analytics-stage" {
