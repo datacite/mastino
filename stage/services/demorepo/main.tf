@@ -45,7 +45,7 @@ resource "aws_cloudfront_distribution" "demorepo-stage" {
     target_origin_id = "demorepo.stage.datacite.org"
 
     forwarded_values {
-      query_string = false
+      query_string = true
 
       cookies {
         forward = "whitelist"
