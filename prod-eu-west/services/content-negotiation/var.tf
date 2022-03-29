@@ -38,3 +38,7 @@ variable "public_key" {}
 variable "api_url" {
   default = "http://client-api.local"
 }
+
+variable "log_level" {
+  default = "warn"
+}

@@ -63,6 +63,7 @@ data "template_file" "content-negotiation_task" {
     api_url            = "${var.api_url}"
     memcache_servers   = "${var.memcache_servers}"
     public_key         = "${var.public_key}"
+    log_level          = "${var.log_level}"
     version            = "${var.content-negotiation_tags["version"]}"
   }
 }
