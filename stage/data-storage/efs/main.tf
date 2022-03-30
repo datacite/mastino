@@ -8,7 +8,7 @@ resource "aws_efs_file_system" "stage" {
 
 resource "aws_efs_access_point" "strapi-stage" {
   file_system_id = aws_efs_file_system.stage.id
-  
+
   posix_user {
     uid = 1001
     gid = 1001

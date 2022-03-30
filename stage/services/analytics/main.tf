@@ -16,7 +16,7 @@ resource "aws_ecs_service" "analytics-stage" {
   load_balancer {
     target_group_arn = aws_lb_target_group.analytics-stage.id
     container_name   = "analytics-stage"
-    container_port   = "80"
+    container_port   = "8000"
   }
 
   service_registries {
@@ -40,19 +40,28 @@ resource "aws_ecs_task_definition" "analytics-stage" {
   cpu = "2048"
   memory = "4096"
 
-  container_definitions = templatefile("analytics.json",
-    {
-      mailgun_api_key    = var.mailgun_api_key
-      version            = var.analytics_tags["sha"]
-    })
+  container_definitions =  data.template_file.analytics_task.rendered
+
+  # volume {
+  #   name = "geoip-stage-storage"
+
+  #   efs_volume_configuration {
+  #     file_system_id = data.aws_efs_file_system.stage.id
+  #     root_directory = "/"
+  #   }
+  # }
 }
 
 resource "aws_lb_target_group" "analytics-stage" {
   name     = "analytics-stage"
-  port     = 80
+  port     = 8000
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   target_type = "ip"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   health_check {
     path = "/"
@@ -61,10 +70,13 @@ resource "aws_lb_target_group" "analytics-stage" {
   }
 }
 
-
 resource "aws_lb_listener_rule" "analytics-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 54
+  # priority     = 90
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   action {
     type             = "forward"
@@ -73,10 +85,17 @@ resource "aws_lb_listener_rule" "analytics-stage" {
 
   condition {
     field  = "host-header"
-    values = [var.api_dns_name]
+    values = [aws_route53_record.analytics-stage.name]
   }
 }
 
+resource "aws_route53_record" "analytics-stage" {
+    zone_id = data.aws_route53_zone.production.zone_id
+    name = "analytics.stage.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.stage.dns_name]
+}
 
 resource "aws_service_discovery_service" "analytics-stage" {
   name = "analytics.stage"
