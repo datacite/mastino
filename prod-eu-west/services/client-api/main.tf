@@ -35,8 +35,8 @@ resource "aws_ecs_service" "client-api" {
 }
 
 resource "aws_appautoscaling_target" "client-api" {
-  max_capacity       = 18
-  min_capacity       = 16
+  max_capacity       = 32
+  min_capacity       = 24
   resource_id        = "service/default/${aws_ecs_service.client-api.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -201,7 +201,7 @@ resource "aws_ecs_task_definition" "client-api" {
   execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "2048"
+  cpu = "4096"
   memory = "10240"
   container_definitions =  templatefile("client-api.json",
     {
