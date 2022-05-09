@@ -100,7 +100,7 @@ resource "aws_cloudwatch_metric_alarm" "re3data_memory_scale_down" {
   namespace           = "AWS/ECS"
   period              = "120"
   statistic           = "Average"
-  threshold           = "50"
+  threshold           = "70"
 
   dimensions {
     ClusterName = "default"
