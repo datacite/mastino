@@ -3,7 +3,7 @@ resource "aws_ecs_service" "re3data" {
   cluster = "${data.aws_ecs_cluster.default.id}"
   launch_type = "FARGATE"
   task_definition = "${aws_ecs_task_definition.re3data.arn}"
-  
+
   # Create service with 2 instances to start
   desired_count = 2
 
@@ -81,7 +81,7 @@ resource "aws_cloudwatch_metric_alarm" "re3data_memory_scale_up" {
   namespace           = "AWS/ECS"
   period              = "120"
   statistic           = "Average"
-  threshold           = "80"
+  threshold           = "85"
 
   dimensions {
     ClusterName = "default"
@@ -100,7 +100,7 @@ resource "aws_cloudwatch_metric_alarm" "re3data_memory_scale_down" {
   namespace           = "AWS/ECS"
   period              = "120"
   statistic           = "Average"
-  threshold           = "20"
+  threshold           = "50"
 
   dimensions {
     ClusterName = "default"
