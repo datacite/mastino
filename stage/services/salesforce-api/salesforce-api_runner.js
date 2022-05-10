@@ -30,6 +30,7 @@ exports.handler = async function (event, context) {
 
   const apiVersion = "v51.0";
   const axios = require("axios");
+  const axiosRetry = require('axios-retry');
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
@@ -37,6 +38,20 @@ exports.handler = async function (event, context) {
   let datacite_password = process.env.datacite_password;
   let datacite_api_url = process.env.datacite_api_url;
   let providerUrl = `${datacite_api_url}/providers`;
+
+  // 3 retries on locked record
+  axiosRetry(axios, {
+    retries: 3, // number of retries
+    retryDelay: (retryCount) => {
+      console.log(`retry attempt: ${retryCount}`);
+      return retryCount * 2000; // time interval between retries
+    },
+    retryCondition: (error) => {
+      // if retry condition is not specified, by default idempotent requests are retried
+      return error.response.data[0].errorCode == 'UNABLE_TO_LOCK_ROW'
+      // return error.response.status === 503;
+    },
+  });
 
   var slackMessage = slack.extend({
     channel: "#ops",
