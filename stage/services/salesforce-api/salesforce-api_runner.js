@@ -43,12 +43,15 @@ exports.handler = async function (event, context) {
   axiosRetry(axios, {
     retries: 3, // number of retries
     retryDelay: (retryCount) => {
-      console.log(`retry attempt: ${retryCount}`);
+      console.log(`SKV - Salesforce API retry attempt: ${retryCount}`);
       return retryCount * 2000; // time interval between retries
     },
     retryCondition: (error) => {
       // if retry condition is not specified, by default idempotent requests are retried
-      return error.response.data[0].errorCode == 'UNABLE_TO_LOCK_ROW'
+      console.log("SKV - error.response.status = " + error.response.status);
+      console.log("SKV - error.response.data[0].errorCode = " + error.response.data[0].errorCode);
+
+      return error.response.data[0].errorCode == 'UNABLE_TO_LOCK_ROW';
       // return error.response.status === 503;
     },
   });
