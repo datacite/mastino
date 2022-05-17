@@ -90,23 +90,23 @@ resource "aws_cloudwatch_log_group" "clickhouse-prod" {
 }
 
 resource "aws_iam_instance_profile" "ecs-instance-profile" {
-  name = "clickhouse-instance-profile"
+  name = "clickhouse-prod-instance-profile"
   role = aws_iam_role.ecs-instance-role.id
 }
 
 resource "aws_iam_role" "ecs-instance-role" {
-  name = "clickhouse-instance-role"
+  name = "clickhouse-prod-instance-role"
   path = "/"
   assume_role_policy = file("ec2-assume-policy.json")
 }
 
 resource "aws_iam_policy" "ecs-ec2-policy" {
-  name = "ecs-ec2-policy"
+  name = "ecs-ec2-policy-clickhouse-prod"
   policy = file("ecs-policy.json")
 }
 
 resource "aws_iam_policy" "ecs-rexray-policy" {
-  name = "ecs-rexray-policy"
+  name = "ecs-rexray-policy-clickhouse-prod"
   policy = file("rexray-policy.json")
 }
 
