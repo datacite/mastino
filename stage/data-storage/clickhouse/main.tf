@@ -11,16 +11,6 @@ resource "aws_instance" "clickhouse-stage" {
   }
 }
 
-resource "aws_ebs_volume" "clickhouse-stage-ebs" {
-  availability_zone = "eu-west-1a"
-  type = "gp2"
-  size = 40
-
-  tags = {
-    Name = "clickhouse-stage"
-  }
-}
-
 resource "aws_ecs_task_definition" "clickhouse-stage" {
   family = "clickhouse-stage"
   execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
@@ -37,11 +27,15 @@ resource "aws_ecs_task_definition" "clickhouse-stage" {
   })
 
   volume {
-    name = aws_ebs_volume.clickhouse-stage-ebs.tags.Name
+    name = "clickhouse-stage"
     docker_volume_configuration {
       scope = "shared"
-      autoprovision = false
+      autoprovision = true
       driver = "rexray/ebs"
+      driver_opts = {
+        volumetype = "gp2"
+        size = 40
+      }
     }
   }
 }
