@@ -37,7 +37,7 @@ resource "aws_ecs_task_definition" "clickhouse-stage" {
   })
 
   volume {
-    name = aws_ebs_volume.clickhouse-stage-ebs.name
+    name = aws_ebs_volume.clickhouse-stage-ebs.tags.Name
     docker_volume_configuration {
       scope = "shared"
       autoprovision = false
