@@ -23,7 +23,6 @@ variable "subnet_datacite-alt_id" {}
 
 variable "namespace_id" {}
 
-variable "hostname" {}
 variable "key_name" {}
 
 variable "ami" {
