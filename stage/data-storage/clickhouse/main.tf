@@ -12,7 +12,7 @@ resource "aws_instance" "clickhouse-stage" {
 }
 
 resource "aws_ebs_volume" "clickhouse-stage-ebs" {
-  availability_zone = var.region
+  availability_zone = "eu-west-1a"
   type = "gp2"
   size = 40
 
