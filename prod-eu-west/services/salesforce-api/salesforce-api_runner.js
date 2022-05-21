@@ -30,12 +30,28 @@ exports.handler = async function (event, context) {
 
   const apiVersion = "v51.0";
   const axios = require("axios");
+  const axiosRetry = require('axios-retry');
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
   const datacite_username = process.env.datacite_username;
   const datacite_password = process.env.datacite_password;
   const providerUrl = `${process.env.datacite_api_url}/providers`;
+
+  // 3 retries on locked record
+  axiosRetry(axios, {
+    retries: 3, // number of retries
+    retryDelay: (retryCount) => {
+      console.log(`(DEBUG SALESFORCE API): Salesforce API retry attempt: ${retryCount}`);
+      return retryCount * 2000; // time interval between retries
+    },
+    retryCondition: (error) => {
+      // if retry condition is not specified, by default idempotent requests are retried
+      console.log("(DEBUG SALESFORCE API): error.response = " + error.response);
+
+      return ((error.response.status === 400) && (error.response.data[0].errorCode == 'UNABLE_TO_LOCK_ROW'));
+    },
+  });
 
   var slackMessage = slack.extend({
     channel: "#ops",
@@ -565,10 +581,10 @@ exports.handler = async function (event, context) {
       IsActive__c: !res.attributes.deleted_at,
     };
 
-    console.log("SKV - UPDATING REPOSITORIES - BEGIN");
+    console.log("(DEBUG SALESFORCE API): UPDATING REPOSITORIES - BEGIN");
     console.log(url);
     console.log(body);
-    console.log("SKV - UPDATING REPOSITORIES - END");
+    console.log("(DEBUG SALESFORCE API): UPDATING REPOSITORIES - END");
 
     try {
       result = await axios.patch(url, body, {
