@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "axios-retry": "^3.2.5",
     "dotenv": "^8.2.0",
     "slack-notify": "^0.1.7"
