@@ -16,12 +16,10 @@ variable "ttl" {
 variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
-variable "mailgun_api_key" {}
 variable "slack_webhook_url" {
   default = ""
 }
 variable "namespace_id" {}
-variable "file_system_id" {}
 
 variable "sentry_dsn" {}
 
@@ -44,18 +42,22 @@ variable "clickhouse_database_url" {}
 variable "clickhouse_database_user" {}
 variable "clickhouse_database_password" {}
 
-variable "geolite2_country_db"  {}
-variable "geoipupdate_edition_ids"  {}
-variable "geoipupdate_frequency"  {}
-variable "geoipupdate_account_id"  {}
-variable "geoipupdate_license_key"  {}
+variable "smtp_host_port" {
+  default = "25"
+}
+variable "smtp_retries" {
+  default = "5"
+}
+variable "smtp_host_ssl_enabled" {
+  default = "false"
+}
+variable "mailer_adapter" {
+  default = "Bamboo.SMTPAdapter"
+}
 
-variable "smtp_host_port" {}
-variable "smtp_retries" {}
-variable "smtp_host_ssl_enabled" {}
-variable "mailer_adapter" {}
-
-variable "postmark_api_key" {}
+variable "postmark_api_key" {
+  default = ""
+}
 variable "smtp_user_pwd" {}
 variable "smtp_host_addr"  {}
 variable "mailer_email" {}

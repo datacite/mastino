@@ -47,10 +47,6 @@ data "aws_lb_listener" "stage" {
   port = 443
 }
 
-data "aws_efs_file_system" "stage" {
-  file_system_id = var.file_system_id
-}
-
 data "template_file" "analytics_task" {
   template = file("analytics.json")
 
@@ -58,7 +54,6 @@ data "template_file" "analytics_task" {
     access_key               = var.access_key
     secret_key               = var.secret_key
     region                   = var.region
-    mailgun_api_key          = var.mailgun_api_key
     slack_webhook_url        = var.slack_webhook_url
     version                  = var.analytics_tags["sha"]
     smtp_host_port           = var.smtp_host_port
@@ -79,12 +74,6 @@ data "template_file" "analytics_task" {
     mailer_email             = var.mailer_email
     secret_key_base          = var.secret_key_base
     smtp_user_name           = var.smtp_user_name
-    geolite2_country_db      = var.geolite2_country_db
-    geoipupdate_edition_ids  = var.geoipupdate_edition_ids
-    geoipupdate_frequency    = var.geoipupdate_frequency
-    geoipupdate_account_id   = var.geoipupdate_account_id
-    geoipupdate_license_key  = var.geoipupdate_license_key
     public_key               = var.public_key
-    file_system_id           = var.file_system_id
   }
 }
