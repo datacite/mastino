@@ -96,10 +96,6 @@
         "value": "${admin_user_pwd}"
       },
       {
-        "name": "GEOLITE2_COUNTRY_DB",
-        "value": "${geolite2_country_db}"
-      },
-      {
         "name": "SMTP_HOST_ADDR",
         "value": "${smtp_host_addr}"
       },
@@ -122,10 +118,6 @@
       {
         "name": "SMTP_USER_NAME",
         "value": "${smtp_user_name}"
-      },
-      {
-        "name": "GEOLITE2_COUNTRY_DB",
-        "value": "${geolite2_country_db}"
       },
       {
         "name" : "PUBLIC_KEY",
