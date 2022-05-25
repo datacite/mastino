@@ -40,10 +40,6 @@
         "value": "${region}"
       },
       {
-        "name": "MAILGUN_API_KEY",
-        "value": "${mailgun_api_key}"
-      },
-      {
         "name": "SLACK_WEBHOOK_URL",
         "value": "${slack_webhook_url}"
       },
