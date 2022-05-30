@@ -47,7 +47,11 @@ exports.handler = async function (event, context) {
     },
     retryCondition: (error) => {
       // if retry condition is not specified, by default idempotent requests are retried
-      console.log("(DEBUG SALESFORCE API): error.response = " + error.response);
+      // console.log("(DEBUG SALESFORCE API): error.response.data = " + error.response.data);
+      // console.log("(DEBUG SALESFORCE API): error.response.headers = " + error.response.headers);
+      console.log("(DEBUG SALESFORCE API): retryCondition");
+      console.log("(DEBUG SALESFORCE API): error.response.status = " + error.response.status);
+      console.log("(DEBUG SALESFORCE API): error.response.data stringified = " + JSON.stringify(error.response.data));
 
       return ((error.response.status === 400) && (error.response.data[0].errorCode == 'UNABLE_TO_LOCK_ROW'));
     },
