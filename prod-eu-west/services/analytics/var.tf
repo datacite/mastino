@@ -21,8 +21,6 @@ variable "slack_webhook_url" {
 }
 variable "namespace_id" {}
 
-variable "sentry_dsn" {}
-
 variable "analytics_dns_name" {
   default = "analytics.datacite.org"
 }
