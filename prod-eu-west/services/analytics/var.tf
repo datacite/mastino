@@ -63,5 +63,3 @@ variable "smtp_host_addr"  {}
 variable "mailer_email" {}
 variable "secret_key_base" {}
 variable "smtp_user_name"  {}
-
-variable "mailgun_api_key" {}
