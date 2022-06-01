@@ -1,0 +1,38 @@
+[
+    {
+        "name": "analytics-api",
+        "image": "ghcr.io/datacite/keeshond",
+        "cpu": 256,
+        "memory": 512,
+        "essential": true,
+        "networkMode": "awsvpc",
+        "portMappings": [
+            {
+                "containerPort": 8081,
+                "hostPort": 8081
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/analytics-api",
+                "awslogs-region": "eu-west-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "environment": [
+            {
+                "name": "PLAUSIBLE_URL",
+                "value": "${plausible_url}"
+            },
+            {
+                "name": "DATACITE_API_URL",
+                "value": "${datacite_api_url}"
+            },
+            {
+                "name": "GITHUB_VERSION",
+                "value": "${version}"
+            }
+        ]
+    }
+]
