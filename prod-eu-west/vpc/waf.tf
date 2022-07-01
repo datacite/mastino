@@ -67,7 +67,7 @@ resource "aws_wafregional_rate_based_rule" "cnWAFRule" {
   metric_name = "cnWAFRule"
 
   rate_key   = "IP"
-  rate_limit = 100
+  rate_limit = 1000
 
   predicate {
     data_id = aws_wafregional_byte_match_set.cnUriMatch.id
