@@ -47,6 +47,7 @@ variable "eventdata_url" {
 }
 variable "eventdata_token" {}
 variable "staff_admin_token" {}
+variable "staff_profiles_admin_token" {}
 
 variable "datacite_crossref_source_token" {}
 variable "datacite_related_source_token" {}

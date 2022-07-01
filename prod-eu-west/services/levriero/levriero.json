@@ -78,6 +78,10 @@
       "value": "${staff_admin_token}"
     },
     {
+      "name": "STAFF_PROFILES_ADMIN_TOKEN",
+      "value": "${staff_profiles_admin_token}"
+    },
+    {
       "name": "EVENTDATA_URL",
       "value": "${eventdata_url}"
     },

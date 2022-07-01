@@ -47,6 +47,7 @@ variable "eventdata_url" {
   default = "https://bus.eventdata.crossref.org"
 }
 variable "staff_admin_token" {}
+variable "staff_profiles_admin_token" {}
 variable "eventdata_token" {}
 
 variable "datacite_crossref_source_token" {}

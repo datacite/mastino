@@ -64,6 +64,7 @@ data "template_file" "levriero_task" {
     volpino_url        = var.volpino_url
     crossref_query_url = var.crossref_query_url
     staff_admin_token = var.staff_admin_token
+    staff_profiles_admin_token  = var.staff_profiles_admin_token
     eventdata_url      = var.eventdata_url
     eventdata_token    = var.eventdata_token
     api_url            = var.api_url
