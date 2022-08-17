@@ -15,7 +15,7 @@ resource "aws_lambda_function" "store-crawler-results" {
   function_name    = "store-crawler-results"
   role             = "${data.aws_iam_role.lambda.arn}"
   handler          = "store_crawler_results_runner.lambda_handler"
-  runtime          = "python3.6"
+  runtime          = "python3.9"
   source_code_hash = "${base64sha256(file("store_crawler_results.py.zip"))}"
   timeout          = "270"
 
