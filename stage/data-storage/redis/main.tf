@@ -1,7 +1,7 @@
 resource "aws_elasticache_cluster" "redis-stage" {
   cluster_id               = "redis-stage"
   engine                   = "redis"
-  engine_version           = "2.8.23"
+  engine_version           = "6.2"
   node_type                = "cache.m4.large"
   port                     = 6379
   num_cache_nodes          = 1
@@ -25,7 +25,7 @@ resource "aws_elasticache_subnet_group" "redis-stage" {
 
 resource "aws_elasticache_parameter_group" "redis-stage" {
     name = "redis-stage"
-    family = "redis2.8"
+    family = "redis6.x"
     description = "Cache cluster redis-stage param group"
 
     parameter {
