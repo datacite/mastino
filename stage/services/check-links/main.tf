@@ -15,7 +15,7 @@ resource "aws_lambda_function" "check-links-test" {
   function_name    = "check-links-test"
   role             = "${data.aws_iam_role.lambda.arn}"
   handler          = "check_links_runner.lambda_handler"
-  runtime          = "python3.6"
+  runtime          = "python3.9"
   source_code_hash = "${base64sha256(file("check_links.py.zip"))}"
   timeout          = "270"
 
