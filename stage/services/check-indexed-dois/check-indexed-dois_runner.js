@@ -1,12 +1,9 @@
-var AWS = require("aws-sdk");
-var ecs = new AWS.ECS();
-
 exports.handler = (events, context) => {
   console.log(events);
 
-  var username = process.env.username;
-  var password = process.env.password;
-  var host = process.env.host;
+  var username = "admin";
+  var password = "Mossy-Tag9chef";
+  var host = "api.stage.datacite.org";
 
   var https = require("https");
   var options = {
@@ -18,6 +15,8 @@ exports.handler = (events, context) => {
         "Basic " + new Buffer.from(username + ":" + password).toString("base64"),
     },
   };
+
+  console.log(options)
 
   const req = https.request(options, (res) => {
     console.log("status:", res.statusCode);
