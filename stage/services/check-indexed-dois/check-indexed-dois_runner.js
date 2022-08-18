@@ -15,7 +15,7 @@ exports.handler = (events, context) => {
     method: "POST",
     headers: {
       Authorization:
-        "Basic " + new Buffer(username + ":" + password).toString("base64"),
+        "Basic " + new Buffer.from(username + ":" + password).toString("base64"),
     },
   };
 
