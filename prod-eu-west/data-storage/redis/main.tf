@@ -5,7 +5,7 @@ resource "aws_elasticache_cluster" "redis" {
   node_type                = "cache.m4.large"
   port                     = 6379
   num_cache_nodes          = 1
-  parameter_group_name     = aws_elasticache_parameter_group.redis.name
+  parameter_group_name     = "default.redis6.x"
   security_group_ids       = [data.aws_security_group.datacite-private.id]
   subnet_group_name        = aws_elasticache_subnet_group.redis.name
   apply_immediately        = true
@@ -21,22 +21,6 @@ resource "aws_elasticache_subnet_group" "redis" {
     data.aws_subnet.datacite-private.id,
     data.aws_subnet.datacite-alt.id
   ]
-}
-
-resource "aws_elasticache_parameter_group" "redis" {
-    name = "redis"
-    family = "redis2.8"
-    description = "Cache cluster redis-stage param group"
-
-    parameter {
-        name = "activerehashing"
-        value = "yes"
-    }
-
-    parameter {
-        name = "min-slaves-to-write"
-        value = "0"
-    }
 }
 
 resource "aws_route53_record" "redis" {
