@@ -15,7 +15,7 @@ resource "aws_lambda_function" "crossref-related-agent" {
   function_name = "crossref-related-agent"
   role = data.aws_iam_role.lambda.arn
   handler = "crossref-related-agent_runner.handler"
-  runtime = "nodejs12.x"
+  runtime = "nodejs14.x"
   source_code_hash = sha256(filebase64("crossref-related-agent_runner.js.zip"))
   timeout = "270"
 
