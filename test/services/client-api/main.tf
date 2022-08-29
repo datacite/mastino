@@ -3,7 +3,7 @@ resource "aws_ecs_service" "client-api-test" {
   cluster = data.aws_ecs_cluster.test.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.client-api-test.arn
-  desired_count = 1
+  desired_count = 2
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
@@ -149,7 +149,7 @@ resource "aws_service_discovery_service" "client-api-test" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
