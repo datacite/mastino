@@ -3,7 +3,7 @@ resource "aws_ecs_service" "mds" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.mds.arn
-  
+
   # Create service with 2 instances to start
   desired_count = 2
 
@@ -33,7 +33,7 @@ resource "aws_ecs_service" "mds" {
 
 resource "aws_appautoscaling_target" "mds" {
   max_capacity       = 10
-  min_capacity       = 2
+  min_capacity       = 4
   resource_id        = "service/default/${aws_ecs_service.mds.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
