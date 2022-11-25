@@ -31,7 +31,7 @@ variable "plausible_url" {
 }
 
 variable "database_dbname" {
-    default = "analytics-events-db"
+    default = "analytics_events_db"
 }
 
 variable "database_host" {
