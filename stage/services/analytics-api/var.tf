@@ -29,3 +29,17 @@ variable "datacite_api_url" {
 variable "plausible_url" {
     default = "http://analytics.stage.local:8000"
 }
+
+variable "database_dbname" {
+    default = "analytics-events-db"
+}
+
+variable "database_host" {
+    default = "clickhouse.stage.local"
+}
+
+variable "database_user" {
+    default = "admin"
+}
+
+variable "database_password" {}

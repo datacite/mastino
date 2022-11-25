@@ -32,6 +32,22 @@
             {
                 "name": "GITHUB_VERSION",
                 "value": "${version}"
+            },
+            {
+                "name": "DATABASE_HOST",
+                "value": "${database_host}"
+            },
+            {
+                "name": "DATABASE_DBNAME",
+                "value": "${database_dbname}"
+            },
+            {
+                "name": "DATABASE_USER",
+                "value": "${database_user}"
+            },
+            {
+                "name": "DATABASE_PASSWORD",
+                "value": "${database_password}"
             }
         ]
     }
