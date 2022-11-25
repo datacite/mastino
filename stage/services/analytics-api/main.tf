@@ -44,6 +44,10 @@ resource "aws_ecs_task_definition" "analytics-api-stage" {
       plausible_url      = var.plausible_url
       datacite_api_url   = var.datacite_api_url
       version            = var.keeshond_tags["sha"]
+      database_dbname    = var.database_dbname
+      database_host      = var.database_host
+      database_user      = var.database_user
+      database_password  = var.database_password
     })
 }
 
