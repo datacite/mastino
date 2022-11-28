@@ -81,7 +81,7 @@ resource "aws_lb_listener_rule" "api-stage" {
 
   condition {
     field  = "path-pattern"
-    values = ["/api/"]
+    values = ["/api*"]
   }
 }
 
