@@ -46,15 +46,3 @@ data "aws_lb_listener" "stage" {
   load_balancer_arn = data.aws_lb.stage.arn
   port = 443
 }
-
-data "template_file" "mds_task" {
-  template = file("mds.json")
-
-  vars {
-    sentry_dsn         = var.sentry_dsn
-    api_url            = var.api_url
-    mds_url            = var.mds_url
-    memcache_servers   = var.memcache_servers
-    version            = var.poodle_tags["sha"]
-  }
-}
