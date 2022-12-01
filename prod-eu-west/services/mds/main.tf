@@ -177,7 +177,7 @@ resource "aws_lb_target_group" "mds" {
 
   health_check {
     path = "/heartbeat"
-    timeout = 30
+    timeout = 60
     interval = 60
   }
 }
