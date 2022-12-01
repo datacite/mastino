@@ -1,7 +1,7 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
   version    = "~> 2.70"
 }
 
@@ -15,15 +15,15 @@ data "aws_route53_zone" "internal" {
 }
 
 data "aws_security_group" "datacite-private" {
-  id = "${var.security_group_id}"
+  id = var.security_group_id
 }
 
 data "aws_subnet" "datacite-private" {
-  id = "${var.subnet_datacite-private_id}"
+  id = var.subnet_datacite-private_id
 }
 
 data "aws_subnet" "datacite-alt" {
-  id = "${var.subnet_datacite-alt_id}"
+  id = var.subnet_datacite-alt_id
 }
 
 data "aws_ecs_cluster" "stage" {
@@ -39,22 +39,22 @@ data "aws_iam_role" "ecs_task_execution_role" {
 }
 
 data "aws_lb" "stage" {
-  name = "${var.lb_name}"
+  name = var.lb_name
 }
 
 data "aws_lb_listener" "stage" {
-  load_balancer_arn = "${data.aws_lb.stage.arn}"
+  load_balancer_arn = data.aws_lb.stage.arn
   port = 443
 }
 
 data "template_file" "mds_task" {
-  template = "${file("mds.json")}"
+  template = file("mds.json")
 
   vars {
-    sentry_dsn         = "${var.sentry_dsn}"
-    api_url            = "${var.api_url}"
-    mds_url            = "${var.mds_url}"
-    memcache_servers   = "${var.memcache_servers}"
-    version            = "${var.poodle_tags["sha"]}"
+    sentry_dsn         = var.sentry_dsn
+    api_url            = var.api_url
+    mds_url            = var.mds_url
+    memcache_servers   = var.memcache_servers
+    version            = var.poodle_tags["sha"]
   }
 }
