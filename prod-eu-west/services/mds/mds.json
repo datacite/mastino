@@ -1,7 +1,7 @@
 [
   {
     "name": "mds",
-    "image": "datacite/poodle:${version}",
+    "image": "ghcr.io/datacite/poodle:${version}",
     "cpu": 256,
     "memory": 512,
     "networkMode": "awsvpc",
