@@ -1,7 +1,7 @@
 [
   {
     "name": "mds-stage",
-    "image": "datacite/poodle",
+    "image": "ghcr.io/datacite/poodle",
     "cpu": 256,
     "memory": 512,
     "networkMode": "awsvpc",
@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/mds-stage",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
