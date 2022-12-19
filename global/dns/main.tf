@@ -81,6 +81,14 @@ resource "aws_route53_record" "support" {
     records = ["${var.support_dns_name}"]
 }
 
+resource "aws_route53_record" "design" {
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "design.datacite.org"
+    type = "CNAME"
+    ttl = "300"
+    records = ["${var.design_dns_name}"]
+}
+
 // resource "aws_route53_record" "stage" {
 //     zone_id = "${aws_route53_zone.production.zone_id}"
 //     name = "stage.datacite.org"

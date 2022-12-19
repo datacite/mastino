@@ -9,6 +9,7 @@ variable "vpc_id_us" {}
 
 variable "changelog_dns_name" {}
 variable "support_dns_name" {}
+variable "design_dns_name" {}
 variable "status_dns_name" {}
 
 variable "dkim_record" {}
