@@ -30,16 +30,16 @@ variable "plausible_url" {
     default = "http://analytics.stage.local:8000"
 }
 
-variable "database_dbname" {
+variable "analytics_database_dbname" {
     default = "analytics_events_db"
 }
 
-variable "database_host" {
+variable "analytics_database_host" {
     default = "clickhouse.stage.local"
 }
 
-variable "database_user" {
+variable "analytics_database_user" {
     default = "admin"
 }
 
-variable "database_password" {}
+variable "analytics_database_password" {}

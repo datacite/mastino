@@ -34,20 +34,20 @@
                 "value": "${version}"
             },
             {
-                "name": "DATABASE_HOST",
-                "value": "${database_host}"
+                "name": "ANALYTICS_DATABASE_HOST",
+                "value": "${analytics_database_host}"
             },
             {
-                "name": "DATABASE_DBNAME",
-                "value": "${database_dbname}"
+                "name": "ANALYTICS_DATABASE_DBNAME",
+                "value": "${analytics_database_dbname}"
             },
             {
-                "name": "DATABASE_USER",
-                "value": "${database_user}"
+                "name": "ANALYTICS_DATABASE_USER",
+                "value": "${analytics_database_user}"
             },
             {
-                "name": "DATABASE_PASSWORD",
-                "value": "${database_password}"
+                "name": "ANALYTICS_DATABASE_PASSWORD",
+                "value": "${analytics_database_password}"
             }
         ]
     }
