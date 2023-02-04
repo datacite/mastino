@@ -1,7 +1,7 @@
 [
     {
         "name": "analytics-api-stage",
-        "image": "ghcr.io/datacite/keeshond",
+        "image": "ghcr.io/datacite/keeshondweb",
         "cpu": 256,
         "memory": 512,
         "essential": true,

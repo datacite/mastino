@@ -1,7 +1,7 @@
 [
     {
         "name": "analytics-api",
-        "image": "ghcr.io/datacite/keeshond",
+        "image": "ghcr.io/datacite/keeshondweb:${version}",
         "cpu": 256,
         "memory": 512,
         "essential": true,
@@ -32,6 +32,22 @@
             {
                 "name": "GITHUB_VERSION",
                 "value": "${version}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_HOST",
+                "value": "${analytics_database_host}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_DBNAME",
+                "value": "${analytics_database_dbname}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_USER",
+                "value": "${analytics_database_user}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_PASSWORD",
+                "value": "${analytics_database_password}"
             }
         ]
     }

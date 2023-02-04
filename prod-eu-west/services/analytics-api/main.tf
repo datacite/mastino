@@ -43,7 +43,11 @@ resource "aws_ecs_task_definition" "analytics-api" {
     {
       plausible_url      = var.plausible_url
       datacite_api_url   = var.datacite_api_url
-      version            = var.keeshond_tags["sha"]
+      version            = var.keeshond_tags["version"]
+      analytics_database_dbname    = var.analytics_database_dbname
+      analytics_database_host      = var.analytics_database_host
+      analytics_database_user      = var.analytics_database_user
+      analytics_database_password  = var.analytics_database_password
     })
 }
 
