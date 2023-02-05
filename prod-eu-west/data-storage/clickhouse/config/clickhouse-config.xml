@@ -1,6 +1,6 @@
 <yandex>
     <logger>
-        <level>warning</level>
+        <level>error</level>
         <console>true</console>
     </logger>
 
