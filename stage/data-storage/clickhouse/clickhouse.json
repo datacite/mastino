@@ -62,6 +62,8 @@
   {
     "name": "clickhouse-config",
     "image": "public.ecr.aws/docker/library/bash:alpine3.16",
+    "cpu": 256,
+    "memory": 512,
     "entryPoint": [
       "bash",
       "-c",
