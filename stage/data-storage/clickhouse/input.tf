@@ -46,3 +46,7 @@ data "aws_lb_listener" "stage" {
   load_balancer_arn = data.aws_lb.stage.arn
   port = 443
 }
+
+data "local_file" "clickhouse-config" {
+  filename = "${path.module}/config/clickhouse-config.xml"
+}

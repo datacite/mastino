@@ -20,6 +20,7 @@ resource "aws_ecs_task_definition" "clickhouse-stage" {
   memory = "2048"
 
   container_definitions = templatefile("clickhouse.json", {
+    clickhouse_config  = base64encode(data.clickhouse-config.content)
     access_key         = var.access_key
     secret_key         = var.secret_key
     region             = var.region
@@ -38,6 +39,11 @@ resource "aws_ecs_task_definition" "clickhouse-stage" {
       }
     }
   }
+
+  volume {
+    name = "clickhouse-config-stage"
+  }
+
 }
 
 resource "aws_ecs_service" "clickhouse-stage" {

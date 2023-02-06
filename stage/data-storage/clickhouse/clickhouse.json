@@ -20,6 +20,10 @@
       {
         "containerPath": "/var/lib/clickhouse",
         "sourceVolume": "clickhouse-stage"
+      },
+      {
+        "containerPath": "/etc/clickhouse-server/config.d/",
+        "sourceVolume": "clickhouse-config-stage"
       }
     ],
     "logConfiguration": {
@@ -47,6 +51,37 @@
         "name": "PUBLIC_KEY",
         "value": "${public_key}"
       }
+    ],
+    "dependsOn": [
+      {
+        "containerName": "clickhouse-config",
+        "condition": "COMPLETE"
+      }
     ]
+  },
+  {
+    "name": "clickhouse-config",
+    "image": "public.ecr.aws/docker/library/bash:alpine3.16",
+    "entryPoint": [
+      "bash",
+      "-c",
+      "mkdir -p /etc/clickhouse-server/config.d/; echo ${clickhouse_config} | base64 -d - | tee /etc/clickhouse-server/config.d/config.xml"
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/etc/clickhouse-server/config.d/",
+        "sourceVolume": "clickhouse-config-stage"
+      }
+    ],
+    "privileged": false,
+    "essential": false,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/clickhouse-config-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
   }
 ]
