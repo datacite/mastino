@@ -80,7 +80,7 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "/ecs/clickhouse-config-stage",
+        "awslogs-group": "/ecs/clickhouse-stage",
         "awslogs-region": "eu-west-1",
         "awslogs-stream-prefix": "ecs"
       }
