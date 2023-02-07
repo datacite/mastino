@@ -2,8 +2,6 @@
   {
     "name": "clickhouse-stage",
     "image": "clickhouse/clickhouse-server",
-    "cpu": 1792,
-    "memory": 2048,
     "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [
@@ -62,8 +60,6 @@
   {
     "name": "clickhouse-config",
     "image": "public.ecr.aws/docker/library/bash:alpine3.16",
-    "cpu": 256,
-    "memory": 512,
     "entryPoint": [
       "bash",
       "-c",
