@@ -2,7 +2,7 @@
   {
     "name": "clickhouse-stage",
     "image": "clickhouse/clickhouse-server",
-    "cpu": 1024,
+    "cpu": 1792,
     "memory": 2048,
     "networkMode": "awsvpc",
     "essential": true,
