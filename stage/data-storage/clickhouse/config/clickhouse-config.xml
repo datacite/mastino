@@ -1,7 +1,7 @@
-<yandex>
+<clickhouse>
     <logger>
         <level>warning</level>
-        <console>true</console>
+        <console>1</console>
     </logger>
 
     <!-- Stop all the unnecessary logging -->
@@ -13,4 +13,6 @@
     <asynchronous_metric_log remove="remove"/>
     <session_log remove="remove"/>
     <part_log remove="remove"/>
-</yandex>
+
+    <listen_host>0.0.0.0</listen_host>
+</clickhouse>
