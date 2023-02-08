@@ -67,7 +67,7 @@
     "entryPoint": [
       "bash",
       "-c",
-      "mkdir -p /etc/clickhouse-server/config.d/; echo ${clickhouse_config} | base64 -d - | tee /etc/clickhouse-server/config.xml"
+      "mkdir -p /etc/clickhouse-server/; echo ${clickhouse_config} | base64 -d - | tee /etc/clickhouse-server/config.xml"
     ],
     "mountPoints": [
       {
