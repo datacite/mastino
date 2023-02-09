@@ -20,6 +20,7 @@ resource "aws_ecs_task_definition" "clickhouse-prod" {
   memory = "2048"
 
   container_definitions = templatefile("clickhouse.json", {
+    clickhouse_config  = base64encode(data.local_file.clickhouse-config.content)
     access_key         = var.access_key
     secret_key         = var.secret_key
     region             = var.region
@@ -37,6 +38,10 @@ resource "aws_ecs_task_definition" "clickhouse-prod" {
         size = 40
       }
     }
+  }
+
+  volume {
+    name = "clickhouse-config"
   }
 }
 
@@ -119,3 +124,4 @@ resource "aws_iam_role_policy_attachment" "ecs-rexray-policy-attachment" {
   role = aws_iam_role.ecs-instance-role.name
   policy_arn = aws_iam_policy.ecs-rexray-policy.arn
 }
+
