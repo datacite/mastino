@@ -16,8 +16,6 @@ resource "aws_ecs_task_definition" "clickhouse-prod" {
   execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
   network_mode = "awsvpc"
   requires_compatibilities = ["EC2"]
-  cpu = "1024"
-  memory = "2048"
 
   container_definitions = templatefile("clickhouse.json", {
     clickhouse_config  = base64encode(data.local_file.clickhouse-config.content)
