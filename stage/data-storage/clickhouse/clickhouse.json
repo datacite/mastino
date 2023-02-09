@@ -22,7 +22,7 @@
         "sourceVolume": "clickhouse-stage"
       },
       {
-        "containerPath": "/etc/clickhouse-server/",
+        "containerPath": "/etc/clickhouse-server/config.d",
         "sourceVolume": "clickhouse-config-stage"
       }
     ],
@@ -67,11 +67,11 @@
     "entryPoint": [
       "bash",
       "-c",
-      "chmod 777 /etc/clickhouse-server; echo ${clickhouse_config} | base64 -d - | tee /etc/clickhouse-server/config.xml"
+      "mkdir -p /etc/clickhouse-server/config.d; chmod 777 /etc/clickhouse-server/config.d; echo ${clickhouse_config} | base64 -d - | tee /etc/clickhouse-server/config.d/config.xml"
     ],
     "mountPoints": [
       {
-        "containerPath": "/etc/clickhouse-server/",
+        "containerPath": "/etc/clickhouse-server/config.d",
         "sourceVolume": "clickhouse-config-stage"
       }
     ],
