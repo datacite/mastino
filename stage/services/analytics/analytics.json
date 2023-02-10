@@ -1,0 +1,149 @@
+[
+  {
+    "name": "analytics-stage",
+    "image": "plausible/analytics:latest",
+    "cpu": 1790,
+    "memory": 3840,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "portMappings": [{
+      "containerPort": 8000,
+      "hostPort": 8000
+    }
+  ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/analytics-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "command": [
+      "sh -c \"sleep 120 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh db init-admin && /entrypoint.sh run\""
+    ],
+    "entryPoint": [
+      "sh",
+      "-c"
+    ],
+    "environment": [
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "${region}"
+      },
+      {
+        "name": "SLACK_WEBHOOK_URL",
+        "value": "${slack_webhook_url}"
+      },
+      {
+        "name": "GITHUB_VERSION",
+        "value": "${version}"
+      },
+      {
+        "name": "SMTP_HOST_PORT",
+        "value": "${smtp_host_port}"
+      },
+      {
+        "name": "CLICKHOUSE_DATABASE_URL",
+        "value": "${clickhouse_database_url}"
+      },
+      {
+        "name": "CLICKHOUSE_DATABASE_USER",
+        "value": "${clickhouse_database_user}"
+      },
+      {
+        "name": "CLICKHOUSE_DATABASE_PASSWORD",
+        "value": "${clickhouse_database_password}"
+      },
+      {
+        "name": "ADMIN_USER_EMAIL",
+        "value": "${admin_user_email}"
+      },
+      {
+        "name": "SMTP_RETRIES",
+        "value": "${smtp_retries}"
+      },
+      {
+        "name": "SMTP_HOST_SSL_ENABLED",
+        "value": "${smtp_host_ssl_enabled}"
+      },
+      {
+        "name": "MAILER_ADAPTER",
+        "value": "${mailer_adapter}"
+      },
+      {
+        "name": "DATABASE_URL",
+        "value": "${database_url}"
+      },
+      {
+        "name": "POSTMARK_API_KEY",
+        "value": "${postmark_api_key}"
+      },
+      {
+        "name": "SMTP_USER_PWD",
+        "value": "${smtp_user_pwd}"
+      },
+      {
+        "name": "ADMIN_USER_PWD",
+        "value": "${admin_user_pwd}"
+      },
+      {
+        "name": "SMTP_HOST_ADDR",
+        "value": "${smtp_host_addr}"
+      },
+      {
+        "name": "ADMIN_USER_NAME",
+        "value": "${admin_user_name}"
+      },
+      {
+        "name": "BASE_URL",
+        "value": "${base_url}"
+      },
+      {
+        "name": "MAILER_EMAIL",
+        "value": "${mailer_email}"
+      },
+      {
+        "name": "SECRET_KEY_BASE",
+        "value": "${secret_key_base}"
+      },
+      {
+        "name": "SMTP_USER_NAME",
+        "value": "${smtp_user_name}"
+      },
+      {
+        "name" : "PUBLIC_KEY",
+        "value" : "${public_key}"
+      }
+    ]
+  },
+  {
+    "name": "bytemark-smtp",
+    "image": "bytemark/smtp",
+    "cpu": 128,
+    "memory": 128,
+    "essential": true,
+    "memoryReservation": 64,
+    "networkMode": "awsvpc",
+    "portMappings": [{
+      "containerPort": 25,
+      "hostPort": 25
+    }],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/analytics-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]
