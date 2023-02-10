@@ -22,10 +22,6 @@
         },
         "environment": [
             {
-                "name": "PLAUSIBLE_URL",
-                "value": "${plausible_url}"
-            },
-            {
                 "name": "DATACITE_API_URL",
                 "value": "${datacite_api_url}"
             },

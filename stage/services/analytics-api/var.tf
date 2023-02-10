@@ -26,9 +26,6 @@ variable "namespace_id" {}
 variable "datacite_api_url" {
     default = "https://api.stage.datacite.org"
 }
-variable "plausible_url" {
-    default = "http://analytics.stage.local:8000"
-}
 
 variable "analytics_database_dbname" {
     default = "analytics_events_db"
