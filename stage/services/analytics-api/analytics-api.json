@@ -48,10 +48,6 @@
             {
                 "name": "JWT_PUBLIC_KEY",
                 "value": "${jwt_public_key}"
-            },
-            {
-                "name": "JWT",
-                "value": "${jwt}"
             }
         ]
     }

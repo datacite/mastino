@@ -49,7 +49,6 @@ resource "aws_ecs_task_definition" "analytics-api" {
       analytics_database_user      = var.analytics_database_user
       analytics_database_password  = var.analytics_database_password
       jwt_public_key = var.jwt_public_key
-      jwt = var.jwt
     })
 }
 
