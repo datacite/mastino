@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "analytics-api-test" {
   container_definitions = templatefile("analytics-api.json",
     {
       datacite_api_url   = var.datacite_api_url
-      version            = var.keeshond_tags["sha"]
+      version            = var.keeshond_tags["version"]
       analytics_database_dbname    = var.analytics_database_dbname
       analytics_database_host      = var.analytics_database_host
       analytics_database_user      = var.analytics_database_user
