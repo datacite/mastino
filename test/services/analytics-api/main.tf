@@ -101,3 +101,11 @@ resource "aws_service_discovery_service" "analytics-api-test" {
     }
   }
 }
+
+resource "aws_route53_record" "profiles-test" {
+    zone_id = data.aws_route53_zone.production.zone_id
+    name = "analytics.test.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.test.dns_name]
+}
