@@ -40,3 +40,6 @@ variable "analytics_database_user" {
 }
 
 variable "analytics_database_password" {}
+
+variable "jwt" {}
+variable "jwt_public_key" {}

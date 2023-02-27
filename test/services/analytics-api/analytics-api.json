@@ -44,6 +44,14 @@
             {
                 "name": "ANALYTICS_DATABASE_PASSWORD",
                 "value": "${analytics_database_password}"
+            },
+            {
+                "name": "JWT_PUBLIC_KEY",
+                "value": "${jwt_public_key}"
+            },
+            {
+                "name": "JWT",
+                "value": "${jwt}"
             }
         ]
     }

@@ -22,10 +22,6 @@
         },
         "environment": [
             {
-                "name": "PLAUSIBLE_URL",
-                "value": "${plausible_url}"
-            },
-            {
                 "name": "DATACITE_API_URL",
                 "value": "${datacite_api_url}"
             },
@@ -48,6 +44,14 @@
             {
                 "name": "ANALYTICS_DATABASE_PASSWORD",
                 "value": "${analytics_database_password}"
+            },
+            {
+                "name": "JWT_PUBLIC_KEY",
+                "value": "${jwt_public_key}"
+            },
+            {
+                "name": "JWT",
+                "value": "${jwt}"
             }
         ]
     }
