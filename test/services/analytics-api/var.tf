@@ -36,7 +36,7 @@ variable "analytics_database_host" {
 }
 
 variable "analytics_database_user" {
-    default = "admin"
+    default = "default"
 }
 
 variable "analytics_database_password" {}
