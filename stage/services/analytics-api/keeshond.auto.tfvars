@@ -1,4 +1,4 @@
 keeshond_tags = {
-  sha = "e568e33"
+  sha = "57bd4f1"
   version = ""
 }
