@@ -24,7 +24,7 @@ resource "aws_lambda_function" "analytics-worker-stage" {
   filename         = "analytics_worker.py.zip"
   function_name    = "analytics-worker-stage"
   role             = data.aws_iam_role.lambda.arn
-  handler          = "analytics_worker.lambda_handler"
+  handler          = "analytics_worker_runner.lambda_handler"
   runtime          = "python3.8"
   source_code_hash = sha256(filebase64("analytics_worker.py.zip"))
   timeout          = "270"
