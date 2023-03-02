@@ -7,7 +7,6 @@ resource "aws_ecs_task_definition" "analytics-worker-stage" {
   memory = "512"
   container_definitions = templatefile("analytics-worker.json",
     {
-      datacite_api_url   = var.datacite_api_url
       version            = var.keeshond_tags["sha"]
       analytics_database_dbname    = var.analytics_database_dbname
       analytics_database_host      = var.analytics_database_host
