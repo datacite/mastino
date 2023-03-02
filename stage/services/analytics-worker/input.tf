@@ -38,6 +38,10 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
+data "aws_iam_role" "lambda" {
+  name = "lambda"
+}
+
 data "aws_lb" "stage" {
   name = var.lb_name
 }
