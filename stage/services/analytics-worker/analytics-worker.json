@@ -1,6 +1,6 @@
 [
     {
-        "name": "analytics-api-stage",
+        "name": "analytics-worker-stage",
         "image": "ghcr.io/datacite/keeshondworker",
         "cpu": 256,
         "memory": 512,
