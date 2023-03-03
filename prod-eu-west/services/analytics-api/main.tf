@@ -82,7 +82,7 @@ resource "aws_lb_listener_rule" "api" {
 
   condition {
     field  = "path-pattern"
-    values = ["/api/metric"]
+    values = ["/api*"]
   }
 }
 
