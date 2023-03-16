@@ -1,0 +1,44 @@
+[
+    {
+        "name": "analytics-worker",
+        "image": "ghcr.io/datacite/keeshondworker:${version}",
+        "cpu": 256,
+        "memory": 512,
+        "essential": true,
+        "networkMode": "awsvpc",
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/analytics-worker",
+                "awslogs-region": "eu-west-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "environment": [
+            {
+                "name": "GITHUB_VERSION",
+                "value": "${version}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_HOST",
+                "value": "${analytics_database_host}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_DBNAME",
+                "value": "${analytics_database_dbname}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_USER",
+                "value": "${analytics_database_user}"
+            },
+            {
+                "name": "ANALYTICS_DATABASE_PASSWORD",
+                "value": "${analytics_database_password}"
+            },
+            {
+                "name": "DATACITE_JWT",
+                "value": "${datacite_jwt}"
+            }
+        ]
+    }
+]
