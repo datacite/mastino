@@ -39,7 +39,7 @@ resource "aws_lambda_function" "analytics-worker" {
       AWS_SECURITY_GROUP = data.aws_security_group.datacite-private.id
       AWS_DATACITE_SUBNET_PRIVATE       = data.aws_subnet.datacite-private.id
       AWS_DATACITE_SUBNET_ALT       = data.aws_subnet.datacite-alt.id
-      AWS_CLUSTER        = data.aws_ecs_cluster.stage.id
+      AWS_CLUSTER        = data.aws_ecs_cluster.default.id
     }
   }
 }

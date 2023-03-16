@@ -30,6 +30,10 @@ data "aws_ecs_cluster" "default" {
   cluster_name = "default"
 }
 
+data "aws_iam_role" "lambda" {
+  name = "lambda"
+}
+
 data "aws_iam_role" "ecs_service" {
   name = "ecs_service"
 }
