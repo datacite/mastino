@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "analytics-worker" {
   memory = "512"
   container_definitions = templatefile("analytics-worker.json",
     {
-      version            = var.keeshond_tags["sha"]
+      version            = var.keeshond_tags["version"]
       analytics_database_dbname    = var.analytics_database_dbname
       analytics_database_host      = var.analytics_database_host
       analytics_database_user      = var.analytics_database_user
