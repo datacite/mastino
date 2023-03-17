@@ -40,6 +40,7 @@ resource "aws_lambda_function" "analytics-worker-stage" {
       AWS_DATACITE_SUBNET_PRIVATE       = data.aws_subnet.datacite-private.id
       AWS_DATACITE_SUBNET_ALT       = data.aws_subnet.datacite-alt.id
       AWS_CLUSTER        = data.aws_ecs_cluster.stage.id
+      TASK_DEFINITION = "analytics-worker-stage"
     }
   }
 }
