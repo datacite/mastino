@@ -20,6 +20,10 @@
                 "value": "${version}"
             },
             {
+                "name": "DATACITE_API_URL",
+                "value": "${datacite_api_url}"
+            },
+            {
                 "name": "ANALYTICS_DATABASE_HOST",
                 "value": "${analytics_database_host}"
             },

@@ -39,4 +39,8 @@ variable "analytics_database_password" {
     default = ""
 }
 
+variable "datacite_api_url" {
+    default = "https://api.datacite.org"
+}
+
 variable "datacite_jwt" {}

@@ -8,6 +8,7 @@ resource "aws_ecs_task_definition" "analytics-worker" {
   container_definitions = templatefile("analytics-worker.json",
     {
       version            = var.keeshond_tags["version"]
+      datacite_api_url   = var.datacite_api_url
       analytics_database_dbname    = var.analytics_database_dbname
       analytics_database_host      = var.analytics_database_host
       analytics_database_user      = var.analytics_database_user
