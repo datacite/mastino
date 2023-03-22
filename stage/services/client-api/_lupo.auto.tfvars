@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "70f988256db3a7c279fa287b4519b6293fd8a8cd"
-  version = "prefix-bug-2"
+  sha = "6dc44d0b02196bde871f5bbfd6871c8f2dee0c47"
+  version = "master"
 }
