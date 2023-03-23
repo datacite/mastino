@@ -1,6 +1,6 @@
 [{
   "name": "client-api-stage",
-  "image": "ghcr.io/datacite/lupo",
+  "image": "ghcr.io/datacite/lupo:${version}",
   "cpu": 2048,
   "memory": 4096,
   "essential": true,
