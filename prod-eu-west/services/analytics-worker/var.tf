@@ -44,3 +44,7 @@ variable "datacite_api_url" {
 }
 
 variable "datacite_jwt" {}
+
+variable "analytics_queue" {
+    default = "production_analytics"
+}

@@ -50,3 +50,7 @@ data "aws_lb_listener" "default" {
   load_balancer_arn = data.aws_lb.default.arn
   port = 443
 }
+
+data "aws_sqs_queue" "analytics" {
+  name = var.analytics_queue
+}

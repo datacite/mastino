@@ -28,7 +28,7 @@ resource "aws_lambda_function" "analytics-worker" {
   handler          = "analytics_worker_runner.lambda_handler"
   runtime          = "python3.8"
   source_code_hash = sha256(filebase64("analytics_worker.py.zip"))
-  timeout          = "270"
+  timeout          = "30"
 
   vpc_config {
     subnet_ids         = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
@@ -44,4 +44,11 @@ resource "aws_lambda_function" "analytics-worker" {
       TASK_DEFINITION = "analytics-worker"
     }
   }
+}
+
+resource "aws_lambda_event_source_mapping" "analytics_event_source_mapping" {
+  event_source_arn = data.aws_sqs_queue.analytics.arn
+  enabled          = true
+  function_name    = aws_lambda_function.analytics-worker.arn
+  batch_size       = 1
 }
