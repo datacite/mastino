@@ -9,7 +9,8 @@ provider "aws" {
 data "template_file" "queue-stage" {
   template = file("sqs.json")
 
-  vars {
+  vars = {
     region = var.region
   }
+
 }

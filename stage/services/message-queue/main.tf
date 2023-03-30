@@ -2,7 +2,7 @@ resource "aws_sqs_queue" "doi-stage" {
   name                      = "stage_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -11,7 +11,7 @@ resource "aws_sqs_queue" "event-stage" {
   name                      = "stage_event"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -21,7 +21,7 @@ resource "aws_sqs_queue" "volpino-stage" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -31,7 +31,7 @@ resource "aws_sqs_queue" "lupo-stage" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -41,7 +41,7 @@ resource "aws_sqs_queue" "lupo-background-stage" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -51,7 +51,7 @@ resource "aws_sqs_queue" "lupo-import-stage" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -61,7 +61,7 @@ resource "aws_sqs_queue" "lupo-import-other-doi-stage" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -71,7 +71,7 @@ resource "aws_sqs_queue" "lupo-transfer-stage" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -80,7 +80,7 @@ resource "aws_sqs_queue" "levriero-stage" {
   name                      = "stage_levriero"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -89,7 +89,7 @@ resource "aws_sqs_queue" "levriero-usage-stage" {
   name                      = "stage_levriero_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -99,7 +99,7 @@ resource "aws_sqs_queue" "usage-stage" {
   name                      = "stage_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -108,7 +108,7 @@ resource "aws_sqs_queue" "sashimi-stage" {
   name                      = "stage_sashimi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -118,7 +118,7 @@ resource "aws_sqs_queue" "salesforce-stage" {
   visibility_timeout_seconds = 60
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -128,7 +128,7 @@ resource "aws_sqs_queue" "analytics" {
   visibility_timeout_seconds = 60
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
@@ -136,7 +136,7 @@ resource "aws_sqs_queue" "analytics" {
 resource "aws_sqs_queue" "dead-letter-stage" {
   name                      = "stage_dead-letter"
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 }
