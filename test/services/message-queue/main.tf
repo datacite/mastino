@@ -116,7 +116,7 @@ resource "aws_sqs_queue" "sashimi-test" {
 resource "aws_sqs_queue" "analytics" {
   name                      = "test_analytics"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
-  tags {
+  tags = {
     Environment = "test"
   }
 }
@@ -131,5 +131,5 @@ resource "aws_sqs_queue" "dead-letter-test" {
 
 resource "aws_iam_policy" "sqs-test" {
   name = "sqs-test"
-  policy = "${data.template_file.queue-test.rendered}"
+  policy = data.template_file.queue-test.rendered
 }

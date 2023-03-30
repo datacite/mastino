@@ -1,13 +1,16 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
+  version    = "~> 2.70"
 }
 
-data "template_file" "queue-test" {
-  template = "${file("sqs.json")}"
+
+data "template_file" "queue-stage" {
+  template = file("sqs.json")
 
   vars = {
-    region = "${var.region}"
+    region = var.region
   }
+
 }
