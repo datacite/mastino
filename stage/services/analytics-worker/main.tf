@@ -52,10 +52,10 @@ resource "aws_lambda_event_source_mapping" "analytics_stage_event_source_mapping
   batch_size       = 1
 }
 
-# resource "aws_lambda_permission" "analytics-worker-stage" {
-#   statement_id  = "AllowExecutionFromCloudWatch"
-#   action        = "lambda:InvokeFunction"
-#   function_name = aws_lambda_function.analytics-worker-stage.function_name
-#   principal     = "events.amazonaws.com"
-#   source_arn    = aws_cloudwatch_event_rule.analytics-worker-stage.arn
-# }
+resource "aws_lambda_permission" "analytics-worker-stage" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.analytics-worker-stage.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.analytics-worker-stage.arn
+}
