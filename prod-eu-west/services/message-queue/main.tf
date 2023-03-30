@@ -116,7 +116,15 @@ resource "aws_sqs_queue" "salesforce" {
   name                      = "production_salesforce"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
-  
+
+  tags {
+    Environment = "production"
+  }
+}
+
+resource "aws_sqs_queue" "analytics" {
+  name                      = "production_analytics"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   tags {
     Environment = "production"
   }

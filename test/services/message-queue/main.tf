@@ -20,7 +20,7 @@ resource "aws_sqs_queue" "volpino-test" {
   name                      = "test_volpino"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
-  
+
   tags = {
     Environment = "test"
   }
@@ -30,7 +30,7 @@ resource "aws_sqs_queue" "lupo-test" {
   name                      = "test_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
-  
+
   tags = {
     Environment = "test"
   }
@@ -109,6 +109,14 @@ resource "aws_sqs_queue" "sashimi-test" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
 
   tags = {
+    Environment = "test"
+  }
+}
+
+resource "aws_sqs_queue" "analytics" {
+  name                      = "test_analytics"
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-test.arn}\",\"maxReceiveCount\":4}"
+  tags {
     Environment = "test"
   }
 }

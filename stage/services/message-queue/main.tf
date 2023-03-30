@@ -20,7 +20,7 @@ resource "aws_sqs_queue" "volpino-stage" {
   name                      = "stage_volpino"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
-  
+
   tags {
     Environment = "stage"
   }
@@ -30,7 +30,7 @@ resource "aws_sqs_queue" "lupo-stage" {
   name                      = "stage_lupo"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
-  
+
   tags {
     Environment = "stage"
   }
@@ -115,6 +115,16 @@ resource "aws_sqs_queue" "sashimi-stage" {
 
 resource "aws_sqs_queue" "salesforce-stage" {
   name                      = "stage_salesforce"
+  visibility_timeout_seconds = 60
+  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
+
+  tags {
+    Environment = "stage"
+  }
+}
+
+resource "aws_sqs_queue" "analytics" {
+  name                      = "stage_analytics"
   visibility_timeout_seconds = 60
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter-stage.arn}\",\"maxReceiveCount\":4}"
 
