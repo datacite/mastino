@@ -2,7 +2,7 @@ resource "aws_sqs_queue" "doi" {
   name                      = "production_doi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -11,7 +11,7 @@ resource "aws_sqs_queue" "event" {
   name                      = "production_event"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -21,7 +21,7 @@ resource "aws_sqs_queue" "volpino" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -31,7 +31,7 @@ resource "aws_sqs_queue" "lupo" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -41,7 +41,7 @@ resource "aws_sqs_queue" "lupo-background" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -51,7 +51,7 @@ resource "aws_sqs_queue" "lupo-import" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -61,7 +61,7 @@ resource "aws_sqs_queue" "lupo-import-other-doi" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -71,7 +71,7 @@ resource "aws_sqs_queue" "lupo-transfer" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 3600
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -80,7 +80,7 @@ resource "aws_sqs_queue" "levriero" {
   name                      = "production_levriero"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -89,7 +89,7 @@ resource "aws_sqs_queue" "levriero-usage" {
   name                      = "production_levriero_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -98,7 +98,7 @@ resource "aws_sqs_queue" "sashimi" {
   name                      = "production_sashimi"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -107,7 +107,7 @@ resource "aws_sqs_queue" "usage" {
   name                      = "production_usage"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -117,7 +117,7 @@ resource "aws_sqs_queue" "salesforce" {
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
   visibility_timeout_seconds = 120
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -125,7 +125,7 @@ resource "aws_sqs_queue" "salesforce" {
 resource "aws_sqs_queue" "analytics" {
   name                      = "production_analytics"
   redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  tags {
+  tags = {
     Environment = "production"
   }
 }
@@ -133,12 +133,12 @@ resource "aws_sqs_queue" "analytics" {
 resource "aws_sqs_queue" "dead-letter" {
   name                      = "production_dead-letter"
 
-  tags {
+  tags = {
     Environment = "production"
   }
 }
 
 resource "aws_iam_policy" "sqs" {
   name = "sqs"
-  policy = "${data.template_file.queue.rendered}"
+  policy = data.template_file.queue.rendered
 }
