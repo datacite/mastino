@@ -143,5 +143,5 @@ resource "aws_sqs_queue" "dead-letter-stage" {
 
 resource "aws_iam_policy" "sqs-stage" {
   name = "sqs-stage"
-  policy = "${data.template_file.queue-stage.rendered}"
+  policy = data.template_file.queue-stage.rendered
 }
