@@ -40,3 +40,7 @@ variable "analytics_database_password" {
 }
 
 variable "datacite_jwt" {}
+
+variable "analytics_queue" {
+    default = "stage_analytics"
+}

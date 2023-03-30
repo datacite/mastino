@@ -45,6 +45,13 @@ resource "aws_lambda_function" "analytics-worker-stage" {
   }
 }
 
+resource "aws_lambda_event_source_mapping" "analytics_stage_event_source_mapping" {
+  event_source_arn = var.analytics_queue
+  enabled          = true
+  function_name    = aws_lambda_function.analytics-worker-stage.arn
+  batch_size       = 1
+}
+
 # resource "aws_lambda_permission" "analytics-worker-stage" {
 #   statement_id  = "AllowExecutionFromCloudWatch"
 #   action        = "lambda:InvokeFunction"
