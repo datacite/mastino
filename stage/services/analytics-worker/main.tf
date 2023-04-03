@@ -76,10 +76,22 @@ resource "aws_lambda_function" "analytics_stage_queue_reports" {
   }
 }
 
-# resource "aws_lambda_permission" "analytics-worker-stage" {
+# resource "aws_cloudwatch_event_rule" "analytics-queue-reports-stage" {
+#   name                = "analytics-queue-reports-stage"
+#   description         = "Run analytics-queue-reports-stage via cron"
+#   schedule_expression = "cron(00 1 1 * ? *)"
+# }
+
+# resource "aws_cloudwatch_event_target" "analytics-queue-reports-stage" {
+#   target_id = "analytics-queue-reports-stage"
+#   rule      = aws_cloudwatch_event_rule.analytics-queue-reports-stage.name
+#   arn       = aws_lambda_function.analytics-queue-reports-stage.arn
+# }
+
+# resource "aws_lambda_permission" "analytics-queue-reports-stage" {
 #   statement_id  = "AllowExecutionFromCloudWatch"
 #   action        = "lambda:InvokeFunction"
-#   function_name = aws_lambda_function.analytics-worker-stage.function_name
+#   function_name = aws_lambda_function.analytics-queue-reports-stage.function_name
 #   principal     = "events.amazonaws.com"
-#   source_arn    = aws_cloudwatch_event_rule.analytics-worker-stage.arn
+#   source_arn    = aws_cloudwatch_event_rule.analytics-queue-reports-stage.arn
 # }
