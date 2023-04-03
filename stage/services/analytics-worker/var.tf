@@ -44,3 +44,10 @@ variable "datacite_jwt" {}
 variable "analytics_queue" {
     default = "stage_analytics"
 }
+
+variable "datacite_api_url" {
+    default = "https://api.stage.datacite.org"
+}
+
+variable "api_username" {}
+variable "api_password" {}

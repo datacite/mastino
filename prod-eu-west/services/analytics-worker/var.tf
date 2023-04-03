@@ -48,3 +48,6 @@ variable "datacite_jwt" {}
 variable "analytics_queue" {
     default = "production_analytics"
 }
+
+variable "api_username" {}
+variable "api_password" {}
