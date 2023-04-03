@@ -52,9 +52,9 @@ resource "aws_lambda_event_source_mapping" "analytics_stage_event_source_mapping
   batch_size       = 1
 }
 
-resource "aws_lambda_function" "analytics-queue-reports" {
+resource "aws_lambda_function" "analytics_stage_queue_reports" {
   filename         = "analytics_queue_reports.py.zip"
-  function_name    = "analytics-queue_reports"
+  function_name    = "analytics-queue-reports-stage"
   role             = data.aws_iam_role.lambda.arn
   handler          = "analytic_queue_reports_runner.lambda_handler"
   runtime          = "python3.8"
