@@ -50,7 +50,7 @@ resource "aws_lambda_event_source_mapping" "analytics_event_source_mapping" {
   event_source_arn = data.aws_sqs_queue.analytics.arn
   enabled          = true
   function_name    = aws_lambda_function.analytics-worker.arn
-  batch_size       = 1
+  batch_size       = 10
 }
 
 resource "aws_lambda_function" "analytics-queue-reports" {
