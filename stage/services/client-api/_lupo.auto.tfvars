@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "3c9c99dfda93453591ec0a000ffbf0d2910e46f8"
-  version = "doi-enrichment-indexing-fos"
+  sha = "4816921c2f0279756f3476439ed387124bce1e43"
+  version = "main"
 }
