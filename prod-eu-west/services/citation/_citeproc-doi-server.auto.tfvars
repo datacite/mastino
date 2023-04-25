@@ -1,4 +1,4 @@
 citeproc-doi-server_tags = {
-  sha = "7af088c"
-  version = "2.2.6"
+  sha = "efcd788"
+  version = "2.2.7"
 }
