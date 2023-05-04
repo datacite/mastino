@@ -96,8 +96,9 @@ resource "aws_lb_listener_rule" "search-stage" {
       port        = "443"
       protocol    = "HTTPS"
       status_code = "HTTP_301"
-      host = [aws_route53_record.akita-stage.name]
+      host = ["commons.stage.datacite.org"]
       path = ""
+      query = ""
     }  
   }
 
