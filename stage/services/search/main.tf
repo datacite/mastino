@@ -96,7 +96,7 @@ resource "aws_lb_listener_rule" "search-stage" {
       port        = "443"
       protocol    = "HTTPS"
       status_code = "HTTP_301"
-      host = ["commons.stage.datacite.org"]
+      host = "commons.stage.datacite.org"
       path = ""
       query = ""
     }  
