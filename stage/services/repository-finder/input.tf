@@ -38,3 +38,12 @@ data "aws_route53_zone" "internal" {
 data "aws_s3_bucket" "logs-stage" {
   bucket = "logs.stage.datacite.org"
 }
+
+data "aws_lb" "stage" {
+  name = "${var.lb_name}"
+}
+
+data "aws_lb_listener" "stage" {
+  load_balancer_arn = "${data.aws_lb.stage.arn}"
+  port = 443
+}

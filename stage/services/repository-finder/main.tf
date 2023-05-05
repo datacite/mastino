@@ -82,12 +82,35 @@ resource "aws_cloudfront_distribution" "repository-finder-stage" {
   }
 }
 
+resource "aws_lb_listener_rule" "repository-finder-stage-redirect" {
+  listener_arn = "${data.aws_lb_listener.stage.arn}"
+  priority     = 4
+  
+  action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+      host = "commons.stage.datacite.org"
+      path = "/repositories"
+      query = ""
+    }
+  }
+  condition {
+    host_header {
+      values = ["${aws_route53_record.repository-finder-stage.name}"]
+    }
+  }
+}
+
 resource "aws_route53_record" "repository-finder-stage" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
   name = "repositoryfinder.stage.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${aws_cloudfront_distribution.repository-finder-stage.domain_name}"]
+  records = ["${data.aws_lb.stage.dns_name}"]
 }
 
 resource "aws_route53_record" "split-repository-finder-stage" {
@@ -95,5 +118,5 @@ resource "aws_route53_record" "split-repository-finder-stage" {
   name = "repositoryfinder.stage.datacite.org"
   type = "CNAME"
   ttl = "${var.ttl}"
-  records = ["${aws_cloudfront_distribution.repository-finder-stage.domain_name}"]
+  records = ["${data.aws_lb.stage.dns_name}"]
 }

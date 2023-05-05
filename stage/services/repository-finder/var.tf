@@ -7,3 +7,7 @@ variable "region" {
 variable "ttl" {
   default = "300"
 }
+
+variable "lb_name" {
+  default = "lb-stage"
+}
