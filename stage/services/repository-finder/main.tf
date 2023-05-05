@@ -95,7 +95,7 @@ resource "aws_lb_listener_rule" "repository-finder-stage-redirect" {
       status_code = "HTTP_301"
       host = "commons.stage.datacite.org"
       path = "/repositories"
-      query= ""
+      query = ""
     }
   }
   condition {
