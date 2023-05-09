@@ -160,6 +160,10 @@
     {
       "name": "GITHUB_VERSION",
       "value": "${version}"
+    },
+    {
+      "name": "GITHUB_SHA",
+      "value": "${sha}"
     }
   ]
 }]
