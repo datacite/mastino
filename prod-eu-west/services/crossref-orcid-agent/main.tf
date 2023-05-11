@@ -1,7 +1,9 @@
+# crossref-orcid-agent lambda function is scheduled never to run to intentionally disable the crossref-orcid-agent import in levriero
+
 resource "aws_cloudwatch_event_rule" "crossref-orcid-agent" {
   name = "crossref-orcid-agent"
   description = "Trigger crossref-orcid agent via cron"
-  schedule_expression = "cron(55 16 * * ? *)"
+  schedule_expression = "cron(0 0 1 1 ? 1970)"
 }
 
 resource "aws_cloudwatch_event_target" "crossref-orcid-agent" {
