@@ -1,7 +1,9 @@
+# crossref-related-agent lambda function is scheduled never to run to intentionally disable the crossref-related-agent import in levriero
+
 resource "aws_cloudwatch_event_rule" "crossref-related-agent" {
   name = "crossref-related-agent"
   description = "Trigger crossref-related agent via cron"
-  schedule_expression = "cron(55 4 * * ? *)"
+  schedule_expression = "cron(0 0 1 1 ? 1970)"
 }
 
 resource "aws_cloudwatch_event_target" "crossref-related-agent" {
