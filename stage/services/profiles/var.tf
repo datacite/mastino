@@ -38,7 +38,7 @@ variable "api_url" {
   default = "http://client-api.stage.local"
 }
 variable "cdn_url" {
-  default = "https://www.stage.datacite.org"
+  default = "https://assets.stage.datacite.org"
 }
 variable "blog_url" {
   default = "https://blog.stage.datacite.org"
