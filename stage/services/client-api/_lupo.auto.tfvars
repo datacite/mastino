@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "61121bdc57fda479bf69659d973ce70d8d395891"
+  sha = "8edd1161301dd01a897fb53c3f30169c05971aa4"
   version = "openapi-schema"
 }
