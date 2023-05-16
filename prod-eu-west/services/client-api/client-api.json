@@ -144,6 +144,15 @@
     {
       "name": "SLACK_WEBHOOK_URL",
       "value": "${slack_webhook_url}"
+    },
+    {
+      "name": "PLUGIN_MANIFEST_URL",
+      "value": "${plugin_manifest_url}"
+    },
+    {
+      "name": "PLUGIN_OPENAPI_URL",
+      "value": "${plugin_openapi_url}"
     }
   ]
 }]
+

@@ -77,3 +77,5 @@ variable "namespace_id" {}
 variable "oidc_client_id" {}
 variable "oidc_client_secret" {}
 variable "jwt_blacklisted" {}
+variable "plugin_openapi_url" {}
+variable "plugin_manifest_url" {}
