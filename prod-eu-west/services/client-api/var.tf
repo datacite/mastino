@@ -72,3 +72,5 @@ variable "admin_password" {}
 
 variable "namespace_id" {}
 variable "jwt_blacklisted" {}
+variable "plugin_openapi_url" {}
+variable "plugin_manifest_url" {}
