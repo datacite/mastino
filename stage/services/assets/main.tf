@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "assets-stage" {
     bucket = "assets.stage.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.assets-stage.rendered}"
+    policy = data.template_file.assets-stage.rendered
     website {
         index_document = "index.html"
         error_document = "404.html"
@@ -23,7 +23,7 @@ resource "aws_s3_bucket" "assets-stage" {
 
 resource "aws_cloudfront_distribution" "assets-stage" {
   origin {
-    domain_name = "${aws_s3_bucket.assets-stage.website_endpoint}"
+    domain_name = aws_s3_bucket.assets-stage.website_endpoint
     origin_id   = "assets.stage.datacite.org"
 
     custom_origin_config {
@@ -40,7 +40,7 @@ resource "aws_cloudfront_distribution" "assets-stage" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${data.aws_s3_bucket.logs-stage.bucket_domain_name}"
+    bucket          = data.aws_s3_bucket.logs-stage.bucket_domain_name
     prefix          = "assets/"
   }
 
@@ -81,23 +81,23 @@ resource "aws_cloudfront_distribution" "assets-stage" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-stage.arn}"
+    acm_certificate_arn = data.aws_acm_certificate.cloudfront-stage.arn
     ssl_support_method  = "sni-only"
   }
 }
 
 resource "aws_route53_record" "assets-stage" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   zone_id = data.aws_route53_zone.production.zone_id
    name = "assets.stage.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.assets-stage.domain_name]
 }
 
 resource "aws_route53_record" "split-assets-stage" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   zone_id = data.aws_route53_zone.internal.zone_id
    name = "assets.stage.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.assets-stage.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.assets-stage.domain_name]
 }
