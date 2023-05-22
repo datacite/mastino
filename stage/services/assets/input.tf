@@ -21,7 +21,7 @@ data "template_file" "assets-stage" {
 }
 
 data "aws_acm_certificate" "cloudfront-stage" {
-  provider = "aws.use1"
+  provider = aws.use1
   domain = "*.stage.datacite.org"
   statuses = ["ISSUED"]
   most_recent = true
