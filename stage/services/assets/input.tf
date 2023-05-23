@@ -15,7 +15,7 @@ provider "aws" {
 data "template_file" "assets-stage" {
   template = file("s3_cloudfront.json")
 
-  vars {
+  vars = {
     bucket_name = "assets.stage.datacite.org"
   }
 }
