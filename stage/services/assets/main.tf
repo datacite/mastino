@@ -76,7 +76,7 @@ resource "aws_cloudfront_distribution" "assets-stage" {
     }
   }
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 
