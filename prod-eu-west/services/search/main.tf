@@ -266,8 +266,16 @@ resource "aws_lb_listener_rule" "search" {
   priority     = 89
 
   action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.search.arn
+    type             = "redirect"
+    
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+      host = "commons.datacite.org"
+      path = "/"
+      query = ""
+    }  
   }
 
   condition {
