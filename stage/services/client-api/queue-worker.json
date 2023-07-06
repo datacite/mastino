@@ -15,7 +15,7 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "/ecs/client-api-stage",
+        "awslogs-group": "/ecs/queue-worker-stage",
         "awslogs-region": "eu-west-1",
         "awslogs-stream-prefix": "ecs"
       }
