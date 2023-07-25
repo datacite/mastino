@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/client-api-test",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
@@ -164,6 +164,10 @@
       {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
+      },
+      {
+        "name": "DISABLE_QUEUE_WORKER",
+        "value": "True"
       }
     ]
   }
