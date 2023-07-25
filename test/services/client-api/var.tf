@@ -77,3 +77,9 @@ variable "namespace_id" {}
 variable "oidc_client_id" {}
 variable "oidc_client_secret" {}
 variable "jwt_blacklisted" {}
+variable "plugin_openapi_url" {
+  default = "https://api.test.datacite.org"
+}
+variable "plugin_manifest_url" {
+  default = "https://api.test.datacite.org"
+}
