@@ -1,0 +1,182 @@
+[
+  {
+    "name": "queue-worker",
+    "image": "ghcr.io/datacite/lupo:${version}",
+    "cpu": 2048,
+    "memory": 8192,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/queue-worker",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment": [
+      {
+        "name": "PASSENGER_APP_ENV",
+        "value": "production"
+      },
+      {
+        "name": "RAILS_ENV",
+        "value": "production"
+      },
+      {
+        "name": "SITE_TITLE",
+        "value": "DataCite REST API"
+      },
+      {
+        "name": "LOG_LEVEL",
+        "value": "info"
+      },
+      {
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
+      },
+      {
+        "name": "JWT_PUBLIC_KEY",
+        "value": "${jwt_public_key}"
+      },
+      {
+        "name": "JWT_PRIVATE_KEY",
+        "value": "${jwt_private_key}"
+      },
+      {
+        "name": "RE3DATA_URL",
+        "value": "${re3data_url}"
+      },
+      {
+        "name": "SESSION_ENCRYPTED_COOKIE_SALT",
+        "value": "${session_encrypted_cookie_salt}"
+      },
+      {
+        "name": "HANDLE_URL",
+        "value": "${handle_url}"
+      },
+      {
+        "name": "HANDLE_USERNAME",
+        "value": "${handle_username}"
+      },
+      {
+        "name": "HANDLE_PASSWORD",
+        "value": "${handle_password}"
+      },
+      {
+        "name": "ADMIN_USERNAME",
+        "value": "${admin_username}"
+      },
+      {
+        "name": "ADMIN_PASSWORD",
+        "value": "${admin_password}"
+      },
+      {
+        "name": "MYSQL_USER",
+        "value": "${mysql_user}"
+      },
+      {
+        "name": "MYSQL_PASSWORD",
+        "value": "${mysql_password}"
+      },
+      {
+        "name": "MYSQL_HOST",
+        "value": "${mysql_host}"
+      },
+      {
+        "name": "MYSQL_DATABASE",
+        "value": "${mysql_database}"
+      },
+      {
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
+      },
+      {
+        "name": "SERVERNAME",
+        "value": "client-api.datacite.org"
+      },
+      {
+        "name": "MEMCACHE_SERVERS",
+        "value": "${memcache_servers}"
+      },
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "${region}"
+      },
+      {
+        "name": "AWS_S3_BUCKET",
+        "value": "${s3_bucket}"
+      },
+      {
+        "name": "ES_HOST",
+        "value": "${es_host}"
+      },
+      {
+        "name": "ES_SCHEME",
+        "value": "${es_scheme}"
+      },
+      {
+        "name": "ES_PORT",
+        "value": "${es_port}"
+      },
+      {
+        "name": "ES_NAME",
+        "value": "${es_name}"
+      },
+      {
+        "name": "ES_PREFIX",
+        "value": "${es_prefix}"
+      },
+      {
+        "name": "ELASTIC_PASSWORD",
+        "value": "${elastic_password}"
+      },
+      {
+        "name": "MAILGUN_API_KEY",
+        "value": "${mailgun_api_key}"
+      },
+      {
+        "name": "BRACCO_URL",
+        "value": "${bracco_url}"
+      },
+      {
+        "name": "SLACK_WEBHOOK_URL",
+        "value": "${slack_webhook_url}"
+      },
+      {
+        "name": "JWT_BLACKLISTED",
+        "value": "${jwt_blacklisted}"
+      },
+      {
+        "name": "GITHUB_VERSION",
+        "value": "${version}"
+      },
+      {
+        "name": "GITHUB_SHA",
+        "value": "${sha}"
+      },
+      {
+        "name": "PLUGIN_MANIFEST_URL",
+        "value": "${plugin_manifest_url}"
+      },
+      {
+        "name": "PLUGIN_OPENAPI_URL",
+        "value": "${plugin_openapi_url}"
+      }
+    ]
+  }
+]
