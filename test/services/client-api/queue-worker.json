@@ -1,6 +1,6 @@
 [
   {
-    "name": "client-api-test",
+    "name": "queue-worker-test",
     "image": "ghcr.io/datacite/lupo:${version}",
     "cpu": 2048,
     "memory": 4096,

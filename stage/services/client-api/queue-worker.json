@@ -1,6 +1,6 @@
 [
   {
-    "name": "client-api-stage",
+    "name": "queue-worker-stage",
     "image": "ghcr.io/datacite/lupo:${version}",
     "cpu": 2048,
     "memory": 4096,
