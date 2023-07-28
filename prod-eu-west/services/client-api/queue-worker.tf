@@ -1,9 +1,14 @@
 resource "aws_ecs_service" "queue-worker" {
   name = "queue-worker"
-  cluster = data.aws_ecs_cluster.test.id
+  cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.queue-worker.arn
   desired_count = 2
+
+  # Allow external changes without Terraform plan difference
+  lifecycle {
+    ignore_changes = ["desired_count"]
+  }
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
