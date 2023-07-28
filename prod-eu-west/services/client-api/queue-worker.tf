@@ -44,10 +44,6 @@ resource "aws_ecs_task_definition" "queue-worker" {
       mysql_host         = var.mysql_host
       es_name            = var.es_name
       es_host            = var.es_host
-      es_scheme          = var.es_scheme
-      es_port            = var.es_port
-      es_prefix          = var.es_prefix
-      elastic_password   = var.elastic_password
       handle_url         = var.handle_url
       handle_username    = var.handle_username
       handle_password    = var.handle_password
