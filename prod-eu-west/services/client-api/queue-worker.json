@@ -38,16 +38,16 @@
         "value": "info"
       },
       {
-        "name": "PUBLIC_KEY",
-        "value": "${public_key}"
-      },
-      {
         "name": "JWT_PUBLIC_KEY",
         "value": "${jwt_public_key}"
       },
       {
         "name": "JWT_PRIVATE_KEY",
         "value": "${jwt_private_key}"
+      },
+      {
+        "name": "API_URL",
+        "value": "${api_url}"
       },
       {
         "name": "RE3DATA_URL",
@@ -98,6 +98,10 @@
         "value": "${sentry_dsn}"
       },
       {
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
+      },
+      {
         "name": "SERVERNAME",
         "value": "client-api.datacite.org"
       },
@@ -126,24 +130,8 @@
         "value": "${es_host}"
       },
       {
-        "name": "ES_SCHEME",
-        "value": "${es_scheme}"
-      },
-      {
-        "name": "ES_PORT",
-        "value": "${es_port}"
-      },
-      {
         "name": "ES_NAME",
         "value": "${es_name}"
-      },
-      {
-        "name": "ES_PREFIX",
-        "value": "${es_prefix}"
-      },
-      {
-        "name": "ELASTIC_PASSWORD",
-        "value": "${elastic_password}"
       },
       {
         "name": "MAILGUN_API_KEY",
@@ -154,20 +142,12 @@
         "value": "${bracco_url}"
       },
       {
-        "name": "SLACK_WEBHOOK_URL",
-        "value": "${slack_webhook_url}"
-      },
-      {
         "name": "JWT_BLACKLISTED",
         "value": "${jwt_blacklisted}"
       },
       {
-        "name": "GITHUB_VERSION",
-        "value": "${version}"
-      },
-      {
-        "name": "GITHUB_SHA",
-        "value": "${sha}"
+        "name": "SLACK_WEBHOOK_URL",
+        "value": "${slack_webhook_url}"
       },
       {
         "name": "PLUGIN_MANIFEST_URL",
