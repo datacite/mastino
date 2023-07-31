@@ -148,6 +148,10 @@
       {
         "name" : "SLACK_WEBHOOK_URL",
         "value" : "${slack_webhook_url}"
+      },
+      {
+        "name": "DISABLE_QUEUE_WORKER",
+        "value": "True"
       }
     ]
   }
