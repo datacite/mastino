@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "bdea5f4a28e50a8b3b5e505f2ff21c03f0ebbfd8"
-  version = "main"
+  sha = "946b0ef72cf4a01eef41b992a10ca00360357fd3"
+  version = "contact-serializer"
 }
