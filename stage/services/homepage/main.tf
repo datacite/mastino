@@ -94,7 +94,7 @@ resource "aws_route53_record" "split-www-stage" {
    records = ["${aws_cloudfront_distribution.www-stage.domain_name}"]
 }
 
-// Temp A records to point a domain to Wordpress staging site
+// Temp A records to point homepage.stage.datacite.org domain to Wordpress staging site in Siteground
 // Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
 resource "aws_route53_record" "wp-stage" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
