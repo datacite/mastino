@@ -7,3 +7,5 @@ variable "region" {
 variable "ttl" {
   default = "300"
 }
+
+variable "siteground_ip_homepage_stage" {}
