@@ -93,3 +93,21 @@ resource "aws_route53_record" "split-www-stage" {
    ttl = "${var.ttl}"
    records = ["${aws_cloudfront_distribution.www-stage.domain_name}"]
 }
+
+// Temp A records to point homepage.stage.datacite.org domain to Wordpress staging site in Siteground
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "wp-stage" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "homepage.stage.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_stage}"]
+}
+
+resource "aws_route53_record" "wp-stage-wildcard" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "*.homepage.stage.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_stage}"]
+}
