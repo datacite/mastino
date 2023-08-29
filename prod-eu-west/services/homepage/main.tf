@@ -80,7 +80,7 @@ resource "aws_cloudfront_distribution" "www" {
 
 resource "aws_route53_record" "apex" {
   zone_id = "${data.aws_route53_zone.production.zone_id}"
-  name = "datacite.org"
+  name = "oldhomepage.datacite.org"
   type = "A"
 
   alias {
@@ -92,7 +92,7 @@ resource "aws_route53_record" "apex" {
 
 resource "aws_route53_record" "split-apex" {
   zone_id = "${data.aws_route53_zone.internal.zone_id}"
-  name = "datacite.org"
+  name = "oldhomepage.datacite.org"
   type = "A"
 
   alias {
@@ -100,4 +100,20 @@ resource "aws_route53_record" "split-apex" {
     zone_id = "${var.cloudfront_alias_zone_id}"
     evaluate_target_health = true
   }
+}
+
+resource "aws_route53_record" "wp-prod" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-wildcard" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "*.homepage.stage.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
 }

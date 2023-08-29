@@ -12,3 +12,5 @@ variable "cloudfront_alias_zone_id" {
   description = "Fixed hardcoded constant zone_id that is used for all CloudFront distributions"
   default     = "Z2FDTNDATAQYW2"
 }
+
+variable "siteground_ip_homepage_prod" {}
