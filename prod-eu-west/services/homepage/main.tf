@@ -109,11 +109,3 @@ resource "aws_route53_record" "wp-prod" {
    ttl = "${var.ttl}"
    records = ["${var.siteground_ip_homepage_prod}"]
 }
-
-resource "aws_route53_record" "wp-prod-wildcard" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "*.homepage.stage.datacite.org"
-   type = "A"
-   ttl = "${var.ttl}"
-   records = ["${var.siteground_ip_homepage_prod}"]
-}
