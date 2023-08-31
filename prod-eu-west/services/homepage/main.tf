@@ -112,7 +112,7 @@ resource "aws_route53_record" "wp-prod" {
 
 resource "aws_route53_record" "wp-prod-staging-copies" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "staging*.datacite.org"
+   name = "staging2.datacite.org"
    type = "A"
    ttl = "${var.ttl}"
    records = ["${var.siteground_ip_homepage_prod}"]
