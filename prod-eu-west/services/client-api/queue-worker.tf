@@ -135,70 +135,102 @@ resource "aws_appautoscaling_policy" "queue-worker_scale_down" {
   }
 }
 
-// Cloudwatch metric alarm for scaling up based on SQS queue size production_lupo
-resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_up_alarm" {
-  alarm_name          = "queue_worker_production_lupo_scale_up_alarm"
+// Cloudwatch metric alarm for scaling up based on SQS queue size
+resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
+  alarm_name          = "queue_worker_scale_up_alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
-  metric_name         = "ApproximateNumberOfMessagesVisible"
-  dimensions = {
-    QueueName = "production_lupo"
-  }
-  namespace           = "AWS/SQS"
-  period              = "60"
-  statistic           = "Sum"
-  threshold           = "60000"
-  alarm_description   = "This metric monitors queue-worker queue size for production_lupo"
+  alarm_description   = "This metric monitors queue-worker queue size"
   alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_up.arn]
+
+  threshold           = "100000"
+
+  // Custom query that sums the two other metrics
+  metric_query {
+    id          = "total_visible"
+    expression  = "production_visible + production_background_visible"
+    label       = "Total visible messages"
+    return_data = "true"
+  }
+
+  metric_query {
+    id = "production_visible"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "60"
+      stat        = "Maximum"
+
+      dimensions {
+        QueueName = "production_lupo"
+      }
+    }
+  }
+
+  metric_query {
+    id = "production_background_visible"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "60"
+      stat        = "Maximum"
+
+      dimensions {
+        QueueName = "production_lupo_background"
+      }
+    }
+  }
+
 }
 
-// Cloudwatch metric alarm for scaling down based on SQS queue size production_lupo
-resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_down_alarm" {
-  alarm_name          = "queue_worker_production_lupo_scale_down_alarm"
+// Cloudwatch metric alarm for scaling down based on SQS queue size
+resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
+  alarm_name          = "queue_worker_scale_down_alarm"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "1"
-  metric_name         = "ApproximateNumberOfMessagesVisible"
-  dimensions = {
-    QueueName = "production_lupo"
-  }
-  namespace           = "AWS/SQS"
-  period              = "60"
-  statistic           = "Sum"
-  threshold           = "10000"
-  alarm_description   = "This metric monitors queue-worker queue size for production_lupo"
+  alarm_description   = "This metric monitors queue-worker queue size"
   alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_down.arn]
-}
 
-// Cloudwatch metric alarm for scaling up based on SQS queue size production_lupo_background
-resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_background_scale_up_alarm" {
-  alarm_name          = "queue_worker_production_lupo_background_scale_up_alarm"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "1"
-  metric_name         = "ApproximateNumberOfMessagesVisible"
-  dimensions = {
-    QueueName = "production_lupo_background"
-  }
-  namespace           = "AWS/SQS"
-  period              = "60"
-  statistic           = "Sum"
-  threshold           = "50000"
-  alarm_description   = "This metric monitors queue-worker queue size for production_lupo_background"
-  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_up.arn]
-}
-
-// Cloudwatch metric alarm for scaling down based on SQS queue size production_lupo_background
-resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_background_scale_down_alarm" {
-  alarm_name          = "queue_worker_production_lupo_background_scale_down_alarm"
-  comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "1"
-  metric_name         = "ApproximateNumberOfMessagesVisible"
-  dimensions = {
-    QueueName = "production_lupo_background"
-  }
-  namespace           = "AWS/SQS"
-  period              = "60"
-  statistic           = "Sum"
   threshold           = "10000"
-  alarm_description   = "This metric monitors queue-worker queue size for production_lupo_background"
-  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_down.arn]
+
+  // Custom query that sums the two other metrics
+  metric_query {
+    id          = "total_visible"
+    expression  = "production_visible + production_background_visible"
+    label       = "Total visible messages"
+    return_data = "true"
+  }
+
+  metric_query {
+    id = "production_visible"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "60"
+      stat        = "Maximum"
+
+      dimensions {
+        QueueName = "production_lupo"
+      }
+    }
+  }
+
+  metric_query {
+    id = "production_background_visible"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "60"
+      stat        = "Maximum"
+
+      dimensions {
+        QueueName = "production_lupo_background"
+      }
+    }
+  }
+
 }
