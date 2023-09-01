@@ -86,3 +86,119 @@ resource "aws_service_discovery_service" "queue-worker" {
     }
   }
 }
+
+
+// Autoscaling target for queue-worker service
+resource "aws_appautoscaling_target" "queue-worker" {
+  max_capacity       = 2
+  min_capacity       = 1
+  resource_id        = "service/default/${aws_ecs_service.queue-worker.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+
+resource "aws_appautoscaling_policy" "queue-worker_scale_up" {
+  name               = "scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.queue-worker.resource_id
+  scalable_dimension = aws_appautoscaling_target.queue-worker.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.queue-worker.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+resource "aws_appautoscaling_policy" "queue-worker_scale_down" {
+  name               = "scale-down"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.queue-worker.resource_id
+  scalable_dimension = aws_appautoscaling_target.queue-worker.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.queue-worker.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = -1
+    }
+  }
+}
+
+// Cloudwatch metric alarm for scaling up based on SQS queue size production_lupo
+resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_up_alarm" {
+  alarm_name          = "queue-worker"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  dimensions = {
+    QueueName = "production_lupo"
+  }
+  namespace           = "AWS/SQS"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "60000"
+  alarm_description   = "This metric monitors queue-worker queue size for production_lupo"
+  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_up.arn]
+}
+
+// Cloudwatch metric alarm for scaling down based on SQS queue size production_lupo
+resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_down_alarm" {
+  alarm_name          = "queue-worker"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  dimensions = {
+    QueueName = "production_lupo"
+  }
+  namespace           = "AWS/SQS"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "10000"
+  alarm_description   = "This metric monitors queue-worker queue size for production_lupo"
+  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_down.arn]
+}
+
+// Cloudwatch metric alarm for scaling up based on SQS queue size production_lupo_background
+resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_background_scale_up_alarm" {
+  alarm_name          = "queue-worker"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  dimensions = {
+    QueueName = "production_lupo_background"
+  }
+  namespace           = "AWS/SQS"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "50000"
+  alarm_description   = "This metric monitors queue-worker queue size for production_lupo_background"
+  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_up.arn]
+}
+
+// Cloudwatch metric alarm for scaling down based on SQS queue size production_lupo_background
+resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_background_scale_down_alarm" {
+  alarm_name          = "queue-worker"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  dimensions = {
+    QueueName = "production_lupo_background"
+  }
+  namespace           = "AWS/SQS"
+  period              = "60"
+  statistic           = "Sum"
+  threshold           = "10000"
+  alarm_description   = "This metric monitors queue-worker queue size for production_lupo_background"
+  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_down.arn]
+}
