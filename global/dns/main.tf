@@ -170,3 +170,11 @@ resource "aws_route53_record" "lists" {
     ttl = "300"
     records = ["cname.createsend.com"]
 }
+
+resource "aws_route53_record" "corpus-prototype" {
+    zone_id = "${aws_route53_zone.production.zone_id}"
+    name = "corpus.stage.datacite.org"
+    type = "A"
+    ttl = "300"
+    records = ["54.246.247.169"]
+}
