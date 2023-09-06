@@ -137,7 +137,7 @@ resource "aws_appautoscaling_policy" "queue-worker_scale_down" {
 
 // Cloudwatch metric alarm for scaling up based on SQS queue size production_lupo
 resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_up_alarm" {
-  alarm_name          = "queue-worker"
+  alarm_name          = "queue-worker_request_scale_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "ApproximateNumberOfMessagesVisible"
@@ -154,7 +154,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_up_al
 
 // Cloudwatch metric alarm for scaling down based on SQS queue size production_lupo
 resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_down_alarm" {
-  alarm_name          = "queue-worker"
+  alarm_name          = "queue-worker_request_scale_down"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "ApproximateNumberOfMessagesVisible"
