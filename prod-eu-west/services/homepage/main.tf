@@ -110,9 +110,65 @@ resource "aws_route53_record" "wp-prod" {
    records = ["${var.siteground_ip_homepage_prod}"]
 }
 
-resource "aws_route53_record" "wp-prod-staging-copies" {
+resource "aws_route53_record" "wp-prod-staging-copy-3" {
    zone_id = "${data.aws_route53_zone.production.zone_id}"
-   name = "staging2.datacite.org"
+   name = "staging3.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-staging-copy-4" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "staging4.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-staging-copy-5" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "staging5.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-staging-copy-6" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "staging6.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-staging-copy-7" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "staging7.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-staging-copy-8" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "staging8.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-staging-copy-9" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "staging9.datacite.org"
+   type = "A"
+   ttl = "${var.ttl}"
+   records = ["${var.siteground_ip_homepage_prod}"]
+}
+
+resource "aws_route53_record" "wp-prod-staging-copy-10" {
+   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   name = "staging10.datacite.org"
    type = "A"
    ttl = "${var.ttl}"
    records = ["${var.siteground_ip_homepage_prod}"]
