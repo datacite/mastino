@@ -115,7 +115,7 @@ resource "aws_route53_record" "txt-datacite" {
 
 resource "aws_route53_record" "dkim-datacite" {
     zone_id = aws_route53_zone.production.zone_id
-    name = "google._domainkey.aws_route53_zone.production.name"
+    name = "google._domainkey.datacite.org"
     type = "TXT"
     ttl = "300"
     records = [var.dkim_record]
@@ -123,7 +123,7 @@ resource "aws_route53_record" "dkim-datacite" {
 
 resource "aws_route53_record" "dkim-salesforce" {
     zone_id = aws_route53_zone.production.zone_id
-    name = "datacite._domainkey.aws_route53_zone.production.name"
+    name = "datacite._domainkey.datacite.org"
     type = "TXT"
     ttl = "300"
     records = [var.dkim_salesforce]
@@ -131,7 +131,7 @@ resource "aws_route53_record" "dkim-salesforce" {
 
 resource "aws_route53_record" "dkim-alt-salesforce" {
     zone_id = aws_route53_zone.production.zone_id
-    name = "DataCite.org._domainkey.aws_route53_zone.production.name"
+    name = "datacite.org._domainkey.datacite.org"
     type = "TXT"
     ttl = "300"
     records = [var.dkim_alt_salesforce]
@@ -139,7 +139,7 @@ resource "aws_route53_record" "dkim-alt-salesforce" {
 
 resource "aws_route53_record" "dmarc-datacite" {
     zone_id = aws_route53_zone.production.zone_id
-    name = "_dmarc.aws_route53_zone.production.name"
+    name = "_dmarc.datacite.org"
     type = "TXT"
     ttl = "300"
     records = [var.dmarc_record]
