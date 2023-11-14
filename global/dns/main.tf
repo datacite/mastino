@@ -52,6 +52,16 @@ resource "aws_route53_record" "status" {
     records = [var.status_dns_name]
 }
 
+resource "aws_route53_record" "dkim-cm" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "cm._domainkey.datacite.org"
+    type = "TXT"
+    ttl = "300"
+    records = [
+        "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzCLTKFpC7ffe+qYFRfLFnFeZCMLh6dHIAcA5iYswUbgWcICqRyb1cZHCZicO7noWi9ZyMngXY4drp4EjNTF9EumrzP63HnAE3D5kFSQICQOVsZsRao+LZVWuNi1F0nxxA9xfbomAbGgfI6jsPGReOOxcvcaSX+hT7H0JcM0uBRQIDAQAB"
+    ]
+}
+
 resource "aws_route53_record" "changelog" {
     zone_id = aws_route53_zone.production.zone_id
     name = "changelog.datacite.org"
