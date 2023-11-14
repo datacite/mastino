@@ -1,104 +1,94 @@
 resource "aws_route53_zone" "production" {
     name = "datacite.org"
 
-    tags {
+    tags = {
         Environment = "production"
     }
 }
 
 resource "aws_route53_record" "production-ns" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "datacite.org"
     type = "NS"
     ttl = "300"
     records = [
-        "${aws_route53_zone.production.name_servers.0}",
-        "${aws_route53_zone.production.name_servers.1}",
-        "${aws_route53_zone.production.name_servers.2}",
-        "${aws_route53_zone.production.name_servers.3}"
+        aws_route53_zone.production.name_servers.0,
+        aws_route53_zone.production.name_servers.1,
+        aws_route53_zone.production.name_servers.2,
+        aws_route53_zone.production.name_servers.3,
     ]
 }
 
 resource "aws_route53_zone" "internal" {
     name = "datacite.org"
-    vpc_id  = "${var.vpc_id}"
 
-    tags {
+    vpc {
+        vpc_id = var.vpc_id
+    }
+
+    tags = {
         Environment = "internal"
     }
 }
 
-// resource "aws_route53_zone_association" "us-east-1" {
-//   zone_id = "${aws_route53_zone.internal.zone_id}"
-//   vpc_id  = "${data.aws_vpc.us.id}"
-//   vpc_region = "us-east-1"
-// }
-
 resource "aws_route53_record" "internal-ns" {
-    zone_id = "${aws_route53_zone.internal.zone_id}"
+    zone_id = aws_route53_zone.internal.zone_id
     name = "datacite.org"
     type = "NS"
     ttl = "30"
     records = [
-        "${aws_route53_zone.internal.name_servers.0}",
-        "${aws_route53_zone.internal.name_servers.1}",
-        "${aws_route53_zone.internal.name_servers.2}",
-        "${aws_route53_zone.internal.name_servers.3}"
+        aws_route53_zone.internal.name_servers.0,
+        aws_route53_zone.internal.name_servers.1,
+        aws_route53_zone.internal.name_servers.2,
+        aws_route53_zone.internal.name_servers.3,
     ]
 }
 
 resource "aws_route53_record" "dkim-cm" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "cm._domainkey.datacite.org"
     type = "TXT"
     ttl = "300"
     records = [
-        "k=rsa; p=${var.dkim_cm}"
+        "k=rsa; p=var.dkim_cm"
     ]
 }
 
 resource "aws_route53_record" "status" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "status.datacite.org"
     type = "CNAME"
     ttl = "3600"
-    records = ["${var.status_dns_name}"]
+    records = [var.status_dns_name]
 }
 
 resource "aws_route53_record" "changelog" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "changelog.datacite.org"
     type = "CNAME"
     ttl = "3600"
-    records = ["${var.changelog_dns_name}"]
+    records = [var.changelog_dns_name]
 }
 
 resource "aws_route53_record" "support" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "support.datacite.org"
     type = "CNAME"
     ttl = "300"
-    records = ["${var.support_dns_name}"]
+    records = [var.support_dns_name]
 }
 
 resource "aws_route53_record" "design" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "design.datacite.org"
     type = "CNAME"
     ttl = "300"
-    records = ["${var.design_dns_name}"]
+    records = [var.design_dns_name]
 }
 
-// resource "aws_route53_record" "stage" {
-//     zone_id = "${aws_route53_zone.production.zone_id}"
-//     name = "stage.datacite.org"
-//     type = "A"
-//     ttl = "300"
-// }
-
 resource "aws_route53_record" "mx-datacite" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
-    name = "${aws_route53_zone.production.name}"
+    zone_id = aws_route53_zone.production.zone_id
+    name = aws_route53_zone.production.name
     type = "MX"
     ttl = "300"
     records = [
@@ -111,52 +101,52 @@ resource "aws_route53_record" "mx-datacite" {
 }
 
 resource "aws_route53_record" "txt-datacite" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
-    name = "${aws_route53_zone.production.name}"
+    zone_id = aws_route53_zone.production.zone_id
+    name = aws_route53_zone.production.name
     type = "TXT"
     ttl = "300"
     records = [
-        "${var.google_site_verification_record}",
+        var.google_site_verification_record,
         "v=spf1 include:_spf.google.com include:_spf.salesforce.com ~all",
-        "${var.ms_record}",
-        "${var.verification_record}"
+        var.ms_record,
+        var.verification_record
     ]
 }
 
 resource "aws_route53_record" "dkim-datacite" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
-    name = "google._domainkey.${aws_route53_zone.production.name}"
+    zone_id = aws_route53_zone.production.zone_id
+    name = "google._domainkey.aws_route53_zone.production.name"
     type = "TXT"
     ttl = "300"
-    records = ["${var.dkim_record}"]
+    records = [var.dkim_record]
 }
 
 resource "aws_route53_record" "dkim-salesforce" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
-    name = "datacite._domainkey.${aws_route53_zone.production.name}"
+    zone_id = aws_route53_zone.production.zone_id
+    name = "datacite._domainkey.aws_route53_zone.production.name"
     type = "TXT"
     ttl = "300"
-    records = ["${var.dkim_salesforce}"]
+    records = [var.dkim_salesforce]
 }
 
 resource "aws_route53_record" "dkim-alt-salesforce" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
-    name = "DataCite.org._domainkey.${aws_route53_zone.production.name}"
+    zone_id = aws_route53_zone.production.zone_id
+    name = "DataCite.org._domainkey.aws_route53_zone.production.name"
     type = "TXT"
     ttl = "300"
-    records = ["${var.dkim_alt_salesforce}"]
+    records = [var.dkim_alt_salesforce]
 }
 
 resource "aws_route53_record" "dmarc-datacite" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
-    name = "_dmarc.${aws_route53_zone.production.name}"
+    zone_id = aws_route53_zone.production.zone_id
+    name = "_dmarc.aws_route53_zone.production.name"
     type = "TXT"
     ttl = "300"
-    records = ["${var.dmarc_record}"]
+    records = [var.dmarc_record]
 }
 
 resource "aws_route53_record" "github_datacite" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "_github-challenge-datacite.datacite.org"
     type = "TXT"
     ttl = "300"
@@ -164,7 +154,7 @@ resource "aws_route53_record" "github_datacite" {
 }
 
 resource "aws_route53_record" "lists" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "lists.datacite.org"
     type = "CNAME"
     ttl = "300"
@@ -172,7 +162,7 @@ resource "aws_route53_record" "lists" {
 }
 
 resource "aws_route53_record" "corpus-prototype" {
-    zone_id = "${aws_route53_zone.production.zone_id}"
+    zone_id = aws_route53_zone.production.zone_id
     name = "corpus.stage.datacite.org"
     type = "A"
     ttl = "300"
