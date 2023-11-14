@@ -166,5 +166,5 @@ resource "aws_route53_record" "corpus-prototype" {
     name = "corpus.stage.datacite.org"
     type = "A"
     ttl = "300"
-    records = ["54.246.247.169"]
+    records = ["54.229.227.84"]
 }
