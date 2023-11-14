@@ -111,6 +111,10 @@ resource "aws_route53_record" "txt-datacite" {
         var.ms_record,
         var.verification_record
     ]
+
+    lifecycle {
+      ignore_changes = [ "records" ]
+    }
 }
 
 resource "aws_route53_record" "dkim-datacite" {
@@ -119,6 +123,10 @@ resource "aws_route53_record" "dkim-datacite" {
     type = "TXT"
     ttl = "300"
     records = [var.dkim_record]
+
+    lifecycle {
+      ignore_changes = [ "records" ]
+    }
 }
 
 resource "aws_route53_record" "dkim-salesforce" {
@@ -127,6 +135,10 @@ resource "aws_route53_record" "dkim-salesforce" {
     type = "TXT"
     ttl = "300"
     records = [var.dkim_salesforce]
+
+    lifecycle {
+      ignore_changes = [ "records" ]
+    }
 }
 
 resource "aws_route53_record" "dkim-alt-salesforce" {
@@ -135,6 +147,10 @@ resource "aws_route53_record" "dkim-alt-salesforce" {
     type = "TXT"
     ttl = "300"
     records = [var.dkim_alt_salesforce]
+
+    lifecycle {
+      ignore_changes = [ "records" ]
+    }
 }
 
 resource "aws_route53_record" "dmarc-datacite" {
@@ -143,6 +159,10 @@ resource "aws_route53_record" "dmarc-datacite" {
     type = "TXT"
     ttl = "300"
     records = [var.dmarc_record]
+
+    lifecycle {
+      ignore_changes = [ "records" ]
+    }
 }
 
 resource "aws_route53_record" "github_datacite" {
