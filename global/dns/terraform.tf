@@ -6,9 +6,13 @@ terraform {
     }
   }
 
-  required_version = ">= 1.14"
+  required_version = ">= 1.6"
 
-  backend "atlas" {
-    name         = "datacite-ng/global-dns"
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "global-dns"
+    }
   }
 }
