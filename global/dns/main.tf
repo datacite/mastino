@@ -202,3 +202,45 @@ resource "aws_route53_record" "mail" {
    ttl = "86400"
    records = ["ghs.googlehosted.com"]
 }
+
+// Mailgun dns entries
+
+resource "aws_route53_record" "spf-mailgun" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "mg.datacite.org"
+    type = "TXT"
+    ttl = "300"
+    records = [
+        "v=spf1 include:mailgun.org ~all"
+    ]
+}
+
+resource "aws_route53_record" "dkim-mailgun" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "k1._domainkey.mg.datacite.org"
+    type = "TXT"
+    ttl = "300"
+// Note this is the public key here
+    records = [
+        "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDAWN4K4d+IYySrapJz7+El5L92s3NKOTJbOCkU/uy7SPOQJuQX1lZDFsVINUYlvAvkz+43MRaVt8VceU5nxIvAXQErjwevrPxXnYj0l+Nk8k502cAZLtktKd5TTSRyGVNH3AS51qVKts8P+uKRGDXefX1OA956oS1PELMl73tWRQIDAQAB"
+    ]
+}
+
+resource "aws_route53_record" "mailgun" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "email.mg.datacite.org"
+    type = "CNAME"
+    ttl = "86400"
+    records = ["mailgun.org"]
+}
+
+resource "aws_route53_record" "mx-mailgun" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "mg.datacite.org"
+    type = "MX"
+    ttl = "300"
+    records = [
+        "10 mxa.mailgun.org",
+        "10 mxb.mailgun.org"
+    ]
+}
