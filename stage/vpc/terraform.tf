@@ -8,9 +8,13 @@ terraform {
       source = "hashicorp/template"
     }
   }
-  required_version = ">= 0.14"
+  required_version = ">= 1.6"
 
-  backend "atlas" {
-    name = "datacite-ng/stage-vpc"
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "stage-vpc"
+    }
   }
 }
