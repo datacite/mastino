@@ -1,19 +1,19 @@
 resource "aws_lb" "stage" {
   name = "lb-stage"
   internal = false
-  subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
-  security_groups = ["${data.aws_security_group.datacite-public.id}"]
+  subnets = [data.aws_subnet.datacite-public.id, data.aws_subnet.datacite-public-alt.id]
+  security_groups = [data.aws_security_group.datacite-public.id]
   idle_timeout = 200
 
   enable_deletion_protection = true
 
   access_logs {
-    bucket = "${aws_s3_bucket.logs-stage.bucket}"
+    bucket = aws_s3_bucket.logs-stage.bucket
     prefix = "lb"
     enabled = false
   }
 
-  tags {
+  tags = {
     Environment = "stage"
     Name = "lb-stage"
   }
@@ -22,13 +22,13 @@ resource "aws_lb" "stage" {
 resource "aws_lb" "crosscite-stage" {
   name = "crosscite-stage"
   internal = false
-  subnets = ["${data.aws_subnet.datacite-public.id}", "${data.aws_subnet.datacite-public-alt.id}"]
-  security_groups = ["${data.aws_security_group.datacite-public.id}"]
+  subnets = [data.aws_subnet.datacite-public.id, data.aws_subnet.datacite-public-alt.id]
+  security_groups = [data.aws_security_group.datacite-public.id]
 
   enable_deletion_protection = true
 
   access_logs {
-    bucket = "${aws_s3_bucket.logs-stage.bucket}"
+    bucket = aws_s3_bucket.logs-stage.bucket
     prefix = "crosscite-stage"
     enabled = false
   }
@@ -42,34 +42,34 @@ resource "aws_lb" "crosscite-stage" {
 resource "aws_s3_bucket" "logs-stage" {
   bucket = "logs.stage.datacite.org"
   acl    = "private"
-  policy = "${data.template_file.logs-stage.rendered}"
+  policy = data.template_file.logs-stage.rendered
   tags {
       Name = "lb-stage"
   }
 }
 
 resource "aws_lb_listener" "stage" {
-  load_balancer_arn = "${aws_lb.stage.id}"
+  load_balancer_arn = aws_lb.stage.id
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "${data.aws_acm_certificate.stage.arn}"
+  certificate_arn   = data.aws_acm_certificate.stage.arn
 
   default_action {
-    target_group_arn = "${data.aws_lb_target_group.api-stage.id}"
+    target_group_arn = data.aws_lb_target_group.api-stage.id
     type             = "forward"
   }
 }
 
 resource "aws_lb_listener" "crosscite-stage" {
-  load_balancer_arn = "${aws_lb.crosscite-stage.id}"
+  load_balancer_arn = aws_lb.crosscite-stage.id
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "${data.aws_acm_certificate.crosscite-test.arn}"
+  certificate_arn   = data.aws_acm_certificate.crosscite-test.arn
 
   default_action {
-    target_group_arn = "${aws_lb_target_group.content-negotiation-stage.id}"
+    target_group_arn = aws_lb_target_group.content-negotiation-stage.id
     type             = "forward"
   }
 }
@@ -78,7 +78,7 @@ resource "aws_lb_target_group" "content-negotiation-stage" {
   name     = "content-negotiation-stage"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = "${var.vpc_id}"
+  vpc_id   = var.vpc_id
   target_type = "ip"
 
   health_check {
@@ -87,7 +87,7 @@ resource "aws_lb_target_group" "content-negotiation-stage" {
 }
 
 resource "aws_lb_listener" "http-stage" {
-  load_balancer_arn = "${aws_lb.stage.id}"
+  load_balancer_arn = aws_lb.stage.id
   port              = "80"
   protocol          = "HTTP"
 

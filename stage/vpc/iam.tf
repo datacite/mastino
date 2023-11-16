@@ -20,7 +20,7 @@ DOC
 
 resource "aws_iam_role_policy" "ecs_events_run_task_with_any_role-stage" {
   name = "ecs_events_run_task_with_any_role-stage"
-  role = "${aws_iam_role.ecs_events-stage.id}"
+  role = aws_iam_role.ecs_events-stage.id
 
   policy = <<DOC
 {
