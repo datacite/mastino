@@ -46,6 +46,10 @@ resource "aws_s3_bucket" "logs-stage" {
   tags = {
       Name = "lb-stage"
   }
+
+  lifecycle {
+    ignore_changes = [ "grant" ]
+  }
 }
 
 resource "aws_lb_listener" "stage" {
