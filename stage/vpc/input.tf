@@ -50,12 +50,6 @@ data "aws_acm_certificate" "stage" {
   most_recent = true
 }
 
-data "aws_acm_certificate" "crosscite-test" {
-  domain = "*.test.crosscite.org"
-  statuses = ["ISSUED"]
-  most_recent = true
-}
-
 data "aws_iam_instance_profile" "ecs_instance" {
   name  = "ecs_instance"
 }
