@@ -1,5 +1,5 @@
 resource "aws_route53_record" "internal-proxy" {
-    zone_id = "${data.aws_route53_zone.internal.zone_id}"
+    zone_id = data.aws_route53_zone.internal.zone_id
     name = "proxy.datacite.org"
     type = "A"
     ttl = var.ttl
