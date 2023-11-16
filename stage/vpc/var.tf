@@ -5,7 +5,7 @@ variable "region" {
 }
 variable "vpc_id" {}
 variable "ecs_ami" {
-  type = "map"
+  type = map
   description = "Amazon Linux ECS-optimized AMI"
 
   default = {

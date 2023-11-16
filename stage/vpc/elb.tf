@@ -48,7 +48,7 @@ resource "aws_s3_bucket" "logs-stage" {
   }
 
   lifecycle {
-    ignore_changes = [ "grant" ]
+    ignore_changes = [ grant ]
   }
 }
 
