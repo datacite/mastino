@@ -33,7 +33,7 @@ resource "aws_lb" "crosscite-stage" {
     enabled = false
   }
 
-  tags {
+  tags = {
     Environment = "stage"
     Name = "crosscite-stage"
   }
@@ -43,7 +43,7 @@ resource "aws_s3_bucket" "logs-stage" {
   bucket = "logs.stage.datacite.org"
   acl    = "private"
   policy = data.template_file.logs-stage.rendered
-  tags {
+  tags = {
       Name = "lb-stage"
   }
 }
