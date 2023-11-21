@@ -51,3 +51,7 @@ variable "analytics_queue" {
 
 variable "api_username" {}
 variable "api_password" {}
+
+variable "blocked_repositories" {
+    default = ""
+}

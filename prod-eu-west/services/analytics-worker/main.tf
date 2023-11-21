@@ -73,26 +73,27 @@ resource "aws_lambda_function" "analytics-queue-reports" {
         API_USERNAME = var.api_username
         API_PASSWORD = var.api_password
         QUEUE_NAME = var.analytics_queue
+        BLOCKED_REPOSITORIES = var.blocked_repositories
     }
   }
 }
 
-# resource "aws_cloudwatch_event_rule" "analytics-queue-reports" {
-#   name                = "analytics-queue-reports"
-#   description         = "Run analytics-queue-reports via cron"
-#   schedule_expression = "cron(00 1 1 * ? *)"
-# }
+resource "aws_cloudwatch_event_rule" "analytics-queue-reports" {
+  name                = "analytics-queue-reports"
+  description         = "Run analytics-queue-reports via cron"
+  schedule_expression = "cron(00 1 1 * ? *)" # 1st day of the month at 1am
+}
 
-# resource "aws_cloudwatch_event_target" "analytics-queue-reports" {
-#   target_id = "analytics-queue-reports"
-#   rule      = aws_cloudwatch_event_rule.analytics-queue-reports.name
-#   arn       = aws_lambda_function.analytics-queue-reports.arn
-# }
+resource "aws_cloudwatch_event_target" "analytics-queue-reports" {
+  target_id = "analytics-queue-reports"
+  rule      = aws_cloudwatch_event_rule.analytics-queue-reports.name
+  arn       = aws_lambda_function.analytics-queue-reports.arn
+}
 
-# resource "aws_lambda_permission" "analytics-queue-reports" {
-#   statement_id  = "AllowExecutionFromCloudWatch"
-#   action        = "lambda:InvokeFunction"
-#   function_name = aws_lambda_function.analytics-queue-reports.function_name
-#   principal     = "events.amazonaws.com"
-#   source_arn    = aws_cloudwatch_event_rule.analytics-queue-reports.arn
-# }
+resource "aws_lambda_permission" "analytics-queue-reports" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.analytics-queue-reports.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.analytics-queue-reports.arn
+}
