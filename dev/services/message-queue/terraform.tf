@@ -2,16 +2,20 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 2.7"
+      version = "~> 5.0"
     }
     template = {
       source = "hashicorp/template"
     }
   }
 
-  required_version = ">= 0.13"
+  required_version = ">= 1.6"
 
-  backend "atlas" {
-    name         = "datacite-ng/dev-services-message-queue"
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "dev-services-message-queue"
+    }
   }
 }
