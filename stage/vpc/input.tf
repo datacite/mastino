@@ -61,10 +61,20 @@ data "aws_lb_target_group" "api-stage" {
   name = "api-stage"
 }
 
-data "template_file" "logs-stage" {
-  template = file("s3_lb_write_access.json")
+data "aws_iam_policy_document" "logs" {
+  statement {
+    principals {
+      type        = "AWS"
+      identifiers = ["156460612806", "127311923021"]
+    }
 
-  vars = {
-    bucket_name = "logs.stage.datacite.org"
+    actions = [
+      "s3:PutObject",
+    ]
+
+    resources = [
+      aws_s3_bucket.logs-stage.arn,
+      "${aws_s3_bucket.logs-stage.arn}/*",
+    ]
   }
 }

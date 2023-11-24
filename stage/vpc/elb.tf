@@ -41,8 +41,6 @@ resource "aws_lb" "crosscite-stage" {
 
 resource "aws_s3_bucket" "logs-stage" {
   bucket = "logs.stage.datacite.org"
-  acl    = "private"
-  policy = data.template_file.logs-stage.rendered
   tags = {
       Name = "lb-stage"
   }
@@ -50,6 +48,25 @@ resource "aws_s3_bucket" "logs-stage" {
   lifecycle {
     ignore_changes = [ grant ]
   }
+}
+
+resource "aws_s3_bucket_ownership_controls" "logs" {
+  bucket = aws_s3_bucket.logs-stage.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "logs" {
+  depends_on = [aws_s3_bucket_ownership_controls.logs]
+
+  bucket = aws_s3_bucket.logs-stage.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_policy" "logs" {
+  bucket = aws_s3_bucket.logs-stage.id
+  policy = data.aws_iam_policy_document.logs.json
 }
 
 resource "aws_lb_listener" "stage" {
