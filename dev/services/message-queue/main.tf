@@ -12,7 +12,7 @@ module "datacite_queues" {
 resource "aws_sqs_queue" "lupo-testing" {
   name                      = "test_lupo"
   redrive_policy            = jsonencode({
-    deadLetterTargetArn = module.datacite_queues.dead_letter.arn
+    deadLetterTargetArn = module.datacite_queues.dead_letter_arn
     maxReceiveCount     = 4
   })
 
