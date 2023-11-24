@@ -42,7 +42,7 @@ variable "mysql_user" {}
 variable "mysql_password" {}
 
 variable "search_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "dd_api_key" {}
