@@ -21,14 +21,28 @@ resource "aws_lb" "test" {
 
 resource "aws_s3_bucket" "logs-test" {
   bucket = "logs.test.datacite.org"
-  acl    = "private"
-  policy = templatefile("s3_lb_write_access.json",
-      {
-        bucket_name = "logs.test.datacite.org"
-      })
   tags = {
       Name = "lb-test"
   }
+}
+
+resource "aws_s3_bucket_ownership_controls" "logs" {
+  bucket = aws_s3_bucket.logs.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "logs" {
+  depends_on = [aws_s3_bucket_ownership_controls.example]
+
+  bucket = aws_s3_bucket.example.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_policy" "logs" {
+  bucket = aws_s3_bucket.logs-test.id
+  policy = data.aws_iam_policy_document.logs.json
 }
 
 resource "aws_lb_listener" "test" {
