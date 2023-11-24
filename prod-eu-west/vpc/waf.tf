@@ -72,7 +72,7 @@ resource "aws_wafregional_rate_based_rule" "cnWAFRule" {
   predicate {
     data_id = aws_wafregional_byte_match_set.cnUriMatch.id
     negated = false
-    type    = "IPMatch"
+    type    = "ByteMatch"
   }
 }
 
@@ -123,6 +123,12 @@ resource "aws_wafregional_web_acl" "default" {
     priority = 3
     rule_id  = aws_wafregional_rate_based_rule.cnWAFRule.id
     type     = "RATE_BASED"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      rule
+    ]
   }
 }
 
