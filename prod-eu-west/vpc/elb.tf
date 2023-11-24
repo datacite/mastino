@@ -13,8 +13,9 @@ resource "aws_lb_listener_rule" "redirect_www" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["www.datacite.org"]
+    host_header {
+      values = ["www.datacite.org"]
+    }
   }
 }
 

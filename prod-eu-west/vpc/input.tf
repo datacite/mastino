@@ -64,10 +64,6 @@ data "aws_s3_bucket" "logs" {
   bucket = "logs.datacite.org"
 }
 
-// data "aws_lb_target_group" "citation" {
-//   name = "citation"
-// }
-
 data "aws_lb_target_group" "content-negotiation" {
   name = "content-negotiation"
 }
@@ -82,12 +78,4 @@ data "aws_iam_role" "ecs_instance_role" {
 
 data "aws_lb_target_group" "mds" {
   name = "mds"
-}
-
-data "template_file" "logs" {
-  template = "${file("s3_lb_write_access.json")}"
-
-  vars = {
-    bucket_name = "logs.datacite.org"
-  }
 }
