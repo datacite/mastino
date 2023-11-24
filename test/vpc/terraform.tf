@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 2.7"
+      version = "~> 5.0"
     }
     template = {
       source = "hashicorp/template"
@@ -15,7 +15,7 @@ terraform {
     organization = "datacite-ng"
 
     workspaces {
-      name = "stage-vpc"
+      name = "test-vpc"
     }
   }
 }

@@ -55,7 +55,7 @@ data "aws_lb" "test" {
   name = var.lb_name
 }
 
-data "aws_iam_policy_document" "logs_policy" {
+data "aws_iam_policy_document" "logs" {
   statement {
     principals {
       type        = "AWS"
