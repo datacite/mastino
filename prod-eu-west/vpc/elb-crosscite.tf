@@ -26,8 +26,16 @@ resource "aws_lb_listener" "crosscite" {
   certificate_arn   = data.aws_acm_certificate.crosscite.arn
 
   default_action {
-     target_group_arn = data.aws_lb_target_group.content-negotiation.id
-     type             = "forward"
+    type = "redirect"
+
+    redirect {
+      host        = "citation.crosscite.org"
+      path        = "/#{path}"
+      port        = "#{port}"
+      protocol    = "HTTPS"
+      query       = "#{query}"
+      status_code = "HTTP_301"
+    }
   }
 
 }
