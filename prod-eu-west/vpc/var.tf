@@ -48,10 +48,10 @@ variable "environment" {
 variable "waf_ip_rate_limit" {}
 variable "wafregional_rule_id" {}
 variable "waf_regex_path_disallow_pattern_strings" {
-  type = "list"
+  type = list(string)
 }
 variable "waf_regex_host_allow_pattern_strings" {
-  type = "list"
+  type = list(string)
 }
 
 variable "waf_nat_ip" {}

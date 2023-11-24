@@ -9,9 +9,13 @@ terraform {
     }
   }
 
-  required_version = ">= 0.13"
+ required_version = ">= 1.6"
 
-  backend "atlas" {
-    name = "datacite-ng/prod-eu-west-vpc"
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "prod-eu-west-vpc"
+    }
   }
 }
