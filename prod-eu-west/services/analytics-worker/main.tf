@@ -26,7 +26,7 @@ resource "aws_lambda_function" "analytics-worker" {
   function_name    = "analytics-worker"
   role             = data.aws_iam_role.lambda.arn
   handler          = "analytics_worker_runner.lambda_handler"
-  runtime          = "python3.8"
+  runtime          = "python3.10"
   source_code_hash = sha256(filebase64("analytics_worker.py.zip"))
   timeout          = "30"
 
@@ -58,7 +58,7 @@ resource "aws_lambda_function" "analytics-queue-reports" {
   function_name    = "analytics-queue_reports"
   role             = data.aws_iam_role.lambda.arn
   handler          = "analytics_queue_reports_runner.lambda_handler"
-  runtime          = "python3.8"
+  runtime          = "python3.10"
   source_code_hash = sha256(filebase64("analytics_queue_reports.py.zip"))
   timeout          = "30"
 
