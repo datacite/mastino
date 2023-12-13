@@ -59,5 +59,6 @@ data "template_file" "mds_task" {
     api_url            = var.api_url
     memcache_servers   = var.memcache_servers
     version            = var.poodle_tags["version"]
+    sha                = var.poodle_tags["sha"]
   }
 }

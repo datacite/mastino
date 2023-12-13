@@ -1,7 +1,7 @@
 [
   {
     "name": "mds-stage",
-    "image": "ghcr.io/datacite/poodle",
+    "image": "ghcr.io/datacite/poodle:${version}",
     "cpu": 256,
     "memory": 512,
     "networkMode": "awsvpc",
@@ -56,6 +56,10 @@
       {
         "name" : "GITHUB_VERSION",
         "value" : "${version}"
+      },
+      {
+        "name": "GITHUB_SHA",
+        "value": "${sha}"
       }
     ]
   }
