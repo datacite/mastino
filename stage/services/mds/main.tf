@@ -42,7 +42,8 @@ resource "aws_ecs_task_definition" "mds-stage" {
       api_url            = var.api_url
       mds_url            = var.mds_url
       memcache_servers   = var.memcache_servers
-      version            = var.poodle_tags["sha"]
+      version            = var.poodle_tags["version"]
+      sha                = var.poodle_tags["sha"]
     }
   )
 }
