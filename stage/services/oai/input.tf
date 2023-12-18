@@ -2,6 +2,7 @@ provider "aws" {
   access_key = var.access_key
   secret_key = var.secret_key
   region     = var.region
+  version    = "v2.70.0"
 }
 
 data "aws_route53_zone" "production" {
