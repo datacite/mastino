@@ -24,23 +24,6 @@ resource "aws_ecs_service" "oai-stage" {
   ]
 }
 
-resource "aws_lb_listener_rule" "oai-test" {
-  listener_arn = data.aws_lb_listener.test.arn
-  priority     = 61
-
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.oai-test.arn
-  }
-
-  condition {
-    host_header {
-      values = [aws_route53_record.oai-test.name]
-    }
-  }
-}
-
-
 resource "aws_cloudwatch_log_group" "oai-stage" {
   name = "/ecs/oai-stage"
 }
