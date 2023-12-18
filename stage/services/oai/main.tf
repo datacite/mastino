@@ -75,23 +75,9 @@ resource "aws_lb_listener_rule" "oai-stage" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.oai-stage.name]
-  }
-}
-
-resource "aws_lb_listener_rule" "oai-test" {
-  listener_arn = data.aws_lb_listener.test.arn
-  priority     = 61
-
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.oai-test.arn
-  }
-
-  condition {
-    field  = "host-header"
-    values = [aws_route53_record.oai-test.name]
+    host_header {
+      values = [aws_route53_record.oai-stage.name]
+    }
   }
 }
 
