@@ -80,7 +80,7 @@ locals {
 }
 
 module "ecs-service" {
-  source = "git@github.com:datacite/terraform-aws-ecs-service.git"
+  source = "https://github.com/datacite/terraform-aws-ecs-service.git"
 
   app_name = local.app_name
   env = local.env
