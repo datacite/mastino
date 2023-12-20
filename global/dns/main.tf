@@ -169,7 +169,7 @@ resource "aws_route53_record" "corpus-prototype" {
     records = ["54.229.227.84"]
 }
 
-resource "aws_route53_record" "corpus-prototype" {
+resource "aws_route53_record" "corpus-prototype-prod" {
     zone_id = aws_route53_zone.production.zone_id
     name = "corpus.datacite.org"
     type = "A"
