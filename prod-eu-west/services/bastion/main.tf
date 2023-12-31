@@ -94,7 +94,8 @@ resource "aws_route53_record" "bastion-2024" {
     name = "${var.hostname_2024}.datacite.org"
     type = "A"
     ttl = "${var.ttl}"
-    records = ["${aws_instance.bastion-2024.public_ip}"]
+    records = ["54.74.52.52"]
+#    records = ["${aws_instance.bastion-2024.public_ip}"]
 }
 
 resource "aws_route53_record" "split-bastion-2024" {
