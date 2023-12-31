@@ -29,7 +29,7 @@ variable "ami_2024" {
   description = "Amazon Linux 2024 AMI"
 
   default = {
-    eu-west-1 = "ami-0dab0800aa38826f2"
+    eu-west-1 = "ami-02cad064a29d4550c"
   }
 }
 
