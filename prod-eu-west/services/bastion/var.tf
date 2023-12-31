@@ -23,3 +23,15 @@ variable "ttl" {
 }
 
 variable "subnet_datacite-public_id" {}
+
+variable "ami_2024" {
+  type = "map"
+  description = "Amazon Linux 2024 AMI"
+
+  default = {
+    eu-west-1 = "ami-0dab0800aa38826f2"
+  }
+}
+
+variable "hostname_2024" {}
+variable "key_name_2024" {}
