@@ -25,3 +25,13 @@ data "template_file" "bastion-user-data-cfg" {
     fqdn         = "${var.hostname}.datacite.org"
   }
 }
+
+data "template_file" "bastion-2024-user-data-cfg" {
+  template = "${file("user_data.cfg")}"
+
+  vars {
+    hostname     = "${var.hostname_2024}"
+    fqdn         = "${var.hostname_2024}.datacite.org"
+  }
+}
+
