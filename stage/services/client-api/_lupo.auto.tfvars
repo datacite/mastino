@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "d461d90260b8db3edcc14b3384c617b720fef935"
-  version = "main"
+  sha = "db4a8c17c1076030ffd6b7cc12a8ef34203d09e3"
+  version = "metadata-4.5-graphql-publisher-support"
 }
