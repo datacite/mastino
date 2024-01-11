@@ -1,3 +1,8 @@
+
+# This lambda function is used to forward logs from CloudWatch to Datadog
+# We're using a manual lambda function (as opposed to CloudFormation) to keep everything here in the mastino repo
+# The source code is directly provided by DataDog from their latest releases
+# To update you will need to replace the filename and source_code_hash
 resource "aws_lambda_function" "logs" {
   filename = "aws-dd-forwarder-3.100.0.zip"
   function_name = "logs"
