@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "logs" {
-  filename = "lambda_function.py.zip"
+  filename = "aws-dd-forwarder-3.100.0.zip"
   function_name = "logs"
   role = data.aws_iam_role.lambda.arn
   handler = "lambda_function.lambda_handler"
