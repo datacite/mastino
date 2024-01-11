@@ -30,6 +30,10 @@
         "value": "true"
       },
       {
+        "name": "DD_APM_NON_LOCAL_TRAFFIC",
+        "value": "true"
+      },
+      {
         "name": "ECS_FARGATE",
         "value": "true"
       }
