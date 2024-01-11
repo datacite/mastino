@@ -3,7 +3,7 @@ resource "aws_lambda_function" "logs" {
   function_name = "logs"
   role = data.aws_iam_role.lambda.arn
   handler = "lambda_function.lambda_handler"
-  runtime = "python3.10"
+  runtime = "python3.11"
   source_code_hash = sha256(filebase64("aws-dd-forwarder-3.100.0.zip"))
   timeout = "120"
   memory_size = "1024"
