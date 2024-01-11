@@ -1,7 +1,7 @@
 [
   {
     "name": "datadog-agent",
-    "image": "datadog/agent:latest",
+    "image": "public.ecr.aws/datadog/agent:latest",
     "cpu": 256,
     "memory": 512,
     "networkMode": "awsvpc",
@@ -12,9 +12,9 @@
         "hostPort": 8126
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/datadog",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
@@ -33,7 +33,7 @@
         "name": "ECS_FARGATE",
         "value": "true"
       }
-      
+
     ]
   }
 ]
