@@ -3,8 +3,8 @@ resource "aws_lambda_function" "logs" {
   function_name = "logs"
   role = data.aws_iam_role.lambda.arn
   handler = "lambda_function.lambda_handler"
-  runtime = "python2.7"
-  source_code_hash = sha256(filebase64("lambda_function.py.zip"))
+  runtime = "python3.10"
+  source_code_hash = sha256(filebase64("aws-dd-forwarder-3.100.0.zip"))
   timeout = "120"
   memory_size = "1024"
 
@@ -15,6 +15,7 @@ resource "aws_lambda_function" "logs" {
   environment {
     variables = {
       DD_API_KEY = var.dd_api_key
+      DD_ENHANCED_METRICS = "false" # We don't want lambda enhanced metrics for the log forwarder itself
     }
   }
 }
