@@ -17,6 +17,11 @@
       "awslogs-stream-prefix": "ecs"
     }
   },
+  "dockerLabels": {
+    "com.datadoghq.ad.instances": "[{\"host\": \"%%host%%\", \"port\": 80}]",
+    "com.datadoghq.ad.check_names": "[\"client-api\"]",
+    "com.datadoghq.ad.init_configs": "[{}]"
+  },
   "environment": [{
       "name": "PASSENGER_APP_ENV",
       "value": "production"
