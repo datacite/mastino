@@ -2,17 +2,13 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 5"
+      version = "~> 2.70"
     }
   }
 
-  required_version = ">= 1.6"
+  required_version = ">= 0.13"
 
-  cloud {
-    organization = "datacite-ng"
-
-    workspaces {
-      name = "stage-services-assets"
-    }
+  backend "atlas" {
+    name         = "datacite-ng/stage-services-assets"
   }
 }
