@@ -103,3 +103,11 @@ resource "aws_service_discovery_service" "analytics-api-stage" {
     }
   }
 }
+
+resource "aws_route53_record" "analytics-stage" {
+    zone_id = data.aws_route53_zone.production.zone_id
+    name = "analytics.stage.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.stage.dns_name]
+}
