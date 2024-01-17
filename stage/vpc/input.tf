@@ -80,7 +80,7 @@ data "aws_iam_policy_document" "logs" {
 }
 
 data "aws_acm_certificate" "crosscite-test" {
-  domain = "*.test.crosscite.org"
+  domain = "*.crosscite.org"
   statuses = ["ISSUED"]
   most_recent = true
 }
