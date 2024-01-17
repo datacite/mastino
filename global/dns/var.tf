@@ -4,6 +4,10 @@ variable "region" {
     default = "eu-west-1"
 }
 
+variable "ttl" {
+    default = "300"
+}
+
 variable "vpc_id" {}
 variable "vpc_id_us" {}
 
@@ -20,3 +24,5 @@ variable "verification_record" {}
 variable "dkim_salesforce" {}
 variable "dkim_alt_salesforce" {}
 variable "dkim_cm" {}
+
+variable "siteground_ip_stage" {}

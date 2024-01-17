@@ -263,3 +263,23 @@ resource "aws_route53_record" "akita-stage" {
     ttl = 300
     records = ["commons.datacite.vercel.app"]
 }
+
+// Siteground (blog/homepage)
+
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "blog-stage" {
+   zone_id = aws_route53_zone.production.zone_id
+   name = "blog.stage.datacite.org"
+   type = "A"
+   ttl = var.ttl
+   records = [var.siteground_ip_stage]
+}
+
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "blog-stage-wildcard" {
+   zone_id = aws_route53_zone.production.zone_id
+   name = "*.blog.stage.datacite.org"
+   type = "A"
+   ttl = var.ttl
+   records = [var.siteground_ip_stage]
+}
