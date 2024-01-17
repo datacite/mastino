@@ -147,3 +147,19 @@ resource "aws_service_discovery_service" "client-api-stage" {
     }
   }
 }
+
+resource "aws_route53_record" "api-stage" {
+    zone_id = data.aws_route53_zone.production.zone_id
+    name = "api.stage.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.stage.dns_name]
+}
+
+resource "aws_route53_record" "split-api-stage" {
+    zone_id = data.aws_route53_zone.internal.zone_id
+    name = "api.stage.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.stage.dns_name]
+}
