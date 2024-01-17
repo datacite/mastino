@@ -102,13 +102,15 @@ resource "aws_lb_listener_rule" "api-graphql-stage" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/client-api/graphql"]
+    path_pattern {
+      values = ["/client-api/graphql"]
+    }
   }
 }
 
@@ -122,9 +124,11 @@ resource "aws_lb_listener_rule" "api-stage" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
+
 }
 
 resource "aws_service_discovery_service" "client-api-stage" {
@@ -136,7 +140,7 @@ resource "aws_service_discovery_service" "client-api-stage" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
