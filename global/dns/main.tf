@@ -252,3 +252,14 @@ resource "aws_route53_record" "mx-mailgun" {
         "10 mxb.mailgun.org"
     ]
 }
+
+// Vercel dns entries
+
+// Commons staging
+resource "aws_route53_record" "akita-stage" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "commons.stage.datacite.org"
+    type = "CNAME"
+    ttl = 300
+    records = ["commons.datacite.vercel.app"]
+}
