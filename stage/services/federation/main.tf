@@ -65,13 +65,15 @@ resource "aws_lb_listener_rule" "federation-stage" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/graphql"]
+    path_pattern {
+      values = ["/graphql"]
+    }
   }
 }
 
@@ -84,7 +86,7 @@ resource "aws_service_discovery_service" "federation-stage" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
