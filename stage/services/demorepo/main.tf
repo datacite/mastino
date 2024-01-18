@@ -82,7 +82,7 @@ resource "aws_route53_record" "demorepo-stage" {
    name = "demorepo.stage.datacite.org"
    type = "CNAME"
    ttl = var.ttl
-   records = ["${aws_cloudfront_distribution.demorepo-stage.domain_name}"]
+   records = [aws_cloudfront_distribution.demorepo-stage.domain_name]
 }
 
 resource "aws_route53_record" "split-demorepo-stage" {
@@ -90,5 +90,5 @@ resource "aws_route53_record" "split-demorepo-stage" {
    name = "demorepo.stage.datacite.org"
    type = "CNAME"
    ttl = var.ttl
-   records = ["${aws_cloudfront_distribution.demorepo-stage.domain_name}"]
+   records = [aws_cloudfront_distribution.demorepo-stage.domain_name]
 }
