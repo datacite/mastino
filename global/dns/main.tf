@@ -264,6 +264,15 @@ resource "aws_route53_record" "akita-stage" {
     records = ["commons.datacite.vercel.app"]
 }
 
+// Fabrica staging
+resource "aws_route53_record" "doi-stage" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "doi.stage.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = ["doi.datacite.vercel.app"]
+}
+
 // Siteground (blog/homepage)
 
 // Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
