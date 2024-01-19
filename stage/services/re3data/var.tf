@@ -7,7 +7,7 @@ variable "region" {
 variable "vpc_id" {}
 
 variable "schnauzer_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "lb_name" {
