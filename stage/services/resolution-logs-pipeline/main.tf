@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "resolution-logs-bucket-stage" {
   acl = "public-read"
   // policy = "${data.template_file.resolution-logs-bucket-stage.rendered}"
 
-  tags {
+  tags = {
       Name = "resolution-logs-bucket-stage"
   }
   versioning {
@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "merged-logs-bucket-stage" {
   acl = "public-read"
   // policy = "${data.template_file.merged-logs-bucket-stage.rendered}"
 
-  tags {
+  tags = {
       Name = "merged-logs-bucket-stage"
   }
   versioning {
