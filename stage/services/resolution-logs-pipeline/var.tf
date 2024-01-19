@@ -9,7 +9,7 @@ variable "s3_bucket" {
 variable "vpc_id" {}
 
 variable "shiba-inu_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "lb_name" {
@@ -40,12 +40,3 @@ variable "s3_merged_logs_bucket" {
 variable "s3_resolution_logs_bucket" {
   default = "resolution-logs-bucket.stage.datacite.org"
 }
-
-//  for fargate
-// variable "public_key" {}
-
-// variable "security_group_id" {}
-// variable "subnet_datacite-private_id" {}
-// variable "subnet_datacite-alt_id" {}
-
-// variable "namespace_id" {}
