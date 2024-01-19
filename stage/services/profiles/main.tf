@@ -24,7 +24,7 @@ resource "aws_ecs_service" "profiles-stage" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.stage",
+    data.aws_lb_listener.stage,
   ]
 }
 
