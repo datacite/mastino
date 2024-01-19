@@ -64,8 +64,9 @@ resource "aws_lb_listener_rule" "profiles-stage" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.profiles-stage.name]
+    host_header {
+      values = [aws_route53_record.profiles-stage.name]
+    }
   }
 }
 
@@ -79,13 +80,15 @@ resource "aws_lb_listener_rule" "profiles-api-stage-users" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.stage.datacite.org"]
+    host_header {
+      values = ["api.stage.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/users*"]
+    path_pattern {
+      values = ["/users*"]
+    }
   }
 }
 
@@ -99,13 +102,15 @@ resource "aws_lb_listener_rule" "profiles-api-stage-claims" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.stage.datacite.org"]
+    host_header {
+      values = ["api.stage.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/claims*"]
+    path_pattern {
+      values = ["/claims*"]
+    }
   }
 }
 
@@ -119,13 +124,15 @@ resource "aws_lb_listener_rule" "profiles-api-stage-people" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.stage.datacite.org"]
+    host_header {
+      values = ["api.stage.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/profiles/graphql"]
+    path_pattern {
+      values = ["/profiles/graphql"]
+    }
   }
 }
 
@@ -170,7 +177,7 @@ resource "aws_service_discovery_service" "profiles-stage" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
