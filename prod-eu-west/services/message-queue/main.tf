@@ -1,141 +1,86 @@
-resource "aws_sqs_queue" "doi" {
-  name                      = "production_doi"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
+module "datacite_queues" {
+  source = "../../../modules/datacite_queues"
+
+  environment = "production"
 
   tags = {
     Environment = "production"
   }
 }
 
-resource "aws_sqs_queue" "event" {
-  name                      = "production_event"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.doi
+  to   = module.datacite_queues.aws_sqs_queue.doi
 }
 
-resource "aws_sqs_queue" "volpino" {
-  name                      = "production_volpino"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 120
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.event
+  to   = module.datacite_queues.aws_sqs_queue.event
 }
 
-resource "aws_sqs_queue" "lupo" {
-  name                      = "production_lupo"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 120
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.volpino
+  to   = module.datacite_queues.aws_sqs_queue.volpino
 }
 
-resource "aws_sqs_queue" "lupo-background" {
-  name                      = "production_lupo_background"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 3600
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.lupo
+  to   = module.datacite_queues.aws_sqs_queue.lupo
 }
 
-resource "aws_sqs_queue" "lupo-import" {
-  name                      = "production_lupo_import"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 3600
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.lupo-background
+  to   = module.datacite_queues.aws_sqs_queue.lupo_background
 }
 
-resource "aws_sqs_queue" "lupo-import-other-doi" {
-  name                      = "production_lupo_import_other_doi"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 3600
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.lupo-import
+  to   = module.datacite_queues.aws_sqs_queue.lupo_import
 }
 
-resource "aws_sqs_queue" "lupo-transfer" {
-  name                      = "production_lupo_transfer"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 3600
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.lupo-import-other-doi
+  to   = module.datacite_queues.aws_sqs_queue.lupo_import_other_doi
 }
 
-resource "aws_sqs_queue" "levriero" {
-  name                      = "production_levriero"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.lupo-transfer
+  to   = module.datacite_queues.aws_sqs_queue.lupo_transfer
 }
 
-resource "aws_sqs_queue" "levriero-usage" {
-  name                      = "production_levriero_usage"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.levriero
+  to   = module.datacite_queues.aws_sqs_queue.levriero
 }
 
-resource "aws_sqs_queue" "sashimi" {
-  name                      = "production_sashimi"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.levriero-usage
+  to   = module.datacite_queues.aws_sqs_queue.levriero_usage
 }
 
-resource "aws_sqs_queue" "usage" {
-  name                      = "production_usage"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.usage
+  to   = module.datacite_queues.aws_sqs_queue.usage
 }
 
-resource "aws_sqs_queue" "salesforce" {
-  name                      = "production_salesforce"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  visibility_timeout_seconds = 120
-
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.sashimi
+  to   = module.datacite_queues.aws_sqs_queue.sashimi
 }
 
-resource "aws_sqs_queue" "analytics" {
-  name                      = "production_analytics"
-  redrive_policy            = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.dead-letter.arn}\",\"maxReceiveCount\":4}"
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.salesforce
+  to   = module.datacite_queues.aws_sqs_queue.salesforce
 }
 
-resource "aws_sqs_queue" "dead-letter" {
-  name                      = "production_dead-letter"
+moved {
+  from = aws_sqs_queue.analytics
+  to   = module.datacite_queues.aws_sqs_queue.analytics
+}
 
-  tags = {
-    Environment = "production"
-  }
+moved {
+  from = aws_sqs_queue.dead-letter
+  to   = module.datacite_queues.aws_sqs_queue.dead-letter
 }
 
 resource "aws_iam_policy" "sqs" {
