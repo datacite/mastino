@@ -72,6 +72,7 @@ resource "aws_sqs_queue" "lupo_transfer" {
     deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
     maxReceiveCount     = 4
   })
+  visibility_timeout_seconds = 3600
 
   tags = var.tags
 }
