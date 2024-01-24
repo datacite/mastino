@@ -1,21 +1,21 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
 }
 
 provider "aws" {
   # us-east-1 instance
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  access_key = var.access_key
+  secret_key = var.secret_key
   region = "us-east-1"
   alias = "use1"
 }
 
 data "template_file" "stats-stage" {
-  template = "${file("s3_cloudfront.json")}"
+  template = file("s3_cloudfront.json")
 
-  vars {
+  vars = {
     bucket_name = "stats.stage.datacite.org"
   }
 }

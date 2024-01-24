@@ -1,19 +1,19 @@
 resource "aws_s3_bucket" "stats-stage" {
     bucket = "stats.stage.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.stats-stage.rendered}"
+    policy = data.template_file.stats-stage.rendered
     website {
         index_document = "index.html"
         error_document = "404.html"
     }
-    tags {
+    tags = {
         Name = "statsStage"
     }
 }
 
 resource "aws_cloudfront_distribution" "stats-stage" {
   origin {
-    domain_name = "${aws_s3_bucket.stats-stage.website_endpoint}"
+    domain_name = aws_s3_bucket.stats-stage.website_endpoint
     origin_id   = "stats.stage.datacite.org"
 
     custom_origin_config {
@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "stats-stage" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${data.aws_s3_bucket.logs-stage.bucket_domain_name}"
+    bucket          = data.aws_s3_bucket.logs-stage.bucket_domain_name
     prefix          = "stats/"
   }
 
@@ -64,28 +64,28 @@ resource "aws_cloudfront_distribution" "stats-stage" {
     }
   }
 
-  tags {
+  tags = {
     Environment = "stage"
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront-stage.arn}"
+    acm_certificate_arn = data.aws_acm_certificate.cloudfront-stage.arn
     ssl_support_method  = "sni-only"
   }
 }
 
 resource "aws_route53_record" "stats-stage" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   zone_id = data.aws_route53_zone.production.zone_id
    name = "stats.stage.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.stats-stage.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.stats-stage.domain_name]
 }
 
 resource "aws_route53_record" "split-stats-stage" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   zone_id = data.aws_route53_zone.internal.zone_id
    name = "stats.stage.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.stats-stage.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.stats-stage.domain_name]
 }
