@@ -6,9 +6,14 @@ terraform {
     }
   }
 
-  required_version = ">= 0.13"
+  required_version = ">= 1.6"
 
-  backend "atlas" {
-    name         = "datacite-ng/stage-services-sitemaps-generator"
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "stage-services-sitemaps-generator"
+    }
   }
+
 }
