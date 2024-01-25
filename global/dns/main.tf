@@ -265,6 +265,15 @@ resource "aws_route53_record" "doi-stage" {
     records = ["doi.datacite.vercel.app"]
 }
 
+// Fabrica test
+resource "aws_route53_record" "doi-test" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "doi.test.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = ["bracco-test.vercel.app"]
+}
+
 // Siteground (blog/homepage)
 
 // Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
