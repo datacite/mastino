@@ -20,7 +20,7 @@ resource "aws_ecs_service" "mds-test" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.test"
+    data.aws_lb_listener.test
   ]
 }
 
@@ -84,70 +84,11 @@ resource "aws_lb_listener_rule" "mds-test" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.mds-test.name]
+    host_header {
+      values = [aws_route53_record.mds-test.name]
+    }
   }
 }
-
-// resource "aws_lb_listener_rule" "mds-test-doi" {
-//   listener_arn = data.aws_lb_listener.test.arn
-//   priority     = 2
-
-//   action {
-//     type             = "forward"
-//     target_group_arn = aws_lb_target_group.mds-test.arn
-//   }
-
-//   condition {
-//     field  = "host-header"
-//     values = [aws_route53_record.mds-test.name]
-//   }
-  
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/doi*"]
-//   }
-// }
-
-// resource "aws_lb_listener_rule" "mds-test-metadata" {
-//   listener_arn = data.aws_lb_listener.test.arn
-//   priority     = 5
-
-//   action {
-//     type             = "forward"
-//     target_group_arn = aws_lb_target_group.mds-test.arn
-//   }
-
-//   condition {
-//     field  = "host-header"
-//     values = [aws_route53_record.mds-test.name]
-//   }
-
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/metadata*"]
-//   }
-// }
-
-// resource "aws_lb_listener_rule" "mds-test-media" {
-//   listener_arn = data.aws_lb_listener.test.arn
-//   priority     = 6
-
-//   action {
-//     type             = "forward"
-//     target_group_arn = aws_lb_target_group.mds-test.arn
-//   }
-
-//   condition {
-//     field  = "host-header"
-//     values = [aws_route53_record.mds-test.name]
-//   }
-
-//   condition {
-//     field  = "path-pattern"
-//     values = ["/media*"]
-//   }
-// }
 
 resource "aws_lb_listener_rule" "mds-test-heartbeat" {
   listener_arn = data.aws_lb_listener.test.arn
@@ -159,12 +100,14 @@ resource "aws_lb_listener_rule" "mds-test-heartbeat" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.mds-test.name]
+    host_header {
+      values = [aws_route53_record.mds-test.name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/heartbeat"]
+    path_pattern {
+      values = ["/heartbeat"]
+    }
   }
 }
