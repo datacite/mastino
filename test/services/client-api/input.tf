@@ -2,7 +2,6 @@ provider "aws" {
   access_key = var.access_key
   secret_key = var.secret_key
   region     = var.region
-  version    = "~> 2.70"
 }
 
 data "aws_route53_zone" "production" {
@@ -45,10 +44,10 @@ data "aws_acm_certificate" "test" {
 }
 
 data "aws_lb" "test" {
-  name = "${var.lb_name}"
+  name = var.lb_name
 }
 
 data "aws_lb_listener" "test" {
-  load_balancer_arn = "${data.aws_lb.test.arn}"
+  load_balancer_arn = data.aws_lb.test.arn
   port = 443
 }

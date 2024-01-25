@@ -99,13 +99,15 @@ resource "aws_lb_listener_rule" "api-graphql-test" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/client-api/graphql"]
+    path_pattern {
+      values = ["/client-api/graphql"]
+    }
   }
 }
 
@@ -119,8 +121,9 @@ resource "aws_lb_listener_rule" "api-test" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 }
 
