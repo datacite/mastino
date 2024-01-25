@@ -24,7 +24,7 @@ resource "aws_ecs_service" "client-api-test" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.test"
+    data.aws_lb_listener.test
   ]
 }
 
