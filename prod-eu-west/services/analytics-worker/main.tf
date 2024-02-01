@@ -27,7 +27,7 @@ resource "aws_lambda_function" "analytics-worker" {
   role             = data.aws_iam_role.lambda.arn
   handler          = "analytics_worker_runner.lambda_handler"
   runtime          = "python3.10"
-  source_code_hash = sha256(filebase64("analytics_worker.py.zip"))
+  source_code_hash = filebase64sha256("analytics_worker.py.zip")
   timeout          = "30"
 
   vpc_config {
@@ -59,7 +59,7 @@ resource "aws_lambda_function" "analytics-queue-reports" {
   role             = data.aws_iam_role.lambda.arn
   handler          = "analytics_queue_reports_runner.lambda_handler"
   runtime          = "python3.10"
-  source_code_hash = sha256(filebase64("analytics_queue_reports.py.zip"))
+  source_code_hash = filebase64sha256("analytics_queue_reports.py.zip")
   timeout          = "30"
 
   vpc_config {
