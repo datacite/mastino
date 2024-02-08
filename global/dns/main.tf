@@ -256,6 +256,15 @@ resource "aws_route53_record" "akita-stage" {
     records = ["commons.datacite.vercel.app"]
 }
 
+// Commons production
+resource "aws_route53_record" "akita" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "commons.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = ["cname.vercel-dns.com"]
+}
+
 // Fabrica staging
 resource "aws_route53_record" "doi-stage" {
     zone_id = aws_route53_zone.production.zone_id
