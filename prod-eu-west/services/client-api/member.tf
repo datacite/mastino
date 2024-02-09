@@ -9,7 +9,7 @@ resource "aws_ecs_service" "member-api" {
 
   # Allow external changes without Terraform plan difference
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [desired_count]
   }
 
   network_configuration {
@@ -31,7 +31,7 @@ resource "aws_ecs_service" "member-api" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default",
+    data.aws_lb_listener.default,
   ]
 }
 

@@ -8,7 +8,7 @@ resource "aws_ecs_service" "client-api" {
 
   # Allow external changes without Terraform plan difference
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [desired_count]
   }
 
   network_configuration {
@@ -30,7 +30,7 @@ resource "aws_ecs_service" "client-api" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default",
+    data.aws_lb_listener.default,
   ]
 }
 
@@ -95,7 +95,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_up" {
   }
 
   alarm_description = "This metric monitors request counts"
-  alarm_actions     = ["${aws_appautoscaling_policy.client-api_scale_up.arn}"]
+  alarm_actions     = [aws_appautoscaling_policy.client-api_scale_up.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "client-api_request_scale_down" {
