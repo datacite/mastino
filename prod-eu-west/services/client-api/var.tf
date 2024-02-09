@@ -10,7 +10,7 @@ variable "s3_bucket" {
 variable "vpc_id" {}
 
 variable "lupo_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "lb_name" {

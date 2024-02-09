@@ -225,8 +225,9 @@ resource "aws_lb_listener_rule" "member-api" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 
   condition {
