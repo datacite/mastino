@@ -305,21 +305,22 @@ resource "aws_lb_listener_rule" "api" {
   }
 }
 
-// resource "aws_route53_record" "client-api" {
-//     zone_id = data.aws_route53_zone.production.zone_id
-//     name = "api.datacite.org"
-//     type = "CNAME"
-//     ttl = var.ttl
-//     records = [data.aws_lb.default.dns_name]
-// }
+resource "aws_route53_record" "api" {
+    zone_id = data.aws_route53_zone.production.zone_id
+    name = "api.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.default.dns_name]
+}
 
-// resource "aws_route53_record" "split-client-api" {
-//     zone_id = data.aws_route53_zone.internal.zone_id
-//     name = "api.datacite.org"
-//     type = "CNAME"
-//     ttl = var.ttl
-//     records = [data.aws_lb.default.dns_name]
-// }
+resource "aws_route53_record" "split-api" {
+    zone_id = data.aws_route53_zone.internal.zone_id
+    name = "api.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.default.dns_name]
+}
+
 
 resource "aws_service_discovery_service" "client-api" {
   name = "client-api"
