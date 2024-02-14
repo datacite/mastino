@@ -77,7 +77,7 @@ resource "aws_lb_listener" "stage" {
   certificate_arn   = data.aws_acm_certificate.stage.arn
 
   default_action {
-    target_group_arn = data.aws_lb_target_group.api-stage.id
+    target_group_arn = data.aws_lb_target_group.client-api-stage.id
     type             = "forward"
   }
 }

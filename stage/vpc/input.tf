@@ -57,8 +57,8 @@ data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
 }
 
-data "aws_lb_target_group" "api-stage" {
-  name = "api-stage"
+data "aws_lb_target_group" "client-api-stage" {
+  name = "client-api-stage"
 }
 
 data "aws_iam_policy_document" "logs" {
