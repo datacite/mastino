@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "e718d0fed735eeef0bacbddb8229906e6d77181e"
+  sha = "7aedbffd3c73977536ee65b82dbf6a8943efb95a"
   version = "upgrade-to-ruby-3-0-3"
 }
