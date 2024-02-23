@@ -71,7 +71,7 @@ resource "aws_lb_target_group" "datafiles-stage" {
 
 resource "aws_lb_listener_rule" "datafiles-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 60
+  priority     = 65
 
   action {
     type             = "forward"
