@@ -33,3 +33,5 @@ variable "subnet_datacite-alt_id" {}
 variable "dns_name" {
   default = "datafiles.stage.datacite.org"
 }
+
+variable "namespace_id" {}
