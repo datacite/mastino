@@ -76,13 +76,15 @@ resource "aws_lb_listener_rule" "api" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["analytics.datacite.org"]
+    host_header {
+      values = ["analytics.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/api*"]
+    path_pattern {
+      values = ["/api*"]
+    }
   }
 }
 
