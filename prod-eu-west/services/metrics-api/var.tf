@@ -9,7 +9,7 @@ variable "s3_bucket" {
 variable "vpc_id" {}
 
 variable "sashimi_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "lb_name" {
