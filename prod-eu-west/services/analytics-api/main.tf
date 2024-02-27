@@ -104,3 +104,11 @@ resource "aws_service_discovery_service" "analytics-api" {
     }
   }
 }
+
+resource "aws_route53_record" "analytics" {
+    zone_id = data.aws_route53_zone.production.zone_id
+    name = "analytics.datacite.org"
+    type = "CNAME"
+    ttl = var.ttl
+    records = [data.aws_lb.default.dns_name]
+}
