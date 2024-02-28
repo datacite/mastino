@@ -180,6 +180,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
   threshold           = "100000"
 
   // Custom query that sums the two other metrics
+  // This is the value that will be compared to the threshold
   metric_query {
     id          = "total_visible"
     expression  = "production_visible + production_background_visible"
