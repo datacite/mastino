@@ -1,8 +1,7 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
-  version    = "~> 1.6"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
 }
 
 data "aws_route53_zone" "production" {
@@ -14,13 +13,13 @@ data "aws_route53_zone" "internal" {
 }
 
 data "aws_subnet" "datacite-public" {
-  id = "${var.subnet_datacite-public_id}"
+  id = var.subnet_datacite-public_id
 }
 
 data "template_file" "bastion-user-data-cfg" {
   template = "${file("user_data.cfg")}"
 
-  vars {
+  vars = {
     hostname     = "${var.hostname}"
     fqdn         = "${var.hostname}.datacite.org"
   }
@@ -29,7 +28,7 @@ data "template_file" "bastion-user-data-cfg" {
 data "template_file" "bastion-2024-user-data-cfg" {
   template = "${file("user_data.cfg")}"
 
-  vars {
+  vars = {
     hostname     = "${var.hostname_2024}"
     fqdn         = "${var.hostname_2024}.datacite.org"
   }
