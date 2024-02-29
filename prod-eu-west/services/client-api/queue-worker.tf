@@ -3,7 +3,7 @@ resource "aws_ecs_service" "queue-worker" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.queue-worker.arn
-  desired_count = 2
+  desired_count = 1
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -91,7 +91,7 @@ resource "aws_service_discovery_service" "queue-worker" {
 // Autoscaling target for queue-worker service
 resource "aws_appautoscaling_target" "queue-worker" {
   max_capacity       = 20
-  min_capacity       = 4
+  min_capacity       = 1
   resource_id        = "service/default/${aws_ecs_service.queue-worker.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -135,40 +135,6 @@ resource "aws_appautoscaling_policy" "queue-worker_scale_down" {
   }
 }
 
-# // Cloudwatch metric alarm for scaling up based on SQS queue size production_lupo
-# resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_up_alarm" {
-#   alarm_name          = "queue-worker_request_scale_up"
-#   comparison_operator = "GreaterThanOrEqualToThreshold"
-#   evaluation_periods  = "1"
-#   metric_name         = "ApproximateNumberOfMessagesVisible"
-#   dimensions = {
-#     QueueName = "production_lupo"
-#   }
-#   namespace           = "AWS/SQS"
-#   period              = "60"
-#   statistic           = "Sum"
-#   threshold           = "60000"
-#   alarm_description   = "This metric monitors queue-worker queue size for production_lupo"
-#   alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_up.arn]
-# }
-
-# // Cloudwatch metric alarm for scaling down based on SQS queue size production_lupo
-# resource "aws_cloudwatch_metric_alarm" "queue_worker_production_lupo_scale_down_alarm" {
-#   alarm_name          = "queue-worker_request_scale_down"
-#   comparison_operator = "LessThanOrEqualToThreshold"
-#   evaluation_periods  = "1"
-#   metric_name         = "ApproximateNumberOfMessagesVisible"
-#   dimensions = {
-#     QueueName = "production_lupo"
-#   }
-#   namespace           = "AWS/SQS"
-#   period              = "60"
-#   statistic           = "Sum"
-#   threshold           = "10000"
-#   alarm_description   = "This metric monitors queue-worker queue size for production_lupo"
-#   alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_down.arn]
-# }
-
 // Cloudwatch metric alarm for scaling up based on SQS queue size
 resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
   alarm_name          = "queue_worker_scale_up_alarm"
@@ -177,7 +143,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
   alarm_description   = "This metric monitors queue-worker queue size"
   alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_up.arn]
 
-  threshold           = "100000"
+  threshold           = "10000"
 
   // Custom query that sums the two other metrics
   // This is the value that will be compared to the threshold
@@ -230,7 +196,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
   alarm_description   = "This metric monitors queue-worker queue size"
   alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_down.arn]
 
-  threshold           = "10000"
+  threshold           = "5000"
 
   // Custom query that sums the two other metrics
   metric_query {
