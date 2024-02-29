@@ -330,3 +330,13 @@ resource "aws_route53_record" "blog-wildcard" {
    ttl = var.ttl
    records = [var.siteground_ip_prod]
 }
+
+# 3 is just where we started from for existing records
+resource "aws_route53_record" "wp-prod-staging" {
+  count   = 10
+  zone_id = aws_route53_zone.production.zone_id
+  name    = "staging${count.index+3}.datacite.org"
+  type    = "A"
+  ttl     = var.ttl
+  records = [var.siteground_ip_homepage_prod]
+}
