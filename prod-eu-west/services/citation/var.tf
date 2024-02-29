@@ -7,7 +7,7 @@ variable "region" {
 variable "vpc_id" {}
 
 variable "citeproc-doi-server_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "lb_name" {
