@@ -24,7 +24,7 @@
 #       ]
 #     }
 #   }
-}
+# }
 
 resource "aws_s3_bucket" "datafiles" {
     bucket = "datafiles.datacite.org"
