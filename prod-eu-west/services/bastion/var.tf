@@ -6,7 +6,7 @@ variable "region" {
 variable "vpc_id" {}
 
 variable "ami" {
-  type = "map"
+  type = map(string)
   description = "Amazon Linux default AMI"
 
   default = {
