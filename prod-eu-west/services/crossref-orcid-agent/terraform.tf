@@ -1,5 +1,12 @@
 terraform {
-  required_version = ">= 0.12"
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 5"
+    }
+  }
+
+  required_version = ">= 0.13"
 
   backend "atlas" {
     name         = "datacite-ng/prod-eu-west-services-crossref-orcid-agent"
