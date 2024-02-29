@@ -25,7 +25,7 @@ variable "ttl" {
 variable "subnet_datacite-public_id" {}
 
 variable "ami_2024" {
-  type = "map"
+  type = map(string)
   description = "Amazon Linux 2024 AMI"
 
   default = {
