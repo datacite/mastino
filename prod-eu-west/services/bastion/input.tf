@@ -16,15 +16,6 @@ data "aws_subnet" "datacite-public" {
   id = var.subnet_datacite-public_id
 }
 
-data "template_file" "bastion-user-data-cfg" {
-  template = "${file("user_data.cfg")}"
-
-  vars = {
-    hostname     = "${var.hostname}"
-    fqdn         = "${var.hostname}.datacite.org"
-  }
-}
-
 data "template_file" "bastion-2024-user-data-cfg" {
   template = "${file("user_data.cfg")}"
 

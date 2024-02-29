@@ -44,7 +44,7 @@ resource "aws_instance" "bastion-2024" {
 }
 
 resource "aws_eip" "bastion-2024" {
-  vpc = "true"
+  domain = "vpc"
 }
 
 resource "aws_eip_association" "bastion-2024" {
