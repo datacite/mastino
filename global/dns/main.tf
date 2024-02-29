@@ -315,7 +315,7 @@ resource "aws_route53_record" "blog-stage-wildcard" {
 
 // Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
 resource "aws_route53_record" "blog" {
-   zone_id = data.aws_route53_zone.production.zone_id
+   zone_id = aws_route53_zone.production.zone_id
    name = "blog.datacite.org"
    type = "A"
    ttl = var.ttl
@@ -324,7 +324,7 @@ resource "aws_route53_record" "blog" {
 
 // Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
 resource "aws_route53_record" "blog-wildcard" {
-   zone_id = data.aws_route53_zone.production.zone_id
+   zone_id = aws_route53_zone.production.zone_id
    name = "*.blog.datacite.org"
    type = "A"
    ttl = var.ttl
