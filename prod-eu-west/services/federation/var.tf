@@ -14,7 +14,7 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "vaestgoetaspets_tags" {
-  type = map
+  type = map(string)
 }
 
 variable "lb_name" {

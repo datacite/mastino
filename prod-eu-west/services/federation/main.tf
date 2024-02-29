@@ -3,7 +3,7 @@ resource "aws_ecs_service" "federation" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.federation.arn
-  
+
   # Create service with 2 instances to start
   desired_count = 2
 
@@ -156,13 +156,15 @@ resource "aws_lb_listener_rule" "federation" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/graphql"]
+    path_pattern {
+      values = ["/graphql"]
+    }
   }
 }
 
@@ -176,13 +178,15 @@ resource "aws_lb_listener_rule" "federation-healthcheck" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/.well-known/apollo/server-health"]
+    path_pattern {
+      values = ["/.well-known/apollo/server-health"]
+    }
   }
 }
 
@@ -195,7 +199,7 @@ resource "aws_service_discovery_service" "federation" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
