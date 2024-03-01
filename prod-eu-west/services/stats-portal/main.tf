@@ -1,19 +1,19 @@
 resource "aws_s3_bucket" "stats" {
     bucket = "stats.datacite.org"
     acl = "public-read"
-    policy = "${data.template_file.stats.rendered}"
+    policy = data.template_file.stats.rendered
     website {
         index_document = "index.html"
         error_document = "404.html"
     }
-    tags {
+    tags = {
         Name = "Stats"
     }
 }
 
 resource "aws_cloudfront_distribution" "stats" {
   origin {
-    domain_name = "${aws_s3_bucket.stats.website_endpoint}"
+    domain_name = aws_s3_bucket.stats.website_endpoint
     origin_id   = "stats.datacite.org"
 
     custom_origin_config {
@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "stats" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${data.aws_s3_bucket.logs.bucket_domain_name}"
+    bucket          = data.aws_s3_bucket.logs.bucket_domain_name
     prefix          = "stats/"
   }
 
@@ -64,28 +64,28 @@ resource "aws_cloudfront_distribution" "stats" {
     }
   }
 
-  tags {
+  tags = {
     Environment = "prod"
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cloudfront.arn}"
+    acm_certificate_arn = data.aws_acm_certificate.cloudfront.arn
     ssl_support_method  = "sni-only"
   }
 }
 
 resource "aws_route53_record" "stats" {
-   zone_id = "${data.aws_route53_zone.production.zone_id}"
+   zone_id = data.aws_route53_zone.production.zone_id
    name = "stats.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.stats.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.stats.domain_name]
 }
 
 resource "aws_route53_record" "split-stats" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   zone_id = data.aws_route53_zone.internal.zone_id
    name = "stats.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_cloudfront_distribution.stats.domain_name}"]
+   ttl = var.ttl
+   records = [aws_cloudfront_distribution.stats.domain_name]
 }
