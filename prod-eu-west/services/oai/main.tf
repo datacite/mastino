@@ -27,7 +27,7 @@ resource "aws_ecs_service" "oai" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default"
+    data.aws_lb_listener.default
   ]
 }
 
