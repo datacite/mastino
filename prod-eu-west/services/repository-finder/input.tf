@@ -21,7 +21,7 @@ data "template_file" "repository-finder" {
 }
 
 data "aws_acm_certificate" "cloudfront" {
-  provider = "aws.use1"
+  provider = aws.use1
   domain = "datacite.org"
   statuses = ["ISSUED"]
   most_recent = true
