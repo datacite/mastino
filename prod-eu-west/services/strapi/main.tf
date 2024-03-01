@@ -27,7 +27,7 @@ resource "aws_ecs_service" "strapi" {
   }
 
   depends_on = [
-    "data.aws_lb_listener.default",
+    data.aws_lb_listener.default,
   ]
 }
 
@@ -99,8 +99,9 @@ resource "aws_lb_listener_rule" "strapi" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.strapi.name]
+    host_header {
+      values = [aws_route53_record.strapi.name]
+    }
   }
 }
 
