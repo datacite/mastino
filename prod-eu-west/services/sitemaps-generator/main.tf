@@ -14,7 +14,7 @@ resource "aws_cloudwatch_event_target" "sitemaps-generator" {
     task_count          = 1
     launch_type         = "FARGATE"
     task_definition_arn = aws_ecs_task_definition.sitemaps-generator.arn
-    
+
     network_configuration {
       security_groups = [data.aws_security_group.datacite-private.id]
       subnets         = [
@@ -23,22 +23,6 @@ resource "aws_cloudwatch_event_target" "sitemaps-generator" {
       ]
     }
   }
-}
-
-resource "aws_s3_bucket" "sitemaps-search" {
-    bucket = "search.datacite.org"
-    acl = "public-read"
-    policy = templatefile("s3_public_read.json",
-      {
-        vpce_id = data.aws_vpc_endpoint.datacite.id,
-        bucket_name = "search.datacite.org"
-      })
-    website {
-        index_document = "index.html"
-    }
-    tags = {
-      Name = "SitemapsSearch"
-    }
 }
 
 resource "aws_s3_bucket" "akita" {
