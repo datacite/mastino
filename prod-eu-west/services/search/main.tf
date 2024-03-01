@@ -4,7 +4,7 @@ resource "aws_lb_listener_rule" "search" {
 
   action {
     type             = "redirect"
-    
+
     redirect {
       port        = "443"
       protocol    = "HTTPS"
@@ -12,12 +12,13 @@ resource "aws_lb_listener_rule" "search" {
       host = "commons.datacite.org"
       path = "/"
       query = ""
-    }  
+    }
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.search.name]
+    host_header {
+      values = [aws_route53_record.search.name]
+    }
   }
 }
 
@@ -25,7 +26,7 @@ resource "aws_route53_record" "search" {
    zone_id = data.aws_route53_zone.production.zone_id
    name = "search.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
+   ttl = var.ttl
    records = [data.aws_lb.default.dns_name]
 }
 
@@ -33,7 +34,7 @@ resource "aws_route53_record" "split-search" {
    zone_id = data.aws_route53_zone.internal.zone_id
    name = "search.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
+   ttl = var.ttl
    records = [data.aws_lb.default.dns_name]
 }
 
@@ -59,13 +60,15 @@ resource "aws_lb_listener_rule" "user-agent" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.search.name]
+    host_header {
+      values = [aws_route53_record.search.name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/user-agent*"]
+    path_pattern {
+      values = ["/user-agent*"]
+    }
   }
 }
 
@@ -85,13 +88,15 @@ resource "aws_lb_listener_rule" "solr-api" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.search.name]
+    host_header {
+      values = [aws_route53_record.search.name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/api*"]
+    path_pattern {
+      values = ["/api*"]
+    }
   }
 }
 
@@ -110,12 +115,14 @@ resource "aws_lb_listener_rule" "solr-ui" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.search.name]
+    host_header {
+      values = [aws_route53_record.search.name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/ui*"]
+    path_pattern {
+      values = ["/ui*"]
+    }
   }
 }
