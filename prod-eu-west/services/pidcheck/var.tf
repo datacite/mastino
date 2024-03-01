@@ -14,5 +14,5 @@ variable "redis_host" {
   default = "redis1.datacite.org"
 }
 variable "pidcheck_tags" {
-  type = "map"
+  type = map(string)
 }
