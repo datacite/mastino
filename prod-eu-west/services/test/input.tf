@@ -1,27 +1,27 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
 }
 
 provider "aws" {
   # us-east-1 instance
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  access_key = var.access_key
+  secret_key = var.secret_key
   region = "us-east-1"
   alias = "use1"
 }
 
 data "template_file" "test" {
-  template = "${file("s3_cloudfront.json")}"
+  template = file("s3_cloudfront.json")
 
-  vars {
+  vars = {
     bucket_name = "test.datacite.org"
   }
 }
 
 data "aws_acm_certificate" "cloudfront" {
-  provider = "aws.use1"
+  provider = aws.use1
   domain = "datacite.org"
   statuses = ["ISSUED"]
   most_recent = true
@@ -41,10 +41,10 @@ data "aws_s3_bucket" "logs" {
 }
 
 data "aws_lb" "default" {
-  name = "${var.lb_name}"
+  name = var.lb_name
 }
 
 data "aws_lb_listener" "default" {
-  load_balancer_arn = "${data.aws_lb.default.arn}"
+  load_balancer_arn = data.aws_lb.default.arn
   port = 443
 }
