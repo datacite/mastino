@@ -341,3 +341,11 @@ resource "aws_route53_record" "wp-prod-staging" {
   ttl     = var.ttl
   records = [var.siteground_ip_homepage_prod]
 }
+
+resource "aws_route53_record" "wp-prod" {
+   zone_id = aws_route53_zone.production.zone_id
+   name = "datacite.org"
+   type = "A"
+   ttl = var.ttl
+   records = [var.siteground_ip_homepage_prod]
+}
