@@ -1,7 +1,7 @@
 resource "aws_lb_listener_rule" "repository-finder-redirect" {
-  listener_arn = "${data.aws_lb_listener.default.arn}"
+  listener_arn = data.aws_lb_listener.default.arn
   priority     = 88
-  
+
   action {
     type = "redirect"
 
@@ -16,23 +16,23 @@ resource "aws_lb_listener_rule" "repository-finder-redirect" {
   }
   condition {
     host_header {
-      values = ["${aws_route53_record.repository-finder.name}"]
+      values = [aws_route53_record.repository-finder.name]
     }
   }
 }
 
 resource "aws_route53_record" "repository-finder" {
-  zone_id = "${data.aws_route53_zone.production.zone_id}"
+  zone_id = data.aws_route53_zone.production.zone_id
   name = "repositoryfinder.datacite.org"
   type = "CNAME"
-  ttl = "${var.ttl}"
-  records = ["${data.aws_lb.default.dns_name}"] 
+  ttl = var.ttl
+  records = [data.aws_lb.default.dns_name]
 }
 
 resource "aws_route53_record" "split-repository-finder" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  zone_id = data.aws_route53_zone.internal.zone_id
   name = "repositoryfinder.datacite.org"
   type = "CNAME"
-  ttl = "${var.ttl}"
-  records = ["${data.aws_lb.default.dns_name}"] 
+  ttl = var.ttl
+  records = [data.aws_lb.default.dns_name]
 }
