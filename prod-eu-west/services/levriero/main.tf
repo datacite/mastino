@@ -155,13 +155,15 @@ resource "aws_lb_listener_rule" "levriero" {
   }
 
   condition {
-    field  = "host-header"
-    values = [var.api_dns_name]
+    host_header {
+      values = [var.api_dns_name]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/agents*"]
+    path_pattern {
+      values = ["/agents*"]
+    }
   }
 }
 
