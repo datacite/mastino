@@ -3,13 +3,13 @@ resource "aws_ecs_service" "profiles" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.profiles.arn
-  
+
   # Create service with 2 instances to start
   desired_count = 2
 
   # Allow external changes without Terraform plan difference
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [desired_count]
   }
 
   network_configuration {
@@ -158,8 +158,9 @@ resource "aws_lb_listener_rule" "profiles" {
   }
 
   condition {
-    field  = "host-header"
-    values = [aws_route53_record.profiles.name]
+    host_header {
+      values = [aws_route53_record.profiles.name]
+    }
   }
 }
 
@@ -173,13 +174,15 @@ resource "aws_lb_listener_rule" "profiles-api-users" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host_header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/users*"]
+    path_pattern {
+      values = ["/users*"]
+    }
   }
 }
 
@@ -193,13 +196,15 @@ resource "aws_lb_listener_rule" "profiles-api-claims" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host_header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/claims*"]
+    path_pattern {
+      values = ["/claims*"]
+    }
   }
 }
 
@@ -213,13 +218,15 @@ resource "aws_lb_listener_rule" "profiles-api-graphql" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["api.datacite.org"]
+    host_header {
+      values = ["api.datacite.org"]
+    }
   }
 
   condition {
-    field  = "path-pattern"
-    values = ["/profiles/graphql"]
+    path_pattern {
+      values = ["/profiles/graphql"]
+    }
   }
 }
 
@@ -248,7 +255,7 @@ resource "aws_service_discovery_service" "profiles" {
 
   dns_config {
     namespace_id = var.namespace_id
-    
+
     dns_records {
       ttl = 300
       type = "A"
