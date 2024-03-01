@@ -9,7 +9,7 @@ resource "aws_ecs_service" "oai" {
 
   # Allow external changes without Terraform plan difference
   lifecycle {
-    ignore_changes = ["desired_count"]
+    ignore_changes = [desired_count]
   }
 
   network_configuration {
