@@ -1,16 +1,16 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
   version    = "~> 2.7.0"
 }
 
 data "aws_security_group" "datacite-private" {
-  id = "${var.security_group_id}"
+  id = var.security_group_id
 }
 
 data "aws_subnet" "datacite-private" {
-  id = "${var.subnet_datacite-private_id}"
+  id = var.subnet_datacite-private_id
 }
 
 data "aws_route53_zone" "production" {
@@ -23,11 +23,11 @@ data "aws_route53_zone" "internal" {
 }
 
 data "template_file" "functionbeat" {
-    template = "${file("s3_full_access.json")}"
+    template = file("s3_full_access.json")
 
-    vars {
+    vars = {
         bucket_name = "functionbeat-deploy-stage"
-        principal = "${var.principal}"
+        principal = var.principal
     }
 }
 data "aws_iam_role" "CognitoAccessForAmazonES" {
@@ -37,9 +37,3 @@ data "aws_iam_role" "CognitoAccessForAmazonES" {
 data "aws_cognito_user_pools" "user_pool" {
   name = "kibana-userpool"
 }
-
-// data "aws_acm_certificate" "stage" {
-//   domain = "*.stage.datacite.org"
-//   statuses = ["ISSUED"]
-//   most_recent = true
-// }

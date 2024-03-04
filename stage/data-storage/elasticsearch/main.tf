@@ -6,8 +6,8 @@ resource "aws_elasticsearch_domain" "test" {
     instance_count = 1
   }
 
-  advanced_options {
-    rest.action.multi.allow_explicit_index = "true"
+  advanced_options = {
+    "rest.action.multi.allow_explicit_index" = "true"
   }
 
   snapshot_options {
@@ -21,23 +21,23 @@ resource "aws_elasticsearch_domain" "test" {
   }
 
   vpc_options {
-    security_group_ids = ["${data.aws_security_group.datacite-private.id}"]
-    subnet_ids = ["${data.aws_subnet.datacite-private.id}"]
+    security_group_ids = [data.aws_security_group.datacite-private.id]
+    subnet_ids = [data.aws_subnet.datacite-private.id]
   }
 
   cognito_options {
     enabled          = true
-    identity_pool_id = "${aws_cognito_identity_pool.identity_pool.id}"
-    role_arn         = "${data.aws_iam_role.CognitoAccessForAmazonES.arn}"
-    user_pool_id     = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
+    identity_pool_id = aws_cognito_identity_pool.identity_pool.id
+    role_arn         = data.aws_iam_role.CognitoAccessForAmazonES.arn
+    user_pool_id     = data.aws_cognito_user_pools.user_pool.ids[0]
   }
 
-  tags {
+  tags = {
     Domain = "elasticsearch-stage"
   }
 
   log_publishing_options {
-    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.elasticsearch-test.arn}"
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.elasticsearch-test.arn
     log_type                 = "SEARCH_SLOW_LOGS"
   }
 
@@ -48,12 +48,12 @@ resource "aws_elasticsearch_domain" "test" {
 
 resource "aws_cognito_user_pool_domain" "kibana-stage" {
   domain          = "datacite-stage"
-  user_pool_id = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
+  user_pool_id = data.aws_cognito_user_pools.user_pool.ids[0]
 }
 
 resource "aws_cognito_user_pool_client" "kibana_client" {
   name          = "kibana-client"
-  user_pool_id  = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
+  user_pool_id  = data.aws_cognito_user_pools.user_pool.ids[0]
   callback_urls = ["https://${aws_elasticsearch_domain.test.kibana_endpoint}"]
   logout_urls   = ["https://${aws_elasticsearch_domain.test.kibana_endpoint}"]
 }
@@ -64,9 +64,9 @@ resource "aws_cognito_identity_pool" "identity_pool" {
 }
 
 resource "aws_elasticsearch_domain_policy" "test" {
-  domain_name = "${aws_elasticsearch_domain.test.domain_name}"
+  domain_name = aws_elasticsearch_domain.test.domain_name
 
-  access_policies = "${file("elasticsearch_policy.json")}"
+  access_policies = file("elasticsearch_policy.json")
 }
 
 resource "aws_cloudwatch_log_group" "elasticsearch-test" {
@@ -97,9 +97,9 @@ CONFIG
 }
 
 resource "aws_route53_record" "elasticsearch-test" {
-   zone_id = "${data.aws_route53_zone.internal.zone_id}"
+   zone_id = data.aws_route53_zone.internal.zone_id
    name = "elasticsearch.test.datacite.org"
    type = "CNAME"
-   ttl = "${var.ttl}"
-   records = ["${aws_elasticsearch_domain.test.endpoint}"]
+   ttl = var.ttl
+   records = [aws_elasticsearch_domain.test.endpoint]
 }
