@@ -1,6 +1,6 @@
 resource "aws_elasticsearch_domain" "test" {
   domain_name           = "elasticsearch-test"
-  elasticsearch_version = "7.9"
+  elasticsearch_version = "7.10"
   cluster_config {
     instance_type = "m5.large.elasticsearch"
     instance_count = 1
@@ -31,7 +31,7 @@ resource "aws_elasticsearch_domain" "test" {
     role_arn         = "${data.aws_iam_role.CognitoAccessForAmazonES.arn}"
     user_pool_id     = "${data.aws_cognito_user_pools.user_pool.ids[0]}"
   }
-  
+
   tags {
     Domain = "elasticsearch-stage"
   }
