@@ -30,10 +30,3 @@ data "template_file" "functionbeat" {
         principal = var.principal
     }
 }
-data "aws_iam_role" "CognitoAccessForAmazonES" {
-  name = "CognitoAccessForAmazonES"
-}
-
-data "aws_cognito_user_pools" "user_pool" {
-  name = "kibana-userpool"
-}
