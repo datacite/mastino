@@ -3,7 +3,7 @@ resource "aws_ecs_service" "client-api-stage" {
   cluster = data.aws_ecs_cluster.stage.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.client-api-stage.arn
-  desired_count = 1
+  desired_count = 2
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
@@ -62,8 +62,8 @@ resource "aws_ecs_task_definition" "client-api-stage" {
       handle_password    = var.handle_password
       admin_username     = var.admin_username
       admin_password     = var.admin_password
-      access_key         = var.access_key
-      secret_key         = var.secret_key
+      access_key         = var.api_aws_access_key
+      secret_key         = var.api_aws_secret_key
       region             = var.region
       s3_bucket          = var.s3_bucket
       sentry_dsn         = var.sentry_dsn

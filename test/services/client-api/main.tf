@@ -60,8 +60,8 @@ resource "aws_ecs_task_definition" "client-api-test" {
       es_prefix          = var.es_prefix
       elastic_password   = var.elastic_password
       public_key         = var.public_key
-      access_key         = var.access_key
-      secret_key         = var.secret_key
+      access_key         = var.api_aws_access_key
+      secret_key         = var.api_aws_secret_key
       region             = var.region
       s3_bucket          = var.s3_bucket
       admin_username     = var.admin_username

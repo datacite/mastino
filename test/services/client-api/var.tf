@@ -83,3 +83,6 @@ variable "plugin_openapi_url" {
 variable "plugin_manifest_url" {
   default = "https://api.test.datacite.org"
 }
+
+variable "api_aws_access_key" {}
+variable "api_aws_secret_key" {}

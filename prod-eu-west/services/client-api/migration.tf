@@ -3,7 +3,7 @@ resource "aws_ecs_service" "migration-api" {
   cluster = data.aws_ecs_cluster.default.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.migration-api.arn
-  
+
   # Create service with 1 instance
   desired_count = 0
 
@@ -49,8 +49,8 @@ resource "aws_ecs_task_definition" "migration-api" {
       es_name            = var.es_name
       es_host            = var.es_host
       public_key         = var.public_key
-      access_key         = var.access_key
-      secret_key         = var.secret_key
+      access_key         = var.api_aws_access_key
+      secret_key         = var.api_aws_secret_key
       region             = var.region
       s3_bucket          = var.s3_bucket
       admin_username     = var.admin_username
