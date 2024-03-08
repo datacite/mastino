@@ -2,7 +2,7 @@ resource "aws_elasticache_cluster" "memcached-stage" {
     cluster_id = "memcached-stage"
     engine = "memcached"
     engine_version = "1.4.34"
-    node_type = "cache.m3.medium"
+    node_type = "cache.t3.medium"
     port = 11211
     num_cache_nodes = 1
     security_group_ids = [data.aws_security_group.datacite-private.id]
