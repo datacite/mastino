@@ -15,10 +15,11 @@ resource "aws_elasticsearch_domain" "default" {
     automated_snapshot_start_hour = 23
   }
 
-  ebs_options{
+  ebs_options {
       ebs_enabled = true
       volume_type = "gp3"
       volume_size = 1500
+      throughput = 250
   }
 
   vpc_options {
