@@ -19,6 +19,7 @@ resource "aws_db_instance" "db-stage" {
   allow_major_version_upgrade = "true"
   final_snapshot_identifier   = "db-stage-final-snapshot"
   max_allocated_storage       = 1000
+  deletion_protection         = "true"
 
   tags = {
     Name = "stage"
