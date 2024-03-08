@@ -29,7 +29,7 @@ resource "aws_elasticsearch_domain" "default" {
   }
 
   log_publishing_options {
-    cloudwatch_log_group_arn = aws_cloudwatch_log_group.elasticsearch_slowlogs.arn
+    cloudwatch_log_group_arn = "arn:aws:logs:eu-west-1:404017989009:log-group:elasticsearch_slowlogs:*"
     log_type                 = "SEARCH_SLOW_LOGS"
   }
 
@@ -39,7 +39,7 @@ resource "aws_elasticsearch_domain" "default" {
   }
 
   log_publishing_options {
-    cloudwatch_log_group_arn = aws_cloudwatch_log_group.elasticsearch.arn
+    cloudwatch_log_group_arn = "arn:aws:logs:eu-west-1:404017989009:log-group:elasticsearch:*"
     log_type                 = "INDEX_SLOW_LOGS"
   }
 
