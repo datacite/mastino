@@ -1,7 +1,18 @@
 terraform {
-  required_version = ">= 0.12"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5"
+    }
+  }
 
-  backend "atlas" {
-    name         = "datacite-ng/prod-eu-west-data-storage-clickhouse"
+  required_version = ">= 1.6"
+
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "prod-eu-west-data-storage-clickhouse"
+    }
   }
 }
