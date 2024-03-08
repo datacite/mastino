@@ -90,3 +90,6 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+
+variable "api_aws_access_key" {}
+variable "api_aws_secret_key" {}

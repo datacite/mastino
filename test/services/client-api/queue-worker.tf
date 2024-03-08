@@ -53,8 +53,8 @@ resource "aws_ecs_task_definition" "queue-worker-test" {
       handle_password    = var.handle_password
       admin_username     = var.admin_username
       admin_password     = var.admin_password
-      access_key         = var.access_key
-      secret_key         = var.secret_key
+      access_key         = var.api_aws_access_key
+      secret_key         = var.api_aws_secret_key
       region             = var.region
       s3_bucket          = var.s3_bucket
       sentry_dsn         = var.sentry_dsn
