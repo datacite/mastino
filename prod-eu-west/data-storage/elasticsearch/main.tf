@@ -2,8 +2,8 @@ resource "aws_elasticsearch_domain" "default" {
   domain_name           = "elasticsearch"
   elasticsearch_version = "7.10"
   cluster_config {
-    instance_type = "m6g.2xlarge.search"
-    instance_count = 2
+    instance_type = "m6g.2xlarge.elasticsearch"
+    instance_count = 6
     zone_awareness_enabled = true
   }
 
@@ -18,7 +18,7 @@ resource "aws_elasticsearch_domain" "default" {
   ebs_options {
       ebs_enabled = true
       volume_type = "gp3"
-      volume_size = 1500
+      volume_size = 1000
       throughput = 250
   }
 
@@ -30,6 +30,16 @@ resource "aws_elasticsearch_domain" "default" {
   log_publishing_options {
     cloudwatch_log_group_arn = aws_cloudwatch_log_group.elasticsearch_slowlogs.arn
     log_type                 = "SEARCH_SLOW_LOGS"
+  }
+
+  log_publishing_options {
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.elasticsearch.arn
+    log_type                 = "ES_APPLICATION_LOGS"
+  }
+
+  log_publishing_options {
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.elasticsearch.arn
+    log_type                 = "INDEX_SLOW_LOGS"
   }
 
   tags = {
