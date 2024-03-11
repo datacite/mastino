@@ -1,13 +1,13 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = var.region
 }
 
 data "template_file" "openingscience" {
-  template = "${file("s3_public_read.json")}"
+  template = file("s3_public_read.json")
 
-  vars {
+  vars = {
     bucket_name = "book.openingscience.org"
   }
 }
