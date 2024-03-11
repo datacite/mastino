@@ -5,9 +5,13 @@ terraform {
       version = "~> 5"
     }
   }
-  required_version = ">= 0.13"
+  required_version = ">= 1.6"
 
-  backend "atlas" {
-    name         = "datacite-ng/prod-eu-west-data-storage-memcached"
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "prod-eu-west-data-storage-memcached"
+    }
   }
 }
