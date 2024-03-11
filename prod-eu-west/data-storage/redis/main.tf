@@ -1,7 +1,7 @@
 resource "aws_elasticache_cluster" "redis" {
   cluster_id               = "redis"
   engine                   = "redis"
-  engine_version           = "6.2.6"
+  engine_version           = "6.2"
   node_type                = "cache.m4.large"
   port                     = 6379
   num_cache_nodes          = 1
