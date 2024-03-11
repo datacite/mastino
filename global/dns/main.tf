@@ -349,3 +349,14 @@ resource "aws_route53_record" "wp-prod" {
    ttl = var.ttl
    records = [var.siteground_ip_homepage_prod]
 }
+
+// Pidapalooza
+// Externally hosted
+
+resource "aws_route53_record" "pidapalooza" {
+   zone_id = aws_route53_zone.pidapalooza.zone_id
+   name = "www.pidapalooza.org"
+   type = "CNAME"
+   ttl = "300"
+   records = ["www75.wixdns.net"]
+}
