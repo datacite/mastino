@@ -59,57 +59,57 @@ resource "aws_db_subnet_group" "datacite-prod" {
   description = "RDS production subnet group"
 
   subnet_ids = [
-    "${data.aws_subnet.datacite-public.id}",
-    "${data.aws_subnet.datacite-public-alt.id}",
-    "${data.aws_subnet.datacite-private.id}",
-    "${data.aws_subnet.datacite-alt.id}",
+    data.aws_subnet.datacite-public.id,
+    data.aws_subnet.datacite-public-alt.id,
+    data.aws_subnet.datacite-private.id,
+    data.aws_subnet.datacite-alt.id,
   ]
 }
 
 resource "aws_route53_record" "internal-db2" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  zone_id = data.aws_route53_zone.internal.zone_id
   name    = "db.datacite.org"
   type    = "CNAME"
-  ttl     = "${var.ttl}"
-  records = ["${data.aws_db_instance.db.address}"]
+  ttl     = var.ttl
+  records = [data.aws_db_instance.db.address]
 }
 
 resource "aws_route53_record" "internal-db2-ec2" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  zone_id = data.aws_route53_zone.internal.zone_id
   name    = "db.ec2.datacite.org"
   type    = "CNAME"
-  ttl     = "${var.ttl}"
-  records = ["${data.aws_db_instance.db.address}"]
+  ttl     = var.ttl
+  records = [data.aws_db_instance.db.address]
 }
 
 resource "aws_route53_record" "internal-db7" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  zone_id = data.aws_route53_zone.internal.zone_id
   name    = "dbread.ec2.datacite.org"
   type    = "CNAME"
-  ttl     = "${var.ttl}"
-  records = ["${data.aws_db_instance.db.address}"]
+  ttl     = var.ttl
+  records = [data.aws_db_instance.db.address]
 }
 
 resource "aws_route53_record" "split-db1" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  zone_id = data.aws_route53_zone.internal.zone_id
   name    = "db1.datacite.org"
   type    = "CNAME"
-  ttl     = "${var.ttl}"
-  records = ["${data.aws_db_instance.db.address}"]
+  ttl     = var.ttl
+  records = [data.aws_db_instance.db.address]
 }
 
 resource "aws_route53_record" "internal-db1-ec2" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  zone_id = data.aws_route53_zone.internal.zone_id
   name    = "db1.ec2.datacite.org"
   type    = "CNAME"
-  ttl     = "${var.ttl}"
-  records = ["${data.aws_db_instance.db.address}"]
+  ttl     = var.ttl
+  records = [data.aws_db_instance.db.address]
 }
 
 resource "aws_route53_record" "rds-production" {
-  zone_id = "${data.aws_route53_zone.internal.zone_id}"
+  zone_id = data.aws_route53_zone.internal.zone_id
   name    = "production.rds.datacite.org"
   type    = "CNAME"
-  ttl     = "${var.ttl}"
-  records = ["${data.aws_db_instance.db.address}"]
+  ttl     = var.ttl
+  records = [data.aws_db_instance.db.address]
 }
