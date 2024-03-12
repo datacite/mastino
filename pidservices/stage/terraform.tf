@@ -6,9 +6,13 @@ terraform {
     }
   }
 
-  required_version = ">= 0.13"
+  required_version = ">= 1.6"
 
-  backend "atlas" {
-    name         = "datacite-ng/pidservices-services-stage"
+  cloud {
+    organization = "datacite-ng"
+
+    workspaces {
+      name = "stage-pidservices-services"
+    }
   }
 }
