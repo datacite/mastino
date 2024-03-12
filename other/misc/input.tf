@@ -3,3 +3,7 @@ provider "aws" {
   secret_key = var.secret_key
   region     = var.region
 }
+
+data "aws_route53_zone" "pidnotebooks" {
+  name         = "pidnotebooks.org"
+}
