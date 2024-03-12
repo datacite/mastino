@@ -12,12 +12,6 @@ provider "aws" {
   alias = "use1"
 }
 
-data "aws_acm_certificate" "cloudfront-pidnotebooks" {
-  provider = aws.use1
-  domain = "pidnotebooks.org"
-  statuses = ["ISSUED"]
-}
-
 data "aws_route53_zone" "pidnotebooks" {
   name         = "pidnotebooks.org"
 }
