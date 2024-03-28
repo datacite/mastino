@@ -1,4 +1,4 @@
 levriero_tags = {
-  sha = "031064d0ed0f178c0c1d132dceb96275a5bf56f5"
+  sha = "9d80eef549fd0afc0eb8fef263fe89e229b08ef5"
   version = "fix-shoryuken-worker-start"
 }
