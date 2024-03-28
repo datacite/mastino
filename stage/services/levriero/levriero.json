@@ -1,6 +1,6 @@
 [{
   "name": "levriero-stage",
-  "image": "datacite/levriero",
+  "image": "datacite/levriero:${version}",
   "cpu": 512,
   "memory": 2048,
   "essential": true,
