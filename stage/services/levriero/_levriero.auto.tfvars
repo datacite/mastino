@@ -1,4 +1,4 @@
 levriero_tags = {
-  sha = "f966f626095b7fbdb89324ca17c94c8fe5cf13c8"
-  version = "fix-shoryuken-worker-start"
+  sha = "09741c46b43056ea61056128516240797a3a6609"
+  version = "remove-ruby-3-upgrade-changes"
 }
