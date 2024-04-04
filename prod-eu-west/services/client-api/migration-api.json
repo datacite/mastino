@@ -1,7 +1,7 @@
 [
   {
     "name": "migration-api",
-    "image": "datacite/lupo:${version}",
+    "image": "ghcr.io/datacite/lupo:${version}",
     "cpu": 2048,
     "memory": 8192,
     "essential": true,
@@ -12,9 +12,9 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
+      "options": {
          "awslogs-group" : "/ecs/migration-api",
          "awslogs-region": "eu-west-1",
          "awslogs-stream-prefix": "ecs"
