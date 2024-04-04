@@ -1,4 +1,4 @@
 levriero_tags = {
-  sha = "39060e5909a6f631eba95da809282002932cd7e7"
-  version = "ruby-3-upgrade"
+  sha = "99a65892e38544107839d0ba5a4a697f361bc88a"
+  version = "fix-ruby-3-upgrade"
 }
