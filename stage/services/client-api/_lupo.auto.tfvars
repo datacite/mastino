@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "c60e22e07f6195478b5bd589a6a6ed471c3932b2"
-  version = "upgrade-to-rails-7"
+  sha = "85c850c1f506772c88f361a55b0975032f71fc85"
+  version = "main"
 }
