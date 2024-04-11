@@ -1,4 +1,4 @@
 levriero_tags = {
-  sha = "36b67daef0b5a58334ba9578bbc50f2fc0e5a07d"
-  version = "master"
+  sha = "91e2d0e4d225b3080759f6f5ee3e7426abbac182"
+  version = "rails-to-7.1"
 }
