@@ -62,11 +62,6 @@ resource "aws_db_parameter_group" "datacite-test" {
   }
 
   parameter {
-    name  = "slow_query_log"
-    value = "1"
-  }
-
-  parameter {
     name  = "log_queries_not_using_indexes"
     value = "1"
   }
