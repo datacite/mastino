@@ -96,22 +96,6 @@ resource "aws_route53_record" "internal-db-stage" {
   records = [aws_db_instance.db-stage.address]
 }
 
-resource "aws_route53_record" "internal-db-test-ec2" {
-  zone_id = data.aws_route53_zone.internal.zone_id
-  name    = "db.test.ec2.datacite.org"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [aws_db_instance.db-stage.address]
-}
-
-resource "aws_route53_record" "internal-db-test" {
-  zone_id = data.aws_route53_zone.internal.zone_id
-  name    = "db.test.datacite.org"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [aws_db_instance.db-stage.address]
-}
-
 resource "aws_route53_record" "rds-stage" {
   zone_id = data.aws_route53_zone.internal.zone_id
   name    = "test.rds.datacite.org"
