@@ -90,7 +90,7 @@ resource "aws_db_parameter_group" "datacite-stage" {
 
 
 resource "aws_db_parameter_group" "datacite-stage-mysql8" {
-  name        = "datacite-stage"
+  name        = "datacite-stage-mysql8"
   family      = "mysql8.0"
   description = "RDS datacite-stage mysql8 parameter group"
 
