@@ -82,6 +82,39 @@ resource "aws_db_parameter_group" "datacite-test" {
   }
 }
 
+
+resource "aws_db_parameter_group" "datacite-test-mysql8" {
+  name        = "datacite-test-mysql8"
+  family      = "mysql8.0"
+  description = "RDS datacite-test mysql8 parameter group"
+
+  parameter {
+    name  = "character_set_server"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "collation_server"
+    value = "utf8_unicode_ci"
+  }
+
+  parameter {
+    name  = "character_set_client"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "max_allowed_packet"
+    value = 50000000
+  }
+
+  parameter {
+    name  = "log_output"
+    value = "FILE"
+  }
+}
+
+
 resource "aws_route53_record" "internal-db-test" {
   zone_id = data.aws_route53_zone.internal.zone_id
   name    = "db.test.datacite.org"
