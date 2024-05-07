@@ -48,3 +48,6 @@ variable "rack_timeout_service_timeout" {
 
 variable "jwt_blacklisted" {}
 
+variable "log_level" {
+  default = "info"
+}

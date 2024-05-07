@@ -67,6 +67,7 @@ data "template_file" "metrics-api_task" {
     jwt_blacklisted    = var.jwt_blacklisted
     rack_timeout_service_timeout = var.rack_timeout_service_timeout
     version            = var.sashimi_tags["version"]
+    log_level          = var.log_level
   }
 }
 
