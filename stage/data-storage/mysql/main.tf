@@ -4,7 +4,7 @@ resource "aws_db_instance" "db-stage" {
   storage_type                = "gp2"
   allocated_storage           = 300
   engine                      = "mysql"
-  engine_version              = "5.7.44"
+  engine_version              = "8.0"
   instance_class              = "db.m5.large"
   username                    = var.mysql_user
   password                    = var.mysql_password
