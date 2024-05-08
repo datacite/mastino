@@ -349,21 +349,3 @@ resource "aws_route53_record" "wp-prod" {
    ttl = var.ttl
    records = [var.siteground_ip_homepage_prod]
 }
-
-// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
-resource "aws_route53_record" "mdc" {
-   zone_id = aws_route53_zone.production.zone_id
-   name = "makedatacount.org"
-   type = "A"
-   ttl = var.ttl
-   records = [var.siteground_ip_mdc_prod]
-}
-
-// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
-resource "aws_route53_record" "mdc-wildcard" {
-   zone_id = aws_route53_zone.production.zone_id
-   name = "*.makedatacount.org"
-   type = "A"
-   ttl = var.ttl
-   records = [var.siteground_ip_mdc_prod]
-}
