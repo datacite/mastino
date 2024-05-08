@@ -7,3 +7,7 @@ provider "aws" {
 data "aws_route53_zone" "pidnotebooks" {
   name         = "pidnotebooks.org"
 }
+
+data "aws_route53_zone" "makedatacount" {
+  name         = "makedatacount.org"
+}

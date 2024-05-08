@@ -13,3 +13,22 @@ resource "aws_route53_record" "pidnotebooks-www" {
     ttl = "3600"
     records = ["pidnotebooks.org"]
 }
+
+
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "mdc" {
+   zone_id = data.aws_route53_zone.makedatacount.zone_id
+   name = "makedatacount.org"
+   type = "A"
+   ttl = var.ttl
+   records = [var.siteground_ip_mdc_prod]
+}
+
+// Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
+resource "aws_route53_record" "mdc-wildcard" {
+   zone_id = data.aws_route53_zone.makedatacount.zone_id
+   name = "*.makedatacount.org"
+   type = "A"
+   ttl = var.ttl
+   records = [var.siteground_ip_mdc_prod]
+}
