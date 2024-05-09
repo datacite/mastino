@@ -33,7 +33,7 @@ resource "aws_route53_record" "mdc-wildcard" {
    records = [var.siteground_ip_mdc_prod]
 }
 
-resource "aws_route53_record" "mdc-wildcard" {
+resource "aws_route53_record" "mdc-summit" {
    zone_id = data.aws_route53_zone.makedatacount.zone_id
    name = "summit.makedatacount.org"
    type = "A"
@@ -41,7 +41,7 @@ resource "aws_route53_record" "mdc-wildcard" {
    records = [var.siteground_ip_mdc_summit_prod]
 }
 
-resource "aws_route53_record" "mdc-wildcard" {
+resource "aws_route53_record" "mdc-summit-wildcard" {
    zone_id = data.aws_route53_zone.makedatacount.zone_id
    name = "*.summit.makedatacount.org"
    type = "A"
