@@ -13,3 +13,4 @@ variable "ttl" {
 }
 
 variable "siteground_ip_mdc_prod" {}
+variable "siteground_ip_mdc_summit_prod" {}

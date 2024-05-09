@@ -32,3 +32,19 @@ resource "aws_route53_record" "mdc-wildcard" {
    ttl = var.ttl
    records = [var.siteground_ip_mdc_prod]
 }
+
+resource "aws_route53_record" "mdc-wildcard" {
+   zone_id = data.aws_route53_zone.makedatacount.zone_id
+   name = "summit.makedatacount.org"
+   type = "A"
+   ttl = var.ttl
+   records = [var.siteground_ip_mdc_summit_prod]
+}
+
+resource "aws_route53_record" "mdc-wildcard" {
+   zone_id = data.aws_route53_zone.makedatacount.zone_id
+   name = "*.summit.makedatacount.org"
+   type = "A"
+   ttl = var.ttl
+   records = [var.siteground_ip_mdc_summit_prod]
+}
