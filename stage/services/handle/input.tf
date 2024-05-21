@@ -49,5 +49,10 @@ data "template_file" "handle_task" {
     mysql_password = var.mysql_password
     handle_svr_private_key = var.handle_svr_private_key
     handle_svr_public_key = var.handle_svr_public_key
+    version = var.handle_tags["version"]
   }
+}
+
+variable "handle_tags" {
+  type = map(string)
 }
