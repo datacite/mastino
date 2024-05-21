@@ -1,7 +1,7 @@
 [
     {
       "name": "handle-test",
-      "image": "datacite/docker-handle",
+      "image": "datacite/docker-handle:${version}",
       "cpu": 512,
       "memory": 512,
       "networkMode": "awsvpc",
