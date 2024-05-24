@@ -3,7 +3,7 @@ resource "aws_db_instance" "db-test" {
   storage_type                = "gp2"
   allocated_storage           = 300
   engine                      = "mysql"
-  engine_version              = "5.7.44"
+  engine_version              = "8.036"
   instance_class              = "db.m5.large"
   username                    = var.mysql_user
   password                    = var.mysql_password
@@ -24,9 +24,12 @@ resource "aws_db_instance" "db-test" {
     Name = "test"
   }
 
-  # lifecycle {
-  #   prevent_destroy = "true"
-  # }
+  lifecycle {
+    prevent_destroy = "true"
+    ignore_changes = [
+      engine_version
+     ]
+  }
 
   apply_immediately = "true"
 }
