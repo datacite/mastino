@@ -54,6 +54,62 @@ resource "aws_db_parameter_group" "datacite57" {
   }
 }
 
+resource "aws_db_parameter_group" "datacite-prod-mysql8" {
+  name        = "datacite-prod-mysql8"
+  family      = "mysql8.0"
+  description = "RDS datacite parameter group"
+
+  parameter {
+    name  = "character_set_server"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "collation_server"
+    value = "utf8_unicode_ci"
+  }
+
+  parameter {
+    name  = "character_set_client"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "max_allowed_packet"
+    value = 50000000
+  }
+
+  parameter {
+    name  = "read_only"
+    value = "0"
+  }
+
+  parameter {
+    name  = "slow_query_log"
+    value = "1"
+  }
+
+  parameter {
+    name  = "log_queries_not_using_indexes"
+    value = "1"
+  }
+
+  parameter {
+    name  = "log_throttle_queries_not_using_indexes"
+    value = "0"
+  }
+
+  parameter {
+    name  = "log_output"
+    value = "FILE"
+  }
+
+  parameter {
+    name  = "log_bin_trust_function_creators"
+    value = "1"
+  }
+}
+
 resource "aws_db_subnet_group" "datacite-prod" {
   name        = "datacite-prod"
   description = "RDS production subnet group"
