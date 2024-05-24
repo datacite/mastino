@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 data "aws_db_instance" "db" {
-  db_instance_identifier = "db2"
+  db_instance_identifier = "db2-restore-snapshot"
 }
 
 data "aws_subnet" "datacite-public" {
