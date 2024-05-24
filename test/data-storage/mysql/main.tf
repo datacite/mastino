@@ -13,7 +13,7 @@ resource "aws_db_instance" "db-test" {
   availability_zone           = "eu-west-1b"
   db_subnet_group_name        = "datacite"
   vpc_security_group_ids      = [data.aws_security_group.datacite-private.id]
-  parameter_group_name        = aws_db_parameter_group.datacite-test.id
+  parameter_group_name        = aws_db_parameter_group.datacite-test-mysql8.id
   auto_minor_version_upgrade  = "true"
   allow_major_version_upgrade = "true"
   final_snapshot_identifier   = "db-test-final-snapshot"
@@ -33,58 +33,6 @@ resource "aws_db_instance" "db-test" {
 
   apply_immediately = "true"
 }
-
-resource "aws_db_parameter_group" "datacite-test" {
-  name        = "datacite-test"
-  family      = "mysql5.7"
-  description = "RDS datacite-test parameter group"
-
-  parameter {
-    name  = "character_set_server"
-    value = "utf8"
-  }
-
-  parameter {
-    name  = "collation_server"
-    value = "utf8_unicode_ci"
-  }
-
-  parameter {
-    name  = "character_set_client"
-    value = "utf8"
-  }
-
-  parameter {
-    name  = "max_allowed_packet"
-    value = 50000000
-  }
-
-  parameter {
-    name  = "read_only"
-    value = "0"
-  }
-
-  parameter {
-    name  = "log_queries_not_using_indexes"
-    value = "1"
-  }
-
-  parameter {
-    name  = "log_throttle_queries_not_using_indexes"
-    value = "0"
-  }
-
-  parameter {
-    name  = "log_output"
-    value = "FILE"
-  }
-
-  parameter {
-    name  = "log_bin_trust_function_creators"
-    value = "1"
-  }
-}
-
 
 resource "aws_db_parameter_group" "datacite-test-mysql8" {
   name        = "datacite-test-mysql8"
