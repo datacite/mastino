@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "2d94b206d51500741249e43cf4b61f090875b5c7"
-  version = "main"
+  sha = "2417518fe5f487a8c24d3ff0ef9fc424f7bab048"
+  version = "set-schema-to-current-metadata-namespace"
 }
