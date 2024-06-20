@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "3c090cba4c77d133763c34a6ac8a1640c5f0093b"
+  sha = "73a7bf777694d3cd88577b4721361b393ad4fb62"
   version = "debug-orcid-claim-issue"
 }
