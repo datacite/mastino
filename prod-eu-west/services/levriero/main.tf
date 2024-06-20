@@ -36,8 +36,8 @@ resource "aws_ecs_service" "levriero" {
 }
 
 resource "aws_appautoscaling_target" "levriero" {
-  max_capacity       = 24
-  min_capacity       = 24
+  max_capacity       = 32
+  min_capacity       = 32
   resource_id        = "service/default/${aws_ecs_service.levriero.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -128,8 +128,8 @@ resource "aws_ecs_task_definition" "levriero" {
   execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "1024"
-  memory = "2048"
+  cpu = "2048"
+  memory = "4096"
   container_definitions =  data.template_file.levriero_task.rendered
 }
 
