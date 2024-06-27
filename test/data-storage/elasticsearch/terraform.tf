@@ -12,7 +12,7 @@ terraform {
     organization = "datacite-ng"
 
     workspaces {
-      name = "stage-data-storage-elasticsearch"
+      name = "test-data-storage-elasticsearch"
     }
   }
 }

@@ -27,7 +27,7 @@ resource "aws_elasticsearch_domain" "test" {
   }
 
   tags = {
-    Domain = "elasticsearch-stage"
+    Domain = "elasticsearch-test"
   }
 
   log_publishing_options {
