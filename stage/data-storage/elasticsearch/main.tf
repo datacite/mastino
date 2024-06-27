@@ -2,7 +2,7 @@ resource "aws_elasticsearch_domain" "stage" {
   domain_name           = "elasticsearch-stage"
   elasticsearch_version = "7.10"
   cluster_config {
-    instance_type = "t3.small.search"
+    instance_type = "t3.small.elasticsearch"
     instance_count = 1
   }
 
