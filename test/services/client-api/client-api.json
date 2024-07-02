@@ -168,6 +168,10 @@
       {
         "name": "DISABLE_QUEUE_WORKER",
         "value": "True"
+      },
+      {
+        "name": "SQS_PREFIX",
+        "value": "test"
       }
     ]
   }
