@@ -176,6 +176,10 @@
       {
         "name": "PLUGIN_OPENAPI_URL",
         "value": "${plugin_openapi_url}"
+      },
+      {
+        "name": "SQS_PREFIX",
+        "value": "test"
       }
     ]
   }
