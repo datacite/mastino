@@ -1,6 +1,6 @@
 resource "aws_elasticsearch_domain" "test" {
   domain_name           = "elasticsearch-test"
-  elasticsearch_version = "2.13"
+  elasticsearch_version = "OpenSearch_2.13"
   cluster_config {
     instance_type = "m5.large.elasticsearch"
     instance_count = 1
