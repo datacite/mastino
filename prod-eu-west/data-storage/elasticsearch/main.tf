@@ -1,6 +1,6 @@
 resource "aws_elasticsearch_domain" "default" {
   domain_name           = "elasticsearch"
-  elasticsearch_version = "7.10"
+  elasticsearch_version = "OpenSearch_2.13"
   cluster_config {
     instance_type = "m6g.2xlarge.elasticsearch"
     instance_count = 6
