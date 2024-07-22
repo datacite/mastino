@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "a4e59b45e7ebda75b40fa5ba639f351482e68373"
-  version = "main"
+  sha = "af7cf59e80dcc6764755ce3f33d4fcc5134947cc"
+  version = "clean-up-gbif-event-data-documents"
 }
