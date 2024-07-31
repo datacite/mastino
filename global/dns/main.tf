@@ -153,7 +153,6 @@ resource "aws_route53_record" "github_datacite" {
     records = ["7aea104794"]
 }
 
-// Data citation corpus prod
 resource "aws_route53_record" "lists" {
     zone_id = aws_route53_zone.production.zone_id
     name = "lists.datacite.org"
@@ -161,6 +160,7 @@ resource "aws_route53_record" "lists" {
     ttl = "300"
     records = ["cname.createsend.com"]
 }
+
 // Data citation corpus staging
 resource "aws_route53_record" "corpus-prototype-staging" {
     zone_id = aws_route53_zone.production.zone_id
@@ -170,6 +170,7 @@ resource "aws_route53_record" "corpus-prototype-staging" {
     records = ["99.80.53.232"]
 }
 
+// Data citation corpus prod
 resource "aws_route53_record" "corpus-prototype-prod" {
     zone_id = aws_route53_zone.production.zone_id
     name = "corpus.datacite.org"
