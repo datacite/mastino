@@ -161,6 +161,16 @@ resource "aws_route53_record" "lists" {
     records = ["cname.createsend.com"]
 }
 
+// Data citation corpus staging
+resource "aws_route53_record" "corpus-prototype-staging" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "corpus.stage.datacite.org"
+    type = "A"
+    ttl = "300"
+    records = ["99.80.53.232"]
+}
+
+// Data citation corpus prod
 resource "aws_route53_record" "corpus-prototype-prod" {
     zone_id = aws_route53_zone.production.zone_id
     name = "corpus.datacite.org"
