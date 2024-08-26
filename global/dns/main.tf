@@ -167,7 +167,7 @@ resource "aws_route53_record" "corpus-prototype-staging" {
     name = "corpus.stage.datacite.org"
     type = "A"
     ttl = "300"
-    records = ["99.80.53.232"]
+    records = ["corpus-stage-543312680.eu-west-1.elb.amazonaws.com"]
 }
 
 // Data citation corpus prod
