@@ -168,6 +168,16 @@ resource "aws_route53_record" "corpus-prototype-staging" {
     type = "CNAME"
     ttl = "300"
     records = ["corpus-stage-543312680.eu-west-1.elb.amazonaws.com"]
+
+}
+
+resource "aws_route53_record" "corpus-prototype-staging-ssl-validation" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "_2334f0bef3d47c7039b0133efab8f4aa.corpus.stage.datacite.org."
+    type = "CNAME"
+    ttl = "86400"
+    records = ["_c3d387cb82035778426de3619a37320d.djqtsrsxkq.acm-validations.aws."]
+
 }
 
 // Data citation corpus prod
