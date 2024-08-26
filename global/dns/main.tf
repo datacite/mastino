@@ -165,7 +165,7 @@ resource "aws_route53_record" "lists" {
 resource "aws_route53_record" "corpus-prototype-staging" {
     zone_id = aws_route53_zone.production.zone_id
     name = "corpus.stage.datacite.org"
-    type = "A"
+    type = "CNAME"
     ttl = "300"
     records = ["corpus-stage-543312680.eu-west-1.elb.amazonaws.com"]
 }
