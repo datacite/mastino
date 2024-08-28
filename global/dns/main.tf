@@ -180,13 +180,23 @@ resource "aws_route53_record" "corpus-prototype-staging-ssl-validation" {
 
 }
 
+
 // Data citation corpus prod
 resource "aws_route53_record" "corpus-prototype-prod" {
     zone_id = aws_route53_zone.production.zone_id
     name = "corpus.datacite.org"
-    type = "A"
+    type = "CNAME"
     ttl = "300"
-    records = ["54.229.227.84"]
+    records = ["corpus-prod-1654713238.eu-west-1.elb.amazonaws.com"]
+}
+
+resource "aws_route53_record" "corpus-prototype-prod-ssl-validation" {
+    zone_id = aws_route53_zone.production.zone_id
+    name = "_a20336933a30c9ce94e198bf89da2260.corpus.datacite.org."
+    type = "CNAME"
+    ttl = "86400"
+    records = ["_127c9ef2a9ac28dbdc3964ffc97860a6.djqtsrsxkq.acm-validations.aws."]
+
 }
 
 // Google DataCite dns entries
