@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "levriero" {
-  name = "levriero"
-  cluster = data.aws_ecs_cluster.default.id
-  launch_type = "FARGATE"
+  name            = "levriero"
+  cluster         = data.aws_ecs_cluster.default.id
+  launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.levriero.arn
 
   # Create service with 2 instances to start
@@ -14,7 +14,7 @@ resource "aws_ecs_service" "levriero" {
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
-    subnets         = [
+    subnets = [
       data.aws_subnet.datacite-private.id,
       data.aws_subnet.datacite-alt.id
     ]
@@ -36,8 +36,8 @@ resource "aws_ecs_service" "levriero" {
 }
 
 resource "aws_appautoscaling_target" "levriero" {
-  max_capacity       = 12
-  min_capacity       = 8
+  max_capacity       = 20
+  min_capacity       = 18
   resource_id        = "service/default/${aws_ecs_service.levriero.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -124,20 +124,20 @@ resource "aws_cloudwatch_log_group" "levriero" {
 }
 
 resource "aws_ecs_task_definition" "levriero" {
-  family = "levriero"
-  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
-  network_mode = "awsvpc"
+  family                   = "levriero"
+  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
+  network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "2048"
-  memory = "4096"
-  container_definitions =  data.template_file.levriero_task.rendered
+  cpu                      = "2048"
+  memory                   = "4096"
+  container_definitions    = data.template_file.levriero_task.rendered
 }
 
 resource "aws_lb_target_group" "levriero" {
-  name     = "levriero"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name        = "levriero"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {
@@ -178,7 +178,7 @@ resource "aws_service_discovery_service" "levriero" {
     namespace_id = var.namespace_id
 
     dns_records {
-      ttl = 300
+      ttl  = 300
       type = "A"
     }
   }
