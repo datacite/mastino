@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "3b0bce4e32aee1e6e8922c8f596b190a46fb9f45"
-  version = "upgrade-google-protobuf"
+  sha = "9427cc715995263aea1556bc585918a9d8fb2bd0"
+  version = "main"
 }
