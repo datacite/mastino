@@ -141,3 +141,44 @@ resource "aws_wafregional_web_acl_association" "crosscite-default" {
   resource_arn = data.aws_lb.crosscite.arn
   web_acl_id   = aws_wafregional_web_acl.default.id
 }
+
+// WAF v2 Setup
+
+resource "aws_wafv2_web_acl" "defaultv2" {
+  name        = "defaultv2"
+  description = "Default web acl For protecting lb"
+  scope       = "REGIONAL"
+
+  default_action {
+    allow {}
+  }
+
+  rule {
+    name     = "prodRateLimitingRule"
+    priority = 1
+
+    action {
+      block {}
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 1000
+        aggregate_key_type = "IP"
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "prodRateLimitingRule"
+      sampled_requests_enabled   = false
+    }
+  }
+
+
+  visibility_config {
+    cloudwatch_metrics_enabled = false
+    metric_name                = "defaultv2"
+    sampled_requests_enabled   = false
+  }
+}
