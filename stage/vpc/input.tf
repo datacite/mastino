@@ -33,28 +33,32 @@ data "aws_route53_zone" "production" {
 }
 
 data "aws_route53_zone" "internal" {
-  name = "datacite.org"
+  name         = "datacite.org"
   private_zone = true
 }
 
 data "aws_acm_certificate" "test" {
-  domain = "*.test.datacite.org"
-  statuses = ["ISSUED"]
+  domain      = "*.test.datacite.org"
+  statuses    = ["ISSUED"]
   most_recent = true
 }
 
 data "aws_acm_certificate" "stage" {
-  domain = "*.stage.datacite.org"
-  statuses = ["ISSUED"]
+  domain      = "*.stage.datacite.org"
+  statuses    = ["ISSUED"]
   most_recent = true
 }
 
 data "aws_iam_instance_profile" "ecs_instance" {
-  name  = "ecs_instance"
+  name = "ecs_instance"
 }
 
 data "aws_iam_role" "ecs_instance_role" {
   name = "ecsInstanceRole"
+}
+
+data "aws_lb" "stage" {
+  name = var.lb_name
 }
 
 data "aws_lb_target_group" "client-api-stage" {
@@ -80,7 +84,7 @@ data "aws_iam_policy_document" "logs" {
 }
 
 data "aws_acm_certificate" "crosscite-test" {
-  domain = "*.crosscite.org"
-  statuses = ["ISSUED"]
+  domain      = "*.crosscite.org"
+  statuses    = ["ISSUED"]
   most_recent = true
 }

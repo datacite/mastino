@@ -1,11 +1,11 @@
 variable "access_key" {}
 variable "secret_key" {}
 variable "region" {
-    default = "eu-west-1"
+  default = "eu-west-1"
 }
 variable "vpc_id" {}
 variable "ecs_ami" {
-  type = map
+  type        = map(any)
   description = "Amazon Linux ECS-optimized AMI"
 
   default = {
@@ -37,3 +37,7 @@ variable "cluster" {
 
 variable "key_name" {}
 variable "dd_api_key" {}
+
+variable "lb_name" {
+  default = "lb-stage"
+}
