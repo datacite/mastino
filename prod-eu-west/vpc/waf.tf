@@ -171,7 +171,7 @@ resource "aws_wafv2_web_acl" "prod-default" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "prodRateLimitingRule"
-      sampled_requests_enabled   = false
+      sampled_requests_enabled   = true
     }
   }
 
@@ -179,7 +179,7 @@ resource "aws_wafv2_web_acl" "prod-default" {
   visibility_config {
     cloudwatch_metrics_enabled = false
     metric_name                = "defaultv2"
-    sampled_requests_enabled   = false
+    sampled_requests_enabled   = true
   }
 }
 
