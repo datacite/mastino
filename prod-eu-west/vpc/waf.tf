@@ -144,8 +144,8 @@ resource "aws_wafregional_web_acl_association" "crosscite-default" {
 
 // WAF v2 Setup
 
-resource "aws_wafv2_web_acl" "defaultv2" {
-  name        = "defaultv2"
+resource "aws_wafv2_web_acl" "prod-default" {
+  name        = "prod-default"
   description = "Default web acl For protecting lb"
   scope       = "REGIONAL"
 
