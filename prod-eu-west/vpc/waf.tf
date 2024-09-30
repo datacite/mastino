@@ -132,15 +132,15 @@ resource "aws_wafregional_web_acl" "default" {
   }
 }
 
-resource "aws_wafregional_web_acl_association" "default" {
-  resource_arn = data.aws_lb.default.arn
-  web_acl_id   = aws_wafregional_web_acl.default.id
-}
+# resource "aws_wafregional_web_acl_association" "default" {
+#   resource_arn = data.aws_lb.default.arn
+#   web_acl_id   = aws_wafregional_web_acl.default.id
+# }
 
-resource "aws_wafregional_web_acl_association" "crosscite-default" {
-  resource_arn = data.aws_lb.crosscite.arn
-  web_acl_id   = aws_wafregional_web_acl.default.id
-}
+# resource "aws_wafregional_web_acl_association" "crosscite-default" {
+#   resource_arn = data.aws_lb.crosscite.arn
+#   web_acl_id   = aws_wafregional_web_acl.default.id
+# }
 
 // WAF v2 Setup
 
@@ -181,4 +181,14 @@ resource "aws_wafv2_web_acl" "prod-default" {
     metric_name                = "defaultv2"
     sampled_requests_enabled   = false
   }
+}
+
+
+resource "aws_wafv2_web_acl_association" "prod-lb" {
+  resource_arn = data.aws_lb.default.arn
+  web_acl_arn  = aws_wafv2_web_acl.prod-default.arn
+}
+resource "aws_wafv2_web_acl_association" "crosscite-lb" {
+  resource_arn = data.aws_lb.crosscite.arn
+  web_acl_arn  = aws_wafv2_web_acl.prod-default.arn
 }
