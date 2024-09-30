@@ -15,155 +15,155 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-         "awslogs-group" : "/ecs/client-api-test",
-         "awslogs-region": "eu-west-1",
-         "awslogs-stream-prefix": "ecs"
+        "awslogs-group": "/ecs/client-api-test",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
       }
     },
-    "environment" : [
+    "environment": [
       {
-        "name" : "PASSENGER_APP_ENV",
-        "value" : "stage"
+        "name": "PASSENGER_APP_ENV",
+        "value": "stage"
       },
       {
-        "name" : "RAILS_ENV",
-        "value" : "stage"
+        "name": "RAILS_ENV",
+        "value": "uat"
       },
       {
-        "name" : "SITE_TITLE",
-        "value" : "DataCite REST API"
+        "name": "SITE_TITLE",
+        "value": "DataCite REST API"
       },
       {
-        "name" : "LOG_LEVEL",
-        "value" : "info"
+        "name": "LOG_LEVEL",
+        "value": "info"
       },
       {
-        "name" : "PUBLIC_KEY",
-        "value" : "${public_key}"
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
       },
       {
-        "name" : "JWT_PUBLIC_KEY",
-        "value" : "${jwt_public_key}"
+        "name": "JWT_PUBLIC_KEY",
+        "value": "${jwt_public_key}"
       },
       {
-        "name" : "JWT_PRIVATE_KEY",
-        "value" : "${jwt_private_key}"
+        "name": "JWT_PRIVATE_KEY",
+        "value": "${jwt_private_key}"
       },
       {
-        "name" : "RE3DATA_URL",
-        "value" : "${re3data_url}"
+        "name": "RE3DATA_URL",
+        "value": "${re3data_url}"
       },
       {
-        "name" : "SESSION_ENCRYPTED_COOKIE_SALT",
-        "value" : "${session_encrypted_cookie_salt}"
+        "name": "SESSION_ENCRYPTED_COOKIE_SALT",
+        "value": "${session_encrypted_cookie_salt}"
       },
       {
-        "name" : "HANDLE_URL",
-        "value" : "${handle_url}"
+        "name": "HANDLE_URL",
+        "value": "${handle_url}"
       },
       {
-        "name" : "HANDLE_USERNAME",
-        "value" : "${handle_username}"
+        "name": "HANDLE_USERNAME",
+        "value": "${handle_username}"
       },
       {
-        "name" : "HANDLE_PASSWORD",
-        "value" : "${handle_password}"
+        "name": "HANDLE_PASSWORD",
+        "value": "${handle_password}"
       },
       {
-        "name" : "ADMIN_USERNAME",
-        "value" : "${admin_username}"
+        "name": "ADMIN_USERNAME",
+        "value": "${admin_username}"
       },
       {
-        "name" : "ADMIN_PASSWORD",
-        "value" : "${admin_password}"
+        "name": "ADMIN_PASSWORD",
+        "value": "${admin_password}"
       },
       {
-        "name" : "MYSQL_USER",
-        "value" : "${mysql_user}"
+        "name": "MYSQL_USER",
+        "value": "${mysql_user}"
       },
       {
-        "name" : "MYSQL_PASSWORD",
-        "value" : "${mysql_password}"
+        "name": "MYSQL_PASSWORD",
+        "value": "${mysql_password}"
       },
       {
-        "name" : "MYSQL_HOST",
-        "value" : "${mysql_host}"
+        "name": "MYSQL_HOST",
+        "value": "${mysql_host}"
       },
       {
-        "name" : "MYSQL_DATABASE",
-        "value" : "${mysql_database}"
+        "name": "MYSQL_DATABASE",
+        "value": "${mysql_database}"
       },
       {
-        "name" : "SENTRY_DSN",
-        "value" : "${sentry_dsn}"
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
       },
       {
-        "name" : "SERVERNAME",
-        "value" : "client-api.test.datacite.org"
+        "name": "SERVERNAME",
+        "value": "client-api.test.datacite.org"
       },
       {
-        "name" : "MEMCACHE_SERVERS",
-        "value" : "${memcache_servers}"
+        "name": "MEMCACHE_SERVERS",
+        "value": "${memcache_servers}"
       },
       {
-        "name" : "AWS_ACCESS_KEY_ID",
-        "value" : "${access_key}"
-      },
-            {
-        "name" : "AWS_SECRET_ACCESS_KEY",
-        "value" : "${secret_key}"
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
       },
       {
-        "name" : "AWS_REGION",
-        "value" : "${region}"
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
       },
       {
-        "name" : "AWS_S3_BUCKET",
-        "value" : "${s3_bucket}"
+        "name": "AWS_REGION",
+        "value": "${region}"
       },
       {
-        "name" : "ES_HOST",
-        "value" : "${es_host}"
+        "name": "AWS_S3_BUCKET",
+        "value": "${s3_bucket}"
       },
       {
-        "name" : "ES_SCHEME",
-        "value" : "${es_scheme}"
+        "name": "ES_HOST",
+        "value": "${es_host}"
       },
       {
-        "name" : "ES_PORT",
-        "value" : "${es_port}"
+        "name": "ES_SCHEME",
+        "value": "${es_scheme}"
       },
       {
-        "name" : "ES_NAME",
-        "value" : "${es_name}"
+        "name": "ES_PORT",
+        "value": "${es_port}"
       },
       {
-        "name" : "ES_PREFIX",
-        "value" : "${es_prefix}"
+        "name": "ES_NAME",
+        "value": "${es_name}"
       },
       {
-        "name" : "ELASTIC_PASSWORD",
-        "value" : "${elastic_password}"
+        "name": "ES_PREFIX",
+        "value": "${es_prefix}"
       },
       {
-        "name" : "MAILGUN_API_KEY",
-        "value" : "${mailgun_api_key}"
+        "name": "ELASTIC_PASSWORD",
+        "value": "${elastic_password}"
       },
       {
-        "name" : "BRACCO_URL",
-        "value" : "${bracco_url}"
+        "name": "MAILGUN_API_KEY",
+        "value": "${mailgun_api_key}"
       },
       {
-        "name" : "SLACK_WEBHOOK_URL",
-        "value" : "${slack_webhook_url}"
+        "name": "BRACCO_URL",
+        "value": "${bracco_url}"
       },
       {
-        "name" : "JWT_BLACKLISTED",
-        "value" : "${jwt_blacklisted}"
+        "name": "SLACK_WEBHOOK_URL",
+        "value": "${slack_webhook_url}"
       },
       {
-        "name" : "GITHUB_VERSION",
-        "value" : "${version}"
+        "name": "JWT_BLACKLISTED",
+        "value": "${jwt_blacklisted}"
+      },
+      {
+        "name": "GITHUB_VERSION",
+        "value": "${version}"
       },
       {
         "name": "DISABLE_QUEUE_WORKER",
