@@ -161,6 +161,21 @@ resource "aws_wafv2_web_acl" "prod-default" {
     allow {}
   }
 
+  custom_response_body {
+    content = jsonencode(
+      {
+        errors = [
+          {
+            status = "403"
+            title  = "Your request has been rate limited."
+          },
+        ]
+      }
+    )
+    content_type = "APPLICATION_JSON"
+    key          = "ratelimiterror"
+  }
+
   rule {
     name     = "natIpSetAllow"
     priority = 1
@@ -187,7 +202,12 @@ resource "aws_wafv2_web_acl" "prod-default" {
     priority = 2
 
     action {
-      block {}
+      block {
+        custom_response {
+          custom_response_body_key = "ratelimiterror"
+          response_code            = 403
+        }
+      }
     }
 
     statement {
