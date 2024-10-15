@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "profiles" {
-  name = "profiles"
-  cluster = data.aws_ecs_cluster.default.id
-  launch_type = "FARGATE"
+  name            = "profiles"
+  cluster         = data.aws_ecs_cluster.default.id
+  launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.profiles.arn
 
   # Create service with 2 instances to start
@@ -14,7 +14,7 @@ resource "aws_ecs_service" "profiles" {
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
-    subnets         = [
+    subnets = [
       data.aws_subnet.datacite-private.id,
       data.aws_subnet.datacite-alt.id
     ]
@@ -37,7 +37,7 @@ resource "aws_ecs_service" "profiles" {
 
 resource "aws_appautoscaling_target" "profiles" {
   max_capacity       = 8
-  min_capacity       = 2
+  min_capacity       = 4
   resource_id        = "service/default/${aws_ecs_service.profiles.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -125,26 +125,26 @@ resource "aws_cloudwatch_log_group" "profiles" {
 }
 
 resource "aws_ecs_task_definition" "profiles" {
-  family = "profiles"
-  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
-  network_mode = "awsvpc"
+  family                   = "profiles"
+  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
+  network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "512"
-  memory = "2048"
-  container_definitions =  data.template_file.profiles_task.rendered
+  cpu                      = "512"
+  memory                   = "2048"
+  container_definitions    = data.template_file.profiles_task.rendered
 }
 
 resource "aws_lb_target_group" "profiles" {
-  name     = "profiles"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name        = "profiles"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {
-    path = "/heartbeat"
+    path     = "/heartbeat"
     interval = 30
-    timeout = 5
+    timeout  = 5
   }
 }
 
@@ -231,19 +231,19 @@ resource "aws_lb_listener_rule" "profiles-api-graphql" {
 }
 
 resource "aws_route53_record" "profiles" {
-    zone_id = data.aws_route53_zone.production.zone_id
-    name = "profiles.datacite.org"
-    type = "CNAME"
-    ttl = var.ttl
-    records = [data.aws_lb.default.dns_name]
+  zone_id = data.aws_route53_zone.production.zone_id
+  name    = "profiles.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = [data.aws_lb.default.dns_name]
 }
 
 resource "aws_route53_record" "split-profiles" {
-    zone_id = data.aws_route53_zone.internal.zone_id
-    name = "profiles.datacite.org"
-    type = "CNAME"
-    ttl = var.ttl
-    records = [data.aws_lb.default.dns_name]
+  zone_id = data.aws_route53_zone.internal.zone_id
+  name    = "profiles.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = [data.aws_lb.default.dns_name]
 }
 
 resource "aws_service_discovery_service" "profiles" {
@@ -257,7 +257,7 @@ resource "aws_service_discovery_service" "profiles" {
     namespace_id = var.namespace_id
 
     dns_records {
-      ttl = 300
+      ttl  = 300
       type = "A"
     }
   }
