@@ -36,8 +36,8 @@ resource "aws_ecs_service" "profiles" {
 }
 
 resource "aws_appautoscaling_target" "profiles" {
-  max_capacity       = 12
-  min_capacity       = 12
+  max_capacity       = 18
+  min_capacity       = 18
   resource_id        = "service/default/${aws_ecs_service.profiles.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
