@@ -36,8 +36,8 @@ resource "aws_ecs_service" "profiles" {
 }
 
 resource "aws_appautoscaling_target" "profiles" {
-  max_capacity       = 8
-  min_capacity       = 8
+  max_capacity       = 12
+  min_capacity       = 12
   resource_id        = "service/default/${aws_ecs_service.profiles.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -144,7 +144,7 @@ resource "aws_lb_target_group" "profiles" {
   health_check {
     path     = "/heartbeat"
     interval = 30
-    timeout  = 10
+    timeout  = 60
   }
 }
 
