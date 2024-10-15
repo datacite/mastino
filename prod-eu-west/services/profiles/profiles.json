@@ -1,189 +1,194 @@
-[{
-  "name": "profiles",
-  "image": "datacite/volpino:${version}",
-  "cpu": 512,
-  "memory": 2048,
-  "essential": true,
-  "networkMode": "awsvpc",
-  "portMappings": [{
-    "containerPort": 80,
-    "hostPort": 80
-  }],
-  "logConfiguration": {
-    "logDriver": "awslogs",
-    "options": {
-      "awslogs-group": "/ecs/profiles",
-      "awslogs-region": "eu-west-1",
-      "awslogs-stream-prefix": "ecs"
-    }
-  },
-  "environment": [{
-      "name": "PASSENGER_APP_ENV",
-      "value": "production"
+[
+  {
+    "name": "profiles",
+    "image": "ghcr.io/datacite/volpino:${version}",
+    "cpu": 512,
+    "memory": 2048,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/profiles",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
     },
-    {
-      "name": "RAILS_ENV",
-      "value": "production"
-    },
-    {
-      "name": "SITE_TITLE",
-      "value": "DataCite Profiles"
-    },
-    {
-      "name": "LOG_LEVEL",
-      "value": "warn"
-    },
-    {
-      "name": "REDIS_URL",
-      "value": "${redis_url}"
-    },
-    {
-      "name": "COMMONS_URL",
-      "value": "${commons_url}"
-    },
-    {
-      "name": "BRACCO_URL",
-      "value": "${bracco_url}"
-    },
-    {
-      "name": "PUBLIC_KEY",
-      "value": "${public_key}"
-    },
-    {
-      "name": "JWT_PRIVATE_KEY",
-      "value": "${jwt_private_key}"
-    },
-    {
-      "name": "JWT_PUBLIC_KEY",
-      "value": "${jwt_public_key}"
-    },
-    {
-      "name": "ORCID_API_URL",
-      "value": "${orcid_api_url}"
-    },
-    {
-      "name": "ORCID_UPDATE_UUID",
-      "value": "${orcid_update_uuid}"
-    },
-    {
-      "name": "SEARCH_URL",
-      "value": "${search_url}"
-    },
-    {
-      "name": "BLOG_URL",
-      "value": "${blog_url}"
-    },
-    {
-      "name": "ORCID_URL",
-      "value": "${orcid_url}"
-    },
-    {
-      "name": "HOMEPAGE_URL",
-      "value": "${homepage_url}"
-    },
-    {
-      "name": "MYSQL_USER",
-      "value": "${mysql_user}"
-    },
-    {
-      "name": "MYSQL_PASSWORD",
-      "value": "${mysql_password}"
-    },
-    {
-      "name": "MYSQL_HOST",
-      "value": "${mysql_host}"
-    },
-    {
-      "name": "MYSQL_DATABASE",
-      "value": "${mysql_database}"
-    },
-    {
-      "name": "GITHUB_PERSONAL_ACCESS_TOKEN",
-      "value": "${github_personal_access_token}"
-    },
-    {
-      "name": "SENTRY_DSN",
-      "value": "${sentry_dsn}"
-    },
-    {
-      "name": "API_URL",
-      "value": "${api_url}"
-    },
-    {
-      "name": "CDN_URL",
-      "value": "${cdn_url}"
-    },
-    {
-      "name": "SECRET_KEY_BASE",
-      "value": "${secret_key_base}"
-    },
-    {
-      "name": "CONCURRENCY",
-      "value": "25"
-    },
-    {
-      "name": "ORCID_CLIENT_ID",
-      "value": "${orcid_client_id}"
-    },
-    {
-      "name": "ORCID_CLIENT_SECRET",
-      "value": "${orcid_client_secret}"
-    },
-    {
-      "name": "GLOBUS_CLIENT_ID",
-      "value": "${globus_client_id}"
-    },
-    {
-      "name": "GLOBUS_CLIENT_SECRET",
-      "value": "${globus_client_secret}"
-    },
-    {
-      "name": "ORCID_MEMBER",
-      "value": "1"
-    },
-    {
-      "name": "GITHUB_CLIENT_ID",
-      "value": "${github_client_id}"
-    },
-    {
-      "name": "GITHUB_CLIENT_SECRET",
-      "value": "${github_client_secret}"
-    },
-    {
-      "name": "ORCID_TOKEN",
-      "value": "${orcid_token}"
-    },
-    {
-      "name": "MEMCACHE_SERVERS",
-      "value": "${memcache_servers}"
-    },
-    {
-      "name": "AWS_ACCESS_KEY_ID",
-      "value": "${access_key}"
-    },
-    {
-      "name": "AWS_SECRET_ACCESS_KEY",
-      "value": "${secret_key}"
-    },
-    {
-      "name": "AWS_REGION",
-      "value": "${region}"
-    },
-    {
-      "name": "NOTIFICATION_ACCESS_TOKEN",
-      "value": null
-    },
-    {
-      "name": "AWS_S3_BUCKET",
-      "value": "${s3_bucket}"
-    },
-    {
-      "name": "ES_HOST",
-      "value": "${es_host}"
-    },
-    {
-      "name": "ES_NAME",
-      "value": "${es_name}"
-    }
-  ]
-}]
+    "environment": [
+      {
+        "name": "PASSENGER_APP_ENV",
+        "value": "production"
+      },
+      {
+        "name": "RAILS_ENV",
+        "value": "production"
+      },
+      {
+        "name": "SITE_TITLE",
+        "value": "DataCite Profiles"
+      },
+      {
+        "name": "LOG_LEVEL",
+        "value": "warn"
+      },
+      {
+        "name": "REDIS_URL",
+        "value": "${redis_url}"
+      },
+      {
+        "name": "COMMONS_URL",
+        "value": "${commons_url}"
+      },
+      {
+        "name": "BRACCO_URL",
+        "value": "${bracco_url}"
+      },
+      {
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
+      },
+      {
+        "name": "JWT_PRIVATE_KEY",
+        "value": "${jwt_private_key}"
+      },
+      {
+        "name": "JWT_PUBLIC_KEY",
+        "value": "${jwt_public_key}"
+      },
+      {
+        "name": "ORCID_API_URL",
+        "value": "${orcid_api_url}"
+      },
+      {
+        "name": "ORCID_UPDATE_UUID",
+        "value": "${orcid_update_uuid}"
+      },
+      {
+        "name": "SEARCH_URL",
+        "value": "${search_url}"
+      },
+      {
+        "name": "BLOG_URL",
+        "value": "${blog_url}"
+      },
+      {
+        "name": "ORCID_URL",
+        "value": "${orcid_url}"
+      },
+      {
+        "name": "HOMEPAGE_URL",
+        "value": "${homepage_url}"
+      },
+      {
+        "name": "MYSQL_USER",
+        "value": "${mysql_user}"
+      },
+      {
+        "name": "MYSQL_PASSWORD",
+        "value": "${mysql_password}"
+      },
+      {
+        "name": "MYSQL_HOST",
+        "value": "${mysql_host}"
+      },
+      {
+        "name": "MYSQL_DATABASE",
+        "value": "${mysql_database}"
+      },
+      {
+        "name": "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "value": "${github_personal_access_token}"
+      },
+      {
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
+      },
+      {
+        "name": "API_URL",
+        "value": "${api_url}"
+      },
+      {
+        "name": "CDN_URL",
+        "value": "${cdn_url}"
+      },
+      {
+        "name": "SECRET_KEY_BASE",
+        "value": "${secret_key_base}"
+      },
+      {
+        "name": "CONCURRENCY",
+        "value": "25"
+      },
+      {
+        "name": "ORCID_CLIENT_ID",
+        "value": "${orcid_client_id}"
+      },
+      {
+        "name": "ORCID_CLIENT_SECRET",
+        "value": "${orcid_client_secret}"
+      },
+      {
+        "name": "GLOBUS_CLIENT_ID",
+        "value": "${globus_client_id}"
+      },
+      {
+        "name": "GLOBUS_CLIENT_SECRET",
+        "value": "${globus_client_secret}"
+      },
+      {
+        "name": "ORCID_MEMBER",
+        "value": "1"
+      },
+      {
+        "name": "GITHUB_CLIENT_ID",
+        "value": "${github_client_id}"
+      },
+      {
+        "name": "GITHUB_CLIENT_SECRET",
+        "value": "${github_client_secret}"
+      },
+      {
+        "name": "ORCID_TOKEN",
+        "value": "${orcid_token}"
+      },
+      {
+        "name": "MEMCACHE_SERVERS",
+        "value": "${memcache_servers}"
+      },
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "${region}"
+      },
+      {
+        "name": "NOTIFICATION_ACCESS_TOKEN",
+        "value": null
+      },
+      {
+        "name": "AWS_S3_BUCKET",
+        "value": "${s3_bucket}"
+      },
+      {
+        "name": "ES_HOST",
+        "value": "${es_host}"
+      },
+      {
+        "name": "ES_NAME",
+        "value": "${es_name}"
+      }
+    ]
+  }
+]
