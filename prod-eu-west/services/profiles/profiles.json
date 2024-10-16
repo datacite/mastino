@@ -2,8 +2,8 @@
   {
     "name": "profiles",
     "image": "ghcr.io/datacite/volpino:${version}",
-    "cpu": 512,
-    "memory": 2048,
+    "cpu": 2048,
+    "memory": 4096,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [
