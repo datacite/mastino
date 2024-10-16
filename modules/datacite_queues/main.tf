@@ -23,7 +23,7 @@ resource "aws_sqs_queue" "volpino" {
     maxReceiveCount     = 4
   })
   visibility_timeout_seconds = 120
-  tags = var.tags
+  tags                       = var.tags
 }
 
 resource "aws_sqs_queue" "lupo" {
@@ -33,7 +33,7 @@ resource "aws_sqs_queue" "lupo" {
     maxReceiveCount     = 4
   })
   visibility_timeout_seconds = 120
-  tags = var.tags
+  tags                       = var.tags
 }
 
 resource "aws_sqs_queue" "lupo_background" {
@@ -43,7 +43,7 @@ resource "aws_sqs_queue" "lupo_background" {
     maxReceiveCount     = 4
   })
   visibility_timeout_seconds = 3600
-  tags = var.tags
+  tags                       = var.tags
 }
 
 resource "aws_sqs_queue" "lupo_import" {
@@ -53,7 +53,7 @@ resource "aws_sqs_queue" "lupo_import" {
     maxReceiveCount     = 4
   })
   visibility_timeout_seconds = 3600
-  tags = var.tags
+  tags                       = var.tags
 }
 
 resource "aws_sqs_queue" "lupo_import_other_doi" {
@@ -63,7 +63,7 @@ resource "aws_sqs_queue" "lupo_import_other_doi" {
     maxReceiveCount     = 4
   })
   visibility_timeout_seconds = 3600
-  tags = var.tags
+  tags                       = var.tags
 }
 
 resource "aws_sqs_queue" "lupo_transfer" {
@@ -76,6 +76,17 @@ resource "aws_sqs_queue" "lupo_transfer" {
 
   tags = var.tags
 }
+
+resource "aws_sqs_queue" "lupo_doi_registration" {
+  name = "${var.environment}_lupo_doi_registration"
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
+    maxReceiveCount     = 4
+  })
+  visibility_timeout_seconds = 3600
+  tags                       = var.tags
+}
+
 
 resource "aws_sqs_queue" "levriero" {
   name = "${var.environment}_levriero"
@@ -118,7 +129,7 @@ resource "aws_sqs_queue" "usage" {
 }
 
 resource "aws_sqs_queue" "salesforce" {
-  name = "${var.environment}_salesforce"
+  name                       = "${var.environment}_salesforce"
   visibility_timeout_seconds = 120
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
