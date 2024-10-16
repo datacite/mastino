@@ -142,6 +142,7 @@ resource "aws_lb_target_group" "profiles" {
   target_type = "ip"
 
   health_check {
+    enabled  = false
     path     = "/heartbeat"
     interval = 120
     timeout  = 60
@@ -249,9 +250,9 @@ resource "aws_route53_record" "split-profiles" {
 resource "aws_service_discovery_service" "profiles" {
   name = "profiles"
 
-  health_check_custom_config {
-    failure_threshold = 3
-  }
+  # health_check_custom_config {
+  #   failure_threshold = 3
+  # }
 
   dns_config {
     namespace_id = var.namespace_id
