@@ -142,7 +142,6 @@ resource "aws_lb_target_group" "profiles" {
   target_type = "ip"
 
   health_check {
-    enabled  = false
     path     = "/heartbeat"
     interval = 120
     timeout  = 60
