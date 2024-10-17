@@ -82,3 +82,7 @@ variable "plugin_manifest_url" {}
 
 variable "api_aws_access_key" {}
 variable "api_aws_secret_key" {}
+
+variable "exlude_prefixes_from_data_import" {
+  default = ""
+}

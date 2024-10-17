@@ -180,6 +180,10 @@
       {
         "name": "SQS_PREFIX",
         "value": "stage"
+      },
+      {
+        "name": "EXCLUDE_PREFIXES_FROM_DATA_IMPORT",
+        "value": "${exclude_prefixes_from_data_import}"
       }
     ]
   }
