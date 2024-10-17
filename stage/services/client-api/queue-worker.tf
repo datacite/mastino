@@ -66,7 +66,7 @@ resource "aws_ecs_task_definition" "queue-worker-stage" {
       sha                               = var.lupo_tags["sha"]
       plugin_openapi_url                = var.plugin_openapi_url
       plugin_manifest_url               = var.plugin_manifest_url
-      exclude_prefixes_from_data_import = var.exlude_prefixes_from_data_import
+      exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
   })
 }
 
