@@ -156,6 +156,10 @@
       {
         "name": "PLUGIN_OPENAPI_URL",
         "value": "${plugin_openapi_url}"
+      },
+      {
+        "name": "EXCLUDE_PREFIXES_FROM_DATA_IMPORT",
+        "value": "${exclude_prefixes_from_data_import}"
       }
     ]
   }

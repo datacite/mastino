@@ -15,143 +15,147 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-         "awslogs-group" : "/ecs/member-api",
-         "awslogs-region": "eu-west-1",
-         "awslogs-stream-prefix": "ecs"
+        "awslogs-group": "/ecs/member-api",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
       }
     },
-    "environment" : [
+    "environment": [
       {
-        "name" : "PASSENGER_APP_ENV",
-        "value" : "production"
+        "name": "PASSENGER_APP_ENV",
+        "value": "production"
       },
       {
-        "name" : "RAILS_ENV",
-        "value" : "production"
+        "name": "RAILS_ENV",
+        "value": "production"
       },
       {
-        "name" : "SITE_TITLE",
-        "value" : "DataCite REST API"
+        "name": "SITE_TITLE",
+        "value": "DataCite REST API"
       },
       {
-        "name" : "LOG_LEVEL",
-        "value" : "info"
+        "name": "LOG_LEVEL",
+        "value": "info"
       },
       {
-        "name" : "JWT_PUBLIC_KEY",
-        "value" : "${jwt_public_key}"
+        "name": "JWT_PUBLIC_KEY",
+        "value": "${jwt_public_key}"
       },
       {
-        "name" : "JWT_PRIVATE_KEY",
-        "value" : "${jwt_private_key}"
+        "name": "JWT_PRIVATE_KEY",
+        "value": "${jwt_private_key}"
       },
       {
-        "name" : "API_URL",
-        "value" : "${api_url}"
+        "name": "API_URL",
+        "value": "${api_url}"
       },
       {
-        "name" : "RE3DATA_URL",
-        "value" : "${re3data_url}"
+        "name": "RE3DATA_URL",
+        "value": "${re3data_url}"
       },
       {
-        "name" : "SESSION_ENCRYPTED_COOKIE_SALT",
-        "value" : "${session_encrypted_cookie_salt}"
+        "name": "SESSION_ENCRYPTED_COOKIE_SALT",
+        "value": "${session_encrypted_cookie_salt}"
       },
       {
-        "name" : "HANDLE_URL",
-        "value" : "${handle_url}"
+        "name": "HANDLE_URL",
+        "value": "${handle_url}"
       },
       {
-        "name" : "HANDLE_USERNAME",
-        "value" : "${handle_username}"
+        "name": "HANDLE_USERNAME",
+        "value": "${handle_username}"
       },
       {
-        "name" : "HANDLE_PASSWORD",
-        "value" : "${handle_password}"
+        "name": "HANDLE_PASSWORD",
+        "value": "${handle_password}"
       },
       {
-        "name" : "ADMIN_USERNAME",
-        "value" : "${admin_username}"
+        "name": "ADMIN_USERNAME",
+        "value": "${admin_username}"
       },
       {
-        "name" : "ADMIN_PASSWORD",
-        "value" : "${admin_password}"
+        "name": "ADMIN_PASSWORD",
+        "value": "${admin_password}"
       },
       {
-        "name" : "MYSQL_USER",
-        "value" : "${mysql_user}"
+        "name": "MYSQL_USER",
+        "value": "${mysql_user}"
       },
       {
-        "name" : "MYSQL_PASSWORD",
-        "value" : "${mysql_password}"
+        "name": "MYSQL_PASSWORD",
+        "value": "${mysql_password}"
       },
       {
-        "name" : "MYSQL_HOST",
-        "value" : "${mysql_host}"
+        "name": "MYSQL_HOST",
+        "value": "${mysql_host}"
       },
       {
-        "name" : "MYSQL_DATABASE",
-        "value" : "${mysql_database}"
+        "name": "MYSQL_DATABASE",
+        "value": "${mysql_database}"
       },
       {
-        "name" : "SENTRY_DSN",
-        "value" : "${sentry_dsn}"
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
       },
       {
-        "name" : "PUBLIC_KEY",
-        "value" : "${public_key}"
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
       },
       {
-        "name" : "SERVERNAME",
-        "value" : "member-api.datacite.org"
+        "name": "SERVERNAME",
+        "value": "member-api.datacite.org"
       },
       {
-        "name" : "MEMCACHE_SERVERS",
-        "value" : "${memcache_servers}"
+        "name": "MEMCACHE_SERVERS",
+        "value": "${memcache_servers}"
       },
       {
-        "name" : "AWS_ACCESS_KEY_ID",
-        "value" : "${access_key}"
-      },
-            {
-        "name" : "AWS_SECRET_ACCESS_KEY",
-        "value" : "${secret_key}"
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
       },
       {
-        "name" : "AWS_REGION",
-        "value" : "${region}"
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
       },
       {
-        "name" : "AWS_S3_BUCKET",
-        "value" : "${s3_bucket}"
+        "name": "AWS_REGION",
+        "value": "${region}"
       },
       {
-        "name" : "ES_HOST",
-        "value" : "${es_host}"
+        "name": "AWS_S3_BUCKET",
+        "value": "${s3_bucket}"
       },
       {
-        "name" : "ES_NAME",
-        "value" : "${es_name}"
+        "name": "ES_HOST",
+        "value": "${es_host}"
       },
       {
-        "name" : "MAILGUN_API_KEY",
-        "value" : "${mailgun_api_key}"
+        "name": "ES_NAME",
+        "value": "${es_name}"
       },
       {
-        "name" : "BRACCO_URL",
-        "value" : "${bracco_url}"
+        "name": "MAILGUN_API_KEY",
+        "value": "${mailgun_api_key}"
       },
       {
-        "name" : "JWT_BLACKLISTED",
-        "value" : "${jwt_blacklisted}"
+        "name": "BRACCO_URL",
+        "value": "${bracco_url}"
       },
       {
-        "name" : "SLACK_WEBHOOK_URL",
-        "value" : "${slack_webhook_url}"
+        "name": "JWT_BLACKLISTED",
+        "value": "${jwt_blacklisted}"
+      },
+      {
+        "name": "SLACK_WEBHOOK_URL",
+        "value": "${slack_webhook_url}"
       },
       {
         "name": "DISABLE_QUEUE_WORKER",
         "value": "True"
+      },
+      {
+        "name": "EXCLUDE_PREFIXES_FROM_DATA_IMPORT",
+        "value": "${exclude_prefixes_from_data_import}"
       }
     ]
   }
