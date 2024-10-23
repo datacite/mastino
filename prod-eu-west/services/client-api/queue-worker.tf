@@ -107,7 +107,7 @@ resource "aws_appautoscaling_policy" "queue-worker_scale_up" {
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
-    cooldown                = 300
+    cooldown                = 60
     metric_aggregation_type = "Maximum"
 
     step_adjustment {
