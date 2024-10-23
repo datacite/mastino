@@ -150,7 +150,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
   // This is the value that will be compared to the threshold
   metric_query {
     id          = "total_visible"
-    expression  = "production_visible + production_background_visible"
+    expression  = "production_visible + production_background_visible + production_registration_visible"
     label       = "Total visible messages"
     return_data = "true"
   }
@@ -181,6 +181,21 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
 
       dimensions = {
         QueueName = "production_lupo_background"
+      }
+    }
+  }
+
+  metric_query {
+    id = "production_registration_visible"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "120"
+      stat        = "Maximum"
+
+      dimensions = {
+        QueueName = "production_lupo_doi_registration"
       }
     }
   }
@@ -202,7 +217,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
   // Custom query that sums the two other metrics
   metric_query {
     id          = "total_visible"
-    expression  = "production_visible + production_background_visible"
+    expression  = "production_visible + production_background_visible + production_registration_visible"
     label       = "Total visible messages"
     return_data = "true"
   }
@@ -233,6 +248,21 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
 
       dimensions = {
         QueueName = "production_lupo_background"
+      }
+    }
+  }
+
+  metric_query {
+    id = "production_registration_visible"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "120"
+      stat        = "Maximum"
+
+      dimensions = {
+        QueueName = "production_lupo_doi_registration"
       }
     }
   }
