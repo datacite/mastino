@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "3839f8b4f0966f4589eb05e835bb8444f7161470"
-  version = "add-middleware-error-handling"
+  sha = "586a0372e3467506a53aac716375803472513e0a"
+  version = "main"
 }
