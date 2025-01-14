@@ -1,7 +1,7 @@
 [
   {
     "name": "levriero-stage",
-    "image": "datacite/levriero:${version}",
+    "image": "ghcr.io/datacite/levriero:${version}",
     "cpu": 512,
     "memory": 2048,
     "essential": true,
