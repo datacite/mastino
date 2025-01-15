@@ -90,7 +90,7 @@ resource "aws_service_discovery_service" "datafiles-stage" {
   name = "datafiles.stage"
 
   health_check_custom_config {
-    failure_threshold = 3
+    failure_threshold = 1
   }
 
   dns_config {
