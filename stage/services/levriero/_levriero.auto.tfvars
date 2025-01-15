@@ -1,4 +1,4 @@
 levriero_tags = {
-  sha = "83e2ca1f77493b8557b958de08ea34b4fcfbd7b6"
+  sha = "a9150ba552c97dde6284d9cb46a3f954b05c4292"
   version = "add-events-to-shoryuken-config"
 }
