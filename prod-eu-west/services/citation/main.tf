@@ -16,8 +16,16 @@ resource "aws_lb_listener_rule" "citation" {
   priority     = 70
 
   action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.citation.arn
+    type = "redirect"
+
+    redirect {
+      host        = "citation.doi.org"
+      path        = "/#{path}"
+      query       = "#{query}"
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 
   condition {
