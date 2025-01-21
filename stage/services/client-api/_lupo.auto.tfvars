@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "dc4f30565c8f49ef66ee709fe4682ab195df9212"
-  version = "main"
+  sha = "b67a7eab1b8cb7802fef04a89ec82ed9bd84ad76"
+  version = "testing-doi-not-found-event-queue"
 }
