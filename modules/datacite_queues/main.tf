@@ -7,15 +7,6 @@ resource "aws_sqs_queue" "doi" {
   tags = var.tags
 }
 
-resource "aws_sqs_queue" "event" {
-  name = "${var.environment}_event"
-  redrive_policy = jsonencode({
-    deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
-    maxReceiveCount     = 4
-  })
-  tags = var.tags
-}
-
 resource "aws_sqs_queue" "volpino" {
   name = "${var.environment}_volpino"
   redrive_policy = jsonencode({
