@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "mds" {
-  name = "mds"
-  cluster = data.aws_ecs_cluster.default.id
-  launch_type = "FARGATE"
+  name            = "mds"
+  cluster         = data.aws_ecs_cluster.default.id
+  launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.mds.arn
 
   # Create service with 2 instances to start
@@ -14,7 +14,7 @@ resource "aws_ecs_service" "mds" {
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
-    subnets         = [
+    subnets = [
       data.aws_subnet.datacite-private.id,
       data.aws_subnet.datacite-alt.id
     ]
@@ -32,8 +32,8 @@ resource "aws_ecs_service" "mds" {
 }
 
 resource "aws_appautoscaling_target" "mds" {
-  max_capacity       = 8
-  min_capacity       = 4
+  max_capacity       = 12
+  min_capacity       = 6
   resource_id        = "service/default/${aws_ecs_service.mds.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -158,26 +158,26 @@ resource "aws_cloudwatch_log_group" "mds" {
 }
 
 resource "aws_ecs_task_definition" "mds" {
-  family = "mds"
-  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
-  network_mode = "awsvpc"
+  family                   = "mds"
+  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
+  network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "256"
-  memory = "512"
+  cpu                      = "256"
+  memory                   = "512"
 
-  container_definitions =  data.template_file.mds_task.rendered
+  container_definitions = data.template_file.mds_task.rendered
 }
 
 resource "aws_lb_target_group" "mds" {
-  name     = "mds"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name        = "mds"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {
-    path = "/heartbeat"
-    timeout = 30
+    path     = "/heartbeat"
+    timeout  = 30
     interval = 60
   }
 }
@@ -199,17 +199,17 @@ resource "aws_lb_listener_rule" "mds" {
 }
 
 resource "aws_route53_record" "mds" {
-   zone_id = data.aws_route53_zone.production.zone_id
-   name = "mds.datacite.org"
-   type = "CNAME"
-   ttl = var.ttl
-   records = [aws_globalaccelerator_accelerator.mds.dns_name]
+  zone_id = data.aws_route53_zone.production.zone_id
+  name    = "mds.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = [aws_globalaccelerator_accelerator.mds.dns_name]
 }
 
 resource "aws_route53_record" "split-mds" {
-   zone_id = data.aws_route53_zone.internal.zone_id
-   name = "mds.datacite.org"
-   type = "CNAME"
-   ttl = var.ttl
-   records = [data.aws_lb.default.dns_name]
+  zone_id = data.aws_route53_zone.internal.zone_id
+  name    = "mds.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = [data.aws_lb.default.dns_name]
 }
