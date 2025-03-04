@@ -4,26 +4,26 @@
 #   schedule_expression = "cron(50 8 ? * SUN *)"
 # }
 
-resource "aws_cloudwatch_event_target" "sitemaps-generator-stage" {
-  target_id = "sitemaps-generator-stage"
-  arn       = data.aws_ecs_cluster.stage.arn
-  rule      = aws_cloudwatch_event_rule.sitemaps-generator-stage.name
-  role_arn  = data.aws_iam_role.ecs_events-stage.arn
+# resource "aws_cloudwatch_event_target" "sitemaps-generator-stage" {
+#   target_id = "sitemaps-generator-stage"
+#   arn       = data.aws_ecs_cluster.stage.arn
+#   rule      = aws_cloudwatch_event_rule.sitemaps-generator-stage.name
+#   role_arn  = data.aws_iam_role.ecs_events-stage.arn
 
-  ecs_target {
-    task_count          = 1
-    launch_type         = "FARGATE"
-    task_definition_arn = aws_ecs_task_definition.sitemaps-generator-stage.arn
+#   ecs_target {
+#     task_count          = 1
+#     launch_type         = "FARGATE"
+#     task_definition_arn = aws_ecs_task_definition.sitemaps-generator-stage.arn
 
-    network_configuration {
-      security_groups = [data.aws_security_group.datacite-private.id]
-      subnets = [
-        data.aws_subnet.datacite-private.id,
-        data.aws_subnet.datacite-alt.id
-      ]
-    }
-  }
-}
+#     network_configuration {
+#       security_groups = [data.aws_security_group.datacite-private.id]
+#       subnets = [
+#         data.aws_subnet.datacite-private.id,
+#         data.aws_subnet.datacite-alt.id
+#       ]
+#     }
+#   }
+# }
 
 resource "aws_s3_bucket" "akita-stage" {
   bucket = "commons.stage.datacite.org"

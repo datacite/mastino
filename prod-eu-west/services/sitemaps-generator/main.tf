@@ -4,26 +4,26 @@
 #   schedule_expression = "cron(50 9 ? * MON *)"
 # }
 
-resource "aws_cloudwatch_event_target" "sitemaps-generator" {
-  target_id = "sitemaps-generator"
-  arn       = data.aws_ecs_cluster.default.arn
-  rule      = aws_cloudwatch_event_rule.sitemaps-generator.name
-  role_arn  = data.aws_iam_role.ecs_events.arn
+# resource "aws_cloudwatch_event_target" "sitemaps-generator" {
+#   target_id = "sitemaps-generator"
+#   arn       = data.aws_ecs_cluster.default.arn
+#   rule      = aws_cloudwatch_event_rule.sitemaps-generator.name
+#   role_arn  = data.aws_iam_role.ecs_events.arn
 
-  ecs_target {
-    task_count          = 1
-    launch_type         = "FARGATE"
-    task_definition_arn = aws_ecs_task_definition.sitemaps-generator.arn
+#   ecs_target {
+#     task_count          = 1
+#     launch_type         = "FARGATE"
+#     task_definition_arn = aws_ecs_task_definition.sitemaps-generator.arn
 
-    network_configuration {
-      security_groups = [data.aws_security_group.datacite-private.id]
-      subnets = [
-        data.aws_subnet.datacite-private.id,
-        data.aws_subnet.datacite-alt.id
-      ]
-    }
-  }
-}
+#     network_configuration {
+#       security_groups = [data.aws_security_group.datacite-private.id]
+#       subnets = [
+#         data.aws_subnet.datacite-private.id,
+#         data.aws_subnet.datacite-alt.id
+#       ]
+#     }
+#   }
+# }
 
 resource "aws_s3_bucket" "akita" {
   bucket = "commons.datacite.org"
