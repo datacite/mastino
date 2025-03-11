@@ -39,44 +39,7 @@ resource "aws_ecs_task_definition" "events-stage" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = "512"
   memory                   = "2048"
-  container_definitions = templatefile("events.json",
-    {
-      re3data_url                       = var.re3data_url
-      bracco_url                        = var.bracco_url
-      public_key                        = var.public_key
-      jwt_public_key                    = var.jwt_public_key
-      jwt_private_key                   = var.jwt_private_key
-      session_encrypted_cookie_salt     = var.session_encrypted_cookie_salt
-      mysql_user                        = var.mysql_user
-      mysql_password                    = var.mysql_password
-      mysql_database                    = var.mysql_database
-      mysql_host                        = var.mysql_host
-      es_name                           = var.es_name
-      es_host                           = var.es_host
-      es_scheme                         = var.es_scheme
-      es_port                           = var.es_port
-      es_prefix                         = var.es_prefix
-      elastic_password                  = var.elastic_password
-      handle_url                        = var.handle_url
-      handle_username                   = var.handle_username
-      handle_password                   = var.handle_password
-      admin_username                    = var.admin_username
-      admin_password                    = var.admin_password
-      access_key                        = var.api_aws_access_key
-      secret_key                        = var.api_aws_secret_key
-      region                            = var.region
-      s3_bucket                         = var.s3_bucket
-      sentry_dsn                        = var.sentry_dsn
-      mailgun_api_key                   = var.mailgun_api_key
-      memcache_servers                  = var.memcache_servers
-      jwt_blacklisted                   = var.jwt_blacklisted
-      slack_webhook_url                 = var.slack_webhook_url
-      version                           = var.events_tags["version"]
-      sha                               = var.events_tags["sha"]
-      plugin_openapi_url                = var.plugin_openapi_url
-      plugin_manifest_url               = var.plugin_manifest_url
-      exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
-  })
+  container_definitions    = data.template_file.events_task.rendered
 }
 
 resource "aws_lb_target_group" "events-stage" {
