@@ -50,10 +50,6 @@
         "value": "${jwt_private_key}"
       },
       {
-        "name": "RE3DATA_URL",
-        "value": "${re3data_url}"
-      },
-      {
         "name": "SESSION_ENCRYPTED_COOKIE_SALT",
         "value": "${session_encrypted_cookie_salt}"
       },
@@ -184,10 +180,6 @@
       {
         "name": "SQS_PREFIX",
         "value": "stage"
-      },
-      {
-        "name": "EXCLUDE_PREFIXES_FROM_DATA_IMPORT",
-        "value": "${exclude_prefixes_from_data_import}"
       }
     ]
   }
