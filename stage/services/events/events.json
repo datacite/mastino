@@ -30,48 +30,12 @@
         "value": "stage"
       },
       {
-        "name": "SITE_TITLE",
-        "value": "Events REST API"
-      },
-      {
         "name": "LOG_LEVEL",
         "value": "info"
       },
       {
         "name": "PUBLIC_KEY",
         "value": "${public_key}"
-      },
-      {
-        "name": "JWT_PUBLIC_KEY",
-        "value": "${jwt_public_key}"
-      },
-      {
-        "name": "JWT_PRIVATE_KEY",
-        "value": "${jwt_private_key}"
-      },
-      {
-        "name": "SESSION_ENCRYPTED_COOKIE_SALT",
-        "value": "${session_encrypted_cookie_salt}"
-      },
-      {
-        "name": "HANDLE_URL",
-        "value": "${handle_url}"
-      },
-      {
-        "name": "HANDLE_USERNAME",
-        "value": "${handle_username}"
-      },
-      {
-        "name": "HANDLE_PASSWORD",
-        "value": "${handle_password}"
-      },
-      {
-        "name": "ADMIN_USERNAME",
-        "value": "${admin_username}"
-      },
-      {
-        "name": "ADMIN_PASSWORD",
-        "value": "${admin_password}"
       },
       {
         "name": "MYSQL_USER",
@@ -94,14 +58,6 @@
         "value": "${sentry_dsn}"
       },
       {
-        "name": "SERVERNAME",
-        "value": "events.stage.datacite.org"
-      },
-      {
-        "name": "MEMCACHE_SERVERS",
-        "value": "${memcache_servers}"
-      },
-      {
         "name": "AWS_ACCESS_KEY_ID",
         "value": "${access_key}"
       },
@@ -112,10 +68,6 @@
       {
         "name": "AWS_REGION",
         "value": "${region}"
-      },
-      {
-        "name": "AWS_S3_BUCKET",
-        "value": "${s3_bucket}"
       },
       {
         "name": "ES_HOST",
@@ -142,40 +94,12 @@
         "value": "${elastic_password}"
       },
       {
-        "name": "MAILGUN_API_KEY",
-        "value": "${mailgun_api_key}"
-      },
-      {
-        "name": "BRACCO_URL",
-        "value": "${bracco_url}"
-      },
-      {
-        "name": "SLACK_WEBHOOK_URL",
-        "value": "${slack_webhook_url}"
-      },
-      {
-        "name": "JWT_BLACKLISTED",
-        "value": "${jwt_blacklisted}"
-      },
-      {
         "name": "GITHUB_VERSION",
         "value": "${version}"
       },
       {
         "name": "GITHUB_SHA",
         "value": "${sha}"
-      },
-      {
-        "name": "PLUGIN_MANIFEST_URL",
-        "value": "${plugin_manifest_url}"
-      },
-      {
-        "name": "PLUGIN_OPENAPI_URL",
-        "value": "${plugin_openapi_url}"
-      },
-      {
-        "name": "DISABLE_QUEUE_WORKER",
-        "value": "True"
       },
       {
         "name": "SQS_PREFIX",
