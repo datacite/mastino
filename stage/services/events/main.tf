@@ -39,7 +39,24 @@ resource "aws_ecs_task_definition" "events-stage" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = "512"
   memory                   = "2048"
-  container_definitions    = data.template_file.events_task.rendered
+  container_definitions = templatefile("events.json",
+    {
+      public_key       = var.public_key
+      mysql_user       = var.mysql_user
+      mysql_password   = var.mysql_password
+      mysql_database   = var.mysql_database
+      mysql_host       = var.mysql_host
+      es_name          = var.es_name
+      es_host          = var.es_host
+      es_scheme        = var.es_scheme
+      es_port          = var.es_port
+      es_prefix        = var.es_prefix
+      elastic_password = var.elastic_password
+      region           = var.region
+      sentry_dsn       = var.sentry_dsn
+      version          = var.lupo_tags["version"]
+      sha              = var.lupo_tags["sha"]
+  })
 }
 
 resource "aws_lb_target_group" "events-stage" {
