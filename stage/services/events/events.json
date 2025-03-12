@@ -1,0 +1,110 @@
+[
+  {
+    "name": "events-stage",
+    "image": "ghcr.io/datacite/events:${version}",
+    "cpu": 512,
+    "memory": 2048,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/events-stage",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment": [
+      {
+        "name": "PASSENGER_APP_ENV",
+        "value": "stage"
+      },
+      {
+        "name": "RAILS_ENV",
+        "value": "stage"
+      },
+      {
+        "name": "LOG_LEVEL",
+        "value": "info"
+      },
+      {
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
+      },
+      {
+        "name": "MYSQL_USER",
+        "value": "${mysql_user}"
+      },
+      {
+        "name": "MYSQL_PASSWORD",
+        "value": "${mysql_password}"
+      },
+      {
+        "name": "MYSQL_HOST",
+        "value": "${mysql_host}"
+      },
+      {
+        "name": "MYSQL_DATABASE",
+        "value": "${mysql_database}"
+      },
+      {
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
+      },
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "value": "${access_key}"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "value": "${secret_key}"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "${region}"
+      },
+      {
+        "name": "ES_HOST",
+        "value": "${es_host}"
+      },
+      {
+        "name": "ES_SCHEME",
+        "value": "${es_scheme}"
+      },
+      {
+        "name": "ES_PORT",
+        "value": "${es_port}"
+      },
+      {
+        "name": "ES_NAME",
+        "value": "${es_name}"
+      },
+      {
+        "name": "ES_PREFIX",
+        "value": "${es_prefix}"
+      },
+      {
+        "name": "ELASTIC_PASSWORD",
+        "value": "${elastic_password}"
+      },
+      {
+        "name": "GITHUB_VERSION",
+        "value": "${version}"
+      },
+      {
+        "name": "GITHUB_SHA",
+        "value": "${sha}"
+      },
+      {
+        "name": "SQS_PREFIX",
+        "value": "stage"
+      }
+    ]
+  }
+]
