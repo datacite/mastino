@@ -9,7 +9,7 @@ data "aws_route53_zone" "production" {
 }
 
 data "aws_route53_zone" "internal" {
-  name = "datacite.org"
+  name         = "datacite.org"
   private_zone = true
 }
 
@@ -43,5 +43,5 @@ data "aws_lb" "stage" {
 
 data "aws_lb_listener" "stage" {
   load_balancer_arn = data.aws_lb.stage.arn
-  port = 443
+  port              = 443
 }
