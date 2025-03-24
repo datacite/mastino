@@ -53,8 +53,8 @@ resource "aws_ecs_task_definition" "events-stage" {
       elastic_password = var.elastic_password
       region           = var.region
       sentry_dsn       = var.sentry_dsn
-      version          = var.lupo_tags["version"]
-      sha              = var.lupo_tags["sha"]
+      version          = var.events_tags["version"]
+      sha              = var.events_tags["sha"]
   })
 }
 
