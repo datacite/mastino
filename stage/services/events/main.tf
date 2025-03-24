@@ -39,7 +39,7 @@ resource "aws_ecs_task_definition" "events-stage" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = "512"
   memory                   = "2048"
-  container_definitions = templatefile("client-api.json",
+  container_definitions = templatefile("events.json",
     {
       mysql_user       = var.mysql_user
       mysql_password   = var.mysql_password
