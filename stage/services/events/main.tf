@@ -51,8 +51,6 @@ resource "aws_ecs_task_definition" "events-stage" {
       es_port          = var.es_port
       es_prefix        = var.es_prefix
       elastic_password = var.elastic_password
-      access_key       = var.api_aws_access_key
-      secret_key       = var.api_aws_secret_key
       region           = var.region
       sentry_dsn       = var.sentry_dsn
       version          = var.lupo_tags["version"]
