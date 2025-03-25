@@ -69,5 +69,8 @@ variable "crossref_other_source_token" {}
 variable "crossref_funder_source_token" {}
 variable "crossref_import_source_token" {}
 variable "orcid_affiliation_source_token" {}
+variable "zbmath_related_source_token" {}
+variable "zbmath_author_source_token" {}
+variable "zbmath_identifier_source_token" {}
 
 variable "namespace_id" {}

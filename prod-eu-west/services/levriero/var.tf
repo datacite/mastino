@@ -69,6 +69,9 @@ variable "crossref_other_source_token" {}
 variable "datacite_resolution_source_token" {}
 variable "datacite_usage_source_token" {}
 variable "orcid_affiliation_source_token" {}
+variable "zbmath_related_source_token" {}
+variable "zbmath_author_source_token" {}
+variable "zbmath_identifier_source_token" {}
 
 variable "security_group_id" {}
 variable "subnet_datacite-private_id" {}

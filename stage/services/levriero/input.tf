@@ -85,6 +85,9 @@ data "template_file" "levriero_task" {
     crossref_other_source_token = var.crossref_other_source_token
     crossref_funder_source_token = var.crossref_funder_source_token
     crossref_import_source_token = var.crossref_import_source_token
+    zbmath_related_source_token = var.zbmath_related_source_token
+    zbmath_author_source_token = var.zbmath_author_source_token
+    zbmath_identifier_source_token = var.zbmath_identifier_source_token
     version = var.levriero_tags["version"]
     sha = var.levriero_tags["sha"]
   }
