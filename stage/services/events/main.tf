@@ -96,7 +96,7 @@ resource "aws_service_discovery_service" "events-stage" {
   name = "events.stage"
 
   health_check_custom_config {
-    failure_threshold = 3
+    failure_threshold = 1
   }
 
   dns_config {
