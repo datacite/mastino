@@ -186,6 +186,10 @@
         "value": "${zbmath_identifier_source_token}"
       },
       {
+        "name": "ARXIV_PREFIX",
+        "value": "${arxiv_prefix}"
+      },
+      {
         "name": "SLACK_WEBHOOK_URL",
         "value": "${slack_webhook_url}"
       },

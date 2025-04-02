@@ -88,6 +88,7 @@ data "template_file" "levriero_task" {
     zbmath_related_source_token = var.zbmath_related_source_token
     zbmath_author_source_token = var.zbmath_author_source_token
     zbmath_identifier_source_token = var.zbmath_identifier_source_token
+    arxiv_prefix = var.arxiv_prefix
     version = var.levriero_tags["version"]
     sha = var.levriero_tags["sha"]
   }
