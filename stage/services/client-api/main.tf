@@ -73,8 +73,6 @@ resource "aws_ecs_task_definition" "client-api-stage" {
       slack_webhook_url                 = var.slack_webhook_url
       version                           = var.lupo_tags["version"]
       sha                               = var.lupo_tags["sha"]
-      plugin_openapi_url                = var.plugin_openapi_url
-      plugin_manifest_url               = var.plugin_manifest_url
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
   })
 }
