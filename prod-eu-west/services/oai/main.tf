@@ -1,7 +1,7 @@
 resource "aws_ecs_service" "oai" {
-  name = "oai"
-  cluster = data.aws_ecs_cluster.default.id
-  launch_type = "FARGATE"
+  name            = "oai"
+  cluster         = data.aws_ecs_cluster.default.id
+  launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.oai.arn
 
   # Create service with 2 instances to start
@@ -14,7 +14,7 @@ resource "aws_ecs_service" "oai" {
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
-    subnets         = [
+    subnets = [
       data.aws_subnet.datacite-private.id,
       data.aws_subnet.datacite-alt.id
     ]
@@ -33,7 +33,7 @@ resource "aws_ecs_service" "oai" {
 
 resource "aws_appautoscaling_target" "oai" {
   max_capacity       = 10
-  min_capacity       = 2
+  min_capacity       = 4
   resource_id        = "service/default/${aws_ecs_service.oai.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -120,23 +120,23 @@ resource "aws_cloudwatch_log_group" "oai" {
 }
 
 resource "aws_ecs_task_definition" "oai" {
-  family = "oai"
-  execution_role_arn = data.aws_iam_role.ecs_task_execution_role.arn
-  network_mode = "awsvpc"
+  family                   = "oai"
+  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
+  network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu = "512"
-  memory = "1024"
+  cpu                      = "512"
+  memory                   = "1024"
 
-  container_definitions =  data.template_file.oai_task.rendered
+  container_definitions = data.template_file.oai_task.rendered
 }
 
 resource "aws_lb_target_group" "oai" {
-  name     = "oai"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name        = "oai"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
   target_type = "ip"
-  slow_start = 240
+  slow_start  = 240
 
   health_check {
     path = "/heartbeat"
@@ -160,17 +160,17 @@ resource "aws_lb_listener_rule" "oai" {
 }
 
 resource "aws_route53_record" "oai" {
-    zone_id = data.aws_route53_zone.production.zone_id
-    name = "oai.datacite.org"
-    type = "CNAME"
-    ttl = var.ttl
-    records = [data.aws_lb.default.dns_name]
+  zone_id = data.aws_route53_zone.production.zone_id
+  name    = "oai.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = [data.aws_lb.default.dns_name]
 }
 
 resource "aws_route53_record" "split-oai" {
-    zone_id = data.aws_route53_zone.internal.zone_id
-    name = "oai.datacite.org"
-    type = "CNAME"
-    ttl = var.ttl
-    records = [data.aws_lb.default.dns_name]
+  zone_id = data.aws_route53_zone.internal.zone_id
+  name    = "oai.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = [data.aws_lb.default.dns_name]
 }
