@@ -155,14 +155,6 @@
         "value": "${slack_webhook_url}"
       },
       {
-        "name": "PLUGIN_MANIFEST_URL",
-        "value": "${plugin_manifest_url}"
-      },
-      {
-        "name": "PLUGIN_OPENAPI_URL",
-        "value": "${plugin_openapi_url}"
-      },
-      {
         "name": "DISABLE_QUEUE_WORKER",
         "value": "True"
       },
