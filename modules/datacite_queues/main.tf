@@ -150,6 +150,16 @@ resource "aws_sqs_queue" "events" {
   tags = var.tags
 }
 
+resource "aws_sqs_queue" "events_index" {
+  name = "${var.environment}_events_index"
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
+    maxReceiveCount     = 4
+  })
+
+  tags = var.tags
+}
+
 // Shared dead letter queue
 resource "aws_sqs_queue" "dead-letter" {
   name = "${var.environment}_dead-letter"
