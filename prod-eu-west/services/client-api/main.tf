@@ -233,8 +233,6 @@ resource "aws_ecs_task_definition" "client-api" {
       slack_webhook_url                 = var.slack_webhook_url
       jwt_blacklisted                   = var.jwt_blacklisted
       version                           = var.lupo_tags["version"]
-      plugin_openapi_url                = var.plugin_openapi_url
-      plugin_manifest_url               = var.plugin_manifest_url
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
   })
 }

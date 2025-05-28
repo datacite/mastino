@@ -72,8 +72,6 @@ variable "admin_password" {}
 
 variable "namespace_id" {}
 variable "jwt_blacklisted" {}
-variable "plugin_openapi_url" {}
-variable "plugin_manifest_url" {}
 
 variable "api_aws_access_key" {}
 variable "api_aws_secret_key" {}
