@@ -1,4 +1,4 @@
 events_tags = {
-  sha = "754f4e418e8fa2d8072fb853ee44a0f36f19bc81"
+  sha = "e531b98692f9972f053552270dbb05f0f414a338"
   version = "investigate-logging"
 }
