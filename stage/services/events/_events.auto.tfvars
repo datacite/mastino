@@ -1,4 +1,4 @@
 events_tags = {
-  sha = "94616edac9d0b10c68888086d9345c0d025772f2"
+  sha = "066018d32717838ad71b45911a6c9277025e5918"
   version = "test-worker-logging"
 }
