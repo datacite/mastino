@@ -1,4 +1,4 @@
 events_tags = {
-  sha = "64da8e8f70747db8febcc6ebe67ac73cd5a0fa94"
+  sha = "2d87ecf57103a0fdd0c5bb763fd6ee64e1d9bb94"
   version = "main"
 }
