@@ -79,20 +79,8 @@
         "value": "${es_host}"
       },
       {
-        "name": "ES_SCHEME",
-        "value": "${es_scheme}"
-      },
-      {
-        "name": "ES_PORT",
-        "value": "${es_port}"
-      },
-      {
         "name": "ES_NAME",
         "value": "${es_name}"
-      },
-      {
-        "name": "ES_PREFIX",
-        "value": "${es_prefix}"
       },
       {
         "name": "ELASTIC_PASSWORD",
