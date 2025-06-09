@@ -77,7 +77,7 @@ resource "aws_lb_target_group" "events" {
 
 resource "aws_lb_listener_rule" "events" {
   listener_arn = data.aws_lb_listener.default.arn
-  priority     = 101
+  priority     = 151
 
   action {
     type             = "forward"
