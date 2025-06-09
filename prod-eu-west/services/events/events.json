@@ -83,10 +83,6 @@
         "value": "${es_name}"
       },
       {
-        "name": "ELASTIC_PASSWORD",
-        "value": "${elastic_password}"
-      },
-      {
         "name": "GITHUB_VERSION",
         "value": "${version}"
       },
