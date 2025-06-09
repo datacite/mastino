@@ -69,9 +69,7 @@ resource "aws_lb_target_group" "events" {
   target_type = "ip"
 
   health_check {
-    path     = "/heartbeat"
-    interval = 300
-    timeout  = 120
+    path = "/heartbeat"
   }
 }
 
@@ -96,7 +94,7 @@ resource "aws_service_discovery_service" "events" {
   name = "events"
 
   health_check_custom_config {
-    failure_threshold = 3
+    failure_threshold = 1
   }
 
   dns_config {
