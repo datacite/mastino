@@ -69,7 +69,9 @@ resource "aws_lb_target_group" "events" {
   target_type = "ip"
 
   health_check {
-    path = "/heartbeat"
+    path     = "/heartbeat"
+    timeout  = 30
+    interval = 60
   }
 }
 
