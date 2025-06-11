@@ -2,7 +2,7 @@
   {
     "name": "events",
     "image": "ghcr.io/datacite/events:${version}",
-    "cpu": 1024,
+    "cpu": 2048,
     "memory": 2048,
     "essential": true,
     "networkMode": "awsvpc",
