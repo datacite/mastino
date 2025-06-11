@@ -3,7 +3,7 @@
     "name": "events",
     "image": "ghcr.io/datacite/events:${version}",
     "cpu": 2048,
-    "memory": 2048,
+    "memory": 4096,
     "essential": true,
     "networkMode": "awsvpc",
     "portMappings": [

@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "events" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "2048"
-  memory                   = "2048"
+  memory                   = "4096"
   container_definitions = templatefile("events.json",
     {
       access_key     = var.access_key
