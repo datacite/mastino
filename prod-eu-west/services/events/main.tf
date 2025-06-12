@@ -1,3 +1,7 @@
+module "datacite_queues" {
+  source = "../../modules/datacite_queues"
+}
+
 resource "aws_ecs_service" "events" {
   name            = "events"
   cluster         = data.aws_ecs_cluster.default.id
@@ -52,7 +56,7 @@ resource "aws_appautoscaling_policy" "events_sqs" {
     target_value = 300000
     predefined_metric_specification {
       predefined_metric_type = "SQSQueueMessagesVisible"
-      resource_label         = aws_sqs_queue.events.name
+      resource_label         = var.events_queue_name
     }
     scale_in_cooldown  = 60
     scale_out_cooldown = 60

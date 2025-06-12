@@ -44,3 +44,8 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+
+variable "events_queue_name" {
+  description = "The name of the events SQS queue"
+  type        = string
+}
