@@ -47,8 +47,8 @@ resource "aws_cloudwatch_metric_alarm" "events_queue_depth_high" {
   metric_name         = "ApproximateNumberOfMessagesVisible"
   namespace           = "AWS/SQS"
   period              = 60
-  statistic           = "Average"
-  threshold           = 500000
+  statistic           = "Maximum"
+  threshold           = 1000000
   alarm_description   = "Triggers scaling when SQS queue depth is high"
   dimensions = {
     QueueName = data.aws_sqs_queue.events.name
@@ -65,7 +65,7 @@ resource "aws_appautoscaling_policy" "events_sqs" {
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
-    cooldown                = 60
+    cooldown                = 300
     metric_aggregation_type = "Average"
 
     step_adjustment {
