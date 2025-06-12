@@ -35,7 +35,7 @@ resource "aws_ecs_service" "events" {
 resource "aws_appautoscaling_target" "events" {
   max_capacity       = 2
   min_capacity       = 1
-  resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.events.name}"
+  resource_id        = "service/default/${aws_ecs_service.events.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 }
