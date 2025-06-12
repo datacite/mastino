@@ -1,7 +1,3 @@
-data "aws_sqs_queue" "events" {
-  name = "production_events"
-}
-
 resource "aws_ecs_service" "events" {
   name            = "events"
   cluster         = data.aws_ecs_cluster.default.id
