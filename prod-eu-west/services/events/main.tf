@@ -1,7 +1,3 @@
-module "datacite_queues" {
-  source = "../../../modules/datacite_queues"
-}
-
 resource "aws_ecs_service" "events" {
   name            = "events"
   cluster         = data.aws_ecs_cluster.default.id
@@ -44,22 +40,38 @@ resource "aws_appautoscaling_target" "events" {
   service_namespace  = "ecs"
 }
 
-# 4. ECS Service Auto Scaling Policy based on SQS queue
+resource "aws_cloudwatch_metric_alarm" "events_queue_depth_high" {
+  alarm_name          = "production-events-queue-depth-high"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  namespace           = "AWS/SQS"
+  period              = 60
+  statistic           = "Average"
+  threshold           = 500000
+  alarm_description   = "Triggers scaling when SQS queue depth is high"
+  dimensions = {
+    QueueName = data.aws_sqs_queue.events.name
+  }
+  alarm_actions = [aws_appautoscaling_policy.events_sqs.arn]
+}
+
 resource "aws_appautoscaling_policy" "events_sqs" {
   name               = "scale-events-on-events-queue"
-  policy_type        = "TargetTrackingScaling"
+  policy_type        = "StepScaling"
   resource_id        = aws_appautoscaling_target.events.resource_id
   scalable_dimension = aws_appautoscaling_target.events.scalable_dimension
   service_namespace  = aws_appautoscaling_target.events.service_namespace
 
-  target_tracking_scaling_policy_configuration {
-    target_value = 300000
-    predefined_metric_specification {
-      predefined_metric_type = "SQSQueueMessagesVisible"
-      resource_label         = module.datacite_queues.events_queue_name
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 60
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      scaling_adjustment          = 1
+      metric_interval_lower_bound = 0
     }
-    scale_in_cooldown  = 60
-    scale_out_cooldown = 60
   }
 }
 
