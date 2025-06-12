@@ -1,7 +1,3 @@
-module "datacite_queues" {
-  source = "../../modules/datacite_queues"
-}
-
 resource "aws_ecs_service" "events" {
   name            = "events"
   cluster         = data.aws_ecs_cluster.default.id
