@@ -1,3 +1,7 @@
+module "datacite_queues" {
+  source = "../../../modules/datacite_queues"
+}
+
 resource "aws_ecs_service" "events" {
   name            = "events"
   cluster         = data.aws_ecs_cluster.default.id
@@ -30,6 +34,33 @@ resource "aws_ecs_service" "events" {
   depends_on = [
     data.aws_lb_listener.default,
   ]
+}
+
+resource "aws_appautoscaling_target" "events" {
+  max_capacity       = 2
+  min_capacity       = 1
+  resource_id        = "service/default/${aws_ecs_service.events.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+
+# 4. ECS Service Auto Scaling Policy based on SQS queue
+resource "aws_appautoscaling_policy" "events_sqs" {
+  name               = "scale-events-on-events-queue"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.events.resource_id
+  scalable_dimension = aws_appautoscaling_target.events.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.events.service_namespace
+
+  target_tracking_scaling_policy_configuration {
+    target_value = 300000
+    predefined_metric_specification {
+      predefined_metric_type = "SQSQueueMessagesVisible"
+      resource_label         = module.datacite_queues.events_queue_name
+    }
+    scale_in_cooldown  = 60
+    scale_out_cooldown = 60
+  }
 }
 
 resource "aws_cloudwatch_log_group" "events" {
