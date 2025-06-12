@@ -49,7 +49,7 @@ resource "aws_appautoscaling_policy" "events_sqs" {
   service_namespace  = aws_appautoscaling_target.events.service_namespace
 
   target_tracking_scaling_policy_configuration {
-    target_value = 100000
+    target_value = 300000
     predefined_metric_specification {
       predefined_metric_type = "SQSQueueMessagesVisible"
       resource_label         = aws_sqs_queue.events.name
