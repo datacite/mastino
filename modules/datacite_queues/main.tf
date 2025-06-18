@@ -5,6 +5,9 @@ resource "aws_sqs_queue" "doi" {
     maxReceiveCount     = 4
   })
   tags = var.tags
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "volpino" {
@@ -15,6 +18,10 @@ resource "aws_sqs_queue" "volpino" {
   })
   visibility_timeout_seconds = 120
   tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "lupo" {
@@ -25,6 +32,10 @@ resource "aws_sqs_queue" "lupo" {
   })
   visibility_timeout_seconds = 120
   tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "lupo_background" {
@@ -35,6 +46,10 @@ resource "aws_sqs_queue" "lupo_background" {
   })
   visibility_timeout_seconds = 3600
   tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "lupo_import" {
@@ -45,6 +60,10 @@ resource "aws_sqs_queue" "lupo_import" {
   })
   visibility_timeout_seconds = 3600
   tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "lupo_import_other_doi" {
@@ -55,6 +74,10 @@ resource "aws_sqs_queue" "lupo_import_other_doi" {
   })
   visibility_timeout_seconds = 3600
   tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "lupo_transfer" {
@@ -66,6 +89,10 @@ resource "aws_sqs_queue" "lupo_transfer" {
   visibility_timeout_seconds = 3600
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "lupo_doi_registration" {
@@ -76,6 +103,10 @@ resource "aws_sqs_queue" "lupo_doi_registration" {
   })
   visibility_timeout_seconds = 3600
   tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 
@@ -87,6 +118,10 @@ resource "aws_sqs_queue" "levriero" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "levriero_usage" {
@@ -97,6 +132,10 @@ resource "aws_sqs_queue" "levriero_usage" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "sashimi" {
@@ -107,6 +146,10 @@ resource "aws_sqs_queue" "sashimi" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "usage" {
@@ -117,6 +160,10 @@ resource "aws_sqs_queue" "usage" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "salesforce" {
@@ -128,6 +175,10 @@ resource "aws_sqs_queue" "salesforce" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "analytics" {
@@ -138,6 +189,10 @@ resource "aws_sqs_queue" "analytics" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "events" {
@@ -148,6 +203,10 @@ resource "aws_sqs_queue" "events" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_sqs_queue" "events_index" {
@@ -158,6 +217,10 @@ resource "aws_sqs_queue" "events_index" {
   })
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 // Shared dead letter queue
@@ -165,4 +228,8 @@ resource "aws_sqs_queue" "dead-letter" {
   name = "${var.environment}_dead-letter"
 
   tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
