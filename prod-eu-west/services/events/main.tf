@@ -3,7 +3,7 @@ resource "aws_ecs_service" "events" {
   cluster         = data.aws_ecs_cluster.default.id
   launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.events.arn
-  desired_count   = 1
+  desired_count   = 2
 
   lifecycle {
     ignore_changes = [desired_count]
@@ -30,49 +30,6 @@ resource "aws_ecs_service" "events" {
   depends_on = [
     data.aws_lb_listener.default,
   ]
-}
-
-resource "aws_appautoscaling_target" "events" {
-  max_capacity       = 2
-  min_capacity       = 1
-  resource_id        = "service/default/${aws_ecs_service.events.name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-  service_namespace  = "ecs"
-}
-
-resource "aws_cloudwatch_metric_alarm" "events_queue_depth_high" {
-  alarm_name          = "production-events-queue-depth-high"
-  comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 1
-  metric_name         = "ApproximateNumberOfMessagesVisible"
-  namespace           = "AWS/SQS"
-  period              = 60
-  statistic           = "Maximum"
-  threshold           = 1000000
-  alarm_description   = "Triggers scaling when SQS queue depth is high"
-  dimensions = {
-    QueueName = data.aws_sqs_queue.events.name
-  }
-  alarm_actions = [aws_appautoscaling_policy.events_sqs.arn]
-}
-
-resource "aws_appautoscaling_policy" "events_sqs" {
-  name               = "scale-events-on-events-queue"
-  policy_type        = "StepScaling"
-  resource_id        = aws_appautoscaling_target.events.resource_id
-  scalable_dimension = aws_appautoscaling_target.events.scalable_dimension
-  service_namespace  = aws_appautoscaling_target.events.service_namespace
-
-  step_scaling_policy_configuration {
-    adjustment_type         = "ChangeInCapacity"
-    cooldown                = 300
-    metric_aggregation_type = "Average"
-
-    step_adjustment {
-      scaling_adjustment          = 1
-      metric_interval_lower_bound = 0
-    }
-  }
 }
 
 resource "aws_cloudwatch_log_group" "events" {
