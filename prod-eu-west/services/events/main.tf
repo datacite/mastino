@@ -5,10 +5,6 @@ resource "aws_ecs_service" "events" {
   task_definition = aws_ecs_task_definition.events.arn
   desired_count   = 2
 
-  lifecycle {
-    ignore_changes = [desired_count]
-  }
-
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
     subnets = [
