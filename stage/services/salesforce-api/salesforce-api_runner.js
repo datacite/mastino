@@ -30,7 +30,7 @@ exports.handler = async function (event, context) {
 
   const apiVersion = "v51.0";
   const axios = require("axios");
-  const axiosRetry = require('axios-retry');
+  const axiosRetry = require('axios-retry').default;
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
