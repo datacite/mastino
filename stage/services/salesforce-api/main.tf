@@ -78,3 +78,10 @@ resource "aws_lambda_permission" "salesforce-api-stage" {
   function_name = aws_lambda_function.salesforce-api-stage.function_name
   principal = "events.amazonaws.com"
 }
+
+resource "null_resource" "install_dependencies" {
+  provisioner "local-exec" {
+    command = "yarn install"
+    working_dir = "${path.module}" # Set working directory to your project root
+  }
+}
