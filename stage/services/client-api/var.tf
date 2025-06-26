@@ -84,3 +84,7 @@ variable "api_aws_secret_key" {}
 variable "exclude_prefixes_from_data_import" {
   default = ""
 }
+
+variable "shoryuken_concurrency" {
+  default = "30"
+}
