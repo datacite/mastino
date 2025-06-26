@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "axios": "^0.21.1",
-    "axios-retry": "^3.2.5",
-    "dotenv": "^8.2.0",
-    "slack-notify": "^0.1.7"
+    "axios": "^1.10.0",
+    "axios-retry": "^4.5.0",
+    "dotenv": "^16.5.0",
+    "slack-notify": "^2.0.7"
   },
   "scripts": {
     "locally": "node -e \"console.log(require('./salesforce-api_runner').handler({}));\""

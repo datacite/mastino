@@ -30,7 +30,7 @@ exports.handler = async function (event, context) {
 
   const apiVersion = "v51.0";
   const axios = require("axios");
-  const axiosRetry = require('axios-retry');
+  const axiosRetry = require('axios-retry').default;
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
@@ -47,8 +47,6 @@ exports.handler = async function (event, context) {
     },
     retryCondition: (error) => {
       // if retry condition is not specified, by default idempotent requests are retried
-      // console.log("(DEBUG SALESFORCE API): error.response.data = " + error.response.data);
-      // console.log("(DEBUG SALESFORCE API): error.response.headers = " + error.response.headers);
       console.log("(DEBUG SALESFORCE API): retryCondition");
       console.log("(DEBUG SALESFORCE API): error.response.status = " + error.response.status);
       console.log("(DEBUG SALESFORCE API): error.response.data stringified = " + JSON.stringify(error.response.data));
@@ -107,7 +105,8 @@ exports.handler = async function (event, context) {
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "providers") {
-    const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
+    // const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
+    // const regions = { AMER: "AMER", EMEA: "EMEA", APAC: "APAC" };
 
     accountId = res.attributes.consortium_salesforce_id;
 
@@ -181,7 +180,8 @@ exports.handler = async function (event, context) {
       Member_Type__c: res.attributes.member_type,
       Sector__c: res.attributes.organization_type,
       Focus_Area__c: res.attributes.focus_area,
-      Region__c: res.attributes.region ? regions[res.attributes.region] : null,
+      // Region__c: res.attributes.region ? regions[res.attributes.region] : null,
+      Region__c: res.attributes.region ? res.attributes.region : null,
       Assign_DOIs__c: [
         "Direct Member",
         "Consortium",
@@ -193,6 +193,10 @@ exports.handler = async function (event, context) {
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       Is_Active__c: !res.attributes.deleted_at,
     };
+    
+    console.log("***SETTING THE ORGANIZATION REGION:");
+    console.log(body.Name);
+    console.log(body.Region__c);
 
     if (hasJoinedDate(res)) {
       body.Date_Joined__c = res.attributes.joined;

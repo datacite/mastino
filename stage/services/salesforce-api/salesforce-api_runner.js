@@ -36,8 +36,7 @@ exports.handler = async function (event, context) {
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
   const datacite_username = process.env.datacite_username;
   const datacite_password = process.env.datacite_password;
-  const datacite_api_url = process.env.datacite_api_url;
-  const providerUrl = `${datacite_api_url}/providers`;
+  const providerUrl = `${process.env.datacite_api_url}/providers`;
 
   // 3 retries on locked record
   axiosRetry(axios, {
@@ -48,8 +47,6 @@ exports.handler = async function (event, context) {
     },
     retryCondition: (error) => {
       // if retry condition is not specified, by default idempotent requests are retried
-      // console.log("(DEBUG SALESFORCE API): error.response.data = " + error.response.data);
-      // console.log("(DEBUG SALESFORCE API): error.response.headers = " + error.response.headers);
       console.log("(DEBUG SALESFORCE API): retryCondition");
       console.log("(DEBUG SALESFORCE API): error.response.status = " + error.response.status);
       console.log("(DEBUG SALESFORCE API): error.response.data stringified = " + JSON.stringify(error.response.data));
