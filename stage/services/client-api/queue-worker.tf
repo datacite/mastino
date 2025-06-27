@@ -65,6 +65,7 @@ resource "aws_ecs_task_definition" "queue-worker-stage" {
       version                           = var.lupo_tags["version"]
       sha                               = var.lupo_tags["sha"]
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
+      shoryuken_concurrency             = var.shoryuken_concurrency
   })
 }
 
