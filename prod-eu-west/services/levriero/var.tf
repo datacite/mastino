@@ -79,3 +79,7 @@ variable "subnet_datacite-private_id" {}
 variable "subnet_datacite-alt_id" {}
 
 variable "namespace_id" {}
+
+variable "exclude_prefixes_from_orcid_claiming" {
+  default = ""
+}
