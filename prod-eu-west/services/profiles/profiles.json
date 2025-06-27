@@ -188,10 +188,6 @@
       {
         "name": "ES_NAME",
         "value": "${es_name}"
-      },
-      {
-        "name": "EXCLUDE_PREFIXES_FROM_ORCID_CLAIMING",
-        "value": "${exclude_prefixes_from_orcid_claiming}"
       }
     ]
   }
