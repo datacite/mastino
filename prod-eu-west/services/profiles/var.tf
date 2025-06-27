@@ -1,7 +1,7 @@
 variable "access_key" {}
 variable "secret_key" {}
 variable "region" {
-    default = "eu-west-1"
+  default = "eu-west-1"
 }
 variable "s3_bucket" {
   default = "assets.datacite.org"
@@ -89,4 +89,8 @@ variable "es_host" {
 }
 variable "es_name" {
   default = "es"
+}
+
+variable "exclude_prefixes_from_orcid_claiming" {
+  default = ""
 }
