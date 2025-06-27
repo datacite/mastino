@@ -30,14 +30,13 @@ exports.handler = async function (event, context) {
 
   const apiVersion = "v51.0";
   const axios = require("axios");
-  const axiosRetry = require('axios-retry');
+  const axiosRetry = require('axios-retry').default;
   const slack = require("slack-notify")(process.env.slack_webhook_url);
   const iconUrl = process.env.slack_icon_url;
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
-  let datacite_username = process.env.datacite_username;
-  let datacite_password = process.env.datacite_password;
-  let datacite_api_url = process.env.datacite_api_url;
-  let providerUrl = `${datacite_api_url}/providers`;
+  const datacite_username = process.env.datacite_username;
+  const datacite_password = process.env.datacite_password;
+  const providerUrl = `${process.env.datacite_api_url}/providers`;
 
   // 3 retries on locked record
   axiosRetry(axios, {
@@ -48,7 +47,9 @@ exports.handler = async function (event, context) {
     },
     retryCondition: (error) => {
       // if retry condition is not specified, by default idempotent requests are retried
-      console.log("(DEBUG SALESFORCE API): error.response = " + error.response);
+      console.log("(DEBUG SALESFORCE API): retryCondition");
+      console.log("(DEBUG SALESFORCE API): error.response.status = " + error.response.status);
+      console.log("(DEBUG SALESFORCE API): error.response.data stringified = " + JSON.stringify(error.response.data));
 
       return ((error.response.status === 400) && (error.response.data[0].errorCode == 'UNABLE_TO_LOCK_ROW'));
     },
@@ -104,7 +105,8 @@ exports.handler = async function (event, context) {
   // each message has a single record
   let res = JSON.parse(event.Records[0].body);
   if (res.type === "providers") {
-    const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
+    // const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
+    // const regions = { AMER: "AMER", EMEA: "EMEA", APAC: "APAC" };
 
     accountId = res.attributes.consortium_salesforce_id;
 
@@ -178,7 +180,8 @@ exports.handler = async function (event, context) {
       Member_Type__c: res.attributes.member_type,
       Sector__c: res.attributes.organization_type,
       Focus_Area__c: res.attributes.focus_area,
-      Region__c: res.attributes.region ? regions[res.attributes.region] : null,
+      // Region__c: res.attributes.region ? regions[res.attributes.region] : null,
+      Region__c: res.attributes.region ? res.attributes.region : null,
       Assign_DOIs__c: [
         "Direct Member",
         "Consortium",
@@ -190,6 +193,10 @@ exports.handler = async function (event, context) {
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       Is_Active__c: !res.attributes.deleted_at,
     };
+    
+    console.log("***SETTING THE ORGANIZATION REGION:");
+    console.log(body.Name);
+    console.log(body.Region__c);
 
     if (hasJoinedDate(res)) {
       body.Date_Joined__c = res.attributes.joined;
@@ -276,6 +283,7 @@ exports.handler = async function (event, context) {
         Object.assign(result.data, { fabricaId: res.id, type: "organizations" })
       );
     } catch (error) {
+      console.log(error);
       if (error.response) {
         slackMessage({
           text: "Error updating organization in Salesforce Sandbox.",
@@ -311,11 +319,6 @@ exports.handler = async function (event, context) {
             },
           ],
         });
-        console.log(error.response);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log(error);
       }
     }
   } else if (res.type === "contacts") {
@@ -369,11 +372,6 @@ exports.handler = async function (event, context) {
               },
             ],
           });
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error);
         }
       }
 
@@ -475,11 +473,12 @@ exports.handler = async function (event, context) {
       }
       console.log(
         Object.assign(result.data, {
-          uid: res.id,
+          fabricaId: res.attributes.fabrica_id,
           type: "contacts",
         })
       );
     } catch (error) {
+      console.log(error);
       if (error.response) {
         slackMessage({
           text: "Error updating contact in Salesforce Sandbox.",
@@ -515,11 +514,6 @@ exports.handler = async function (event, context) {
             },
           ],
         });
-        return error.response;
-      } else if (error.request) {
-        return error.request;
-      } else {
-        return error;
       }
     }
   } else if (res.type === "clients") {
@@ -551,7 +545,6 @@ exports.handler = async function (event, context) {
         console.log(`No organization found for repository ${res.id}.`);
         return null;
       }
-
       accountId = organization.Id;
 
       await axios
@@ -595,6 +588,11 @@ exports.handler = async function (event, context) {
       Fabrica_Deletion_Date__c: res.attributes.deleted_at,
       IsActive__c: !res.attributes.deleted_at,
     };
+
+    console.log("(DEBUG SALESFORCE API): UPDATING REPOSITORIES - BEGIN");
+    console.log(url);
+    console.log(body);
+    console.log("(DEBUG SALESFORCE API): UPDATING REPOSITORIES - END");
 
     try {
       result = await axios.patch(url, body, {
@@ -647,6 +645,7 @@ exports.handler = async function (event, context) {
         Object.assign(result.data, { fabricaId: res.id, type: "repositories" })
       );
     } catch (error) {
+      console.log(error);
       if (error.response) {
         slackMessage({
           text: "Error updating repository in Salesforce Sandbox.",
@@ -682,11 +681,6 @@ exports.handler = async function (event, context) {
             },
           ],
         });
-        return error.response;
-      } else if (error.request) {
-        return error.request;
-      } else {
-        return error;
       }
     }
   }

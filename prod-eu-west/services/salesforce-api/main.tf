@@ -15,7 +15,7 @@ resource "aws_lambda_function" "update-salesforce-daily" {
   function_name = "update-salesforce-daily"
   role = data.aws_iam_role.lambda.arn
   handler = "salesforce-daily_runner.handler"
-  runtime = "nodejs14.x"
+  runtime = "nodejs22.x"
   source_code_hash = sha256(filebase64("salesforce-daily_runner.js.zip"))
   timeout = "600"
 
@@ -40,7 +40,7 @@ resource "aws_lambda_function" "salesforce-api" {
   function_name = "salesforce-api"
   role = data.aws_iam_role.lambda.arn
   handler = "salesforce-api_runner.handler"
-  runtime = "nodejs14.x"
+  runtime = "nodejs22.x"
   source_code_hash = sha256(filebase64("salesforce-api_runner.js.zip"))
   timeout = "60"
 
