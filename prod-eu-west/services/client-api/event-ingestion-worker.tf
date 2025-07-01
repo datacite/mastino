@@ -66,6 +66,8 @@ resource "aws_ecs_task_definition" "event-ingestion-worker" {
       jwt_blacklisted                   = var.jwt_blacklisted
       version                           = var.lupo_tags["version"]
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
+      nifs_events_import_file           = var.nifs_events_import_file
+      nifs_events_import_batch_size     = var.nifs_events_import_batch_size
   })
 }
 
@@ -73,7 +75,7 @@ resource "aws_service_discovery_service" "event-ingestion-worker" {
   name = "event-ingestion-worker"
 
   health_check_custom_config {
-    failure_threshold = 3
+    failure_threshold = 1
   }
 
   dns_config {
