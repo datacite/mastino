@@ -79,3 +79,11 @@ variable "api_aws_secret_key" {}
 variable "exclude_prefixes_from_data_import" {
   default = ""
 }
+
+variable "nifs_events_import_file" {
+  default = "lib/tmp/nifs-events-import.json"
+}
+
+variable "nifs_events_import_batch_size" {
+  default = 5000
+}
