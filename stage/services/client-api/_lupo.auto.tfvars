@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "d083b06f5d2e57dc8d88f5527d483c7acef98c08"
-  version = "main"
+  sha = "27545d07f11ef07a76dd97ba9f2dbf8f6ae23d53"
+  version = "index-queueing-single-process"
 }
