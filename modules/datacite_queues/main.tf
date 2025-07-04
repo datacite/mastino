@@ -66,6 +66,20 @@ resource "aws_sqs_queue" "lupo_import" {
   }
 }
 
+resource "aws_sqs_queue" "lupo_queue_batches_other_doi" {
+  name = "${var.environment}_lupo_queue_batches_other_doi"
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.queue_batches_other_doi-dead-letter.arn
+    maxReceiveCount     = 4
+  }) 
+  visibility_timeout_seconds = 300
+  tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "aws_sqs_queue" "lupo_import_other_doi" {
   name = "${var.environment}_lupo_import_other_doi"
   redrive_policy = jsonencode({
@@ -223,6 +237,16 @@ resource "aws_sqs_queue" "events_index" {
   }
 }
 
+// BatchQueing dead letter queue
+resource "aws_sqs_queue" "queue_batches_other_doi-dead-letter" {
+  name = "${var.environment}_queue_batches_other_doi-dead-letter"
+
+  tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 // Shared dead letter queue
 resource "aws_sqs_queue" "dead-letter" {
   name = "${var.environment}_dead-letter"
