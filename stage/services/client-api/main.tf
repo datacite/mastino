@@ -162,3 +162,11 @@ resource "aws_route53_record" "split-api-stage" {
   ttl     = var.ttl
   records = [data.aws_lb.stage.dns_name]
 }
+
+resource "aws_s3_bucket" "metadata" {
+  bucket = "stage_metadata"
+  tags = {
+    Enviroment = "stage"
+    Name       = "Metadata storage"
+  }
+}
