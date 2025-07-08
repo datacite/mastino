@@ -180,6 +180,10 @@
       {
         "name": "SHORYUKEN_CONCURRENCY",
         "value": "${shoryuken_concurrency}"
+      },
+      {
+        "name": "CONCURRENCY",
+        "value": "${shoryuken_concurrency}"
       }
     ]
   }
