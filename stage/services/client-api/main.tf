@@ -164,7 +164,7 @@ resource "aws_route53_record" "split-api-stage" {
 }
 
 resource "aws_s3_bucket" "metadata" {
-  bucket = "stage_metadata"
+  bucket = "metadata-stage"
   tags = {
     Enviroment = "stage"
     Name       = "Metadata storage"
