@@ -87,3 +87,5 @@ variable "exclude_prefixes_from_data_import" {
 variable "shoryuken_concurrency" {
   default = "30"
 }
+
+variable "metadata_storage_bucket_name" {}
