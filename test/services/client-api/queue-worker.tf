@@ -64,6 +64,7 @@ resource "aws_ecs_task_definition" "queue-worker-test" {
       slack_webhook_url             = var.slack_webhook_url
       version                       = var.lupo_tags["version"]
       sha                           = var.lupo_tags["sha"]
+      shoryuken_concurrency         = var.shoryuken_concurrency
   })
 }
 
