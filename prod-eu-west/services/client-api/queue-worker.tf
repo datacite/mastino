@@ -66,6 +66,7 @@ resource "aws_ecs_task_definition" "queue-worker" {
       jwt_blacklisted                   = var.jwt_blacklisted
       version                           = var.lupo_tags["version"]
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
+      shoryuken_concurrency             = var.shoryuken_concurrency
   })
 }
 
