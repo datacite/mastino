@@ -88,4 +88,6 @@ variable "shoryuken_concurrency" {
   default = "30"
 }
 
-variable "metadata_storage_bucket_name" {}
+variable "metadata_storage_bucket_name" {
+  default = ""
+}
