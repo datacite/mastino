@@ -80,3 +80,6 @@ variable "jwt_blacklisted" {}
 
 variable "api_aws_access_key" {}
 variable "api_aws_secret_key" {}
+variable "shoryuken_concurrency" {
+  default = "30"
+}

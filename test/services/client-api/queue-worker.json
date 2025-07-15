@@ -172,6 +172,14 @@
       {
         "name": "SQS_PREFIX",
         "value": "test"
+      },
+      {
+        "name": "SHORYUKEN_CONCURRENCY",
+        "value": "${shoryuken_concurrency}"
+      },
+      {
+        "name": "CONCURRENCY",
+        "value": "${shoryuken_concurrency}"
       }
     ]
   }
