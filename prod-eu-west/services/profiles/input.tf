@@ -74,6 +74,13 @@ data "template_file" "profiles_task" {
     secret_key_base    = var.secret_key_base
     orcid_client_id    = var.orcid_client_id
     orcid_client_secret = var.orcid_client_secret
+    orcid_redirect_uri = var.orcid_redirect_uri
+    orcid_search_and_link_client_id    = var.orcid_search_and_link_client_id
+    orcid_search_and_link_client_secret = var.orcid_search_and_link_client_secret
+    orcid_search_and_link_redirect_uri = var.orcid_search_and_link_redirect_uri
+    orcid_auto_update_client_id    = var.orcid_auto_update_client_id
+    orcid_auto_update_client_secret = var.orcid_auto_update_client_secret
+    orcid_auto_update_redirect_uri = var.orcid_auto_update_redirect_uri
     notification_access_token = var.notification_access_token
     globus_client_id   = var.globus_client_id
     globus_client_secret = var.globus_client_secret
