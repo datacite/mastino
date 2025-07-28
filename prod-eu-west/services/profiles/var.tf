@@ -76,6 +76,13 @@ variable "mysql_host" {}
 
 variable "orcid_client_id" {}
 variable "orcid_client_secret" {}
+variable "orcid_redirect_uri" {}
+variable "orcid_search_and_link_client_id" {}
+variable "orcid_search_and_link_client_secret" {}
+variable "orcid_search_and_link_redirect_uri" {}
+variable "orcid_auto_update_client_id" {}
+variable "orcid_auto_update_client_secret" {}
+variable "orcid_auto_update_redirect_uri" {}
 variable "github_client_id" {}
 variable "github_client_secret" {}
 variable "globus_client_id" {}

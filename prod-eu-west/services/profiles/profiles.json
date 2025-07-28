@@ -134,6 +134,34 @@
         "value": "${orcid_client_secret}"
       },
       {
+        "name": "ORCID_REDIRECT_URI",
+        "value": "${orcid_redirect_uri}"
+      },
+      {
+        "name": "ORCID_SEARCH_AND_LINK_CLIENT_ID",
+        "value": "${orcid_search_and_link_client_id}"
+      },
+      {
+        "name": "ORCID_SEARCH_AND_LINK_CLIENT_SECRET",
+        "value": "${orcid_search_and_link_client_secret}"
+      },
+      {
+        "name": "ORCID_SEARCH_AND_LINK_REDIRECT_URI",
+        "value": "${orcid_search_and_link_redirect_uri}"
+      },
+      {
+        "name": "ORCID_AUTO_UPDATE_CLIENT_ID",
+        "value": "${orcid_auto_update_client_id}"
+      },
+      {
+        "name": "ORCID_AUTO_UPDATE_CLIENT_SECRET",
+        "value": "${orcid_auto_update_client_secret}"
+      },
+      {
+        "name": "ORCID_AUTO_UPDATE_REDIRECT_URI",
+        "value": "${orcid_auto_update_redirect_uri}"
+      },
+      {
         "name": "GLOBUS_CLIENT_ID",
         "value": "${globus_client_id}"
       },
