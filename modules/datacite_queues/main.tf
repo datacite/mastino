@@ -71,7 +71,7 @@ resource "aws_sqs_queue" "lupo_queue_batches_other_doi" {
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.queue_batches_other_doi-dead-letter.arn
     maxReceiveCount     = 4
-  }) 
+  })
   visibility_timeout_seconds = 300
   tags                       = var.tags
 
@@ -123,6 +123,29 @@ resource "aws_sqs_queue" "lupo_doi_registration" {
   }
 }
 
+// Queue for lupo support tasks.
+resource "aws_sqs_queue" "lupo_support" {
+  name = "${var.environment}_lupo_support"
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.lupo_support-dead-letter.arn
+    maxReceiveCount     = 1
+  })
+  visibility_timeout_seconds = 3600
+  tags                       = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+// Unique dead letter queue for lupo support tasks
+resource "aws_sqs_queue" "lupo_support-dead-letter" {
+  name = "${var.environment}_lupo_support_dead-letter"
+  tags = var.tags
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 resource "aws_sqs_queue" "levriero" {
   name = "${var.environment}_levriero"
