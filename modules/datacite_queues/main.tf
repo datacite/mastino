@@ -244,6 +244,8 @@ resource "aws_sqs_queue" "events" {
   lifecycle {
     prevent_destroy = true
   }
+
+  message_retention_seconds = 1209600
 }
 
 resource "aws_sqs_queue" "events_index" {
@@ -258,6 +260,8 @@ resource "aws_sqs_queue" "events_index" {
   lifecycle {
     prevent_destroy = true
   }
+
+  message_retention_seconds = 1209600
 }
 
 // BatchQueing dead letter queue
