@@ -1,14 +1,14 @@
 resource "aws_elasticsearch_domain" "default" {
   domain_name           = "elasticsearch"
-  elasticsearch_version = "OpenSearch_2.13"
+  elasticsearch_version = "OpenSearch_2.17"
   cluster_config {
-    instance_type = "m6g.2xlarge.elasticsearch"
-    instance_count = 6
+    instance_type          = "m7g.2xlarge.elasticsearch"
+    instance_count         = 6
     zone_awareness_enabled = true
   }
 
   advanced_options = {
-    "override_main_response_version" = "true"
+    "override_main_response_version"         = "true"
     "rest.action.multi.allow_explicit_index" = "true"
   }
 
@@ -17,15 +17,16 @@ resource "aws_elasticsearch_domain" "default" {
   }
 
   ebs_options {
-      ebs_enabled = true
-      volume_type = "gp3"
-      volume_size = 1000
-      throughput = 250
+    ebs_enabled = true
+    volume_type = "gp3"
+    iops        = 10000
+    volume_size = 1000
+    throughput  = 500
   }
 
   vpc_options {
     security_group_ids = [data.aws_security_group.datacite-private.id]
-    subnet_ids = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
+    subnet_ids         = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
   }
 
   log_publishing_options {
@@ -67,7 +68,7 @@ resource "aws_cloudwatch_log_group" "elasticsearch_slowlogs" {
 }
 
 resource "aws_cloudwatch_log_resource_policy" "elasticsearch" {
-  policy_name = "elasticsearch"
+  policy_name     = "elasticsearch"
   policy_document = <<CONFIG
 {
   "Version": "2012-10-17",
@@ -90,9 +91,9 @@ CONFIG
 }
 
 resource "aws_route53_record" "elasticsearch" {
-   zone_id = data.aws_route53_zone.internal.zone_id
-   name = "elasticsearch.datacite.org"
-   type = "CNAME"
-   ttl = var.ttl
-   records = [aws_elasticsearch_domain.default.endpoint]
+  zone_id = data.aws_route53_zone.internal.zone_id
+  name    = "elasticsearch.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = [aws_elasticsearch_domain.default.endpoint]
 }
