@@ -20,7 +20,7 @@ resource "aws_elasticsearch_domain" "default" {
     ebs_enabled = true
     volume_type = "gp3"
     iops        = 10000
-    volume_size = 1000
+    volume_size = 1500
     throughput  = 500
   }
 
