@@ -339,7 +339,7 @@ resource "aws_service_discovery_service" "client-api" {
 }
 
 resource "aws_s3_bucket" "metadata" {
-  bucket = "metadata"
+  bucket = "metadata.datacite.org"
   tags = {
     Enviroment = "production"
     Name       = "Metadata storage"

@@ -161,7 +161,7 @@ resource "aws_service_discovery_service" "client-api-test" {
 }
 
 resource "aws_s3_bucket" "metadata" {
-  bucket = "metadata-test"
+  bucket = "metadata.test.datacite.org"
   tags = {
     Enviroment = "test"
     Name       = "Metadata storage"
