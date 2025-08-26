@@ -337,3 +337,11 @@ resource "aws_service_discovery_service" "client-api" {
     }
   }
 }
+
+resource "aws_s3_bucket" "metadata" {
+  bucket = "metadata"
+  tags = {
+    Enviroment = "production"
+    Name       = "Metadata storage"
+  }
+}
