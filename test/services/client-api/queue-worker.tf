@@ -65,6 +65,7 @@ resource "aws_ecs_task_definition" "queue-worker-test" {
       version                       = var.lupo_tags["version"]
       sha                           = var.lupo_tags["sha"]
       shoryuken_concurrency         = var.shoryuken_concurrency
+      metadata_storage_bucket_name  = var.metadata_storage_bucket_name
   })
 }
 

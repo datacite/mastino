@@ -172,6 +172,10 @@
       {
         "name": "SQS_PREFIX",
         "value": "test"
+      },
+      {
+        "name": "METADATA_STORAGE_BUCKET_NAME",
+        "value": "${metadata_storage_bucket_name}"
       }
     ]
   }
