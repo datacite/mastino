@@ -8,8 +8,65 @@ resource "aws_wafv2_web_acl" "stage-default" {
   }
 
   rule {
-    name     = "stageRateLimitingRule"
+    name     = "stageRateLimitAuthenticated"
     priority = 1
+
+    action {
+      block {}
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 3000
+        aggregate_key_type = "IP"
+
+        scope_down_statement {
+          or_statement {
+            statements {
+              byte_match_statement {
+                search_string = "bearer "
+                field_to_match {
+                  single_header {
+                    name = "authorization"
+                  }
+                }
+                positional_constraint = "STARTS_WITH"
+                text_transformation {
+                  priority = 0
+                  type     = "LOWERCASE"
+                }
+              }
+            }
+            statements {
+              byte_match_statement {
+                search_string = "basic "
+                field_to_match {
+                  single_header {
+                    name = "authorization"
+                  }
+                }
+                positional_constraint = "STARTS_WITH"
+                text_transformation {
+                  priority = 0
+                  type     = "LOWERCASE"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "stageRateLimitAuthenticated"
+      sampled_requests_enabled   = false
+    }
+  }
+
+  rule {
+    name     = "stageRateLimitWithEmail"
+    priority = 2
 
     action {
       block {}
@@ -19,16 +76,69 @@ resource "aws_wafv2_web_acl" "stage-default" {
       rate_based_statement {
         limit              = 1000
         aggregate_key_type = "IP"
+
+        scope_down_statement {
+          or_statement {
+            statements {
+              regex_match_statement {
+                regex_string = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+                field_to_match {
+                  single_header {
+                    name = "user-agent"
+                  }
+                }
+                text_transformation {
+                  priority = 0
+                  type     = "NONE"
+                }
+              }
+            }
+            statements {
+              byte_match_statement {
+                search_string = "mailto="
+                field_to_match {
+                  query_string {}
+                }
+                positional_constraint = "CONTAINS"
+                text_transformation {
+                  priority = 0
+                  type     = "NONE"
+                }
+              }
+            }
+          }
+        }
       }
     }
 
     visibility_config {
       cloudwatch_metrics_enabled = true
-      metric_name                = "stageRateLimitingRule"
+      metric_name                = "stageRateLimitWithEmail"
       sampled_requests_enabled   = false
     }
   }
 
+  rule {
+    name     = "RateLimitUnauthenticated"
+    priority = 3
+
+    action {
+      block {}
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 500
+        aggregate_key_type = "IP"
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "stageRateLimitUnauthenticated"
+      sampled_requests_enabled   = false
+    }
+  }
 
   visibility_config {
     cloudwatch_metrics_enabled = false
