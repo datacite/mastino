@@ -22,7 +22,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
 
         scope_down_statement {
           or_statement {
-            statements {
+            statement {
               byte_match_statement {
                 search_string = "bearer "
                 field_to_match {
@@ -37,7 +37,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
                 }
               }
             }
-            statements {
+            statement {
               byte_match_statement {
                 search_string = "basic "
                 field_to_match {
@@ -79,7 +79,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
 
         scope_down_statement {
           or_statement {
-            statements {
+            statement {
               byte_match_statement {
                 search_string = "@"
                 field_to_match {
@@ -94,7 +94,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
                 }
               }
             }
-            statements {
+            statement {
               byte_match_statement {
                 search_string = "mailto="
                 field_to_match {
