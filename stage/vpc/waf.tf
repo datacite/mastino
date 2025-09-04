@@ -80,13 +80,14 @@ resource "aws_wafv2_web_acl" "stage-default" {
         scope_down_statement {
           or_statement {
             statements {
-              regex_match_statement {
-                regex_string = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+              byte_match_statement {
+                search_string = "@"
                 field_to_match {
                   single_header {
                     name = "user-agent"
                   }
                 }
+                positional_constraint = "CONTAINS"
                 text_transformation {
                   priority = 0
                   type     = "NONE"
