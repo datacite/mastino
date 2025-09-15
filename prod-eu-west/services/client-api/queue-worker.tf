@@ -164,7 +164,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
       stat        = "Maximum"
 
       dimensions = {
-        QueueName = "production_import"
+        QueueName = "production_lupo_import"
       }
     }
   }
@@ -179,7 +179,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
       stat        = "Maximum"
 
       dimensions = {
-        QueueName = "production_import_other_doi"
+        QueueName = "production_lupo_import_other_doi"
       }
     }
   }
@@ -262,7 +262,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
       stat        = "Maximum"
 
       dimensions = {
-        QueueName = "production_import"
+        QueueName = "production_lupo_import"
       }
     }
   }
@@ -277,7 +277,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
       stat        = "Maximum"
 
       dimensions = {
-        QueueName = "production_import_other_doi"
+        QueueName = "production_lupo_import_other_doi"
       }
     }
   }
