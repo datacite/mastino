@@ -149,10 +149,41 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_up_alarm" {
   // This is the value that will be compared to the threshold
   metric_query {
     id          = "total_visible"
-    expression  = "production_visible + production_background_visible + production_registration_visible"
+    expression  = "production_visible + production_background_visible + production_registration_visible + production_import_datacite_doi + production_import_other_doi"
     label       = "Total visible messages"
     return_data = "true"
   }
+
+  metric_query {
+    id = "production_import_datacite_doi"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "120"
+      stat        = "Maximum"
+
+      dimensions = {
+        QueueName = "production_import"
+      }
+    }
+  }
+
+  metric_query {
+    id = "production_import_other_doi"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "120"
+      stat        = "Maximum"
+
+      dimensions = {
+        QueueName = "production_import_other_doi"
+      }
+    }
+  }
+
 
   metric_query {
     id = "production_visible"
@@ -216,9 +247,39 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
   // Custom query that sums the two other metrics
   metric_query {
     id          = "total_visible"
-    expression  = "production_visible + production_background_visible + production_registration_visible"
+    expression  = "production_visible + production_background_visible + production_registration_visible + production_import_datacite_doi + production_import_other_doi"
     label       = "Total visible messages"
     return_data = "true"
+  }
+
+  metric_query {
+    id = "production_import_datacite_doi"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "120"
+      stat        = "Maximum"
+
+      dimensions = {
+        QueueName = "production_import"
+      }
+    }
+  }
+
+  metric_query {
+    id = "production_import_other_doi"
+
+    metric {
+      metric_name = "ApproximateNumberOfMessagesVisible"
+      namespace   = "AWS/SQS"
+      period      = "120"
+      stat        = "Maximum"
+
+      dimensions = {
+        QueueName = "production_import_other_doi"
+      }
+    }
   }
 
   metric_query {
