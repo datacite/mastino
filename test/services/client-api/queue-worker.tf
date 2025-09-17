@@ -3,7 +3,7 @@ resource "aws_ecs_service" "queue-worker-test" {
   cluster         = data.aws_ecs_cluster.test.id
   launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.queue-worker-test.arn
-  desired_count   = 4
+  desired_count   = 10
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
