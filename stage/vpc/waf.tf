@@ -7,12 +7,32 @@ resource "aws_wafv2_web_acl" "stage-default" {
     allow {}
   }
 
+  custom_response_body {
+    content = jsonencode(
+      {
+        errors = [
+          {
+            status = "403"
+            title  = "Your request has been rate limited. See https://support.datacite.org/docs/rate-limit."
+          },
+        ]
+      }
+    )
+    content_type = "APPLICATION_JSON"
+    key          = "ratelimiterror"
+  }
+
   rule {
     name     = "stageRateLimitAuthenticated"
     priority = 1
 
     action {
-      block {}
+      block {
+        custom_response {
+          response_code = 403
+          custom_response_body_key = "RateLimitExceeded"
+        }
+      }
     }
 
     statement {
@@ -60,7 +80,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "stageRateLimitAuthenticated"
-      sampled_requests_enabled   = false
+      sampled_requests_enabled   = true
     }
   }
 
@@ -69,7 +89,12 @@ resource "aws_wafv2_web_acl" "stage-default" {
     priority = 2
 
     action {
-      block {}
+      block {
+        custom_response {
+          response_code = 403
+          custom_response_body_key = "RateLimitExceeded"
+        }
+      }
     }
 
     statement {
@@ -115,7 +140,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "stageRateLimitWithEmail"
-      sampled_requests_enabled   = false
+      sampled_requests_enabled   = true
     }
   }
 
@@ -124,7 +149,12 @@ resource "aws_wafv2_web_acl" "stage-default" {
     priority = 3
 
     action {
-      block {}
+      block {
+        custom_response {
+          response_code = 403
+          custom_response_body_key = "RateLimitExceeded"
+        }
+      }
     }
 
     statement {
@@ -137,14 +167,14 @@ resource "aws_wafv2_web_acl" "stage-default" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "stageRateLimitUnauthenticated"
-      sampled_requests_enabled   = false
+      sampled_requests_enabled   = true
     }
   }
 
   visibility_config {
     cloudwatch_metrics_enabled = false
     metric_name                = "stage-default"
-    sampled_requests_enabled   = false
+    sampled_requests_enabled   = true
   }
 }
 
