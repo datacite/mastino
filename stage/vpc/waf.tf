@@ -30,7 +30,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
       block {
         custom_response {
           response_code = 403
-          custom_response_body_key = "RateLimitExceeded"
+          custom_response_body_key = "ratelimiterror"
         }
       }
     }
@@ -92,7 +92,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
       block {
         custom_response {
           response_code = 403
-          custom_response_body_key = "RateLimitExceeded"
+          custom_response_body_key = "ratelimiterror"
         }
       }
     }
@@ -152,7 +152,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
       block {
         custom_response {
           response_code = 403
-          custom_response_body_key = "RateLimitExceeded"
+          custom_response_body_key = "ratelimiterror"
         }
       }
     }
