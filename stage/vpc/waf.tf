@@ -60,7 +60,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "stageRateLimitAuthenticated"
-      sampled_requests_enabled   = false
+      sampled_requests_enabled   = true
     }
   }
 
@@ -115,7 +115,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "stageRateLimitWithEmail"
-      sampled_requests_enabled   = false
+      sampled_requests_enabled   = true
     }
   }
 
@@ -137,14 +137,14 @@ resource "aws_wafv2_web_acl" "stage-default" {
     visibility_config {
       cloudwatch_metrics_enabled = true
       metric_name                = "stageRateLimitUnauthenticated"
-      sampled_requests_enabled   = false
+      sampled_requests_enabled   = true
     }
   }
 
   visibility_config {
     cloudwatch_metrics_enabled = false
     metric_name                = "stage-default"
-    sampled_requests_enabled   = false
+    sampled_requests_enabled   = true
   }
 }
 
