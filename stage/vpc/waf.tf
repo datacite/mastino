@@ -8,7 +8,7 @@ resource "aws_wafv2_web_acl" "stage-default" {
   }
 
   custom_response_body {
-    name = "RateLimitExceeded"
+    key = "RateLimitExceeded"
     content_type = "TEXT_PLAIN"
     content = "Your request has been rate limited. See https://support.datacite.org/docs/rate-limit."
   }
