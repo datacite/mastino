@@ -7,12 +7,23 @@ resource "aws_wafv2_web_acl" "stage-default" {
     allow {}
   }
 
+  custom_response_body {
+    name = "RateLimitExceeded"
+    content_type = "TEXT_PLAIN"
+    content = "Your request has been rate limited. See https://support.datacite.org/docs/rate-limit."
+  }
+
   rule {
     name     = "stageRateLimitAuthenticated"
     priority = 1
 
     action {
-      block {}
+      block {
+        custom_response {
+          response_code = 403
+          custom_response_body_key = "RateLimitExceeded"
+        }
+      }
     }
 
     statement {
@@ -69,7 +80,12 @@ resource "aws_wafv2_web_acl" "stage-default" {
     priority = 2
 
     action {
-      block {}
+      block {
+        custom_response {
+          response_code = 403
+          custom_response_body_key = "RateLimitExceeded"
+        }
+      }
     }
 
     statement {
@@ -124,7 +140,12 @@ resource "aws_wafv2_web_acl" "stage-default" {
     priority = 3
 
     action {
-      block {}
+      block {
+        custom_response {
+          response_code = 403
+          custom_response_body_key = "RateLimitExceeded"
+        }
+      }
     }
 
     statement {
