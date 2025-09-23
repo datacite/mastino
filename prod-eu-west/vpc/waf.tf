@@ -115,7 +115,7 @@ resource "aws_wafv2_web_acl" "prod-default" {
 
    rule {
     name     = "prodRateLimitWithEmail"
-    priority = 3
+    priority = 6
 
     action {
       block {
@@ -175,7 +175,7 @@ resource "aws_wafv2_web_acl" "prod-default" {
 
   rule {
     name     = "prodRateLimitUnauthenticated"
-    priority = 4
+    priority = 7
 
     action {
       block {
