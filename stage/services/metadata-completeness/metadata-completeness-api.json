@@ -1,0 +1,42 @@
+[
+    {
+        "name": "metadata-completeness-api-stage",
+        "image": "ghcr.io/datacite/metadata-completeness-api:${version}",
+        "cpu": 256,
+        "memory": 512,
+        "essential": true,
+        "networkMode": "awsvpc",
+        "portMappings": [
+            {
+                "containerPort": 8081,
+                "hostPort": 8081
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/metadata-completeness-api-stage",
+                "awslogs-region": "eu-west-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "environment": [
+            {
+                "name": "GITHUB_VERSION",
+                "value": "${version}"
+            },
+            {
+                "name": "API_PORT",
+                "value": "${api_port}"
+            },
+            {
+                "name": "OPENSEARCH_ADDRESS",
+                "value": "${opensearch_address}"
+            },
+            {
+                "name": "OPENSEARCH_INDEX",
+                "value": "${opensearch_index}"
+            }
+        ]
+    }
+]
