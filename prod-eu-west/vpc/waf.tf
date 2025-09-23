@@ -113,9 +113,89 @@ resource "aws_wafv2_web_acl" "prod-default" {
     }
   }
 
+  rule {
+    name     = "isWorks"
+    priority = 3
+
+    action {
+      block {
+        custom_response {
+          response_code            = 403
+          custom_response_body_key = "ratelimiterror"
+        }
+      }
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 400
+        aggregate_key_type = "IP"
+        scope_down_statement {
+          byte_match_statement {
+            search_string = "/works"
+            field_to_match {
+              uri_path {}
+            }
+            positional_constraint = "EXACTLY"
+            text_transformation {
+              priority = 0
+              type     = "NONE"
+            }
+          }
+        }
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "is_works"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "isGraphql"
+    priority = 4
+
+    action {
+      block {
+        custom_response {
+          response_code            = 403
+          custom_response_body_key = "ratelimiterror"
+        }
+      }
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 200
+        aggregate_key_type = "IP"
+        scope_down_statement {
+          byte_match_statement {
+            search_string = "/graphql"
+            field_to_match {
+              uri_path {}
+            }
+            positional_constraint = "EXACTLY"
+            text_transformation {
+              priority = 0
+              type     = "NONE"
+            }
+          }
+        }
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "is_graphql"
+      sampled_requests_enabled   = true
+    }
+  }
+
    rule {
     name     = "prodRateLimitWithEmail"
-    priority = 6
+    priority = 5
 
     action {
       block {
@@ -175,7 +255,7 @@ resource "aws_wafv2_web_acl" "prod-default" {
 
   rule {
     name     = "prodRateLimitUnauthenticated"
-    priority = 7
+    priority = 6
 
     action {
       block {
@@ -199,7 +279,6 @@ resource "aws_wafv2_web_acl" "prod-default" {
       sampled_requests_enabled   = true
     }
   }
-
 
   visibility_config {
     cloudwatch_metrics_enabled = false
