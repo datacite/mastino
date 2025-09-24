@@ -43,7 +43,7 @@ resource "aws_ecs_task_definition" "metadata-completeness-api-stage" {
     {
       version            = var.pekingese_tags["sha"]
       api_port = var.api_port
-      opensearch_address = var.opensearch_address
+      opensearch_host = var.opensearch_host
       opensearch_index = var.opensearch_index
     })
 }
