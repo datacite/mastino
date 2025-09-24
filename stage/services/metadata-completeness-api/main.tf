@@ -64,7 +64,7 @@ resource "aws_lb_target_group" "metadata-completeness-api-stage" {
 
 resource "aws_lb_listener_rule" "metadata-completeness-api-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 42
+  priority     = 43
 
   action {
     type             = "forward"
