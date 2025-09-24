@@ -16,7 +16,7 @@ resource "aws_ecs_service" "metadata-completeness-api-stage" {
   load_balancer {
     target_group_arn = aws_lb_target_group.metadata-completeness-api-stage.id
     container_name   = "metadata-completeness-api-stage"
-    container_port   = "8081"
+    container_port   = "80"
   }
 
   service_registries {
@@ -41,13 +41,7 @@ resource "aws_ecs_task_definition" "metadata-completeness-api-stage" {
   memory = "512"
   container_definitions = templatefile("metadata-completeness-api.json",
     {
-      datacite_api_url   = var.datacite_api_url
-      version            = var.metadata_completeness_tags["sha"]
-      analytics_database_dbname    = var.analytics_database_dbname
-      analytics_database_host      = var.analytics_database_host
-      analytics_database_user      = var.analytics_database_user
-      analytics_database_password  = var.analytics_database_password
-      jwt_public_key = var.jwt_public_key
+      version            = var.pekingese_tags["sha"]
       api_port = var.api_port
       opensearch_address = var.opensearch_address
       opensearch_index = var.opensearch_index
@@ -68,7 +62,7 @@ resource "aws_lb_target_group" "metadata-completeness-api-stage" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-stage" {
+resource "aws_lb_listener_rule" "metadata-completeness-api-stage" {
   listener_arn = data.aws_lb_listener.stage.arn
   priority     = 42
 
@@ -79,13 +73,13 @@ resource "aws_lb_listener_rule" "api-stage" {
 
   condition {
     host_header {
-      values = ["metadata-completeness.stage.datacite.org"]
+      values = ["api.stage.datacite.org"]
     }
   }
 
   condition {
     path_pattern {
-      values = ["/api*"]
+      values = ["/completeness*"]
     }
   }
 }
@@ -105,12 +99,4 @@ resource "aws_service_discovery_service" "metadata-completeness-api-stage" {
       type = "A"
     }
   }
-}
-
-resource "aws_route53_record" "metadata-completeness-stage" {
-    zone_id = data.aws_route53_zone.production.zone_id
-    name = "metadata-completeness.stage.datacite.org"
-    type = "CNAME"
-    ttl = var.ttl
-    records = [data.aws_lb.stage.dns_name]
 }
