@@ -30,8 +30,8 @@
                 "value": "${api_port}"
             },
             {
-                "name": "OPENSEARCH_ADDRESS",
-                "value": "${opensearch_address}"
+                "name": "OPENSEARCH_HOST",
+                "value": "${opensearch_host}"
             },
             {
                 "name": "OPENSEARCH_INDEX",
