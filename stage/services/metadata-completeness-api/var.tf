@@ -6,7 +6,7 @@ variable "region" {
 
 variable "vpc_id" {}
 
-variable "metadata_completeness_tags" {
+variable "pekingese_tags" {
   type = map(string)
 }
 
