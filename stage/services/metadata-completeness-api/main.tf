@@ -16,7 +16,7 @@ resource "aws_ecs_service" "metadata-completeness-api-stage" {
   load_balancer {
     target_group_arn = aws_lb_target_group.metadata-completeness-api-stage.id
     container_name   = "metadata-completeness-api-stage"
-    container_port   = "80"
+    container_port   = "8080"
   }
 
   service_registries {
