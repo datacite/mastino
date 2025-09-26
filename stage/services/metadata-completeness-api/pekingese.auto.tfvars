@@ -1,4 +1,4 @@
 pekingese_tags = {
-  sha = "a708f5b"
+  sha = "9294dde"
   version = ""
 }
