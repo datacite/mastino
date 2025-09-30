@@ -234,6 +234,7 @@ resource "aws_ecs_task_definition" "client-api" {
       jwt_blacklisted                   = var.jwt_blacklisted
       version                           = var.lupo_tags["version"]
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
+      metadata_storage_bucket_name      = var.metadata_storage_bucket_name
   })
 }
 

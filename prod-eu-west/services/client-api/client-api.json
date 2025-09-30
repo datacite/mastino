@@ -161,6 +161,10 @@
       {
         "name": "EXCLUDE_PREFIXES_FROM_DATA_IMPORT",
         "value": "${exclude_prefixes_from_data_import}"
+      },
+      {
+        "name": "METADATA_STORAGE_BUCKET_NAME",
+        "value": "${metadata_storage_bucket_name}"
       }
     ]
   }
