@@ -1,3 +1,12 @@
+# resource "aws_wafregional_ipset" "nat" {
+#   name = "natIPSet"
+
+#   ip_set_descriptor {
+#     type  = "IPV4"
+#     value = var.waf_nat_ip
+#   }
+# }
+
 resource "aws_wafv2_ip_set" "nat" {
   name               = "natIPSet"
   description        = "NAT IP set"
@@ -5,6 +14,143 @@ resource "aws_wafv2_ip_set" "nat" {
   ip_address_version = "IPV4"
   addresses          = [var.waf_nat_ip]
 }
+
+# resource "aws_wafregional_ipset" "whitelist" {
+#   name = "whitelistIPSet"
+
+#   ip_set_descriptor {
+#     type  = "IPV4"
+#     value = var.waf_whitelisted_ip
+#   }
+# }
+
+# resource "aws_wafregional_ipset" "blacklist" {
+#   name = "blacklistIPSet"
+
+#   ip_set_descriptor {
+#     type  = "IPV4"
+#     value = var.waf_blacklisted_ip
+#   }
+# }
+
+# resource "aws_wafregional_rate_based_rule" "rate" {
+#   depends_on  = [aws_wafregional_ipset.nat, aws_wafregional_ipset.whitelist]
+#   name        = "natWAFRule"
+#   metric_name = "natWAFRule"
+
+#   rate_key   = "IP"
+#   rate_limit = 3000
+
+#   predicate {
+#     data_id = aws_wafregional_ipset.nat.id
+#     negated = true
+#     type    = "IPMatch"
+#   }
+
+#   predicate {
+#     data_id = aws_wafregional_ipset.whitelist.id
+#     negated = true
+#     type    = "IPMatch"
+#   }
+# }
+
+# resource "aws_wafregional_byte_match_set" "cnUriMatch" {
+#   name = "cnUriMatch"
+
+#   byte_match_tuples {
+#     text_transformation   = "NONE"
+#     target_string         = "data.crosscite.org"
+#     positional_constraint = "CONTAINS"
+
+#     field_to_match {
+#       type = "HEADER"
+#       data = "host"
+#     }
+#   }
+# }
+
+# resource "aws_wafregional_rate_based_rule" "cnWAFRule" {
+#   depends_on  = [aws_wafregional_byte_match_set.cnUriMatch]
+#   name        = "cnWAFRule"
+#   metric_name = "cnWAFRule"
+
+#   rate_key   = "IP"
+#   rate_limit = 1000
+
+#   predicate {
+#     data_id = aws_wafregional_byte_match_set.cnUriMatch.id
+#     negated = false
+#     type    = "ByteMatch"
+#   }
+# }
+
+# resource "aws_wafregional_rule" "block" {
+#   name        = "blockWAFRule"
+#   metric_name = "blockWAFRule"
+
+#   predicate {
+#     type    = "IPMatch"
+#     data_id = aws_wafregional_ipset.blacklist.id
+#     negated = false
+#   }
+# }
+
+# resource "aws_wafregional_web_acl" "default" {
+#   name        = "default"
+#   metric_name = "default"
+
+#   default_action {
+#     type = "ALLOW"
+#   }
+
+#   rule {
+#     action {
+#       type = "BLOCK"
+#     }
+
+#     priority = 1
+#     rule_id  = aws_wafregional_rate_based_rule.rate.id
+#     type     = "RATE_BASED"
+#   }
+
+#   rule {
+#     action {
+#       type = "BLOCK"
+#     }
+
+#     priority = 2
+#     rule_id  = aws_wafregional_rule.block.id
+#     type     = "REGULAR"
+#   }
+
+#   rule {
+#     action {
+#       type = "BLOCK"
+#     }
+
+#     priority = 3
+#     rule_id  = aws_wafregional_rate_based_rule.cnWAFRule.id
+#     type     = "RATE_BASED"
+#   }
+
+#   lifecycle {
+#     ignore_changes = [
+#       rule
+#     ]
+#   }
+# }
+
+# # resource "aws_wafregional_web_acl_association" "default" {
+# #   resource_arn = data.aws_lb.default.arn
+# #   web_acl_id   = aws_wafregional_web_acl.default.id
+# # }
+
+# # resource "aws_wafregional_web_acl_association" "crosscite-default" {
+# #   resource_arn = data.aws_lb.crosscite.arn
+# #   web_acl_id   = aws_wafregional_web_acl.default.id
+# # }
+
+# // WAF v2 Setup
 
 resource "aws_wafv2_web_acl" "prod-default" {
   name        = "prod-default"
@@ -52,7 +198,7 @@ resource "aws_wafv2_web_acl" "prod-default" {
   }
 
   rule {
-    name     = "prodRateLimitingRuleAuthenticated"
+    name     = "prodRateLimitingRule"
     priority = 2
 
     action {
@@ -68,217 +214,16 @@ resource "aws_wafv2_web_acl" "prod-default" {
       rate_based_statement {
         limit              = 3000
         aggregate_key_type = "IP"
-
-        scope_down_statement {
-          or_statement {
-            statement {
-              byte_match_statement {
-                search_string = "bearer "
-                field_to_match {
-                  single_header {
-                    name = "authorization"
-                  }
-                }
-                positional_constraint = "STARTS_WITH"
-                text_transformation {
-                  priority = 0
-                  type     = "LOWERCASE"
-                }
-              }
-            }
-            statement {
-              byte_match_statement {
-                search_string = "basic "
-                field_to_match {
-                  single_header {
-                    name = "authorization"
-                  }
-                }
-                positional_constraint = "STARTS_WITH"
-                text_transformation {
-                  priority = 0
-                  type     = "LOWERCASE"
-                }
-              }
-            }
-          }
-        }
       }
     }
 
     visibility_config {
       cloudwatch_metrics_enabled = true
-      metric_name                = "prodRateLimitingRuleAuthenticated"
+      metric_name                = "prodRateLimitingRule"
       sampled_requests_enabled   = true
     }
   }
 
-  rule {
-    name     = "isWorks"
-    priority = 3
-
-    action {
-      block {
-        custom_response {
-          response_code            = 403
-          custom_response_body_key = "ratelimiterror"
-        }
-      }
-    }
-
-    statement {
-      rate_based_statement {
-        limit              = 400
-        aggregate_key_type = "IP"
-        scope_down_statement {
-          byte_match_statement {
-            search_string = "/works"
-            field_to_match {
-              uri_path {}
-            }
-            positional_constraint = "EXACTLY"
-            text_transformation {
-              priority = 0
-              type     = "NONE"
-            }
-          }
-        }
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "is_works"
-      sampled_requests_enabled   = true
-    }
-  }
-
-  rule {
-    name     = "isGraphql"
-    priority = 4
-
-    action {
-      block {
-        custom_response {
-          response_code            = 403
-          custom_response_body_key = "ratelimiterror"
-        }
-      }
-    }
-
-    statement {
-      rate_based_statement {
-        limit              = 200
-        aggregate_key_type = "IP"
-        scope_down_statement {
-          byte_match_statement {
-            search_string = "/graphql"
-            field_to_match {
-              uri_path {}
-            }
-            positional_constraint = "EXACTLY"
-            text_transformation {
-              priority = 0
-              type     = "NONE"
-            }
-          }
-        }
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "is_graphql"
-      sampled_requests_enabled   = true
-    }
-  }
-
-   rule {
-    name     = "prodRateLimitWithEmail"
-    priority = 5
-
-    action {
-      block {
-        custom_response {
-          response_code = 403
-          custom_response_body_key = "ratelimiterror"
-        }
-      }
-    }
-
-    statement {
-      rate_based_statement {
-        limit              = 1000
-        aggregate_key_type = "IP"
-
-        scope_down_statement {
-          or_statement {
-            statement {
-              byte_match_statement {
-                search_string = "@"
-                field_to_match {
-                  single_header {
-                    name = "user-agent"
-                  }
-                }
-                positional_constraint = "CONTAINS"
-                text_transformation {
-                  priority = 0
-                  type     = "NONE"
-                }
-              }
-            }
-            statement {
-              byte_match_statement {
-                search_string = "mailto="
-                field_to_match {
-                  query_string {}
-                }
-                positional_constraint = "CONTAINS"
-                text_transformation {
-                  priority = 0
-                  type     = "NONE"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "prodRateLimitWithEmail"
-      sampled_requests_enabled   = true
-    }
-  }
-
-  rule {
-    name     = "prodRateLimitUnauthenticated"
-    priority = 6
-
-    action {
-      block {
-        custom_response {
-          response_code = 403
-          custom_response_body_key = "ratelimiterror"
-        }
-      }
-    }
-
-    statement {
-      rate_based_statement {
-        limit              = 500
-        aggregate_key_type = "IP"
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "prodRateLimitUnauthenticated"
-      sampled_requests_enabled   = true
-    }
-  }
 
   visibility_config {
     cloudwatch_metrics_enabled = false
