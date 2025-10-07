@@ -276,36 +276,17 @@ resource "aws_wafv2_web_acl" "prod-default" {
             statement {
               not_statement {
                 statement {
-                  or_statement {
-                    statement {
-                      byte_match_statement {
-                        search_string = "bearer "
-                        field_to_match {
-                          single_header {
-                            name = "authorization"
-                          }
-                        }
-                        positional_constraint = "STARTS_WITH"
-                        text_transformation {
-                          priority = 0
-                          type     = "LOWERCASE"
-                        }
+                  byte_match_statement {
+                    search_string = "bearer "
+                    field_to_match {
+                      single_header {
+                        name = "authorization"
                       }
                     }
-                    statement {
-                      byte_match_statement {
-                        search_string = "basic "
-                        field_to_match {
-                          single_header {
-                            name = "authorization"
-                          }
-                        }
-                        positional_constraint = "STARTS_WITH"
-                        text_transformation {
-                          priority = 0
-                          type     = "LOWERCASE"
-                        }
-                      }
+                    positional_constraint = "STARTS_WITH"
+                    text_transformation {
+                      priority = 0
+                      type     = "LOWERCASE"
                     }
                   }
                 }
@@ -314,34 +295,53 @@ resource "aws_wafv2_web_acl" "prod-default" {
             statement {
               not_statement {
                 statement {
-                  or_statement {
-                    statement {
-                      byte_match_statement {
-                        search_string = "@"
-                        field_to_match {
-                          single_header {
-                            name = "user-agent"
-                          }
-                        }
-                        positional_constraint = "CONTAINS"
-                        text_transformation {
-                          priority = 0
-                          type     = "NONE"
-                        }
+                  byte_match_statement {
+                    search_string = "basic "
+                    field_to_match {
+                      single_header {
+                        name = "authorization"
                       }
                     }
-                    statement {
-                      byte_match_statement {
-                        search_string = "mailto="
-                        field_to_match {
-                          query_string {}
-                        }
-                        positional_constraint = "CONTAINS"
-                        text_transformation {
-                          priority = 0
-                          type     = "NONE"
-                        }
+                    positional_constraint = "STARTS_WITH"
+                    text_transformation {
+                      priority = 0
+                      type     = "LOWERCASE"
+                    }
+                  }
+                }
+              }
+            }
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "@"
+                    field_to_match {
+                      single_header {
+                        name = "user-agent"
                       }
+                    }
+                    positional_constraint = "CONTAINS"
+                    text_transformation {
+                      priority = 0
+                      type     = "NONE"
+                    }
+                  }
+                }
+              }
+            }
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "mailto="
+                    field_to_match {
+                      query_string {}
+                    }
+                    positional_constraint = "CONTAINS"
+                    text_transformation {
+                      priority = 0
+                      type     = "NONE"
                     }
                   }
                 }
