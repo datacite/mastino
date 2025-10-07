@@ -166,8 +166,8 @@ resource "aws_ecs_task_definition" "member-api" {
   execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu                      = "2048"
-  memory                   = "8192"
+  cpu                      = "4096"
+  memory                   = "10240"
   container_definitions = templatefile("member-api.json",
     {
       re3data_url                       = var.re3data_url
