@@ -133,7 +133,7 @@ resource "aws_wafv2_web_acl" "prod-default" {
 
   rule {
     name     = "prodRateLimitingRuleAuthenticated"
-    priority = 40
+    priority = 30
 
     action {
       block {
