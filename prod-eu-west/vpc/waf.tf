@@ -20,8 +20,8 @@ resource "aws_wafv2_web_acl" "prod-default" {
       {
         errors = [
           {
-            status = "403"
-            title  = "Your request has been rate limited."
+            status = "429"
+            title  = "Your request has been rate limited. See https://support.datacite.org/docs/rate-limit."
           },
         ]
       }
@@ -51,15 +51,95 @@ resource "aws_wafv2_web_acl" "prod-default" {
     }
   }
 
+   rule {
+    name     = "isWorks"
+    priority = 10
+
+    action {
+      block {
+        custom_response {
+          response_code            = 429
+          custom_response_body_key = "ratelimiterror"
+        }
+      }
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 400
+        aggregate_key_type = "IP"
+        scope_down_statement {
+          byte_match_statement {
+            search_string = "/works"
+            field_to_match {
+              uri_path {}
+            }
+            positional_constraint = "EXACTLY"
+            text_transformation {
+              priority = 0
+              type     = "NONE"
+            }
+          }
+        }
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "is_works"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "isGraphql"
+    priority = 20
+
+    action {
+      block {
+        custom_response {
+          response_code            = 429
+          custom_response_body_key = "ratelimiterror"
+        }
+      }
+    }
+
+    statement {
+      rate_based_statement {
+        limit              = 200
+        aggregate_key_type = "IP"
+        scope_down_statement {
+          byte_match_statement {
+            search_string = "/graphql"
+            field_to_match {
+              uri_path {}
+            }
+            positional_constraint = "EXACTLY"
+            text_transformation {
+              priority = 0
+              type     = "NONE"
+            }
+          }
+        }
+      }
+    }
+
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "is_graphql"
+      sampled_requests_enabled   = true
+    }
+  }
+
   rule {
     name     = "prodRateLimitingRuleAuthenticated"
-    priority = 2
+    priority = 30
 
     action {
       block {
         custom_response {
           custom_response_body_key = "ratelimiterror"
-          response_code            = 403
+          response_code            = 429
         }
       }
     }
@@ -114,93 +194,13 @@ resource "aws_wafv2_web_acl" "prod-default" {
   }
 
   rule {
-    name     = "isWorks"
-    priority = 3
-
-    action {
-      block {
-        custom_response {
-          response_code            = 403
-          custom_response_body_key = "ratelimiterror"
-        }
-      }
-    }
-
-    statement {
-      rate_based_statement {
-        limit              = 400
-        aggregate_key_type = "IP"
-        scope_down_statement {
-          byte_match_statement {
-            search_string = "/works"
-            field_to_match {
-              uri_path {}
-            }
-            positional_constraint = "EXACTLY"
-            text_transformation {
-              priority = 0
-              type     = "NONE"
-            }
-          }
-        }
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "is_works"
-      sampled_requests_enabled   = true
-    }
-  }
-
-  rule {
-    name     = "isGraphql"
-    priority = 4
-
-    action {
-      block {
-        custom_response {
-          response_code            = 403
-          custom_response_body_key = "ratelimiterror"
-        }
-      }
-    }
-
-    statement {
-      rate_based_statement {
-        limit              = 200
-        aggregate_key_type = "IP"
-        scope_down_statement {
-          byte_match_statement {
-            search_string = "/graphql"
-            field_to_match {
-              uri_path {}
-            }
-            positional_constraint = "EXACTLY"
-            text_transformation {
-              priority = 0
-              type     = "NONE"
-            }
-          }
-        }
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "is_graphql"
-      sampled_requests_enabled   = true
-    }
-  }
-
-   rule {
     name     = "prodRateLimitWithEmail"
-    priority = 5
+    priority = 40
 
     action {
       block {
         custom_response {
-          response_code = 403
+          response_code = 429
           custom_response_body_key = "ratelimiterror"
         }
       }
@@ -255,12 +255,12 @@ resource "aws_wafv2_web_acl" "prod-default" {
 
   rule {
     name     = "prodRateLimitUnauthenticated"
-    priority = 6
+    priority = 50
 
     action {
       block {
         custom_response {
-          response_code = 403
+          response_code            = 429
           custom_response_body_key = "ratelimiterror"
         }
       }
@@ -270,6 +270,119 @@ resource "aws_wafv2_web_acl" "prod-default" {
       rate_based_statement {
         limit              = 500
         aggregate_key_type = "IP"
+        
+        scope_down_statement {
+          and_statement {
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "bearer "
+                    field_to_match {
+                      single_header {
+                        name = "authorization"
+                      }
+                    }
+                    positional_constraint = "STARTS_WITH"
+                    text_transformation {
+                      priority = 0
+                      type     = "LOWERCASE"
+                    }
+                  }
+                }
+              }
+            }
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "basic "
+                    field_to_match {
+                      single_header {
+                        name = "authorization"
+                      }
+                    }
+                    positional_constraint = "STARTS_WITH"
+                    text_transformation {
+                      priority = 0
+                      type     = "LOWERCASE"
+                    }
+                  }
+                }
+              }
+            }
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "@"
+                    field_to_match {
+                      single_header {
+                        name = "user-agent"
+                      }
+                    }
+                    positional_constraint = "CONTAINS"
+                    text_transformation {
+                      priority = 0
+                      type     = "NONE"
+                    }
+                  }
+                }
+              }
+            }
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "mailto="
+                    field_to_match {
+                      query_string {}
+                    }
+                    positional_constraint = "CONTAINS"
+                    text_transformation {
+                      priority = 0
+                      type     = "NONE"
+                    }
+                  }
+                }
+              }
+            }
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "/works"
+                    field_to_match {
+                      uri_path {}
+                    }
+                    positional_constraint = "EXACTLY"
+                    text_transformation {
+                      priority = 0
+                      type     = "NONE"
+                    }
+                  }
+                }
+              }
+            }
+            statement {
+              not_statement {
+                statement {
+                  byte_match_statement {
+                    search_string = "/graphql"
+                    field_to_match {
+                      uri_path {}
+                    }
+                    positional_constraint = "EXACTLY"
+                    text_transformation {
+                      priority = 0
+                      type     = "NONE"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
 
