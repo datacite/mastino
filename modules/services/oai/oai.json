@@ -1,0 +1,48 @@
+[
+  {
+    "name": "${app_name}",
+    "image": "datacite/viringo:${container_version}",
+    "networkMode": "awsvpc",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "environment": [
+      {
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
+      },
+      {
+        "name": "DATACITE_API_URL",
+        "value": "${api_url}"
+      },
+      {
+        "name": "DATACITE_API_ADMIN_PASSWORD",
+        "value": "${api_password}"
+      },
+      {
+        "name": "LOG_LEVEL",
+        "value": "${log_level}"
+      },
+      {
+        "name": "OAIPMH_BASE_URL",
+        "value": "${base_url}"
+      },
+      {
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
+      }
+    ]
+  }
+]
