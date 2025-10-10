@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "bc7b4b5081f730006374ca1d56048cf6da84f4e3"
-  version = "pb88-geolocation"
+  sha = "1084237d507f16b4b9b9037f02443c0f074b0c7c"
+  version = "main"
 }
