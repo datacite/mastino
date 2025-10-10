@@ -1,4 +1,4 @@
 poodle_tags = {
-  sha = "dabedd17cc44dc4a70ae44160856af2577795252"
-  version = "main"
+  sha = "a42d4fa0d760f17727f3cf27efc1b1b7b5eef17c"
+  version = "pb88-geolocation"
 }
