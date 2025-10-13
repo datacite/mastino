@@ -87,3 +87,11 @@ variable "shoryuken_concurrency" {
 variable "metadata_storage_bucket_name" {
   default = ""
 }
+
+variable "passenger_max_pool_size" {
+  default = "8"
+}
+variable "passenger_min_instances" {
+  default = "3"
+}
+

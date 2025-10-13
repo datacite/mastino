@@ -66,6 +66,8 @@ resource "aws_ecs_task_definition" "queue-worker-test" {
       sha                           = var.lupo_tags["sha"]
       shoryuken_concurrency         = var.shoryuken_concurrency
       metadata_storage_bucket_name  = var.metadata_storage_bucket_name
+      passenger_max_pool_size       = var.passenger_max_pool_size
+      passenger_min_instances       = var.passenger_min_instances
   })
 }
 

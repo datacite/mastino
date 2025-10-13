@@ -61,6 +61,8 @@ resource "aws_ecs_task_definition" "migration-api" {
       slack_webhook_url             = var.slack_webhook_url
       jwt_blacklisted               = var.jwt_blacklisted
       version                       = var.lupo_tags["version"]
+      passenger_max_pool_size       = var.passenger_max_pool_size
+      passenger_min_instances       = var.passenger_min_instances
   })
 }
 

@@ -148,6 +148,14 @@
       {
         "name" : "SLACK_WEBHOOK_URL",
         "value" : "${slack_webhook_url}"
+      },
+      {
+        "name": "PASSENGER_MAX_POOL_SIZE",
+        "value": "${passenger_max_pool_size}"
+      },
+      {
+        "name": "PASSENGER_MIN_INSTANCES",
+        "value": "${passenger_min_instances}"
       }
     ]
   }
