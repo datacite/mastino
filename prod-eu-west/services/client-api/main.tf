@@ -235,6 +235,8 @@ resource "aws_ecs_task_definition" "client-api" {
       version                           = var.lupo_tags["version"]
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
       metadata_storage_bucket_name      = var.metadata_storage_bucket_name
+      passenger_max_pool_size           = var.passenger_max_pool_size
+      passenger_min_instances           = var.passenger_min_instances
   })
 }
 

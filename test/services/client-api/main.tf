@@ -73,6 +73,8 @@ resource "aws_ecs_task_definition" "client-api-test" {
       jwt_blacklisted               = var.jwt_blacklisted
       version                       = var.lupo_tags["version"]
       metadata_storage_bucket_name  = var.metadata_storage_bucket_name
+      passenger_max_pool_size       = var.passenger_max_pool_size
+      passenger_min_instances       = var.passenger_min_instances
   })
 }
 

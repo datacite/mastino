@@ -68,6 +68,8 @@ resource "aws_ecs_task_definition" "queue-worker" {
       exclude_prefixes_from_data_import = var.exclude_prefixes_from_data_import
       shoryuken_concurrency             = var.shoryuken_concurrency
       metadata_storage_bucket_name      = var.metadata_storage_bucket_name
+      passenger_max_pool_size           = var.passenger_max_pool_size
+      passenger_min_instances           = var.passenger_min_instances
   })
 }
 
