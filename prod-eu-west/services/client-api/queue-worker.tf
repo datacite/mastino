@@ -93,7 +93,7 @@ resource "aws_service_discovery_service" "queue-worker" {
 
 // Autoscaling target for queue-worker service
 resource "aws_appautoscaling_target" "queue-worker" {
-  max_capacity       = 40
+  max_capacity       = 30
   min_capacity       = 1
   resource_id        = "service/default/${aws_ecs_service.queue-worker.name}"
   scalable_dimension = "ecs:service:DesiredCount"
