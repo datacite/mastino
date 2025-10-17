@@ -274,6 +274,20 @@ resource "aws_sqs_queue" "events_index" {
   }
 }
 
+resource "aws_sqs_queue" "events_other_doi_job" {
+  name = "${var.environment}_events_other_doi_job"
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
+    maxReceiveCount     = 4
+  })
+
+  tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 // BatchQueing dead letter queue OtherDois 
 resource "aws_sqs_queue" "queue_batches_other_doi-dead-letter" {
   name = "${var.environment}_queue_batches_other_doi-dead-letter"
