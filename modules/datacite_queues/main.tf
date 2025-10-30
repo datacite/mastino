@@ -275,7 +275,8 @@ resource "aws_sqs_queue" "events_index" {
 }
 
 resource "aws_sqs_queue" "events_other_doi_job" {
-  name = "${var.environment}_events_other_doi_job"
+  name                      = "${var.environment}_events_other_doi_job"
+  message_retention_seconds = 864000 # set message retention to 10 days
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
     maxReceiveCount     = 4
