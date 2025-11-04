@@ -50,6 +50,16 @@ resource "aws_lambda_function" "datafile-generator-stage" {
   }
 }
 
+import {
+  to = aws_s3_bucket.datafile-stage
+  id = "datafile-stage"
+}
+
+import {
+  to = aws_s3_bucket.datafile-logs
+  id = "datafile-logs"
+}
+
 resource "aws_s3_bucket" "datafile-stage" {
   bucket = var.datafile_bucket
   tags = {
