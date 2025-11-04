@@ -2,8 +2,8 @@
     {
         "name": "datafile-generator-stage",
         "image": "ghcr.io/datacite/alopekis:${version}",
-        "cpu": 8192,
-        "memory": 16384,
+        "cpu": 16384,
+        "memory": 32768,
         "essential": true,
         "networkMode": "awsvpc",
         "logConfiguration": {
@@ -13,6 +13,9 @@
                 "awslogs-region": "eu-west-1",
                 "awslogs-stream-prefix": "ecs"
             }
+        },
+        "ephemeralStorage": {
+            "sizeInGB": 200
         },
         "environment": [
             {
