@@ -1,4 +1,4 @@
 alopekis_tags = {
-  sha = ""
-  version = ""
+  sha = "latest"
+  version = "latest"
 }
