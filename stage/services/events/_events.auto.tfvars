@@ -1,4 +1,4 @@
 events_tags = {
-  sha = "7aa230482ab6b34548e3d3774badfca983711bb7"
+  sha = "59c563aeba42a6fe02db5219af6df7e8631c3fa8"
   version = "implement-other-doi-job-queueing-logic"
 }
