@@ -51,9 +51,17 @@ resource "aws_lambda_function" "datafile-generator-stage" {
 }
 
 resource "aws_s3_bucket" "datafile-stage" {
-  bucket = "datafile-stage"
+  bucket = var.datafile_bucket
   tags = {
-    Enviroment = "stage"
+    Environment = "stage"
     Name       = "Datafile storage"
+  }
+}
+
+resource "aws_s3_bucket" "datafile-logs" {
+  bucket = var.log_bucket
+  tags = {
+    Environment = "stage"
+    Name       = "Datafile logs"
   }
 }
