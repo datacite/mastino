@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "e9dba05fc1490e6c6dea88df803f57345d70e145"
-  version = "add-other-doi-import-worker"
+  sha = "573d0f1c2002bc7111fab524f0ea1d422b5c6092"
+  version = "main"
 }
