@@ -14,9 +14,6 @@
                 "awslogs-stream-prefix": "ecs"
             }
         },
-        "ephemeralStorage": {
-            "sizeInGB": 200
-        },
         "environment": [
             {
                 "name": "GITHUB_VERSION",

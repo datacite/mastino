@@ -5,6 +5,9 @@ resource "aws_ecs_task_definition" "datafile-generator-stage" {
   requires_compatibilities = ["FARGATE"]
   cpu = "16384"
   memory = "32768"
+  ephemeral_storage {
+    size_in_gib = 200
+  }
   container_definitions = templatefile("datafile-generator.json",
     {
       version          = var.alopekis_tags["version"]
