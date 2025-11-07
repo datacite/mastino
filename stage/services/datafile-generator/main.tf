@@ -29,7 +29,7 @@ resource "aws_lambda_function" "datafile-generator-stage" {
   filename         = "datafile_generator.py.zip"
   function_name    = "datafile-generator-stage"
   role             = data.aws_iam_role.lambda.arn
-  handler          = "datafile_generator.lambda_handler"
+  handler          = "datafile_generator_runner.lambda_handler"
   runtime          = "python3.10"
   source_code_hash = sha256(filebase64("datafile_generator.py.zip"))
   timeout          = "30"
