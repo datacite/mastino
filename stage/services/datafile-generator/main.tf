@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "datafile-generator-stage" {
   memory = "32768"
   container_definitions = templatefile("datafile-generator.json",
     {
-      version          = var.alopekis_tags["sha"]
+      version          = var.alopekis_tags["version"]
       opensearch_host  = var.opensearch_host
       opensearch_port  = var.opensearch_port
       opensearch_index = var.opensearch_index
