@@ -1,4 +1,4 @@
 events_tags = {
-  sha = "3fbedea450ff5c4b0834741fab3d4ded9e4dd039"
+  sha = "38b72aca71a35808beba0f5dbc5d4361cf51fd77"
   version = "create-crossref-doi-import-task"
 }
