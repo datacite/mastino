@@ -178,7 +178,7 @@ resource "aws_lb_target_group" "graphql" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-graphql-temp" {
+resource "aws_lb_listener_rule" "api-graphql" {
   listener_arn = data.aws_lb_listener.default.arn
   priority     = 40
 
@@ -189,7 +189,7 @@ resource "aws_lb_listener_rule" "api-graphql-temp" {
 
   condition {
     path_pattern {
-      values = ["/split/graphql"]  # TEMPORARY to allow Terraform to associate this service with the LB
+      values = ["/client-api/graphql"]
     }
   }
 
