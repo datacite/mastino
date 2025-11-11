@@ -178,7 +178,7 @@ resource "aws_lb_target_group" "graphql" {
   }
 }
 
-resource "aws_lb_listener_rule" "api-graphql" {
+resource "aws_lb_listener_rule" "api-graphql-temp" {
   listener_arn = data.aws_lb_listener.default.arn
   priority     = 40
 
