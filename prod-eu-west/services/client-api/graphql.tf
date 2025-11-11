@@ -204,7 +204,7 @@ resource "aws_service_discovery_service" "graphql" {
   name = "graphql"
 
   health_check_custom_config {
-    failure_threshold = 2
+    failure_threshold = 1
   }
 
   dns_config {
