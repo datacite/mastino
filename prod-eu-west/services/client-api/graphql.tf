@@ -178,27 +178,27 @@ resource "aws_lb_target_group" "graphql" {
   }
 }
 
-# resource "aws_lb_listener_rule" "api-graphql" {
-#   listener_arn = data.aws_lb_listener.default.arn
-#   priority     = 39
-#
-#   action {
-#     type             = "forward"
-#     target_group_arn = aws_lb_target_group.graphql.arn
-#   }
-#
-#   condition {
-#     path_pattern {
-#       values = ["/client-api/graphql"]
-#     }
-#   }
-#
-#   condition {
-#     host_header {
-#       values = [var.api_dns_name]
-#     }
-#   }
-# }
+resource "aws_lb_listener_rule" "api-graphql" {
+  listener_arn = data.aws_lb_listener.default.arn
+  priority     = 40
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.graphql.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/split/graphql"]  # TEMPORARY to allow Terraform to associate this service with the LB
+    }
+  }
+
+  condition {
+    host_header {
+      values = [var.api_dns_name]
+    }
+  }
+}
 
 resource "aws_service_discovery_service" "graphql" {
   name = "graphql"
