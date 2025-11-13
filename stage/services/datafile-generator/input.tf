@@ -41,6 +41,10 @@ data "aws_iam_role" "lambda" {
   name = "lambda"
 }
 
+data "aws_iam_role" "container_role" {
+  name = "datafile-generator-s3"
+}
+
 data "aws_lb" "stage" {
   name = var.lb_name
 }

@@ -5,6 +5,7 @@ resource "aws_ecs_task_definition" "datafile-generator" {
   requires_compatibilities = ["FARGATE"]
   cpu = "16384"
   memory = "32768"
+  task_role_arn = data.aws_iam_role.container_role.arn
   ephemeral_storage {
     size_in_gib = 200
   }
