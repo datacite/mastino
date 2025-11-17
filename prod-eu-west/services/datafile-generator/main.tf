@@ -74,22 +74,20 @@ resource "aws_s3_bucket" "datafile-logs" {
   }
 }
 
-# resource "aws_cloudwatch_event_rule" "datafile-generator-cron" {
-#   name                = "datafile-generator-cron"
-#   description         = "Run adata file generator via cron"
-#   schedule_expression = "cron(00 0 1 * *)" # 1st day of the month at midnight
-# }
-#
-# resource "aws_cloudwatch_event_target" "datafile-generator-cron" {
-#   target_id = "datafile-generator-cron"
-#   rule      = aws_cloudwatch_event_rule.datafile-generator-cron.name
-#   arn       = aws_lambda_function.datafile-generator.arn
-# }
-#
-# resource "aws_lambda_permission" "datafile-generator-cron" {
-#   statement_id  = "AllowExecutionFromCloudWatch"
-#   action        = "lambda:InvokeFunction"
-#   function_name = aws_lambda_function.datafile-generator.function_name
-#   principal     = "events.amazonaws.com"
-#   source_arn    = aws_cloudwatch_event_rule.datafile-generator-cron.arn
-# }
+resource "aws_cloudwatch_event_rule" "datafile-generator-cron" {
+  name                = "datafile-generator-cron"
+  description         = "Run adata file generator via cron"
+  schedule_expression = "cron(00 0 18 * *)" # TEMP 18th for testing - change back to 1st day of the month at midnight
+}
+resource "aws_cloudwatch_event_target" "datafile-generator-cron" {
+  target_id = "datafile-generator-cron"
+  rule      = aws_cloudwatch_event_rule.datafile-generator-cron.name
+  arn       = aws_lambda_function.datafile-generator.arn
+}
+resource "aws_lambda_permission" "datafile-generator-cron" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.datafile-generator.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.datafile-generator-cron.arn
+}
