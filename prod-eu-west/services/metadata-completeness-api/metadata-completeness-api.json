@@ -1,0 +1,42 @@
+[
+    {
+        "name": "metadata-completeness-api",
+        "image": "ghcr.io/datacite/pekingese",
+        "cpu": 256,
+        "memory": 512,
+        "essential": true,
+        "networkMode": "awsvpc",
+        "portMappings": [
+            {
+                "containerPort": 8080,
+                "hostPort": 8080
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/metadata-completeness-api",
+                "awslogs-region": "eu-west-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "environment": [
+            {
+                "name": "GITHUB_VERSION",
+                "value": "${version}"
+            },
+            {
+                "name": "API_PORT",
+                "value": "${api_port}"
+            },
+            {
+                "name": "OPENSEARCH_HOST",
+                "value": "${opensearch_host}"
+            },
+            {
+                "name": "OPENSEARCH_INDEX",
+                "value": "${opensearch_index}"
+            }
+        ]
+    }
+]
