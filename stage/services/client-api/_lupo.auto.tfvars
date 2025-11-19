@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "111381c3d5300c2235cd9c40ca6ba32f135c8819"
+  sha = "aa11469225c5c871d6b324664859d2debc5e3495"
   version = "add-logging-to-debug-crossref-doi-bug"
 }
