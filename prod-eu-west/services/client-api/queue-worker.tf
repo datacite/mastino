@@ -329,5 +329,42 @@ resource "aws_cloudwatch_metric_alarm" "queue_worker_scale_down_alarm" {
       }
     }
   }
+}
 
+resource "aws_cloudwatch_metric_alarm" "events_other_doi_job_scale_up_alarm" {
+  alarm_name          = "events_other_doi_job_worker_scale_up_alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  alarm_description   = "Scale up when the new queue gets large"
+  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_up.arn]
+
+  threshold = "3000000"
+
+  metric_name = "ApproximateNumberOfMessagesVisible"
+  namespace   = "AWS/SQS"
+  period      = "600"
+  statistic   = "Maximum"
+
+  dimensions = {
+    QueueName = "production_events_other_doi_job"
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "events_other_doi_job_worker_scale_down_alarm" {
+  alarm_name          = "events_other_doi_job_worker_scale_down_alarm"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  alarm_description   = "Scale down when the new queue shrinks"
+  alarm_actions       = [aws_appautoscaling_policy.queue-worker_scale_down.arn]
+
+  threshold = "1000000"
+
+  metric_name = "ApproximateNumberOfMessagesVisible"
+  namespace   = "AWS/SQS"
+  period      = "600"
+  statistic   = "Maximum"
+
+  dimensions = {
+    QueueName = "production_events_other_doi_job"
+  }
 }
