@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "e09bdafbf001ab53b2ed1a8e5fd8c2d021bb410a"
-  version = "main"
+  sha = "28aca0a83b1af0a256c097332b0d6111bd531763"
+  version = "fix-other-doi-indexing"
 }
