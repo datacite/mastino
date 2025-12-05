@@ -41,3 +41,11 @@ variable "dd_api_key" {}
 variable "lb_name" {
   default = "lb-stage"
 }
+
+variable "datafile_bucket" {
+  default = "monthly-datafile.stage.datacite.org"
+}
+
+variable "service_account" {
+  default = "Lupo-Staging"
+}

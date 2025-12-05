@@ -413,3 +413,12 @@ resource "aws_route53_record" "sage-vertify" {
   ttl     = "300"
   records = ["intacct-esk=2C496A32C127CCC5E0638D86450A7D6F"]
 }
+
+// Monthly data file bucket
+resource "aws_route53_record" "monthly-datafile-stage" {
+  zone_id = aws_route53_zone.production.zone_id
+  name = "monthly-datafile.stage.datacite.org"
+  type = "CNAME"
+  ttl = var.ttl
+  records = ["monthly-datafile.stage.datacite.org.s3.eu-west-1.amazonaws.com"]
+}

@@ -39,7 +39,7 @@ variable "workers" {
 }
 
 variable "datafile_bucket" {
-    default = "datafile-stage"
+    default = "monthly-datafile.stage.datacite.org"
 }
 
 variable "log_bucket" {
