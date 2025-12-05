@@ -42,24 +42,24 @@ DOC
 }
 
 import {
-  to = aws_iam_user.lupo-staging
-  id = "Lupo-Staging"
+  to = aws_iam_user.service-account-stage
+  id = var.service_account
 }
 
 import {
-  to = aws_s3_bucket.datafile-stage
-  id = "datafile-stage"
+  to = aws_s3_bucket.datafile-bucket-stage
+  id = var.datafile_bucket
 }
 
 
-resource "aws_s3_bucket" "datafile-stage" {
+resource "aws_s3_bucket" "datafile-bucket-stage" {
   lifecycle {
     ignore_changes = [tags]
   }
 }
 
-resource "aws_iam_user" "lupo-staging" {
-  name = "Lupo-Staging"
+resource "aws_iam_user" "service-account-stage" {
+  name = var.service_account
   lifecycle {
     ignore_changes = [tags]
   }
@@ -77,7 +77,7 @@ resource "aws_iam_role" "datafile_readonly_access-stage" {
         Effect = "Allow"
         Sid = "AllowDatafileAccessRoleFromLupo"
         Principal = {
-          AWS = aws_iam_user.lupo-staging.arn
+          AWS = aws_iam_user.service-account-stage.arn
         }
       }
     ]
@@ -96,7 +96,7 @@ resource "aws_iam_role_policy" "datafile_readonly_access_s3-stage" {
           "s3:ListBucket"
         ]
         Resource = [
-          aws_s3_bucket.datafile-stage.arn
+          aws_s3_bucket.datafile-bucket-stage.arn
         ]
       },
       {
@@ -106,7 +106,7 @@ resource "aws_iam_role_policy" "datafile_readonly_access_s3-stage" {
           "s3:GetObjectAttributes"
         ]
         Resource = [
-          "${aws_s3_bucket.datafile-stage.arn}/*"
+          "${aws_s3_bucket.datafile-bucket-stage.arn}/*"
         ]
       }
     ]
