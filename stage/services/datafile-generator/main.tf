@@ -56,7 +56,7 @@ resource "aws_lambda_function" "datafile-generator-stage" {
 
 import {
   to = aws_s3_bucket.datafile-stage
-  id = "datafile-stage"
+  id = var.datafile_bucket
 }
 
 import {
