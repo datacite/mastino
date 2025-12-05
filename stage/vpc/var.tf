@@ -43,7 +43,7 @@ variable "lb_name" {
 }
 
 variable "datafile_bucket" {
-  default = "datafile-stage"
+  default = "monthly-datafile.stage.datacite.org"
 }
 
 variable "service_account" {
