@@ -98,6 +98,7 @@ resource "aws_iam_role_policy" "datafile_readonly_access_s3-stage" {
         Resource = [
           aws_s3_bucket.datafile-bucket-stage.arn
         ]
+        Effect = "Allow"
       },
       {
         Sid = "S3ObjectAccess"
@@ -108,6 +109,7 @@ resource "aws_iam_role_policy" "datafile_readonly_access_s3-stage" {
         Resource = [
           "${aws_s3_bucket.datafile-bucket-stage.arn}/*"
         ]
+        Effect = "Allow"
       }
     ]
   })
