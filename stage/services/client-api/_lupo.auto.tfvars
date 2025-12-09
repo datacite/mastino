@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "338cf2d4eaa6664ce4d60f7e37c0bb139ea44b90"
-  version = "use-opensearch-field-type-text-for-more-flexible-rest-api-querying-in-certain-fields"
+  sha = "d9206a4c715035ffc206af865c602fe4cab4954e"
+  version = "main"
 }
