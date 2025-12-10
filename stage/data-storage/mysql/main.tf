@@ -41,6 +41,11 @@ resource "aws_db_parameter_group" "datacite-stage-mysql8" {
   description = "RDS datacite-stage mysql8 parameter group"
 
   parameter {
+    name  = "skip_name_resolve"
+    value = "1"
+  }
+
+  parameter {
     name  = "character_set_server"
     value = "utf8"
   }
@@ -71,6 +76,11 @@ resource "aws_db_parameter_group" "datacite-stage-mysql84" {
   name        = "datacite-stage-mysql84"
   family      = "mysql8.4"
   description = "RDS datacite-stage mysql84 parameter group"
+
+  parameter {
+    name  = "skip_name_resolve"
+    value = "1"
+  }
 
   // The following are old character set defaults pre MySQL 8
   // At time of configuration data still uses the old setup
