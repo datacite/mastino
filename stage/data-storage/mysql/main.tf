@@ -29,7 +29,7 @@ resource "aws_db_instance" "db-stage" {
     prevent_destroy = "true"
     ignore_changes = [
       engine_version
-     ]
+    ]
   }
 
   apply_immediately = "true"
@@ -63,6 +63,32 @@ resource "aws_db_parameter_group" "datacite-stage-mysql8" {
   parameter {
     name  = "log_output"
     value = "FILE"
+  }
+}
+
+
+resource "aws_db_parameter_group" "datacite-stage-mysql84" {
+  name        = "datacite-stage-mysql84"
+  family      = "mysql8.4"
+  description = "RDS datacite-stage mysql84 parameter group"
+
+  // The following are old character set defaults pre MySQL 8
+  // At time of configuration data still uses the old setup
+  // We could change default here but it's a good idea that we migrate the character sets
+  // and then change this default
+  parameter {
+    name  = "character_set_server"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "collation_server"
+    value = "utf8_unicode_ci"
+  }
+
+  parameter {
+    name  = "character_set_client"
+    value = "utf8"
   }
 }
 
