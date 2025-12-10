@@ -116,13 +116,6 @@ resource "aws_db_parameter_group" "datacite-prod-mysql84" {
   family      = "mysql8.4"
   description = "MySQL 8.4 RDS datacite parameter group"
 
-  // We enable the legacy native mysql password support explicitly
-  // TODO: If we're happy all users have been migrated to newer auth we can turn this off again
-  parameter {
-    name  = "mysql_native_password"
-    value = "ON"
-  }
-
   // The following are old character set defaults pre MySQL 8
   // At time of configuration data still uses the old setup
   // We could change default here but it's a good idea that we migrate the character sets
