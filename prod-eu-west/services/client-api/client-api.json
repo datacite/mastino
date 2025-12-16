@@ -173,6 +173,10 @@
       {
         "name": "PASSENGER_MIN_INSTANCES",
         "value": "${passenger_min_instances}"
+      },
+      {
+        "name": "REDLOY_UNIQUE_ID",
+        "value": "5e74ce71-bcb9-4379-8727-8a652683e181"
       }
     ]
   }

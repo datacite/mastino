@@ -164,15 +164,19 @@
       {
         "name": "METADATA_STORAGE_BUCKET_NAME",
         "value": "${metadata_storage_bucket_name}"
-      },      {
+      },
+      {
         "name": "PASSENGER_MAX_POOL_SIZE",
         "value": "${passenger_max_pool_size}"
       },
       {
         "name": "PASSENGER_MIN_INSTANCES",
         "value": "${passenger_min_instances}"
+      },
+      {
+        "name": "REDLOY_UNIQUE_ID",
+        "value": "5e74ce71-bcb9-4379-8727-8a652683e181"
       }
-
     ]
   }
 ]
