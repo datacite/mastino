@@ -54,6 +54,10 @@
       {
         "name": "PUBLIC_KEY",
         "value": "${public_key}"
+      },
+      {
+        "name": "FORCE_NEW_DEPLOYMENT_GUID",
+        "value": "7c491ee4-58f8-4440-abdc-43fb876eb1ad"
       }
     ]
   }
