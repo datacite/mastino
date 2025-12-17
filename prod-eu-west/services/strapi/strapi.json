@@ -1,7 +1,7 @@
 [
   {
     "name": "strapi",
-    "image": "strapi/strapi:${version}",
+    "image": "ghcr.io/datacite/strapi:${version}",
     "cpu": 512,
     "memory": 2048,
     "networkMode": "awsvpc",
@@ -18,42 +18,42 @@
         "hostPort": 1337
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
-         "awslogs-group" : "/ecs/strapi",
-         "awslogs-region": "eu-west-1",
-         "awslogs-stream-prefix": "ecs"
+      "options": {
+        "awslogs-group": "/ecs/strapi",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
       }
     },
-    "environment" : [
+    "environment": [
       {
-        "name" : "NODE_ENV",
-        "value" : "development"
+        "name": "NODE_ENV",
+        "value": "development"
       },
       {
-        "name" : "DATABASE_CLIENT",
-        "value" : "mysql"
+        "name": "DATABASE_CLIENT",
+        "value": "mysql"
       },
       {
-        "name" : "DATABASE_HOST",
-        "value" : "${mysql_host}"
+        "name": "DATABASE_HOST",
+        "value": "${mysql_host}"
       },
       {
-        "name" : "DATABASE_USERNAME",
-        "value" : "${mysql_user}"
+        "name": "DATABASE_USERNAME",
+        "value": "${mysql_user}"
       },
       {
-        "name" : "DATABASE_PASSWORD",
-        "value" : "${mysql_password}"
+        "name": "DATABASE_PASSWORD",
+        "value": "${mysql_password}"
       },
       {
-        "name" : "DATABASE_NAME",
-        "value" : "${mysql_database}"
+        "name": "DATABASE_NAME",
+        "value": "${mysql_database}"
       },
       {
-        "name" : "PUBLIC_KEY",
-        "value" : "${public_key}"
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
       }
     ]
   }
