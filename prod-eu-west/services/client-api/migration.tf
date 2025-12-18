@@ -5,7 +5,7 @@ resource "aws_ecs_service" "migration-api" {
   task_definition = aws_ecs_task_definition.migration-api.arn
 
   # Create service with 1 instance
-  desired_count = 0
+  desired_count = 1
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
