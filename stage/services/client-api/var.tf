@@ -97,3 +97,9 @@ variable "passenger_max_pool_size" {
 variable "passenger_min_instances" {
   default = "3"
 }
+
+variable "monthly_datafile_bucket" {
+  default = "monthly-datafile.stage.datcaite.org"
+}
+
+variable "monthly_datafile_access_role" {}
