@@ -192,6 +192,14 @@
       {
         "name": "PASSENGER_MIN_INSTANCES",
         "value": "${passenger_min_instances}"
+      },
+      {
+        "name": "MONTHLY_DATAFILE_BUCKET",
+        "value": "${monthly_datafile_bucket}"
+      },
+      {
+        "name": "MONTHLY_DATAFILE_ACCESS_ROLE",
+        "value": "${monthly_datafile_access_role}"
       }
     ]
   }
