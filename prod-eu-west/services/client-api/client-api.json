@@ -177,6 +177,14 @@
       {
         "name": "REDLOY_UNIQUE_ID",
         "value": "5e74ce71-bcb9-4379-8727-8a652683e181"
+      },
+      {
+        "name": "MONTHLY_DATAFILE_BUCKET",
+        "value": "${monthly_datafile_bucket}"
+      },
+      {
+        "name": "MONTHLY_DATAFILE_ACCESS_ROLE",
+        "value": "${monthly_datafile_access_role}"
       }
     ]
   }
