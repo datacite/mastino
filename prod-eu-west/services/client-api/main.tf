@@ -237,6 +237,8 @@ resource "aws_ecs_task_definition" "client-api" {
       metadata_storage_bucket_name      = var.metadata_storage_bucket_name
       passenger_max_pool_size           = var.passenger_max_pool_size
       passenger_min_instances           = var.passenger_min_instances
+      monthly_datafile_bucket           = var.monthly_datafile_bucket
+      monthly_datafile_access_role      = var.monthly_datafile_access_role
   })
 }
 

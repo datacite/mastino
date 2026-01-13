@@ -422,3 +422,11 @@ resource "aws_route53_record" "monthly-datafile-stage" {
   ttl = var.ttl
   records = ["monthly-datafile.stage.datacite.org.s3.eu-west-1.amazonaws.com"]
 }
+
+resource "aws_route53_record" "monthly-datafile-prod" {
+  zone_id = aws_route53_zone.production.zone_id
+  name = "monthly-datafile.datacite.org"
+  type = "CNAME"
+  ttl = var.ttl
+  records = ["monthly-datafile.datacite.org.s3.eu-west-1.amazonaws.com"]
+}
