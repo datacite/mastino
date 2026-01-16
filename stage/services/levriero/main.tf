@@ -3,7 +3,7 @@ resource "aws_ecs_service" "levriero-stage" {
   cluster = data.aws_ecs_cluster.stage.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.levriero-stage.arn
-  desired_count = 6
+  desired_count = 1
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
