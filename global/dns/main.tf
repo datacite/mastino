@@ -430,3 +430,21 @@ resource "aws_route53_record" "monthly-datafile-prod" {
   ttl = var.ttl
   records = ["monthly-datafile.datacite.org.s3.eu-west-1.amazonaws.com"]
 }
+
+// Strategy Site
+
+resource "aws_route53_record" "strategy-prod" {
+  zone_id = aws_route53_zone.production.zone_id
+  name    = "strategy.datacite.org"
+  type    = "A"
+  ttl     = var.ttl
+  records = [var.strategy_lovable_ip_prod]
+}
+
+resource "aws_route53_record" "lovable-verify" {
+  zone_id = aws_route53_zone.production.zone_id
+  name    = "_lovable.strategy"
+  type    = "TXT"
+  ttl     = "300"
+  records = ["lovable_verify=338452b90dafc8159822aa7e76a9861d1b35df237f69ef284b070f50d4fbdb3b"]
+}
