@@ -28,3 +28,5 @@ variable "dkim_cm" {}
 variable "siteground_ip_stage" {}
 variable "siteground_ip_prod" {}
 variable "siteground_ip_homepage_prod" {}
+
+variable "strategy_lovable_ip_prod" {}
