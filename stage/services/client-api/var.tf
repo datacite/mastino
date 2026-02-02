@@ -103,3 +103,7 @@ variable "monthly_datafile_bucket" {
 }
 
 variable "monthly_datafile_access_role" {}
+
+variable "enrichments_ingestion_files_bucket_name" {
+  default = "stage-enrichments-ingestion-files"
+}
