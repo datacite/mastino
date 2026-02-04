@@ -3,7 +3,7 @@
     "name": "clickhouse-stage",
     "image": "clickhouse/clickhouse-server:25.12",
     "cpu": 512,
-    "memory": 2048,
+    "memory": 1256,
     "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [
