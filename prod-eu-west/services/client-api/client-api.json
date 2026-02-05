@@ -185,6 +185,10 @@
       {
         "name": "MONTHLY_DATAFILE_ACCESS_ROLE",
         "value": "${monthly_datafile_access_role}"
+      },
+      {
+        "name": "ENRICHMENTS_INGESTION_FILES_BUCKET_NAME",
+        "value": "${enrichments_ingestion_files_bucket_name}"
       }
     ]
   }
