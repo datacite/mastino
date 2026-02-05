@@ -202,7 +202,7 @@
         "value": "${monthly_datafile_access_role}"
       },
       {
-        "name": "STAGE_ENRICHMENTS_INGESTION_FILES_BUCKET_NAME",
+        "name": "ENRICHMENTS_INGESTION_FILES_BUCKET_NAME",
         "value": "${enrichments_ingestion_files_bucket_name}"
       }
     ]
