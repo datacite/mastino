@@ -189,6 +189,10 @@
       {
         "name": "ENRICHMENTS_INGESTION_FILES_BUCKET_NAME",
         "value": "${enrichments_ingestion_files_bucket_name}"
+      },
+      {
+        "name": "ENRICHMENTS_INGESTION_FILES_BUCKET_NAME",
+        "value": "${enrichments_ingestion_files_bucket_name}"
       }
     ]
   }
