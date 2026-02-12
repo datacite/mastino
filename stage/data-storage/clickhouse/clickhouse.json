@@ -50,6 +50,14 @@
       {
         "name": "PUBLIC_KEY",
         "value": "${public_key}"
+      },
+      {
+        "name": "CLICKHOUSE_USER",
+        "value": "datacite"
+      },
+      {
+        "name": "CLICKHOUSE_PASSWORD",
+        "value": "${clickhouse_password}"
       }
     ],
     "dependsOn": [
