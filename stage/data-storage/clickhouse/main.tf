@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "clickhouse-stage" {
   requires_compatibilities = ["EC2"]
 
   container_definitions = templatefile("clickhouse.json", {
-    clickhouse_config  = base64encode(data.local_file.clickhouse-config.content)
+    clickhouse_config  = base64encode(templatefile("${path.module}/config/clickhouse-config.xml", var.datacite_clickhouse_password))
     access_key         = var.access_key
     secret_key         = var.secret_key
     region             = var.region

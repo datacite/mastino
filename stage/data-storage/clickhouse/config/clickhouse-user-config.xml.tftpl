@@ -10,5 +10,12 @@
       <password remove='1' />
       <password_sha256_hex></password_sha256_hex>
     </default>
+    <datacite>
+      <password>${datacite_clickhouse_password}</password>
+
+      <networks incl="networks" replace="replace">
+        <ip>::/0</ip>
+      </networks>
+    </datacite>
   </users>
 </yandex>
