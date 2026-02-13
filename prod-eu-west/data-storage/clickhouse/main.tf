@@ -27,7 +27,7 @@ resource "aws_ecs_task_definition" "clickhouse-prod" {
   })
 
   volume {
-    name = "clickhouse-prod-1"
+    name = "clickhouse-prod-old"
     docker_volume_configuration {
       scope = "shared"
       autoprovision = false
