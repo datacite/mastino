@@ -18,11 +18,12 @@ resource "aws_ecs_task_definition" "clickhouse-prod" {
   requires_compatibilities = ["EC2"]
 
   container_definitions = templatefile("clickhouse.json", {
-    clickhouse_config  = base64encode(data.local_file.clickhouse-config.content)
-    access_key         = var.access_key
-    secret_key         = var.secret_key
-    region             = var.region
-    public_key         = var.public_key
+    clickhouse_config   = base64encode(data.local_file.clickhouse-config.content)
+    access_key          = var.access_key
+    secret_key          = var.secret_key
+    region              = var.region
+    public_key          = var.public_key
+    clickhouse_password = var.datacite_clickhouse_password
   })
 
   volume {

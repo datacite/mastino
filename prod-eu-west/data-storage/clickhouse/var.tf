@@ -33,3 +33,5 @@ variable "ami" {
     eu-west-1 = "ami-06c11ea68c61e5570"
   }
 }
+
+variable "datacite_clickhouse_password" {}

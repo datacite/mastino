@@ -1,9 +1,9 @@
 [
   {
     "name": "clickhouse",
-    "image": "clickhouse/clickhouse-server",
-    "cpu": 1024,
-    "memory": 2048,
+    "image": "clickhouse/clickhouse-server:25.12",
+    "cpu": 768,
+    "memory": 1256,
     "networkMode": "awsvpc",
     "essential": true,
     "portMappings": [
@@ -50,6 +50,14 @@
       {
         "name": "PUBLIC_KEY",
         "value": "${public_key}"
+      },
+      {
+        "name": "CLICKHOUSE_USER",
+        "value": "datacite"
+      },
+      {
+        "name": "CLICKHOUSE_PASSWORD",
+        "value": "${clickhouse_password}"
       }
     ]
   },
@@ -57,7 +65,7 @@
     "name": "clickhouse-config",
     "image": "public.ecr.aws/docker/library/bash:alpine3.16",
     "cpu": 256,
-    "memory": 512,
+    "memory": 256,
     "entryPoint": [
       "bash",
       "-c",
