@@ -30,11 +30,12 @@ resource "aws_ecs_task_definition" "clickhouse-prod" {
     name = "clickhouse-prod"
     docker_volume_configuration {
       scope = "shared"
-      autoprovision = true
+      autoprovision = false
       driver = "rexray/ebs"
       driver_opts = {
         volumetype = "gp2"
         size = 40
+        volumeid = "vol-02a4ee24a33b5406e"vol-02a4ee24a33b5406e
       }
     }
   }
