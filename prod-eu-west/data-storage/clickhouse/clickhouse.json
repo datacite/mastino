@@ -19,7 +19,7 @@
     "mountPoints": [
       {
         "containerPath": "/var/lib/clickhouse",
-        "sourceVolume": "clickhouse-prod"
+        "sourceVolume": "clickhouse-prod-old"
       },
       {
         "containerPath": "/etc/clickhouse-server/config.d",
