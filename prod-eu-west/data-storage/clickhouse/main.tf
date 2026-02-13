@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "clickhouse-prod" {
       driver_opts = {
         volumetype = "gp2"
         size = 40
-        volumeid = "vol-02a4ee24a33b5406e"vol-02a4ee24a33b5406e
+        volumeid = "vol-02a4ee24a33b5406e"
       }
     }
   }
