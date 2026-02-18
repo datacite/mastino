@@ -196,6 +196,10 @@
       {
         "name": "PASSENGER_MIN_INSTANCES",
         "value": "${passenger_min_instances}"
+      },
+      {
+        "name": "ENRICHMENTS_INGESTION_FILES_BUCKET_NAME",
+        "value": "${enrichments_ingestion_files_bucket_name}"
       }
     ]
   }
