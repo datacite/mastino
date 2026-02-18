@@ -335,3 +335,17 @@ resource "aws_sqs_queue" "dead-letter" {
     prevent_destroy = true
   }
 }
+
+resource "aws_sqs_queue" "enrichment_batch_process_job" {
+  name = "${var.environment}_enrichment_batch_process_job"
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
+    maxReceiveCount     = 4
+  })
+
+  tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
