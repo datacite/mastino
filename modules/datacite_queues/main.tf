@@ -247,7 +247,8 @@ resource "aws_sqs_queue" "analytics" {
 }
 
 resource "aws_sqs_queue" "events" {
-  name = "${var.environment}_events"
+  name                      = "${var.environment}_events"
+  message_retention_seconds = 864000 # set message retention to 10 days
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
     maxReceiveCount     = 4
@@ -261,7 +262,8 @@ resource "aws_sqs_queue" "events" {
 }
 
 resource "aws_sqs_queue" "events_index" {
-  name = "${var.environment}_events_index"
+  name                      = "${var.environment}_events_index"
+  message_retention_seconds = 864000 # set message retention to 10 days
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
     maxReceiveCount     = 4
