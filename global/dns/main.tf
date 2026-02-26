@@ -323,6 +323,14 @@ resource "aws_route53_record" "doi" {
   records = ["cname.vercel-dns.com"]
 }
 
+// Metadata Completeness staging
+resource "aws_route53_record" "puli-stage" {
+  zone_id = aws_route53_zone.production.zone_id
+  name    = "metadata.stage.datacite.org"
+  type    = "CNAME"
+  ttl     = 300
+  records = ["metadata.datacite.vercel.app"]
+}
 
 // Siteground (blog/homepage)
 
