@@ -332,6 +332,15 @@ resource "aws_route53_record" "puli-stage" {
   records = ["metadata.datacite.vercel.app"]
 }
 
+// Metadata Completeness production
+resource "aws_route53_record" "puli" {
+  zone_id = aws_route53_zone.production.zone_id
+  name    = "metadata.datacite.org"
+  type    = "CNAME"
+  ttl     = var.ttl
+  records = ["d705e9e6bba525fc.vercel-dns-016.com."]
+}
+
 // Siteground (blog/homepage)
 
 // Using A record rather than CNAME per https://www.siteground.com/kb/point-website-domain-siteground
