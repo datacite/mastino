@@ -1,4 +1,4 @@
 alopekis_tags = {
-  sha = "9d8aaa1fbe474cd704f7968ba638c3833e600f6f"
-  version = "0.3.0"
+  sha = "d2bd1366e8afac8d5af31d2f0e884b8ba51d41f4"
+  version = "0.4.1"
 }
