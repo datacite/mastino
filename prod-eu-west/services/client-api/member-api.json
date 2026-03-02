@@ -180,6 +180,10 @@
       {
         "name": "MONTHLY_DATAFILE_ACCESS_ROLE",
         "value": "${monthly_datafile_access_role}"
+      },
+      {
+        "name": "DISABLE_FACETS_BY_DEFAULT",
+        "value": "${disable_facets_by_default}"
       }
     ]
   }
