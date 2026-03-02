@@ -75,6 +75,7 @@ resource "aws_ecs_task_definition" "client-api-test" {
       metadata_storage_bucket_name  = var.metadata_storage_bucket_name
       passenger_max_pool_size       = var.passenger_max_pool_size
       passenger_min_instances       = var.passenger_min_instances
+      disable_facets_by_default     = var.disable_facets_by_default
   })
 }
 

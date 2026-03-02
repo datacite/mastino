@@ -204,6 +204,7 @@ resource "aws_ecs_task_definition" "member-api" {
       passenger_min_instances           = var.passenger_min_instances
       monthly_datafile_bucket           = var.monthly_datafile_bucket
       monthly_datafile_access_role      = var.monthly_datafile_access_role
+      disable_facets_by_default         = var.disable_facets_by_default
   })
 }
 

@@ -107,3 +107,7 @@ variable "monthly_datafile_access_role" {}
 variable "enrichments_ingestion_files_bucket_name" {
   default = "enrichments-ingestion-files"
 }
+
+variable "disable_facets_by_default" {
+  default = "false"
+}

@@ -240,6 +240,7 @@ resource "aws_ecs_task_definition" "client-api" {
       monthly_datafile_bucket                 = var.monthly_datafile_bucket
       monthly_datafile_access_role            = var.monthly_datafile_access_role
       enrichments_ingestion_files_bucket_name = var.enrichments_ingestion_files_bucket_name
+      disable_facets_by_default               = var.disable_facets_by_default
   })
 }
 
