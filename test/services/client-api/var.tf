@@ -95,3 +95,7 @@ variable "passenger_min_instances" {
   default = "3"
 }
 
+variable "disable_facets_by_default" {
+  default = "false"
+}
+

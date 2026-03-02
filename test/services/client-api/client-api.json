@@ -184,6 +184,10 @@
       {
         "name": "PASSENGER_MIN_INSTANCES",
         "value": "${passenger_min_instances}"
+      },
+      {
+        "name": "DISABLE_FACETS_BY_DEFAULT",
+        "value": "${disable_facets_by_default}"
       }
     ]
   }
