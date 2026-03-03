@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "b8201708ad2d74fc4b6152904f8758f731d6da8a"
-  version = "main"
+  sha = "a526e5ae63247cea60b0f0654ef104d7af5f0c72"
+  version = "drop-null-check-as-migration-fails-permissions-check-in-staging"
 }
