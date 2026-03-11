@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "36d27d9188e4d13d91b8020172edf1419061c2df"
-  version = "main"
+  sha = "d1205e4e05faba49514814ac02290b0503ade5ca"
+  version = "reindex-job-fix"
 }
