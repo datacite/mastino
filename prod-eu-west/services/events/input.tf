@@ -45,3 +45,7 @@ data "aws_lb_listener" "default" {
   load_balancer_arn = data.aws_lb.default.arn
   port              = 443
 }
+
+data "aws_iam_role" "ecs_events" {
+  name = "ecs_events"
+}

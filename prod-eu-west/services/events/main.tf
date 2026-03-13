@@ -120,3 +120,36 @@ resource "aws_route53_record" "split-events" {
   ttl     = var.ttl
   records = [data.aws_lb.default.dns_name]
 }
+
+resource "aws_cloudwatch_event_rule" "events-reindex-touched-dois" {
+  name                = "events-reindex-touched-dois"
+  schedule_expression = "cron(0 12 * * ? *)"
+}
+
+resource "aws_cloudwatch_event_target" "events-reindex-touched-dois" {
+  target_id = "events-reindex-touched-dois"
+  arn       = data.aws_ecs_cluster.default.arn
+  rule      = aws_cloudwatch_event_rule.events-reindex-touched-dois.name
+  role_arn  = data.aws_iam_role.ecs_events.arn
+
+  input = jsonencode({
+    containerOverrides = [{
+      name    = "events"
+      command = ["bundle", "exec", "rake", "event:reindex_touched_dois"]
+    }]
+  })
+
+  ecs_target {
+    task_count          = 1
+    launch_type         = "FARGATE"
+    task_definition_arn = aws_ecs_task_definition.events.arn
+
+    network_configuration {
+      security_groups = [data.aws_security_group.datacite-private.id]
+      subnets = [
+        data.aws_subnet.datacite-private.id,
+        data.aws_subnet.datacite-alt.id
+      ]
+    }
+  }
+}
