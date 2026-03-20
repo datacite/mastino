@@ -139,7 +139,7 @@ resource "aws_cloudwatch_event_target" "events-reindex-touched-dois" {
   input = jsonencode({
     containerOverrides = [{
       name    = "events-stage"
-      command = ["bundle", "exec", "rake", "event:reindex_touched_dois"]
+      command = ["sh", "-c", "sleep 120 && bundle exec rake event:reindex_touched_dois"]
     }]
   })
 
