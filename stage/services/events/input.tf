@@ -45,7 +45,3 @@ data "aws_lb_listener" "stage" {
   load_balancer_arn = data.aws_lb.stage.arn
   port              = 443
 }
-
-data "aws_iam_role" "ecs_events" {
-  name = "ecs_events-stage"
-}
