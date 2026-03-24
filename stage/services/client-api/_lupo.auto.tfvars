@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "1a031970de76d8597990f999a104ed9a2b4c626e"
-  version = "disable-departure-for-enrichment-filename-index"
+  sha = "07cee7fee18762e0a30f8d40443643513aa1ed64"
+  version = "main"
 }
