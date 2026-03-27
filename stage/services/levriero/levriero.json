@@ -166,6 +166,10 @@
         "value": "${crossref_other_source_token}"
       },
       {
+        "name": "CROSSREF_SOURCE_TOKEN",
+        "value": "${crossref_source_token}"
+      },
+      {
         "name": "CROSSREF_FUNDER_SOURCE_TOKEN",
         "value": "${crossref_funder_source_token}"
       },
