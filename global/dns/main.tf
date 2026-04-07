@@ -311,7 +311,7 @@ resource "aws_route53_record" "doi-test" {
   name    = "doi.test.datacite.org"
   type    = "CNAME"
   ttl     = var.ttl
-  records = ["bracco-test.vercel.app"]
+  records = ["e3be2e6e1f94a65f.vercel-dns-016.com."]
 }
 
 // Fabrica Production
