@@ -293,7 +293,7 @@ resource "aws_route53_record" "akita" {
   name    = "commons.datacite.org"
   type    = "CNAME"
   ttl     = var.ttl
-  records = ["cname.vercel-dns.com"]
+  records = ["501543824727c32a.vercel-dns-016.com."]
 }
 
 // Fabrica staging
