@@ -320,7 +320,7 @@ resource "aws_route53_record" "doi" {
   name    = "doi.datacite.org"
   type    = "CNAME"
   ttl     = var.ttl
-  records = ["cname.vercel-dns.com"]
+  records = ["e1d7419ffb76ddb2.vercel-dns-016.com."]
 }
 
 // Metadata Completeness staging
