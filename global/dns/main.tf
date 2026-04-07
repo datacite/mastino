@@ -302,7 +302,7 @@ resource "aws_route53_record" "doi-stage" {
   name    = "doi.stage.datacite.org"
   type    = "CNAME"
   ttl     = var.ttl
-  records = ["doi.datacite.vercel.app"]
+  records = ["e1d7419ffb76ddb2.vercel-dns-016.com."]
 }
 
 // Fabrica test
