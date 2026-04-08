@@ -170,6 +170,10 @@
         "value": "${crossref_other_source_token}"
       },
       {
+        "name": "CROSSREF_SOURCE_TOKEN",
+        "value": "${crossref_source_token}"
+      },
+      {
         "name": "DATACITE_USAGE_SOURCE_TOKEN",
         "value": "${datacite_usage_source_token}"
       },
