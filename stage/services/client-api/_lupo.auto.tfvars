@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "5f17e5b886c3a65996a1da2f18249be93a50e356"
-  version = "add-enriched-doi-endpoint"
+  sha = "0e1318ec9014bd6072b3225f889c3ed63326c7ef"
+  version = "pb325-json-metadata-validation"
 }
