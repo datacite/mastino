@@ -177,3 +177,14 @@ resource "aws_s3_bucket" "metadata" {
     Name       = "Metadata storage"
   }
 }
+
+# Scaling Policy Actions
+## Autoscale Target
+resource "aws_appautoscaling_target" "client-api-stage" {
+  max_capacity       = 4
+  min_capacity       = 1
+  resource_id        = "service/stage/${aws_ecs_service.client-api-stage.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+
