@@ -229,7 +229,7 @@ resource "aws_appautoscaling_policy" "client-api-stage_scale_down" {
 
 ## Queue Size
 resource "aws_appautoscaling_policy" "client-api-stage_emergency_scale_up" {
-  name               = "client-api-stage-queue-depth-scale-up"
+  name               = "client-api-stage-queue-size-scale-up"
   policy_type        = "StepScaling"
   resource_id        = aws_appautoscaling_target.client-api-stage.resource_id
   scalable_dimension = aws_appautoscaling_target.client-api-stage.scalable_dimension
@@ -287,4 +287,24 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down"
   alarm_description = "Scale down client-api.stage when max worker utilisation has lowered"
   alarm_actions     = [aws_appautoscaling_policy.client-api-stage_scale_down.arn]
   actions_enabled   = false # TODO: Remove this once alarms are verified
+}
+
+## Queue Size
+resource "aws_cloudwatch_metric_alarm" "client-api-stage_queue_size_scale_up" {
+  alarm_name          = "client-api-stage-queue-size-high"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "PassengerRequestQueue"
+  namespace           = "Custom/LupoPassenger"
+  period              = "60"
+  statistic           = "Maximum"
+  threshold           = 1
+
+  dimensions = {
+    Service = "client-api.stage"
+  }
+
+  alarm_description = "Emergency scale up: requests are queuing in client-api.stage"
+  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_emergency_scale_up.arn]
+  actions_enabled = false # TODO: Remove this once alarms are verified
 }
