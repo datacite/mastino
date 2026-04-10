@@ -326,3 +326,30 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_queue_size_scale_up" {
   alarm_actions     = [aws_appautoscaling_policy.client-api-stage_emergency_scale_up.arn]
   actions_enabled = false # TODO: Remove this once alarms are verified
 }
+
+resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up" {
+  alarm_name          = "client-api-stage-response-time-high"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "3"
+  threshold           = 1 # TODO: Update this number based on traffic analysis
+
+  metric_query {
+    id          = "target_response_time"
+    return_data = true
+
+    metric {
+      metric_name = "TargetResponseTime"
+      namespace   = "AWS/ApplicationELB"
+      period      = "120"
+      stat        = "p95"
+
+      dimensions = {
+        TargetGroup = aws_lb_target_group.client-api-stage.arn_suffix
+      }
+    }
+  }
+
+  alarm_description = "Safety net: scale up client-api when P95 response time exceeds 1s"
+  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_response_time_scale_up.arn]
+  actions_enabled = false # TODO: Remove this once alarms are verified
+}
