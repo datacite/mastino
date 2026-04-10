@@ -198,7 +198,7 @@ resource "aws_appautoscaling_policy" "client-api-stage_scale_up" {
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
-    cooldown                = 120
+    cooldown                = 120 # TODO: Evaluate this during alarm testing
     metric_aggregation_type = "Average"
 
     step_adjustment {
@@ -217,7 +217,7 @@ resource "aws_appautoscaling_policy" "client-api-stage_scale_down" {
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
-    cooldown                = 300
+    cooldown                = 300 # TODO: Evaluate this during alarm testing
     metric_aggregation_type = "Maximum"
 
     step_adjustment {
@@ -237,7 +237,7 @@ resource "aws_appautoscaling_policy" "client-api-stage_emergency_scale_up" {
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
-    cooldown                = 120
+    cooldown                = 120 # TODO: Evaluate this during alarm testing
     metric_aggregation_type = "Maximum"
 
     step_adjustment {
@@ -257,7 +257,7 @@ resource "aws_appautoscaling_policy" "client-api-stage_response_time_scale_up" {
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
-    cooldown                = 300
+    cooldown                = 300 # TODO: Evaluate this during alarm testing
     metric_aggregation_type = "Average"
 
     step_adjustment {
@@ -272,10 +272,10 @@ resource "aws_appautoscaling_policy" "client-api-stage_response_time_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
   alarm_name          = "client-api-stage-worker-utilisation-high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "3"
+  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
   metric_name         = "PassengerWorkerUtilisation"
   namespace           = "Custom/LupoPassenger"
-  period              = "60"
+  period              = "60" # TODO: Evaluate this during alarm testing
   statistic           = "Average"
   threshold           = 75  # TODO: Update this number based on traffic analysis
 
@@ -291,10 +291,10 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down" {
   alarm_name          = "client-api-stage-worker-utilisation-low"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "3"
+  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
   metric_name         = "PassengerWorkerUtilisation"
   namespace           = "Custom/LupoPassenger"
-  period              = "300"
+  period              = "300" # TODO: Evaluate this during alarm testing
   statistic           = "Maximum"
   threshold           = 35  # TODO: Update this number based on traffic analysis
 
@@ -311,10 +311,10 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down"
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_queue_size_scale_up" {
   alarm_name          = "client-api-stage-queue-size-high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "2" # TODO: Evaluate this during alarm testing
   metric_name         = "PassengerRequestQueue"
   namespace           = "Custom/LupoPassenger"
-  period              = "60"
+  period              = "60" # TODO: Evaluate this during alarm testing
   statistic           = "Maximum"
   threshold           = 1
 
@@ -330,7 +330,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_queue_size_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up" {
   alarm_name          = "client-api-stage-response-time-high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "3"
+  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
   threshold           = 1 # TODO: Update this number based on traffic analysis
 
   metric_query {
@@ -340,7 +340,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up"
     metric {
       metric_name = "TargetResponseTime"
       namespace   = "AWS/ApplicationELB"
-      period      = "120"
+      period      = "120" # TODO: Evaluate this during alarm testing
       stat        = "p95"
 
       dimensions = {
