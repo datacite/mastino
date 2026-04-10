@@ -227,4 +227,42 @@ resource "aws_appautoscaling_policy" "client-api-stage_scale_down" {
   }
 }
 
+# CloudWatch Metrics Alarms
+## Worker utilisation
+resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
+  alarm_name          = "client-api-stage-worker-utilisation-high"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "3"
+  metric_name         = "PassengerWorkerUtilisation"
+  namespace           = "Custom/LupoPassenger"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = 75  # TODO: Update this number based on traffic analysis
 
+  dimensions = {
+    Service = "client-api.stage"
+  }
+
+  alarm_description = "Scale up client-api.stage when average worker utilisation is high"
+  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_scale_up.arn]
+  actions_enabled   = false  # TODO: Remove this once alarms are verified
+}
+
+resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down" {
+  alarm_name          = "client-api-stage-worker-utilisation-low"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "3"
+  metric_name         = "PassengerWorkerUtilisation"
+  namespace           = "Custom/LupoPassenger"
+  period              = "300"
+  statistic           = "Maximum"
+  threshold           = 35  # TODO: Update this number based on traffic analysis
+
+  dimensions = {
+    Service = "client-api.stage"
+  }
+
+  alarm_description = "Scale down client-api.stage when max worker utilisation has lowered"
+  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_scale_down.arn]
+  actions_enabled   = false # TODO: Remove this once alarms are verified
+}
