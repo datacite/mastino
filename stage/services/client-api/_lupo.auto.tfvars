@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "536eeea412d9ea6074e79d8c6a68db14f73388ee"
+  sha = "d2eb260daab1728128bb76eda7401c7ed90f7537"
   version = "add-enriched-doi-endpoint"
 }
