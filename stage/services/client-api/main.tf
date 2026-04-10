@@ -227,6 +227,28 @@ resource "aws_appautoscaling_policy" "client-api-stage_scale_down" {
   }
 }
 
+## Queue Size
+resource "aws_appautoscaling_policy" "client-api-stage_emergency_scale_up" {
+  name               = "client-api-stage-queue-depth-scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.client-api-stage.resource_id
+  scalable_dimension = aws_appautoscaling_target.client-api-stage.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.client-api-stage.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 120
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 2
+    }
+  }
+}
+
+
+
 # CloudWatch Metrics Alarms
 ## Worker utilisation
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
