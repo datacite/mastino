@@ -367,6 +367,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up"
       }
     }
   }
+  treat_missing_data = "notBreaching"
 
   alarm_description = "Safety net: scale up client-api when P95 response time exceeds 1s"
   alarm_actions     = [
