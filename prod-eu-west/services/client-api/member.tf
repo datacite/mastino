@@ -157,6 +157,92 @@ resource "aws_cloudwatch_metric_alarm" "member-api_cpu_scale_down" {
 //   alarm_actions     = [aws_appautoscaling_policy.member-api_scale_down.arn]
 // }
 
+# New Scaling Configuration
+## Scaling Alarms SNS Topic
+resource "aws_sns_topic" "member-api-scaling-alarms" {
+  name = "member-api-scaling-alarms"
+}
+
+## Scaling Policy Actions
+### Worker Utilisation
+resource "aws_appautoscaling_policy" "member-api-worker_util_scale_up" {
+  name               = "member-api-worker-util-scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.member-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.member-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.member-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 120 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+resource "aws_appautoscaling_policy" "member-api-worker_util_scale_down" {
+  name               = "member-api-worker-util-scale-down"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.member-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.member-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.member-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = -1
+    }
+  }
+}
+
+### Queue Size
+resource "aws_appautoscaling_policy" "member-api-emergency_scale_up" {
+  name               = "member-api-queue-size-scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.member-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.member-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.member-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 120 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 2
+    }
+  }
+}
+
+### P95 Response Time
+resource "aws_appautoscaling_policy" "member-api-response_time_scale_up" {
+  name               = "member-api-response-time-scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.member-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.member-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.member-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
 resource "aws_cloudwatch_log_group" "member-api" {
   name = "/ecs/member-api"
 }
