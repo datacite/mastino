@@ -111,3 +111,5 @@ variable "enrichments_ingestion_files_bucket_name" {
 variable "disable_facets_by_default" {
   default = "false"
 }
+
+variable "ror_analysis_s3_bucket" { }

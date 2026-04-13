@@ -212,6 +212,10 @@
       {
         "name": "ENABLE_PASSENGER_METRICS",
         "value": "True"
+      },
+      { 
+        "name": "ROR_ANALYSIS_S3_BUCKET",
+        "value": "${ror_analysis_s3_bucket}"
       }
     ]
   }
