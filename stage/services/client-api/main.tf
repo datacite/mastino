@@ -178,6 +178,11 @@ resource "aws_s3_bucket" "metadata" {
   }
 }
 
+# Scaling alarms SNS topic
+resource "aws_sns_topic" "client-api-stage-scaling-alarms" {
+  name = "client-api-stage-scaling-alarms"
+}
+
 # Scaling Policy Actions
 ## Autoscale Target
 resource "aws_appautoscaling_target" "client-api-stage" {
