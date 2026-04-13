@@ -289,7 +289,11 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
   }
 
   alarm_description = "Scale up client-api.stage when average worker utilisation is high"
-  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_scale_up.arn]
+  alarm_actions     = [
+    aws_appautoscaling_policy.client-api-stage_scale_up.arn,
+    aws_sns_topic.client-api-stage-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
   actions_enabled   = false  # TODO: Remove this once alarms are verified
 }
 
@@ -308,7 +312,11 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down"
   }
 
   alarm_description = "Scale down client-api.stage when max worker utilisation has lowered"
-  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_scale_down.arn]
+  alarm_actions     = [
+    aws_appautoscaling_policy.client-api-stage_scale_down.arn,
+    aws_sns_topic.client-api-stage-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
   actions_enabled   = false # TODO: Remove this once alarms are verified
 }
 
@@ -328,7 +336,11 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_queue_size_scale_up" {
   }
 
   alarm_description = "Emergency scale up: requests are queuing in client-api.stage"
-  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_emergency_scale_up.arn]
+  alarm_actions     = [
+    aws_appautoscaling_policy.client-api-stage_emergency_scale_up.arn,
+    aws_sns_topic.client-api-stage-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
   actions_enabled = false # TODO: Remove this once alarms are verified
 }
 
@@ -355,6 +367,10 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up"
   }
 
   alarm_description = "Safety net: scale up client-api when P95 response time exceeds 1s"
-  alarm_actions     = [aws_appautoscaling_policy.client-api-stage_response_time_scale_up.arn]
+  alarm_actions     = [
+    aws_appautoscaling_policy.client-api-stage_response_time_scale_up.arn,
+    aws_sns_topic.client-api-stage-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
   actions_enabled = false # TODO: Remove this once alarms are verified
 }
