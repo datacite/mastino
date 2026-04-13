@@ -161,6 +161,7 @@ resource "aws_ecs_task_definition" "graphql" {
       metadata_storage_bucket_name      = var.metadata_storage_bucket_name
       passenger_max_pool_size           = var.passenger_max_pool_size
       passenger_min_instances           = var.passenger_min_instances
+      ror_analysis_s3_bucket            = var.ror_analysis_s3_bucket
   })
 }
 
