@@ -200,6 +200,10 @@
       {
         "name": "ENRICHMENTS_INGESTION_FILES_BUCKET_NAME",
         "value": "${enrichments_ingestion_files_bucket_name}"
+      },
+      { 
+        "name": "ROR_ANALYSIS_S3_BUCKET",
+        "value": "${ror_analysis_s3_bucket}"
       }
     ]
   }
