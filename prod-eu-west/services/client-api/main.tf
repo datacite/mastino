@@ -369,6 +369,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-response_time_scale_up" {
 
       dimensions = {
         TargetGroup = aws_lb_target_group.client-api.arn_suffix
+        LoadBalancer = data.aws_lb.default.arn_suffix
       }
     }
   }
