@@ -192,6 +192,196 @@ resource "aws_cloudwatch_metric_alarm" "client-api_cpu_scale_down" {
 //   alarm_actions     = [aws_appautoscaling_policy.client-api_scale_down.arn]
 // }
 
+# New Scaling Configuration
+
+## Scaling Alarms SNS Topic
+resource "aws_sns_topic" "client-api-scaling-alarms" {
+  name = "client-api-scaling-alarms"
+}
+
+## Scaling Policy Actions
+### Worker Utilisation
+resource "aws_appautoscaling_policy" "client-api-worker_util_scale_up" {
+  name               = "client-api-worker-util-scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.client-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.client-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.client-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 120 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+resource "aws_appautoscaling_policy" "client-api-worker_util_scale_down" {
+  name               = "client-api-worker-util-scale-down"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.client-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.client-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.client-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = -1
+    }
+  }
+}
+
+### Queue Size
+resource "aws_appautoscaling_policy" "client-api-emergency_scale_up" {
+  name               = "client-api-queue-size-scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.client-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.client-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.client-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 120 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Maximum"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 2
+    }
+  }
+}
+
+### P95 Response Time
+resource "aws_appautoscaling_policy" "client-api-response_time_scale_up" {
+  name               = "client-api-response-time-scale-up"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.client-api.resource_id
+  scalable_dimension = aws_appautoscaling_target.client-api.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.client-api.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300 # TODO: Evaluate this during alarm testing
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+## CloudWatch Metrics Alarms
+### Worker utilisation
+resource "aws_cloudwatch_metric_alarm" "client-api-worker_util_scale_up" {
+  alarm_name          = "client-api-worker-utilisation-high"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
+  metric_name         = "PassengerWorkerUtilisation"
+  namespace           = "Custom/LupoPassenger"
+  period              = "60" # TODO: Evaluate this during alarm testing
+  statistic           = "Average"
+  threshold           = 75  # TODO: Update this number based on traffic analysis
+
+  dimensions = {
+    Service = "client-api"
+  }
+
+  alarm_description = "Scale up client-api when average worker utilisation is high"
+  alarm_actions     = [
+    #aws_appautoscaling_policy.client-api-worker_util_scale_up.arn,
+    aws_sns_topic.client-api-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-scaling-alarms.arn]
+  #actions_enabled   = false  # TODO: Remove this once alarms are verified
+}
+
+resource "aws_cloudwatch_metric_alarm" "client-api-worker_util_scale_down" {
+  alarm_name          = "client-api-worker-utilisation-low"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
+  metric_name         = "PassengerWorkerUtilisation"
+  namespace           = "Custom/LupoPassenger"
+  period              = "300" # TODO: Evaluate this during alarm testing
+  statistic           = "Maximum"
+  threshold           = 35  # TODO: Update this number based on traffic analysis
+
+  dimensions = {
+    Service = "client-api"
+  }
+
+  alarm_description = "Scale down client-api when max worker utilisation has lowered"
+  alarm_actions     = [
+    #aws_appautoscaling_policy.client-api-worker_util_scale_down.arn,
+    aws_sns_topic.client-api-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-scaling-alarms.arn]
+  #actions_enabled   = false # TODO: Remove this once alarms are verified
+}
+
+## Queue Size
+resource "aws_cloudwatch_metric_alarm" "client-api-queue_size_scale_up" {
+  alarm_name          = "client-api-queue-size-high"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2" # TODO: Evaluate this during alarm testing
+  metric_name         = "PassengerRequestQueue"
+  namespace           = "Custom/LupoPassenger"
+  period              = "60" # TODO: Evaluate this during alarm testing
+  statistic           = "Maximum"
+  threshold           = 1
+
+  dimensions = {
+    Service = "client-api"
+  }
+
+  alarm_description = "Emergency scale up: requests are queuing in client-api"
+  alarm_actions     = [
+    #aws_appautoscaling_policy.client-api-emergency_scale_up.arn,
+    aws_sns_topic.client-api-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-scaling-alarms.arn]
+  #actions_enabled = false # TODO: Remove this once alarms are verified
+}
+
+resource "aws_cloudwatch_metric_alarm" "client-api-response_time_scale_up" {
+  alarm_name          = "client-api-response-time-high"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
+  threshold           = 1 # TODO: Update this number based on traffic analysis
+
+  metric_query {
+    id          = "target_response_time"
+    return_data = true
+
+    metric {
+      metric_name = "TargetResponseTime"
+      namespace   = "AWS/ApplicationELB"
+      period      = "120" # TODO: Evaluate this during alarm testing
+      stat        = "p95"
+
+      dimensions = {
+        TargetGroup = aws_lb_target_group.client-api.arn_suffix
+      }
+    }
+  }
+
+  alarm_description = "Safety net: scale up client-api when P95 response time exceeds 1s"
+  alarm_actions     = [
+    #aws_appautoscaling_policy.client-api-response_time_scale_up.arn,
+    aws_sns_topic.client-api-scaling-alarms.arn
+  ]
+  ok_actions = [aws_sns_topic.client-api-scaling-alarms.arn]
+  #actions_enabled = false # TODO: Remove this once alarms are verified
+}
+
 resource "aws_cloudwatch_log_group" "client-api" {
   name = "/ecs/client-api"
 }
