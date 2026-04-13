@@ -363,6 +363,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up"
 
       dimensions = {
         TargetGroup = aws_lb_target_group.client-api-stage.arn_suffix
+        LoadBalancer = data.aws_lb.stage.arn_suffix
       }
     }
   }
