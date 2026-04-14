@@ -187,7 +187,7 @@ resource "aws_sns_topic" "client-api-stage-scaling-alarms" {
 # Scaling Policy Actions
 ## Autoscale Target
 resource "aws_appautoscaling_target" "client-api-stage" {
-  max_capacity       = 4
+  max_capacity       = 10
   min_capacity       = 1
   resource_id        = "service/stage/${aws_ecs_service.client-api-stage.name}"
   scalable_dimension = "ecs:service:DesiredCount"
@@ -283,7 +283,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
   namespace           = "Custom/LupoPassenger"
   period              = "60" # TODO: Evaluate this during alarm testing
   statistic           = "Average"
-  threshold           = 75  # TODO: Update this number based on traffic analysis
+  threshold           = 70  # TODO: Update this number based on traffic analysis
 
   dimensions = {
     Service = "client-api.stage"
@@ -291,7 +291,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
 
   alarm_description = "Scale up client-api.stage when average worker utilisation is high"
   alarm_actions     = [
-    #aws_appautoscaling_policy.client-api-stage_scale_up.arn,
+    aws_appautoscaling_policy.client-api-stage_scale_up.arn,
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
@@ -301,7 +301,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down" {
   alarm_name          = "client-api-stage-worker-utilisation-low"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
+  evaluation_periods  = "2" # TODO: Evaluate this during alarm testing
   metric_name         = "PassengerWorkerUtilisation"
   namespace           = "Custom/LupoPassenger"
   period              = "300" # TODO: Evaluate this during alarm testing
@@ -314,7 +314,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down"
 
   alarm_description = "Scale down client-api.stage when max worker utilisation has lowered"
   alarm_actions     = [
-    #aws_appautoscaling_policy.client-api-stage_scale_down.arn,
+    aws_appautoscaling_policy.client-api-stage_scale_down.arn,
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
@@ -338,7 +338,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_queue_size_scale_up" {
 
   alarm_description = "Emergency scale up: requests are queuing in client-api.stage"
   alarm_actions     = [
-    #aws_appautoscaling_policy.client-api-stage_emergency_scale_up.arn,
+    aws_appautoscaling_policy.client-api-stage_emergency_scale_up.arn,
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
@@ -371,7 +371,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up"
 
   alarm_description = "Safety net: scale up client-api when P95 response time exceeds 1s"
   alarm_actions     = [
-    #aws_appautoscaling_policy.client-api-stage_response_time_scale_up.arn,
+    aws_appautoscaling_policy.client-api-stage_response_time_scale_up.arn,
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
