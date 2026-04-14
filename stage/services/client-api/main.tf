@@ -187,8 +187,8 @@ resource "aws_sns_topic" "client-api-stage-scaling-alarms" {
 # Scaling Policy Actions
 ## Autoscale Target
 resource "aws_appautoscaling_target" "client-api-stage" {
-  max_capacity       = 10
-  min_capacity       = 1
+  max_capacity       = 4
+  min_capacity       = 2
   resource_id        = "service/stage/${aws_ecs_service.client-api-stage.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -295,7 +295,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_up" {
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
-  #actions_enabled   = false  # TODO: Remove this once alarms are verified
+  actions_enabled   = false  # TODO: Remove this once alarms are verified
 }
 
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down" {
@@ -318,7 +318,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_worker_util_scale_down"
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
-  #actions_enabled   = false # TODO: Remove this once alarms are verified
+  actions_enabled   = false # TODO: Remove this once alarms are verified
 }
 
 ## Queue Size
@@ -342,7 +342,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_queue_size_scale_up" {
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
-  #actions_enabled = false # TODO: Remove this once alarms are verified
+  actions_enabled = false # TODO: Remove this once alarms are verified
 }
 
 resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up" {
@@ -375,5 +375,5 @@ resource "aws_cloudwatch_metric_alarm" "client-api-stage_response_time_scale_up"
     aws_sns_topic.client-api-stage-scaling-alarms.arn
   ]
   ok_actions = [aws_sns_topic.client-api-stage-scaling-alarms.arn]
-  #actions_enabled = false # TODO: Remove this once alarms are verified
+  actions_enabled = false # TODO: Remove this once alarms are verified
 }
