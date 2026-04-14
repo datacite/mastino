@@ -35,7 +35,7 @@ variable "volpino_url" {
   default = "http://profiles.local"
 }
 variable "crossref_query_url" {
-  default = "https://api.eventdata.crossref.org"
+  default = "https://api.crossref.org"
 }
 variable "api_url" {
   default = "http://client-api.local"
