@@ -1,20 +1,18 @@
-
-data "aws_route53_zone" "pidapalooza" {
-  name         = "pidapalooza.org"
-}
-
 resource "aws_s3_bucket" "pidapalooza" {
   bucket = "pidapalooza.org"
+}
 
-  website {
-    redirect_all_requests_to = "https://www.pidfest.org"
+resource "aws_s3_bucket_website_configuration" "pidapalooza" {
+  bucket = aws_s3_bucket.pidapalooza.id
+
+  redirect_all_requests_to = {
+    host_name = "pidfest.org"
   }
 }
 
-
 resource "aws_cloudfront_distribution" "pidapalooza" {
   origin {
-    domain_name = aws_s3_bucket.pidalooza.bucket_domain_name
+    domain_name = aws_s3_bucket.pidapalooza.bucket_domain_name
     origin_id   = "pidapalooza.org"
 
     custom_origin_config {
