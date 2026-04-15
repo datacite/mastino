@@ -11,6 +11,7 @@ data "aws_route53_zone" "pidapalooza" {
 }
 
 data "aws_acm_certificate" "cloudfront-pidapalooza" {
+  region = var.region
   domain = "pidapalooza.org"
   statuses = ["ISSUED"]
 }
