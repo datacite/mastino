@@ -30,6 +30,10 @@ resource "aws_cloudfront_distribution" "pidapalooza" {
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "pidapalooza.org"
 
+    forwarded_values {
+      query_string = false
+    }
+
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
