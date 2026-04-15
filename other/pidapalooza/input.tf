@@ -9,3 +9,11 @@ provider "aws" {
 data "aws_route53_zone" "pidapalooza" {
   name         = "pidapalooza.org"
 }
+
+data "aws_acm_certificate" "cloudfront-pidapalooza" {
+  provider = aws.use1
+  domain = "pidapalooza.org"
+  statuses = ["ISSUED"]
+}
+
+
