@@ -333,9 +333,11 @@ resource "aws_cloudwatch_metric_alarm" "member-api-response_time_scale_up" {
 
       dimensions = {
         TargetGroup = aws_lb_target_group.member-api.arn_suffix
+        LoadBalancer = data.aws_lb.default.arn_suffix
       }
     }
   }
+  treat_missing_data = "notBreaching"
 
   alarm_description = "Safety net: scale up member-api when P95 response time exceeds 1s"
   alarm_actions     = [
