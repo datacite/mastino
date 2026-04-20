@@ -1,4 +1,4 @@
 levriero_tags = {
-  sha = "8d9d2d0ebff1de0f6880968f214837a6a8c77ce1"
-  version = "master"
+  sha = "75574172055ec1becb4d33268a2a50134bdc2f91"
+  version = "ks-ruby-rails-8-upgrade"
 }
