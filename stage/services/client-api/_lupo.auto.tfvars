@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "0c998a4362307b405ea61241d9c3bf8062cf6852"
-  version = "main"
+  sha = "c7342af997819fb2083ab8dd6e84bd2d4d5ebf6b"
+  version = "fix-enrichments-cursor-bug"
 }
