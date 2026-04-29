@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "79b5ab3363091af2a0269e4708f4990f52f3d9ff"
+  sha = "9725719d2df5936ea58aaae8f3efe96654bbfe15"
   version = "ks-rails-8-upgrade"
 }
