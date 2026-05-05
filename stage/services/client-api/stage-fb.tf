@@ -19,6 +19,7 @@ module "fb-app" {
     namespace_id = var.namespace_id
     load_balancer_config = [
       {
+        container_name = "client-api-stage"
         container_port = 80
         target_group_arn = aws_lb_target_group.client-api-stage-fb.arn
       }

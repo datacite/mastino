@@ -58,7 +58,7 @@ resource "aws_ecs_service" "ecs-service" {
     
     content {
       target_group_arn = lb.value.target_group_arn
-      container_name   = local.full_app_name
+      container_name   = lb.value.container_name
       container_port   = lb.value.container_port
     }
   }
@@ -79,10 +79,6 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 
 resource "aws_service_discovery_service" "service_discovery" {
   name = local.discovery_name
-
-  health_check_custom_config {
-    failure_threshold = 3
-  }
 
   dns_config {
     namespace_id = var.namespace_id

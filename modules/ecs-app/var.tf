@@ -62,6 +62,7 @@ variable "load_balancer_config" {
   description = "Optional load balancer configuration. If empty, no load balancer is attached."
   type        = list(object({
     target_group_arn = string
+    container_name = string
     container_port   = number
   }))
   default     = []
