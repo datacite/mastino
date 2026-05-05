@@ -13,7 +13,7 @@ module "fb-app" {
     security_group_id = var.security_group_id
     subnet_datacite-private_id = var.subnet_datacite-private_id
     subnet_datacite-alt_id = var.subnet_datacite-alt_id
-    task_cpu = "2028"
+    task_cpu = "2048"
     task_memory = "4096"
     container_definition_json = data.template_file.stage-fb-task.rendered
     namespace_id = var.namespace_id
@@ -89,7 +89,7 @@ resource "aws_lb_target_group" "client-api-stage-fb" {
 
 resource "aws_lb_listener_rule" "api-graphql-stage-fb" {
   listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 48
+  priority     = 70
 
   action {
     type             = "forward"
@@ -111,7 +111,7 @@ resource "aws_lb_listener_rule" "api-graphql-stage-fb" {
 
 resource "aws_lb_listener_rule" "api-stage-fb" {
   listener_arn = data.aws_lb_listener.stage.arn
-  priority     = 54
+  priority     = 71
 
   action {
     type             = "forward"
