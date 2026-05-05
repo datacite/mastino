@@ -1,6 +1,6 @@
 locals {
   app_name = "client-api-fb"
-  fb_dns_name = "api.stage-fb.datacite.org"
+  fb_dns_name = "api.fb.stage.datacite.org"
 }
 
 module "fb-app" {
