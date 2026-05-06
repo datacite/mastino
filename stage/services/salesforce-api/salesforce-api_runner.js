@@ -36,7 +36,8 @@ exports.handler = async function (event, context) {
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
   const datacite_username = process.env.datacite_username;
   const datacite_password = process.env.datacite_password;
-  const providerUrl = `${process.env.datacite_api_url}/providers`;
+  const datacite_api_url = process.env.datacite_api_url;
+  const providerUrl = `${datacite_api_url}/providers`;
 
   // 3 retries on locked record
   axiosRetry(axios, {
@@ -182,6 +183,8 @@ exports.handler = async function (event, context) {
       Focus_Area__c: res.attributes.focus_area,
       // Region__c: res.attributes.region ? regions[res.attributes.region] : null,
       Region__c: res.attributes.region ? res.attributes.region : null,
+      Country_Code__c: res.attributes.country_code ? res.attributes.country_code : null,
+      Tax_Status__c: res.attributes.non_profit_status ? res.attributes.non_profit_status : null,
       Assign_DOIs__c: [
         "Direct Member",
         "Consortium",
