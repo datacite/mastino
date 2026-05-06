@@ -182,8 +182,8 @@ exports.handler = async function (event, context) {
       Focus_Area__c: res.attributes.focus_area,
       // Region__c: res.attributes.region ? regions[res.attributes.region] : null,
       Region__c: res.attributes.region ? res.attributes.region : null,
-      Country_Code__c: res.attributes.country_code,
-      Tax_Status__c: res.attributes.tax_status,
+      Country_Code__c: res.attributes.country_code ? res.attributes.country_code : null,
+      Tax_Status__c: res.attributes.non_profit_status ? res.attributes.non_profit_status : null,
       Assign_DOIs__c: [
         "Direct Member",
         "Consortium",
