@@ -1,5 +1,5 @@
 lupo_tags = {
-  sha = "9725719d2df5936ea58aaae8f3efe96654bbfe15"
-  version = "ks-rails-8-upgrade"
-  fb_version = "master"
+  sha = "c34efa9b444b54f246017b3a7aa5553763f9b05b"
+  version = "main"
+  fb_version "main"
 }
