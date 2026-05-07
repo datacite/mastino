@@ -349,3 +349,18 @@ resource "aws_sqs_queue" "enrichment_batch_process_job" {
     prevent_destroy = true
   }
 }
+
+resource "aws_sqs_queue" "enriched_doi_index_job" {
+  name                      = "${var.environment}_enriched_doi_index_job"
+  message_retention_seconds = 864000 # set message retention to 10 days
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
+    maxReceiveCount     = 4
+  })
+
+  tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
