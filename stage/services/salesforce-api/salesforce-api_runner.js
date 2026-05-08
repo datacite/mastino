@@ -590,15 +590,6 @@ exports.handler = async function (event, context) {
       IsDeleted__c: !!res.attributes.deleted_at,
     };
 
-    console.log("(DEBUG SALESFORCE API): UPDATING REPOSITORIES - BEGIN");
-    console.log("***NAME: " + body.Name);
-    console.log("***URL: " + body.Repository_URL__c);
-    console.log("***DESCRIPTION: " + body.Description__c);
-    console.log("***IS ACTIVE: " + body.IsActive__c);
-    console.log("***RES.ATTRIBUTES:");
-    console.log(JSON.stringify(res.attributes));
-    console.log("(DEBUG SALESFORCE API): UPDATING REPOSITORIES - END");
-
     try {
       result = await axios.patch(url, body, {
         headers: { Authorization: `Bearer ${auth.access_token}` },
