@@ -36,7 +36,7 @@ resource "aws_ecs_service" "client-api" {
 
 resource "aws_appautoscaling_target" "client-api" {
   max_capacity       = 20
-  min_capacity       = 16
+  min_capacity       = 4
   resource_id        = "service/default/${aws_ecs_service.client-api.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -289,7 +289,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-worker_util_scale_up" {
   namespace           = "Custom/LupoPassenger"
   period              = "60" # TODO: Evaluate this during alarm testing
   statistic           = "Average"
-  threshold           = 75  # TODO: Update this number based on traffic analysis
+  threshold           = 70
 
   dimensions = {
     Service = "client-api"
@@ -307,12 +307,12 @@ resource "aws_cloudwatch_metric_alarm" "client-api-worker_util_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "client-api-worker_util_scale_down" {
   alarm_name          = "client-api-worker-utilisation-low"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
+  evaluation_periods  = "2" # TODO: Evaluate this during alarm testing
   metric_name         = "PassengerWorkerUtilisation"
   namespace           = "Custom/LupoPassenger"
   period              = "300" # TODO: Evaluate this during alarm testing
   statistic           = "Maximum"
-  threshold           = 35  # TODO: Update this number based on traffic analysis
+  threshold           = 35
 
   dimensions = {
     Service = "client-api"
@@ -331,7 +331,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-worker_util_scale_down" {
 resource "aws_cloudwatch_metric_alarm" "client-api-queue_size_scale_up" {
   alarm_name          = "client-api-queue-size-high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2" # TODO: Evaluate this during alarm testing
+  evaluation_periods  = "1" # TODO: Evaluate this during alarm testing
   metric_name         = "PassengerRequestQueue"
   namespace           = "Custom/LupoPassenger"
   period              = "60" # TODO: Evaluate this during alarm testing
@@ -355,7 +355,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-response_time_scale_up" {
   alarm_name          = "client-api-response-time-high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
-  threshold           = 1 # TODO: Update this number based on traffic analysis
+  threshold           = 0.75
 
   metric_query {
     id          = "target_response_time"
@@ -375,7 +375,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-response_time_scale_up" {
   }
   treat_missing_data = "notBreaching"
 
-  alarm_description = "Safety net: scale up client-api when P95 response time exceeds 1s"
+  alarm_description = "Safety net: scale up client-api when P95 response time exceeds 750ms"
   alarm_actions     = [
     #aws_appautoscaling_policy.client-api-response_time_scale_up.arn,
     aws_sns_topic.client-api-scaling-alarms.arn
