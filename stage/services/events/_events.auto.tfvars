@@ -1,4 +1,4 @@
 events_tags = {
-  sha = "7f95854113c440d0b1cf089e4b0c5fdfb0201161"
-  version = "ks-rails-8-upgrade"
+  sha = "2f24b8a272a39e22ee26b455d40ad4b957355afa"
+  version = "main"
 }
