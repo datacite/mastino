@@ -60,7 +60,7 @@ data "template_file" "stage-fb-task" {
       memcache_servers                        = var.memcache_servers
       jwt_blacklisted                         = var.jwt_blacklisted
       slack_webhook_url                       = var.slack_webhook_url
-      version                                 = var.lupo_tags["fb_version"]
+      version                                 = var.fb_version
       sha                                     = ""
       exclude_prefixes_from_data_import       = var.exclude_prefixes_from_data_import
       metadata_storage_bucket_name            = var.metadata_storage_bucket_name

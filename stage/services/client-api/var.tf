@@ -13,6 +13,12 @@ variable "lupo_tags" {
   type = map(string)
 }
 
+variable "fb_version" {
+  type = string
+  description = "This is the name of the container image tag that you want to set the feature branch to use."
+  default = "master"
+}
+
 variable "lb_name" {
   default = "lb-stage"
 }
