@@ -1,5 +1,5 @@
 lupo_tags = {
-  sha = "62dbaeb143ac641a744d0a316a23d8eb61f35089"
+  sha = "99654729dababcbad4f7121081b67a4c3a437d6a"
   version = "add-enriched-doi-os-index"
   fb_version = "<no value>"
 }
