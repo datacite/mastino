@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "81b75c8f43c0bb0aa1fd0379dfb52adc2246de38"
-  version = "add-enriched-doi-os-index"
+  sha = "e5dafbf5b27b679bfdadcc06ac59b03915b33585"
+  version = "pb2207-salesforce-contacts-1"
 }
