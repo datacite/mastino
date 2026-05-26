@@ -1,4 +1,4 @@
 poodle_tags = {
-  sha = "5afce7f7c2ccf8845a4d81a122ceb320c7a057ac"
+  sha = "1d09110fbda6e8b645ac1560f397d331a68ae590"
   version = "ks-ruby-rails-8-upgrade"
 }
