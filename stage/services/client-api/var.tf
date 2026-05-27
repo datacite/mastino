@@ -19,6 +19,11 @@ variable "fb_version" {
   default = "master"
 }
 
+variable "fb_sha" {
+  type = string
+  description = "Unique commit SHA for unique container image""
+}
+
 variable "lb_name" {
   default = "lb-stage"
 }
