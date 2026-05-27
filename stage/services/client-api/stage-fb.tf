@@ -19,7 +19,7 @@ module "fb-app" {
     namespace_id = var.namespace_id
     load_balancer_config = [
       {
-        container_name = "client-api-stage"
+        container_name = "client-api-fb-stage"
         container_port = 80
         target_group_arn = aws_lb_target_group.client-api-stage-fb.arn
       }
@@ -27,7 +27,7 @@ module "fb-app" {
 }
 
 data "template_file" "stage-fb-task" {
-  template = "${file("client-api.json")}"
+  template = "${file("fb.json")}"
 
   vars = {
       re3data_url                             = var.re3data_url
@@ -61,7 +61,7 @@ data "template_file" "stage-fb-task" {
       jwt_blacklisted                         = var.jwt_blacklisted
       slack_webhook_url                       = var.slack_webhook_url
       version                                 = var.fb_version
-      sha                                     = ""
+      sha                                     = var.fb_sha
       exclude_prefixes_from_data_import       = var.exclude_prefixes_from_data_import
       metadata_storage_bucket_name            = var.metadata_storage_bucket_name
       passenger_max_pool_size                 = var.passenger_max_pool_size
