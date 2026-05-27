@@ -21,7 +21,8 @@ variable "fb_version" {
 
 variable "fb_sha" {
   type = string
-  description = "Unique commit SHA for unique container image""
+  description = "Unique commit SHA for unique container image"
+  default = ""
 }
 
 variable "lb_name" {
