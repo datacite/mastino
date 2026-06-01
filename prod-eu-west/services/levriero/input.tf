@@ -64,8 +64,6 @@ data "template_file" "levriero_task" {
     crossref_query_url                      = var.crossref_query_url
     staff_admin_token                       = var.staff_admin_token
     staff_profiles_admin_token              = var.staff_profiles_admin_token
-    eventdata_url                           = var.eventdata_url
-    eventdata_token                         = var.eventdata_token
     api_url                                 = var.api_url
     lagottino_url                           = var.lagottino_url
     datacite_crossref_source_token          = var.datacite_crossref_source_token
