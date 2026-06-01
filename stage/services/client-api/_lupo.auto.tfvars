@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "14c12cc050275db8a6ddde6bb933171816d2dfa2"
-  version = "pb2207-salesforce-contacts-1"
+  sha = "74cdf7d1dfd5fbfb9220351bab9ce47b2d79ee80"
+  version = "ks-rails-8-upgrade"
 }
