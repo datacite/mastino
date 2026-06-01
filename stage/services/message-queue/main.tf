@@ -8,6 +8,16 @@ module "datacite_queues" {
   }
 }
 
+module "datacite_queues_fb" {
+  source = "../../../modules/datacite_queues"
+
+  environment = "stagefb"
+
+  tags = {
+    Environment = "stagefb"
+  }
+}
+
 moved {
   from = aws_sqs_queue.doi-stage
   to   = module.datacite_queues.aws_sqs_queue.doi
