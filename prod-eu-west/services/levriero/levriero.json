@@ -86,14 +86,6 @@
         "value": "${staff_profiles_admin_token}"
       },
       {
-        "name": "EVENTDATA_URL",
-        "value": "${eventdata_url}"
-      },
-      {
-        "name": "EVENTDATA_TOKEN",
-        "value": "${eventdata_token}"
-      },
-      {
         "name": "LAGOTTINO_URL",
         "value": "${lagottino_url}"
       },

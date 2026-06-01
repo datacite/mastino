@@ -42,10 +42,6 @@ variable "volpino_url" {
 variable "lagottino_url" {
   default = "http://client-api.stage.local"
 }
-variable "eventdata_url" {
-  default = "https://bus-staging.eventdata.crossref.org"
-}
-variable "eventdata_token" {}
 variable "staff_admin_token" {}
 variable "staff_profiles_admin_token" {}
 
