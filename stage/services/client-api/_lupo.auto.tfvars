@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "96629009e7a2e9b5391005e268fd3b59cf73a729"
+  sha = "5df98d0b27d079b11c5eb2999ddba640a1f1008b"
   version = "pb2207-salesforce-contacts-2"
 }
