@@ -269,7 +269,7 @@ resource "aws_appautoscaling_policy" "client-api-response_time_scale_up" {
 
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
-    cooldown                = 300 # TODO: Evaluate this during alarm testing
+    cooldown                = 900
     metric_aggregation_type = "Average"
 
     step_adjustment {
@@ -354,8 +354,10 @@ resource "aws_cloudwatch_metric_alarm" "client-api-queue_size_scale_up" {
 resource "aws_cloudwatch_metric_alarm" "client-api-response_time_scale_up" {
   alarm_name          = "client-api-response-time-high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "3" # TODO: Evaluate this during alarm testing
-  threshold           = 0.75
+  evaluation_periods  = "3"
+  # 5s response time because this is an emergency alarm, so it's preferable to avoid excess scaling events until we
+  # can improve the response speed of the slower endpoints, or find a way to exclude them from the metrics
+  threshold           = 5
 
   metric_query {
     id          = "target_response_time"
@@ -364,7 +366,7 @@ resource "aws_cloudwatch_metric_alarm" "client-api-response_time_scale_up" {
     metric {
       metric_name = "TargetResponseTime"
       namespace   = "AWS/ApplicationELB"
-      period      = "120" # TODO: Evaluate this during alarm testing
+      period      = "120"
       stat        = "p95"
 
       dimensions = {
