@@ -169,10 +169,12 @@ resource "aws_cloudwatch_metric_alarm" "client-api-worker_util_scale_down" {
 
   alarm_description = "Scale down client-api when max worker utilisation has lowered"
   alarm_actions     = [
-    aws_appautoscaling_policy.client-api-worker_util_scale_down.arn,
-    aws_sns_topic.client-api-scaling-alarms.arn
+    aws_appautoscaling_policy.client-api-worker_util_scale_down.arn #,
+    # Temporarily disabled to lower noise in #ops
+    #aws_sns_topic.client-api-scaling-alarms.arn
   ]
-  ok_actions = [aws_sns_topic.client-api-scaling-alarms.arn]
+  # Temporarily disabled to lower noise in #ops
+  #ok_actions = [aws_sns_topic.client-api-scaling-alarms.arn]
 }
 
 ## Queue Size
