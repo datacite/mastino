@@ -42,6 +42,7 @@ resource "aws_ecs_task_definition" "mds-stage" {
 
   container_definitions = templatefile("mds.json",
     {
+      public_key         = var.public_key
       sentry_dsn         = var.sentry_dsn
       api_url            = var.api_url
       mds_url            = var.mds_url
