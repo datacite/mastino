@@ -38,3 +38,4 @@ variable "mds_url" {
 }
 
 variable "public_key" {}
+variable "namespace_id" {}
