@@ -19,6 +19,10 @@ resource "aws_ecs_service" "mds-stage" {
     container_port   = "80"
   }
 
+  service_registries {
+    registry_arn = aws_service_discovery_service.mds-stage.arn
+  }
+
   depends_on = [
     data.aws_lb_listener.stage,
   ]
@@ -88,6 +92,23 @@ resource "aws_lb_listener_rule" "mds-stage" {
   condition {
     host_header {
       values = [aws_route53_record.mds-stage.name]
+    }
+  }
+}
+
+resource "aws_service_discovery_service" "mds-stage" {
+  name = "mds.stage"
+
+  health_check_custom_config {
+    failure_threshold = 3
+  }
+
+  dns_config {
+    namespace_id = var.namespace_id
+
+    dns_records {
+      ttl  = 300
+      type = "A"
     }
   }
 }

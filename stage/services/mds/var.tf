@@ -36,3 +36,5 @@ variable "api_url" {
 variable "mds_url" {
   default = "https://mds.stage.datacite.org"
 }
+
+variable "public_key" {}
