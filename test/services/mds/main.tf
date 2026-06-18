@@ -19,6 +19,10 @@ resource "aws_ecs_service" "mds-test" {
     container_port   = "80"
   }
 
+  service_registries {
+    registry_arn = aws_service_discovery_service.mds-test.arn
+  }
+
   depends_on = [
     data.aws_lb_listener.test
   ]
@@ -36,7 +40,8 @@ resource "aws_ecs_task_definition" "mds-test" {
   cpu = "256"
   memory = "512"
   container_definitions = templatefile("mds.json",
-    {
+    {      
+      public_key         = var.public_key
       sentry_dsn         = var.sentry_dsn
       api_url            = var.api_url
       realm              = var.realm
@@ -108,6 +113,19 @@ resource "aws_lb_listener_rule" "mds-test-heartbeat" {
   condition {
     path_pattern {
       values = ["/heartbeat"]
+    }
+  }
+}
+
+resource "aws_service_discovery_service" "mds-test" {
+  name = "mds.test"
+
+  dns_config {
+    namespace_id = var.namespace_id
+
+    dns_records {
+      ttl  = 300
+      type = "A"
     }
   }
 }

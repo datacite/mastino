@@ -1,7 +1,7 @@
 [
   {
     "name": "mds-test",
-    "image": "datacite/poodle:${version}",
+    "image": "ghcr.io/datacite/poodle:${version}",
     "cpu": 256,
     "memory": 512,
     "networkMode": "awsvpc",
@@ -12,50 +12,54 @@
         "hostPort": 80
       }
     ],
-    "logConfiguration": { 
+    "logConfiguration": {
       "logDriver": "awslogs",
-      "options": { 
-         "awslogs-group" : "/ecs/mds-test",
-         "awslogs-region": "eu-west-1",
-         "awslogs-stream-prefix": "ecs"
+      "options": {
+        "awslogs-group": "/ecs/mds-test",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
       }
     },
-    "environment" : [
+    "environment": [
       {
-        "name" : "PASSENGER_APP_ENV",
-        "value" : "stage"
+        "name": "PUBLIC_KEY",
+        "value": "${public_key}"
       },
       {
-        "name" : "RAILS_ENV",
-        "value" : "stage"
+        "name": "PASSENGER_APP_ENV",
+        "value": "stage"
       },
       {
-        "name" : "SITE_TITLE",
-        "value" : "DataCite MDS API Test"
+        "name": "RAILS_ENV",
+        "value": "stage"
       },
       {
-        "name" : "LOG_LEVEL",
-        "value" : "info"
+        "name": "SITE_TITLE",
+        "value": "DataCite MDS API Test"
       },
       {
-        "name" : "API_URL",
-        "value" : "${api_url}"
+        "name": "LOG_LEVEL",
+        "value": "info"
       },
       {
-        "name" : "SENTRY_DSN",
-        "value" : "${sentry_dsn}"
+        "name": "API_URL",
+        "value": "${api_url}"
       },
       {
-        "name" : "REALM",
-        "value" : "${realm}"
+        "name": "SENTRY_DSN",
+        "value": "${sentry_dsn}"
       },
       {
-        "name" : "MEMCACHE_SERVERS",
-        "value" : "${memcache_servers}"
+        "name": "REALM",
+        "value": "${realm}"
       },
       {
-        "name" : "GITHUB_VERSION",
-        "value" : "${version}"
+        "name": "MEMCACHE_SERVERS",
+        "value": "${memcache_servers}"
+      },
+      {
+        "name": "GITHUB_VERSION",
+        "value": "${version}"
       },
       {
         "name": "GITHUB_SHA",
