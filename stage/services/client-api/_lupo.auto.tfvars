@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "86617a9de7f96ed8d974299ad448f7b9dc187fe6"
-  version = "pb2207-salesforce-contacts-2"
+  sha = "795c1464a898a422ce38fc7b7ecbfbbc6812142e"
+  version = "ks-add-api-keys"
 }
