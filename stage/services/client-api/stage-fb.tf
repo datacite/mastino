@@ -88,6 +88,33 @@ resource "aws_lb_target_group" "client-api-stage-fb" {
   }
 }
 
+resource "aws_lb_listener_rule" "api-legacy-endpoints-410-stage-fb" {
+  listener_arn = data.aws_lb_listener.stage.arn
+  priority     = 69
+
+  action {
+    type = "fixed-response"
+
+    fixed_response {
+      content_type = local.legacy_api_410_response.content_type
+      message_body = local.legacy_api_410_response.message_body
+      status_code  = local.legacy_api_410_response.status_code
+    }
+  }
+
+  condition {
+    host_header {
+      values = [local.fb_dns_name]
+    }
+  }
+
+  condition {
+    path_pattern {
+      values = local.legacy_api_410_path_patterns
+    }
+  }
+}
+
 resource "aws_lb_listener_rule" "api-graphql-stage-fb" {
   listener_arn = data.aws_lb_listener.stage.arn
   priority     = 70
