@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "3f361eb40fca1252d4b070f63348048deb3a7f78"
+  sha = "198c3cc2171752da43170cc3a5f8439f24366211"
   version = "ks-add-api-keys"
 }
