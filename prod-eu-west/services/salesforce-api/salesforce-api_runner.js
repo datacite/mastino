@@ -1,19 +1,3 @@
-/*
-function hasBillingInfo(res = new Object({})) {
-  return (
-    res && res.attributes && (
-      res.attributes.billing_organization ||
-      res.attributes.billing_department ||
-      res.attributes.billing_street ||
-      res.attributes.billing_city ||
-      res.attributes.billing_state_code ||
-      res.attributes.billing_postal_code ||
-      res.attributes.billing_country_code
-    )
-  ) ? true : false;
-}
-*/
-
 function hasJoinedDate(res = new Object({})) {
   return (
     res && res.attributes && (
@@ -112,9 +96,6 @@ exports.handler = async function (event, context) {
     let res = JSON.parse(payload);
 
     if (res.type === "providers") {
-      // const regions = { AMER: "Americas", EMEA: "EMEA", APAC: "Asia Pacific" };
-      // const regions = { AMER: "AMER", EMEA: "EMEA", APAC: "APAC" };
-
       accountId = res.attributes.consortium_salesforce_id;
 
       if (!accountId && res.attributes.parent_organization) {
@@ -216,27 +197,6 @@ exports.handler = async function (event, context) {
         });
       }
 
-      // some member types support billing information
-      /*
-      if (
-        ["Direct Member", "Consortium Organization", "Member Only"].includes(res.attributes.member_type) &&
-        hasBillingInfo(res)
-      ) {
-        body = Object.assign(body, {
-          Billing_Organization__c: res.attributes.billing_organization,
-          Billing_Department__c: res.attributes.billing_department,
-          BillingStreet: res.attributes.billing_street,
-          BillingCity: res.attributes.billing_city,
-          BillingStateCode: res.attributes.billing_state_code,
-          BillingPostalCode: res.attributes.billing_postal_code,
-          BillingCountryCode: res.attributes.billing_country_code,
-        });
-        console.log(`Forwarding nonnull billing info for organization: ${res.id}.`);
-      } else {
-        console.log(`Not forwarding null billing info for organization: ${res.id}.`);
-      }
-      */
-
       try {
         result = await axios.patch(url, body, {
           headers: { Authorization: `Bearer ${auth.access_token}` },
@@ -334,6 +294,7 @@ exports.handler = async function (event, context) {
         url = `${
           auth.instance_url
         }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
+
         try {
           organization = await axios
             .get(url, {
