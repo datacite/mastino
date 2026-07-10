@@ -3,7 +3,7 @@ resource "aws_ecs_service" "queue-worker" {
   cluster         = data.aws_ecs_cluster.default.id
   launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.queue-worker.arn
-  desired_count   = 4
+  desired_count   = 2
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -96,7 +96,7 @@ resource "aws_service_discovery_service" "queue-worker" {
 // Autoscaling target for queue-worker service
 resource "aws_appautoscaling_target" "queue-worker" {
   max_capacity       = 15
-  min_capacity       = 2
+  min_capacity       = 4
   resource_id        = "service/default/${aws_ecs_service.queue-worker.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
