@@ -181,7 +181,7 @@ resource "aws_cloudwatch_metric_alarm" "member-api-worker_util_scale_down" {
 resource "aws_cloudwatch_metric_alarm" "member-api-queue_size_scale_up" {
   alarm_name          = "member-api-queue-size-high"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "1"
+  evaluation_periods  = "2"
   metric_name         = "PassengerRequestQueue"
   namespace           = "Custom/LupoPassenger"
   period              = "60"
