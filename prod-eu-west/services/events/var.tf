@@ -44,3 +44,7 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+
+variable "events_queue" {
+    default = "production_events_reindex_daily"
+}

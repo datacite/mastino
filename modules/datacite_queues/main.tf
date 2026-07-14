@@ -274,6 +274,20 @@ resource "aws_sqs_queue" "events_index" {
   }
 }
 
+resource "aws_sqs_queue" "events_reindex_daily" {
+  name = "${var.environment}_events_reindex_daily"
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dead-letter.arn
+    maxReceiveCount     = 4
+  })
+
+  tags = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "aws_sqs_queue" "events_other_doi_job" {
   name                      = "${var.environment}_events_other_doi_job"
   message_retention_seconds = 864000 # set message retention to 10 days

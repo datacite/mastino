@@ -120,3 +120,44 @@ resource "aws_route53_record" "split-events" {
   ttl     = var.ttl
   records = [data.aws_lb.default.dns_name]
 }
+
+resource "aws_lambda_function" "events-queue-reindex-touched-dois" {
+  filename         = "events_queue_reindex_touched_dois.py.zip"
+  function_name    = "events-queue_reindex_touched_dois"
+  role             = data.aws_iam_role.lambda.arn
+  handler          = "events_queue_reindex_touched_dois_runner.lambda_handler"
+  runtime          = "python3.10"
+  source_code_hash = filebase64sha256("events_queue_reindex_touched_dois.py.zip")
+  timeout          = "30"
+
+  vpc_config {
+    subnet_ids         = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
+    security_group_ids = [data.aws_security_group.datacite-private.id]
+  }
+
+  environment {
+    variables = {
+        QUEUE_NAME = var.events_queue
+    }
+  }
+}
+
+resource "aws_cloudwatch_event_rule" "events-queue-reindex-touched-dois" {
+  name                = "events-queue-reindex-touched-dois"
+  description         = "Run events-queue-reindex-touched-dois via cron"
+  schedule_expression = "cron(00 2 * * ? *)"  # Every day at 2am UTC
+}
+
+resource "aws_cloudwatch_event_target" "events-queue-reindex-touched-dois" {
+  target_id = "events-queue-reindex-touched-dois"
+  rule      = aws_cloudwatch_event_rule.events-queue-reindex-touched-dois.name
+  arn       = aws_lambda_function.events-queue-reindex-touched-dois.arn
+}
+
+resource "aws_lambda_permission" "events-queue-reindex-touched-dois" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.events-queue-reindex-touched-dois.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.events-queue-reindex-touched-dois.arn
+}
