@@ -87,7 +87,7 @@ resource "aws_lb_listener_rule" "mds-stage" {
 
   action {
     type             = "forward"
-    target_group_arn = data.aws_lb_target_group.client-api-stage.arn
+    target_group_arn = aws_lb_target_group.mds-stage.arn
   }
 
   condition {
