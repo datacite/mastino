@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "f62d9669f41ddd5aee2b264dff0bff344ecf49ac"
-  version = "ks-embed-mds-poodle"
+  sha = "850d2d1360dde2adc63d0966bf053faa55db8523"
+  version = "main"
 }
