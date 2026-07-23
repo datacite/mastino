@@ -5,7 +5,7 @@ resource "aws_ecs_service" "re3data" {
   task_definition = aws_ecs_task_definition.re3data.arn
 
   # Create service with 2 instances to start
-  desired_count = 2
+  desired_count = 0
 
   # Allow external changes without Terraform plan difference
   lifecycle {
@@ -28,8 +28,8 @@ resource "aws_ecs_service" "re3data" {
 }
 
 resource "aws_appautoscaling_target" "re3data" {
-  max_capacity       = 10
-  min_capacity       = 2
+  max_capacity       = 0
+  min_capacity       = 0
   resource_id        = "service/default/${aws_ecs_service.re3data.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -143,8 +143,12 @@ resource "aws_lb_listener_rule" "re3data" {
   priority     = 34
 
   action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.re3data.arn
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Gone"
+      status_code  = "410"
+    }
   }
 
   condition {
