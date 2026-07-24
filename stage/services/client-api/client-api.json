@@ -216,6 +216,14 @@
       { 
         "name": "ROR_ANALYSIS_S3_BUCKET",
         "value": "${ror_analysis_s3_bucket}"
+      },
+      {
+        "name": "MDS_ENABLED",
+        "value": "${mds_enabled}"
+      },
+      {
+        "name": "MDS_URL",
+        "value": "${mds_url}"
       }
     ]
   }

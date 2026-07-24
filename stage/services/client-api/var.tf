@@ -125,3 +125,11 @@ variable "disable_facets_by_default" {
 }
 
 variable "ror_analysis_s3_bucket" { }
+
+variable "mds_enabled" {
+  default = true
+}
+
+variable "mds_url" {
+  default = "https://mds.stage.datacite.org"
+}
