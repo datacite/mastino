@@ -82,6 +82,9 @@ resource "aws_ecs_task_definition" "client-api-stage" {
       enrichments_ingestion_files_bucket_name = var.enrichments_ingestion_files_bucket_name
       disable_facets_by_default               = var.disable_facets_by_default
       ror_analysis_s3_bucket                  = var.ror_analysis_s3_bucket
+      mds_enabled                             = var.mds_enabled
+      mds_url                                 = var.mds_url
+      mds_hosts                               = var.mds_hosts
   })
 }
 
