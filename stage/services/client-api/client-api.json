@@ -224,6 +224,10 @@
       {
         "name": "MDS_URL",
         "value": "${mds_url}"
+      },
+      {
+        "name": "MDS_HOSTS",
+        "value": "${mds_hosts}"
       }
     ]
   }

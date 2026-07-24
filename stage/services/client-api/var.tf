@@ -133,3 +133,7 @@ variable "mds_enabled" {
 variable "mds_url" {
   default = "https://mds.stage.datacite.org"
 }
+
+variable "mds_hosts" {
+  default = "mds.stage.datacite.org"
+}
