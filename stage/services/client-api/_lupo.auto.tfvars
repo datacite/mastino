@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "3f67323aed5725f9961fcb2b6ac72c9095fdf1a8"
+  sha = "6a40b43289f8cb545d9befd596f9675199f54a26"
   version = "ks-fix-isactive-truthiness"
 }
