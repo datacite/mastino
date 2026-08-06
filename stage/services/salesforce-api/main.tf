@@ -43,6 +43,7 @@ resource "aws_lambda_function" "salesforce-api-stage" {
   runtime = "nodejs22.x"
   source_code_hash = sha256(filebase64("salesforce-api_runner.js.zip"))
   timeout = "60"
+  reserved_concurrent_executions = 20
 
   vpc_config {
     subnet_ids = [data.aws_subnet.datacite-private.id, data.aws_subnet.datacite-alt.id]
@@ -62,6 +63,13 @@ resource "aws_lambda_function" "salesforce-api-stage" {
       datacite_password = var.datacite_password
     }
   }
+}
+
+resource "aws_lambda_event_source_mapping" "salesforce-api_stage_event_source_mapping" {
+  event_source_arn = data.aws_sqs_queue.salesforce.arn
+  enabled          = true
+  function_name    = aws_lambda_function.salesforce-api-stage.arn
+  batch_size       = 1
 }
 
 resource "aws_lambda_permission" "update-salesforce-daily-stage" {
