@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "a243d06bf6fb9dcbfc755af12359767da5944ea8"
-  version = "fix-enrichments-cursor-paging"
+  sha = "8ef473610d02f1d55b88534ecbb0e179b53c5ad1"
+  version = "main"
 }
