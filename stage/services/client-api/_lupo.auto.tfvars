@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "c7937d3c9aae8f9d320a931b5b62078ac46dcb8b"
-  version = "ks-fix-api-key-revoked-keys"
+  sha = "914f38c4f6a9a85a1bc8764c011f0cf5f9bfdce4"
+  version = "main"
 }
