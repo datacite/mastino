@@ -41,8 +41,8 @@ resource "aws_ecs_task_definition" "events-stage" {
   memory                   = "2048"
   container_definitions = templatefile("events.json",
     {
-      access_key       = var.access_key
-      secret_key       = var.secret_key
+      access_key       = var.aws_service_account_key
+      secret_key       = var.aws_service_account_secret
       public_key       = var.public_key
       mysql_user       = var.mysql_user
       mysql_password   = var.mysql_password
