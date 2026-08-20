@@ -48,3 +48,6 @@ variable "es_name" {
 variable "events_queue" {
     default = "production_events_reindex_daily"
 }
+
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}
