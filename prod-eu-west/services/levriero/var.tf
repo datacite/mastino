@@ -80,3 +80,6 @@ variable "namespace_id" {}
 variable "exclude_prefixes_from_orcid_claiming" {
   default = ""
 }
+
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}
