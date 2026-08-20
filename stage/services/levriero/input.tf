@@ -90,5 +90,7 @@ data "template_file" "levriero_task" {
     arxiv_prefix = var.arxiv_prefix
     version = var.levriero_tags["version"]
     sha = var.levriero_tags["sha"]
+    aws_service_account_key = var.aws_service_account_key
+    aws_service_account_secret = var.aws_service_account_secret
   }
 }

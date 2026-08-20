@@ -3,7 +3,7 @@ resource "aws_ecs_service" "re3data-stage" {
   cluster = data.aws_ecs_cluster.stage.id
   launch_type = "FARGATE"
   task_definition = aws_ecs_task_definition.re3data-stage.arn
-  desired_count = 1
+  desired_count = 0
 
   network_configuration {
     security_groups = [data.aws_security_group.datacite-private.id]
@@ -52,8 +52,12 @@ resource "aws_lb_listener_rule" "re3data-stage" {
   priority     = 32
 
   action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.re3data-stage.arn
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Gone"
+      status_code  = "410"
+    }
   }
 
   condition {

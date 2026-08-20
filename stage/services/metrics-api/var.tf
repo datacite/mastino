@@ -48,4 +48,6 @@ variable "rack_timeout_service_timeout" {
   default = "40"
 }
 variable "jwt_blacklisted" {}
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}
 

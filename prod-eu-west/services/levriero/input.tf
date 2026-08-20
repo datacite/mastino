@@ -92,5 +92,7 @@ data "template_file" "levriero_task" {
     arxiv_prefix                            = var.arxiv_prefix
     exclude_prefixes_from_orcid_claiming    = var.exclude_prefixes_from_orcid_claiming
     version                                 = var.levriero_tags["version"]
+    aws_service_account_key                 = var.aws_service_account_key
+    aws_service_account_secret              = var.aws_service_account_secret
   }
 }

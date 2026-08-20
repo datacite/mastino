@@ -68,6 +68,8 @@ data "template_file" "metrics-api_task" {
     rack_timeout_service_timeout = var.rack_timeout_service_timeout
     version            = var.sashimi_tags["version"]
     log_level          = var.log_level
+    aws_service_account_key = var.aws_service_account_key
+    aws_service_account_secret = var.aws_service_account_secret
   }
 }
 
