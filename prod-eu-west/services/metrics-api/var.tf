@@ -51,3 +51,5 @@ variable "jwt_blacklisted" {}
 variable "log_level" {
   default = "info"
 }
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}
