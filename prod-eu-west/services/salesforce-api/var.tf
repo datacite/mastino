@@ -21,3 +21,7 @@ variable "slack_webhook_url" {}
 variable "datacite_api_url" {}
 variable "datacite_username" {}
 variable "datacite_password" {}
+
+variable "salesforce_queue" {
+    default = "production_salesforce"
+}

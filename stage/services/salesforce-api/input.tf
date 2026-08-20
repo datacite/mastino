@@ -19,3 +19,7 @@ data "aws_subnet" "datacite-private" {
 data "aws_subnet" "datacite-alt" {
   id = var.subnet_datacite-alt_id
 }
+
+data "aws_sqs_queue" "salesforce" {
+  name = var.salesforce_queue
+}
