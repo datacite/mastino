@@ -72,3 +72,6 @@ variable "zbmath_identifier_source_token" {}
 variable "arxiv_prefix" {}
 
 variable "namespace_id" {}
+
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}
