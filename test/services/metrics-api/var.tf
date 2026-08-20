@@ -49,3 +49,5 @@ variable "rack_timeout_service_timeout" {
 }
 variable "jwt_blacklisted" {}
 
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}

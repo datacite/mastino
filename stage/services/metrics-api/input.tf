@@ -67,6 +67,8 @@ data "template_file" "metrics-api_task" {
     jwt_blacklisted    = var.jwt_blacklisted
     rack_timeout_service_timeout = var.rack_timeout_service_timeout
     version            = var.sashimi_tags["sha"]
+    aws_service_account_key                 = var.aws_service_account_key
+    aws_service_account_secret              = var.aws_service_account_secret
   }
 }
 
