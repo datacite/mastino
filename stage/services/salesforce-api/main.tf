@@ -65,6 +65,11 @@ resource "aws_lambda_function" "salesforce-api-stage" {
   }
 }
 
+import {
+  to = aws_lambda_event_source_mapping.salesforce-api_stage_event_source_mapping
+  id = "96efb9a3-3897-40fb-bc2c-ab16340422d2"
+}
+
 resource "aws_lambda_event_source_mapping" "salesforce-api_stage_event_source_mapping" {
   event_source_arn = data.aws_sqs_queue.salesforce.arn
   enabled          = true
