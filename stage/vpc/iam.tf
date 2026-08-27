@@ -86,7 +86,7 @@ resource "aws_iam_role" "datafile_readonly_access-stage" {
 
 resource "aws_iam_role_policy" "datafile_readonly_access_s3-stage" {
   name = "datafile_readonly_access_s3-stage"
-  role = "service-lupo-staging"
+  role = aws_iam_role.datafile_readonly_access-stage.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
