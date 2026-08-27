@@ -43,7 +43,7 @@ DOC
 
 import {
   to = aws_iam_user.service-account-stage
-  id = var.service_account
+  id = "Lupo-Staging"
 }
 
 import {
@@ -59,7 +59,7 @@ resource "aws_s3_bucket" "datafile-bucket-stage" {
 }
 
 resource "aws_iam_user" "service-account-stage" {
-  name = var.service_account
+  name = "Lupo-Staging"
   lifecycle {
     ignore_changes = [tags]
   }
@@ -77,7 +77,7 @@ resource "aws_iam_role" "datafile_readonly_access-stage" {
         Effect = "Allow"
         Sid = "AllowDatafileAccessRoleFromLupo"
         Principal = {
-          AWS = aws_iam_user.service-account-stage.arn
+          AWS = "arn:aws:iam::404017989009:user/service-lupo-staging"
         }
       }
     ]
@@ -86,7 +86,7 @@ resource "aws_iam_role" "datafile_readonly_access-stage" {
 
 resource "aws_iam_role_policy" "datafile_readonly_access_s3-stage" {
   name = "datafile_readonly_access_s3-stage"
-  role = aws_iam_role.datafile_readonly_access-stage.id
+  role = "service-lupo-staging"
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
