@@ -43,7 +43,7 @@ DOC
 
 import {
   to = aws_iam_user.service-account-prod
-  id = var.service_account
+  id = "services-api-production"
 }
 
 import {
@@ -59,7 +59,7 @@ resource "aws_s3_bucket" "datafile-bucket-prod" {
 }
 
 resource "aws_iam_user" "service-account-prod" {
-  name = var.service_account
+  name = "services-api-production"
   lifecycle {
     ignore_changes = [tags]
   }
@@ -77,7 +77,7 @@ resource "aws_iam_role" "datafile_readonly_access-prod" {
         Effect = "Allow"
         Sid = "AllowDatafileAccessRoleFromLupo"
         Principal = {
-          AWS = aws_iam_user.service-account-prod.arn
+          AWS = "arn:aws:iam::404017989009:user/service-lupo-production"
         }
       }
     ]

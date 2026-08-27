@@ -393,6 +393,325 @@ resource "aws_wafv2_web_acl" "prod-default" {
     }
   }
 
+  rule {
+           name     = "AWS-AWSManagedRulesBotControlRuleSet"
+           priority = 51
+
+           override_action {
+               none {}
+            }
+
+           statement {
+               managed_rule_group_statement {
+                   name        = "AWSManagedRulesBotControlRuleSet"
+                   vendor_name = "AWS"
+                   version     = "Version_3.2"
+
+                   managed_rule_group_configs {
+                       aws_managed_rules_bot_control_rule_set {
+                           inspection_level = "COMMON"
+                        }
+                    }
+
+                   rule_action_override {
+                       name = "CategoryAdvertising"
+
+                       action_to_use {
+                           block {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryArchiver"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryContentFetcher"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryEmailClient"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryHttpLibrary"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryLinkChecker"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryMiscellaneous"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryMonitoring"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryScrapingFramework"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategorySearchEngine"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategorySecurity"
+
+                       action_to_use {
+                           block {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategorySeo"
+
+                       action_to_use {
+                           block {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategorySocialMedia"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "CategoryAI"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "SignalAutomatedBrowser"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "SignalKnownBotDataCenter"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "SignalNonBrowserUserAgent"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_VolumetricIpTokenAbsent"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenAbsent"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_VolumetricSession"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_VolumetricSessionMaximum"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_SignalAutomatedBrowser"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_SignalBrowserAutomationExtension"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_SignalBrowserInconsistency"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_ML_CoordinatedActivityLow"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_ML_CoordinatedActivityMedium"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_ML_CoordinatedActivityHigh"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseIpLow"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseIpMedium"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseIpHigh"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseCountryLow"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseCountryMedium"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseCountryHigh"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseAsnLow"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseAsnMedium"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                   rule_action_override {
+                       name = "TGT_TokenReuseAsnHigh"
+
+                       action_to_use {
+                           count {
+                            }
+                        }
+                    }
+                }
+            }
+
+           visibility_config {
+               cloudwatch_metrics_enabled = true
+               metric_name                = "AWS-AWSManagedRulesBotControlRuleSet"
+               sampled_requests_enabled   = true
+            }
+        }
+
+
   visibility_config {
     cloudwatch_metrics_enabled = false
     metric_name                = "defaultv2"
