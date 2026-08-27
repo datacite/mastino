@@ -63,5 +63,5 @@ variable "datafile_bucket" {
 }
 
 variable "service_account" {
-  default = "services-api-production"
+  default = "service-lupo-production"
 }

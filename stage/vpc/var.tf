@@ -47,5 +47,5 @@ variable "datafile_bucket" {
 }
 
 variable "service_account" {
-  default = "Lupo-Staging"
+  default = "service-lupo-staging"
 }
