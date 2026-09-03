@@ -20,7 +20,8 @@ exports.handler = async function (event, context) {
   const authUrl = `https://${process.env.host}/services/oauth2/token`;
   const datacite_username = process.env.datacite_username;
   const datacite_password = process.env.datacite_password;
-  const providerUrl = `${process.env.datacite_api_url}/providers`;
+  const datacite_api_url = process.env.datacite_api_url;
+  const providerUrl = `${datacite_api_url}/providers`;
 
   // Calculate and print the total number of messages in this batch
   const batchSize = event.Records ? event.Records.length : 0;
@@ -89,7 +90,7 @@ exports.handler = async function (event, context) {
 
   let url, body, organization, accountId, result, res;
 
-  // Process your messages - max 10 messages per batch.
+  // Process your message s - max records per batch as defined in the SQS queue settings (default 10)
   for (const record of event.Records) {
     const payload = record.body;
 

@@ -90,7 +90,7 @@ exports.handler = async function (event, context) {
 
   let url, body, organization, accountId, result, res;
 
-  // Process your messages - max 10 messages per batch.
+  // Process your message s - max records per batch as defined in the SQS queue settings (default 10)
   for (const record of event.Records) {
     const payload = record.body;
 
@@ -296,7 +296,7 @@ exports.handler = async function (event, context) {
           auth.instance_url
         }/services/data/${apiVersion}/sobjects/Account/Fabrica__c/${res.attributes.provider_id.toUpperCase()}`;
 
-				try {
+        try {
           organization = await axios
             .get(url, {
               headers: { Authorization: `Bearer ${auth.access_token}` },
