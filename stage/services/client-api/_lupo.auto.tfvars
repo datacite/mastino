@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "c19b391414f0485e49317b57ab838957e85a0632"
-  version = "pb325-json-metadata-validation"
+  sha = "2f4a8b73f46864b873dd013303c3aba8b45c4dd1"
+  version = "main"
 }
