@@ -106,5 +106,7 @@ data "template_file" "profiles_task" {
     es_prefix          = var.es_prefix
     elastic_password   = var.elastic_password
     version            = var.volpino_tags["sha"]
+    aws_service_account_key = var.aws_service_account_key
+    aws_service_account_secret = var.aws_service_account_secret
   }
 }
