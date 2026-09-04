@@ -94,5 +94,7 @@ data "template_file" "profiles_task" {
     es_name            = var.es_name
     es_host            = var.es_host
     version            = var.volpino_tags["version"]
+    aws_service_account_key = var.aws_service_account_key
+    aws_service_account_secret = var.aws_service_account_secret
   }
 }
