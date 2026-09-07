@@ -105,3 +105,5 @@ variable "es_prefix" {
   default = "stage"
 }
 variable "elastic_password" {}
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}
