@@ -97,3 +97,5 @@ variable "es_host" {
 variable "es_name" {
   default = "es"
 }
+variable "aws_service_account_key" {}
+variable "aws_service_account_secret" {}
