@@ -62,6 +62,10 @@
         "value": "${handle_url}"
       },
       {
+        "name": "HANDLE_PRIMARY_URL",
+        "value": "${handle_primary_url}"
+      },
+      {
         "name": "HANDLE_USERNAME",
         "value": "${handle_username}"
       },

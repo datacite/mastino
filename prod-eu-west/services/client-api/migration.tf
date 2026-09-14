@@ -40,6 +40,7 @@ resource "aws_ecs_task_definition" "migration-api" {
       jwt_private_key               = var.jwt_private_key
       session_encrypted_cookie_salt = var.session_encrypted_cookie_salt
       handle_url                    = var.handle_url
+      handle_primary_url            = var.handle_primary_url
       handle_username               = var.handle_username
       handle_password               = var.handle_password
       mysql_user                    = var.mysql_user
