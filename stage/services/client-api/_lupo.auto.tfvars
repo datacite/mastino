@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "6ea954dc0a6794f0c1e6d5cce73fe21f907b468b"
+  sha = "29234a50067dbb44b56ec2f7d6e07d0c27d1000c"
   version = "update-enrichments-ingest-to-cater-for-gzip"
 }
