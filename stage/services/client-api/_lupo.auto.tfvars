@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "0a12c0138b1cb102b624c9ef6960b46fe3a0582e"
-  version = "events-optimization2"
+  sha = "2da2f3df44a606d27c6b3f83a08197e39f76cbf1"
+  version = "main"
 }
