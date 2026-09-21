@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "2da2f3df44a606d27c6b3f83a08197e39f76cbf1"
-  version = "main"
+  sha = "8a18e70f5ca8a365accc4313b83c898bfef31281"
+  version = "pb938-salesforce-isactive"
 }
