@@ -284,6 +284,7 @@ resource "aws_ecs_task_definition" "member-api" {
       monthly_datafile_access_role      = var.monthly_datafile_access_role
       disable_facets_by_default         = var.disable_facets_by_default
       ror_analysis_s3_bucket            = var.ror_analysis_s3_bucket
+      number_of_shards_datacite_doi     = var.number_of_shards_datacite_doi
   })
 }
 
