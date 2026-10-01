@@ -71,6 +71,7 @@ resource "aws_ecs_task_definition" "queue-worker-stage" {
       passenger_min_instances                 = var.passenger_min_instances
       enrichments_ingestion_files_bucket_name = var.enrichments_ingestion_files_bucket_name
       ror_analysis_s3_bucket                  = var.ror_analysis_s3_bucket
+      number_of_shards_datacite_doi           = var.number_of_shards_datacite_doi
   })
 }
 

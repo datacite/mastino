@@ -216,6 +216,10 @@
       {
         "name": "ROR_ANALYSIS_S3_BUCKET",
         "value": "${ror_analysis_s3_bucket}"
+      },
+      {
+        "name": "NUMBER_OF_SHARDS_DATACITE_DOI",
+        "value": "${number_of_shards_datacite_doi}"
       }
     ]
   }
