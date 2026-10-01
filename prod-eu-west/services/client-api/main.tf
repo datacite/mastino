@@ -285,6 +285,7 @@ resource "aws_ecs_task_definition" "client-api" {
       enrichments_ingestion_files_bucket_name = var.enrichments_ingestion_files_bucket_name
       disable_facets_by_default               = var.disable_facets_by_default
       ror_analysis_s3_bucket                  = var.ror_analysis_s3_bucket
+      number_of_shards_datacite_doi           = var.number_of_shards_datacite_doi
   })
 }
 

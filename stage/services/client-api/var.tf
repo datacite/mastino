@@ -126,6 +126,10 @@ variable "disable_facets_by_default" {
 
 variable "ror_analysis_s3_bucket" { }
 
+variable "number_of_shards_datacite_doi" {
+  default = "5"
+}
+
 variable "mds_enabled" {
   default = true
 }

@@ -99,3 +99,7 @@ variable "disable_facets_by_default" {
   default = "false"
 }
 
+variable "number_of_shards_datacite_doi" {
+  default = "5"
+}
+

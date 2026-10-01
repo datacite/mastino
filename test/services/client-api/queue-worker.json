@@ -192,6 +192,10 @@
       {
         "name": "PASSENGER_MIN_INSTANCES",
         "value": "${passenger_min_instances}"
+      },
+      {
+        "name": "NUMBER_OF_SHARDS_DATACITE_DOI",
+        "value": "${number_of_shards_datacite_doi}"
       }
     ]
   }

@@ -68,6 +68,7 @@ resource "aws_ecs_task_definition" "queue-worker-test" {
       metadata_storage_bucket_name  = var.metadata_storage_bucket_name
       passenger_max_pool_size       = var.passenger_max_pool_size
       passenger_min_instances       = var.passenger_min_instances
+      number_of_shards_datacite_doi = var.number_of_shards_datacite_doi
   })
 }
 

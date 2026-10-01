@@ -228,6 +228,10 @@
       {
         "name": "MDS_HOSTS",
         "value": "${mds_hosts}"
+      },
+      {
+        "name": "NUMBER_OF_SHARDS_DATACITE_DOI",
+        "value": "${number_of_shards_datacite_doi}"
       }
     ]
   }
