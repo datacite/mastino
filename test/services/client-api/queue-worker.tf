@@ -68,13 +68,10 @@ resource "aws_ecs_task_definition" "queue-worker-test" {
       metadata_storage_bucket_name  = var.metadata_storage_bucket_name
       passenger_max_pool_size       = var.passenger_max_pool_size
       passenger_min_instances       = var.passenger_min_instances
-<<<<<<< HEAD
       number_of_shards_datacite_doi = var.number_of_shards_datacite_doi
-=======
       number_of_shards_other_doi    = var.number_of_shards_other_doi
       number_of_shards_event        = var.number_of_shards_event
       number_of_shards_activity     = var.number_of_shards_activity
->>>>>>> 9cf0a9c3e (feat: add shard count variables to test client-api)
   })
 }
 

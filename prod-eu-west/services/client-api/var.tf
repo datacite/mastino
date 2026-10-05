@@ -109,9 +109,10 @@ variable "disable_facets_by_default" {
 
 variable "ror_analysis_s3_bucket" { }
 
-<<<<<<< HEAD
 variable "number_of_shards_datacite_doi" {
-=======
+  default = "5"
+}
+
 variable "number_of_shards_other_doi" {
   default = "5"
 }
@@ -121,6 +122,5 @@ variable "number_of_shards_event" {
 }
 
 variable "number_of_shards_activity" {
->>>>>>> 0f3a649fd (feat: add number of shards environment variables to client-api)
   default = "5"
 }

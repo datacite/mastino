@@ -73,13 +73,10 @@ resource "aws_ecs_task_definition" "queue-worker" {
       passenger_min_instances                 = var.passenger_min_instances
       enrichments_ingestion_files_bucket_name = var.enrichments_ingestion_files_bucket_name
       ror_analysis_s3_bucket                  = var.ror_analysis_s3_bucket
-<<<<<<< HEAD
       number_of_shards_datacite_doi           = var.number_of_shards_datacite_doi
-=======
       number_of_shards_other_doi              = var.number_of_shards_other_doi
       number_of_shards_event                  = var.number_of_shards_event
       number_of_shards_activity               = var.number_of_shards_activity
->>>>>>> 0f3a649fd (feat: add number of shards environment variables to client-api)
   })
 }
 
