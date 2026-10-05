@@ -99,7 +99,19 @@ variable "disable_facets_by_default" {
   default = "false"
 }
 
+<<<<<<< HEAD
 variable "number_of_shards_datacite_doi" {
+=======
+variable "number_of_shards_other_doi" {
+  default = "5"
+}
+
+variable "number_of_shards_event" {
+  default = "5"
+}
+
+variable "number_of_shards_activity" {
+>>>>>>> 9cf0a9c3e (feat: add shard count variables to test client-api)
   default = "5"
 }
 
