@@ -77,6 +77,9 @@ resource "aws_ecs_task_definition" "client-api-test" {
       passenger_min_instances       = var.passenger_min_instances
       disable_facets_by_default     = var.disable_facets_by_default
       number_of_shards_datacite_doi = var.number_of_shards_datacite_doi
+      number_of_shards_other_doi    = var.number_of_shards_other_doi
+      number_of_shards_event        = var.number_of_shards_event
+      number_of_shards_activity     = var.number_of_shards_activity
   })
 }
 

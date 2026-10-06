@@ -200,6 +200,18 @@
       {
         "name": "NUMBER_OF_SHARDS_DATACITE_DOI",
         "value": "${number_of_shards_datacite_doi}"
+      },
+      {
+        "name": "NUMBER_OF_SHARDS_OTHER_DOI",
+        "value": "${number_of_shards_other_doi}"
+      },
+      {
+        "name": "NUMBER_OF_SHARDS_EVENT",
+        "value": "${number_of_shards_event}"
+      },
+      {
+        "name": "NUMBER_OF_SHARDS_ACTIVITY",
+        "value": "${number_of_shards_activity}"
       }
     ]
   }

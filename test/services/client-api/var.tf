@@ -103,3 +103,15 @@ variable "number_of_shards_datacite_doi" {
   default = "5"
 }
 
+variable "number_of_shards_other_doi" {
+  default = "5"
+}
+
+variable "number_of_shards_event" {
+  default = "5"
+}
+
+variable "number_of_shards_activity" {
+  default = "5"
+}
+
