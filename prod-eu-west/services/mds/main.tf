@@ -32,8 +32,8 @@ resource "aws_ecs_service" "mds" {
 }
 
 resource "aws_appautoscaling_target" "mds" {
-  max_capacity       = 12
-  min_capacity       = 6
+  max_capacity       = 16
+  min_capacity       = 12
   resource_id        = "service/default/${aws_ecs_service.mds.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
