@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "d6df879799ba5695605022e20beb77fe9417a0e0"
+  sha = "a6abe41dbeb77ba4b9c4bf288ce089f7597a0ab6"
   version = "add-delete-enrichments-task"
 }
