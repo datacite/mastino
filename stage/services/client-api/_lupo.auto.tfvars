@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "3958ce345e77f581020013de39ccb01a933e067b"
-  version = "rework-enrichment-delete-task-for-performance"
+  sha = "9262f49ceababa1859238ed1947458f633ba8e6c"
+  version = "main"
 }
