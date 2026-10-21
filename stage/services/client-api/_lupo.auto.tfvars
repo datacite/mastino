@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "9262f49ceababa1859238ed1947458f633ba8e6c"
-  version = "main"
+  sha = "97d19ca0136823aff558b7f31358d21d986b342d"
+  version = "pb933-region-info"
 }
