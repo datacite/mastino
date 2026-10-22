@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "9d285591ee1831432ed0687009b49cf805e81f52"
-  version = "implement-duplicate-content-key-enrichment-cleanup-task"
+  sha = "5acec8ad945ccaf84748e50d92e8aa26d10f61b2"
+  version = "main"
 }
