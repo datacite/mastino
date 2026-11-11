@@ -173,6 +173,7 @@ exports.handler = async function (event, context) {
         Region__c: res.attributes.region ? res.attributes.region : null,
         Country_Code__c: res.attributes.country_code ? res.attributes.country_code : null,
         Tax_Status__c: res.attributes.non_profit_status ? res.attributes.non_profit_status : null,
+        Annual_revenue_For_Profit__c: res.attributes.annual_revenue ? res.attributes.annual_revenue : null,
         Assign_DOIs__c: [
           "Direct Member",
           "Consortium",
