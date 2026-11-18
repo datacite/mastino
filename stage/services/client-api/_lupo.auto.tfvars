@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "aebcf44c25ce33c1f286d29b5ada560fa4eed2b1"
-  version = "add-annual-revenue-field"
+  sha = "1e593ade4515e91fbb6e6e546be4d11dcd280ae4"
+  version = "main"
 }
