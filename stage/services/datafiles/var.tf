@@ -35,3 +35,6 @@ variable "dns_name" {
 }
 
 variable "namespace_id" {}
+
+variable "api_aws_access_key" {}
+variable "api_aws_secret_key" {}

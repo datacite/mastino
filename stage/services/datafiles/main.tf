@@ -41,8 +41,8 @@ resource "aws_ecs_task_definition" "datafiles-stage" {
   memory = "512"
   container_definitions = templatefile("datafiles.json",
     {
-      access_key         = var.access_key
-      secret_key         = var.secret_key
+      access_key         = var.api_aws_access_key
+      secret_key         = var.api_aws_secret_key
       region             = var.region
       database_url       = var.database_url
       jwt_secret_key     = var.jwt_secret_key
