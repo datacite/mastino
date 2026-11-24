@@ -1,4 +1,4 @@
 lupo_tags = {
-  sha = "5af6dfce9db07e5ee589dc88296ee022e7947076"
-  version = "pb967-resolutions"
+  sha = "a55b2f221b4f524778503c9a9bf3a455ad92c882"
+  version = "main"
 }
